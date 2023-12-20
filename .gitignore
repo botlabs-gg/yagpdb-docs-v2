@@ -1,0 +1,7 @@
+.hugo_build.lock
+
+_vendor/
+public/
+resources/
+
+.DS_Store

@@ -12,8 +12,6 @@ As always clone the repository first and change into it.
 Install [Hugo](https://gohugo.io/getting-started/installing/), clone this repository and run `hugo server` to start a
 local server. The server will automatically rebuild the page when you make changes.
 
-Due to the current configuration of `baseURL` in `hugo.toml`, the page is then available at `localhost:1313/yagpdb-docs-v2`.
-
 ### Editor Setup
 
 As this project used the [EditorConfig](https://editorconfig.org/) standard, you will have to make sure that your

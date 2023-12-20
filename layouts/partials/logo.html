@@ -1,48 +1,48 @@
 <style>
+  a#R-logo {
+    color: #282828;
+    color: var(--MENU-SECTIONS-BG-color);
+    font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
+    font-size: 1.875rem;
+    font-weight: 300;
+    margin-top: -.8125rem;
+    max-width: 60%;
+    text-transform: uppercase;
+    width: 14.125rem;
+    white-space: nowrap;
+  }
+
+  a#R-logo:hover {
+    color: #282828;
+    color: var(--MENU-SECTIONS-BG-color);
+  }
+
+  @media only all and (max-width: 59.999rem) {
     a#R-logo {
-        color: #282828;
-        color: var(--MENU-SECTIONS-BG-color);
-        font-family: 'Work Sans', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
-        font-size: 1.875rem;
-        font-weight: 300;
-        margin-top: -.8125rem;
-        max-width: 60%;
-        text-transform: uppercase;
-        width: 14.125rem;
-        white-space: nowrap;
+      font-size: 1.5625rem;
+      margin-top: -.1875rem;
+    }
+  }
+
+  @media all and (-ms-high-contrast:none) {
+      {
+        {
+        "/* IE11s understanding of positioning is weird at best */" | safeCSS
+      }
     }
 
-    a#R-logo:hover {
-        color: #282828;
-        color: var(--MENU-SECTIONS-BG-color);
+    a#R-logo {
+      margin-top: -3.625rem;
     }
+  }
 
-    @media only all and (max-width: 59.999rem) {
-        a#R-logo {
-            font-size: 1.5625rem;
-            margin-top: -.1875rem;
-        }
-    }
-
-    @media all and (-ms-high-contrast:none) {
-            {
-                {
-                "/* IE11s understanding of positioning is weird at best */" | safeCSS
-            }
-        }
-
-        a#R-logo {
-            margin-top: -3.625rem;
-        }
-    }
-
-    img {
-        margin-right: 0.5rem;
-        margin-top: -0.25rem;
-        vertical-align: middle;
-    }
+  img {
+    margin-right: 0.5rem;
+    margin-top: -0.25rem;
+    vertical-align: middle;
+  }
 </style>
 
-<a id="R-logo" href="/">
-    <img src="images/logo.png" width=30px height=30px>YAGPDB
+<a id="R-logo" href="{{ relURL "" }}">
+  <img src="/images/logo.png" width=30px height=30px>YAGPDB
 </a>

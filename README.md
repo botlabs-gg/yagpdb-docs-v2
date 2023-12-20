@@ -12,15 +12,7 @@ As always clone the repository first and change into it.
 Install [Hugo](https://gohugo.io/getting-started/installing/), clone this repository and run `hugo server` to start a
 local server. The server will automatically rebuild the page when you make changes.
 
-Alternatively you can run `hugo` to build the page in release mode, which will output the static files to the `public`
-directory, which you can serve with any web server; a quick way is to use Python's `http.server` module:
-
-```shellsession
-$ hugo
-$ python3 -m http.server -d public/
-```
-
-By default, this will be accessible at `http://localhost:8000`.
+Due to the current configuration of `baseURL` in `hugo.toml`, the page is then available at `localhost:1313/yagpdb-docs-v2`.
 
 ### Editor Setup
 

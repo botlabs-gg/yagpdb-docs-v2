@@ -1,6 +1,5 @@
 +++
 title = 'Introduction'
-date = 2023-12-19T19:31:50+01:00
 +++
 
 > Documentation is for users. - Rob Pike
@@ -19,6 +18,9 @@ If you need help with YAGPDB, please join the [support server](https://discord.g
 channel. Any other online forum is not official and should be generally treated as inaccurate.
 
 Questions regarding the clarity of this documentation are also welcome, as they help us improve the documentation.
+
+Remember to first read `#information` and `#faq` before asking questions. Our support staff are volunteers, so please be
+patient when they don't respond in 10<sup>-3</sup> seconds, they are probably busy with something else.
 
 ### Learning Center
 

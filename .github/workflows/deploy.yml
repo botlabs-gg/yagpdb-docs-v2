@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-hugomod-
 
       - name: Build website
-        run: hugo
+        run: hugo --noChmod --minify
 
       - name: Setup Pages
         id: pages

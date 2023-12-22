@@ -4,8 +4,7 @@ name: Deploy Hugo site to GH Pages
 on:
   # Only deploy when it is accepted for production
   push:
-    branches:
-      - master
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -16,6 +15,9 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
+
+env:
+  HUGO_CACHEDIR: /tmp/hugo_cache/
 
 jobs:
   build:
@@ -35,7 +37,7 @@ jobs:
       - name: Cache Hugo modules
         uses: actions/cache@v3
         with:
-          path: /home/runner/.cache/hugo_cache
+          path: ${{ env.HUGO_CACHEDIR }}
           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-hugomod-
@@ -46,15 +48,19 @@ jobs:
         run: hugo --noChmod --minify --baseURL="https://botlabs-gg.github.io/yagpdb-docs-v2"
 
       - name: Setup Pages
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         id: pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./public
 
   deploy:
+    # Only deploy if it's actually on production branch
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     needs: build
     environment:
       name: github-pages

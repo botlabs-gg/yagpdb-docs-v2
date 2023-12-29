@@ -4,4 +4,4 @@ archtype = 'chapter'
 weight = 3
 +++
 
-# WIP
+{{% children sort="weight" description=true style="h2" %}}

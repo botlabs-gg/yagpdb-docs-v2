@@ -18,6 +18,7 @@ concurrency:
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
+  HUGO_BASE_URL: "https://botlabs.gg.github.io/yagpdb-docs-v2"
 
 jobs:
   build:
@@ -45,7 +46,7 @@ jobs:
       - name: Build website
         # See https://discourse.gohugo.io/t/solved-what-should-be-used-for-the-value-of-site-baseurl/5896
         # for why we set baseURL here and not in hugo.toml.
-        run: hugo --noChmod --minify --baseURL="https://botlabs-gg.github.io/yagpdb-docs-v2"
+        run: hugo mod vendor && hugo --minify --baseURL=${{ env.HUGO_BASE_URL }}
 
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}

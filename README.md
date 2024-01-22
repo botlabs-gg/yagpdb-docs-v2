@@ -32,4 +32,5 @@ as its Markdown syntax.
 
 ## License
 
-Currently, this project is not distributed under any license. This may or may not change in the future.
+This documentation's text is distributed under the terms of the Creative Commons Attribution ShareAlike 4.0 license
+(SPDX-indentifer `CC-BY-SA`). Please view the [LICENSE](LICENSE) file for more information.

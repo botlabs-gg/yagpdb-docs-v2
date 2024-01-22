@@ -3,7 +3,7 @@ title = 'Getting Started'
 weight = 1
 +++
 
-> And the bass keeps runnin', runnin', and runnin', runnin'... - The Black Eyed Peas
+> The hardest thing about getting started, is getting started. - Guy Kawasaki
 
 ## Adding The Bot
 
@@ -27,7 +27,7 @@ the navigation and layout.
 <!-- Yes, this is hacky. No, I don't know of a better way. -->
 <div style="float: right; margin-left: 7px; margin-top: -10px;">
 
-![All commands enabled. A green switch with the button on the right is shown. Further right of said switch is the label.](all_commands_enabled.png?classes=right)
+![Visual reference when all commands are enabled.](images/getting-started/all_commands_enabled.png?classes=right)
 
 </div>
 
@@ -35,4 +35,4 @@ Afterward, visit the Commands tab (Core > Command settings) and make sure that t
 conflict with other bots you may have. Also make sure to enable all commands, such that you can actually use YAGPDB.
 
 Try some commands! Something like `catfact` or `dadjoke`, to get the party going.
-If those did not work, please read the [Troubleshooting](troubleshooting) guide.
+If those did not work, please read the FAQ on the support server.

@@ -46,6 +46,8 @@ can help them. This is a great way to give back to the community and help the pr
 
 <!-- TODO: maybe add a guide for selfhosting? -->
 
+#### Improving the Bot
+
 Additionally, you can contribute to YAGPDB itself by submitting pull requests to the [GitHub repository](https://botlabs-gg/yagpdb)
 if you are feeling comfortable with [Go](https://golang.org/).
 
@@ -53,3 +55,8 @@ Please take a closer look at the [contributing guidelines](https://github.com/bo
 to increase the chances of your pull request being accepted; a good starting point is also to implement highly-upvoted
 suggestions in the `#suggestions` channel on the support server.
 
+#### Writing Documentation
+
+If you feel that contributing to the bot itself is a bit too daunting, you are just as welcome to write and improve this
+documentation. All you really need is a decent (text) editor of your choice and a good look at our [docs contributing
+guidelines](https://github.com/botlabs-gg/yagpdb-docs-v2/blob/master/.github/CONTRIBUTING.md).

@@ -20,6 +20,8 @@ To build the page in release mode:
 Then serve the generated `public/` directory with the webserver of your choice. Adjust the `--baseURL` argument to
 `hugo` as required.
 
+For more information, please view our [Contributing Guidelines](.github/CONTRIBUTING.md).
+
 ### Editor Setup
 
 As this project used the [EditorConfig](https://editorconfig.org/) standard, you will have to make sure that your

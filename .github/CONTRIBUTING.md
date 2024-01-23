@@ -43,7 +43,9 @@ feel free to open an issue clearly outlining what is wrong about it and consider
 5. Make your changes, ensuring that the page still builds in release mode via `hugo`. You may need to run `hugo mod
    vendor` prior to that.
 
-6. Commit your changes using a descriptive commit message following our [commit message conventions](#commit)
+6. Commit your changes using a descriptive commit message following our [commit message conventions](#commit). As a nice
+   bonus, GitHub should automatically fill in the [pull request template](PULL_REQUEST_TEMPLATE.md) with your formatted
+   message, saving you some work.
 
 7. Push your branch to GitHub:
 

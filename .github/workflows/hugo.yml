@@ -1,5 +1,5 @@
 ---
-name: Deploy Hugo site to GH Pages
+name: Hugo (CD)
 
 on:
   # Only deploy when it is accepted for production
@@ -18,7 +18,7 @@ concurrency:
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
-  HUGO_BASE_URL: "https://botlabs.gg.github.io/yagpdb-docs-v2"
+  HUGO_BASE_URL: "https://botlabs-gg.github.io/yagpdb-docs-v2"
 
 jobs:
   build:

@@ -1,5 +1,6 @@
 +++
 title = 'Introduction'
+weight = 1
 +++
 
 > Documentation is for users. - Rob Pike

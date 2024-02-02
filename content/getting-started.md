@@ -41,3 +41,6 @@ If those did not work, please read the FAQ on the support server.
 
 This documentation aims to go through all of YAGPDB's features as they appear in the order on the control panel.
 Reference material, or miscellaneous topics are in their own category as to not bloat things up with unnecessary detail.
+
+We recommend reading this document in its entirety, from start to finish, exempting reference material, before or during
+setup.

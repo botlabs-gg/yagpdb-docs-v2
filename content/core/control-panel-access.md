@@ -29,11 +29,11 @@ reference, this is enabled on the support server, but it may be a good idea to k
 #### Allow users not part of your server read access
 
 Taking the above one step further, this toggle lets any and all users, even not logged in ones, to view your control
-panel. In general it is a very good idea to have this disabled, unless you have good reasons not to. For the record,
+panel. In general, it is a very good idea to have this disabled, unless you have good reasons not to. For the record,
 this option is enabled on the support server's control panel.
 
 ### Write Access
 
 Quite simple, but moderately dangerous. Anyone with these roles can edit anything on your control panel, so do handle
-handle this with care. To make things easier to configure, members with **Manage Server** permissions can always edit
-the control panel.
+this with care. To make things easier to configure, members with **Manage Server** permissions can always edit the
+control panel.

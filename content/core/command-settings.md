@@ -28,7 +28,6 @@ by a slash `/`.
 As a small bonus, YAGPDB will also consider a ping at the start of a message as a command prefix, which is quite helpful
 when you forgot it, as simply sending `@YAGPDB.xyz prefix` will help you remember it.
 
-<!-- TODO: figure out a nice notice style -->
 {{% notice style="tip" title="Flags and Switches" %}}
 
 Flags and switches are ***not*** affected by your prefix setting.

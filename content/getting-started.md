@@ -14,7 +14,7 @@ You need to have the **Manage Server** permission to add the bot to your server.
 {{% /notice %}}
 
 1. Go to <https://yagpdb.xyz/manage>
-2. Click on *Login with Discord* in the top-left corner
+2. Click on *Login with Discord* in the top-right corner
 3. Authorize the application to know what servers you are in
 4. Select the server you want to add the bot to in the dropdown menu
 
@@ -27,7 +27,7 @@ the navigation and layout.
 <!-- Yes, this is hacky. No, I don't know of a better way. -->
 <div style="float: right; margin-left: 7px; margin-top: -10px;">
 
-![Visual reference when all commands are enabled.](images/getting-started/all_commands_enabled.png?classes=right)
+![Visual reference when all commands are enabled.](/images/getting-started/all_commands_enabled.png?classes=right)
 
 </div>
 
@@ -41,3 +41,6 @@ If those did not work, please read the FAQ on the support server.
 
 This documentation aims to go through all of YAGPDB's features as they appear in the order on the control panel.
 Reference material, or miscellaneous topics are in their own category as to not bloat things up with unnecessary detail.
+
+We recommend reading this document in its entirety, from start to finish, exempting reference material, before or during
+setup.

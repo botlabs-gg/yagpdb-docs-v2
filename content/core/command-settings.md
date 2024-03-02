@@ -28,6 +28,8 @@ by a slash `/`.
 As a small bonus, YAGPDB will also consider a ping at the start of a message as a command prefix, which is quite helpful
 when you forgot it, as simply sending `@YAGPDB.xyz prefix` will help you remember it.
 
+Commands will not work when *All commands enabled* (**2**) is not checked.
+
 {{% notice style="tip" title="Flags and Switches" %}}
 
 Flags and switches are ***not*** affected by your prefix setting.
@@ -35,7 +37,7 @@ Flags and switches are ***not*** affected by your prefix setting.
 For example, if your prefix is `?`, a command usage with flags and/or switches would look like the following:
 
 ```
-?wyr -raw
+?wouldyourather -raw
 ```
 
 {{% /notice %}}
@@ -63,9 +65,9 @@ overrides.
 
 #### Required and Ignored Roles
 
-Clicking on either of these options opens a drop-down menu with all the roles present on your server. Select as many as
-you wish. YAGPDB will then either require any and all members to have any of these roles, or completely ignore members
-with any of the ignored roles, server admins and owners included.
+Clicking on either of these options (**3**,**4**) opens a drop-down menu with all the roles present on your server.
+Select as many as you wish. YAGPDB will then either require any and all members to have any of these roles, or
+completely ignore members with any of the ignored roles, server admins and owners included.
 
 {{% notice style="note" %}}
 
@@ -80,14 +82,14 @@ subsequently give those roles to your members.
 #### Autodelete Trigger / Response Interval
 
 This setting makes YAGPDB automatically delete the triggering message and/or the response from the bot after that many
-seconds have passed. To activate it, make sure to click the checkbox next to the respective input field.
+seconds have passed. To activate it, make sure to click the checkbox next to the respective input field (**5**,**6**).
 
 If 10 seconds are not enough, or too long, feel free to adjust as you see fit; the intervals need not be equal.
 
 ### Channel Override Options
 
-These options are only available for channel overrides. To add a new one, head to the *New channel override* tab on the
-command settings page.
+These options are only available for channel overrides (**8**). To add a new one, head to the *New channel override*
+tab on the command settings page.
 
 #### Channels
 
@@ -106,8 +108,8 @@ You find this setting in the top-right corner of any channel override, adjacent 
 
 ### Command Override Options
 
-These options are only available for individual command overrides. To add a new one, go to either your global settings
-or any channel override and click on *New command override*.
+These options are only available for individual command overrides (**7**). To add a new one, go to either your
+global settings or any channel override and click on *New command override*.
 
 #### Commands
 

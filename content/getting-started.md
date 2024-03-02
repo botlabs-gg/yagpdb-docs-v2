@@ -14,7 +14,7 @@ You need to have the **Manage Server** permission to add the bot to your server.
 {{% /notice %}}
 
 1. Go to <https://yagpdb.xyz/manage>
-2. Click on *Login with Discord* in the top-left corner
+2. Click on *Login with Discord* in the top-right corner
 3. Authorize the application to know what servers you are in
 4. Select the server you want to add the bot to in the dropdown menu
 

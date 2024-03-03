@@ -14,4 +14,4 @@ this page much.
 Please don't be confused when you see someone with `destroy_0001` and the ID `598900258579283976`, as that is the bot
 owner of the officially hosted instance and he may at times change things to ensure proper operation.
 
-![Screenshot of some example control panel logs.](/images/core/control_panel_logs.png)
+![Screenshot of some example control panel logs.](control_panel_logs.png)

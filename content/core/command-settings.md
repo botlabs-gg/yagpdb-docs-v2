@@ -12,7 +12,7 @@ Fine-grained control over all of YAGPDB's inbuilt commands.
 Command overrides enable you to impose fine-grained control over all of YAGPDB's inbuilt commands. Before we go into
 greater detail, a quick overview of that page below.
 
-![Overview of the Command Settings page.](/images/core/command_settings_overview.png)
+![Overview of the Command Settings page.](command_settings_overview.png)
 
 <center>
 

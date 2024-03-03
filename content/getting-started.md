@@ -27,7 +27,7 @@ the navigation and layout.
 <!-- Yes, this is hacky. No, I don't know of a better way. -->
 <div style="float: right; margin-left: 7px; margin-top: -10px;">
 
-![Visual reference when all commands are enabled.](/images/getting-started/all_commands_enabled.png?classes=right)
+![Visual reference when all commands are enabled.](all_commands_enabled.png?classes=right)
 
 </div>
 

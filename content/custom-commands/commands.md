@@ -7,7 +7,7 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 <!--more-->
 
-![Overview of the Commands page.](commands_overview.png)
+![Overview of the Commands page.](command_overview.png)
 
 <center>
 

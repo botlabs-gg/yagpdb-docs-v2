@@ -64,9 +64,9 @@ Blacklisted roles or channels will not be permitted to run the command.
 
 {{% notice style="note" %}}
 
-YAGPDB was raised well and honors a "no" when told "no". In other words, blacklisted roles take precedence over whitelisted roles.
+YAGPDB was raised well and honors a "no" when told "no". In other words, blacklists take precedence over whitelists.
 
-This is a relatively common trip-hazard, so take great care when you set up both whitelisted and blacklisted roles, and subsequently give those roles to your members.
+This is a relatively common trip-hazard, so take great care when you set up both whitelists and blacklists.
 
 {{% /notice %}}
 

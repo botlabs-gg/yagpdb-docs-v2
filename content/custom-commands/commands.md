@@ -154,9 +154,9 @@ You cannot specify which emojis the command will trigger on. If you'd like to li
 Example:
 
 ```go
-  {{ if eq .Reaction.Emoji.APIName "😀" "🦆" }}
+  {{ if eq .Reaction.Emoji.APIName "😀" "⭐️" }}
     This is an allowed reaction!
-  {{ else }}
+  {{ else if eq .Reaction.Emoji.APIName "🦆" }}
     This is not an allowed reaction.
   {{ end }}
 ```
@@ -215,7 +215,7 @@ The response supports the custom template script, allowing for more complex func
 
 {{% notice style="tip" title="Keeping your code safe" %}}
 
-It is reccommended to save local copies of your custom commands. There is no way to recover deleted or overwritten CCs. Use an editor like **Vim**, **VSC**, or **Notepad++** for the best coding experience.
+It is reccommended to save local copies of your custom commands. There is no way to recover deleted or overwritten CCs. Use an editor like **Vim**, **VS Code**, or **Notepad++** for the best coding experience.
 
 {{% /notice %}}
 
@@ -301,7 +301,7 @@ If you save a command with an interval trigger which has never been run, it will
 
 {{% notice style="tip" title="Keeping your code safe" %}}
 
-It is reccomended to code your custom command using a local editor on your device. You will not be able to save your code on the dashboard if there are syntax errors in your code. Use an editor like **Vim**, **VSC**, or **Notepad++** for the best coding experience.
+It is reccomended to code your custom command using a local editor on your device. You will not be able to save your code on the dashboard if there are syntax errors in your code. Use an editor like **Vim**, **VS Code**, or **Notepad++** for the best coding experience.
 
 {{% /notice %}}
 

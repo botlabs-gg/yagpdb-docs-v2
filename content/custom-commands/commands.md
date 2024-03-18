@@ -19,7 +19,13 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 Clicking the Create a new Custom Command button (**1**) will instantly create a new command within the selected group (**6**) then redirect you to the edit page for the new CC.
 
-A new custom command has the default response `Edit this to change the output of the custom command {{.CCID}}!` It also assigns the command an ID determined by the number of commands you have created.
+A new custom command has the default response:
+
+```go
+Edit this to change the output of the custom command {{.CCID}}!
+```
+
+It also assigns the command an ID determined by the number of commands you have created.
 
 {{% notice style="tip" title="Troubleshooting" %}}
 

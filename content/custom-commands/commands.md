@@ -5,6 +5,8 @@ weight = 1
 
 The commands page displays all custom commands and allows you to add, delete, or edit custom commands and custom command groups.
 
+<!--more-->
+
 ![Overview of the Commands page.](/images/custom-commands/commands_overview.png)
 
 <center>

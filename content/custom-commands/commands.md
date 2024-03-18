@@ -15,7 +15,7 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 </center>
 
-## Creating a custom command
+## Creating a Custom Command
 
 Clicking the Create a new Custom Command button (**1**) will instantly create a new command within the selected group (**6**) then redirect you to the edit page for the new CC.
 
@@ -33,15 +33,15 @@ If the bot is sending messages such as this in your server, you are likely accid
 
 {{% /notice %}}
 
-## Command list
+## Command List
 
 The commands page lists the commands (**2**) in the selected group (**6**). They are ordered by [ID](#id-and-name) and display their name (if set), [trigger type](#trigger-types), and trigger (if applicable). You can expand the command by clicking the down arrow, allowing you to preview the full, syntax-highlighted command response.
 
-### Delete command button
+### Delete Command Button
 
 Deleting a custom command (**4**) will **permanently** delete the command after confirmation. This cannot be undone.
 
-### Run now
+### Run Now
 
 The Run now button (**5**) appears on [Interval trigger](#hourlyminute-interval) commands. It executes the command and resets the next run time based off the current time.
 
@@ -51,7 +51,7 @@ Command groups allow you to organize your custom commands and apply role and cha
 
 The group tabs at the top of the page (**7**) allow you to switch to any of your created groups. The **+** button allows you to create a new group.
 
-### Editing a group
+### Editing a Group
 
 Selecting a group allows you to edit it. Any changes must be saved (**11**) to take effect.
 
@@ -60,7 +60,7 @@ Selecting a group allows you to edit it. Any changes must be saved (**11**) to t
 - **Role/Channel restrictions** (**10**): Restrict commands within the group based on roles or channels executed in.
 - **Save group settings** (**11**): Update the group with the new values.
 
-#### Role/Channel restrictions
+#### Role/Channel Restrictions
 
 Restricting a custom command (**10**) prevents it from triggering when not permitted to. A user who tries to run a custom command with the wrong roles/in the wrong channel will not trigger the response or an error.
 
@@ -131,7 +131,7 @@ Doesn't match:
 >
 > -sayl hello
 
-##### Starts with
+##### Starts With
 
 Messages **starting with** the trigger text (**4**) will trigger the command.
 
@@ -143,7 +143,7 @@ Messages **containing** the trigger text (**4**) will trigger the command.
 
 Messages matching the trigger text (**4**) as a **[regex pattern](/reference/regex)** will trigger the command.
 
-##### Exact match
+##### Exact Match
 
 Messages which **exactly** match the trigger text (**4**) will trigger the command.
 
@@ -169,7 +169,7 @@ Example:
 
 {{% /notice %}}
 
-##### Hourly/Minute interval
+##### Hourly/Minute Interval
 
 Interval triggers will run the command at a set interval in the selected channel.
 
@@ -197,11 +197,11 @@ You must specify a channel to run interval commands in even if the command doesn
 
 {{% /notice %}}
 
-#### Case sensitivity
+#### Case Sensitivity
 
 Any commands which allow you to specify trigger text (ex. Command, Regex, Exact match, etc.) have a **Case sensitive** toggle (**5**) which is off by default. A case sensitive trigger `yagPDB` will trigger on "yagPDB" but not "yagpdb" or "YAGPDB".
 
-#### Edit message trigger
+#### Edit Message Trigger
 
 Commands which trigger on messages have a **Trigger on message edits** toggle (**6**) which is off by default. If a message is edited and matches the trigger text just like a message would, it will trigger the command.
 
@@ -255,15 +255,15 @@ Role restrictions ignores user permissions. Having `Administrator` permissions w
 
 A user executing a command must pass both the overarching group's restrictions and the command restrictions. Command-specific restrictions will _not_ override the group restrictions.
 
-#### Execution statistics
+#### Execution Statistics
 
 The execution statistics (**11**) show details about the custom command's executions. It's updated after the command runs.
 
-##### Last error
+##### Last Error
 
 The most recent error which occurred running the command, UTC Timestamped. The error display is not cleared when the command runs successfully.
 
-##### Run count
+##### Run Count
 
 A count of how many times the command executed the response. This counter increases even if the command errors, or does not send a response. It also increases if the command is run via `execCC`.
 
@@ -275,11 +275,11 @@ If your command fails to run, check the run count. If the run count increases wh
 
 {{% /notice %}}
 
-#### Last run
+#### Last Run
 
 A UTC Timestamp of the last time the command executed the response.
 
-#### Next scheduled Run
+#### Next Scheduled Run
 
 Only shown on Interval type commands. A UTC Timestamp of the next time the command is scheduled to run.
 
@@ -291,7 +291,7 @@ This toggle (**12**) determines whether errors during command execution are sent
 
 This toggle (**13**) enables the command. A disabled command will never run (not even with `execCC`) or count against the trigger limit.
 
-### Saving your command
+### Saving Your Command
 
 Saving (**14**) the command updates it with the input values.
 
@@ -317,6 +317,6 @@ Custom commands do not autosave.
 
 {{% /notice %}}
 
-### Delete command button
+### Delete Command
 
 Deleting a custom command (**15**) will **permanently** delete the command after confirmation. This cannot be undone.

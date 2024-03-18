@@ -7,7 +7,7 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 <!--more-->
 
-![Overview of the Commands page.](/images/custom-commands/commands_overview.png)
+![Overview of the Commands page.](commands_overview.png)
 
 <center>
 
@@ -74,7 +74,7 @@ This is a relatively common trip-hazard, so take great care when you set up both
 
 Editing a custom command (**3**) opens up a separate page for configuration.
 
-![Overview of the CC edit page.](/images/custom-commands/command_editor_overview.png)
+![Overview of the CC edit page.](command_editor_overview.png)
 
 <center>
 
@@ -169,7 +169,7 @@ Interval triggers will run the command at a set interval in the selected channel
 
 The Member in context is nil, and functions relying on the Member context will fail. However, `exec` will still run commands as the bot.
 
-![Overview of interval configuration options.](/images/custom-commands/interval_trigger_options.png?width=60vw)
+![Overview of interval configuration options.](interval_trigger_options.png?width=60vw)
 
 <center>
 

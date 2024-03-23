@@ -29,7 +29,11 @@ It also assigns the command an ID determined by the number of commands you have 
 
 {{% notice style="tip" title="Troubleshooting" %}}
 
+![Empty CC Discord Messages](empty_cc_1.png)
+
 If the bot is sending messages such as this in your server, you are likely accidentally triggering CCs with the default response. Check the commands page to find any CCs with empty responses.
+
+![An empty CC on the dashboard](empty_cc_2.png)
 
 {{% /notice %}}
 

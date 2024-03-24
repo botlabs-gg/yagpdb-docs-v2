@@ -55,7 +55,7 @@ Deleting a custom command (**4**) will **permanently** delete the command after 
 ### Run Now
 
 The Run now button (**5**) appears on [Interval trigger](#hourlyminute-interval) commands. It executes the command as
-long as it isn't disabled and a channel is selected, and redirects you to the  edit command page for the command.
+long as it isn't disabled and a channel is selected, and redirects you to the edit command page for the command.
 
 Manually running an interval command reschedules all subsequent runs based off the current time.
 
@@ -232,18 +232,18 @@ You must specify a channel to run interval commands in even if the command doesn
 #### Case Sensitivity
 
 Any commands which allow you to specify trigger text (ex. Command, Regex, Exact match, etc.) have a **Case sensitivity**
-toggle (**5**) which is off by default. A case sensitive trigger `yagPDB` will trigger on "yagPDB" but not "yagpdb" or
+toggle (**5**) which is off by default. A case-sensitive trigger `yagPDB` will trigger on "yagPDB" but not "yagpdb" or
 "YAGPDB".
 
 #### Edit Message Trigger
 
+This feature is [premium only](/premium).
+
 Commands which trigger on messages have a **Trigger on message edits** toggle (**6**) which is off by default. If a
 message is edited and matches the trigger text, it will trigger the command.
 
-The edited message toggle is an _additional_ trigger to the sent message trigger. If you'd like to _only_ trigger on
+The edited message toggle is an _additional_ trigger to the normal message trigger. If you'd like to _only_ trigger on
 message edits, you will need to conditional branch with `{{ .IsMessageEdit }}`.
-
-This feature is [premium only](/premium).
 
 ### Response
 
@@ -327,7 +327,7 @@ Only shown on Interval type commands. A UTC Timestamp of the next time the comma
 ### Output errors as command response
 
 This toggle (**12**) determines whether errors during command execution are sent in the command response after the
-command fails. Does not effect logging of Last Error to the statistics.
+command fails. Does not affect logging of Last Error to the statistics.
 
 ### Command Enabled
 

@@ -6,12 +6,14 @@ weight = 1
 
 Everything in moderation, including moderation.
 
+<!--more-->
+
 ![Overview of the moderation page](overview_moderation.png)
 
 <center>
 
 **1** Mod Log Channel **2** Report Channel **3** Moderation DM Error Channel **4** Clean Command **5** Report
-Command **6** Unban Logging **7** Giverole/Takeerole commands **8** Give/Takerole Permitted Roles **9**
+Command **6** Unban Logging **7** Giverole/Takerole commands **8** Give/Takerole Permitted Roles **9**
 Give/Takerole Logging **10** Foreign Ban Logging **11** Foreign Kick Logging **12** Foreign Timeout Logging **13**
 Moderation Tabs **14** Bot Permissions Notice
 
@@ -56,7 +58,7 @@ Toggling Unban Logging (**6**) allows you to enable or disable the logging of Un
 
 Toggling Give/Takerole Logging (**9**) allows you to enable or disable the logging of Give/Takerole events.
 
-### Foreign logging
+### Foreign Logging
 
 By default, YAGPDB will only log actions it takes, i.e. if you kick a user with the bot's `kick` command, it will log
 it, but not if you kick the user directly with user. Enabling foreign logging for different moderation actions (**10**),
@@ -86,7 +88,7 @@ are common configuration options worth mentioning.
 
 ### Permitted Roles
 
-Selecting permitted roles will allow said roles to run the moderation command **EVEN IF** they do not have
+Selecting permitted roles will allow said roles to run the moderation command **even if** they do not have
 required Discord permissions.
 
 Give/Takerole Permitted Roles (**8**) operate in the same way.

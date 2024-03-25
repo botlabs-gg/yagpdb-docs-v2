@@ -22,7 +22,7 @@ Value **8** Size of Value **9** Delete Entry **10** Page Navigation **11** Searc
 ### Entry ID
 
 The ID is assigned by the system and unique within YAGPDB's database. The database page is sorted by descending ID. You
-may seach for a specific ID using the **Search Bar** (**11**) with ID **Query** (**10**).
+may search for a specific ID using the **Search Bar** (**11**) with ID **Query** (**10**).
 
 ### Created Timestamp
 
@@ -53,7 +53,7 @@ The serialized value of the database entry.
 
 ### Size of Value
 
-Size of the value in bytes. YAGPDB database entries have a max value size of 100kB.
+Size of the value in bytes. YAGPDB database entries have a max value size of 100 kB.
 
 ### Delete Entry
 

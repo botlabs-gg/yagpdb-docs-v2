@@ -17,7 +17,7 @@ uglyURLs = true
   path = 'github.com/McShelby/hugo-theme-relearn'
 
 [outputs]
-  home = [ "HTML", "SEARCH" ]
+  home = [ "html", "search", "searchpage" ]
 
 [params]
   themeVariant = [

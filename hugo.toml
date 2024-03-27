@@ -7,6 +7,10 @@ title = 'YAGPDB Documentation v2'
 uglyURLs = true
 
 [markup]
+  [markup.tableOfContents]
+    # Some relatively important headers, like cc triggers, are on level 4;
+    # we want to have those in our table of contents, so we need to set this to 4.
+    endLevel = 4
   [markup.goldmark]
     [markup.goldmark.renderer]
       # Enable HTML tags in Markdown

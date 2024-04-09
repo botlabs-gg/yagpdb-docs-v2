@@ -9,7 +9,7 @@ A very basic automoderator to get things done quickly.
 
 ## Intro
 
-Basic Automoderator (BAM) lets you quickly set up *basic* automoderation, without much fuss. For that reason, its
+Basic Automoderator lets you quickly set up *basic* automoderation, without much fuss. For that reason, its
 overall customizability is quite limited. If you would like a more detailed configuration, please use the
 [Advanced Automoderator](advanced-automoderator).
 

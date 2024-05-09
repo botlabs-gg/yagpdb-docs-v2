@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "Moderation"
-weight = 4
+weight = 5
 +++
 
 

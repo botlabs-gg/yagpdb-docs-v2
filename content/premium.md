@@ -7,6 +7,8 @@ YAGPDB provides added functionality to servers which are assigned a premium slot
 YAGPDB, these premium slots can be acquired as a perk of being a [Patreon](https://www.patreon.com/yagpdb) to Botlabs'
 YAGPDB.
 
+<!--more-->
+
 ## Benefits
 
 A premium server unlocks the following benefits:

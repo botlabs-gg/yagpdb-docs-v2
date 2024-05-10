@@ -64,6 +64,9 @@ logs to a Discord channel, the only way to view them is online.
 - When the `logs` command is executed, a link to the message log is sent as the response.
 - When a moderation action creates a log, a link is included in the mod log entry if enabled.
 
+When viewing a log, YAGPDB colors the usernames of each message author based on their roles at the time of log
+*viewing*, similarly to how they would appear on your server.
+
 ## Access Control
 
 ### Members can view message logs

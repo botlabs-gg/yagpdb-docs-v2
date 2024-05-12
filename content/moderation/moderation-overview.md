@@ -1,5 +1,5 @@
 +++
-archetype = "chapter"
+archetype = "default"
 title = "Moderation"
 weight = 1
 +++

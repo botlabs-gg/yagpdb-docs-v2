@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "Core"
-weight = 2
+weight = 3
 +++
 
 This chapter covers everything under the **Core** category on the control panel, probably one of the most important

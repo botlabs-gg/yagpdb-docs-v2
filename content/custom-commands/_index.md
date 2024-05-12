@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "Custom Commands"
-weight = 3
+weight = 4
 +++
 
 Custom Commands (CCs) allow you to develop your own commands and behaviors for your server. A command may be as simple

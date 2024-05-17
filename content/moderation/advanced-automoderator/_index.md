@@ -13,9 +13,8 @@ Advanced Automoderator is (quite obviously) a more detailed system than [Basic A
 It allows for more flexibility and complex configurations, but the trade-off is that some time investment is required
 to set it up.
 
-It is organized into rulesets, which are collections of rules. Both have to be created manually by you. Each ruleset may
-have conditions scoped to it; every rule consists of a combination of (almost) any number of triggers, conditions, and
-effects.
+Advanced automoderator operates on the basis of user-configurable rules, which trigger on specific actions and
+conditions to produce certain effects. Collections of rules are referred to as rulesets.
 
 Finally, there are lists you can create, which can be used to black- or whitelist words or domains.
 

@@ -10,9 +10,9 @@ of conditions and how to use them.
 
 ## Quick Intro
 
-This page lists all the available conditions in the order as they appear on the control panel. Make extensive use of the
-Table of Contents in the top left corner of this page, as well as your browser's search function to quickly navigate to
-the condition you're looking for.
+This page lists all the available conditions in the order as they appear on the control panel. Use the Table of Contents
+in the top left corner of this page alongside your browser's search function to quickly navigate to the condition you're
+looking for.
 
 By extension, these conditions are also available as ruleset scoped conditions.
 

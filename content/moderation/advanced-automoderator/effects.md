@@ -10,9 +10,9 @@ kinds of effects available to you in Advanced Automoderator.
 
 ## Quick Intro
 
-This page lists all the available effects in the order as they appear on the control panel. Make extensive use of the
-Table of Contents in the top left corner of this page, as well as your browser's search function to quickly navigate to
-the effect you're looking for.
+This page lists all the available effects in the order as they appear on the control panel. Use the Table of Contents
+in the top left corner of this page alongside your browser's search function to quickly navigate to the effect you're
+looking for.
 
 ### Effect Logic
 

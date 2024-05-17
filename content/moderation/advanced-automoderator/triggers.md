@@ -10,11 +10,9 @@ options.
 
 ## Quick Intro
 
-On this page, the list of triggers is ordered as seen on the control panel, rather than alphabetically. Both orderings
-have their advantages, but we (the authors) decided this is how we want to roll.
-
-Make extensive use of the Table of Content button in the top left corner of this page, as well as your browser's search
-function to quickly navigate to the trigger you're interested in.
+This page lists all the available triggers in the order as they appear on the control panel. Use the Table of Contents
+in the top left corner of this page alongside your browser's search function to quickly navigate to the trigger you're
+looking for.
 
 ### Trigger Logic
 

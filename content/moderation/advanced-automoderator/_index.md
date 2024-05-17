@@ -45,8 +45,8 @@ With that out of the way, we'll go through how to *actually* make Advanced Autom
 As mentioned above, lists are used to store words or domains that you want to use as black- or whitelist triggers in your
 rules.
 
-For word lists, only single words are supported, as each entry is separated by either a newline or a space. To blacklist
-whole phrases, consider using a regex trigger instead.
+Multiple entries in word lists are separated by either a newline or a space. Entries in word lists must be single words
+containing no spaces; to blacklist complete phrases, use a regex trigger instead.
 
 For website / link lists, specify *just* the site's domain, without any protocol or path. Subdomains will be
 automatically included. Logically, if you want to *only* check against some specific subdomain (and its sub-subdomains),

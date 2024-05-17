@@ -16,8 +16,8 @@ looking for.
 
 ### Effect Logic
 
-Effects in YAGPDB's Advanced Automoderator follow the logical AND operator. That is, once a rule passes all checks, all
-effects will be applied.
+All effects will be executed once all prior checks are met — that is, the effects are combined according to the logical
+AND operator.
 
 #### Delete Message
 

@@ -16,8 +16,8 @@ looking for.
 
 ### Trigger Logic
 
-As mentioned previously, triggers follow an OR logic. This means that if a rule has multiple triggers, only one of them
-has to be met for the rule to be triggered.
+Only one trigger has to be met for a rule to trigger — that is, the triggers are combined according to the logical OR
+operator.
 
 ### List of Triggers
 

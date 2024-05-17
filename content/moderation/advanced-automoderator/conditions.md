@@ -18,9 +18,19 @@ By extension, these conditions are also available as ruleset scoped conditions.
 
 ### Condition Logic
 
-Conditions in YAGPDB's Advanced Automoderator follow the logical AND operator. That is, for a rule to be applicable
-(after any of the [triggers](./triggers) have been met), all conditions must be met. Therefore, some conditions may be
-mutually exclusive, resulting in your rule to *never* trigger.
+All conditions have to be met in order for a rule to execute — that is, the conditions are combined according to the
+logical AND operator.
+
+{{% notice style="warning" %}}
+
+Ensure that the conditions you set are not in conflict or mutually exclusive, as this will cause your rule to never
+trigger.
+
+A common example of this is setting both *[Edited message](#edited-message)* and *[New message](#new-message)*
+conditions in the same rule. Since a message can't be both new and edited at the same time, the rule will never trigger.
+
+{{% /notice %}}
+
 
 #### Ignored Roles
 

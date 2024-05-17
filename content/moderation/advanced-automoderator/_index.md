@@ -3,7 +3,7 @@ title = 'Advanced Automoderator'
 weight = 3
 +++
 
-A detailed automoderator system, allowing for complex configuration.
+A sophisticated automoderator system, allowing for more complex configurations than basic automoderator.
 
 <!--more-->
 

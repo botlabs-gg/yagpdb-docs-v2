@@ -128,10 +128,7 @@ Within a command response, the ID may be retrieved using the `{{ .CCID }}` templ
 
 {{% notice warning %}}
 
-Custom command IDs cannot be changed by the user in any way, save by deleting and recreating a command.
-
-Note, however, that deleting a custom command does not allow its ID to be reassigned. That is, even if you delete a CC,
-its ID will not be reused.
+Deleting a custom command does not allow its ID to be reassigned. If you delete a CC, its ID is lost forever.
 
 {{% /notice %}}
 
@@ -256,7 +253,7 @@ Commands which trigger on messages have a **Trigger on message edits** toggle (*
 message is edited and matches the trigger text, it will trigger the command.
 
 The edited message toggle is an _additional_ trigger to the normal message trigger. If you'd like to _only_ trigger on
-message edits, you will need to use a conditional branch on `{{ .IsMessageEdit }}` in the custom command code.
+message edits, you will need to use a conditional branch on `{{ .IsMessageEdit }}` in the custom command response.
 
 ### Response
 
@@ -283,7 +280,7 @@ Dropdown selection (**9**) to change which command group the command is in. Sele
 
 ### Channel and Role Restrictions
 
-Group restrictions operate exactly as command-specific restrictions -- discussed previously -- do.
+Group restrictions operate identically to [command-specific restrictions](#rolechannel-restrictions).
 
 #### CC Groups
 

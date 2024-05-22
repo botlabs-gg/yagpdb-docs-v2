@@ -4,7 +4,8 @@ title = "Core"
 weight = 3
 +++
 
-This chapter covers everything under the **Core** category on the control panel, probably one of the most important
-categories — especially during your initial setup.
+Under the **Core** category of the control panel, you can configure access to
+some of YAGPDB's key functionality and view a log of changes to server
+configuration.
 
 {{%children containerstyle="div" style="h2" description="true" %}}

@@ -16,16 +16,26 @@ YAGPDB IS NOT A LOGGING BOT.
 
 ![A message log from the YAGPDB support server](message_log_example.png)
 
-Message logs capture X amount of messages from a channel, including any deleted messages cached (caches last 1 hour of
-deleted messages, or last 12 hours with [premium](/premium)). It then saves this log for later viewing. It saves message
-timestamps, message author's Username and User ID, and the message itself. If a message contains an attachment, the
-attachment URL is logged. If a message contains an embed, it is serialized and saved in JSON format.
+Message logs capture X amount of messages from a channel, including any deleted messages cached by YAGPDB (the last
+1 hour of deleted messages, or last 12 hours with [premium](/premium), are recorded by YAGPDB).
+
+The log is accessible on YAGPDB's website for later viewing. It saves message timestamps, message author's Username and
+User ID, and the message itself. If a message contains an attachment, the attachment URL is logged. If a message
+contains an embed, it is serialized and saved in JSON format.
+
+{{% notice warning %}}
+
+Message logs on the official YAGPDB instance will be automatically deleted after 30 days of their creation.
+
+If you're self-hosting, see [Message Log Purge](#message-log-purge-self-hosting-only) for more information.
+
+{{% /notice %}}
 
 ## Creating Logs
 
 ### Logs Command
 
-By default, any member can run the logs command for any channel which they have permission to Read Messages, Send
+By default, any member can run the logs command for any channel in which they have permission to Read Messages, Send
 Messages, and Read Message History. Members will be permitted to create logs regardless of their permission to view
 them.
 
@@ -55,11 +65,11 @@ These actions require logging to be enabled on their control panel.
 ## Viewing Logs
 
 To view a message log after it has been created, you'll need to visit its link in a browser. YAGPDB cannot send message
-logs to a Discord channel, the only way to view them is online.
+logs to a Discord channel; they are only accessible online.
 
-- When a log is created, the link to view it follows the formula `/public/<server ID>/log/<log count>`. Note that this
-  makes it easy to scrape through all the logs created on a server. Assume any member that can view a log can view every
-  log on your server.
+- When a log is created, the link to view it follows the pattern `/public/<server ID>/log/<log count>`. Note that this
+  makes it easy to scrape through all the logs created on a server. Assume any member that can view a specific log can
+  also view every other log on your server.
 - You can view a list of all message logs created on your server on the Logging page of the control panel.
 - When the `logs` command is executed, a link to the message log is sent as the response.
 - When a moderation action creates a log, a link is included in the mod log entry if enabled.
@@ -103,16 +113,8 @@ blacklisted channels.
 Users with write access to the control panel may delete individual logs or delete all logs on the server using the
 control panel.
 
-## Message Log Purge
+## Message Log Purge [Self-hosting only]
 
-YAGPDB allows bot owners to enable the purge of any message logs older that 30 days. This uses a backgroundworker which
-deletes logs older than 30 days every minute.
-
-{{% notice warning %}}
-
-Message Log Purge is enabled on the official YAGPDB instance hosted by Botlabs. Any message logs created will be
-automatically removed 30 days after their creation.
-
-{{% /notice %}}
-
-For self hosters, the environment variable to enable this feature is `enable_message_log_purge`. It is`false` by default.
+If you are self-hosting your own instance of YAGPDB, you can set `enable_message_log_purge=true` to automatically purge
+message logs older than 30 days. This option is enabled on the official instance of YAGPDB hosted by Botlabs but is
+disabled by default on a fresh self-host.

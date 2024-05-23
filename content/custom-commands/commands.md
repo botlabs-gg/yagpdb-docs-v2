@@ -20,8 +20,8 @@ Delete Selected Group **10** Channel and Role Restrictions **11** Save group set
 
 ## Creating a Custom Command
 
-Clicking the Create Custom Command (**1**) will instantly create a new command within the selected group (**6**) then
-redirect you to the page to edit it.
+Clicking the Create Custom Command (**1**) creates a new command within the selected group (**6**) and redirects you to
+a page to edit it.
 
 A new custom command has the default response:
 
@@ -29,7 +29,7 @@ A new custom command has the default response:
 Edit this to change the output of the custom command {{.CCID}}!
 ```
 
-It also assigns the command an ID determined by the number of commands you have created in the guild.
+Each custom command is assigned a unique incrementing ID, which cannot be modified after creation.
 
 {{% notice style="tip" title="Troubleshooting" %}}
 
@@ -46,7 +46,7 @@ response. Check the commands page to find any CCs with empty responses.
 
 The commands page lists the commands (**2**) in the selected group (**6**). They are ordered by [ID](#id-and-name) and
 display their name (if set), [trigger type](#trigger-types), and trigger text (if applicable). You can expand the
-command by clicking on it, allowing you to preview the full, syntax-highlighted command response.
+command by clicking on it, which displays the full command response.
 
 ### Delete a Command
 
@@ -54,10 +54,10 @@ Deleting a custom command (**4**) will **permanently** delete the command after 
 
 ### Run Now
 
-The Run now button (**5**) appears on [Interval trigger](#hourlyminute-interval) commands. It executes the command as
-long as it isn't disabled and a channel is selected, and redirects you to the edit command page for the command.
+The Run now button (**5**) appears on [interval trigger](#hourlyminute-interval) commands. When clicked, it executes the
+command immediately as long as the command isn't disabled and a channel is selected.
 
-Manually running an interval command reschedules all subsequent runs based off the current time.
+Running an interval command using this button reschedules all subsequent runs based off the current time.
 
 ## Command Groups
 
@@ -68,7 +68,7 @@ you to create a new group.
 
 ### Editing a Group
 
-Selecting a group allows you to edit it. Any changes must be saved (**11**) to take effect.
+Selecting a group allows you to edit it. Changes must be saved (**11**) to take effect.
 
 - **Name** (**8**): Name your custom command group (100 characters max).
 - **Delete group** (**9**): Permanently delete the group after confirmation.
@@ -77,11 +77,10 @@ Selecting a group allows you to edit it. Any changes must be saved (**11**) to t
 
 #### Role/Channel Restrictions
 
-Restricting a custom command (**10**) adds conditions for it to run A user who tries to run a custom command with the
-wrong roles/in the wrong channel will not trigger the response or an error.
+Using role/channel restrictions, it is possible to set conditions on which users can trigger a custom command.
 
-- Whitelisting roles or channels causes them to be required to run the command.
-- Blacklisted roles or channels will not be permitted to run the command.
+Specifically, whitelisted roles or channels are required to run the command, whereas blacklisted roles or channels
+cannot use the command at all.
 
 {{% notice style="note" %}}
 
@@ -91,9 +90,16 @@ This is a relatively common trip-hazard, so take great care when you set up both
 
 {{% /notice %}}
 
+{{% notice info %}}
+
+Role restrictions are unrelated to member permissions. Having `Administrator` permissions will not override these
+restrictions.
+
+{{% /notice %}}
+
 ## Editing a Custom Command
 
-Editing a custom command (**3**) opens up a separate page for configuration.
+Editing a custom command (**3**) opens a separate page for configuration.
 
 ![Overview of the CC edit page.](command_editor_overview.png)
 
@@ -108,19 +114,21 @@ Delete command button
 
 ### ID and Name
 
-Custom Commands are identified by either their ID or their name.
+Custom commands are identified by either their ID or their name.
 
-When a custom command is created, the system assigns it a numeric **ID** (**1**) starting at `1`. The number increases
-with each custom command created on your server. It is not based on the _current_ number of custom commands, but the
-total commands that have ever been created on the server. This ID is permanent, and cannot be changed or re-ordered.
+When a custom command is created, it is assigned a numeric **ID** (**1**) starting at `1`. The number increases with
+each custom command created on your server. It is not based on the _current_ number of custom commands, but the total
+commands that have ever been created on the server. IDs cannot be changed by the user.
 
-The ID may be used to identify a CC for a variety of purposes. Calling `{{ .CCID }}` within a command response will
-return its ID. You must target a CC ID for `execCC`. You can use run the `CustomCommands` command with a CC ID to
-retrieve info about that CC.
+The ID uniquely identifies a custom command, and is therefore used in a variety of contexts where one needs to supply a
+specific custom command. For instance, the `execCC` custom command function targets a specific CC ID, and some built-in
+commands like `customcommands` accept a CC ID as an argument.
+
+Within a command response, the ID may be retrieved using the `{{ .CCID }}` template.
 
 {{% notice warning %}}
 
-Deleting a Custom Command does not allow its ID to be reassigned. If you delete a CC, its ID is lost forever.
+Deleting a custom command does not allow its ID to be reassigned. If you delete a CC, its ID is lost forever.
 
 {{% /notice %}}
 
@@ -129,9 +137,9 @@ identify the command in the control panel and with the `CustomCommands` command.
 
 ### Triggers
 
-A trigger (**3**) defines what runs the command. Depending on the type of trigger you may also need to specify
-additional configuration. For example, most trigger types require a **Trigger** (**4**) field defining the text the
-command should match against new messages. Max 1000 characters.
+A trigger (**3**) defines conditions under which the command will be executed. Depending on the type of trigger, you may
+also need to specify additional configuration. For example, most trigger types require a **Trigger** (**4**) field
+defining the text the command should match against new messages. Max 1000 characters.
 
 #### Trigger types
 
@@ -145,6 +153,7 @@ text (**4**) will trigger the command.
 Trigger: `say`
 
 Matches:
+
 > -say
 >
 > -say hello
@@ -192,16 +201,18 @@ Example:
   {{ else if eq .Reaction.Emoji.APIName "🦆" }}
     This is not an allowed reaction.
   {{ end }}
+  {{/* Emojis other than 😀, ⭐️, and 🦆 do not produce any response. */}}
 ```
 
 {{% /notice %}}
 
 ##### Hourly/Minute Interval
 
-Interval triggers will run the command at a set interval in the selected channel.
+These triggers will run the command at a regular interval of time -- for instance, every 2 hours -- in the selected
+channel.
 
-The Member in context is nil, and functions relying on the Member context will fail. However, `exec` will run commands
-as the bot.
+When using an interval trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
+and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.
 
 ![Overview of interval configuration options.](interval_trigger_options.png?width=60vw)
 
@@ -213,15 +224,14 @@ as the bot.
 
 Interval (**1**) sets how often the command will run in **hours** or **minutes**.
 
-Channel (**2**) specifies a channel to run the command in. The response will be sent to this channel.
+Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
 
 Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
 UTC time**, not your local timezone.
 
 When editing an interval command, a **Run Now** button appears at the bottom of the page. It executes the command as
-long as it isn't disabled and a channel is selected.
-
-Manually running an interval command reschedules all subsequent runs based off the current time.
+long as the command is not disabled and a channel is selected. Running an interval command using this button reschedules
+all subsequent runs based off the current time.
 
 {{% notice info %}}
 
@@ -231,9 +241,9 @@ You must specify a channel to run interval commands in even if the command doesn
 
 #### Case Sensitivity
 
-Any commands which allow you to specify trigger text (ex. Command, Regex, Exact match, etc.) have a **Case sensitivity**
-toggle (**5**) which is off by default. A case-sensitive trigger `yagPDB` will trigger on "yagPDB" but not "yagpdb" or
-"YAGPDB".
+Any commands which allow you to specify trigger text (command, regex, exact match, and so on) have a **Case
+sensitivity** toggle (**5**) which is off by default. A case-sensitive trigger `yagPDB` will trigger on "yagPDB" but not
+"yagpdb" or "YAGPDB".
 
 #### Edit Message Trigger
 
@@ -243,7 +253,7 @@ Commands which trigger on messages have a **Trigger on message edits** toggle (*
 message is edited and matches the trigger text, it will trigger the command.
 
 The edited message toggle is an _additional_ trigger to the normal message trigger. If you'd like to _only_ trigger on
-message edits, you will need to conditional branch with `{{ .IsMessageEdit }}`.
+message edits, you will need to use a conditional branch on `{{ .IsMessageEdit }}` in the custom command response.
 
 ### Response
 
@@ -270,35 +280,21 @@ Dropdown selection (**9**) to change which command group the command is in. Sele
 
 ### Channel and Role Restrictions
 
-Restricting a custom command (**10**) adds conditions for it to run A user who tries to run a custom command with the
-wrong roles/in the wrong channel will not trigger the response or an error.
-
-A dropdown selection allows you to select a list of roles or channels, and the checkbox allows you to define the list as
-a blacklist or a whitelist.
-
-- Whitelisting roles or channels causes them to be required to run the command.
-- Blacklisted roles or channels will not be permitted to run the command.
-
-{{% notice info %}}
-
-Role restrictions are unrelated to user permissions. Having `Administrator` permissions will not override these
-restrictions.
-
-{{% /notice %}}
+Group restrictions operate identically to [command-specific restrictions](#rolechannel-restrictions).
 
 #### CC Groups
 
-A user executing a command must pass both the overarching group's restrictions and the command restrictions.
+A user executing a command must obey both the overarching group's restrictions and the command restrictions.
 Command-specific whitelists will _not_ override the group restrictions.
 
 ### Execution Statistics
 
-The execution statistics (**11**) show details about the custom command's executions. It's updated after the command
-runs.
+The execution statistics (**11**) show details about the custom command's executions. It is updated after each command
+run.
 
 #### Last Error
 
-The most recent error which occurred running the command, UTC Timestamped. The error display is not cleared when the
+The most recent error which occurred running the command, UTC timestamped. The error display is not cleared when the
 command runs successfully.
 
 #### Run Count
@@ -311,18 +307,18 @@ The run count will not increase if the user who ran the command did not pass the
 {{% notice style="tip" title="Troubleshooting" %}}
 
 If your command fails to run, check the run count. If the run count increases when you attempt to run the command, the
-issue is with your code. Otherwise, the issue may be with YAGPDB's permissions in your server, or incorrectly setup
-Role/Channel Restrictions in the command and/or command group.
+issue is with your code. Otherwise, the issue may be with YAGPDB's permissions in your server, or improperly configured
+role/channel restrictions in the command and/or command group.
 
 {{% /notice %}}
 
 #### Last Run
 
-A UTC Timestamp of the last time the command executed the response.
+A UTC timestamp of the last time the command executed the response.
 
 #### Next Scheduled Run
 
-Only shown on Interval type commands. A UTC Timestamp of the next time the command is scheduled to run.
+Only shown on Interval type commands. A UTC timestamp of the next time the command is scheduled to run.
 
 ### Output errors as command response
 
@@ -338,7 +334,7 @@ the trigger limit.
 
 Saving (**14**) the command updates it with the new values if there are no errors.
 
-Alt + Shift + S also saves the custom command.
+<kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> also saves the custom command.
 
 A custom command **will not save** if there is an error in your input. Examples of errors which prevent you from saving:
 
@@ -346,7 +342,7 @@ A custom command **will not save** if there is an error in your input. Examples 
 - You have reached the maximum CC limit
 - You are attempting to save an empty response
 
-If you save a command with an interval trigger which has never been run, it will run instantly upon saving.
+If you save a command with an interval trigger which has never been run, it will run immediately upon saving.
 
 {{% notice style="tip" title="Keeping your code safe" %}}
 

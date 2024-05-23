@@ -7,12 +7,9 @@ Select who can view or edit your control panel.
 
 <!--more-->
 
-This page is relatively simple, yet very powerful. To start with, a quick overview of what it looks like:
+This page is relatively simple, yet very powerful. An overview of the settings follows.
 
 ![Overview of the control panel access configuration page.](control_panel_access.png)
-
-We'll go over the options you have from top to bottom. As usual, make sure you hit save when you change any of the
-following settings.
 
 ### Read Access
 

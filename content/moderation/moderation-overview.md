@@ -25,13 +25,13 @@ The moderation page allows configuration of common settings.
 
 ### Mod Channels
 
-1. **Mod Log** - The mod log is the channel YAGPDB will send log messages to when most moderation commands are used. It
-includes username and user ID of both the moderator, and the moderated user. It additionally includes the reason for
-relevant commands (defaults to `<no reason provided>` when not provided), and a [log](/moderation/logging) of the
-channel where the command was run.
+1. **Mod Log** - The mod log is the channel YAGPDB will send log messages to when most moderation commands are used. Log
+  entries include username and user ID of both the moderator, and the moderated user. They additionally include the
+  reason for relevant commands (defaults to `<no reason provided>` when not provided), and a [log](/moderation/logging)
+  of the channel where the command was run.
 2. **Report** - The channel for YAGPDB to send report messages to when users use the report command. Similar to the mod
-log, it includes username and user ID of the user reporting, and the user reported, as well as the reason and message
-log of the channel.
+  log, report entries include username and user ID of the user reporting, and the user reported, as well as the reason
+  and message log of the channel.
 3. **Moderation DM Error** - The channel where YAGPDB will send error messages from executing template script within
 [moderation DMs](#moderation-dms).
 
@@ -47,10 +47,10 @@ Certain potentially destructive moderation commands are disabled by default. The
 ### Unban/Unmute Logging
 
 When the `unban`/`unmute` commands are used, YAGPDB will log their usage to the [mod log](#mod-channels) similarly to
-the other moderation commands, except without the logs.
+the other moderation commands.
 
-When using the `ban` and `mute` commands with a duration, YAGPDB will essentially execute the inverse commands as itself
-at the end of the duration. i.e, if you execute `ban @user 1d`, YAGPDB will ban the user, and 1 day later YAGPDB will
+When using the `ban` and `mute` commands with a duration, YAGPDB will automatically undo the punishment after the
+specified duration. For instance, if you execute `ban @user 1d`, YAGPDB will ban the user, and 1 day later YAGPDB will
 execute the `unban` command with reason "Timed ban expired." This action appears in the mod log as YAGPDB being the
 moderator.
 
@@ -60,18 +60,17 @@ Toggling Give/Takerole Logging (**9**) allows you to enable or disable the loggi
 
 ### External Logging
 
-By default, YAGPDB will only log actions it takes, i.e. if you kick a user with the bot's `kick` command, it will log
-it, but not if you kick the user directly via the user context menu. Enabling external logging for different moderation
-actions (**10**), (**11**), (**12**) allows the bot to use the server Audit Log to retrieve moderation actions taken by
-other bots or other users.
+By default, only actions performed through YAGPDB will be recorded in the mod-log. Hence, kicking a user using YAGPDB's
+`kick` command will result in a log entry, whereas kicking the user directly through Discord's context menu will not be
+recorded. Enabling external logging for different moderation actions (**10**), (**11**), (**12**) allows the bot to use
+the server Audit Log to retrieve moderation actions taken by other bots or other users.
 
 YAGPDB must have View Audit Log permissions to use this feature.
 
 ## Permissions Notice
 
-The moderation plugin, among other plugins, requires additional permissions to function properly. The notice at the top
-of the screen (**14**) will inform you of the required permissions for the plugin and alert you if the bot is missing
-permissions.
+The moderation plugin requires additional permissions to function properly. The notice at the top of the screen (**14**)
+will inform you of the required permissions for the plugin and alert you if the bot is missing permissions.
 
 ## Moderation Tools
 
@@ -124,7 +123,7 @@ Additional template dot context data is available for Moderation Actions:
 
 - `{{.Reason}}`: The reason specified in the timeout.
 - `{{.Author}}`: The author of the punishment, is a [user object](/reference/templates#user).
-- `{{.Duration}}`: The duration of the mod action in [time.Duration format](/reference/templates#time).
+- `{{.Duration}}`: The duration of the mod action as a [time.Duration format](/reference/templates#time).
 - `{{.HumanDuration}}`: The duration in a human friendly format (`1 hour and 3 minutes` for example).
 - `{{.WarningID}}`: The ID of the warning (when using the warn command).
 

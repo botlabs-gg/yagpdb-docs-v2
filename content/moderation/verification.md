@@ -3,9 +3,7 @@ title = 'Verification'
 weight = 5
 +++
 
-Use Google reCAPTCHA v2 to verify your members before permitting them access to your server. Also track IPs of verifying
-users for alt detection.
-
+Use Google reCAPTCHA v2 to verify your members before permitting them access to your server.
 <!--more-->
 
 ![Default Verification Page](page_verification.png)
@@ -95,9 +93,9 @@ If a new user verifies who shares an IP with a previously banned user, they will
 
 ### Alt Reporting
 
-If a new user who verifies is detected as an alt, but none of their associated accounts have been banned, YAGPDB will
+If a new user who verifies is detected as an alt but none of their associated accounts have been banned, YAGPDB will
 send a log to the verification log channel if specified, identifying the new user as an alt and listing other users who
-verified at the same IP.
+verified at the same IP address.
 
 ### Disable Alt Detection Globally
 

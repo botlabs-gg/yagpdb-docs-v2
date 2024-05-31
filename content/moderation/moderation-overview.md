@@ -286,36 +286,24 @@ based on warning count, you can take advantage of the template scripting within 
 Example:
 
 ```go
-{{/* Config Area Starts */}}
-
-{{$count := 4 }} {{/* No of warnings at which Certain Action is to be taken ( eg: for action to take place at 4 warnings set count as 4 ) */}}
-{{$some_channel_ID := 0}} {{/* replace with channel id of any random channel which is used for command execution when a default channel of warn doesn't exist */}}
-
-{{/* Config Area Ends */}}
-
-{{define "punish_check"}}
-{{$count := toInt .TemplateArgs}}
-{{$warns_count := toInt (reFind `\d+` (execAdmin "Warnings" .User.ID).Description)}}
-
-{{/* If warning count is above a threshold value take action */}}
-{{if ge $warns_count $count}}
-
-{{/* Add required code for action to be taken when warning count exceeds the threshold */}}
-Add Code Here
-
-{{/* Code to reset warnings for the user. Delete if you do not wish to reset the warnings */}}
-{{$silent := execAdmin "ClearWarnings" .User.ID}}
-
-{{/*End statement for if. Do not Remove if you don't know what you're doing*/}}
-{{end}}
-
-{{end}}
-
-{{if .Channel}}
-     {{$s := sendTemplate .Channel.ID "punish_check" $count}}
-{{else}}
-     {{$s := sendTemplate $some_channel_ID "punish_check" $count}}
-{{end}}
+{{/* Number of warnings at which action is to be taken (eg: for action to take place at 4 warnings set threshold to 4) */}}
+{{ $threshold := 4 }}
+{{ define "punish_check" }}
+	{{ $threshold := toInt .TemplateArgs }}
+	{{ $warnCount := len (getWarnings .User) }}
+	{{if ge $warns_count $count}}
+		{{/* Add required code for action to be taken when warning count exceeds the threshold. */}}
+		Add code here
+		{{/* Reset warnings for the user. Delete if you do not wish to reset the warnings. */}}
+		{{ $silent := execAdmin "clearwarnings" .User }}
+	{{ end }}
+{{ end }}
+{{ if .Channel }}
+     {{ $s := sendTemplate .Channel.ID "punish_check" $count }}
+{{ else }}
+	{{/* no context channel; use an arbitrary one */}}
+     {{ $s := sendTemplate (index .Guild.Channels 0).ID "punish_check" $count }}
+{{ end }}
 ```
 
 {{% /notice %}}

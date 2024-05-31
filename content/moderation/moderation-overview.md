@@ -141,10 +141,8 @@ Moderation actions which send DMs are:
 
 ### Timeout
 
-Timing out a member employs Discord's timeout feature to prevent users from interacting with your server. Discord's
-timeout temporarily removes the member's permissions to send messages, add reactions, and join voice channels,
-indiscriminantly and regardless of roles or overrides. Using a bot to timeout a member allows you to assign a specific
-timeout duration instead of the pre-defined times.
+Timing a member out employs Discord's timeout feature to prevent users from interacting with your server, temporarily
+removing all permissions except to read messages. Owners and admin users with the *Administrator* permission are exempt.
 
 #### Timeout Default Duration
 

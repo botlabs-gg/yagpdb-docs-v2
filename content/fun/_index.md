@@ -1,7 +1,7 @@
 +++
 archetype = "chapter"
 title = "Fun"
-weight = 6
+weight = 7
 +++
 
 Fun commands and systems provide engaging ways to enrich your server environment.

@@ -3,6 +3,10 @@ title = 'Animated Emotes'
 weight = 6
 +++
 
+A guide on use of animated emojis in various contexts across YAGPDB, and a library of a few available animated emojis on the public instance.
+
+<!--more-->
+
 To use the emotes as reaction in the trigger message: `{{ addReactions "name:id" "..." "..." }}` \
 To use the emotes as reaction in the response message, replace `addReactions` with `addResponseReactions`\
 To use the emotes as text-form entry inside a custom command: \<a:name:id>

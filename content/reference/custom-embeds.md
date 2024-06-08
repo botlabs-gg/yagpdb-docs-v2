@@ -3,6 +3,10 @@ title = 'Custom Embeds'
 weight = 3
 +++
 
+A guide to creating custom embeds in various contexts across YAGPDB.
+
+<!--more-->
+
 {{% notice warning %}}
 
 Embeds have limits, summarized [here](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).

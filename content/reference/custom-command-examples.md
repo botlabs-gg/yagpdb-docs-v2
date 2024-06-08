@@ -3,6 +3,10 @@ title = 'Custom Commands Examples'
 weight = 2
 +++
 
+Prebuilt custom commands for use as a learning reference.
+
+<!--more-->
+
 {{% notice warning %}}
 
 Note: This page is no longer updated with the latest versions of codes/commands. If you plan to copy paste codes for

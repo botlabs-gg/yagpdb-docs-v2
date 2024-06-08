@@ -3,6 +3,10 @@ title = 'Using RegEx'
 weight = 5
 +++
 
+A quick overview of golang flavored RegEx for your convenience.
+
+<!--more-->
+
 Full RE2 syntax reference at > [https://github.com/google/re2/wiki/Syntax](https://github.com/google/re2/wiki/Syntax)\
 Go RegExp doc at > [https://golang.org/pkg/regexp/](https://golang.org/pkg/regexp/)\
 More about general concepts > [https://www.regular-expressions.info/](https://www.regular-expressions.info/)

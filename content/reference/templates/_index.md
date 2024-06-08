@@ -126,7 +126,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 |.IsMessageEdit| Returns boolean true/false if message is edited and edit trigger for custom commands is enabled. Defaults to false.|
 |.IsPremium| Returns boolean true/false whether guild is premium of YAGPDB or not.|
 |.LinkRegex| Returns string value of in-built link-matching regular expression.|
-|.Permissions| <p>Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. <code>{{.Permissions.AddReactions}}</code> would return <code>64</code>, same as <code>{{bitwiseLeftShift 1 6}}</code>. More <a href="https://discord.com/developers/docs/topics/permissions#permissions">here</a>.</p>|
+|.Permissions| Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. `{{.Permissions.AddReactions}}` would return `64`, same as `{{bitwiseLeftShift 1 6}}`. More [here](https://discord.com/developers/docs/topics/permissions#permissions).|
 |.ServerPrefix| Returns server's command-prefix.|
 
 ### Channel
@@ -143,7 +143,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 |.Channel.IsThread| Whether the channel is a thread.|
 |.Channel.Mention| Mentions the channel object.|
 |.Channel.Name| The name of the channel.|
-|.Channel.NSFW| <p>Outputs whether this channel is NSFW or </p><p>not.</p>|
+|.Channel.NSFW| Outputs whether this channel is NSFW or not.|
 |.Channel.OwnerID| The ID of the creator of threads as _int64_. Returns `0` for normal channels.|
 |.Channel.ParentID| The ID of the channel's parent (category), returns 0 if none.|
 |.Channel.PermissionOverwrites| A slice of [permission overwrite](https://discord.com/developers/docs/resources/channel#overwrite-object) structures applicable to the channel.|
@@ -200,7 +200,7 @@ Channel functions are covered [here](functions#channel).
 |**Field**| **Description**|
 |-| -|
 |.Member.Avatar| Member’s avatar hash, if it is custom per server, then custom avatar hash.|
-|.Member.CommunicationDisabledUntil| <p>Returns <em>time.Time</em> when member’s time out expires. Time is in the past or <code>nil</code> if the user is not timed out.<br>NB. was previously called TimeoutExpiresAt.</p>|
+|.Member.CommunicationDisabledUntil| Returns _time.Time_ when member’s time out expires. Time is in the past or `nil` if the user is not timed out.<br>NB. was previously called TimeoutExpiresAt.|
 |.Member.Flags| [Guild member flags](https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-flags) represented as a bit set, defaulting to 0.|
 |.Member.GuildID| The guild ID on which the member exists.|
 |.Member.JoinedAt| When member joined the guild/server of type _discordgo.Timestamp_. Method `.Parse` will convert this to of type _time.Time_.|
@@ -224,7 +224,7 @@ Member functions are covered [here](functions#member).
 |-| -|
 |.Message.Activity| Represents the activity sent with a message, such as a game invite, of type _\*discordgo.MessageActivity_. Sent with Rich Presence-related chat embeds.|
 |.Message.Attachments| Attachments of this message (_slice_ of [attachment](https://discord.com/developers/docs/resources/channel#attachment-object) objects).|
-|.Message.Author| Author of the message ([User](./#user) object).|
+|.Message.Author| Author of the message ([User](#user) object).|
 |.Message.ChannelID| Channel ID this message is in.|
 |.Message.Content| Text content of this message.|
 |.Message.ContentWithMentionsReplaced| Replaces all <@ID> mentions with the username of the mention.|
@@ -233,7 +233,7 @@ Member functions are covered [here](functions#member).
 |.Message.GuildID| Guild ID in which the message is.|
 |.Message.ID| ID of the message.|
 |.Message.Link| Discord link to the message. \*|
-|.Message.Member| [Member object](./#member). \*|
+|.Message.Member| [Member object](#member). \*|
 |.Message.MentionEveryone| Whether the message mentions everyone, returns _bool_ true/false.|
 |.Message.MentionRoles| The roles mentioned in the message, returned as a slice of type _discordgo.IDSlice._|
 |.Message.Mentions| Users this message mentions, returned as a slice of type _\[]\*discordgo.User._|
@@ -266,11 +266,11 @@ This is available and part of the dot when reaction trigger type is used.
 
 |**Field**| **Description**|
 |-| -|
-|.Reaction| <p>Returns reaction object which has following fields <code>UserID</code>, <code>MessageID</code>, <br><code>Emoji.(ID/Name/...)</code>, <code>ChannelID</code>, <code>GuildID</code>. The Emoji.ID is the ID of the emoji for custom emojis, and Emoji.Name will hold the Unicode emoji if its a default one. (otherwise the name of the custom emoji).</p>|
+|.Reaction| Returns reaction object which has following fields `UserID`, `MessageID`, <br>`Emoji.(ID/Name/...)`, `ChannelID`, `GuildID`. The Emoji.ID is the ID of the emoji for custom emojis, and Emoji.Name will hold the Unicode emoji if its a default one. (otherwise the name of the custom emoji).|
 |.Reaction.Emoji.APIName| Returns type _string_, a correctly formatted API name for use in the MessageReactions endpoints. For custom emojis it is `emojiname:ID`.|
 |.Reaction.Emoji.MessageFormat| Returns a correctly formatted emoji for use in Message content and embeds. It's equal to `<:.Reaction.Emoji.APIName>` and `<a:.Reaction.Emoji.APIName>` for animated emojis.|
 |.ReactionAdded| Returns a boolean type _bool_ true/false indicating whether reaction was added or removed.|
-|.ReactionMessage| <p>Returns the message object reaction was added to. Not all regular .Message fields are filled though e.g. .Member. </p><p><code>{{range .ReactionMessage.Reactions}}</code><br><code>{{.Count}} - {{.Emoji.Name}}</code> <br><code>{{end}}</code></p><p>Returns emoji count and their name.</p><p>Has an alias <code>.Message</code> and it works the same way.</p>|
+|.ReactionMessage| Returns the message object reaction was added to. Not all regular .Message fields are filled though e.g. .Member. `{{range .ReactionMessage.Reactions}}`<br>`{{.Count}} - {{.Emoji.Name}}` <br>`{{end}}`Returns emoji count and their name.Has an alias `.Message` and it works the same way.|
 
 [Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#reaction-object).\
 [Emoji object in Discord documentation.](https://discord.com/developers/docs/resources/emoji)
@@ -293,7 +293,7 @@ This is available and part of the dot when reaction trigger type is used.
 
 |**Method**| **Description**|
 |-| -|
-|`.User.AvatarURL` "256"| <p>Gives the URL for user's avatar, argument "256" is the size of the picture <br>and can increase/decrease twofold (e.g. 512, 1024 or 128, 64 etc.).</p>|
+|`.User.AvatarURL` "256"| Gives the URL for user's avatar, argument "256" is the size of the picture <br>and can increase/decrease twofold (e.g. 512, 1024 or 128, 64 etc.).|
 
 [User object in Discord documentation](https://discordapp.com/developers/docs/resources/user#user-object).
 
@@ -328,11 +328,11 @@ the same type -> for example, `toFloat 1`.
 
 {{% /notice %}}
 
-<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td><strong>Case</strong></td><td><strong>Example</strong></td></tr><tr><td>if</td><td><p><code>{{if (condition)}} output {{end}}</code></p><p>Initialization statement can also be inside <code>if</code> statement with conditional statement, limiting the initialized scope to that <code>if</code> statement. <br><code>{{$x := 24}}</code> <br><code>{{if eq ($x := 42) 42}} Inside: {{$x}} {{end}}</code> <br><code>Outside: {{$x}}</code></p></td></tr><tr><td>else if</td><td><p><code>{{if (condition)}} output1 {{else if (condition)}} output2 {{end}}</code></p><p>You can have as many<code>else if</code>statements as many different conditionals you have.</p></td></tr><tr><td>else</td><td><code>{{if (condition)}} output1 {{else}} output2 {{end}}</code></td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td>**Case**</td><td>**Example**</td></tr><tr><td>if</td><td>`{{if (condition)}} output {{end}}`Initialization statement can also be inside `if` statement with conditional statement, limiting the initialized scope to that `if` statement. <br>`{{$x := 24}}` <br>`{{if eq ($x := 42) 42}} Inside: {{$x}} {{end}}` <br>`Outside: {{$x}}`</td></tr><tr><td>else if</td><td>`{{if (condition)}} output1 {{else if (condition)}} output2 {{end}}`You can have as many`else if`statements as many different conditionals you have.</td></tr><tr><td>else</td><td>`{{if (condition)}} output1 {{else}} output2 {{end}}`</td></tr></tbody></table>
 
-<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td><strong>Boolean Logic</strong></td><td></td></tr><tr><td>and</td><td><code>{{if and (cond1) (cond2) (cond3)}} output {{end}}</code></td></tr><tr><td>not</td><td><code>{{if not (condition)}} output {{end}}</code></td></tr><tr><td>or</td><td><code>{{if or (cond1) (cond2) (cond3)}} output {{end}}</code></td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td>**Boolean Logic**</td><td></td></tr><tr><td>and</td><td>`{{if and (cond1) (cond2) (cond3)}} output {{end}}`</td></tr><tr><td>not</td><td>`{{if not (condition)}} output {{end}}`</td></tr><tr><td>or</td><td>`{{if or (cond1) (cond2) (cond3)}} output {{end}}`</td></tr></tbody></table>
 
-<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td><strong>Comparison operators</strong></td><td></td></tr><tr><td>Equal: <code>eq</code></td><td><code>{{if eq .Channel.ID ########}} output {{end}}</code></td></tr><tr><td>Not equal: <code>ne</code></td><td><code>{{$x := 7}} {{$y := 8}} {{ne $x $y}}</code> returns <code>true</code></td></tr><tr><td>Less than: <code>lt</code></td><td><code>{{if lt (len .Args) 5}} output {{end}}</code></td></tr><tr><td>Less than or equal: <code>le</code></td><td><code>{{$x := 7}} {{$y := 8}} {{le $x $y}}</code> returns <code>true</code></td></tr><tr><td>Greater than: <code>gt</code></td><td><code>{{if gt (len .Args) 1}} output {{end}}</code></td></tr><tr><td>Greater than or equal: <code>ge</code></td><td><code>{{$x := 7}} {{$y := 8}} {{ge $x $y}}</code> returns <code>false</code></td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td>**Comparison operators**</td><td></td></tr><tr><td>Equal: `eq`</td><td>`{{if eq .Channel.ID ########}} output {{end}}`</td></tr><tr><td>Not equal: `ne`</td><td>`{{$x := 7}} {{$y := 8}} {{ne $x $y}}` returns `true`</td></tr><tr><td>Less than: `lt`</td><td>`{{if lt (len .Args) 5}} output {{end}}`</td></tr><tr><td>Less than or equal: `le`</td><td>`{{$x := 7}} {{$y := 8}} {{le $x $y}}` returns `true`</td></tr><tr><td>Greater than: `gt`</td><td>`{{if gt (len .Args) 1}} output {{end}}`</td></tr><tr><td>Greater than or equal: `ge`</td><td>`{{$x := 7}} {{$y := 8}} {{ge $x $y}}` returns `false`</td></tr></tbody></table>
 
 ### Range
 
@@ -363,8 +363,8 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 <pre class="language-go"><code class="lang-go">{{/* range over an integer */}}
 {{range 2}}{{.}}{{end}}
 {{range $k, $v := toInt64 2}}{{$k}}{{$v}}{{end}}
-<strong>{{/* range over a slice */}}
-</strong>{{ range $index, $element := cslice "YAGPDB" "IS COOL!" }}
+**{{/* range over a slice */}}
+**{{ range $index, $element := cslice "YAGPDB" "IS COOL!" }}
 {{ $index }} : {{ $element }} {{ end }}
 {{/* range on a map */}}
 {{ range $key, $value := dict "SO" "SAY" "WE" "ALL!" }}
@@ -372,7 +372,7 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 {{/* range with else and variable scope */}}
 {{ range seq 1 1 }} no output {{ else }} output here {{ end }}
 {{ $x := 42 }} {{ range $x := seq 2 4 }} {{ $x }} {{ end }} {{ $x }}
-</code></pre>
+`</pre>
 
 {{% notice warning %}}
 
@@ -689,14 +689,14 @@ function. Retrieving specific element inside _templates.Slice_ is by indexing it
 
 |**Function**| **Description**|
 |-| -|
-|`cslice value1 value2 ...`| <p>Function creates a slice of type <em>templates.Slice</em> that can be used elsewhere (as an argument for <code>cembed</code> and <code>sdict</code> for example).<br></p><p>Example: <code>cslice 1 "2" (dict "three" 3) 4.5</code> returns <code>[1 2 map[three:3] 4.5]</code>, having length of 4 and index positions from 0 to 3. Notice that thanks to type <em>interface{}</em> value, <em>templates.Slice</em> elements' inherent type does not change.</p>|
+|`cslice value1 value2 ...`| Function creates a slice of type _templates.Slice_ that can be used elsewhere (as an argument for `cembed` and `sdict` for example).<br>Example: `cslice 1 "2" (dict "three" 3) 4.5` returns `[1 2 map[three:3] 4.5]`, having length of 4 and index positions from 0 to 3. Notice that thanks to type _interface{}_ value, _templates.Slice_ elements' inherent type does not change.|
 
 |Method| Description|
 |-| -|
 |.Append arg| Creates a new _cslice_ having given argument appended fully by its type to current value. Has max size of 10 000 length.|
 |.AppendSlice arg| Creates a new _cslice_ from argument of type _slice_ appended/joined with current value. Has max size of 10 000 length.|
 |.Set int value| Changes/sets given _int_ argument as index position of current _cslice_ to new value. Note that .Set can only set indexes which already exist in the slice.|
-|.StringSlice strict-flag| <p>Compares <em>slice</em> contents - are they of type <em>string,</em> based on the strict-flag which is <em>bool</em> and is by default <code>false</code><em>.</em> Under these circumstances if the element is a <em>string</em> then those elements will be included as a part of the <em>[]string</em> slice and rest simply ignored. Also <em>time.Time</em> elements - their default <em>string</em> notation will be included. If none are <em>string</em> an empty <em>[]string</em> slice is returned.</p><p>If strict-flag is set to <code>true</code> it will return <em>[]string</em> only if <strong>all</strong> elements are pure <em>string</em>, else <code>&#x3C;no value></code> is returned.</p><p>Example in this section's [Snippets](#this-sections-snippets).</p>
+|.StringSlice strict-flag| Compares _slice_ contents - are they of type _string,_ based on the strict-flag which is _bool_ and is by default `false`_._ Under these circumstances if the element is a _string_ then those elements will be included as a part of the _[]string_ slice and rest simply ignored. Also _time.Time_ elements - their default _string_ notation will be included. If none are _string_ an empty _[]string_ slice is returned.If strict-flag is set to `true` it will return _[]string_ only if **all** elements are pure _string_, else `&#x3C;no value>` is returned.Example in this section's [Snippets](#this-sections-snippets).|
 
 #### This section's snippets
 
@@ -732,7 +732,7 @@ an unordered list and the number of parameters to form key-value pairs must be e
 
 |**Function**| **Description**|
 |-| -|
-|`sdict "key1" value1 "key2" value2 ...`| <p>Like <code>dict</code> function, creating a <em>templates.SDict</em> type map, key must be of type <em>string</em>. Can be used for example in <code>cembed</code>. If only one argument is passed to <code>sdict</code> function having type <em>map[string]interface{};</em> for example .ExecData and data retrieved from database can be of such type if <code>sdict</code> was used, it is converted to a new <em>sdict</em>.</p><p></p><p>Example: <code>sdict "one" 1 "two" 2 "three" (cslice 3 4) "five" 5.5</code> returns unordered <code>map[five:5.5 one:1 three:[3 4] two:2]</code>, having length of four and index positions are its keys. Notice that thanks to type <em>interface{}</em> value, <em>templates.SDict</em> elements' inherent type does not change.</p>|
+|`sdict "key1" value1 "key2" value2 ...`| Like `dict` function, creating a _templates.SDict_ type map, key must be of type _string_. Can be used for example in `cembed`. If only one argument is passed to `sdict` function having type _map[string]interface{};_ for example .ExecData and data retrieved from database can be of such type if `sdict` was used, it is converted to a new _sdict_.Example: `sdict "one" 1 "two" 2 "three" (cslice 3 4) "five" 5.5` returns unordered `map[five:5.5 one:1 three:[3 4] two:2]`, having length of four and index positions are its keys. Notice that thanks to type _interface{}_ value, _templates.SDict_ elements' inherent type does not change.|
 
 |**Method**| **Description**|
 |-| -|

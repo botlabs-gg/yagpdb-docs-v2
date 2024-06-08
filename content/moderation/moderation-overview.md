@@ -289,19 +289,19 @@ Example:
 {{/* Number of warnings at which action is to be taken (eg: for action to take place at 4 warnings set threshold to 4) */}}
 {{ $threshold := 4 }}
 {{ define "punish_check" }}
-	{{ $threshold := toInt .TemplateArgs }}
-	{{ $warnCount := len (getWarnings .User) }}
-	{{if ge $warns_count $count}}
-		{{/* Add required code for action to be taken when warning count exceeds the threshold. */}}
-		Add code here
-		{{/* Reset warnings for the user. Delete if you do not wish to reset the warnings. */}}
-		{{ $silent := execAdmin "clearwarnings" .User }}
-	{{ end }}
+  {{ $threshold := toInt .TemplateArgs }}
+  {{ $warnCount := len (getWarnings .User) }}
+  {{if ge $warns_count $count}}
+    {{/* Add required code for action to be taken when warning count exceeds the threshold. */}}
+    Add code here
+    {{/* Reset warnings for the user. Delete if you do not wish to reset the warnings. */}}
+    {{ $silent := execAdmin "clearwarnings" .User }}
+  {{ end }}
 {{ end }}
 {{ if .Channel }}
      {{ $s := sendTemplate .Channel.ID "punish_check" $count }}
 {{ else }}
-	{{/* no context channel; use an arbitrary one */}}
+  {{/* no context channel; use an arbitrary one */}}
      {{ $s := sendTemplate (index .Guild.Channels 0).ID "punish_check" $count }}
 {{ end }}
 ```

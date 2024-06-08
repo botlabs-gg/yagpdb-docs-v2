@@ -1,6 +1,6 @@
 +++
-archetype = "chapter"
-title = "Templates"
+archetype = "default"
+title = 'Templates'
 weight = 1
 +++
 
@@ -360,7 +360,8 @@ case of only one variable, it is assigned the element.\
 \
 Like `if`, `range`is concluded with`{{end}}`action and declared variable scope inside `range` extends to that point.\
 
-<pre class="language-go"><code class="lang-go">{{/* range over an integer */}}
+```go
+{{/* range over an integer */}}
 {{range 2}}{{.}}{{end}}
 {{range $k, $v := toInt64 2}}{{$k}}{{$v}}{{end}}
 **{{/* range over a slice */}}
@@ -372,7 +373,7 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 {{/* range with else and variable scope */}}
 {{ range seq 1 1 }} no output {{ else }} output here {{ end }}
 {{ $x := 42 }} {{ range $x := seq 2 4 }} {{ $x }} {{ end }} {{ $x }}
-`</pre>
+```
 
 {{% notice warning %}}
 

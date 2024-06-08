@@ -16,7 +16,7 @@ All available data that can be used in YAGPDB's templating "engine" which is sli
 stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
 len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
 a concise and to the point reference document for all available templates/functions. **Functions** are covered
-[here](functions.md). For detailed explanations and syntax guide refer to the [learning
+[here](functions). For detailed explanations and syntax guide refer to the [learning
 resource](https://learn.yagpdb.xyz/).
 
 **Legend**: at current state this is still prone to formatting errors, but everything in a `code block` should refer to
@@ -644,7 +644,7 @@ Golang has built-in primitive data types (_int_, _string_, _bool_, _float64_, ..
 \
 YAGPDB's templating "engine" has currently two user-defined, custom data types - _templates.Slice_ and
 _templates.SDict_. There are other custom data types used like _discordgo.Timestamp_, but these are outside of the main
-code of YAGPDB, so not explained here further. Type _time.Time_ is covered in its own [section](./#time).\
+code of YAGPDB, so not explained here further. Type _time.Time_ is covered in its own [section](#time).\
 \
 Custom Types section discusses functions that initialize values carrying those _templates.Slice_ (abridged to _cslice_),
 _templates.SDict_ (abridged to _sdict_) types and their methods. Both types handle type _interface{}_ element. It's
@@ -696,7 +696,7 @@ function. Retrieving specific element inside _templates.Slice_ is by indexing it
 |.Append arg| Creates a new _cslice_ having given argument appended fully by its type to current value. Has max size of 10 000 length.|
 |.AppendSlice arg| Creates a new _cslice_ from argument of type _slice_ appended/joined with current value. Has max size of 10 000 length.|
 |.Set int value| Changes/sets given _int_ argument as index position of current _cslice_ to new value. Note that .Set can only set indexes which already exist in the slice.|
-|.StringSlice strict-flag| <p>Compares <em>slice</em> contents - are they of type <em>string,</em> based on the strict-flag which is <em>bool</em> and is by default <code>false</code><em>.</em> Under these circumstances if the element is a <em>string</em> then those elements will be included as a part of the <em>[]string</em> slice and rest simply ignored. Also <em>time.Time</em> elements - their default <em>string</em> notation will be included. If none are <em>string</em> an empty <em>[]string</em> slice is returned.</p><p>If strict-flag is set to <code>true</code> it will return <em>[]string</em> only if <strong>all</strong> elements are pure <em>string</em>, else <code>&#x3C;no value></code> is returned.</p><p>Example in this section's <a href="./#this-sections-snippets">Snippets</a>.</p>|
+|.StringSlice strict-flag| <p>Compares <em>slice</em> contents - are they of type <em>string,</em> based on the strict-flag which is <em>bool</em> and is by default <code>false</code><em>.</em> Under these circumstances if the element is a <em>string</em> then those elements will be included as a part of the <em>[]string</em> slice and rest simply ignored. Also <em>time.Time</em> elements - their default <em>string</em> notation will be included. If none are <em>string</em> an empty <em>[]string</em> slice is returned.</p><p>If strict-flag is set to <code>true</code> it will return <em>[]string</em> only if <strong>all</strong> elements are pure <em>string</em>, else <code>&#x3C;no value></code> is returned.</p><p>Example in this section's [Snippets](#this-sections-snippets).</p>
 
 #### This section's snippets
 
@@ -761,7 +761,7 @@ with custom types are now serialized properly, making manual conversion unnecess
 ## Database
 
 You have access to a basic set of Database functions having return of type _\*customcommands.LightDBEntry_ called here
-[DBEntry](./#dbentry). \
+[DBEntry](#dbentry). \
 This is almost a key value store ordered by the key and value combined.
 
 You can have max 50 \* user\_count (or 500 \* user\_count for premium) values in the database, if you go above this all
@@ -781,9 +781,9 @@ may only be run twice. (50,10 for premium users).
 
 Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/intermediate/custom-command-database).
 
-**Database functions** are covered [here](functions.md#database).
+**Database functions** are covered [here](functions#database).
 
-[Example here](../custom-command-examples.md#database-example).
+[Example here](/reference/custom-command-examples#database-example).
 
 ### DBEntry
 
@@ -811,7 +811,7 @@ tickets per user.
 
 |**Function**| **Description**|
 |-| -|
-|`createTicket author topic`| Creates a new ticket with the author and topic provided. Author can be `nil` (to use the triggering member); user ID in form of a string or an integer; a user struct; or a member struct. The topic must be a string. Returns a [template ticket](./#template-ticket) struct on success.|
+|`createTicket author topic`| Creates a new ticket with the author and topic provided. Author can be `nil` (to use the triggering member); user ID in form of a string or an integer; a user struct; or a member struct. The topic must be a string. Returns a [template ticket](#template-ticket) struct on success.|
 
 ### Template Ticket
 

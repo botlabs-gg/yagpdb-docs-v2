@@ -107,6 +107,119 @@ convert the number to type _string_ before saving and later back to its original
 {{ else }} FUN'S OVER! {{ end }}
 ```
 
+### Interactions
+
+{{% notice style="tip" %}}
+
+Use of interactions within YAGPDB is an advanced topic, the documentation should be used only as reference. To learn
+about using interactions, [see here](/reference/custom_interactions).
+
+{{% /notice %}}
+
+#### Interaction Responses
+
+* Only one interaction response may be sent to each interaction.
+* If you do not send an interaction response, members will see "This application did not respond" on Discord.
+* You may only send an interaction response to the interaction which triggered the command.
+* Text output directly to the response is automatically sent as an interaction response if the interaction hasn't
+  already been responded to.
+* A response is not the same thing as a followup.
+
+|**Function**| **Description**|
+|-| -|
+|`sendModal` modal| Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`, which should be a slice of sdicts with the following keys: `custom_id`, `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `min_length`, and `max_length`. Example in section's [Snippets](#interactions-sections-snippets).|
+|`updateMessage` newMessage| Edits the message on which the button, select menu, or modal was triggered on.|
+|`updateMessageNoEscape` newMessage| Edits the message triggered on and has same logic in escaping characters as `sendMessageNoEscape`.|
+
+#### Interaction Followups
+
+* Interaction followups may be sent up to 15 minutes after an interaction.
+* To send a followup, you must have the interaction token of the interaction you are following up.
+* You can send as many followups as you'd like.
+* Text output directly to the response is automatically sent as an interaction followup if the interaction has
+  already been responded to.
+* A followup is not the same thing as a response.
+
+|**Function**| **Description**|
+|-| -|
+|`editResponse` interactionToken messageID newMessageContent| Edits one of the bot's responses to an interaction. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets).|
+|`editResponseNoEscape` interactionToken messageID newMessageContent| Edits the response and has same logic in escaping characters as `sendMessageNoEscape`.|
+
+#### Interaction Response/Followup Hybrids
+
+* Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise they will send the equivalent followup function.
+
+|**Function**| **Description**|
+|-| -|
+|`sendResponse` interactionToken message| Sends a message (string, embed, or complexMessage) in response to an interaction. Supports the `ephemeral` flag in `complexMessage`. `interactionToken` must be a valid token or `nil` to target the triggering interaction. Example in section's [Snippets](#interactions-sections-snippets).|
+|`sendResponseNoEscape` interactionToken message| Sends a message as a response, and doesn't escape mentions (e.g. role mentions, reply mentions or @here/@everyone).|
+|`sendResponseNoEscapeRetID` interactionToken message| Same as `sendResponseNoEscape`, but also returns messageID to assigned variable for later use.|
+|`sendResponseRetID` interactionToken message| Same as `sendResponse`, but also returns messageID to assigned variable for later use. Example in section's [Snippets](#interactions-sections-snippets).|
+
+#### Interaction Miscellaneous
+
+|**Function**| **Description**|
+|-| -|
+|`cbutton` "list of button values"| Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#button-object) A Link style button must have a URL and cannot have a Custom ID. All other styles must have a Custom ID and cannot have a URL. All buttons must have either a label or an emoji. Example in section's [Snippets](#interactions-sections-snippets).|
+|`cmenu` "list of select menu values"| Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#select-menu-object) Type should be provided as a string, either `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus must have `options`, all other types cannot. Example in section's [Snippets](#interactions-sections-snippets).|
+|`ephemeralResponse`| Send the response text ephemerally. Only works when triggered by an interaction. Works on responses and followups.|
+|`getResponse` interactionToken messageID| Can be used to get the bot's responses or followup messages, including ephemeral messages. Returns a [Message](/reference/templates#message) object. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets).|
+
+#### Interactions section's snippets
+
+* To demonstrate creating buttons and menus
+
+```go
+{{ $funButton := cbutton
+  "label" "My Custom Button"
+  "custom_id" "duck-button"
+  "style" "success" }}
+{{ $badButton := cbutton
+  "label" "My Useless Button"
+  "style" "secondary"
+  "disabled" true }}
+{{ $emojiButton := cbutton
+  "emoji" ( sdict "name" "🦆" )
+  "style" "link"
+  "url" "https://yagpdb.xyz" }}
+{{ $menu := cmenu
+  "type" "text"
+  "placeholder" "Choose a terrible thing"
+  "custom_id" "duck-menus-my_first_menu"
+  "options" (cslice
+    (sdict "label" "Ducks" "value" "opt-1" "default" true)
+    (sdict "label" "Duck" "value" "opt-2" "emoji" (sdict "name" "🦆"))
+    (sdict "label" "Half a Duck" "value" "opt-3" "description" "Don't let the smaller amount fool you."))
+  "max_values" 3 }}
+{{ $message := complexMessage "buttons" (cslice $funButton $badButton $emojiButton) "menus" $menu }}
+{{ sendMessage nil $message }}
+```
+
+* To demonstrate responding with a modal (this must be triggered by a component or modal submission)
+
+```go
+{{ $modal := sdict
+  "title" "My Custom Modal"
+  "custom_id" "modals-my_first_modal"
+  "fields" (cslice
+    (sdict "label" "Name" "placeholder" "Duck" "required" true)
+    (sdict "label" "Do you like ducks?" "value" "Heck no")
+    (sdict "label" "Duck hate essay" "min_length" 100)) }}
+{{ sendModal $modal }}
+```
+
+* To demonstrate sending, getting, and editing responses (this must be triggered by a component or modal submission)
+
+```go
+{{ $interactionToken := .Interaction.Token }}
+{{ sendResponse nil "Here's the first message!" }}
+{{ $followupID := sendResponseRetID $interactionToken (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
+{{ sleep 2 }}
+{{ editResponse $interactionToken nil (print "I've edited this message to say " noun) }}
+{{ $editedResponse := getResponse $interactionToken nil }}
+{{ editResponse $interactionToken $followupID $editedResponse.Content }}
+```
+
 ### Math
 
 {{% notice info %}}
@@ -195,8 +308,8 @@ There is also .Mention method available for channel, role, user structs/objects.
 |`addMessageReactions` channel messageID emojis...| Same as `addReactions` or `addResponseReactions`, but can be used on any messages using its ID. `channel` can be either `nil`, channel's ID or its name.Emojis can be presented as a _cslice_. Example in section's [Snippets](#message-sections-snippets).|
 |`addReactions` "👍" "👎" ...| Adds each emoji as a reaction to the message that triggered the command (recognizes Unicode emojis and `emojiName:emojiID`). Emojis can be presented as a _cslice_.|
 |`addResponseReactions` "👍" "👎" ...| Adds each emoji as a reaction to the response message (recognizes Unicode emojis and `emojiName:emojiID`). Emojis can be presented as a _cslice_.|
-|`complexMessage` "allowed\_mentions" arg "content" arg "embed" arg "file" arg "filename" arg "reply" arg "silent" arg| `complexMessage` creates a _so-called_ bundle of different message fields for `sendMessage...` functions to send them out all together. Its arguments need to be preceded by predefined keys:<br>`"allowed_mentions"` sends out very specific mentions where `arg` is an _sdict_ having keys: `"parse"` that takes a _cslice_ with accepted values for a type to mention - "users", "roles", "everyone"; _sdict_ keys`"users"`, `"roles"` take a _cslice_ of IDs either for users or roles and `"replied_user"` is a _bool_ true/false for mentioning replied user.`"content"` for regular text; `"embed"` for embed arguments created by `cembed` or `sdict`. With `cslice` you can use up to 10 embeds as arguments for `"embed"`. `"file"` for printing out content as a file with default name `attachment_YYYY-MM-DD_HH-MM-SS.txt` (max size 100 000 characters ca 100kB). `"filename"` lets you define custom file name if `"file"` is used with max length of 64 characters, extension name remains `txt`. `"reply"`replies to a message, where `arg`is messageID. If replied message is in another channel, `sendMessage`channel must be also that channel. To "reply-ping", use `sendMessageNoEscape`.`"silent"` suppresses message's push and desktop notifications, `arg` is _bool_ true/false.Example in this section's [Snippets](#message-sections-snippets).|
-|`complexMessageEdit` "allowed\_mentions" arg "content" arg "embed" arg "silent" arg| Special case for `editMessage` function - either if `complexMessage` is involved or works even with regular message. Has parameters "allowed\_mentions",`"content", "embed"` and `"silent"` that edit the message and work the same way as for `complexMessage`. Example in this section's [Snippets](#message-sections-snippets).|
+|`complexMessage` "allowed\_mentions" arg "content" arg "embed" arg "file" arg "filename" arg "reply" arg "silent" arg "buttons" arg "menus" arg "components" arg "ephemeral" arg| `complexMessage` creates a _so-called_ bundle of different message fields for `sendMessage...` functions to send them out all together. Its arguments need to be preceded by predefined keys:<br>`"allowed_mentions"` sends out very specific mentions where `arg` is an _sdict_ having keys: `"parse"` that takes a _cslice_ with accepted values for a type to mention - "users", "roles", "everyone"; _sdict_ keys`"users"`, `"roles"` take a _cslice_ of IDs either for users or roles and `"replied_user"` is a _bool_ true/false for mentioning replied user.`"content"` for regular text; `"embed"` for embed arguments created by `cembed` or `sdict`. With `cslice` you can use up to 10 embeds as arguments for `"embed"`. `"file"` for printing out content as a file with default name `attachment_YYYY-MM-DD_HH-MM-SS.txt` (max size 100 000 characters ca 100kB). `"filename"` lets you define custom file name if `"file"` is used with max length of 64 characters, extension name remains `txt`. `"reply"`replies to a message, where `arg`is messageID. If replied message is in another channel, `sendMessage`channel must be also that channel. To "reply-ping", use `sendMessageNoEscape`.`"silent"` suppresses message's push and desktop notifications, `arg` is _bool_ true/false. `"buttons"` for buttons created by `cbutton` or `sdict`. Can be used multiple times to manually define rows. `"menus"` for menus created by `cmenu` or `sdict`. Can be used multiple times to manually define rows. `"components"` for advanced control over buttons and menus in message rows. `arg` is a slice of rows (each defined by a slice) of components, or alternatively a slice of components. `"ephemeral"` to make the message ephemeral if used in an interaction response or followup. Must use `cbutton` and/or `cmenu` to define components when using this field.  Example in this section's [Snippets](#message-sections-snippets).|
+|`complexMessageEdit` "allowed\_mentions" arg "content" arg "embed" arg "silent" arg| Special case for `editMessage` function - either if `complexMessage` is involved or works even with regular message. Has parameters "allowed\_mentions",`"content", "embed"`, `"silent"`, `"buttons"`, `"menus"`, and `"components"` that edit the message and work the same way as for `complexMessage`. Example in this section's [Snippets](#message-sections-snippets).|
 |`deleteAllMessageReactions` channel messageID (emojis...)| Deletes all reactions pointed message has. `channel` can be ID, "name" or `nil`. `emojis` argument is optional and works like it's described for the function `deleteMessageReaction`.|
 |`deleteMessage` channel messageID (delay)| Deletes message with given `messageID` from `channel`. Channel can be either `nil`, channel's ID or its name. `(delay)` is optional and like following two delete functions, it defaults to 10 seconds, max being 1 day or 86400 seconds. Example in section's [Snippets](functions#message-sections-snippets).|
 |`deleteMessageReaction` channel messageID userID emojis...| Deletes reaction(s) from a message. `channel` can be ID, "name" or `nil`. <br>`emojis` argument can be up to 10 emojis, syntax is `emojiName` for Unicode/Discord's default emojis and `emojiName:emojiID` for custom emotes.  <br>Example: `{{deleteMessageReaction nil (index .Args 1) .User.ID "👍" "👎"}}` will delete current user's reactions with thumbsUp/Down emotes from current running channel's message which ID is given to command as first argument `(index .Args 1)`.<br>Also usable with [Reaction trigger](/reference/templates#reaction).|

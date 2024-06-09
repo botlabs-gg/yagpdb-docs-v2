@@ -122,6 +122,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 |.CCID| The ID of currently executing custom command in type of _int64_.|
 |.CCRunCount| Shows run count of triggered custom command, although this is not going to be 100% accurate as it's cached up to 30 minutes.|
 |.CCTrigger| If trigger type has a printable trigger, prints out its name. For example, if trigger type is `regex` and trigger is set to `\A`, it would print `\A`.|
+|.CustomID| If triggered by a component or a modal, prints its full Custom ID.|
 |.DomainRegex| Returns string value of in-built domain-matching regular expression.|
 |.IsMessageEdit| Returns boolean true/false if message is edited and edit trigger for custom commands is enabled. Defaults to false.|
 |.IsPremium| Returns boolean true/false whether guild is premium of YAGPDB or not.|
@@ -195,6 +196,43 @@ Channel functions are covered [here](functions#channel).
 
 [Guild object in Discord documentation](https://discordapp.com/developers/docs/resources/guild#guild-object).
 
+### Interaction
+
+{{% notice style="tip" %}}
+
+Use of interactions within YAGPDB is an advanced topic, the documentation should be used only as reference. To learn
+about using interactions, [see here](/reference/custom_interactions).
+
+{{% /notice %}}
+
+This is available and part of the dot when a component or modal trigger is used.
+
+|**Field**| **Description**|
+|-| -|
+|.Interaction.ChannelID| The ID of the channel the interaction was made in.|
+|.InteractionData| Is either a [discordgo.MessageComponentInteractionData](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure) (if triggered by a button/select menu) or a [discordgo.ModalSubmitInteractionData](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-modal-submit-data-structure) (if triggered by a modal submission) object.|
+|.Interaction.ID| The interaction's ID. Is unique to each interaction, each button push/modal submission is a uniquely generated ID.|
+|.Interaction.Locale| The locale of the user's Discord client.|
+|.Interaction.Member| The member who interacted.|
+|.Interaction.Message| The [message object](#message) the interaction was taken on.|
+|.Interaction.RespondedTo| Boolean, true if this interaction has been responded to already.|
+|.Interaction.Token| The interaction's token. Is unique to each interaction. Required for sending [followup interactions](functions#interaction-followups).|
+
+|Field| Description|
+|-| -|
+|.Args| List of everything that is passed to .CustomID. .Args is a _slice_ of type _string_.|
+|.Cmd| .Cmd is of type _string_ and shows all arguments that trigger custom command, part of .Args. Starting from `{{index .Args 0}}`.|
+|.CmdArgs| List of all the arguments passed after `.Cmd` (`.Cmd` is the actual trigger) `.CmdArgs` is a _slice_ of type _string_. For example `{{$allArgs := (joinStr " " .CmdArgs)}}` saves all the arguments after trigger to a variable `$allArgs`.|
+|.IsButton| Boolean, is `true` if the command was triggered by a button.|
+|.IsMenu| Boolean, is `true` if the command was triggered by a select menu.|
+|.MenuType| Type of select menu which triggered the command. Can be `"string"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`.|
+|.StrippedID| "Strips" or cuts off the triggering part of the custom ID and prints out everything else after that. Bear in mind, when using regex as trigger, for example `"day"` and input custom ID is `"have-a-nice-day-my-dear-YAG"` output will be `"-my-dear-YAG"`  - rest is cut off.|
+|.Values| List of all options selected with a select menu, OR all values input into a modal in order.|
+
+[Interaction object in Discord documentation](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object).
+
+Interaction functions are covered [here](functions#interaction).
+
 ### Member
 
 |**Field**| **Description**|
@@ -226,6 +264,7 @@ Member functions are covered [here](functions#member).
 |.Message.Attachments| Attachments of this message (_slice_ of [attachment](https://discord.com/developers/docs/resources/channel#attachment-object) objects).|
 |.Message.Author| Author of the message ([User](#user) object).|
 |.Message.ChannelID| Channel ID this message is in.|
+|.Message.Components| Slice of [discordgo.ActionsRow](https://discord.com/developers/docs/interactions/message-components#action-rows)s, which each contain components. Example on indexing the first button or menu under a message: `( index ( index .Message.Components 0 ).Components 0 )`|
 |.Message.Content| Text content of this message.|
 |.Message.ContentWithMentionsReplaced| Replaces all <@ID> mentions with the username of the mention.|
 |.Message.EditedTimestamp| The time at which the last edit of the message occurred, if it has been edited. As with .Message.Timestamp, it is of type _discordgo.Timestamp._|

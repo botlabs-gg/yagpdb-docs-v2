@@ -111,7 +111,7 @@ convert the number to type _string_ before saving and later back to its original
 
 {{% notice style="tip" %}}
 
-Use of interactions within YAGPDB is an advanced topic, the documentation should be used only as reference. To learn
+Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
 about using interactions, [see here](/reference/custom_interactions).
 
 {{% /notice %}}

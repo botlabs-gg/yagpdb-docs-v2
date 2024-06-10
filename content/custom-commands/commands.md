@@ -241,33 +241,17 @@ You must specify a channel to run interval commands in even if the command doesn
 
 #### Component
 
-{{% notice style="tip" %}}
-
-Use of interactions within YAGPDB is an advanced topic, the documentation should be used only as reference. To learn
-about using interactions, [see here](/reference/custom_interactions).
-
-{{% /notice %}}
+[In-depth Interactions Guide](/reference/custom-interactions)
 
 The component trigger is used to trigger custom commands via buttons or select menus.
-
-When creating a button or a select menu using template scripting, you must define a `custom_id`. When that button/menu
-is used by a member of your server, it triggers any custom command whose trigger matches that Custom ID.
 
 The trigger is matched using [RegEx](/reference/regex).
 
 #### Modal
 
-{{% notice style="tip" %}}
-
-Use of interactions within YAGPDB is an advanced topic, the documentation should be used only as reference. To learn
-about using interactions, [see here](/reference/custom_interactions).
-
-{{% /notice %}}
+[In-depth Interactions Guide](/reference/custom-interactions)
 
 The modal trigger is used to trigger custom commands via submitting a modal.
-
-When responding to an interaction with a modal using template scripting, you must define a `custom_id`. When that modal
-is submitted by a member of your server, it triggers any custom command whose trigger matches that Custom ID.
 
 The trigger is matched using [RegEx](/reference/regex).
 

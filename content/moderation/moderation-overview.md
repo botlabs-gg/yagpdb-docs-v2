@@ -39,10 +39,10 @@ The moderation page allows configuration of common settings.
 
 Certain potentially destructive moderation commands are disabled by default. These commands are:
 
-- The **clean command** (**4**) toggles the [clean command](/commands/all-commands#clean).
-- The **report command** (**5**) toggles the [report command](/commands/all-commands#report).
-- **Giverole/Takerole commands** (**7**) toggle the [giverole](/commands/all-commands#giverole) and
-[takerole](/commands/all-commands#takerole) commands.
+- The **clean command** (**4**) toggles the [clean command](/core/all-commands#clean).
+- The **report command** (**5**) toggles the [report command](/core/all-commands#report).
+- **Giverole/Takerole commands** (**7**) toggle the [giverole](/core/all-commands#giverole) and
+[takerole](/core/all-commands#takerole) commands.
 
 ### Unban/Unmute Logging
 
@@ -80,7 +80,7 @@ by automoderator. Like all inbuilt commands, they may also be triggered within t
 
 Most moderation tools allow you to specify a reason for the mod action. This is included when the action is logged in
 the [mod log](#mod-channels) and is also, by default, DM'd to the offending user when using [certain
-commands](#moderation-dms). This reason may be retroactively edited using the [Reason Command](/commands#reason).
+commands](#moderation-dms). This reason may be retroactively edited using the [Reason Command](/core/all-commands#reason).
 
 Each of the main moderation tools have individual configuration pages, accessible through the tabs (**13**).
 
@@ -151,7 +151,7 @@ tool requires a duration between 60 seconds and 4 weeks. This is a requirement b
 command has a default duration which is applied if the duration argument is omitted when running the command. By
 default, this default duration is set to 10 minutes, but can be changed via the timeout tab on the control panel.
 
-[Timeout Command Syntax](/commands#timeout)
+[Timeout Command Syntax](/core/all-commands#timeout)
 
 ### Mute
 
@@ -183,9 +183,9 @@ The mute command has an optional duration argument. By default, if no duration i
 until manually unmuted). To override this, you may set a default duration with the "Default mute duration" field in the
 mute tab on the control panel.
 
-[Mute Command Syntax](/commands#mute)
+[Mute Command Syntax](/core/all-commands#mute)
 
-[Unmute Command Syntax](/commands#unmute)
+[Unmute Command Syntax](/core/all-commands#unmute)
 
 {{% notice warning %}}
 
@@ -220,7 +220,7 @@ kick action takes place in. This can be done by specifying a number of messages 
 running the kick command. There is also a "Delete the user's last 100 messages" toggle in the kick tab on the control
 panel which enables automatic deletion when the kick tool is used.
 
-[Kick Command Syntax](/commands#kick)
+[Kick Command Syntax](/core/all-commands#kick)
 
 ### Ban
 
@@ -235,9 +235,9 @@ is measured by days' worth of messages. This can be done by specifying a number 
 with the `-ddays` flag when running the ban command. There is also a "Default number of days of messages to delete"
 field in the ban tab on the control panel which enables automatic deletion when the kick tool is used.
 
-[Ban Command Syntax](/commands#ban)
+[Ban Command Syntax](/core/all-commands#ban)
 
-[Unban Command Syntax](/commands#unban)
+[Unban Command Syntax](/core/all-commands#unban)
 
 {{% notice info %}}
 
@@ -265,17 +265,17 @@ You may optionally send warnings to the mod log, this is enabled in the warnings
 
 #### Managing Warnings
 
-[Warn Command Syntax](/commands#warn)
+[Warn Command Syntax](/core/all-commands#warn)
 
-[Warnings Command Syntax](/commands#warnings) - Lists warnings of a user.
+[Warnings Command Syntax](/core/all-commands#warnings) - Lists warnings of a user.
 
-[EditWarning Command Syntax](/commands#editwarning) - Retroactively edits a warning.
+[EditWarning Command Syntax](/core/all-commands#editwarning) - Retroactively edits a warning.
 
-[DelWarning Command Syntax](/commands#delwarning) - Deletes a warning.
+[DelWarning Command Syntax](/core/all-commands#delwarning) - Deletes a warning.
 
-[ClearWarnings Command Syntax](/commands#clearwarnings) - Clears the warnings of a user.
+[ClearWarnings Command Syntax](/core/all-commands#clearwarnings) - Clears the warnings of a user.
 
-[TopWarnings Command Syntax](/commands#topwarnings) - Shows ranked list of warnings on the server, allowing you to turn
+[TopWarnings Command Syntax](/core/all-commands#topwarnings) - Shows ranked list of warnings on the server, allowing you to turn
 misbehavior into a fun minigame for your server members.
 
 {{% notice style="tip" title="Taking Action on Warn Count" %}}

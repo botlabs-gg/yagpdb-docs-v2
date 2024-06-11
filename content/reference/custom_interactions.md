@@ -222,13 +222,145 @@ fill the first row with 5 buttons and the second row with 4, which isn't what we
     (sdict "label" "Forfeit" "value" "forfeit")
     (sdict "label" "Toggle Notifications" "value" "notifs"))}}
 
-{{ $message := complexMessage "buttons" $row1 "buttons" $row2 "buttons" $row3 "menus" $menu }}
+{{ $message := complexMessage "buttons" $row1 "buttons" $row2 "buttons" $row3 "menus" (cmenu "type" "mentionable") }}
 {{ sendMessage nil $message }}
 ```
 
 ![Tic Tac Toe](tictactoe.png)
 
-#### Advanced
+#### Advanced (Variable Row Counts)
+
+When working with multiple components in advanced flows where final number and order of buttons and menus is variable,
+the basic structure of building components with `complexMessage` will be inefficient for your needs.
+
+Take the following scenario: You are building a turn-based combat game with a variable number of enemies. For each enemy
+you need a button to attack them, and a button to befriend them. You also want each enemy's buttons on a separate row.
+
+If you always had three enemies, this code would look something like this:
+
+```go
+{{ $message := complexMessage
+  "content" "Dragon, Ogre, Duck, attack you!"
+  "buttons" (cslice
+    (cbutton "label" "Attack Dragon" "style" "red" "custom_id" "attack-dragon")
+    (cbutton "label" "Befriend Dragon" "style" "green" "custom_id" "befriend-dragon"))
+  "buttons" (cslice
+    (cbutton "label" "Attack Ogre" "style" "red" "custom_id" "attack-ogre")
+    (cbutton "label" "Befriend Ogre" "style" "green" "custom_id" "befriend-ogre"))
+  "buttons" (cslice
+    (cbutton "label" "Attack Duck" "style" "red" "custom_id" "attack-duck")
+    (cbutton "label" "Befriend Duck" "style" "green" "custom_id" "befriend-duck")) }}
+{{ sendMessage nil $message }}
+```
+
+![Invariable Solution](invariable_solution.png)
+
+However, we need the number of rows present on the message to be variable. With this method, it is impossible to do this
+without building a completely different `complexMessage` for each number of enemies.
+
+##### Quick Solution
+
+A quick solution to this problem is to pass all of our buttons into one `"buttons"` value. Overflowing `"buttons"`,
+`"menus"`, or even `"components"` with more components than the row can take (i.e 6+ buttons or 2+ menus) results in the
+function automatically distributing the components to new rows.
+
+```go
+{{ $msg1 := complexMessage
+  "content" "Message 1"
+  "buttons" (cslice (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button"))
+  "menus" (cslice (cmenu "type" "mentionable") (cmenu "type" "mentionable") (cmenu "type" "mentionable")) }}
+
+{{ $msg2 := complexMessage
+  "content" "Message 2"
+  "components" (cslice (cbutton "label" "Button") (cmenu "type" "mentionable") (cmenu "type" "mentionable") (cbutton "label" "Button") (cbutton "label" "Button")) }}
+
+{{ sendMessage nil $msg1 }}
+{{ sendMessage nil $msg2 }}
+
+```
+
+![Distributed Components](distributed_components.png)
+
+This solution fills up each row with as many components as it can hold and then starts a new one. This is all we need
+for most commands, but for our turn-based combat scenario, we only want two or three buttons in each row.
+
+##### Full Solution
+
+To account for a variable amount of rows while maintaining full customization, we will introduce a new field:
+`"components"`. Where `"buttons"` and `"menus"` must be a slice of buttons or menus respectively, `"components"`
+must be a slice of `rows` of buttons/menus.
+
+A `row` must also be a slice. It either contains 1-5 buttons, *or* a single select menu.
+
+Below is an example of a `components` structure.
+
+{{< mermaid align="center" >}}
+graph TB
+    subgraph Components
+        subgraph Row 1
+            b1((Button))
+            b2((Button))
+            b3((Button))
+            b4((Button))
+        end
+        subgraph Row 2
+            b5((Button))
+            b6((Button))
+        end
+        subgraph Row 3
+            m1[Select Menu]
+        end
+        subgraph Row 4
+            b7((Button))
+            b8((Button))
+            b9((Button))
+        end
+        subgraph Row 5
+            m2[Select Menu]
+        end
+    end
+{{< /mermaid >}}
+
+In scripting, this manifests from the following code:
+
+```go
+{{ $row1 := cslice (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") }}
+{{ $row2 := cslice (cbutton "label" "Button") (cbutton "label" "Button") }}
+{{ $row3 := cslice (cmenu "type" "mentionable") }}
+{{ $row4 := cslice (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") }}
+{{ $row5 := cslice (cmenu "type" "mentionable") }}
+
+{{ $rows := cslice $row1 $row2 $row3 $row4 $row5 }}
+
+{{ $message := complexMessage "components" $rows }}
+{{ sendMessage nil $message }}
+```
+
+Which produces this message:
+
+![Message with Manually Distributed Components](manually-distributed-components.png)
+
+When applying this new skill to our turn-based combat game, the code looks something like this:
+
+```go
+{{ $rows := cslice }}
+{{ $enemies := cslice "Dragon" "Ogre" "Duck" }}
+
+{{ range $enemyName := $enemies }}
+  {{ $nameButton := cbutton "label" $enemyName "style" "grey" "disabled" true }}
+  {{ $attackButton := cbutton "label" "Attack" "style" "red" "custom_id" (print "attack-" (lower $enemyName)) }}
+  {{ $befriendButton := cbutton "label" "Befriend" "style" "green" "custom_id" (print "befriend-" (lower $enemyName)) }}
+
+  {{ $currentRow := cslice $nameButton $attackButton $befriendButton }}
+  {{ $rows = $rows.Append $currentRow }}
+{{ end }}
+
+{{ $promptText := joinStr ", " "Suddenly" $enemies "attack you!" }}
+{{ $message := complexMessage "content" $promptText "components" $rows }}
+{{ sendMessage nil $message }}
+```
+
+![Result of the Full Solution Code](full-variable-row-solution.png)
 
 ### Creating Modals
 

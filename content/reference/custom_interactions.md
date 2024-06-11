@@ -364,6 +364,29 @@ When applying this new skill to our turn-based combat game, the code looks somet
 
 ### Creating Modals
 
+Modals are created, either as an `sdict` or using `cmodal`. After being created they are subsequently sent with
+`sendModal`. Sending a modal is a *response* to an interaction, meaning it can only be sent once after a user clicks a
+button or uses a select menu. You cannot send a modal as a response to a user submitting a modal.
+
+#### Modal structure
+
+|Field|Description|
+|-|-|
+|Title|The modal's title, appears at the top of the modal while a user is filling it out.|
+|Custom ID|The Custom ID is referenced to trigger a custom command when the modal is submitted (which you'll need to do if you care about retrieving what the user inputted).|
+|Fields|A slice of [discordgo.TextInputComponent](https://discord.com/developers/docs/interactions/message-components#text-input-object)s.|
+
+```go
+{{ $modal := sdict
+  "title" "My Custom Modal"
+  "custom_id" "modals-my_first_modal"
+  "fields" (cslice
+    (sdict "label" "Name" "placeholder" "Duck" "required" true)
+    (sdict "label" "Do you like ducks?" "value" "Heck no")
+    (sdict "label" "Duck hate essay" "min_length" 100 "style" 2)) }}
+{{ sendModal $modal }}
+```
+
 ## Parsing an Interaction
 
 ## Responding to an Interaction

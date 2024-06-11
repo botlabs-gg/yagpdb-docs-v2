@@ -215,9 +215,9 @@ about using interactions, [see here](/reference/custom_interactions).
 {{ sendResponse nil "Here's the first message!" }}
 {{ $followupID := sendResponseRetID $interactionToken (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
 {{ sleep 2 }}
-{{ editResponse $interactionToken nil (print "I've edited this message to say " noun) }}
-{{ $editedResponse := getResponse $interactionToken nil }}
-{{ editResponse $interactionToken $followupID $editedResponse.Content }}
+{{ editResponse $interactionToken $followupID (print "I've edited this message to say " noun) }}
+{{ $editedResponse := getResponse $interactionToken $followupID }}
+{{ editResponse $interactionToken nil $editedResponse.Content }}
 ```
 
 ### Math

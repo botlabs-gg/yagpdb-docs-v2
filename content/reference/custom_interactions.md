@@ -389,6 +389,79 @@ button or uses a select menu. You cannot send a modal as a response to a user su
 
 ## Parsing an Interaction
 
+Custom Commands with the [Message Component](/custom-commands/commands#component) or [Modal
+Submission](/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a
+select menu, or completion of a modal form. Interaction triggers provide new context data for templating.
+
+Important interaction context data
+
+|**Field**| **Description**|
+|-| -|
+|.Interaction.Token| The interaction's token. Is unique to each interaction. Required for sending [followup interactions](functions#interaction-followups).|
+|.CustomID| The triggering component/modal's Custom ID. Note: This custom ID excludes the `templates-` prefix which is added to all components and modals under the hood.|
+|.StrippedID| "Strips" or cuts off the triggering part of the custom ID and prints out everything else after that. Bear in mind, when using regex as trigger, for example `"day"` and input custom ID is `"have-a-nice-day-my-dear-YAG"` output will be `"-my-dear-YAG"`  - rest is cut off.|
+|.Values| List of all options selected with a select menu, OR all values input into a modal in order.|
+
+[Interaction object and context data](/reference/templates#interaction)
+
+`.Interaction.Token` must be provided to any [followup](#following-up) functions you decide to use later. If you are
+using these in subsequent script executions, it's a good idea to save this to database when the interaction occurs.
+
+`.CustomID` can be used to identify which component or modal triggered the command. `.StrippedID` can be used to quickly
+parse out arguments in your custom ID, and use them in your response.
+
+Example: An UNO custom command system where all uno buttons are parsed in the same custom command, a component trigger
+with the trigger field `uno-`. This can take individual action for a button with custom ID `uno-join` and one with
+`uno-leave`.
+
+```go
+{{ if eq .StrippedID "join" }}
+	{{ sendResponse nil "You joined the UNO game!" }}
+{{ else if eq .StrippedID "leave" }}
+	{{ sendResponse nil "You left the UNO game :(" }}
+{{ end }}
+```
+
+`.Values` is used to capture values a user selected in a select menu or submitted to a modal. When creating a select
+menu and defining the options, the `"value"` field for each option defines which values will show up in this slice if
+chosen. A modal's values are simply the values of each field in order.
+
+Example: A user has chosen an option in a select menu whose value is `blue-7`, triggering the following command which will
+determine if it is a playable card.
+
+```go
+{{ $cardRaw := index .Values 0 }} {{/* "blue-7" */}}
+{{ $cardSplit := split $cardRaw "-" }} {{/* ["blue" "7"] */}}
+{{ $playedCard := sdict
+  "Color" ( index $cardSplit 0 )
+  "Number" ( index $cardSplit 1 )}}
+
+{{ $previousCard := ( dbGet .Channel.ID "uno-last-card" ).Value }}
+{{ $validCard := or
+  (eq $playedCard.Color $previousCard.Color)
+  (eq $playedCard.Number $previousCard.Number) }}
+
+{{ if $validCard }}
+  {{ sendResponse nil (print .User " played a " $playedCard.Color $playedCard.Number) }}
+  {{ dbSet .Channel.ID "uno-last-card" $playedCard }}
+{{ else }}
+  {{ sendResponse nil "You can't play that card!" }}
+{{ end }}
+```
+
+Example 2: A user is setting up a new UNO game with a modal, they've filled out a 'number of decks in play' and a
+'minimum number of cards to play' field, triggering the following command which will update those values in database.
+
+![A modal for setting up a game of UNO](uno-modal.png)
+
+```go
+{{ $numberOfDecks := index .Values 0 }}
+{{ $minCardsForUNO := index .Values 1 }}
+
+{{ dbSet .Channel.ID "uno-decks" ( toInt $numberOfDecks ) }}
+{{ dbSet .Channel.ID "uno-min_for_uno" ( toInt $minCardsForUNO ) }}
+```
+
 ## Responding to an Interaction
 
 ## Following Up

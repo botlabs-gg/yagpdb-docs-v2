@@ -92,8 +92,8 @@ Discord user ID and cannot be transferred.
 
 Patreon is the primary method of acquiring premium slots.
 
-1. Pledge the required minimum amount to unlock a premium slot. For the publicly hosted instance, pledge
-   [here](https://www.patreon.com/yagpdb).
+1. Pledge the required minimum amount to unlock a premium slot. For the publicly hosted instance, pledge on
+   [botlabs' Patreon](https://www.patreon.com/yagpdb).
 2. Link your Patreon account to your Discord account ([details
    here](https://support.patreon.com/hc/en-us/articles/212052266-How-do-I-get-my-Discord-Rewards-#h_21f22930-84c5-4950-b6b1-3e83312f66dc)).
 3. Wait for up to 5 minutes for YAGPDB to verify your Patreon status.
@@ -129,7 +129,7 @@ When hosting YAGPDB yourself, you have access to a few methods to source premium
   1. Configure your price per premium slot in `premium/patreonpremiumsource/patreonpremiumsource.go > func
      CalcSlotsForPledge`.
   2. Configure relevant env variables to connect YAGPDB to your Patreon API.
-- Generating premium codes with `GeneratePremiumCode` [command](core/all-commands#generatepremiumcode).
+- Generating premium codes with [`GeneratePremiumCode` command](core/all-commands#generatepremiumcode).
 - Setting the `premium.all_guilds_premium` env variable to true.
 
 ### Changing Limits

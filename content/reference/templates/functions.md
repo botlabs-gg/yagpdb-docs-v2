@@ -127,7 +127,7 @@ about using interactions, [see here](/reference/custom_interactions).
 
 |**Function**| **Description**|
 |-| -|
-|`sendModal` modal| Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`, which should be a slice of sdicts with the following keys: `custom_id`, `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `min_length`, and `max_length`. Example in section's [Snippets](#interactions-sections-snippets).|
+|`sendModal` modal| Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`, which should be a slice of sdicts with the following keys: `custom_id`, `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `min_length`, and `max_length`. You cannot send a modal in response to a user submitting another modal. Example in section's [Snippets](#interactions-sections-snippets).|
 |`updateMessage` newMessage| Edits the message on which the button, select menu, or modal was triggered on.|
 |`updateMessageNoEscape` newMessage| Edits the message triggered on and has same logic in escaping characters as `sendMessageNoEscape`.|
 

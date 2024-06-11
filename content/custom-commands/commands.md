@@ -239,7 +239,7 @@ You must specify a channel to run interval commands in even if the command doesn
 
 {{% /notice %}}
 
-#### Component
+##### Component
 
 [In-depth Interactions Guide](/reference/custom-interactions)
 
@@ -247,7 +247,7 @@ The component trigger is used to trigger custom commands via buttons or select m
 
 The trigger is matched using [RegEx](/reference/regex).
 
-#### Modal
+##### Modal
 
 [In-depth Interactions Guide](/reference/custom-interactions)
 

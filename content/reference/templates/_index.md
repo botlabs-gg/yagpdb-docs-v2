@@ -223,6 +223,7 @@ This is available and part of the dot when a component or modal trigger is used.
 |.Args| List of everything that is passed to .CustomID. .Args is a _slice_ of type _string_.|
 |.Cmd| .Cmd is of type _string_ and shows all arguments that trigger custom command, part of .Args. Starting from `{{index .Args 0}}`.|
 |.CmdArgs| List of all the arguments passed after `.Cmd` (`.Cmd` is the actual trigger) `.CmdArgs` is a _slice_ of type _string_. For example `{{$allArgs := (joinStr " " .CmdArgs)}}` saves all the arguments after trigger to a variable `$allArgs`.|
+|.CustomID| The triggering component/modal's Custom ID. Note: This custom ID excludes the `templates-` prefix which is added to all components and modals under the hood.|
 |.IsButton| Boolean, is `true` if the command was triggered by a button.|
 |.IsMenu| Boolean, is `true` if the command was triggered by a select menu.|
 |.MenuType| Type of select menu which triggered the command. Can be `"string"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`.|

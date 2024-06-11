@@ -43,9 +43,9 @@ graph LR;
     B --> E[Bot sends message response]
     B --> G[Bot sends modal response]
     B --> H[Bot updates message]
-    E --> F(Bot sends followups)
-    G --> F
-    H --> F
+    E -.-> F(Bot sends followups)
+    G -.-> F
+    H -.-> F
 {{< /mermaid >}}
 
 ### Definitions
@@ -294,7 +294,7 @@ A `row` must also be a slice. It either contains 1-5 buttons, *or* a single sele
 
 Below is an example of a `components` structure.
 
-{{< mermaid align="center" >}}
+{{< mermaid >}}
 graph TB
     subgraph Components
         subgraph Row 1
@@ -362,6 +362,27 @@ When applying this new skill to our turn-based combat game, the code looks somet
 
 ![Result of the Full Solution Code](full-variable-row-solution.png)
 
+#### Emojis in Message Components
+
+Buttons and Select Menu Options both have an `"emoji"` field, but this field does not accept the regular unicode/name:id
+formula like reactions do. Emojis in components follow the [partial emoji
+object](https://discord.com/developers/docs/resources/emoji#emoji-object) structure.
+
+|Field|Description|
+|-|-|
+|ID|ID of the emoji, only necessary when using Custom Emoji.|
+|Name|Name of the emoji. For unicode (builtin) emojis, use the unicode character here.|
+|Animated|Boolean, true if the emoji is animated.|
+
+```go
+{{ $unicodeEmojiButton := cbutton "emoji" (sdict "name" "😀") }}
+{{ $customEmojiButton := cbutton "emoji" (sdict "name" "ye" "id" "733037741532643428") }}
+{{ $animatedEmojiButton := cbutton "emoji" (sdict "name" "yenop" "id" "786307104247775302" "animated" true) }}
+
+{{ $components := cslice $unicodeEmojiButton $customEmojiButton $animatedEmojiButton }}
+{{ sendMessage nil (complexMessage "components" $components)}}
+```
+
 ### Creating Modals
 
 Modals are created, either as an `sdict` or using `cmodal`. After being created they are subsequently sent with
@@ -386,6 +407,8 @@ button or uses a select menu. You cannot send a modal as a response to a user su
     (sdict "label" "Duck hate essay" "min_length" 100 "style" 2)) }}
 {{ sendModal $modal }}
 ```
+
+![Modal Example](modal_example.png)
 
 ## Parsing an Interaction
 

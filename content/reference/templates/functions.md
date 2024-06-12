@@ -123,11 +123,12 @@ about using interactions, [see here](/reference/custom_interactions).
 * You may only send an interaction response to the interaction which triggered the command.
 * Text output directly to the response is automatically sent as an interaction response if the interaction hasn't
   already been responded to.
+* A CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
 * A response is not the same thing as a followup.
 
 |**Function**| **Description**|
 |-| -|
-|`sendModal` modal| Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`, which should be a slice of sdicts with the following keys: `custom_id`, `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `min_length`, and `max_length`. You cannot send a modal in response to a user submitting another modal. Example in section's [Snippets](#interactions-sections-snippets).|
+|`sendModal` modal| Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`. The `fields` argument should be a slice of sdicts with the following keys: `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `style` (1 for short, 2 for long), `min_length`, and `max_length`, however only the `label` argument is required for each field. You cannot send a modal in response to a user submitting another modal. Example in section's [Snippets](#interactions-sections-snippets).|
 |`updateMessage` newMessage| Edits the message on which the button, select menu, or modal was triggered on.|
 |`updateMessageNoEscape` newMessage| Edits the message triggered on and has same logic in escaping characters as `sendMessageNoEscape`.|
 

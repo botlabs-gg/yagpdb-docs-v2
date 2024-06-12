@@ -366,13 +366,13 @@ When applying this new skill to our turn-based combat game, the code looks somet
 
 Buttons and Select Menu Options both have an `"emoji"` field, but this field does not accept the regular unicode/name:id
 formula like reactions do. Emojis in components follow the [partial emoji
-object](https://discord.com/developers/docs/resources/emoji#emoji-object) structure.
+object](https://discord.com/developers/docs/resources/emoji#emoji-object) structure, however only the ID *or* the Name
+fields are required, depending on if you are using a custom emoji or not.
 
 |Field|Description|
 |-|-|
 |ID|ID of the emoji, only necessary when using Custom Emoji.|
-|Name|Name of the emoji. For unicode (builtin) emojis, use the unicode character here.|
-|Animated|Boolean, true if the emoji is animated.|
+|Name|Name of the emoji, use the unicode character here. Only necessary when using builtin unicode emojis.|
 
 ```go
 {{ $unicodeEmojiButton := cbutton "emoji" (sdict "name" "😀") }}
@@ -382,6 +382,33 @@ object](https://discord.com/developers/docs/resources/emoji#emoji-object) struct
 {{ $components := cslice $unicodeEmojiButton $customEmojiButton $animatedEmojiButton }}
 {{ sendMessage nil (complexMessage "components" $components)}}
 ```
+
+#### Message Component Limits
+
+##### General
+
+|Field|Limits|
+|-|-|
+|Custom ID| `string`, max 100 characters|
+|Components| Max 5 rows of components in each message|
+
+##### Buttons
+
+|Field|Limits|
+|-|-|
+|Components| Max 5 buttons in each row|
+|Label| `string`, max 100 characters|
+
+##### Menus
+
+|Field|Limits|
+|-|-|
+|Components| Max 1 menu in each row|
+|Options| Max 25 options in each menu|
+|Placeholder| `string`, max 150 characters|
+|DefaultValues| Count of default values must fall within your defined `min_values` and `max_values` range. Default values are only used for select menu types other than Text. Configuring default values in text select menus is done whilst creating the options themselves. Use the `default` arg to mark the option as a default value.|
+|MinValues| `integer` between 0-25|
+|MaxValues| `integer` between 1-25|
 
 ### Creating Modals
 
@@ -492,7 +519,8 @@ Example 2: A user is setting up a new UNO game with a modal, they've filled out 
 While technically not required, responding to an interaction with one of Discord's allotted initial responses is crucial
 if you don't want your users to see an error after interacting. An interaction may be responded to one time.
 
-You can only respond to an interaction within the custom command triggered by said interaction.
+You can only respond to an interaction within the custom command triggered by said interaction. A CC executed with
+`execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
 
 Possible initial responses:
 
@@ -506,6 +534,7 @@ Possible initial responses:
 - Use the `sendModal` function to show the user a modal. You cannot respond to a user submitting a modal by sending them
   another modal.
 - Use the `updateMessage` function to edit the message the command triggered from. This works the same way as editing a
+  message, however because it automatically targets the triggering message, the only argument required is the new
   message.
 
 [Interaction Function documentation](/reference/templates/functions#interactions)

@@ -9,7 +9,8 @@ A guide to creating custom embeds in various contexts across YAGPDB.
 
 {{< callout context="caution" icon="outline/alert-octagon" >}}
 
-Embeds have limits, summarized [here](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).
+Embeds have limits, summarized in [Discord channel
+documentation](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).
 
 {{< /callout >}}
 
@@ -158,8 +159,8 @@ with our already known definition of the embed. Then I start with the first obje
 to join two strings (text snippets) together.\
 \
 Next, we have the description. We can use markdown of Discord in here. After that object, I define the color. The color
-is given as integer and you can convert a hex color to it
-[here](https://www.binaryhexconverter.com/hex-to-decimal-converter).
+is given as integer and you can convert a hex color to it using
+[BinaryHex Converter](https://www.binaryhexconverter.com/hex-to-decimal-converter), for example..
 
 Up next, I have added some fields. This is a bit more difficult, but doable if you have understood it once. Let's break
 it down in this example:

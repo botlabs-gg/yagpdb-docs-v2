@@ -11,11 +11,11 @@ Library of base data accessible within custom scripting.
 
 ## Preface
 
-All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Golang's
+All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Go's
 stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
 len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
 a concise and to the point reference document for all available templates/functions. **Functions** are covered
-[here](functions). For detailed explanations and syntax guide refer to the [learning
+in [Function documentation](functions). For detailed explanations and syntax guide refer to the [learning
 resource](https://learn.yagpdb.xyz/).
 
 **Legend**: at current state this is still prone to formatting errors, but everything in a `code block` should refer to
@@ -44,8 +44,8 @@ Templating system uses standard ASCII quotation marks:\
 0x22 > `"` for straight double quotes, 0x27 > `'`for apostrophes and 0x60 `` ` `` for backticks/back quotes; so make
 sure no "smart-quotes" are being used.
 
-The difference between back quotes and double quotes in string literals is covered
-[here](https://go.dev/ref/spec#String_literals).
+The difference between back quotes and double quotes in string literals is covered in
+the [Go Language Specification](https://go.dev/ref/spec#String_literals).
 
 {{< /callout >}}
 
@@ -115,44 +115,44 @@ Fields documented as accessible on specific structures, like the context user `.
 share the same type. That is, given a user `$user`, `$user.ID` is a valid construction that yields the ID of the user.
 Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the channel.
 
-| **Field**      | **Description**                                                                                                                                                                                                                                                                   |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| .BotUser       | Returns bot's user object.                                                                                                                                                                                                                                                        |
-| .CCID          | The ID of currently executing custom command in type of _int64_.                                                                                                                                                                                                                  |
-| .CCRunCount    | Shows run count of triggered custom command, although this is not going to be 100% accurate as it's cached up to 30 minutes.                                                                                                                                                      |
-| .CCTrigger     | If trigger type has a printable trigger, prints out its name. For example, if trigger type is `regex` and trigger is set to `\A`, it would print `\A`.                                                                                                                            |
-| .DomainRegex   | Returns string value of in-built domain-matching regular expression.                                                                                                                                                                                                              |
-| .IsMessageEdit | Returns boolean true/false if message is edited and edit trigger for custom commands is enabled. Defaults to false.                                                                                                                                                               |
-| .IsPremium     | Returns boolean true/false whether guild is premium of YAGPDB or not.                                                                                                                                                                                                             |
-| .LinkRegex     | Returns string value of in-built link-matching regular expression.                                                                                                                                                                                                                |
-| .Permissions   | Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. `{{.Permissions.AddReactions}}` would return `64`, same as `{{bitwiseLeftShift 1 6}}`. More [here](https://discord.com/developers/docs/topics/permissions#permissions). |
-| .ServerPrefix  | Returns server's command-prefix.                                                                                                                                                                                                                                                  |
+| **Field**      | **Description**                                                                                                                                                                                                                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .BotUser       | Returns bot's user object.                                                                                                                                                                                                                                                                                          |
+| .CCID          | The ID of currently executing custom command in type of _int64_.                                                                                                                                                                                                                                                    |
+| .CCRunCount    | Shows run count of triggered custom command, although this is not going to be 100% accurate as it's cached up to 30 minutes.                                                                                                                                                                                        |
+| .CCTrigger     | If trigger type has a printable trigger, prints out its name. For example, if trigger type is `regex` and trigger is set to `\A`, it would print `\A`.                                                                                                                                                              |
+| .DomainRegex   | Returns string value of in-built domain-matching regular expression.                                                                                                                                                                                                                                                |
+| .IsMessageEdit | Returns boolean true/false if message is edited and edit trigger for custom commands is enabled. Defaults to false.                                                                                                                                                                                                 |
+| .IsPremium     | Returns boolean true/false whether guild is premium of YAGPDB or not.                                                                                                                                                                                                                                               |
+| .LinkRegex     | Returns string value of in-built link-matching regular expression.                                                                                                                                                                                                                                                  |
+| .Permissions   | Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. `{{.Permissions.AddReactions}}` would return `64`, same as `{{bitwiseLeftShift 1 6}}`. More in [Discord's Permissions documentation](https://discord.com/developers/docs/topics/permissions#permissions). |
+| .ServerPrefix  | Returns server's command-prefix.                                                                                                                                                                                                                                                                                    |
 
 ### Channel
 
-| **Field**                     | **Description**                                                                                                                                 |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| .Channel.AppliedTags          | All tags applied to a forum channel post as _\[]int64_ slice of tag IDs.                                                                        |
-| .Channel.AvailableTags        | All tags available for forum channel posts as a slice of _\[]discordgo.ForumTag_.                                                               |
-| .Channel.Bitrate              | Bitrate used; only set on voice channels.                                                                                                       |
-| .Channel.GuildID              | Guild ID of the channel.                                                                                                                        |
-| .Channel.ID                   | The ID of the channel.                                                                                                                          |
-| .Channel.IsForum              | Whether the channel is a forum channel.                                                                                                         |
-| .Channel.IsPrivate            | Whether the channel is created for DM.                                                                                                          |
-| .Channel.IsThread             | Whether the channel is a thread.                                                                                                                |
-| .Channel.Mention              | Mentions the channel object.                                                                                                                    |
-| .Channel.Name                 | The name of the channel.                                                                                                                        |
-| .Channel.NSFW                 | Outputs whether this channel is NSFW or not.                                                                                                    |
-| .Channel.OwnerID              | The ID of the creator of threads as _int64_. Returns `0` for normal channels.                                                                   |
-| .Channel.ParentID             | The ID of the channel's parent (category), returns 0 if none.                                                                                   |
-| .Channel.PermissionOverwrites | A slice of [permission overwrite](https://discord.com/developers/docs/resources/channel#overwrite-object) structures applicable to the channel. |
-| .Channel.Position             | Channel position from top-down.                                                                                                                 |
-| .Channel.Topic                | The topic of the channel.                                                                                                                       |
-| .Channel.Type                 | The type of the channel. [Explained here.](https://discord.com/developers/docs/resources/channel#channel-object-channel-types)                  |
+| **Field**                     | **Description**                                                                                                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .Channel.AppliedTags          | All tags applied to a forum channel post as _\[]int64_ slice of tag IDs.                                                                                            |
+| .Channel.AvailableTags        | All tags available for forum channel posts as a slice of _\[]discordgo.ForumTag_.                                                                                   |
+| .Channel.Bitrate              | Bitrate used; only set on voice channels.                                                                                                                           |
+| .Channel.GuildID              | Guild ID of the channel.                                                                                                                                            |
+| .Channel.ID                   | The ID of the channel.                                                                                                                                              |
+| .Channel.IsForum              | Whether the channel is a forum channel.                                                                                                                             |
+| .Channel.IsPrivate            | Whether the channel is created for DM.                                                                                                                              |
+| .Channel.IsThread             | Whether the channel is a thread.                                                                                                                                    |
+| .Channel.Mention              | Mentions the channel object.                                                                                                                                        |
+| .Channel.Name                 | The name of the channel.                                                                                                                                            |
+| .Channel.NSFW                 | Outputs whether this channel is NSFW or not.                                                                                                                        |
+| .Channel.OwnerID              | The ID of the creator of threads as _int64_. Returns `0` for normal channels.                                                                                       |
+| .Channel.ParentID             | The ID of the channel's parent (category), returns 0 if none.                                                                                                       |
+| .Channel.PermissionOverwrites | A slice of [Discord permission overwrite](https://discord.com/developers/docs/resources/channel#overwrite-object) structures applicable to the channel.             |
+| .Channel.Position             | Channel position from top-down.                                                                                                                                     |
+| .Channel.Topic                | The topic of the channel.                                                                                                                                           |
+| .Channel.Type                 | The type of the channel. Explained further in [Discord's channel documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types) |
 
 [Channel object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#channel-object).
 
-Channel functions are covered [here](functions#channel).
+[Channel functions documentation](functions#channel).
 
 ### Guild / Server
 
@@ -166,7 +166,7 @@ Channel functions are covered [here](functions#channel).
 | .Guild.Emojis                      | Outputs a list of emojis in the guild with type _discordgo.Emoji._                                                                                                                                                                                                         |
 | .Guild.ExplicitContentFilter       | Outputs the explicit content [filter level](https://discordapp.com/developers/docs/resources/guild#guild-object-explicit-content-filter-level) for the guild.                                                                                                              |
 | .Guild.Features                    | The list of enabled guild features of type _\[]string_.                                                                                                                                                                                                                    |
-| .Guild.Icon                        | Outputs the [icon hash](https://discordapp.com/developers/docs/reference#image-formatting) ID of the guild's icon. Setting full icon URL is explained [here](https://discord.com/developers/docs/reference#image-formatting).                                              |
+| .Guild.Icon                        | Outputs the [icon hash](https://discordapp.com/developers/docs/reference#image-formatting) ID of the guild's icon. Setting full icon URL is explained in [Discord reference documentation](https://discord.com/developers/docs/reference#image-formatting).                |
 | .Guild.ID                          | Outputs the ID of the guild.                                                                                                                                                                                                                                               |
 | .Guild.MemberCount                 | Outputs the number of users on a guild.                                                                                                                                                                                                                                    |
 | .Guild.MfaLevel                    | The required [MFA level](https://discordapp.com/developers/docs/resources/guild#guild-object-mfa-level) for the guild. If enabled, members with moderation powers will be required to have 2-factor authentication enabled in order to exercise moderation powers.         |
@@ -215,7 +215,7 @@ Channel functions are covered [here](functions#channel).
 
 [Member object in Discord documentation](https://discordapp.com/developers/docs/resources/guild#guild-member-object).
 
-Member functions are covered [here](functions#member).
+[Member functions documentation](functions#member).
 
 ### Message
 
@@ -257,7 +257,7 @@ Member functions are covered [here](functions#member).
 
 [Message object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#message-object).
 
-Message functions are covered [here](functions#message).
+[Message functions documentation](functions#message).
 
 ### Reaction
 
@@ -296,7 +296,7 @@ This is available and part of the dot when reaction trigger type is used.
 
 [User object in Discord documentation](https://discordapp.com/developers/docs/resources/user#user-object).
 
-User functions are covered [here](functions#user).
+[User functions documentation](functions#user).
 
 ## Actions
 
@@ -311,7 +311,7 @@ Branching using `if` action's pipeline and comparison operators - these operator
 `if` statements always need to have an enclosing `end`.\
 Learning resources covers conditional branching [more in depth](https://learn.yagpdb.xyz/beginner/control_flow_1).\
 
-{{< callout success >}}
+{{< callout context="tip" icon="outline/rocket" >}}
 
 `eq` , though often used with 2 arguments (`eq x y`) can actually be used with more than 2. If there are more than 2
 arguments, it checks whether the first argument is equal to any one of the following arguments. This behavior is unique
@@ -549,7 +549,7 @@ an associated template that always returns `1`:
 
 Note that it is not necessary for a value to be returned; `{{ return }}` by itself is completely valid.
 
-{{< callout success >}}
+{{< callout context="tip" icon="outline/rocket" >}}
 
 **Note:** Since all custom commands are themselves templates, using a `return` action at the top level is perfectly
 valid, and will result in execution of the custom command being stopped at the point the `return` is encountered.
@@ -639,7 +639,7 @@ template and may be used as part of another action. Below is an example using `e
 
 ## Custom Types
 
-Golang has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types
+Go has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types
 (_array_, _slice_, _map_, ...) which also are used in custom commands. \
 \
 YAGPDB's templating "engine" has currently two user-defined, custom data types - _templates.Slice_ and
@@ -749,7 +749,7 @@ Adding "color3" as "blue": {{ $x.Set "color3" "blue" }} **{{ $x }}**
 Deleting key "color1" {{ $x.Del "color1" }} and whole sdict: **{{ $x }}**
 ```
 
-{{< callout success >}}
+{{< callout context="tip" icon="outline/rocket" >}}
 
 **Tip:** Previously, when saving cslices, sdicts, and dicts into database, they were serialized into their underlying
 native types - slices and maps. This meant that if you wanted to get the custom type back, you needed to convert
@@ -781,9 +781,9 @@ may only be run twice. (50,10 for premium users).
 
 Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/intermediate/custom-command-database).
 
-**Database functions** are covered [here](functions#database).
+[Database functions documentation](functions#database).
 
-[Example here](/reference/custom-command-examples#database-example).
+[Database example script](/reference/custom-command-examples#database-example).
 
 ### DBEntry
 
@@ -829,7 +829,7 @@ tickets per user.
 
 ## Time
 
-Time and duration types use Golang's time package library and its methods >
+Time and duration types use Go's time package library and its methods >
 [https://golang.org/pkg/time/#time](https://golang.org/pkg/time/#Time) and also this although slightly different syntax
 all applies here > [https://gobyexample.com/time](https://gobyexample.com/time).
 
@@ -841,4 +841,4 @@ all applies here > [https://gobyexample.com/time](https://gobyexample.com/time).
 | .TimeMinute   | Variable of _time.Duration_ type and returns 1 minute > `1m0s`.                                             |
 | .TimeSecond   | Variable of _time.Duration_ type and returns 1 second > `1s`.                                               |
 
-Time functions are covered [here](functions#time).
+[Time functions documentation](functions#time).

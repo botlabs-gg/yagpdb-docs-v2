@@ -1,6 +1,6 @@
 +++
 title = 'Notifications and Feeds'
-weight = 6
+weight = 5
 +++
 
 YAGPDB offers you a variety of ways to keep up with what's happening, such as users joining, leaving, new Reddit posts,

@@ -1,6 +1,6 @@
 +++
 title = "Custom Commands"
-weight = 4
+weight = 3
 +++
 
 Custom commands (abbreviated **CCs**) allow you to develop your own commands and behaviors for your server. A command

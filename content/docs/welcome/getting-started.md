@@ -1,6 +1,6 @@
 +++
-title = 'Getting Started'
-weight = 1
+title = "Getting Started"
+weight = 2
 +++
 
 > The hardest thing about getting started, is getting started. - Guy Kawasaki

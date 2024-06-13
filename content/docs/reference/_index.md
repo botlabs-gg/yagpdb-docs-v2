@@ -1,6 +1,6 @@
 +++
 title = "Reference"
-weight = 8
+weight = 7
 +++
 
 Reference documentation provides further information about advanced customization with YAGPDB, particularly focused

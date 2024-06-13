@@ -1,6 +1,6 @@
 +++
-title = 'Premium'
-weight = 2
+title = "Premium"
+weight = 3
 +++
 
 YAGPDB provides added functionality to servers which are assigned a premium slot by a user. On the official instance of

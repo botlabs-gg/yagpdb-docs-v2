@@ -1,6 +1,6 @@
 +++
 title = "Core"
-weight = 3
+weight = 2
 +++
 
 Under the **Core** category of the control panel, you can configure access to

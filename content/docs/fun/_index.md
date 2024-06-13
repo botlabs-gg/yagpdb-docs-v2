@@ -1,6 +1,6 @@
 +++
 title = "Fun"
-weight = 7
+weight = 6
 +++
 
 Fun commands and systems provide engaging ways to enrich your server environment.

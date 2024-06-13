@@ -10,10 +10,12 @@ an experiment to see if it is a viable alternative.
 Install [Node.js](https://nodejs.org/en), clone this repository, and use `npm run dev` to start a local server. The
 server will automatically rebuild the page when you make changes.
 
-To build the page in release mode, run `npm run build`, then server the generated `public/` directory with your
-webserver of choice. Adjust the `--baseURL` flag provided to hugo as appropriate.
+To build the page in release mode, use `npm run build -- --baseURL ...`\*, then serve the generated `public/` directory
+with your webserver of choice.
 
 For more information, please view our [Contributing Guidelines](.github/CONTRIBUTING.md).
+
+_\*Note the `--` is not a typo, but rather serves to pass `baseURL` to Hugo as opposed to the `npm run` command._
 
 ### Editor Setup
 
@@ -23,7 +25,7 @@ editor supports it. Most modern editors do, but if you are unsure, check the Edi
 ### Adding a new page
 
 Pages are written in Markdown, with additional shortcodes provided by the Doks theme; refer to [its
-documentation]((https://getdoks.org/docs/start-here/getting-started/)) for a complete list of features.
+documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.
 
 ## License
 

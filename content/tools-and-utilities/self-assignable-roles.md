@@ -2,7 +2,7 @@
 title = 'Self Assignable Roles'
 weight = 2
 +++
-
+<!--more-->
 ## Tutorial Video
 
 {{< youtube IaTfJ4vqHhc >}}
@@ -23,8 +23,7 @@ If you want to use any of the `rolemenu` commands, you **need** to have the `MAN
 
 {{% /notice %}}
 
-\
-Simply give the role command a name and then select which role you want the bot to assign to the person.&#x20;
+Simply give the role command a name and then select which role you want the bot to assign to the person.
 
 ![Creation of a role command](role_command_creation.png)
 
@@ -32,13 +31,13 @@ Simply give the role command a name and then select which role you want the bot 
 
 {{% notice warning %}}
 
-Do **NOT** set the require role to the role you are assigning. You generally will not want to set the ignore role to the role you are assigning either _unless_ you wish to prevent the user from removing that role through the role-menu.
+Do **not** set the require role to the role you are assigning. You generally will not want to set the ignore role to the role you are assigning either _unless_ you wish to prevent the user from removing that role through the role-menu.
 
 {{% /notice %}}
 
-**Require role**: Requires a person to have a certain role in order for them to give themselves this role.\
-**Ignore role**: Ignore any person who has this role.\
-**Group:** Put the role in a role group (will be explained more further down).
+- **Require role**: Requires a person to have a certain role in order for them to give themselves this role.
+- **Ignore role**: Ignore any person who has this role.
+- **Group:** Put the role in a role group (will be explained more further down).
 
 ## Role Groups
 
@@ -48,7 +47,7 @@ Role groups are essential if you want to set up a role menu.
 
 {{% /notice %}}
 
-Role groups are useful for applying restrictions on a group of roles such as only being able to have one or the other role etc. They're also essential if you want to create a role menu. To create one, simply give the role group a name and then select which mode you want the role group to use
+Role groups are useful for applying restrictions on a group of roles such as only being able to have one or the other role etc. They're also essential if you want to create a role menu. To create one, simply give the role group a name and then select which mode you want the role group to use.
 
 Every role group, even Ungrouped has the option to delete all roles inside that group, other groups will not be affected. Be careful with that, it's permanent and can't be undone.
 
@@ -64,18 +63,18 @@ Every role group, even Ungrouped has the option to delete all roles inside that 
 
 {{% notice warning %}}
 
-Do **NOT** set the require role to the role you are assigning. You generally will not want to set the ignore role to the role you are assigning either _unless_ you wish to prevent the user from removing that role through the rolemenu.
+Do **not** set the require role to the role you are assigning. You generally will not want to set the ignore role to the role you are assigning either _unless_ you wish to prevent the user from removing that role through the rolemenu.
 
 {{% /notice %}}
 
-**Require role**: requires a person to have a certain role in order for them to give them this role.\
-**Ignore role**: Ignore any person who has this role.\
-**Mode**: Select between none, single, multiple to restrict the number of roles they can assign them themselves.
+- **Require role**: requires a person to have a certain role in order for them to give them this role.
+- **Ignore role**: Ignore any person who has this role.
+- **Mode**: Select between none, single, multiple to restrict the number of roles they can assign them themselves.
 
 Role groups have additional options that can be enabled/disabled by selecting the corresponding checkbox such as:
 
 * Requiring a user to have one of the following role at all time (after initial assignment).
-* Removing the previous role when they assign themselves another role from the group.\
+* Removing the previous role when they assign themselves another role from the group.
 
 #### Example usage:
 
@@ -95,7 +94,7 @@ To fix these problems we can create a new group with the mode `Single` and assig
 
 {{% notice info %}}
 
-Roles can only be assigned to one group.&#x20;
+Roles can only be assigned to one group.
 
 {{% /notice %}}
 
@@ -105,7 +104,7 @@ Refer back to the [optional features](#optional-features) for roles and select t
 
 {{% notice warning %}}
 
-Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting. Role menu will **NOT** work if you have not done so.&#x20;
+Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting. Role menu will **not** work if you have not done so.
 
 {{% /notice %}}
 
@@ -127,24 +126,25 @@ A role menu can only support up to 20 roles due to the reaction limit discord pl
 
 To set up a role menu, the related roles **have to be added to a role group**, then you invoke the command `-rolemenu create (role group name)`
 
-The group mode and other restrictions from the role group and role still apply to the roles in the role menu.\
-\
+The group mode and other restrictions from the role group and role still apply to the roles in the role menu.
+
 After you type in the command, you will be taken through the setup process. If you want to disable DMs, create a custom message, or add new role to your role menu, be sure to read until the end.
 
 ### Step by step tutorial
 
 {{% notice warning %}}
 
-Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting. Role menu will **NOT** work if you have not done so. All switches and flags (nodm, rr, etc...) start with hyphen symbol `-`, not your prefix.
+Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting. Role menu will **not** work if you have not done so. All switches and flags (nodm, rr, etc...) start with hyphen symbol `-`, not your prefix.
 
 {{% /notice %}}
 
-Once you've made your role commands and assigned them to a role group,\
-go to the channel in Discord where you want the role menu to be created. There you type `-rolemenu create (role group name)` (in this example, the role group name is "Sports").
+Once you've made your role commands and assigned them to a role group, go to the channel in Discord where you want the
+role menu to be created. Then type `-rolemenu create (group name)`; applying our "Sports" role group example, we'd have
+to send `-rolemenu create Sports`.
 
 ![Rolemenu Create command](rolemenu_create.png)
 
-As you can see, the bot started creating the menu, and has asked you to add the emoji for the first role, **Soccer**. I'll react on the message with my emoji of choice:&#x20;
+As you can see, the bot started creating the menu, and has asked you to add the emoji for the first role, **Soccer**. I'll react on the message with my emoji of choice:
 
 ![First reaction on a rolemenu setup](rolemenu_react.png)
 
@@ -156,15 +156,15 @@ And similar for the final role, **Basketball:**
 
 ![Third reaction on a rolemenu setup](rolemenu_react_3.png)
 
-And we're done — people can start using the menu by clicking on the reaction associated with their desired role. The setup message will be automatically deleted in a couple of minutes, but you can also delete it manually if you so desire.
+And we're done --- people can start using the menu by clicking on the reaction associated with their desired role. The setup message will be automatically deleted in a couple of minutes, but you can also delete it manually, if you so desire.
 
 ### Custom message
 
-To create a custom message for your role menu like event role menu you saw above, you will need to send a message. Then get the ID of the message by following the steps in [how to get a message ID](self-assignable-roles.md#how-to-get-a-message-id-desktop) and type in the following command, `-rolemenu create (group name) -m (message id)`. You would then complete the role menu like you would any normal role menu&#x20;
+To create a custom message for your role menu like event role menu you saw above, you will need to send a message. Then get the ID of the message by following the steps in [how to get a message ID](self-assignable-roles.md#how-to-get-a-message-id-desktop) and type in the following command, `-rolemenu create (group name) -m (message id)`. You would then complete the role menu like you would any normal role menu.
 
 ### Disabling DM confirmation
 
-If you do not want the bot to send you a DM when you are given or removed from a role, type in the following command `-rolemenu update (message id) -nodm`&#x20;
+If you do not want the bot to send you a DM when you are given or removed from a role, type in the following command `-rolemenu update (message id) -nodm`.
 
 After you have finish editing or creating your role menu, it will display whether DM notifications are enabled or not.
 
@@ -178,27 +178,27 @@ Note that YAGPDB does not allow you to disable warning DMs such as cool-down mes
 
 ### Remove roles on reaction remove
 
-Remove roles on reaction remove, this means instead of the old toggling mode, adding reactions will strictly give you the role, and removing reactions will only take away the role from you. **This mode will be on by default for new menus.**&#x20;
+Remove roles on reaction remove, this means instead of the old toggling mode, adding reactions will strictly give you the role, and removing reactions will only take away the role from you. This mode is on by default for new menus.
 
-You can set old menus to use this switch using the command `rolemenu update (message id) -rr`
+You can set old menus to use this switch using the command `rolemenu update (message id) -rr`.
 
 ## Role Menu options
 
 ### Removing a role menu
 
-If you want to remove a role menu from a message, you can type in `-rolemenu remove (message id)`  It will remove the role-menu from a message. The message itself won't be deleted but the bot will now not do anything with reactions on that message.&#x20;
+If you want to remove a role menu from a message, you can type in `-rolemenu remove (message id)`  It will remove the role-menu from a message. The message itself won't be deleted but the bot will now not do anything with reactions on that message.
 
-### Editing a role menu&#x20;
+### Editing a role menu
 
-If you want to change the emote for one your reaction, you can do so by typing in `-rolemenu edit (message id)` After you type it the command it will ask you to react on the emote you want to change. You will need to go to the role menu and react on the emote you want to change. After you have reacted on the desired emote, it will ask you to react with your new emote on the role menu.&#x20;
+If you want to change the emote for one your reaction, you can do so by typing in `-rolemenu edit (message id)` After you type it the command it will ask you to react on the emote you want to change. You will need to go to the role menu and react on the emote you want to change. After you have reacted on the desired emote, it will ask you to react with your new emote on the role menu.
 
 ### Resetting all reactions
 
-If you edit your reaction emotes or simply want to give your emote a new clean slate. You can reset all the reactions by typing in`-rolemenu resetreactions (message id)`  It will remove all reactions on this menu and re-adds them, can be used to fix the order.&#x20;
+If you edit your reaction emotes or simply want to give your emote a new clean slate. You can reset all the reactions by typing in `-rolemenu resetreactions (message id)`. It will remove all reactions on this menu and re-adds them, can be used to fix the order.
 
 ### Updating a role menu
 
-If you added a new role to your role group, you can update your role menu. Update it by typing in`-rolemenu update (message id)`and follow the instructions given. If you removed a role, you will have to delete it and make a new one from scratch.&#x20;
+If you added a new role to your role group, you can update your role menu. Update it by typing in `-rolemenu update (message id)` and follow the instructions given. If you removed a role, you will have to delete it and make a new one from scratch.
 
 ## How to get a message ID (Desktop)
 

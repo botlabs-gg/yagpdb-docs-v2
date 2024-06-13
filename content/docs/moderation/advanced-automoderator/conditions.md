@@ -74,7 +74,7 @@ Only apply this rule if the user's account is younger than the specified duratio
 
 Only apply this rule if the user has been a member of the server for longer than the specified duration in minutes.
 
-This condition directly conflicts with the _[New Member](./triggers#new-member)_ trigger.
+This condition directly conflicts with the _[New Member](../triggers#new-member)_ trigger.
 
 - **Age in minutes**<br>
   The minimum member duration in minutes. (Default: 0)

@@ -1,6 +1,6 @@
 # Hugo
-title = "My Docs"
-description = "Congrats on setting up a new Doks project!"
+title = "YAGPDB Docs"
+description = "YAGPDB documentation"
 images = ["cover.png"]
 
 # mainSections

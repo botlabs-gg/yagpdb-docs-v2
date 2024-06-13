@@ -39,7 +39,7 @@ By default, any member can run the logs command for any channel in which they ha
 Messages, and Read Message History. Members will be permitted to create logs regardless of their permission to view
 them.
 
-[Logs Command Syntax](/commands#logs)
+[Logs Command Syntax](/core/all-commands#logs)
 
 ### Moderation Actions
 

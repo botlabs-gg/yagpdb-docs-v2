@@ -1,6 +1,7 @@
 +++
 title = 'Triggers'
 weight = 1
+menuPre = "<i class= 'fas fa-play'></i> "
 +++
 
 Triggers define when a rule should be checked. This page will explain the available triggers and their configuration

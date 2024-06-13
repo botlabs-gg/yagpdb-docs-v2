@@ -1,6 +1,7 @@
 +++
 title = 'Getting Started'
 weight = 1
+menuPre = "<i class= 'fas fa-rocket'></i> "
 +++
 
 > The hardest thing about getting started, is getting started. - Guy Kawasaki

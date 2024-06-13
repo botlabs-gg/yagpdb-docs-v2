@@ -1,6 +1,7 @@
 +++
 title = 'Conditions'
 weight = 2
+menuPre = "<i class= 'fas fa-filter'></i> "
 +++
 
 Conditions impose more fine-grained control on Advanced Automoderator rules. This page will cover the different types

@@ -1,6 +1,7 @@
 +++
 title = 'Effects'
 weight = 3
+menuPre = "<i class= 'fas fa-forward'></i> "
 +++
 
 Effects define what happens when a rule is triggered and all conditions are met. This page will cover the different

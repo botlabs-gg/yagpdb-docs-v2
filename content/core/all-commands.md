@@ -1,6 +1,7 @@
 +++
 title = 'All Commands'
 weight = 4
+menuPre = "<i class= 'fas fa-list'></i> "
 +++
 
 List of all available commands offered by YAGPDB and their syntax.

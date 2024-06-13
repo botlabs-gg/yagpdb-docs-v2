@@ -9,7 +9,7 @@ Let everyone know that someone is currently streaming.
 
 ### Streaming Feed
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 There are currently some issues with the streaming announcement, and it may not always give the announcement. It will
 however, always assign the streamer role.
 {{< /callout >}}

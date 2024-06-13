@@ -200,7 +200,7 @@ when configuring other roles' permission overrides.
 
 {{< /callout >}}
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 If you set a duration for the mute, the bot will unmute the user after the specified duration. When this occurs, it
 appears as an unmute action taken by YAGPDB in your mod log, regardless of which moderator initially muted the user.
@@ -238,7 +238,7 @@ field in the ban tab on the control panel which enables automatic deletion when 
 
 [Unban Command Syntax](/commands#unban)
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 If you set a duration for the ban, the bot will unban the user after the specified duration. When this occurs, it
 appears as an unban action taken by YAGPDB in your mod log, regardless of which moderator initially banned the user.

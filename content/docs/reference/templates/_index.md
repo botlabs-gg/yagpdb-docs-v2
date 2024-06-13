@@ -38,7 +38,7 @@ structure also known as an action with methods and functions stated below.
 
 {{< /callout >}}
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 Templating system uses standard ASCII quotation marks:\
 0x22 > `"` for straight double quotes, 0x27 > `'`for apostrophes and 0x60 `` ` `` for backticks/back quotes; so make
@@ -319,7 +319,7 @@ to `eq`.
 
 {{< /callout >}}
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for
 comparison`** error as they are not the same type (one is float, the other int). To fix this, you should convert both to
@@ -339,7 +339,7 @@ the same type -> for example, `toFloat 1`.
 channels. The dot `.` is set to successive elements of those data structures and output will follow execution. If the
 value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 To skip execution of a single iteration and jump to the next iteration, the `{{continue}}` action may be used. Likewise,
 if one wishes to skip all remaining iterations, the `{{break}}` action may be used. These both are usable also inside
@@ -575,7 +575,7 @@ To execute a custom command, one of three methods may be used: `template`, `bloc
 value. Note that the name of the template to execute must be a string constant; similar to `define` actions, a variable
 referencing a value of string type is invalid. Data to use as the context may optionally be provided following the name.
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 While `template` is function-like, it is not an actual function, leading to certain quirks; notably, it must be used
 alone, not part of another action (like a variable declaration), and the data argument need not be parenthesized. Due to

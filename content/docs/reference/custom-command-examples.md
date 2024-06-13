@@ -15,7 +15,7 @@ commands.
 
 {{< /callout >}}
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 This isn't the actual page about custom commands. A brief overview about custom commands can be found
 [here](/custom-commands). Please take notice, some of examples presented here are not up to date

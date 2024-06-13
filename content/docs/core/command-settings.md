@@ -81,7 +81,7 @@ Clicking on either of these options (**3**,**4**) opens a drop-down menu with al
 Select as many as you wish. YAGPDB will then either require all members to have any of these roles in order to run
 commands, or completely ignore members with any of the ignored roles, server admins and owners included.
 
-{{< callout note >}}
+{{< callout context="note" icon="outline/info-circle" >}}
 
 YAGPDB was raised well and honors a "no" when told "no". In other words, ignored roles take precedence over required
 roles.

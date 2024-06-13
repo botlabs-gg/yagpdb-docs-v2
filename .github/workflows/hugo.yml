@@ -13,12 +13,12 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
-  HUGO_BASE_URL: "https://botlabs-gg.github.io/yagpdb-docs-v2"
+  HUGO_BASE_URL: 'https://botlabs-gg.github.io/yagpdb-docs-v2'
 
 jobs:
   build:
@@ -35,18 +35,20 @@ jobs:
           # It is recommended anyway.
           extended: true
 
-      - name: Cache Hugo modules
-        uses: actions/cache@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ${{ env.HUGO_CACHEDIR }}
-          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugomod-
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
 
       - name: Build website
         # See https://discourse.gohugo.io/t/solved-what-should-be-used-for-the-value-of-site-baseurl/5896
         # for why we set baseURL here and not in hugo.toml.
-        run: hugo mod vendor && hugo --minify --baseURL=${{ env.HUGO_BASE_URL }}
+        run: npm run build -- --baseURL=${{ env.HUGO_BASE_URL }}
 
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}

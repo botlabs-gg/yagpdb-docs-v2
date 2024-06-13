@@ -221,6 +221,16 @@ about using interactions, [see here](/reference/custom_interactions).
 {{ editResponse $interactionToken nil $editedResponse.Content }}
 ```
 
+* To demonstrate updating the triggering message (this must be triggered by a component or modal submission)
+
+```go
+{{ $button := cbutton "label" "I won!" "custom_id" "i_won" }}
+{{ $content := printf "Press this button when you win! The last person who won was %s! They wanted to say they are a %s %s." .User.Mention adjective noun }}
+
+{{ $message := complexMessageEdit "content" $content "buttons" $button }}
+{{ updateMessage $message }}
+```
+
 ### Math
 
 {{% notice info %}}

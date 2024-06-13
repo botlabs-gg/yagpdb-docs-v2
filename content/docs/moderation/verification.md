@@ -17,7 +17,7 @@ This is accomplished by sending new members a customizable DM (which employs [te
 containing a unique link to verify, tied to their User ID. This link takes them to a customizable verification page with
 a CAPTCHA challenge. Once completed, the User ID is assigned the verified role.
 
-{{< callout info >}}
+{{< callout note >}}
 
 You must assign a "Verified Role" on the Verification page in the control panel. The plugin will not function if no role
 is selected.
@@ -47,7 +47,7 @@ You can customize both messages in the Verification page on the control panel.
 Verification scripts provide `.Link` as additional dot context data. This is the unique verification link the user must
 visit to verify.
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 If a user has disabled DMs from server members by default, upon joining your server YAGPDB will fail to send a
 verification DM to the user. It is recommended that you inform your new members about this possibility and how to fix it
@@ -75,7 +75,7 @@ Logged events are:
 
 ## Alt Detection
 
-{{< callout info >}}
+{{< callout note >}}
 
 Alt Detection is currently disabled on the official instance of YAGPDB hosted by Botlabs. These features will not
 function on the official bot.

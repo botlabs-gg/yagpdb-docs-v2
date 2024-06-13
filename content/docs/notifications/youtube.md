@@ -9,7 +9,7 @@ Get notifications from your favorite YouTubers directly in your Discord server.
 
 ## YouTube Feed
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Do **NOT** fill in both the Channel ID and the Channel URL.
 

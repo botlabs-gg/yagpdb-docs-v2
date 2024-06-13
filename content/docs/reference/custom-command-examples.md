@@ -7,7 +7,7 @@ Prebuilt custom commands for use as a learning reference.
 
 <!--more-->
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Note: This page is no longer updated with the latest versions of codes/commands. If you plan to copy paste codes for
 your server, see [this website](https://yagpdb-cc.github.io) which is frequently updated with new community-contributed

@@ -72,7 +72,7 @@ A premium server unlocks the following benefits:
 
 - Increase maximum YouTube feeds per guild from 50 to 250 (`GuildMaxFeedsPremium`).
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Some features enhanced or enabled by premium have been disabled on Botlabs' publicly hosted instance, often due to
 ratelimits with 3rd party APIs YAGPDB relies on.

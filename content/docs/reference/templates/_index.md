@@ -28,7 +28,7 @@ usually denoted by 3-dot `...`ellipsis.&#x20;
 If functions or methods are denoted with an accent, tilde \~, they are not yet deployed in actual YAGPDB bot or have
 been disabled in main bot, but are in master code branch.
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 **Always put curly brackets around the data and "actions you perform" you want to formulate as a template** like
 this:`{{.User.Username}}`
@@ -38,7 +38,7 @@ structure also known as an action with methods and functions stated below.
 
 {{< /callout >}}
 
-{{< callout info >}}
+{{< callout note >}}
 
 Templating system uses standard ASCII quotation marks:\
 0x22 > `"` for straight double quotes, 0x27 > `'`for apostrophes and 0x60 `` ` `` for backticks/back quotes; so make
@@ -98,7 +98,7 @@ would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also 
 not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas
 `{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Pipes are useful in select cases to shorten code and in some cases improve readability, but they **should not be
 overused**. In most cases, pipes are unnecessary and cause a dip in readability that helps nobody.
@@ -319,7 +319,7 @@ to `eq`.
 
 {{< /callout >}}
 
-{{< callout info >}}
+{{< callout note >}}
 
 Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for
 comparison`** error as they are not the same type (one is float, the other int). To fix this, you should convert both to
@@ -339,7 +339,7 @@ the same type -> for example, `toFloat 1`.
 channels. The dot `.` is set to successive elements of those data structures and output will follow execution. If the
 value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
 
-{{< callout info >}}
+{{< callout note >}}
 
 To skip execution of a single iteration and jump to the next iteration, the `{{continue}}` action may be used. Likewise,
 if one wishes to skip all remaining iterations, the `{{break}}` action may be used. These both are usable also inside
@@ -374,7 +374,7 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 {{ $x := 42 }} {{ range $x := seq 2 4 }} {{ $x }} {{ end }} {{ $x }}
 ```
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 **Custom command response was longer than 2k (contact an admin on the server...)**\
 or \
@@ -505,7 +505,7 @@ To define an associated template, use the `define` action. It has the following 
 {{ end }}
 ```
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 **Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
 nested in other actions (for example, an if action.) That is, the following custom command is invalid:
@@ -575,7 +575,7 @@ To execute a custom command, one of three methods may be used: `template`, `bloc
 value. Note that the name of the template to execute must be a string constant; similar to `define` actions, a variable
 referencing a value of string type is invalid. Data to use as the context may optionally be provided following the name.
 
-{{< callout info >}}
+{{< callout note >}}
 
 While `template` is function-like, it is not an actual function, leading to certain quirks; notably, it must be used
 alone, not part of another action (like a variable declaration), and the data argument need not be parenthesized. Due to
@@ -651,7 +651,7 @@ _templates.SDict_ (abridged to _sdict_) types and their methods. Both types hand
 called an empty interface which allows a value to be of any type. So any argument of any type given is handled. (In
 "custom commands"-wise mainly primitive data types, but _slices_ as well.)
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 **Reference type-like behavior:** Slices and dictionaries in CCs exhibit reference-type like behavior, which may be
 undesirable in certain situations. That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y :=
@@ -802,7 +802,7 @@ Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/inte
 
 ## Tickets
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Ticket functions are limited to 1 call per custom command for both normal and premium guilds and limited to max 10 open
 tickets per user.

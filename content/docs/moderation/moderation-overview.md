@@ -186,7 +186,7 @@ mute tab on the control panel.
 
 [Unmute Command Syntax](/commands#unmute)
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Within a server channel's permission overrides, allowing a permission to a specific role or user supersedes disallowing
 a permission to a specific role. This means if you grant Role X the permission to send messages in a channel and
@@ -200,7 +200,7 @@ when configuring other roles' permission overrides.
 
 {{< /callout >}}
 
-{{< callout info >}}
+{{< callout note >}}
 
 If you set a duration for the mute, the bot will unmute the user after the specified duration. When this occurs, it
 appears as an unmute action taken by YAGPDB in your mod log, regardless of which moderator initially muted the user.
@@ -238,7 +238,7 @@ field in the ban tab on the control panel which enables automatic deletion when 
 
 [Unban Command Syntax](/commands#unban)
 
-{{< callout info >}}
+{{< callout note >}}
 
 If you set a duration for the ban, the bot will unban the user after the specified duration. When this occurs, it
 appears as an unban action taken by YAGPDB in your mod log, regardless of which moderator initially banned the user.

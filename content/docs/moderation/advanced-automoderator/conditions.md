@@ -21,7 +21,7 @@ By extension, these conditions are also available as ruleset scoped conditions.
 All conditions have to be met in order for a rule to execute — that is, the conditions are combined according to the
 logical AND operator.
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 Ensure that the conditions you set are not in conflict or mutually exclusive, as this will cause your rule to never
 trigger.

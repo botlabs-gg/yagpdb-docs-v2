@@ -34,7 +34,7 @@ is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recal
 
 {{< /callout >}}
 
-{{< callout context="warning" title="Flags and Switches" >}}
+{{< callout context="caution" title="Flags and Switches" >}}
 
 Flags and switches are **_not_** affected by your prefix setting.
 
@@ -59,7 +59,7 @@ Command overrides are considered in the following order, with settings applied a
 The order above trickles down from least specific to most specific, prioritizing the most specific setting -- an analogy
 for developers would be CSS's cascading rules.
 
-{{< callout context="info" title="Example" >}}
+{{< callout context="note" title="Example" >}}
 
 Though perhaps confusing at first, the priority order above is designed to make common configurations trivial. For
 instance, to disable all but a specific command -- say the `remindme` command -- one can simply disable the _All
@@ -102,7 +102,7 @@ If 10 seconds are not enough, or too long, feel free to adjust as you see fit; t
 These options are only available for channel overrides (**8**). To add a new one, head to the _New channel override_
 tab on the command settings page.
 
-{{< callout warning >}}
+{{< callout caution >}}
 
 You must select at least one channel or category; otherwise, the settings of the override will not be applied.
 

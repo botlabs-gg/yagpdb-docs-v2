@@ -648,7 +648,8 @@ While technically not required, responding to an interaction with one of Discord
 if you don't want your users to see an error after interacting. An interaction may be responded to only once.
 
 You can only respond to an interaction within the custom command triggered by said interaction, with the exception that
-a CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
+a CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction as
+well.
 
 Possible initial responses:
 

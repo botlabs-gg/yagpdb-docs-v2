@@ -23,7 +23,7 @@ The log is accessible on YAGPDB's website for later viewing. It saves message ti
 User ID, and the message itself. If a message contains an attachment, the attachment URL is logged. If a message
 contains an embed, it is serialized and saved in JSON format.
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Message logs on the official YAGPDB instance will be automatically deleted after 30 days of their creation.
 

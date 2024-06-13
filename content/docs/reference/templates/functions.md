@@ -76,7 +76,7 @@ convert the number to type _string_ before saving and later back to its original
 
 ### ExecCC
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 `execCC` calls are limited to 1 / CC for non-premium users and 10 / CC for premium users.
 

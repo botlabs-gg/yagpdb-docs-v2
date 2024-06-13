@@ -14,7 +14,7 @@ There are currently some issues with the streaming announcement, and it may not 
 however, always assign the streamer role.
 {{< /callout >}}
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 The streaming role will be **automatically removed** from a member that is not streaming if it is given manually, so be
 careful! If YAGPDB is removing member's roles without apparent reason, this may well be the cause.
 {{< /callout >}}

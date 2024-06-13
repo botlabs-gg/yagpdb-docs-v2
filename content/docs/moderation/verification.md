@@ -47,7 +47,7 @@ You can customize both messages in the Verification page on the control panel.
 Verification scripts provide `.Link` as additional dot context data. This is the unique verification link the user must
 visit to verify.
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 If a user has disabled DMs from server members by default, upon joining your server YAGPDB will fail to send a
 verification DM to the user. It is recommended that you inform your new members about this possibility and how to fix it

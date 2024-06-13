@@ -7,7 +7,7 @@ A guide to creating custom embeds in various contexts across YAGPDB.
 
 <!--more-->
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Embeds have limits, summarized [here](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).
 
@@ -83,7 +83,7 @@ and the last curly brace (`}`). After this you can just copy and paste it into D
 
 ## Embeds in Custom Commands
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Embeds in custom commands are a little more difficult. Also, there is no generator that you could use for this. **Please only proceed if you have a good amount of knowledge about custom commands and templates in general.**
 

@@ -186,7 +186,7 @@ mute tab on the control panel.
 
 [Unmute Command Syntax](/commands#unmute)
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Within a server channel's permission overrides, allowing a permission to a specific role or user supersedes disallowing
 a permission to a specific role. This means if you grant Role X the permission to send messages in a channel and

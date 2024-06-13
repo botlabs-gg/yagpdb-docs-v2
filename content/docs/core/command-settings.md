@@ -102,7 +102,7 @@ If 10 seconds are not enough, or too long, feel free to adjust as you see fit; t
 These options are only available for channel overrides (**8**). To add a new one, head to the _New channel override_
 tab on the command settings page.
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 You must select at least one channel or category; otherwise, the settings of the override will not be applied.
 

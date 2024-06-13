@@ -28,7 +28,7 @@ usually denoted by 3-dot `...`ellipsis.&#x20;
 If functions or methods are denoted with an accent, tilde \~, they are not yet deployed in actual YAGPDB bot or have
 been disabled in main bot, but are in master code branch.
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 **Always put curly brackets around the data and "actions you perform" you want to formulate as a template** like
 this:`{{.User.Username}}`
@@ -98,7 +98,7 @@ would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also 
 not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas
 `{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Pipes are useful in select cases to shorten code and in some cases improve readability, but they **should not be
 overused**. In most cases, pipes are unnecessary and cause a dip in readability that helps nobody.
@@ -374,7 +374,7 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 {{ $x := 42 }} {{ range $x := seq 2 4 }} {{ $x }} {{ end }} {{ $x }}
 ```
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 **Custom command response was longer than 2k (contact an admin on the server...)**\
 or \
@@ -505,7 +505,7 @@ To define an associated template, use the `define` action. It has the following 
 {{ end }}
 ```
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 **Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
 nested in other actions (for example, an if action.) That is, the following custom command is invalid:
@@ -651,7 +651,7 @@ _templates.SDict_ (abridged to _sdict_) types and their methods. Both types hand
 called an empty interface which allows a value to be of any type. So any argument of any type given is handled. (In
 "custom commands"-wise mainly primitive data types, but _slices_ as well.)
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 **Reference type-like behavior:** Slices and dictionaries in CCs exhibit reference-type like behavior, which may be
 undesirable in certain situations. That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y :=
@@ -802,7 +802,7 @@ Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/inte
 
 ## Tickets
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Ticket functions are limited to 1 call per custom command for both normal and premium guilds and limited to max 10 open
 tickets per user.

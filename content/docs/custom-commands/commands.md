@@ -126,7 +126,7 @@ commands like `customcommands` accept a CC ID as an argument.
 
 Within a command response, the ID may be retrieved using the `{{ .CCID }}` template.
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Deleting a custom command does not allow its ID to be reassigned. If you delete a CC, its ID is lost forever.
 
@@ -352,7 +352,7 @@ for the best coding experience.
 
 {{< /callout >}}
 
-{{< callout caution >}}
+{{< callout context="caution" icon="outline/alert-octagon" >}}
 
 Custom commands do not autosave.
 

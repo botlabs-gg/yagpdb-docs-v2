@@ -164,8 +164,8 @@ Here is an example of a select menu with three text options defined.
   "placeholder" "Choose a terrible thing"
   "custom_id" "menus-duck"
   "options" (cslice
-    (sdict "label" "Ducks" "value" "opt-1" "default" true)
-    (sdict "label" "Duck" "value" "duck-option" "emoji" (sdict "name" "🦆"))
+    (sdict "label" "Two Ducks" "value" "opt-1" "default" true)
+    (sdict "label" "A Duck" "value" "duck-option" "emoji" (sdict "name" "🦆"))
     (sdict "label" "Half a Duck" "value" "third-option" "description" "Don't let the smaller amount fool you."))
   "max_values" 3 }}
 
@@ -206,15 +206,14 @@ The other menu types are more straightforward. `options` should not be defined f
 If a member selected roles from this menu, `.Values` would return a slice of strings containing the IDs of selected
 options. This behavior is consistent between user type, role type, mentionable type, and channel type. Note that even in
 mentionable type select menus where an ID could be either a user or a role, `.Values` is still only a slice of IDs. If
-parsing options from mentionable type menus, you will need to use your own methods of determining if an ID is a role or
-a user.
+you are parsing options from mentionable type menus, you will need to use your own methods of determining if an ID is a
+role or a user.
 
 **Default Values**
 
 Setting default values in these select menus is a more involved process than for text type menus. Instead of setting a
-`default` value on each option, you must instead provide a `default_values` argument containing a slice of [default
-value
-structures](https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-default-value-structure).
+`default` value on each option, you must instead provide a `default_values` argument containing a slice of
+[default value structures](https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-default-value-structure).
 
 ```go
 {{ $adminRoleID := "1210128415689285642" }}
@@ -236,7 +235,7 @@ structures](https://discord.com/developers/docs/interactions/message-components#
 
 {{% notice info %}}
 
-The `default_values` `id`s must be `strings`, not `int64s`. Note how in the above example, `$adminRoleID :=
+The `default_values` `id`s must be `string`s, not `int64`s. Note how in the above example, `$adminRoleID :=
 "1210128415689285642"` defining it as a string, as opposed to `$adminRoleID := 1210128415689285642` which would define
 it as an `int64`, which would not work.
 
@@ -245,8 +244,7 @@ it as an `int64`, which would not work.
 **Channel Type Filtering**
 
 A channel type menu optionally allows you to filter which channel types are made available for selection. You can use
-the `channel_types` argument which accepts a slice of [channel
-types](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
+the `channel_types` argument which accepts a slice of [channel types](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
 
 ```go
 {{ $issuesChannel := "1210135699135926312" }}
@@ -505,8 +503,8 @@ fields are required, depending on if you are using a custom emoji or not.
 
 ```go
 {{ $unicodeEmojiButton := cbutton "emoji" (sdict "name" "😀") }}
-{{ $customEmojiButton := cbutton "emoji" (sdict "name" "ye" "id" "733037741532643428") }}
-{{ $animatedEmojiButton := cbutton "emoji" (sdict "name" "yenop" "id" "786307104247775302" "animated" true) }}
+{{ $customEmojiButton := cbutton "emoji" (sdict "id" "733037741532643428") }}
+{{ $animatedEmojiButton := cbutton "emoji" (sdict "id" "786307104247775302") }}
 
 {{ $components := cslice $unicodeEmojiButton $customEmojiButton $animatedEmojiButton }}
 {{ sendMessage nil (complexMessage "components" $components)}}
@@ -541,7 +539,7 @@ fields are required, depending on if you are using a custom emoji or not.
 
 ### Creating Modals
 
-Modals are created, either as an `sdict` or using `cmodal`. After being created they are subsequently sent with
+Modals can be created as either an `sdict` or a `cmodal`. After being created they are subsequently sent with
 `sendModal`. Sending a modal is a *response* to an interaction, meaning it can only be sent once after a user clicks a
 button or uses a select menu. You cannot send a modal as a response to a user submitting a modal.
 
@@ -578,7 +576,7 @@ Important interaction context data
 |-| -|
 |.Interaction.Token| The interaction's token. Is unique to each interaction. Required for sending [followup interactions](functions#interaction-followups).|
 |.CustomID| The triggering component/modal's Custom ID. Note: This custom ID excludes the `templates-` prefix which is added to all components and modals under the hood.|
-|.StrippedID| "Strips" or cuts off the triggering part of the custom ID and prints out everything else after that. Bear in mind, when using regex as trigger, for example `"day"` and input custom ID is `"have-a-nice-day-my-dear-YAG"` output will be `"-my-dear-YAG"`  - rest is cut off.|
+|.StrippedID| "Strips" or cuts off the triggering part of the custom ID and prints out everything else after that. Bear in mind, when using regex as trigger, for example `"day"` and input custom ID is `"have-a-nice-day-my-dear-YAG"` output will be `"-my-dear-YAG"`  --- rest is cut off.|
 |.Values| List of all options selected with a select menu, OR all values input into a modal in order.|
 
 [Interaction object and context data](/reference/templates#interaction)
@@ -647,10 +645,10 @@ Example 2: A user is setting up a new UNO game with a modal, they've filled out 
 ### Initial Response
 
 While technically not required, responding to an interaction with one of Discord's allotted initial responses is crucial
-if you don't want your users to see an error after interacting. An interaction may be responded to one time.
+if you don't want your users to see an error after interacting. An interaction may be responded to only once.
 
-You can only respond to an interaction within the custom command triggered by said interaction. A CC executed with
-`execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
+You can only respond to an interaction within the custom command triggered by said interaction, with the exception that
+a CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
 
 Possible initial responses:
 
@@ -675,7 +673,7 @@ Followups allow you to continue responding to an interaction after the initial r
 for up to 15 minutes after the user interacts, and you can follow up as many times as you'd like. Followups require the
 interaction token of the interaction they should be following up on.
 
-Possible initial responses:
+Possible followups:
 
 - Output text in your script response field. This text will be sent as an interaction followup.
   - You can even use the `ephemeralResponse` function to turn it *ephemeral*.
@@ -702,7 +700,7 @@ Possible initial responses:
 ### Snippet
 
 Here is a basic scenario where you need to use `editResponse` and `getResponse` to work with an *ephemeral* followup
-message. You couldn't use the standard `editMessage` or `getMessage` for this because it is an ephemeral message.
+message. You cannot use the standard `editMessage` or `getMessage` for this because it is an ephemeral message.
 
 ```go
 {{ $interactionToken := .Interaction.Token }}

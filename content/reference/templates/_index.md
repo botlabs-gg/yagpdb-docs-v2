@@ -201,7 +201,7 @@ Channel functions are covered [here](functions#channel).
 {{% notice style="tip" %}}
 
 Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
-about using interactions, [see here](/reference/custom_interactions).
+about using interactions, please view our [interactions cookbook](/reference/custom_interactions).
 
 {{% /notice %}}
 

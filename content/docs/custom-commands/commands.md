@@ -31,7 +31,7 @@ Edit this to change the output of the custom command {{.CCID}}!
 
 Each custom command is assigned a unique incrementing ID, which cannot be modified after creation.
 
-{{< callout context="tip" title="Troubleshooting" >}}
+{{< callout context="tip" title="Troubleshooting" icon="outline/rocket" >}}
 
 ![Empty CC Discord Messages](empty_cc_1.png)
 
@@ -188,7 +188,7 @@ Reactions to a message will trigger the command.
 
 Can specify **Added Only**, **Removed Only**, or **Both** to restrict which types of Reactions will trigger the command.
 
-{{< callout context="tip" title="Filtering Emojis" >}}
+{{< callout context="tip" title="Filtering Emojis" icon="outline/rocket" >}}
 
 You cannot specify which emojis the command will trigger on. If you'd like to limit which emojis run the code, you will
 need to write that code yourself in the response.
@@ -267,7 +267,7 @@ getting data from users, sending messages to other channels, and more. Visit the
 
 {{< link-card href="/reference/templates" description="Templates" target="_blank" >}}
 
-{{< callout context="tip" title="Keeping your code safe" >}}
+{{< callout context="tip" title="Keeping your code safe" icon="outline/rocket" >}}
 
 It is recommended to save local copies of your custom commands. There is no way to recover deleted or overwritten CCs.
 Use an editor like **Vim**, **VS Code**, or **Notepad++** for the best coding experience.
@@ -304,7 +304,7 @@ not send a response. It also increases if the command is run via `execCC`.
 
 The run count will not increase if the user who ran the command did not pass the restrictions.
 
-{{< callout context="tip" title="Troubleshooting" >}}
+{{< callout context="tip" title="Troubleshooting" icon="outline/rocket" >}}
 
 If your command fails to run, check the run count. If the run count increases when you attempt to run the command, the
 issue is with your code. Otherwise, the issue may be with YAGPDB's permissions in your server, or improperly configured
@@ -344,7 +344,7 @@ A custom command **will not save** if there is an error in your input. Examples 
 
 If you save a command with an interval trigger which has never been run, it will run immediately upon saving.
 
-{{< callout context="tip" title="Keeping your code safe" >}}
+{{< callout context="tip" title="Keeping your code safe" icon="outline/rocket" >}}
 
 It is recommended to code your custom command using a local editor on your device. You will not be able to save your
 code on the dashboard if there are syntax errors in your code. Use an editor like **Vim**, **VS Code**, or **Notepad++**

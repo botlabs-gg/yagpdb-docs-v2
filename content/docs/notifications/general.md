@@ -31,7 +31,7 @@ Write a message that you want the bot to send to the user via DM whenever someon
 Choose what channel you want the bot to announce the topic change from a specific channel or the channel that the topic
 was changed in.
 
-{{< callout tip >}}
+{{< callout context="tip" icon="outline/rocket" >}}
 
 Custom command templates are supported for usage in all the notification feeds provided.
 

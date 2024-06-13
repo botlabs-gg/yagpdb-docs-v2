@@ -27,7 +27,7 @@ prefix was instead `?`, one would use `?remindme ...`, and so on.
 
 Slash commands are always triggered using the `/` character and hence do not depend on the prefix configured here.
 
-{{< callout tip >}}
+{{< callout context="tip" icon="outline/rocket" >}}
 
 In addition to the command prefix, you can trigger YAGPDB commands by pinging the bot at the start of your message. This
 is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recall it.

@@ -277,7 +277,7 @@ You may optionally send warnings to the mod log, this is enabled in the warnings
 [TopWarnings Command Syntax](/commands#topwarnings) - Shows ranked list of warnings on the server, allowing you to turn
 misbehavior into a fun minigame for your server members.
 
-{{< callout context="tip" title="Taking Action on Warn Count" >}}
+{{< callout context="tip" title="Taking Action on Warn Count" icon="outline/rocket" >}}
 
 Some users prescribe an "x warnings => mute/kick/ban" rule for their servers. To have YAGPDB automatically take action
 based on warning count, you can take advantage of the template scripting within the warning DM.

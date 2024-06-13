@@ -1,6 +1,7 @@
 +++
 title = 'Basic Automoderator'
 weight = 2
+menuPre = "<i class= 'fas fa-robot'></i> "
 +++
 
 A very basic automoderator to get things done quickly.

@@ -1,6 +1,7 @@
 +++
 title = 'Logging'
 weight = 4
+menuPre = "<i class= 'fas fa-database'></i> "
 +++
 
 Capture a moment in time with message logging of the last messages in a channel when the log is created, including a

@@ -1,6 +1,7 @@
 +++
 title = 'Reddit'
 weight = 2
+menuPre = "<i class= 'fab fa-reddit'></i> "
 +++
 
 Get notifications from your favorite subreddits directly in your Discord server.

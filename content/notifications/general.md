@@ -1,6 +1,7 @@
 +++
 title = 'General'
 weight = 1
+menuPre = "<i class= 'fas fa-bell'></i> "
 +++
 
 General notifications such as a welcoming direct message, a message in the server when users join or leave, as well as a

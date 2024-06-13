@@ -2,6 +2,7 @@
 archetype = "chapter"
 title = "Fun"
 weight = 7
+menuPre = "<i class= 'fas fa-trophy'></i> "
 +++
 
 Fun commands and systems provide engaging ways to enrich your server environment.

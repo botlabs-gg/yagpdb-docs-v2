@@ -2,6 +2,7 @@
 archetype = "chapter"
 title = "Core"
 weight = 3
+menuPre = "<i class= 'fas fa-cogs'></i> "
 +++
 
 Under the **Core** category of the control panel, you can configure access to

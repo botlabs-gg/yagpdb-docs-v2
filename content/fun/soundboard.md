@@ -1,6 +1,7 @@
 +++
 title = 'Soundboard'
 weight = 2
+menuPre = "<i class= 'fas fa-border-all'></i> "
 +++
 
 The soundboard system allows the bot to join a voice channel, and play sounds triggered by soundboard commands.

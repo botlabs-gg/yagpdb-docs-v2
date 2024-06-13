@@ -1,6 +1,7 @@
 +++
 title = 'Control Panel Logs'
 weight = 2
+menuPre = "<i class= 'fas fa-database'></i> "
 +++
 
 View a list of recent changes to your YAGPDB configuration.

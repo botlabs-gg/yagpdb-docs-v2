@@ -1,6 +1,7 @@
 +++
 title = 'Command Settings'
 weight = 3
+menuPre = "<i class= 'fas fa-terminal'></i> "
 +++
 
 Fine-grained control over all of YAGPDB's inbuilt commands.

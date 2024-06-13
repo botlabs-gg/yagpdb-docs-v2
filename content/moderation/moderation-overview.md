@@ -2,6 +2,7 @@
 archetype = "default"
 title = "Moderation"
 weight = 1
+menuPre = "<i class= 'fas fa-gavel'></i> "
 +++
 
 Everything in moderation, including moderation.

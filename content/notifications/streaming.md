@@ -1,6 +1,7 @@
 +++
 title = 'Streaming'
 weight = 4
+menuPre = "<i class= 'fas fa-video'></i> "
 +++
 
 Let everyone know that someone is currently streaming.

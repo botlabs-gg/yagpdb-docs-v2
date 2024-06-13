@@ -1,6 +1,7 @@
 +++
 title = 'Reputation'
 weight = 1
+menuPre = "<i class= 'fas fa-angry'></i> "
 +++
 
 The reputation system tracks each user's reputation score, and allows users to add or remove reputation points from

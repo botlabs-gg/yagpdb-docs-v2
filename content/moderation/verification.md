@@ -1,6 +1,7 @@
 +++
 title = 'Verification'
 weight = 5
+menuPre = "<i class= 'fas fa-address-card'></i> "
 +++
 
 Use Google reCAPTCHA v2 to verify your members before permitting them access to your server.

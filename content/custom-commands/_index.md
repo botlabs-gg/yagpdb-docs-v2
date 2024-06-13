@@ -2,6 +2,7 @@
 archetype = "chapter"
 title = "Custom Commands"
 weight = 4
+menuPre = "<i class= 'fas fa-closed-captioning'></i> "
 +++
 
 Custom commands (abbreviated **CCs**) allow you to develop your own commands and behaviors for your server. A command

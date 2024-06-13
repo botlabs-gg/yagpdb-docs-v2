@@ -1,6 +1,7 @@
 +++
 title = 'YouTube'
 weight = 3
+menuPre = "<i class= 'fab fa-youtube'></i> "
 +++
 
 Get notifications from your favorite YouTubers directly in your Discord server.

@@ -1,6 +1,7 @@
 +++
 title = 'Commands'
 weight = 1
+menuPre = "<i class= 'fas fa-code'></i> "
 +++
 
 The commands page displays all custom commands and allows you to add, delete, or edit custom commands and custom command

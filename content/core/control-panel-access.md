@@ -1,6 +1,7 @@
 +++
 title = 'Control Panel Access'
 weight = 1
+menuPre = "<i class= 'fas fa-cog'></i> "
 +++
 
 Select who can view or edit your control panel.

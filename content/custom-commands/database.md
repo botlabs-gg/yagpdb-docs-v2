@@ -1,6 +1,7 @@
 +++
 title = 'Database'
 weight = 2
+menuPre = "<i class= 'fas fa-database'></i> "
 +++
 
 The Custom Command Database is used for persistent storage between custom command executions. The database page displays

@@ -12,7 +12,7 @@ Library of base data accessible within custom scripting.
 
 ## Preface
 
-All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Golang's
+All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Go's
 stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
 len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
 a concise and to the point reference document for all available templates/functions. **Functions** are covered
@@ -46,7 +46,7 @@ Templating system uses standard ASCII quotation marks:\
 sure no "smart-quotes" are being used.
 
 The difference between back quotes and double quotes in string literals is covered in
-[Golang reference documentation](https://go.dev/ref/spec#String\_literals).
+the [Go Language Specification](https://go.dev/ref/spec#String\_literals).
 
 {{% /notice %}}
 
@@ -126,7 +126,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 |.IsMessageEdit| Returns boolean true/false if message is edited and edit trigger for custom commands is enabled. Defaults to false.|
 |.IsPremium| Returns boolean true/false whether guild is premium of YAGPDB or not.|
 |.LinkRegex| Returns string value of in-built link-matching regular expression.|
-|.Permissions| Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. `{{.Permissions.AddReactions}}` would return `64`, same as `{{bitwiseLeftShift 1 6}}`. More in [Discord Permissions documentation](https://discord.com/developers/docs/topics/permissions#permissions).|
+|.Permissions| Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. `{{.Permissions.AddReactions}}` would return `64`, same as `{{bitwiseLeftShift 1 6}}`. More in [Discord's Permissions documentation](https://discord.com/developers/docs/topics/permissions#permissions).|
 |.ServerPrefix| Returns server's command-prefix.|
 
 ### Channel
@@ -149,7 +149,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 |.Channel.PermissionOverwrites| A slice of [Discord permission overwrite](https://discord.com/developers/docs/resources/channel#overwrite-object) structures applicable to the channel.|
 |.Channel.Position| Channel position from top-down.|
 |.Channel.Topic| The topic of the channel.|
-|.Channel.Type| The type of the channel. Explained further in [Discord channel documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types)|
+|.Channel.Type| The type of the channel. Explained further in [Discord's channel documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types)|
 
 [Channel object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#channel-object).
 
@@ -640,7 +640,7 @@ template and may be used as part of another action. Below is an example using `e
 
 ## Custom Types
 
-Golang has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types
+Go has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types
 (_array_, _slice_, _map_, ...) which also are used in custom commands. \
 \
 YAGPDB's templating "engine" has currently two user-defined, custom data types - _templates.Slice_ and
@@ -830,7 +830,7 @@ tickets per user.
 
 ## Time
 
-Time and duration types use Golang's time package library and its methods >
+Time and duration types use Go's time package library and its methods >
 [https://golang.org/pkg/time/#time](https://golang.org/pkg/time/#Time) and also this although slightly different syntax
 all applies here > [https://gobyexample.com/time](https://gobyexample.com/time).
 

@@ -17,7 +17,7 @@ commands.
 
 {{% notice style="note" %}}
 
-This isn't the actual page about custom commands. A brief overview about custom commands can be found on the
+This isn't the actual page about custom commands. A brief overview about custom commands can be found in the
 [Custom Commands documentation](/custom-commands). Please take notice, some of examples presented here are not up to
 date with current capabilities of YAGPDB. Please visit our [support server](https://discord.gg/0vYlUK2XBKldPSMY) for
 newer solutions.

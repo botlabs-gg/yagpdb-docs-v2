@@ -138,7 +138,136 @@ This button will now trigger the following custom command:
 
 ![A custom command triggering on the message component custom ID "duck"](duck_trigger.png)
 
-This custom command will trigger on any message component, either button or menu, whose custom ID contains the word "duck."
+This custom command will trigger on any message component, either button or menu, whose custom ID contains the word
+"duck."
+
+##### Menus
+
+Select menus are available in the following types:
+
+- Text - The options available to be selected are defined when creating the select menu. Options have labels, and can
+  optionally have emojis and longer-form descriptions.
+- User - The options are populated with users on the server by Discord.
+- Role - The options are populated with roles on the server by Discord.
+- Mentionable - The options are auto-populated with both users and roles on the server by Discord, allowing members to
+  select both.
+- Channel - The options are populated with channels on the server by Discord. You can limit which channel types appear
+  as options when creating the select menu.
+
+###### Text Type
+
+Here is an example of a select menu with three text options defined.
+
+```go
+{{ $menu := cmenu
+  "type" "text"
+  "placeholder" "Choose a terrible thing"
+  "custom_id" "menus-duck"
+  "options" (cslice
+    (sdict "label" "Ducks" "value" "opt-1" "default" true)
+    (sdict "label" "Duck" "value" "duck-option" "emoji" (sdict "name" "🦆"))
+    (sdict "label" "Half a Duck" "value" "third-option" "description" "Don't let the smaller amount fool you."))
+  "max_values" 3 }}
+
+{{ sendMessage nil (complexMessage "menus" $menu) }}
+```
+
+![A Photo of the above menu](text_menu_example.png)
+
+In this menu, our first option (Ducks) is defined as `default`, which is why it is already selected when we look at the
+menu on our server. You can define multiple default options, however the amount of default options you define must fall
+between your `min_values` and `max_values`.
+
+We have also set the `max_values` to 3, and we haven't set a `min_values` argument. This means the
+server member could select anywhere between 1 and 3 of these options.
+
+If the member selected all three options and submitted it (which would send an interaction to YAGPDB), while [parsing
+that interaction](#parsing-an-interaction) the `.Values` context data would be `["opt-1" "duck-option" "opt-3"]`. This is
+because in our code defining the select menu, we defined the `"value"` args of our menu options as `opt-1`,
+`duck-option`, and `third-option`. If the member only selected the "Half a Duck" option, `.Values` would be
+`["third-option"]`.
+
+###### Other Types
+
+The other menu types are more straightforward. `options` should not be defined for any menu type except `text`.
+
+```go
+{{ $menu := cmenu
+  "type" "role"
+  "placeholder" "Choose roles who are secretly ducks"
+  "custom_id" "menus-duck-roles"
+  "max_values" 3 }}
+
+{{ sendMessage nil (complexMessage "menus" $menu) }}
+```
+
+![A photo of the above role menu](role_menu_example.png)
+
+If a member selected roles from this menu, `.Values` would return a slice of strings containing the IDs of selected
+options. This behavior is consistent between user type, role type, mentionable type, and channel type. Note that even in
+mentionable type select menus where an ID could be either a user or a role, `.Values` is still only a slice of IDs. If
+parsing options from mentionable type menus, you will need to use your own methods of determining if an ID is a role or
+a user.
+
+**Default Values**
+
+Setting default values in these select menus is a more involved process than for text type menus. Instead of setting a
+`default` value on each option, you must instead provide a `default_values` argument containing a slice of [default
+value
+structures](https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-default-value-structure).
+
+```go
+{{ $adminRoleID := "1210128415689285642" }}
+{{ $soggysaussagesUserID := "329826270898683904" }}
+
+{{ $menu := cmenu
+  "type" "mentionable"
+  "placeholder" "Choose users or roles who are secretly ducks"
+  "custom_id" "menus-duck-mentionables"
+  "default_values" ( cslice
+  ( sdict "type" "role" "id" $adminRoleID )
+  ( sdict "type" "user" "id" $soggysaussagesUserID ))
+  "max_values" 3 }}
+
+{{ sendMessage nil (complexMessage "menus" $menu) }}
+```
+
+![The above mentionable menu with default options selected](mentionable_menu_with_defaults.png)
+
+{{% notice info %}}
+
+The `default_values` `id`s must be `strings`, not `int64s`. Note how in the above example, `$adminRoleID :=
+"1210128415689285642"` defining it as a string, as opposed to `$adminRoleID := 1210128415689285642` which would define
+it as an `int64`, which would not work.
+
+{{% /notice %}}
+
+**Channel Type Filtering**
+
+A channel type menu optionally allows you to filter which channel types are made available for selection. You can use
+the `channel_types` argument which accepts a slice of [channel
+types](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
+
+```go
+{{ $issuesChannel := "1210135699135926312" }}
+{{ $updatesChannel := "1210135938722693151" }}
+
+{{ $menu := cmenu
+  "type" "channel"
+  "placeholder" "Choose channels which are secretly duck hideouts"
+  "custom_id" "menus-duck-channels"
+  "default_values" ( cslice
+  ( sdict "type" "channel" "id" $issuesChannel )
+  ( sdict "type" "channel" "id" $updatesChannel ))
+  "max_values" 3
+  "channel_types" (cslice 5 15) }}
+
+{{ sendMessage nil (complexMessage "menus" $menu) }}
+```
+
+![The above channel menu with only forum channels and announcement channels selectable](channel_menu_with_filters.png)
+
+This gives us a select menu which we can only select guild announcement and guild forum channels from.
 
 ##### Multiple Components
 
@@ -392,14 +521,14 @@ fields are required, depending on if you are using a custom emoji or not.
 |Custom ID| `string`, max 100 characters|
 |Components| Max 5 rows of components in each message|
 
-##### Buttons
+##### Buttons Limits
 
 |Field|Limits|
 |-|-|
 |Components| Max 5 buttons in each row|
 |Label| `string`, max 100 characters|
 
-##### Menus
+##### Menus Limits
 
 |Field|Limits|
 |-|-|
@@ -480,7 +609,8 @@ Example: A user has chosen an option in a select menu whose value is `blue-7`, t
 determine if it is a playable card.
 
 ```go
-{{ $cardRaw := index .Values 0 }} {{/* "blue-7" */}}
+{{ $selectedOptions := .Values }} {{/* ["blue-7"] */}}
+{{ $cardRaw := index $selectedOptions 0 }} {{/* "blue-7" */}}
 {{ $cardSplit := split $cardRaw "-" }} {{/* ["blue" "7"] */}}
 {{ $playedCard := sdict
   "Color" ( index $cardSplit 0 )

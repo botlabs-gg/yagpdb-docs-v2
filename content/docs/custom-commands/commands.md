@@ -176,7 +176,7 @@ Messages **containing** the trigger text (**4**) will trigger the command.
 
 ##### Regex
 
-Messages matching the trigger text (**4**) as a **[regex pattern](/reference/regex)** will trigger the command.
+Messages matching the trigger text (**4**) as a **[regex pattern](/docs/reference/regex)** will trigger the command.
 
 ##### Exact Match
 
@@ -247,7 +247,7 @@ sensitivity** toggle (**5**) which is off by default. A case-sensitive trigger `
 
 #### Edit Message Trigger
 
-This feature is [premium only](/premium).
+This feature is [premium only](/docs/premium).
 
 Commands which trigger on messages have a **Trigger on message edits** toggle (**6**) which is off by default. If a
 message is edited and matches the trigger text, it will trigger the command.

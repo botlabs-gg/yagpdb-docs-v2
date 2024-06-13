@@ -13,7 +13,7 @@ The verification plugin assigns a specified role to new members after they succe
 verification. This allows you to further verify new members as humans rather than bots before granting them access to
 your server.
 
-This is accomplished by sending new members a customizable DM (which employs [template scripting](/reference/templates))
+This is accomplished by sending new members a customizable DM (which employs [template scripting](/docs/reference/templates))
 containing a unique link to verify, tied to their User ID. This link takes them to a customizable verification page with
 a CAPTCHA challenge. Once completed, the User ID is assigned the verified role.
 

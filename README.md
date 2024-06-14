@@ -7,8 +7,8 @@ an experiment to see if it is a viable alternative.
 
 ## Contributing / Building
 
-Install [Node.js](https://nodejs.org/en), clone this repository, and use `npm run dev` to start a local server. The
-server will automatically rebuild the page when you make changes.
+Install [Node.js](https://nodejs.org/en), clone this repository, install the dependencies with `npm install`, and run
+`npm run dev` to start a local server. The server will automatically rebuild the page when you make changes.
 
 To build the page in release mode, use `npm run build -- --baseURL ...`\*, then serve the generated `public/` directory
 with your webserver of choice.

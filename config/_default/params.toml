@@ -16,7 +16,7 @@ mainSections = ["docs"]
 
   # Button
   navBarButton = false # false (default) or true
-  navBarButtonUrl = "/docs/prologue/introduction/"
+  navBarButtonUrl = "/docs/welcome/getting-started/"
   navBarButtonText = "Get started"
 
   # FlexSearch
@@ -73,11 +73,6 @@ mainSections = ["docs"]
   docsRepoBranch = "master" # main (default), master, or <branch name>
   docsRepoSubPath = "" # "" (none, default) or <sub path>
 
-  # [doks.menu]
-  #   [doks.menu.section]
-  #     auto = true # true (default) or false
-  #     collapsibleSidebar = true # true (default) or false
-
 # Debug
 [render_hooks.image]
   errorLevel = 'ignore' # ignore (default), warning, or error (fails the build)
@@ -108,16 +103,8 @@ mainSections = ["docs"]
     suffix = ""
   [seo.favicons]
     sizes = []
-    icon = "favicon.png" # favicon.png (default)
-    svgIcon = "favicon.svg" # favicon.svg (default)
-    maskIcon = "mask-icon.svg" # mask-icon.svg (default)
-    maskIconColor = "white" # white (default)
+    icon = "icon.png"
   [seo.schemas]
-    type = "Organization" # Organization (default) or Person
-    logo = "favicon-512x512.png" # Logo of Organization — favicon-512x512.png (default)
-    name = "YAGPDB" # Name of Organization or Person
-    sameAs = [] # E.g. ["https://github.com/gethyas/hyas", "https://fosstodon.org/@hyas"]
-    images = ["cover.png"] # ["cover.png"] (default)
-    article = [] # Article sections
-    newsArticle = [] # NewsArticle sections
-    product = [] # Product sections
+    type = "Organization"
+    logo = "icon.png"
+    name = "YAGPDB"

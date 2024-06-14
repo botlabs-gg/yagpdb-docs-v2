@@ -537,6 +537,14 @@ fields are required, depending on if you are using a custom emoji or not.
 |MinValues| `integer` between 0-25|
 |MaxValues| `integer` between 1-25|
 
+###### Text-Type Option Limits
+
+|Field|Limits|
+|-|-|
+|Label| `String`, max 100 characters.|
+|Value| `String`, max 100 characters.|
+|Description| `String`, max 100 characters.|
+
 ### Creating Modals
 
 Modals can be created as either an `sdict` or a `cmodal`. After being created they are subsequently sent with

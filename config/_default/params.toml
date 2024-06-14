@@ -75,11 +75,11 @@ mainSections = ["docs"]
 
 # Debug
 [render_hooks.image]
-  errorLevel = 'ignore' # ignore (default), warning, or error (fails the build)
+  errorLevel = "warning" # ignore (default), warning, or error (fails the build)
 
 [render_hooks.link]
-  errorLevel = 'ignore' # ignore (default), warning, or error (fails the build)
-  highlightBroken = false # true or false (default)
+  errorLevel = "warning" # ignore (default), warning, or error (fails the build)
+  highlightBroken = true # true or false (default)
 
 # Images (@hyas/images)
 [hyas_images]

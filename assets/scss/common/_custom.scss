@@ -1,1 +1,6 @@
-// Put your custom SCSS code here
+// Highlight broken links.
+a.broken {
+  background: #ff0;
+  border: 2px solid #f00;
+  padding: 0.1em 0.2em;
+}

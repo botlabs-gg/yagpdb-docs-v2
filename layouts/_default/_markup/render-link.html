@@ -1,3 +1,41 @@
+{{- /*
+
+  TL;DR: This render hook is the default Hugo render hook for links, and serves to ensure links in Markdown are always
+  resolved accurately. Enabling the render hook in configuration does not suffice: the Doks theme provides its own
+  render hook which does not always resolve links accurately but overrides Hugo's internal render hook. Hence we must
+  override the Doks hook with our own.
+
+  ---
+
+  With the default Hugo configuration, internal links such as [foo](/docs/foo) do not resolve properly when deployed to
+  a subdirectory such as https://botlabs-gg.github.io/yagpdb-docs-v2: the resulting HTML reads
+    <a href="/docs/foo">foo</a>
+  which effectively links to the (non-existent) page https://botlabs-gg.github.io/docs/foo: that is, the URL is resolved
+  relative to the host, not the subdirectory.
+
+  Hugo offers two main options to deal with this issue, described in https://github.com/gohugoio/hugo/issues/4733. One can:
+    1) Enable the canonifyURLs option, which prefixes internal links with the base URL of the deployment. So the HTML
+       generated with the example above would read
+         <a href="https://botlabs-gg.github.io/yagpdb-docs-v2/docs/foo">foo</a>
+       as desired. However, this option has been deprecated and slated for removal -- see, again, #4733 -- leaving only the
+       following, currently recommended solution:
+
+    2) Use Hugo's render hooks to resolve link destinations; under these hooks, the HTML generated reads
+         <a href="/yagpdb-docs-v2/docs/foo">foo</a>
+       in the production deployment with baseURL=https://botlabs-gg.github.io/yagpdb-docs-v2/ and
+         <a href="/docs/foo">foo</a>
+       locally (where baseURL=localhost, i.e., the content is not served from a subdirectory.) That is, the link is resolved
+       accurately in all cases.
+
+  The aforementioned render hooks are disabled by default (https://gohugo.io/render-hooks/links) so must be explicitly
+  enabled in config/_default/markup.toml. However, there is a complication in that Doks provides its own link render
+  hook which inconveniently overrides the Hugo hook; we therefore have to copy the original Hugo hook here and override
+  Doks (which originally overrode Hugo.)
+
+  See also https://www.veriphor.com/articles/link-and-image-render-hooks/.
+
+*/ -}}
+
 {{- $u := urls.Parse .Destination -}}
 {{- $href := $u.String -}}
 {{- if strings.HasPrefix $u.String "#" }}

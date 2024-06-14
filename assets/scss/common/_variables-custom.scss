@@ -1,1 +1,18 @@
-// Put your custom SCSS variables here
+// Increase breakpoints and max widths from the default;
+// see https://getbootstrap.com/docs/5.0/layout/breakpoints/
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1440px,
+  xxl: 1750px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1425px,
+  xxl: 1650px
+);

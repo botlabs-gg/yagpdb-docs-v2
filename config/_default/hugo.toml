@@ -1,24 +1,16 @@
 title = "YAGPDB Docs"
+copyright = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
 # To avoid weirdness with images and whatnot, this is empty and instead set at build time.
 # See also https://discourse.gohugo.io/t/solved-what-should-be-used-for-the-value-of-site-baseurl/5896
 baseURL = ""
 canonifyURLs = false
 disableAliases = true
-disableHugoGeneratorInject = true
-# disableKinds = ["taxonomy", "term"]
-enableEmoji = true
-enableGitInfo = false
+enableGitInfo = true
 enableRobotsTXT = true
 languageCode = "en-US"
-paginate = 10
-rssLimit = 10
-summarylength = 20 # 70 (default)
 
-# Multilingual
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
-
-copyRight = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
 
 [build.buildStats]
   enable = true
@@ -33,14 +25,13 @@ copyRight = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
   isPlainText = true
   notAlternative = true
 
-# Add output format for section sitemap.xml
 [outputFormats.SITEMAP]
   mediaType = "application/xml"
   baseName = "sitemap"
   isHTML = false
   isPlainText = true
   noUgly = true
-  rel  = "sitemap"
+  rel = "sitemap"
 
 [sitemap]
   changefreq = "monthly"
@@ -58,12 +49,7 @@ copyRight = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
   tag = "tags"
 
 [permalinks]
-  blog = "/blog/:slug/"
   docs = "/docs/:sections[1:]/:slug/"
-# docs = "/docs/1.0/:sections[1:]/:slug/"
-
-[minify.tdewolff.html]
-  keepWhitespace = false
 
 [related]
   threshold = 80
@@ -78,10 +64,3 @@ copyRight = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
     [[related.indices]]
       name = "date"
       weight = 10
-
-[imaging]
-  anchor = "Center"
-  bgColor = "#ffffff"
-  hint = "photo"
-  quality = 85
-  resampleFilter = "Lanczos"

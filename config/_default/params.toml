@@ -67,7 +67,7 @@ mainSections = ["docs"]
 
   # Repository
   editPage = true # false (default) or true
-  lastMod = false # false (default) or true
+  lastMod = true # false (default) or true
   repoHost = "GitHub" # GitHub (default), Gitea, GitLab, Bitbucket, or BitbucketServer
   docsRepo = "https://github.com/botlabs-gg/yagpdb-docs-v2"
   docsRepoBranch = "master" # main (default), master, or <branch name>

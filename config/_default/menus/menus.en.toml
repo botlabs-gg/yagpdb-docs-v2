@@ -1,11 +1,11 @@
 [[main]]
   name = "Introduction"
-  url = "/docs/welcome/introduction/"
+  url = "/welcome/introduction/"
   weight = 10
 
 [[main]]
   name = "Getting Started"
-  url = "/docs/welcome/getting-started/"
+  url = "/welcome/getting-started/"
   weight = 15
 
 [[social]]

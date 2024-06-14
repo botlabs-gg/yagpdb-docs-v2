@@ -116,7 +116,7 @@ The role menu makes it possible to have people assign roles by adding reactions 
 
 {{< callout context="note" icon="outline/info-circle" >}}
 
-If you'd like to create a message like the above to create a rolemenu on, take a look at the [Custom Embeds](/docs/reference/custom-embeds) chapter.
+If you'd like to create a message like the above to create a rolemenu on, take a look at the [Custom Embeds](/reference/custom-embeds) chapter.
 
 {{< /callout >}}
 

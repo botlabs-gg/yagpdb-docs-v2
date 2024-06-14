@@ -26,7 +26,7 @@ The moderation page allows configuration of common settings.
 
 1. **Mod Log** - The mod log is the channel YAGPDB will send log messages to when most moderation commands are used. Log
    entries include username and user ID of both the moderator, and the moderated user. They additionally include the
-   reason for relevant commands (defaults to `<no reason provided>` when not provided), and a [log](/docs/moderation/logging)
+   reason for relevant commands (defaults to `<no reason provided>` when not provided), and a [log](/moderation/logging)
    of the channel where the command was run.
 2. **Report** - The channel for YAGPDB to send report messages to when users use the report command. Similar to the mod
    log, report entries include username and user ID of the user reporting, and the user reported, as well as the reason
@@ -38,9 +38,9 @@ The moderation page allows configuration of common settings.
 
 Certain potentially destructive moderation commands are disabled by default. These commands are:
 
-- The **clean command** (**4**) toggles the [clean command](/docs/core/all-commands#clean).
-- The **report command** (**5**) toggles the [report command](/docs/core/all-commands#report).
-- **Giverole/Takerole commands** (**7**) toggle the [giverole](/docs/core/all-commands#giverole) and
+- The **clean command** (**4**) toggles the [clean command](/core/all-commands#clean).
+- The **report command** (**5**) toggles the [report command](/core/all-commands#report).
+- **Giverole/Takerole commands** (**7**) toggle the [giverole](/core/all-commands#giverole) and
   [takerole](/core/all-commands#takerole) commands.
 
 ### Unban/Unmute Logging
@@ -75,11 +75,11 @@ will inform you of the required permissions for the plugin and alert you if the 
 
 Moderation tools are used to prevent members on your server from being abusive. They can be used via command or triggered
 by automoderator. Like all inbuilt commands, they may also be triggered within template script using
-[exec/execAdmin](/docs/reference/templates/functions#miscellaneous).
+[exec/execAdmin](/reference/templates/functions#miscellaneous).
 
 Most moderation tools allow you to specify a reason for the mod action. This is included when the action is logged in
 the [mod log](#mod-channels) and is also, by default, DM'd to the offending user when using [certain
-commands](#moderation-dms). This reason may be retroactively edited using the [Reason Command](/docs/core/all-commands#reason).
+commands](#moderation-dms). This reason may be retroactively edited using the [Reason Command](/core/all-commands#reason).
 
 Each of the main moderation tools have individual configuration pages, accessible through the tabs (**13**).
 
@@ -121,8 +121,8 @@ be directly sent to the offending user.
 Additional template dot context data is available for Moderation Actions:
 
 - `{{.Reason}}`: The reason specified in the timeout.
-- `{{.Author}}`: The author of the punishment, is a [user object](/docs/reference/templates#user).
-- `{{.Duration}}`: The duration of the mod action as a [time.Duration format](/docs/reference/templates#time).
+- `{{.Author}}`: The author of the punishment, is a [user object](/reference/templates#user).
+- `{{.Duration}}`: The duration of the mod action as a [time.Duration format](/reference/templates#time).
 - `{{.HumanDuration}}`: The duration in a human friendly format (`1 hour and 3 minutes` for example).
 - `{{.WarningID}}`: The ID of the warning (when using the warn command).
 
@@ -254,7 +254,7 @@ needing to remove their access to your server.
 
 #### Message Logs
 
-You may optionally allow YAGPDB to create a [message log](/docs/moderation/logging) of the last 100 messages from all users
+You may optionally allow YAGPDB to create a [message log](/moderation/logging) of the last 100 messages from all users
 in the channel a warning was issued in. This can help provide context for past warnings and further inform future mod
 actions. This is enabled in the warnings tab on the control panel.
 

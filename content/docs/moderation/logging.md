@@ -17,7 +17,7 @@ YAGPDB IS NOT A LOGGING BOT.
 ![A message log from the YAGPDB support server](message_log_example.png)
 
 Message logs capture X amount of messages from a channel, including any deleted messages cached by YAGPDB (the last
-1 hour of deleted messages, or last 12 hours with [premium](/docs/premium), are recorded by YAGPDB).
+1 hour of deleted messages, or last 12 hours with [premium](/premium), are recorded by YAGPDB).
 
 The log is accessible on YAGPDB's website for later viewing. It saves message timestamps, message author's Username and
 User ID, and the message itself. If a message contains an attachment, the attachment URL is logged. If a message
@@ -97,7 +97,7 @@ needing to log in.
 ## Deleted Messages
 
 A log contains any messages cached at the time of log creation. Deleted messages are cached for `1` hour before being
-removed. On [premium](/docs/premium) servers, they are cached for `12` hours.
+removed. On [premium](/premium) servers, they are cached for `12` hours.
 
 In a message log, deleted messages are shown to users permitted to view them. If a user is not permitted to view deleted
 messages, they will not be able to see deleted messages, or that a message was deleted at all.

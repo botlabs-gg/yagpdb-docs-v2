@@ -241,19 +241,19 @@ You must specify a channel to run interval commands in even if the command doesn
 
 ##### Component
 
-[In-depth Interactions Guide](/reference/custom-interactions)
+[In-depth Interactions Guide](/docs/reference/custom-interactions)
 
 The component trigger is used to trigger custom commands via buttons or select menus.
 
-The trigger is matched using [RegEx](/reference/regex).
+The trigger is matched using [RegEx](/docs/reference/regex).
 
 ##### Modal
 
-[In-depth Interactions Guide](/reference/custom-interactions)
+[In-depth Interactions Guide](/docs/reference/custom-interactions)
 
 The modal trigger is used to trigger custom commands via submitting a modal.
 
-The trigger is matched using [RegEx](/reference/regex).
+The trigger is matched using [RegEx](/docs/reference/regex).
 
 #### Case Sensitivity
 
@@ -263,7 +263,7 @@ sensitivity** toggle (**5**) which is off by default. A case-sensitive trigger `
 
 #### Edit Message Trigger
 
-This feature is [premium only](/docs/premium).
+This feature is [premium only](/docs/welcome/premium).
 
 Commands which trigger on messages have a **Trigger on message edits** toggle (**6**) which is off by default. If a
 message is edited and matches the trigger text, it will trigger the command.

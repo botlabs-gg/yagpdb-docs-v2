@@ -200,7 +200,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 {{< callout context="tip" icon="outline/rocket" >}}
 
 Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
-about using interactions, please view our [interactions cookbook](/reference/custom_interactions).
+about using interactions, please view our [interactions cookbook](/docs/reference/custom-interactions).
 
 {{< /callout >}}
 
@@ -823,7 +823,7 @@ Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/inte
 
 [Database functions documentation](functions#database).
 
-[Database example script](/reference/custom-command-examples#database-example).
+[Database example script](/docs/reference/custom-command-examples#database-example).
 
 ### DBEntry
 

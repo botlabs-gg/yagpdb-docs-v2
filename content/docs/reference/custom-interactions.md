@@ -574,20 +574,20 @@ button or uses a select menu. You cannot send a modal as a response to a user su
 
 ## Parsing an Interaction
 
-Custom Commands with the [Message Component](/custom-commands/commands#component) or [Modal
-Submission](/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a
+Custom Commands with the [Message Component](/docs/custom-commands/commands#component) or [Modal
+Submission](/docs/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a
 select menu, or completion of a modal form. Interaction triggers provide new context data for templating.
 
 Important interaction context data
 
 | **Field**          | **Description**                                                                                                                                                                                                                                                                 |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| .Interaction.Token | The interaction's token. Is unique to each interaction. Required for sending [followup interactions](functions#interaction-followups).                                                                                                                                          |
+| .Interaction.Token | The interaction's token. Is unique to each interaction. Required for sending [followup interactions](/docs/reference/templates/functions#interaction-followups).                                                                                                                |
 | .CustomID          | The triggering component/modal's Custom ID. Note: This custom ID excludes the `templates-` prefix which is added to all components and modals under the hood.                                                                                                                   |
 | .StrippedID        | "Strips" or cuts off the triggering part of the custom ID and prints out everything else after that. Bear in mind, when using regex as trigger, for example `"day"` and input custom ID is `"have-a-nice-day-my-dear-YAG"` output will be `"-my-dear-YAG"` --- rest is cut off. |
 | .Values            | List of all options selected with a select menu, OR all values input into a modal in order.                                                                                                                                                                                     |
 
-[Interaction object and context data](/reference/templates#interaction)
+[Interaction object and context data](/docs/reference/templates/template-scripting#interaction)
 
 `.Interaction.Token` must be provided to any [followup](#following-up) functions you decide to use later. If you are
 using these in subsequent script executions, it's a good idea to save this to database when the interaction occurs.
@@ -674,7 +674,7 @@ Possible initial responses:
   message, however because it automatically targets the triggering message, the only argument required is the new
   message.
 
-[Interaction Function documentation](/reference/templates/functions#interactions)
+[Interaction Function documentation](/docs/reference/templates/functions#interactions)
 
 ### Following Up
 
@@ -704,7 +704,7 @@ Possible followups:
   - You can still get any initial responses or followups using the standard `getMessage` function as long as they
     aren't _ephemeral_.
 
-[Interaction Function documentation](/reference/templates/functions#interactions)
+[Interaction Function documentation](/docs/reference/templates/functions#interactions)
 
 ### Snippet
 

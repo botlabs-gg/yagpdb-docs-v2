@@ -112,7 +112,7 @@ convert the number to type _string_ before saving and later back to its original
 {{< callout context="tip" icon="outline/rocket" >}}
 
 Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
-about using interactions, [see here](/reference/custom_interactions).
+about using interactions, [see here](/docs/reference/custom-interactions).
 
 {{< /callout >}}
 
@@ -159,12 +159,12 @@ about using interactions, [see here](/reference/custom_interactions).
 
 #### Interaction Miscellaneous
 
-| **Function**                             | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cbutton` "list of button values"        | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#button-object) A Link style button must have a URL and cannot have a Custom ID. All other styles must have a Custom ID and cannot have a URL. All buttons must have either a label or an emoji. Example in section's [Snippets](#interactions-sections-snippets).                                          |
-| `cmenu` "list of select menu values"     | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#select-menu-object) Type should be provided as a string, either `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus must have `options`, all other types cannot. Example in section's [Snippets](#interactions-sections-snippets).                                              |
-| `ephemeralResponse`                      | Send the response text ephemerally. Only works when triggered by an interaction. Works on responses and followups.                                                                                                                                                                                                                                                                                                                 |
-| `getResponse` interactionToken messageID | Can be used to get the bot's responses or followup messages, including ephemeral messages. Returns a [Message](/reference/templates#message) object. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets). |
+| **Function**                             | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cbutton` "list of button values"        | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#button-object) A Link style button must have a URL and cannot have a Custom ID. All other styles must have a Custom ID and cannot have a URL. All buttons must have either a label or an emoji. Example in section's [Snippets](#interactions-sections-snippets).                                                                  |
+| `cmenu` "list of select menu values"     | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#select-menu-object) Type should be provided as a string, either `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus must have `options`, all other types cannot. Example in section's [Snippets](#interactions-sections-snippets).                                                                      |
+| `ephemeralResponse`                      | Send the response text ephemerally. Only works when triggered by an interaction. Works on responses and followups.                                                                                                                                                                                                                                                                                                                                         |
+| `getResponse` interactionToken messageID | Can be used to get the bot's responses or followup messages, including ephemeral messages. Returns a [Message](/docs/reference/templates/template-scripting#message) object. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets). |
 
 #### Interactions section's snippets
 
@@ -236,7 +236,7 @@ about using interactions, [see here](/reference/custom_interactions).
 {{< callout context="note" icon="outline/info-circle" >}}
 
 Boolean logic (and, not, or) and comparison operators (eq, gt, lt, etc.) are covered in [conditional
-branching](/reference/templates#if-conditional-branching).
+branching](/docs/reference/templates/template-scripting#if-conditional-branching).
 
 {{< /callout >}}
 
@@ -277,14 +277,14 @@ branching](/reference/templates#if-conditional-branching).
 
 ### Member
 
-| **Function**                                | **Description**                                                                                                                                                                  |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `getTargetPermissionsIn` memberID channelID | Returns target’s permissions in the given channel.                                                                                                                               |
-| `editNickname` "newNick"                    | Edits triggering user's nickname, argument has to be of type _string_. YAGPDB's highest role has to be above the highest role of the member and bot can't edit owner's nickname. |
-| `hasPermissions` arg                        | Returns true/false on whether triggering user has the permission bit _int64_ that is also set in .Permissions*.*                                                                 |
-| `getMember` mention/userID                  | Function returns [Member object](/docs/reference/templates/#member) having above methods. `{{(getMember .User.ID).JoinedAt}}` <br>is the same as `{{.Member.JoinedAt}}`          |
-| `onlineCount`                               | Returns the count of online users/members on current server.                                                                                                                     |
-| `targetHasPermissions` memberID arg         | Returns true/false on whether targeted member has the permission bit _int64_.                                                                                                    |
+| **Function**                                | **Description**                                                                                                                                                                           |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getTargetPermissionsIn` memberID channelID | Returns target’s permissions in the given channel.                                                                                                                                        |
+| `editNickname` "newNick"                    | Edits triggering user's nickname, argument has to be of type _string_. YAGPDB's highest role has to be above the highest role of the member and bot can't edit owner's nickname.          |
+| `hasPermissions` arg                        | Returns true/false on whether triggering user has the permission bit _int64_ that is also set in .Permissions*.*                                                                          |
+| `getMember` mention/userID                  | Function returns [Member object](/docs/reference/templates/template-scripting#member) having above methods. `{{(getMember .User.ID).JoinedAt}}` <br>is the same as `{{.Member.JoinedAt}}` |
+| `onlineCount`                               | Returns the count of online users/members on current server.                                                                                                                              |
+| `targetHasPermissions` memberID arg         | Returns true/false on whether targeted member has the permission bit _int64_.                                                                                                             |
 
 Permissions are covered on
 [Discord permissions documentation](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags). For example to get

@@ -41,7 +41,7 @@ Certain potentially destructive moderation commands are disabled by default. The
 - The **clean command** (**4**) toggles the [clean command](/docs/core/all-commands#clean).
 - The **report command** (**5**) toggles the [report command](/docs/core/all-commands#report).
 - **Giverole/Takerole commands** (**7**) toggle the [giverole](/docs/core/all-commands#giverole) and
-  [takerole](/docs/core/all-commands#takerole) commands.
+  [takerole](/docs/core/all-commands#removerole) commands.
 
 ### Unban/Unmute Logging
 

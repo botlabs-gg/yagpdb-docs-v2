@@ -27,6 +27,9 @@ editor supports it. Most modern editors do, but if you are unsure, check the Edi
 Pages are written in Markdown, with additional shortcodes provided by the Doks theme; refer to [its
 documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.
 
+Note that if you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate
+in Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd>, then selecting `note`, `tip`, `warning`, or `danger`.
+
 ## License
 
 This documentation's text is distributed under the terms of the Creative Commons Attribution ShareAlike 4.0 license

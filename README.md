@@ -1,26 +1,21 @@
 # YAGPDB Docs v2
 
-Experimental / Proof of Concept page to replace the current documentation which is built with GitBook.
+Experimental / proof of concept page to replace the current documentation which is built with GitBook.
 
-This page is built with [Hugo](https://gohugo.io/) in conjunction with the
-[Relearn theme](https://github.com/McShelby/hugo-theme-relearn/) as an experiment to see if it is a viable alternative.
+This documentation is built with [Hugo](https://gohugo.io) in conjunction with the [Doks theme](https://getdoks.org/) as
+an experiment to see if it is a viable alternative.
 
 ## Contributing / Building
 
-As always clone the repository first and change into it.
+Install [Node.js](https://nodejs.org/en), clone this repository, and use `npm run dev` to start a local server. The
+server will automatically rebuild the page when you make changes.
 
-Install [Hugo](https://gohugo.io/getting-started/installing/), clone this repository and run `hugo server` to start a
-local server. The server will automatically rebuild the page when you make changes.
-
-To build the page in release mode:
-
-1. `hugo mod vendor`
-2. `hugo`
-
-Then serve the generated `public/` directory with the webserver of your choice. Adjust the `--baseURL` argument to
-`hugo` as required.
+To build the page in release mode, use `npm run build -- --baseURL ...`\*, then serve the generated `public/` directory
+with your webserver of choice.
 
 For more information, please view our [Contributing Guidelines](.github/CONTRIBUTING.md).
+
+_\*Note the `--` is not a typo, but rather serves to pass `baseURL` to Hugo as opposed to the `npm run` command._
 
 ### Editor Setup
 
@@ -29,8 +24,8 @@ editor supports it. Most modern editors do, but if you are unsure, check the Edi
 
 ### Adding a new page
 
-Please read the Relearn theme's [documentation](https://mcshelby.github.io/hugo-theme-relearn) for a full guide as well
-as its Markdown syntax.
+Pages are written in Markdown, with additional shortcodes provided by the Doks theme; refer to [its
+documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.
 
 ## License
 

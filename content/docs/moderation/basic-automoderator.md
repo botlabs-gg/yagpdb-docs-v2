@@ -9,9 +9,9 @@ A very basic automoderator to get things done quickly.
 
 ## Intro
 
-Basic Automoderator lets you quickly set up *basic* automoderation, without much fuss. For that reason, its
+Basic Automoderator lets you quickly set up _basic_ automoderation, without much fuss. For that reason, its
 overall customizability is quite limited. If you would like a more detailed configuration, please use the
-[Advanced Automoderator](advanced-automoderator).
+[Advanced Automoderator](/docs/moderation/advanced-automoderator/advanced-automoderator).
 
 You configure violation thresholds and their expiry for predefined rules. These thresholds define when an offending user
 will be muted, kicked, or banned; a warning and a subsequent deletion of the offending message are always issued.
@@ -65,7 +65,7 @@ pointing to the same server the message is sent in.
 
 #### Links
 
-This rule will trigger when a user sends a message containing *any* link, GIFs from Discord's GIF-Picker included.
+This rule will trigger when a user sends a message containing _any_ link, GIFs from Discord's GIF-Picker included.
 Unless you have a very specific use-case, and know what you're doing, we recommend using
 [Banned Websites](#banned-websites) instead.
 
@@ -86,5 +86,5 @@ Additionally, you can enable the Google Safe Browsing integration to check links
 unsafe links, as well as another separately enabled integration to check links against a list of known phishing sites.
 
 To add your own websites, scroll to the bottom of the rule's configuration page and add one domain per line. For
-example, if you were to block Google, you'd enter `google.com`, ***not*** `https://google.com`. The rule will also
+example, if you were to block Google, you'd enter `google.com`, **_not_** `https://google.com`. The rule will also
 consider subdomains.

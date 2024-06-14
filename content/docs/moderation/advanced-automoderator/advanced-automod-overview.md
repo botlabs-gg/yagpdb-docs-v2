@@ -9,7 +9,7 @@ A sophisticated automoderator system, allowing for more complex configurations t
 
 ## Intro
 
-Advanced Automoderator is (quite obviously) a more detailed system than [Basic Automoderator](/moderation/basic-automoderator).
+Advanced Automoderator is (quite obviously) a more detailed system than [Basic Automoderator](/docs/moderation/basic-automoderator).
 It allows for more flexibility and complex configurations, but the trade-off is that some time investment is required
 to set it up.
 

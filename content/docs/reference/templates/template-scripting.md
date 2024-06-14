@@ -15,7 +15,7 @@ All available data that can be used in YAGPDB's templating "engine" which is sli
 stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
 len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
 a concise and to the point reference document for all available templates/functions. **Functions** are covered
-in [Function documentation](/reference/templates/functions). For detailed explanations and syntax guide refer to the [learning
+in [Function documentation](/docs/reference/templates/functions). For detailed explanations and syntax guide refer to the [learning
 resource](https://learn.yagpdb.xyz/).
 
 **Legend**: at current state this is still prone to formatting errors, but everything in a `code block` should refer to

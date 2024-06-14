@@ -239,6 +239,22 @@ You must specify a channel to run interval commands in even if the command doesn
 
 {{< /callout >}}
 
+##### Component
+
+[In-depth Interactions Guide](/reference/custom-interactions)
+
+The component trigger is used to trigger custom commands via buttons or select menus.
+
+The trigger is matched using [RegEx](/reference/regex).
+
+##### Modal
+
+[In-depth Interactions Guide](/reference/custom-interactions)
+
+The modal trigger is used to trigger custom commands via submitting a modal.
+
+The trigger is matched using [RegEx](/reference/regex).
+
 #### Case Sensitivity
 
 Any commands which allow you to specify trigger text (command, regex, exact match, and so on) have a **Case

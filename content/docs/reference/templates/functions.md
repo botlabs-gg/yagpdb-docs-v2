@@ -107,6 +107,130 @@ convert the number to type _string_ before saving and later back to its original
 {{ else }} FUN'S OVER! {{ end }}
 ```
 
+### Interactions
+
+{{< callout context="tip" icon="outline/rocket" >}}
+
+Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
+about using interactions, [see here](/reference/custom_interactions).
+
+{{< /callout >}}
+
+#### Interaction Responses
+
+- Only one interaction response may be sent to each interaction.
+- If you do not send an interaction response, members will see "This application did not respond" on Discord.
+- You may only send an interaction response to the interaction which triggered the command.
+- Text output directly to the response is automatically sent as an interaction response if the interaction hasn't
+  already been responded to.
+- A CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
+- A response is not the same thing as a followup.
+
+| **Function**                       | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sendModal` modal                  | Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`. The `fields` argument should be a slice of sdicts with the following keys: `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `style` (1 for short, 2 for long), `min_length`, and `max_length`, however only the `label` argument is required for each field. You cannot send a modal in response to a user submitting another modal. Example in section's [Snippets](#interactions-sections-snippets). |
+| `updateMessage` newMessage         | Edits the message on which the button, select menu, or modal was triggered on.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `updateMessageNoEscape` newMessage | Edits the message triggered on and has same logic in escaping characters as `sendMessageNoEscape`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+#### Interaction Followups
+
+- Interaction followups may be sent up to 15 minutes after an interaction.
+- To send a followup, you must have the interaction token of the interaction you are following up.
+- You can send as many followups as you'd like.
+- Text output directly to the response is automatically sent as an interaction followup if the interaction has
+  already been responded to.
+- A followup is not the same thing as a response.
+
+| **Function**                                                        | **Description**                                                                                                                                                                                                                                                                                                                   |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `editResponse` interactionToken messageID newMessageContent         | Edits one of the bot's responses to an interaction. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets). |
+| `editResponseNoEscape` interactionToken messageID newMessageContent | Edits the response and has same logic in escaping characters as `sendMessageNoEscape`.                                                                                                                                                                                                                                            |
+
+#### Interaction Response/Followup Hybrids
+
+- Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise they will send the equivalent followup function.
+
+| **Function**                                         | **Description**                                                                                                                                                                                                                                                                                |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sendResponse` interactionToken message              | Sends a message (string, embed, or complexMessage) in response to an interaction. Supports the `ephemeral` flag in `complexMessage`. `interactionToken` must be a valid token or `nil` to target the triggering interaction. Example in section's [Snippets](#interactions-sections-snippets). |
+| `sendResponseNoEscape` interactionToken message      | Sends a message as a response, and doesn't escape mentions (e.g. role mentions, reply mentions or @here/@everyone).                                                                                                                                                                            |
+| `sendResponseNoEscapeRetID` interactionToken message | Same as `sendResponseNoEscape`, but also returns messageID to assigned variable for later use.                                                                                                                                                                                                 |
+| `sendResponseRetID` interactionToken message         | Same as `sendResponse`, but also returns messageID to assigned variable for later use. Example in section's [Snippets](#interactions-sections-snippets).                                                                                                                                       |
+
+#### Interaction Miscellaneous
+
+| **Function**                             | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cbutton` "list of button values"        | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#button-object) A Link style button must have a URL and cannot have a Custom ID. All other styles must have a Custom ID and cannot have a URL. All buttons must have either a label or an emoji. Example in section's [Snippets](#interactions-sections-snippets).                                          |
+| `cmenu` "list of select menu values"     | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#select-menu-object) Type should be provided as a string, either `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus must have `options`, all other types cannot. Example in section's [Snippets](#interactions-sections-snippets).                                              |
+| `ephemeralResponse`                      | Send the response text ephemerally. Only works when triggered by an interaction. Works on responses and followups.                                                                                                                                                                                                                                                                                                                 |
+| `getResponse` interactionToken messageID | Can be used to get the bot's responses or followup messages, including ephemeral messages. Returns a [Message](/reference/templates#message) object. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets). |
+
+#### Interactions section's snippets
+
+- To demonstrate creating buttons and menus
+
+```go
+{{ $funButton := cbutton
+  "label" "My Custom Button"
+  "custom_id" "duck-button"
+  "style" "success" }}
+{{ $badButton := cbutton
+  "label" "My Useless Button"
+  "style" "secondary"
+  "disabled" true }}
+{{ $emojiButton := cbutton
+  "emoji" ( sdict "name" "🦆" )
+  "style" "link"
+  "url" "https://yagpdb.xyz" }}
+{{ $menu := cmenu
+  "type" "text"
+  "placeholder" "Choose a terrible thing"
+  "custom_id" "duck-menus-my_first_menu"
+  "options" (cslice
+    (sdict "label" "Ducks" "value" "opt-1" "default" true)
+    (sdict "label" "Duck" "value" "opt-2" "emoji" (sdict "name" "🦆"))
+    (sdict "label" "Half a Duck" "value" "opt-3" "description" "Don't let the smaller amount fool you."))
+  "max_values" 3 }}
+{{ $message := complexMessage "buttons" (cslice $funButton $badButton $emojiButton) "menus" $menu }}
+{{ sendMessage nil $message }}
+```
+
+- To demonstrate responding with a modal (this must be triggered by a component or modal submission)
+
+```go
+{{ $modal := sdict
+  "title" "My Custom Modal"
+  "custom_id" "modals-my_first_modal"
+  "fields" (cslice
+    (sdict "label" "Name" "placeholder" "Duck" "required" true)
+    (sdict "label" "Do you like ducks?" "value" "Heck no")
+    (sdict "label" "Duck hate essay" "min_length" 100)) }}
+{{ sendModal $modal }}
+```
+
+- To demonstrate sending, getting, and editing responses (this must be triggered by a component or modal submission)
+
+```go
+{{ $interactionToken := .Interaction.Token }}
+{{ sendResponse nil "Here's the first message!" }}
+{{ $followupID := sendResponseRetID $interactionToken (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
+{{ sleep 2 }}
+{{ editResponse $interactionToken $followupID (print "I've edited this message to say " noun) }}
+{{ $editedResponse := getResponse $interactionToken $followupID }}
+{{ editResponse $interactionToken nil $editedResponse.Content }}
+```
+
+- To demonstrate updating the triggering message (this must be triggered by a component or modal submission)
+
+```go
+{{ $button := cbutton "label" "I won!" "custom_id" "i_won" }}
+{{ $content := printf "Press this button when you win! The last person who won was %s! They wanted to say they are a %s %s." .User.Mention adjective noun }}
+
+{{ $message := complexMessageEdit "content" $content "buttons" $button }}
+{{ updateMessage $message }}
+```
+
 ### Math
 
 {{< callout context="note" icon="outline/info-circle" >}}

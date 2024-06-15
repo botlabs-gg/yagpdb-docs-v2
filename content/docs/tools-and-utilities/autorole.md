@@ -5,14 +5,14 @@ weight = 1
 
 <!--more-->
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 Make sure that the bot has permission to manage roles **and** that the role the bot is assigning is below the highest
 role the bot has.
 
 {{< /callout >}}
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 **Warning:** Be careful when using autorole to automatically give new members roles. Discord's in-built new member
 verification only works on members with no roles, rendering it useless if members are given roles right after they

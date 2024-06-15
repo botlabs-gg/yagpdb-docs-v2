@@ -82,7 +82,7 @@ Using role/channel restrictions, it is possible to set conditions on which users
 Specifically, whitelisted roles or channels are required to run the command, whereas blacklisted roles or channels
 cannot use the command at all.
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 YAGPDB was raised well and honors a "no" when told "no". In other words, blacklists take precedence over whitelists.
 
@@ -90,7 +90,7 @@ This is a relatively common trip-hazard, so take great care when you set up both
 
 {{< /callout >}}
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 Role restrictions are unrelated to member permissions. Having `Administrator` permissions will not override these
 restrictions.
@@ -126,7 +126,7 @@ commands like `customcommands` accept a CC ID as an argument.
 
 Within a command response, the ID may be retrieved using the `{{ .CCID }}` template.
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Deleting a custom command does not allow its ID to be reassigned. If you delete a CC, its ID is lost forever.
 
@@ -233,7 +233,7 @@ When editing an interval command, a **Run Now** button appears at the bottom of 
 long as the command is not disabled and a channel is selected. Running an interval command using this button reschedules
 all subsequent runs based off the current time.
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 You must specify a channel to run interval commands in even if the command doesn't output a message.
 
@@ -368,7 +368,7 @@ for the best coding experience.
 
 {{< /callout >}}
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Custom commands do not autosave.
 

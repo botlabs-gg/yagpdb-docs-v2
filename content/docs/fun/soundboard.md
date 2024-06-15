@@ -20,7 +20,7 @@ Choose to require users to have a role in order to play this sound.
 
 ### Upload file
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 Do **not** fill in the URL if you are going uploaded from local files, and vice versa.
 
@@ -40,7 +40,7 @@ tracks, are supported.
 
 You can also specify a sound URL instead of uploading one.&#x20;
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 This has to be the direct link to the media file, and not a YouTube link. A direct link should end with`.mp3`(or other
 relevant audio/video type), such as

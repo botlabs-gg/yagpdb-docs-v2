@@ -7,7 +7,7 @@ Prebuilt custom commands for use as a learning reference.
 
 <!--more-->
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Note: This page is no longer updated with the latest versions of codes/commands. If you plan to copy paste codes for
 your server, see [this website](https://yagpdb-cc.github.io) which is frequently updated with new community-contributed
@@ -15,7 +15,7 @@ commands.
 
 {{< /callout >}}
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 This isn't the actual page about custom commands. A brief overview about custom commands can be found in the
 [Custom Commands documentation](/docs/custom-commands/commands). Please take notice, some of examples presented here are not up to

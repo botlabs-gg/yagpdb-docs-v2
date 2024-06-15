@@ -8,8 +8,8 @@ weight = 1
 This is the documentation for [YAGPDB](https://yagpdb.xyz); this document in its current form is a work in progress, as
 it is an attempt to move away from the current documentation hosted via GitBook.
 
-This page is built with [Hugo](https://gohugo.io/) in conjunction with the
-[Relearn theme](https://github.com/McShelby/hugo-theme-relearn/) as an experiment to see if it is a viable alternative.
+This page is built with [Hugo](https://gohugo.io/) in conjunction with the [Doks theme](https://getdoks.org) as an
+experiment to see if it is a viable alternative.
 
 ## Other Resources
 

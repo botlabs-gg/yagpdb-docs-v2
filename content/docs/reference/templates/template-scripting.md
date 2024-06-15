@@ -155,7 +155,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 [Channel functions documentation](functions#channel).
 
-### Guild / Server
+### Guild / Server{#guild-server}
 
 | **Field**                          | **Description**                                                                                                                                                                                                                                                            |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -231,7 +231,7 @@ This is available and part of the dot when a component or modal trigger is used.
 
 [Interaction object in Discord documentation](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object).
 
-Interaction functions are covered [here](/docs/reference/templates/functions#interaction).
+Interaction functions are covered [here](/docs/reference/templates/functions#interactions).
 
 ### Member
 
@@ -762,7 +762,7 @@ Variable is still: **{{ $x }}**
 Type of variable: **{{ printf "%T" $x }}**
 ```
 
-### templates.SDict
+### templates.SDict{#templates-sdict}
 
 `templates.SDict` - This is a custom composite data type defined on an underlying data type _map\[string]interface{}._
 This is of kind _map_ having _string_ type as its key and _interface{}_ type as that key's value and can be initialized

@@ -43,7 +43,7 @@ Do **not** set the require role to the role you are assigning. You generally wil
 
 ## Role Groups
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Role groups are essential if you want to set up a role menu.
 
@@ -94,7 +94,7 @@ To fix these problems we can create a new group with the mode `Single` and assig
 
 ### Adding roles to the role group
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Roles can only be assigned to one group.
 
@@ -114,7 +114,7 @@ The role menu makes it possible to have people assign roles by adding reactions 
 
 ![Example of a role menu](rolemenu_example.png)
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 If you'd like to create a message like the above to create a rolemenu on, take a look at the [Custom Embeds](/docs/reference/custom-embeds) chapter.
 
@@ -204,7 +204,7 @@ If you added a new role to your role group, you can update your role menu. Updat
 
 ## How to get a message ID (Desktop)
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Make sure you have [developer mode turned on in your discord settings.](https://support.discordapp.com/hc/en-us/articles/206346498)&#x20;
 

@@ -7,7 +7,7 @@ weight = 2
 
 ## Adding The Bot
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 You need to have the **Manage Server** permission to add the bot to your server.
 

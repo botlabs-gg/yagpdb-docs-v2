@@ -14,7 +14,7 @@ documentation](https://discord.com/developers/docs/resources/channel#embed-objec
 
 {{< /callout >}}
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Custom Embeds with the `-customembed` command don't work in custom commands. If you want to know how you can use embeds
 in custom commands, scroll down to [Embeds in Custom Commands](#embeds-in-custom-commands).
@@ -107,7 +107,7 @@ with a channel name or ID (or send the embed with sendDM as a direct message).&#
 
 Next, we'll take a look at this more lavish example:
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 To make your code readable, especially for large embeds, **indents** may be used, as YAGPDB's templating system allows this sort of formatting.
 
@@ -237,7 +237,7 @@ This generates the following embed:
 
 You can play around with this command a bit, it's really easy to use.&#x20;
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Simple embeds can be used in custom commands:
 

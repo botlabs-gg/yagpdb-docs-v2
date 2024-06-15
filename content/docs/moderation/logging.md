@@ -8,7 +8,7 @@ limited number of deleted messages.
 
 <!--more-->
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 YAGPDB IS NOT A LOGGING BOT.
 

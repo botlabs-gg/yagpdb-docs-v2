@@ -5,7 +5,7 @@ weight = 1
 
 <!--more-->
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Make sure that the bot has permission to manage roles **and** that the role the bot is assigning is below the highest
 role the bot has.

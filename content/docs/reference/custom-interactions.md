@@ -122,7 +122,7 @@ ID which can trigger a custom command.
 
 ##### Custom IDs
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Multiple buttons and menus can not have the same custom ID in one message.
 
@@ -233,7 +233,7 @@ Setting default values in these select menus is a more involved process than for
 
 ![The above mentionable menu with default options selected](mentionable_menu_with_defaults.png)
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 The `default_values` `id`s must be `string`s, not `int64`s. Note how in the above example, `$adminRoleID :=
 "1210128415689285642"` defining it as a string, as opposed to `$adminRoleID := 1210128415689285642` which would define
@@ -271,7 +271,7 @@ This gives us a select menu which we can only select guild announcement and guil
 
 Now, let's add some more buttons.
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Buttons with the "link" style cannot have a Custom ID, and instead require a URL field.
 

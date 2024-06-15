@@ -10,7 +10,7 @@ values you can send in your response or use as arguments for other functions.
 
 > Functions are underappreciated. In general, not just in templates. // Rob Pike
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Every function having both cases possible for an argument - ID/name, then this name is handled case insensitive, for
 example `getRole "yagpdb"` and `getRole "yAgPdB"` would have same responses even if server has both of these roles, so
@@ -20,7 +20,7 @@ using IDs is better.
 
 ### Channel
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 The ratelimit for editing a channel is 2 requests per 10 minutes per channel.
 
@@ -63,7 +63,7 @@ The ratelimit for editing a channel is 2 requests per 10 minutes per channel.
 Patterns are basic PostgreSQL patterns, not Regexp: An underscore `(_)` matches any single character; a percent sign
 `(%)` matches any sequence of zero or more characters.
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 **Note about saving numbers into database:** As stated above, database stores numbers as type _float64_. If you save a
 large number into database like an _int64_ (which IDs are), the value will be truncated. To avoid this behavior, you can
@@ -233,7 +233,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 ### Math
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Boolean logic (and, not, or) and comparison operators (eq, gt, lt, etc.) are covered in [conditional
 branching](/docs/reference/templates/template-scripting#if-conditional-branching).
@@ -363,7 +363,7 @@ something nice - you all are doing awesome!" "filename" currentTime.Weekday)}}`
 
 ### Miscellaneous
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 `if`, `range`, `try-catch`, `while`, `with` actions are all covered on the [actions template documentation](/docs/reference/templates/template-scripting#actions).
 
@@ -401,7 +401,7 @@ something nice - you all are doing awesome!" "filename" currentTime.Weekday)}}`
 
 ### Role functions
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 In all role functions where userID is required as argument to target a user, it can also be full user object.
 
@@ -427,7 +427,7 @@ In all role functions where userID is required as argument to target a user, it 
 
 ### String manipulation
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 All regexp functions are limited to 10 different pattern calls per CC.
 
@@ -452,7 +452,7 @@ All regexp functions are limited to 10 different pattern calls per CC.
 | `upper` "string"                                     | Converts the string to uppercase.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `urlescape` "string"                                 | Escapes the _string_ so it can be safely placed inside a URL path segment - e.g. "Hello, YAGPDB!" becomes "Hello%2C%20YAGPDB%21"<br>There's also predefined template package function `urlquery` which is covered in [Go text/template documentation](https://pkg.go.dev/text/template#hdr-Functions).                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Special information we can include in the string is _escape sequences_. Escape sequences are two (or more) characters,
 the first of which is a backslash `\`, which gives the remaining characters special meaning - let's call them
@@ -460,7 +460,7 @@ metacharacters. The most common escape sequence you will encounter is `\n`, whic
 
 {{< /callout >}}
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 With regular expression patterns - when using quotes you have to "double-escape" metacharacters starting with backslash.
 You can use backquotes/ticks to simplify this:`{{reFind "\\d+" (toString 42)}}` versus `` {{reFind `\d+` (toString
@@ -495,7 +495,7 @@ You can use backquotes/ticks to simplify this:`{{reFind "\\d+" (toString 42)}}` 
 | `timestampToTime` arg                                  | Converts UNIX timestamp to _time.Time_. Example: \{{timestampToTime 1420070400\}} would return same time as `.DiscordEpoch`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `weekNumber` time                                      | Returns the week number as _int_ of given argument `time` of type _time.Time_. `{{weekNumber currentTime}}` would return the week number of current time.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
-{{< callout context="info" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Discord Timestamp Styles referenced on
 [Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles) can be done using `print`

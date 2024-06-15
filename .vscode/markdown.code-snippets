@@ -2,7 +2,7 @@
 	"Info callout": {
 		"prefix": "note",
 		"body": [
-			"{{< callout context=\"info\" title=\"${1:Note}\" icon=\"outline/info-circle\" >}}",
+			"{{< callout context=\"note\" title=\"${1:Note}\" icon=\"outline/info-circle\" >}}",
 			"",
 			"$0",
 			"",

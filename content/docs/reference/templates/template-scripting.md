@@ -28,7 +28,7 @@ usually denoted by 3-dot `...`ellipsis.&#x20;
 If functions or methods are denoted with an accent, tilde \~, they are not yet deployed in actual YAGPDB bot or have
 been disabled in main bot, but are in master code branch.
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 **Always put curly brackets around the data and "actions you perform" you want to formulate as a template** like
 this:`{{.User.Username}}`
@@ -38,7 +38,7 @@ structure also known as an action with methods and functions stated below.
 
 {{< /callout >}}
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 Templating system uses standard ASCII quotation marks:\
 0x22 > `"` for straight double quotes, 0x27 > `'`for apostrophes and 0x60 `` ` `` for backticks/back quotes; so make
@@ -98,7 +98,7 @@ would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also 
 not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas
 `{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Pipes are useful in select cases to shorten code and in some cases improve readability, but they **should not be
 overused**. In most cases, pipes are unnecessary and cause a dip in readability that helps nobody.
@@ -197,7 +197,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 ### Interaction
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
 about using interactions, please view our [interactions cookbook](/docs/reference/custom-interactions).
@@ -351,7 +351,7 @@ Branching using `if` action's pipeline and comparison operators - these operator
 `if` statements always need to have an enclosing `end`.\
 Learning resources covers conditional branching [more in depth](https://learn.yagpdb.xyz/beginner/control_flow_1).\
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 `eq` , though often used with 2 arguments (`eq x y`) can actually be used with more than 2. If there are more than 2
 arguments, it checks whether the first argument is equal to any one of the following arguments. This behavior is unique
@@ -359,7 +359,7 @@ to `eq`.
 
 {{< /callout >}}
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for
 comparison`** error as they are not the same type (one is float, the other int). To fix this, you should convert both to
@@ -379,7 +379,7 @@ the same type -> for example, `toFloat 1`.
 channels. The dot `.` is set to successive elements of those data structures and output will follow execution. If the
 value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 To skip execution of a single iteration and jump to the next iteration, the `{{continue}}` action may be used. Likewise,
 if one wishes to skip all remaining iterations, the `{{break}}` action may be used. These both are usable also inside
@@ -414,7 +414,7 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 {{ $x := 42 }} {{ range $x := seq 2 4 }} {{ $x }} {{ end }} {{ $x }}
 ```
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 **Custom command response was longer than 2k (contact an admin on the server...)**\
 or \
@@ -545,7 +545,7 @@ To define an associated template, use the `define` action. It has the following 
 {{ end }}
 ```
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 **Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
 nested in other actions (for example, an if action.) That is, the following custom command is invalid:
@@ -589,7 +589,7 @@ an associated template that always returns `1`:
 
 Note that it is not necessary for a value to be returned; `{{ return }}` by itself is completely valid.
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 **Note:** Since all custom commands are themselves templates, using a `return` action at the top level is perfectly
 valid, and will result in execution of the custom command being stopped at the point the `return` is encountered.
@@ -615,7 +615,7 @@ To execute a custom command, one of three methods may be used: `template`, `bloc
 value. Note that the name of the template to execute must be a string constant; similar to `define` actions, a variable
 referencing a value of string type is invalid. Data to use as the context may optionally be provided following the name.
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="info" title="Note" icon="outline/info-circle" >}}
 
 While `template` is function-like, it is not an actual function, leading to certain quirks; notably, it must be used
 alone, not part of another action (like a variable declaration), and the data argument need not be parenthesized. Due to
@@ -691,7 +691,7 @@ _templates.SDict_ (abridged to _sdict_) types and their methods. Both types hand
 called an empty interface which allows a value to be of any type. So any argument of any type given is handled. (In
 "custom commands"-wise mainly primitive data types, but _slices_ as well.)
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 **Reference type-like behavior:** Slices and dictionaries in CCs exhibit reference-type like behavior, which may be
 undesirable in certain situations. That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y :=
@@ -789,7 +789,7 @@ Adding "color3" as "blue": {{ $x.Set "color3" "blue" }} **{{ $x }}**
 Deleting key "color1" {{ $x.Del "color1" }} and whole sdict: **{{ $x }}**
 ```
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 **Tip:** Previously, when saving cslices, sdicts, and dicts into database, they were serialized into their underlying
 native types - slices and maps. This meant that if you wanted to get the custom type back, you needed to convert
@@ -842,7 +842,7 @@ Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/inte
 
 ## Tickets
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Ticket functions are limited to 1 call per custom command for both normal and premium guilds and limited to max 10 open
 tickets per user.

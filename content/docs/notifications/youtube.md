@@ -9,7 +9,7 @@ Get notifications from your favorite YouTubers directly in your Discord server.
 
 ## YouTube Feed
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Do **NOT** fill in both the Channel ID and the Channel URL.
 

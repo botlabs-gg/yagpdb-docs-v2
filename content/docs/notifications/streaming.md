@@ -9,14 +9,18 @@ Let everyone know that someone is currently streaming.
 
 ### Streaming Feed
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+
 There are currently some issues with the streaming announcement, and it may not always give the announcement. It will
 however, always assign the streamer role.
+
 {{< /callout >}}
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+
 The streaming role will be **automatically removed** from a member that is not streaming if it is given manually, so be
 careful! If YAGPDB is removing member's roles without apparent reason, this may well be the cause.
+
 {{< /callout >}}
 
 ![Showcase of the streaming feed interface.](./streaming.png)

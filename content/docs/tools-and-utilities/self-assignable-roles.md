@@ -13,13 +13,13 @@ weight = 2
 
 ## Roles
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 Make sure that the bot has the _manage role_ permission and that the bot's role is **above** the role it is trying to assign.
 
 {{< /callout >}}
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 If you want to use any of the `rolemenu` commands, you **need** to have the `MANAGE_GUILD` permission, or the Manage Server permission. This is hardcoded, meaning that command overrides will not affect it.
 
@@ -31,7 +31,7 @@ Simply give the role command a name and then select which role you want the bot 
 
 ### Optional features
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 Do **not** set the require role to the role you are assigning. You generally will not want to set the ignore role to the role you are assigning either _unless_ you wish to prevent the user from removing that role through the role-menu.
 
@@ -43,7 +43,7 @@ Do **not** set the require role to the role you are assigning. You generally wil
 
 ## Role Groups
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Role groups are essential if you want to set up a role menu.
 
@@ -63,7 +63,7 @@ Every role group, even Ungrouped has the option to delete all roles inside that 
 
 ### Optional features
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 Do **not** set the require role to the role you are assigning. You generally will not want to set the ignore role to the role you are assigning either _unless_ you wish to prevent the user from removing that role through the rolemenu.
 
@@ -94,7 +94,7 @@ To fix these problems we can create a new group with the mode `Single` and assig
 
 ### Adding roles to the role group
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Roles can only be assigned to one group.
 
@@ -104,7 +104,7 @@ Refer back to the [optional features](#optional-features) for roles and select t
 
 ## Role Menu
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting. Role menu will **not** work if you have not done so.
 
@@ -114,13 +114,13 @@ The role menu makes it possible to have people assign roles by adding reactions 
 
 ![Example of a role menu](rolemenu_example.png)
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 If you'd like to create a message like the above to create a rolemenu on, take a look at the [Custom Embeds](/docs/reference/custom-embeds) chapter.
 
 {{< /callout >}}
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 A role menu can only support up to 20 roles due to the reaction limit discord places on messages. If your role group has more then twenty you have to use finish sub-command and then add the rest of roles to a new message with -skip flag.
 
@@ -134,7 +134,7 @@ After you type in the command, you will be taken through the setup process. If y
 
 ### Step by step tutorial
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting. Role menu will **not** work if you have not done so. All switches and flags (nodm, rr, etc...) start with hyphen symbol `-`, not your prefix.
 
@@ -172,7 +172,7 @@ After you have finish editing or creating your role menu, it will display whethe
 
 ![Rolemenu flags display](rolemenu_flags.png)
 
-{{< callout context="caution" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
 
 Note that YAGPDB does not allow you to disable warning DMs such as cool-down messages with the `nodm` switch or any other method.
 
@@ -204,7 +204,7 @@ If you added a new role to your role group, you can update your role menu. Updat
 
 ## How to get a message ID (Desktop)
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Make sure you have [developer mode turned on in your discord settings.](https://support.discordapp.com/hc/en-us/articles/206346498)&#x20;
 

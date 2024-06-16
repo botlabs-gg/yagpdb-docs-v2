@@ -7,14 +7,14 @@ A guide to creating custom embeds in various contexts across YAGPDB.
 
 <!--more-->
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Embeds have limits, summarized in [Discord channel
 documentation](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).
 
 {{< /callout >}}
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Custom Embeds with the `-customembed` command don't work in custom commands. If you want to know how you can use embeds
 in custom commands, scroll down to [Embeds in Custom Commands](#embeds-in-custom-commands).
@@ -84,7 +84,7 @@ and the last curly brace (`}`). After this you can just copy and paste it into D
 
 ## Embeds in Custom Commands
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 Embeds in custom commands are a little more difficult. Also, there is no generator that you could use for this. **Please only proceed if you have a good amount of knowledge about custom commands and templates in general.**
 
@@ -107,7 +107,7 @@ with a channel name or ID (or send the embed with sendDM as a direct message).&#
 
 Next, we'll take a look at this more lavish example:
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 To make your code readable, especially for large embeds, **indents** may be used, as YAGPDB's templating system allows this sort of formatting.
 
@@ -237,7 +237,7 @@ This generates the following embed:
 
 You can play around with this command a bit, it's really easy to use.&#x20;
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 Simple embeds can be used in custom commands:
 

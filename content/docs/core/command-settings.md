@@ -27,14 +27,14 @@ prefix was instead `?`, one would use `?remindme ...`, and so on.
 
 Slash commands are always triggered using the `/` character and hence do not depend on the prefix configured here.
 
-{{< callout context="tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 In addition to the command prefix, you can trigger YAGPDB commands by pinging the bot at the start of your message. This
 is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recall it.
 
 {{< /callout >}}
 
-{{< callout context="caution" title="Flags and Switches" >}}
+{{< callout context="caution" title="Flags and Switches" icon="outline/alert-triangle" >}}
 
 Flags and switches are **_not_** affected by your prefix setting.
 
@@ -59,7 +59,7 @@ Command overrides are considered in the following order, with settings applied a
 The order above trickles down from least specific to most specific, prioritizing the most specific setting -- an analogy
 for developers would be CSS's cascading rules.
 
-{{< callout context="note" title="Example" >}}
+{{< callout context="note" title="Example" icon="outline/info-circle" >}}
 
 Though perhaps confusing at first, the priority order above is designed to make common configurations trivial. For
 instance, to disable all but a specific command -- say the `remindme` command -- one can simply disable the _All
@@ -81,7 +81,7 @@ Clicking on either of these options (**3**,**4**) opens a drop-down menu with al
 Select as many as you wish. YAGPDB will then either require all members to have any of these roles in order to run
 commands, or completely ignore members with any of the ignored roles, server admins and owners included.
 
-{{< callout context="note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 YAGPDB was raised well and honors a "no" when told "no". In other words, ignored roles take precedence over required
 roles.
@@ -102,7 +102,7 @@ If 10 seconds are not enough, or too long, feel free to adjust as you see fit; t
 These options are only available for channel overrides (**8**). To add a new one, head to the _New channel override_
 tab on the command settings page.
 
-{{< callout context="caution" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
 
 You must select at least one channel or category; otherwise, the settings of the override will not be applied.
 

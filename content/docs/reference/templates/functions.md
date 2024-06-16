@@ -1,6 +1,6 @@
 +++
 title = 'Functions'
-weight = 2
+weight = 912
 +++
 
 Functions are used to take action within template scripts. Some functions accept arguments, and some functions return

@@ -1,6 +1,6 @@
 +++
 title = 'Triggers'
-weight = 1
+weight = 434
 +++
 
 Triggers define when a rule should be checked. This page will explain the available triggers and their configuration

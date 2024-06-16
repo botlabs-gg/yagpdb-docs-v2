@@ -1,6 +1,6 @@
 +++
 title = 'Advanced Automoderator'
-weight = 3
+weight = 430
 [sidebar]
     collapsed = true
 +++

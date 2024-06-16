@@ -1,6 +1,6 @@
 +++
 title = 'Control Panel Logs'
-weight = 2
+weight = 220
 +++
 
 View a list of recent changes to your YAGPDB configuration.

@@ -1,6 +1,6 @@
 +++
 title = 'Command Settings'
-weight = 3
+weight = 230
 +++
 
 Fine-grained control over all of YAGPDB's inbuilt commands.

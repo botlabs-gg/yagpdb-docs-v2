@@ -1,6 +1,6 @@
 +++
 title = 'Commands'
-weight = 1
+weight = 310
 +++
 
 The commands page displays all custom commands and allows you to add, delete, or edit custom commands and custom command

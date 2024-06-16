@@ -1,6 +1,6 @@
 +++
 title = 'Using RegEx'
-weight = 5
+weight = 970
 +++
 
 A quick overview of golang flavored RegEx for your convenience.

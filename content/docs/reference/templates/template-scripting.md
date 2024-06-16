@@ -1,6 +1,6 @@
 +++
 title = "Template Scripting"
-weight = 1
+weight = 911
 +++
 
 Library of base data accessible within custom scripting.

@@ -1,6 +1,6 @@
 +++
 title = "Getting Started"
-weight = 2
+weight = 120
 +++
 
 > The hardest thing about getting started, is getting started. - Guy Kawasaki

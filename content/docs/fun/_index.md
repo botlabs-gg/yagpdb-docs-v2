@@ -1,4 +1,4 @@
 +++
 title = "Fun"
-weight = 8
+weight = 800
 +++

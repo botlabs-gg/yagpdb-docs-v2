@@ -1,6 +1,6 @@
 +++
 title = 'How to Get IDs'
-weight = 4
+weight = 960
 +++
 
 Details on obtaining IDs for users, channels, roles, etc. for use within YAGPDB.

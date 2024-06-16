@@ -1,6 +1,6 @@
 +++
 title = 'Self Assignable Roles'
-weight = 2
+weight = 720
 +++
 
 <!--more-->
@@ -206,7 +206,7 @@ If you added a new role to your role group, you can update your role menu. Updat
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
-Make sure you have [developer mode turned on in your discord settings.](https://support.discordapp.com/hc/en-us/articles/206346498)&#x20;
+Make sure you have [developer mode turned on in your discord settings.](https://support.discordapp.com/hc/en-us/articles/206346498)
 
 {{< /callout >}}
 

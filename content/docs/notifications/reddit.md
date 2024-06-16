@@ -1,6 +1,6 @@
 +++
 title = 'Reddit'
-weight = 2
+weight = 520
 +++
 
 Get notifications from your favorite subreddits directly in your Discord server.

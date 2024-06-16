@@ -1,6 +1,6 @@
 +++
 title = 'YouTube'
-weight = 3
+weight = 530
 +++
 
 Get notifications from your favorite YouTubers directly in your Discord server.

@@ -1,6 +1,6 @@
 +++
 title = 'Effects'
-weight = 3
+weight = 433
 +++
 
 Effects define what happens when a rule is triggered and all conditions are met. This page will cover the different

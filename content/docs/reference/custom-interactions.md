@@ -1,6 +1,6 @@
 +++
 title = 'Custom Interactions'
-weight = 6
+weight = 950
 +++
 
 Buttons, Modals, Select Menus, Ephemeral Messages, and more!

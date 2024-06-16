@@ -1,6 +1,6 @@
 +++
 title = 'Control Panel Access'
-weight = 1
+weight = 210
 +++
 
 Select who can view or edit your control panel.

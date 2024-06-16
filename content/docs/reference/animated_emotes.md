@@ -1,6 +1,6 @@
 +++
 title = 'Animated Emotes'
-weight = 6
+weight = 960
 +++
 
 A guide on use of animated emojis in various contexts across YAGPDB, and a library of a few available animated emojis on the public instance.

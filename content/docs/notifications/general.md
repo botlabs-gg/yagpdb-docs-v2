@@ -1,6 +1,6 @@
 +++
 title = 'General'
-weight = 1
+weight = 510
 +++
 
 General notifications such as a welcoming direct message, a message in the server when users join or leave, as well as a

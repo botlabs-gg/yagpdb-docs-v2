@@ -1,6 +1,6 @@
 +++
 title = "Overview"
-weight = 1
+weight = 431
 +++
 
 A sophisticated automoderator system, allowing for more complex configurations than basic automoderator.

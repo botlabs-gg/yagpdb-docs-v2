@@ -1,6 +1,6 @@
 +++
 title = 'Basic Automoderator'
-weight = 2
+weight = 420
 +++
 
 A very basic automoderator to get things done quickly.

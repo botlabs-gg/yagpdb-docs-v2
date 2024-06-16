@@ -1,6 +1,6 @@
 +++
 title = 'Custom Commands Examples'
-weight = 2
+weight = 920
 +++
 
 Prebuilt custom commands for use as a learning reference.

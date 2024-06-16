@@ -1,6 +1,6 @@
 +++
 title = 'All Commands'
-weight = 4
+weight = 240
 +++
 
 List of all available commands offered by YAGPDB and their syntax.

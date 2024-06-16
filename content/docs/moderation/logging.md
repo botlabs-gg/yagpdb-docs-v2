@@ -1,6 +1,6 @@
 +++
 title = 'Logging'
-weight = 4
+weight = 440
 +++
 
 Capture a moment in time with message logging of the last messages in a channel when the log is created, including a

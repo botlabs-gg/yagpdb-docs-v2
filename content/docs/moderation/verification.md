@@ -1,6 +1,6 @@
 +++
 title = 'Verification'
-weight = 5
+weight = 450
 +++
 
 Use Google reCAPTCHA v2 to verify your members before permitting them access to your server.

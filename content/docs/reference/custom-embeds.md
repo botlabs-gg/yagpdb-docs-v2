@@ -1,6 +1,6 @@
 +++
 title = 'Custom Embeds'
-weight = 3
+weight = 940
 +++
 
 A guide to creating custom embeds in various contexts across YAGPDB.

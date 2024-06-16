@@ -1,6 +1,6 @@
 +++
 title = 'Reputation'
-weight = 1
+weight = 810
 +++
 
 The reputation system tracks each user's reputation score, and allows users to add or remove reputation points from

@@ -1,6 +1,6 @@
 +++
 title = 'Database'
-weight = 2
+weight = 320
 +++
 
 The Custom Command Database is used for persistent storage between custom command executions. The database page displays

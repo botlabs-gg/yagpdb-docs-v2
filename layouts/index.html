@@ -24,34 +24,41 @@
         <h2 id="quick-links" class="text-center">Quick links</h2>
         <p class="text-center">Start reading the <a href="/docs/welcome/introduction/">documentation</a> for a full list.</p>
         <div class="col-lg-5">
-          <h4 class="h5 text-center">Custom Commands</h4>
-          <ul>
-            <li><a href="{{ site.BaseURL }}/docs/custom-commands/commands/">Adding custom commands</a></li>
-            <li><a href="{{ site.BaseURL }}/docs/reference/templates/template-scripting/">Template scripting reference</a></li>
-            <li><a href="{{ site.BaseURL }}/docs/reference/templates/functions/">Template functions reference</a></li>
-          </ul>
+          {{ $inner := `<ul>
+<li><a href="{{ site.BaseURL }}/docs/custom-commands/commands/">Adding custom commands</a></li>
+<li><a href="{{ site.BaseURL }}/docs/reference/templates/template-scripting/">Template scripting reference</a></li>
+<li><a href="{{ site.BaseURL }}/docs/reference/templates/functions/">Template functions reference</a></li>
+</ul>` }}
+        {{ $opts := dict "title" "Custom Commands" "icon" "outline/puzzle" "inner" $inner }}
+        {{ partial "inline/card.html" $opts }}
         </div>
         <div class="col-lg-5">
-          <h4 class="h5 text-center">Moderation</h4>
-          <ul>
-            <li><a href="{{ site.BaseURL }}/docs/moderation/advanced-automoderator/advanced-automoderator">Advanced automoderator overview</a></li>
-            <li><a href="{{ site.BaseURL }}/docs/moderation/logging/">Message logging</a></li>
-            <li><a href="{{ site.BaseURL }}/docs/moderation/verification/">Verification</a></li>
-          </ul>
+          {{ $inner := `<ul>
+<li><a href="{{ site.BaseURL }}/docs/moderation/advanced-automoderator/advanced-automoderator">Advanced automoderator overview</a></li>
+<li><a href="{{ site.BaseURL }}/docs/moderation/logging/">Message logging</a></li>
+<li><a href="{{ site.BaseURL }}/docs/moderation/verification/">Verification</a></li>
+</ul>` }}
+        {{ $opts := dict "title" "Moderation" "icon" "outline/shield-check" "inner" $inner }}
+        {{ partial "inline/card.html" $opts }}
         </div>
         <div class="col-lg-5">
-          <h4 class="h5 text-center">Rolemenus</h4>
-          <ul>
-            <li><a href="{{ site.BaseURL }}/docs/tools-and-utilities/self-assignable-roles/">Self-assignable roles</a></li>
-            <li><a href="https://www.youtube.com/watch?v=IaTfJ4vqHhc">YouTube tutorial video</a></li>
-          </ul>
+          {{ $inner := `<ul>
+<li><a href="{{ site.BaseURL }}/docs/tools-and-utilities/self-assignable-roles/">Self-assignable roles</a></li>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=IaTfJ4vqHhc">YouTube tutorial video</a></li>
+</ul>
+<li><a href="{{ site.BaseURL }}/docs/tools-and-utilities/autoroles/">Autoroles</a></li>
+</ul>` }}
+          {{ $opts := dict "title" "Tools & Utilities" "icon" "outline/tools" "inner" $inner }}
+          {{ partial "inline/card.html" $opts }}
         </div>
         <div class="col-lg-5">
-          <h4 class="h5 text-center">External Resources</h4>
-          <ul>
-            <li><a href="https://learn.yagpdb.xyz">learn.yagpdb: custom command scripting in detail</a></li>
-            <li><a href="https://github.com/botlabs-gg/yagpdb">YAGPDB source repository</a></li>
-          </ul>
+          {{ $inner := `<ul>
+<li><a href="https://learn.yagpdb.xyz">learn.yagpdb: custom command scripting in detail</a></li>
+<li><a href="https://github.com/botlabs-gg/yagpdb">YAGPDB source repository</a></li>
+</ul>` }}
+          {{ $opts := dict "title" "Resources" "icon" "outline/book" "inner" $inner }}
+          {{ partial "inline/card.html" $opts }}
         </div>
       </div>
     </div>

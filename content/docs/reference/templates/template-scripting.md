@@ -367,15 +367,34 @@ the same type -> for example, `toFloat 1`.
 
 {{< /callout >}}
 
-<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td>**Case**</td><td>**Example**</td></tr><tr><td>if</td><td>`{{if (condition)}} output {{end}}`Initialization statement can also be inside `if` statement with conditional statement, limiting the initialized scope to that `if` statement. <br>`{{$x := 24}}` <br>`{{if eq ($x := 42) 42}} Inside: {{$x}} {{end}}` <br>`Outside: {{$x}}`</td></tr><tr><td>else if</td><td>`{{if (condition)}} output1 {{else if (condition)}} output2 {{end}}`You can have as many`else if`statements as many different conditionals you have.</td></tr><tr><td>else</td><td>`{{if (condition)}} output1 {{else}} output2 {{end}}`</td></tr></tbody></table>
+| Case     | Example                                                                                                                                                                                                                                                                     |
+|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| if       | `{{if (condition)}} output {{end}}`<br>Initialization statement can also be inside `if` statement with conditional statement, limiting the initialized scope to that `if` statement.<br>`{{$x := 24}}`<br>`{{if eq ($x := 42) 42}} Inside: {{$x}} {{end}}`<br>`Outside: {{$x}}` |
+| else&nbsp;if  | `{{if (condition)}} output1 {{else if (condition)}} output2 {{end}}`<br>You can have as many `else if` statements as many different conditionals you have.                                                                                                                      |
+| else     | `{{if (condition)}} output1 {{else}} output2 {{end}}`                                                                                                                                                                                                                           |
 
-<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td>**Boolean Logic**</td><td></td></tr><tr><td>and</td><td>`{{if and (cond1) (cond2) (cond3)}} output {{end}}`</td></tr><tr><td>not</td><td>`{{if not (condition)}} output {{end}}`</td></tr><tr><td>or</td><td>`{{if or (cond1) (cond2) (cond3)}} output {{end}}`</td></tr></tbody></table>
+### Boolean Logic
 
-<table data-header-hidden><thead><tr><th width="162.36591270099146">Case</th><th width="464.01896847105303">Example</th></tr></thead><tbody><tr><td>**Comparison operators**</td><td></td></tr><tr><td>Equal: `eq`</td><td>`{{if eq .Channel.ID ########}} output {{end}}`</td></tr><tr><td>Not equal: `ne`</td><td>`{{$x := 7}} {{$y := 8}} {{ne $x $y}}` returns `true`</td></tr><tr><td>Less than: `lt`</td><td>`{{if lt (len .Args) 5}} output {{end}}`</td></tr><tr><td>Less than or equal: `le`</td><td>`{{$x := 7}} {{$y := 8}} {{le $x $y}}` returns `true`</td></tr><tr><td>Greater than: `gt`</td><td>`{{if gt (len .Args) 1}} output {{end}}`</td></tr><tr><td>Greater than or equal: `ge`</td><td>`{{$x := 7}} {{$y := 8}} {{ge $x $y}}` returns `false`</td></tr></tbody></table>
+| Case | Example                                             |
+|------|-----------------------------------------------------|
+| and  | `{{if and (cond1) (cond2) (cond3)}} output {{end}}` |
+| not  | `{{if not (condition)}} output {{end}}`             |
+| or   | `{{if or (cond1) (cond2) (cond3)}} output {{end}}`  |
+
+### Comparison Operators
+
+| Case                        | Example                                                |
+|-----------------------------|--------------------------------------------------------|
+| Equal: `eq`                 | `{{if eq .Channel.ID ########}} output {{end}}`        |
+| Not equal: `ne`             | `{{$x := 7}} {{$y := 8}} {{ne $x $y}}` returns `true`  |
+| Less than: `lt`             | `{{if lt (len .Args) 5}} output {{end}}`               |
+| Less than or equal: `le`    | `{{$x := 7}} {{$y := 8}} {{le $x $y}}` returns `true`  |
+| Greater than: `gt`          | `{{if gt (len .Args) 1}} output {{end}}`               |
+| Greater than or equal: `ge` | `{{$x := 7}} {{$y := 8}} {{ge $x $y}}` returns `false` |
 
 ### Range
 
-`range`iterates over element values in variety of data structures in pipeline - integers, slices/arrays, maps or
+`range` iterates over element values in variety of data structures in pipeline - integers, slices/arrays, maps or
 channels. The dot `.` is set to successive elements of those data structures and output will follow execution. If the
 value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
 

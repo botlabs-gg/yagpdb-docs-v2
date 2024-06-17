@@ -24,38 +24,38 @@
         <h2 id="quick-links" class="text-center">Quick links</h2>
         <p class="text-center">Start reading the <a href="/docs/welcome/introduction/">documentation</a> for a full list.</p>
         <div class="col-lg-5">
-          {{ $inner := `
+          {{ $content := `
 - [Adding custom commands](/docs/custom-commands/commands)
 - [Template scripting reference](/docs/reference/templates/template-scripting)
 - [Template functions reference](/docs/reference/templates/functions)
           ` }}
-          {{ $opts := dict "title" "Custom Commands" "icon" "outline/puzzle" "inner" $inner }}
+          {{ $opts := dict "title" "Custom Commands" "icon" "outline/puzzle" "content" $content }}
           {{ partial "inline/home-card.html" $opts }}
         </div>
         <div class="col-lg-5">
-          {{ $inner := `
+          {{ $content := `
 - [Advanced automoderator overview](/docs/moderation/advanced-automoderator/overview)
 - [Message logging](/docs/moderation/logging/)
 - [Verification](/docs/moderation/verification/)
           ` }}
-          {{ $opts := dict "title" "Moderation" "icon" "outline/shield-check" "inner" $inner }}
+          {{ $opts := dict "title" "Moderation" "icon" "outline/shield-check" "content" $content }}
           {{ partial "inline/home-card.html" $opts }}
         </div>
         <div class="col-lg-5">
-          {{ $inner := `
+          {{ $content := `
 - [Self-assignable roles](/docs/tools-and-utilities/self-assignable-roles/)
   - [YouTube tutorial video](https://www.youtube.com/watch?v=IaTfJ4vqHhc)
 - [Autoroles](/docs/tools-and-utilities/autorole)
           ` }}
-          {{ $opts := dict "title" "Tools & Utilities" "icon" "outline/tools" "inner" $inner }}
+          {{ $opts := dict "title" "Tools & Utilities" "icon" "outline/tools" "content" $content }}
           {{ partial "inline/home-card.html" $opts }}
         </div>
         <div class="col-lg-5">
-          {{ $inner := `
+          {{ $content := `
 - [learn.yagpdb.xyz: custom command scripting in depth](https://learn.yagpdb.xyz)
 - [YAGPDB source repository](https://github.com/botlabs-gg/yagpdb)
           ` }}
-          {{ $opts := dict "title" "Resources" "icon" "outline/book" "inner" $inner }}
+          {{ $opts := dict "title" "Resources" "icon" "outline/book" "content" $content }}
           {{ partial "inline/home-card.html" $opts }}
         </div>
       </div>
@@ -63,7 +63,7 @@
   </section>
 {{ end }}
 
-{{- define "partials/inline/home-page.html" }}
+{{- define "partials/inline/home-card.html" }}
   <div class="card card-box w-100">
     <div class="card-body">
       <div class="d-flex align-items-center mb-3">
@@ -78,7 +78,7 @@
         {{- end }}
         <span class="card-title h4 my-0">{{ .title }}</span>
       </div>
-      {{ with .inner }}
+      {{ with .content }}
       <div class="d-flex flex-column">
         {{ . | markdownify }}
       </div>

@@ -30,7 +30,7 @@
 - [Template functions reference](/docs/reference/templates/functions)
           ` }}
           {{ $opts := dict "title" "Custom Commands" "icon" "outline/puzzle" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
+          {{ partial "inline/home-card.html" $opts }}
         </div>
         <div class="col-lg-5">
           {{ $inner := `
@@ -39,7 +39,7 @@
 - [Verification](/docs/moderation/verification/)
           ` }}
           {{ $opts := dict "title" "Moderation" "icon" "outline/shield-check" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
+          {{ partial "inline/home-card.html" $opts }}
         </div>
         <div class="col-lg-5">
           {{ $inner := `
@@ -48,7 +48,7 @@
 - [Autoroles](/docs/tools-and-utilities/autorole)
           ` }}
           {{ $opts := dict "title" "Tools & Utilities" "icon" "outline/tools" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
+          {{ partial "inline/home-card.html" $opts }}
         </div>
         <div class="col-lg-5">
           {{ $inner := `
@@ -56,14 +56,14 @@
 - [YAGPDB source repository](https://github.com/botlabs-gg/yagpdb)
           ` }}
           {{ $opts := dict "title" "Resources" "icon" "outline/book" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
+          {{ partial "inline/home-card.html" $opts }}
         </div>
       </div>
     </div>
   </section>
 {{ end }}
 
-{{- define "partials/inline/card.html" }}
+{{- define "partials/inline/home-page.html" }}
   <div class="card card-box w-100">
     <div class="card-body">
       <div class="d-flex align-items-center mb-3">

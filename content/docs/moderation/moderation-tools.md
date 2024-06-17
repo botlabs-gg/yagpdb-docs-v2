@@ -1,5 +1,5 @@
 +++
-title = "Moderation"
+title = "Moderation Tools"
 weight = 410
 +++
 

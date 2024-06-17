@@ -587,7 +587,7 @@ Important interaction context data
 | .StrippedID        | "Strips" or cuts off the triggering part of the custom ID and prints out everything else after that. Bear in mind, when using regex as trigger, for example `"day"` and input custom ID is `"have-a-nice-day-my-dear-YAG"` output will be `"-my-dear-YAG"` --- rest is cut off. |
 | .Values            | List of all options selected with a select menu, OR all values input into a modal in order.                                                                                                                                                                                     |
 
-[Interaction object and context data](/docs/reference/templates/template-scripting#interaction)
+[Interaction object and context data](/docs/reference/templates/syntax-and-data#interaction)
 
 `.Interaction.Token` must be provided to any [followup](#following-up) functions you decide to use later. If you are
 using these in subsequent script executions, it's a good idea to save this to database when the interaction occurs.

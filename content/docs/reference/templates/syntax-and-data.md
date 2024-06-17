@@ -1,5 +1,5 @@
 +++
-title = "Template Scripting"
+title = "Syntax and Data"
 weight = 911
 +++
 

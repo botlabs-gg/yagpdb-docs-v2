@@ -121,8 +121,8 @@ be directly sent to the offending user.
 Additional template dot context data is available for Moderation Actions:
 
 - `{{.Reason}}`: The reason specified in the timeout.
-- `{{.Author}}`: The author of the punishment, is a [user object](/docs/reference/templates/template-scripting#user).
-- `{{.Duration}}`: The duration of the mod action as a [time.Duration format](/docs/reference/templates/template-scripting#time).
+- `{{.Author}}`: The author of the punishment, is a [user object](/docs/reference/templates/syntax-and-data#user).
+- `{{.Duration}}`: The duration of the mod action as a [time.Duration format](/docs/reference/templates/syntax-and-data#time).
 - `{{.HumanDuration}}`: The duration in a human friendly format (`1 hour and 3 minutes` for example).
 - `{{.WarningID}}`: The ID of the warning (when using the warn command).
 

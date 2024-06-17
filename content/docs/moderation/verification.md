@@ -42,7 +42,7 @@ message uses template script as well.
 
 You can customize both messages in the Verification page on the control panel.
 
-[Template Reference](/docs/reference/templates/template-scripting)
+[Template Reference](/docs/reference/templates/syntax-and-data)
 
 Verification scripts provide `.Link` as additional dot context data. This is the unique verification link the user must
 visit to verify.

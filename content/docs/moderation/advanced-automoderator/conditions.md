@@ -1,6 +1,6 @@
 +++
 title = 'Conditions'
-weight = 432
+weight = 433
 +++
 
 Conditions impose more fine-grained control on Advanced Automoderator rules. This page will cover the different types

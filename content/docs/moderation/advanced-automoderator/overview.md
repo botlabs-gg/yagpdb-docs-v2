@@ -93,7 +93,7 @@ parts.
 ### Rule Parts
 
 {{< card-grid >}}
+{{< link-card title="Triggers" href="../triggers/" >}}
 {{< link-card title="Conditions" href="../conditions/" >}}
 {{< link-card title="Effects" href="../effects/" >}}
-{{< link-card title="Triggers" href="../triggers/" >}}
 {{< /card-grid >}}

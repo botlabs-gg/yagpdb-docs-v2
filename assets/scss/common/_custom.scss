@@ -4,3 +4,17 @@ a.broken {
   border: 2px solid #f00;
   padding: 0.1em 0.2em;
 }
+
+// Reduce spacing between cards on the homepage.
+.home .card {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.quick-links-container .card-nav {
+  column-gap: 2rem;
+}
+
+// Also ensure homepage cards are not too wide.
+.quick-links-container {
+  max-width: 900px;
+}

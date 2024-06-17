@@ -19,49 +19,80 @@
   </div>
   {{ end -}}
   <section class="section section-md section-features">
-    <div class="container">
+    <div class="container quick-links-container">
       <div class="row justify-content-center">
         <h2 id="quick-links" class="text-center">Quick links</h2>
         <p class="text-center">Start reading the <a href="/docs/welcome/introduction/">documentation</a> for a full list.</p>
-        <div class="col-lg-5">
-          {{ $inner := `
+        <div class="card-nav d-flex flex-column flex-sm-row">
+          {{ $opts := dict
+            "title" "Custom Commands"
+            "icon" "outline/puzzle"
+            "content" `
 - [Adding custom commands](/docs/custom-commands/commands)
 - [Template scripting reference](/docs/reference/templates/template-scripting)
 - [Template functions reference](/docs/reference/templates/functions)
-          ` }}
-          {{ $opts := dict "title" "Custom Commands" "icon" "outline/puzzle" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
-        </div>
-        <div class="col-lg-5">
-          {{ $inner := `
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
+
+          {{ $opts := dict
+            "title" "Moderation"
+            "icon" "outline/shield-check"
+            "content" `
 - [Advanced automoderator overview](/docs/moderation/advanced-automoderator/overview)
 - [Message logging](/docs/moderation/logging/)
 - [Verification](/docs/moderation/verification/)
-          ` }}
-          {{ $opts := dict "title" "Moderation" "icon" "outline/shield-check" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
         </div>
-        <div class="col-lg-5">
-          {{ $inner := `
+
+        <div class="card-nav d-flex flex-column flex-sm-row">
+          {{ $opts := dict
+            "title" "Tools & Utilities"
+            "icon" "outline/tools"
+            "content" `
 - [Self-assignable roles](/docs/tools-and-utilities/self-assignable-roles/)
   - [YouTube tutorial video](https://www.youtube.com/watch?v=IaTfJ4vqHhc)
 - [Autoroles](/docs/tools-and-utilities/autorole)
-          ` }}
-          {{ $opts := dict "title" "Tools & Utilities" "icon" "outline/tools" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
-        </div>
-        <div class="col-lg-5">
-          {{ $inner := `
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
+
+          {{ $opts := dict
+            "title" "Resources"
+            "icon" "outline/book"
+            "content" `
 - [learn.yagpdb.xyz: custom command scripting in depth](https://learn.yagpdb.xyz)
 - [YAGPDB source repository](https://github.com/botlabs-gg/yagpdb)
-          ` }}
-          {{ $opts := dict "title" "Resources" "icon" "outline/book" "inner" $inner }}
-          {{ partial "inline/card.html" $opts }}
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
         </div>
       </div>
     </div>
   </section>
 {{ end }}
+
+{{- define "partials/inline/home-card.html" }}
+  <div class="card card-box w-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-3">
+        {{- $colors := slice "yellow" "purple" "green" "red" "blue" }}
+        {{- $color := .color }}
+        {{- if not (in $colors .color) }}
+          {{ $color = "yellow" }}
+        {{- end }}
+        {{ $class := printf "svg-inline-custom mb-0 me-3 card-icon icon-%s" $color }}
+        {{- with .icon }}
+          {{ partial "inline-svg" (dict "src" . "stroke-width" "1.5" "height" "1.875rem" "width" "1.875rem" "class" $class) }}
+        {{- end }}
+        <span class="card-title h4 my-0">{{ .title }}</span>
+      </div>
+      {{ with .content }}
+      <div class="d-flex flex-column">
+        {{ . | markdownify }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+{{- end -}}
 
 {{ define "sidebar-footer" }}
   {{/* nothing */}}

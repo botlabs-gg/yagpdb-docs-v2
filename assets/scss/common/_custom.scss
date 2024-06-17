@@ -13,3 +13,8 @@ a.broken {
 .quick-links-container .card-nav {
   column-gap: 2rem;
 }
+
+// Also ensure homepage cards are not too wide.
+.quick-links-container {
+  max-width: 900px;
+}

@@ -116,7 +116,7 @@ To remove the requirement and make the reason optional, you may toggle this on (
 Moderation DMs are template scripts (**3**) which are executed within the offending user's DM. Text output to the response will
 be directly sent to the offending user.
 
-{{< link-card href="/reference/templates" description="Templates Reference" target="_blank" >}}
+{{< link-card href="/docs/reference/templates/syntax-and-data" description="Templates Reference" target="_blank" >}}
 
 Additional template dot context data is available for Moderation Actions:
 

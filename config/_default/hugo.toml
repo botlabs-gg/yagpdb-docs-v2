@@ -5,7 +5,7 @@ copyright = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
 baseURL = ""
 canonifyURLs = false
 disableAliases = true
-enableGitInfo = true
+enableGitInfo = false
 enableRobotsTXT = true
 languageCode = "en-US"
 

@@ -18,7 +18,7 @@ concurrency:
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
-  HUGO_BASE_URL: 'https://botlabs-gg.github.io/yagpdb-docs-v2/'
+  HUGO_BASE_URL: 'docs-beta.yagpdb.xyz'
 
 jobs:
   build:

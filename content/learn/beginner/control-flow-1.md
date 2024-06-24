@@ -185,29 +185,30 @@ relatively quickly. Please refer to the [Boolean logic] article on Wikipedia for
    error, and how can it be fixed?
 
    ```go
-   {{$num1 := 10}}
-   {{if $num1}}
-       {{num1 := 6}} {{$num1}}
-   {{end}}
-   {{if not (mod $num1 3)}}
-       {{$num1}}
-   {{end}}
-   {{$num1}}
+   {{ $num1 := 10 }}
+   {{ if $num1 }}
+       {{ num1 := 6 }}
+       {{ $num1 }}
+   {{ end }}
+   {{ if not (mod $num1 3) }}
+       {{ $num1 }}
+   {{ end }}
+   {{ $num1 }}
    ```
 
    ```go
-   {{$name := "John"}}
-   {{if eq $name "John"}}
-       {{$family_name := "Walters"}}
-   {{end}}
-   My name is: {{$name}} {{$family_name}}
+   {{ $name := "John" }}
+   {{ if eq $name "John" }}
+       {{ $family_name := "Walters" }}
+   {{ end }}
+   My name is: {{ $name }} {{ $family_name }}
    ```
 
    ```go
-   {{$string := "happy"}}
-   {{if gt $string "Sad"}}
-       Be {{$string}}!
-   {{else}}
-      Dont be {{$string}}!
-   {{end}}
+   {{ $string := "happy" }}
+   {{ if gt $string "Sad" }}
+       Be {{ $string }}!
+   {{ else }}
+      Dont be {{ $string }}!
+   {{ end }}
    ```

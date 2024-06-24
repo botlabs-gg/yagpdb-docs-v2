@@ -108,8 +108,8 @@ All this talk about data and data types is nice, but how do we actually use them
 later use? This is where variables come in. A variable is a way to store a value and give it a name. You can then refer
 to this value by its name later in your code.
 
-In Custom Commands, you can define a variable by starting with a `$`, its name, and the assignment operator `:=`. Take
-the following code snippet, for example:
+In Custom Commands, you can define a variable by starting with a `$`, its name, and the assignment operator `:=`. To
+illustrate this, consider the following example:
 
 ```go
 {{ $name := "Alice" }}
@@ -122,6 +122,8 @@ the following code snippet, for example:
 Later on, we may wish to reassign a new value to a variable. We can do this by using the re-assignment operator `=`.
 When and why this becomes necessary will be discussed in a later chapter.
 
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+
 When debugging your code, you might have to figure out the type of a certain variable. You can do this by using the
 `printf` function with the `%T` verb, like so:
 
@@ -129,3 +131,5 @@ When debugging your code, you might have to figure out the type of a certain var
 {{ $name := "Alice" }}
 {{ printf "%T" $name }}
 ```
+
+{{< /callout >}}

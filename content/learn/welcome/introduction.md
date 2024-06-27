@@ -23,7 +23,7 @@ common pitfalls and make your developing experience as a whole more enjoyable.
 You should start writing and testing custom commands on a separate testing server on Discord before adding them to your
 main server. This avoids any potential issues caused by members interfering with incomplete custom commands.
 
-There is no "undo"-button, and kicking YAGPDB won't reset your configuration. Write your changes down first, then you
+There is no "undo" button, and kicking YAGPDB won't reset your configuration. Write your changes down first, then you
 can revert them if something goes wrong.
 
 Never assume YAGPDB is running 24/7/365: we do our best, but occasional downtime---for routine maintenance, upstream

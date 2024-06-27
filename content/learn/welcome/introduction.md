@@ -11,8 +11,9 @@ We are going to teach you how to read code as well as how to write it. After all
 **read**? Learn to read, learn to solve problems, and learn to enjoy the process. The community is there to help, as
 long as you put in some effort yourself.
 
-To understand the custom commands interface you will be interacting with on the control panel, please read the
-documentation on [custom commands](/docs/custom-commands/commands).
+These guides assume that you are already familiar with the custom command UI, so, for instance, you know how to add and
+edit commands through the control panel. Consult the [documentation on custom commands](/docs/custom-commands/commands)
+if unsure.
 
 ## General Tips
 
@@ -20,22 +21,23 @@ As you start your journey with YAGPDB, there are a few things you should keep in
 common pitfalls and make your developing experience as a whole more enjoyable.
 
 You should start writing and testing custom commands on a separate testing server on Discord before adding them to your
-main server. This way, you already avoid a lot of problems caused by members potentially interfering with an incomplete
-custom command.
+main server. This avoids any potential issues caused by members interfering with incomplete custom commands.
 
 There is no "undo"-button, and kicking YAGPDB won't reset your configuration. Write your changes down first, then you
 can revert them if something goes wrong.
 
-Never assume YAGPDB is running 24/7/365. It is a free service, and not guaranteed to be up all the time. Do not
-write your custom commands based on that assumption.
+Never assume YAGPDB is running 24/7/365: we do our best, but occasional downtime---for routine maintenance, upstream
+issues, and otherwise---is inevitable. Always have a backup plan for when YAGPDB is down.
 
-Start simple. Don't try to write a complex custom command right away. Start with something simple, then iteratively
-improve upon that.
+Don't try to write a complex custom command right away. Start with something simple, then iteratively improve upon that.
 
-Be sure to read the [reference documentation](/docs/reference/templates) along the lessons here. We will not cover every
-detail of every function in these lessons, rather give you the tools necessary to build complex systems.
+Be sure to read the [reference documentation](/docs/reference/templates) alongside the lessons here. We will not cover
+every detail of every function in these lessons, rather we aim to give you the tools necessary to build complex systems.
 
 Over time, your custom commands may get more lengthy and complex. It is a good idea to write them locally in some text
-editor or IDE, and then paste them into the web interface.
+editor or IDE, and then paste them into the web interface. Some popular choices are [VSCode], [Neovim], and
+[Notepad++].
 
-
+[VSCode]: https://code.visualstudio.com/
+[Neovim]: https://neovim.io/
+[Notepad++]: https://notepad-plus-plus.org/

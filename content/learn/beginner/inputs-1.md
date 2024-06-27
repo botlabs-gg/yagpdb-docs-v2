@@ -109,13 +109,16 @@ that first.
 ```go
 {{ $args := parseArgs 2 "" (carg "int" "coolness level") (carg "member" "target member") }}
 
+{{ $coolness := $args.Get 0 }}
+{{ $member := $args.Get 1 }}
+
 {{ if or (gt (toInt $coolness) 100) (lt (toInt $coolness) 0) }}
   Invalid coolness level. Must be between 0 and 100.
   {{ return }}
 {{ end }}
 
-coolness: {{ $args.Get 0 }}
-member: {{ ($args.Get 1).Nick }}
+coolness: {{ $coolness }}
+member: {{ $member.Nick }}
 ```
 
 Now, we can make use of another great feature of `parseArgs`: Certain types support additional arguments that can be

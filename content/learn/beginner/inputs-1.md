@@ -3,7 +3,7 @@ title = "Inputs 1"
 weight = 240
 +++
 
-When we were starting to write Custom Commands, we stuck to a somewhat static custom command --- one that doesn't take
+When we were starting to write Custom Commands, we stuck to a somewhat static custom command---one that doesn't take
 any arguments and has a fixed output. This is a good starting point, but it's not very useful in practice. In this
 chapter, we'll learn how to create custom commands that take inputs.
 
@@ -62,7 +62,7 @@ to.
 {{ $args := parseArgs 2 "" (carg "int" "coolness level") (carg "member" "target member") }}
 ```
 
-Note that we are using the `member` type here --- in general, it is recommended to use the `member` type for
+Note that we are using the `member` type here---in general, it is recommended to use the `member` type for
 user-related arguments, as it validates that the target user is also a member of the server. There are very limited
 use-cases for `user` and `userid`, which will be left as an exercise to the reader.
 

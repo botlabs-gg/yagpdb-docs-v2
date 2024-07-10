@@ -4,51 +4,26 @@ weight = 230
 +++
 
 Until now, we have just written some linear code that executes from top to bottom. However, in real-world applications,
-we often need to make decisions based on certain conditions. This is where *control flow* comes in.
+we often need to execute different code depending on certain states of our program. This is where *control flow* comes
+into play.
 
 You already have an intuitive understanding of control flow. For instance, when you cross the street, you look left and
-right to see if any cars are coming. If there are no cars, you cross the street. If there are cars, you wait until they
-have passed, then check again. This is a simple example of a decision-making process.
+right to see if any cars are coming. If there are no cars, you cross the street. Otherwise ("else"), you wait until the
+incoming cars have passed, then check again. This is a simple example of a decision-making process.
 
-## Comparison Actions
-
-In programming, we can make decisions by comparing values to each other. We can compare numbers, strings, and other data
-types. The result of a comparison is a *boolean* value, which is either `true` or `false`.
-
-{{< callout context="caution" title="Comparing across Types" icon="outline/alert-triangle" >}}
-
-Just like you cannot quite compare apples and oranges, you cannot compare values of different types. For instance, you
-cannot compare a number to a string. The bot will throw an error if you try to do so, you will have to convert either of
-them to the other type first.
-
-{{< /callout >}}
-
-We provide the following comparison functions in Custom Commands:
-
-- `eq` (equals `==`)
-- `ne` (not equals `!=`)
-- `lt` (less than `<`)
-- `le` (less than or equal to `<=`)
-- `gt` (greater than `>`)
-- `ge` (greater than or equal to `>=`)
-
-These functions can only compare basic data types as introduced in [Data Types 1](/learn/beginner/datatypes-1). Strings
-are compared using the [underlying Unicode values](https://en.wikipedia.org/wiki/List_of_Unicode_characters), stepping
-through the strings byte by byte. Please refer to the [functions documentation](/docs/reference/templates/functions)
-for the syntax of these functions.
-
-### If Statements
+## If Statements
 
 The most basic form of control flow is the `if` statement. An `if` statement checks a condition and executes a block of
 code if the condition is true. If the condition is false, the block of code is skipped.
-
-Here is an example of an `if` statement:
 
 ```go
 {{ if eq 5 5 }}
   Five is equal to five!
 {{ end }}
 ```
+
+We use the `eq` comparison function to check whether its given arguments are equal; we will enumerate all comparison
+functions in a [later section](#comparison-actions) on this page.
 
 We can expand this to execute a different block of code if the condition is false by using an `else` block:
 
@@ -77,7 +52,7 @@ them is true:
 
 As your code grows, you may find yourself nesting `if` statements inside each other. This can lead to code that is hard
 to read and understand. One way to avoid this is to use *guard clauses*. A guard clause is an `if` statement that checks
-for a condition and returns early if the condition is false.
+for a condition and returns early via the `{{ return }}` action if the condition is false.
 
 Rewriting the second example to use these guard clauses yields the following code:
 
@@ -93,6 +68,32 @@ Five is equal to three!
 Although this example may be a bit contrived, guard clauses can help you avoid deeply nested code and make your code
 easier to read, especially when you come back to it at a later date.
 
+## Comparison Actions
+
+In programming, we can make decisions by comparing values to each other. We can compare numbers, strings, and other data
+types. The result of a comparison is a *boolean* value, which is either `true` or `false`. Normally, comparisons are
+binary operators; however, in custom commands, we use functions to compare values.
+
+{{< callout context="caution" title="Comparing across Types" icon="outline/alert-triangle" >}}
+
+Just like you cannot quite compare apples and oranges, you cannot compare values of different types. For instance, you
+cannot compare a number to a string. The bot will throw an error if you try to do so, you will have to convert either of
+them to the other type first.
+
+{{< /callout >}}
+
+We provide the following comparison functions in custom commands:
+
+- `eq` (equals `==`)
+- `ne` (not equals `!=`)
+- `lt` (less than `<`)
+- `le` (less than or equal to `<=`)
+- `gt` (greater than `>`)
+- `ge` (greater than or equal to `>=`)
+
+These functions can only compare basic data types as introduced in [Data Types 1](/learn/beginner/datatypes-1). Strings
+are compared on a byte-by-byte basis. Please refer to the [functions documentation](/docs/reference/templates/functions)
+for the syntax of these functions.
 
 ## Blocks And Scope
 
@@ -100,7 +101,7 @@ In [Data Types 1](/learn/beginner/datatypes-1), we introduced the concept of var
 values and give them a name. In programming, variables have a *scope*, which defines where in the code the variable can
 be accessed. Think of each scope as a "container" for things inside it.
 
-Often, you will want to have a variable available across multiple scopes. In Custom Commands, the variable is accessible
+Often, you will want to have a variable available across multiple scopes. In custom commands, the variable is accessible
 in the scope in which it was defined, as well as all nested scopes within. Let us assume that we want to assign a
 coolness value, which should be true if the user's name is "alice". We can achieve this by defining a variable in
 the outer scope and re-assigning, using the `=` operator, its value in the inner scope:
@@ -120,61 +121,10 @@ and understand, as you do not have to search through the entire codebase to find
 
 {{< callout context="caution" title="Definition and Reassignment" icon="outline/alert-triangle" >}}
 
-In Custom Commands, you use `:=` to define a variable, and `=` to reassign a variable. The bot will not throw an error
+In custom commands, you use `:=` to define a variable, and `=` to reassign a variable. The bot will not throw an error
 if you try to re-define a variable using `:=`, but it will not affect the outer scoped variable.
 
 {{< /callout >}}
-
-## Boolean Logic
-
-To form more complex conditional checks, we need to understand *boolean logic*. [Boolean logic] is a branch of algebra
-that deals with true/false values. In programming, we use boolean logic to make decisions based on the truth value of
-expressions. There are three primary boolean operators: `AND`, `OR`, and `NOT`.
-
-[boolean logic]: https://en.wikipedia.org/wiki/Boolean_algebra
-
-### Logical NOT
-
-The logical `NOT` operator is the simplest of these three. It takes one argument and gives back the exact opposite of
-whatever you give it. We provide this operator in the form of the `not` function in Custom Commands.
-
-Expressed in a *truth table*, the `NOT` operator looks like this:
-
-| A     | NOT A |
-|-------|-------|
-| false | true  |
-| true  | false |
-
-### Logical AND
-
-The logical `AND` operator takes at least two argument and returns `true` if all of its arguments are `true`, `false`
-otherwise. We provide this operator in the form of the `and` function in Custom Commands.
-
-Expressed in a *truth table*, the `AND` operator looks like this:
-
-| A     | B     | A AND B |
-|-------|-------|---------|
-| false | false | false   |
-| false | true  | false   |
-| true  | false | false   |
-| true  | true  | true    |
-
-### Logical OR
-
-The logical `OR` operator takes at least two argument and returns `true` if at least one of its arguments is `true`,
-`false` otherwise. We provide this operator in the form of the `or` function in Custom Commands.
-
-Expressed in a *truth table*, the `OR` operator looks like this:
-
-| A     | B     | A OR B |
-|-------|-------|--------|
-| false | false | false  |
-| false | true  | true   |
-| true  | false | true   |
-| true  | true  | true   |
-
-The above operators can be combined to form (more or less) complex expressions, which can become very hard to read
-relatively quickly. Please refer to the [Boolean logic] article on Wikipedia for simplification rules.
 
 ## Exercises
 
@@ -182,7 +132,7 @@ relatively quickly. Please refer to the [Boolean logic] article on Wikipedia for
    or `Number is Odd` depending on the case. Verify the output for the following values of `$a`: 1, 9, 0, 10021, -5.
 
 2. Predict the output of the following code snippets. If there is an error in the snippet, what is the cause of the
-   error, and how can it be fixed?
+   error, and how can it be fixed? Also note down potential improvements to the code that make it easier to follow.
 
    ```go
    {{ $num1 := 10 }}

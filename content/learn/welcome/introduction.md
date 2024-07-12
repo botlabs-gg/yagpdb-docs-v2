@@ -49,7 +49,7 @@ of code can save hours of debugging a snarled mess later on. Many novice program
 code without a plan, only to end up pouring hours into what should be a relatively short task.
 
 Planning first is not only the best approach for novices, but also for skilled programmers. However, if you see a highly
-experienced programmer in action, you may not see her planning when working on a relatively easy problem. Not seeing
+experienced programmer in action, you may not see them planning when working on a relatively easy problem. Not seeing
 them planning does not mean that they are not doing it, but just that they are capable of doing all the planning in
 their head.
 

@@ -126,6 +126,23 @@ if you try to re-define a variable using `:=`, but it will not affect the outer 
 
 {{< /callout >}}
 
+<div style="float: right; margin-left: 7px;">
+
+![Responses: template: :XX: unexpected EOF](unexpected-eof.png)
+
+</div>
+
+Try and recall the last example from the introduction of if-statements and notice how, despite us having multiple blocks
+of branching code, there's still only one `{{ end }}` action.
+
+Each control structure's start (`if`, `with`, etc.) must eventually have such a closing statement. Not doing so will
+result in an error similar to `template: :XX: unexpected EOF`, where `:XX:` is the line number where the error
+occurred---an example shown above.
+
+If you're familiar with C-style programming languages, this concept will most likely strike you as the curly braces
+these languages use to denote code blocks.
+
+
 ## Exercises
 
 1. Write a Custom Command to determine if the number stored in a variable `$a` is even or odd and print `Number is Even`

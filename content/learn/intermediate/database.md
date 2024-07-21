@@ -1,5 +1,5 @@
 +++
-title = "Custom Command Database"
+title = "Database"
 weight = 340
 +++
 

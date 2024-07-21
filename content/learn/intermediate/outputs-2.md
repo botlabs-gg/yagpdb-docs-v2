@@ -6,7 +6,7 @@ weight = 310
 Until now, we have just used the [default response behavior](/learn/beginner/outputs-1) to make our custom commands
 respond with some text. This makes sense for quick mockups or relatively simple commands. However, this may be
 inconvenient or Not What You Want in some cases. In this chapter, we will explore how to send messages to different
-channels, edit already sent messages, and send messages with embeds, vastly expanding your toolbox for creating complex
+channels, edit existing messages, and send messages with embeds, vastly expanding your toolbox for creating complex
 custom command systems.
 
 ## Sending Messages
@@ -21,8 +21,8 @@ Let's get started with the simplest of them all, `sendMessage`. Its syntax is th
 {{ sendMessage channel_id message_to_be_sent }}
 ```
 
-The `channel_id` is the ID of the channel in which the message is to be sent. If you want to send the message in the
-same channel as the one in which the custom command was triggered, simply set `channel_id` to `nil`.
+The `channel_id` is the ID of the channel to send the message to. If you want to send the message in the same channel as
+the one in which the custom command was triggered, simply set `channel_id` to `nil`.
 
 Intuitively, `message_to_be_sent` denotes the output that is to be sent as a message. For now, we will just say it is a
 string with the content you want to send. We will cover sending embeds in a later section on this page.
@@ -39,16 +39,14 @@ message with these mentions, you'll need to tell the bot to not escape them. You
 
 ### Returning the Message ID
 
-If you want to store the ID of the message you just sent, for example to later edit it, you use the `sendMessageRetID`
-function. Assign the result of this function to a variable, otherwise it will be rendered to the output and become
-unusable for further usage in your custom command.
+If you want to store the ID of the message you just sent, for example to later edit it, use the `sendMessageRetID`
+function and assign the result to a variable.
 
 ```go
 {{ $messageID := sendMessageRetID channel_id message_to_be_sent }}
 ```
 
-Naturally, we provide a combination of the `sendMessageRetID` function with the `sendMessageNoEscape` function if you
-want to send a message with special mentions and store the ID of the message.
+Naturally, we provide a variant of the `sendMessageRetID` function that does not escape mentions:
 
 ```go
 {{ $messageID := sendMessageNoEscapeRetID channel_id message_to_be_sent }}
@@ -62,7 +60,7 @@ Embeds are a powerful way to display information in a structured and visually ap
 description, fields, images, and more. We provide a function to build embeds in a way that closely resembles the
 structure as defined by the Discord API.
 
-We will illustrate this with a sparse example. For a full breakdown of all available fields, please refer to our
+We will illustrate this with a simple example. For a full breakdown of all available fields, please refer to our
 [custom embeds documentation](/docs/reference/custom-embeds).
 
 ```go
@@ -97,9 +95,9 @@ The `"title"` and `"description"` fields are self-explanatory---we can use Disco
 field is in our case a hexadecimal color value that will be used as the color of the embed, but it can also take a
 [decimal value](https://www.binaryhexconverter.com/hex-to-decimal-converter).
 
-The `"fields"` field is a list (we call it slice) of dictionaries, where each dictionary represents a field in the embed.
-Each field dictionary must contain a `"name"` and a `"value"` field, and can optionally contain an `"inline"` field.
-This field is a boolean that determines whether the field should be displayed inline with the previous field.
+The `"fields"` field is a list (more precisely a *slice*) of dictionaries, where each dictionary represents a field in
+the embed. Each field dictionary must contain a `"name"` and a `"value"` field, and can optionally contain an `"inline"`
+field. This field is a boolean that determines whether the field should be displayed inline with the previous field.
 
 The `"author"` field is a dictionary that contains the name and icon URL of the author of the embed. In this case, we
 use the username of the user who triggered the custom command as the name, and the user's avatar URL as the icon URL.
@@ -125,9 +123,11 @@ creating a new one each time something changes. We provide the `editMessage` fun
 {{ editMessage channel_id message_id new_message_content }}
 ```
 
-The `channel_id` is the ID of the channel in which the message is located. The `message_id` is the ID of the message you
-want to edit. The `new_message_content` is the new content you want to set for the message, completely replacing it.
-You should note that YAGPDB can only edit messages from itself, just like you cannot edit someone else's messages.
+The `channel_id` is the ID of the channel containing the message. The `message_id` is the ID of the message you want to
+edit. The `new_message_content` is the new content of the message, which will completely overwrite the existing content.
+See [Editing Embeds](#editing-embeds) if you only want to change certain fields of an existing embed while leaving
+others intact. You should note that YAGPDB can only edit messages from itself, just like you cannot edit someone else's
+messages.
 
 For a quick demonstration, consider the following code:
 
@@ -142,11 +142,11 @@ all in the same channel where the custom command was triggered.
 
 ### Editing Embeds
 
-Editing embeds is a little more involved than editing regular messages. You need to provide the entire embed object
-again, old parts included. This is due to how the Discord API functions. The basic idea is that we obtain the old embed
-object, modify it, and then send the modified object back to the `editMessage` function.
+Editing embeds is a little more involved than editing regular messages. Since the data provided to `editMessage`
+completely overwrites the existing content, it is necessary to retrieve the existing embed object, modify the desired
+fields, and provide the whole embed to `editMessage`.
 
-A contrived example all within the same custom command looks like the following:
+An elaborate example all within the same custom command looks like the following:
 
 ```go
 {{ $embed := cembed
@@ -165,11 +165,11 @@ A contrived example all within the same custom command looks like the following:
 {{ $messageID := sendMessageRetID nil $embed }}
 {{ sleep 5 }}
 
-{{ $new_embed := structToSdict $embed }}
-{{ $new_embed.Set "title" "This is a new title" }}
-{{ $new_embed.Set "description" "This is a new description." }}
-{{ $new_embed.Set "fields" (cslice) }}
-{{ editMessage nil $messageID (cembed $new_embed) }}
+{{ $newEmbed := structToSdict $embed }}
+{{ $newEmbed.Set "title" "This is a new title" }}
+{{ $newEmbed.Set "description" "This is a new description." }}
+{{ $newEmbed.Set "fields" (cslice) }}
+{{ editMessage nil $messageID (cembed $newEmbed) }}
 ```
 
 In the second part, after `{{ sleep 5 }}`, we first convert the original embed object to a dictionary using the
@@ -177,14 +177,13 @@ In the second part, after `{{ sleep 5 }}`, we first convert the original embed o
 the title and description of the embed, and remove all fields. Finally, we send the modified embed object back to the
 `editMessage` function.
 
-As mentioned previously, this example is contrived and meant to demonstrate the process. In practice, we're more likely
-to use `.Message.Embeds` to get the original embed object, convert and modify it as shown above, then send it back to
-the `editMessage` function.
+As mentioned previously, this example is contrived: in practice, we're more likely to use `.Message.Embeds` to get the
+original embed object, convert and modify it as shown above, then send it back to the `editMessage` function.
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
-`structToSdict` does not perform deep conversion and has some other general inconsistencies. For a full conversion of an
-embed to a dictionary, you can use the following code snippet:
+`structToSdict` does not perform deep conversion. For a full conversion of an embed to a dictionary, you can use the
+following code snippet:
 
 ```go
 {{ if not .Message.Embeds }}
@@ -243,7 +242,7 @@ Similarly, we provide a `complexMessageEdit` function to edit messages with both
 same as `complexMessage`, minus a few keys that cannot be edited. Please refer to the documentation below.
 
 The `complexMessage` builder takes a lot more keys that give you fine-grained control over the message you want to send.
-For a full breakdown of all available keys, please refer to the [message functions documentation][message-docs].
+Refer to the [message functions documentation][message-docs] for a complete description.
 You're already quite far into the course, so you should be able to understand this documentation without much trouble.
 
 [message-docs]: /docs/reference/templates/functions#message

@@ -9,19 +9,18 @@ In this chapter, we will explore these data types in more detail.
 
 ## Slices
 
-Think of a slice as a list of items, that you can add to or remove from. You might have already heard of an array, which
-is a fixed-size list of items. A slice is like an array, but it can grow or shrink in size. This makes slices more
-powerful than a simple array.
-
-In custom commands, we can **c**reate a **slice** with the `cslice` function, like so:
+A slice is an ordered list of items. In custom commands, we can **c**reate a **slice** by providing
+the items in order to the `cslice` function:
 
 ```go
-{{ $mySlice := cslice 1 2 3 "hello" 4 5 "good bye" }}
+{{ $fruits := cslice "banana" "orange" "apple" }}
 ```
 
-As you can see, the data types of the elements in a slice need not be equal, they can be anything. You already
-subconsciously used a slice with dictionaries as elements, when you created the `"fields"` slice for an embed in the
-previous chapter.
+All the elements in the `$fruits` have the same type (_string_), but this is not a requirement: it
+is valid, though rare, for a slice to contain values of different types.
+
+Besides primitives, slices may also contain more complex data types. In the previous chapter, for
+instance, we represented the fields of an embed as a slice of dictionaries.
 
 For available operations on slices, please refer to [our template documentation][docs-slices].
 
@@ -29,17 +28,33 @@ For available operations on slices, please refer to [our template documentation]
 
 ## Maps
 
-A map is an unordered collection of key-value pairs for fast lookups. In custom commands, we have two kinds of maps:
-`sdict` and `dict`. The difference between the two is that `sdict` only supports string keys, while `dict` supports any
-[comparable data type][key-types].
+A map is a table that associates values with keys, such that it is easy and efficient to retrieve
+the value corresponding to a given key.
 
-We can create a map with either the `sdict` or `dict` function, like so:
+For example, a program that implements a reputation system might wish to use a map from user IDs
+(key) to reputation points (value) internally. Using this map, the program can quickly look up and
+modify the reputation points for any given user.
+
+Custom commands offer two kinds of maps: sdicts and dicts. A sdict only supports string keys (hence
+the name: **s**tring **dict**ionary), whereas a dict supports all [comparable data
+types][key-types].
 
 [key-types]: https://go.dev/blog/maps#key-types
 
+To create a map, provide a sequence of key-value pairs
+to the `sdict` or the `dict` function as appropriate:
+
 ```go
-{{ $myStringMap := sdict "key1" "value1" "key2" "value2" }}
-{{ $myMap := dict 1 "value1" 2 "value2" }}
+{{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
+
+{{/* For readability, it's common to put each key/value pair on a new line. */}}
+{{ $userReputation := dict
+    935212563644420158 3
+    204255221017214977 5
+}}
+
+{{/* Pass no arguments for an empty map. */}}
+{{ $empty := sdict }}
 ```
 
 For available operations on maps, please refer to [our template documentation][docs-maps].
@@ -48,23 +63,22 @@ For available operations on maps, please refer to [our template documentation][d
 
 {{< callout context="tip" title="Here be Dragons" icon="outline/rocket" >}}
 
-Consider the following code:
+Consider the following code that displays the value of `$fruitPrices` as defined in the previous
+example
 
 ```go
-{{ $some_map := sdict "key3" "value3" "key1" "value1" "key4" "value4" "key2" "value2" }}
-{{ $some_map }}
-
+{{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
+{{ $fruitPrices }}
 ```
 
-Yielding this output:
+yielding
 
 ```txt
-map[key1:value1 key2:value2 key3:value3 key4:value4]
+map[apple:1.5 banana:2.6 pineapple:3.5]
 ```
 
-Whilst its output may suggest that `$some_map` ends up ordered by key, this is not actually the case. This behavior is
-implemented for convenient debugging, but is in no way representative of the actual layout in memory.
-Maps are, by definition, unordered. If you expect your map to be ordered in some way, or attempt to sort it, you are
-almost always using the wrong data structure and should consider using a slice instead.
+Though the output is ordered by key, this feature is only implemented for ease for debugging: maps
+are otherwise unordered data structures. If your program relies on the entries of a map being
+ordered, consider use a slice of key-value pairs instead.
 
 {{< /callout >}}

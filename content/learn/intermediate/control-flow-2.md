@@ -42,7 +42,7 @@ Within the range block, the dot `.` is set to successive elements of the slice. 
 evaluates to
 
 ```txt
-chips contains 540 calories.
+chips contain 540 calories.
 ```
 
 and likewise for the second and third elements. The complete output is

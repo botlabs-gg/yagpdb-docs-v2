@@ -18,6 +18,7 @@ code if the condition is true. If the condition is false, the block of code is s
 
 ```go
 {{ if eq 5 5 }}
+  {{/* It is conventional, though not required, to consistently indent inner blocks of code with spaces or tabs. */}}
   Five is equal to five!
 {{ end }}
 ```
@@ -148,21 +149,22 @@ existing variable, but only within that scope---the existing variable is untouch
 
 {{< /callout >}}
 
-<div style="float: right; margin-left: 7px;">
+{{< callout context="danger" title="Unexpected EOF" icon="outline/alert-octagon" >}}
+
+The following error appears when you are missing an `{{ end }}` action.
 
 ![Responses: template: :XX: unexpected EOF](unexpected-eof.png)
 
-</div>
+Each control structure must have a corresponding `{{ end }}` action. If you forget to do so, YAGPDB will not know where
+your control structure terminates and hence issues the above error.
 
-Try and recall the last example from the introduction of if-statements and notice how, despite us having multiple blocks
-of branching code, there's still only one `{{ end }}` action.
+To fix this error, examine each `{{ if ... }}` in your program and verify that each has a matching `{{ end }}`. (The
+same applies to other control structures introduced in future chapters, such as `{{ range ... }}`.)
 
-Each control structure's start must eventually have such a closing statement. Not doing so will result in an error
-similar to `template: :XX: unexpected EOF`, where `:XX:` is the line number where the error occurred---an example shown
-above.
+If you are familiar with C-family programming languages, this error is analogous to forgetting the closing `}` of a
+block of code.
 
-If you're familiar with C-style programming languages, this concept will most likely strike you as the curly braces
-these languages use to denote code blocks.
+{{< /callout >}}
 
 ## Exercises
 
@@ -197,6 +199,6 @@ these languages use to denote code blocks.
    {{ if gt $mood "Sad" }}
      Be {{ $mood }}!
    {{ else }}
-     Do not be {{ $string }}!
+     Do not be {{ $mood }}!
    {{ end }}
    ```

@@ -42,8 +42,8 @@ code will make the bot respond with the server name when the command is triggere
 {{ .Guild.Name }}
 ```
 
-As you can see, it differs from the static response in that it uses double curly braces (`{{` and `}}`) to denote an
-action. The braces are essential: without these, the bot would simply respond with the text verbatim. A common pitfall
+As you can see, we use double curly braces (`{{` and `}}`) to denote a template action.
+The braces are essential: without these, the bot would simply respond with the text verbatim. A common pitfall
 we often see in the support channels is something like the following:
 
 ```go
@@ -63,15 +63,16 @@ Play around with this a little bit and see what you can come up with. Take a loo
 
 ### Actions for Functions
 
-Custom command functions allow you to do various things, such as performing calculations, adding or removing a role from
-a user, or even sending a message to a channel. The syntax is a little different to what you might be used to; the
-function name comes before its arguments, like so:
+Custom command functions allow you to perform calculations, add or remove roles to/from a user, send messages to a
+channel, and lots more! The syntax is a little different to what you might be used to; All arguments to a function
+follow the function name itself, like so:
 
 ```go
 {{ add 5 3 }}
 ```
 
-Some functions also return the result of their operation, which can be used in other functions. For example:
+Some functions also return the result of their operation, which can be passed as arguments to other functions.
+For example:
 
 ```go
 {{ mult 5 (add 3 2) }}
@@ -82,9 +83,9 @@ expression.
 
 Obviously these are both quite contrived examples. We provide a list of all available functions in the
 [functions reference documentation](/docs/reference/templates/functions). Try to experiment around with some of these
-functions to get a feel for how they're called and what they do.
+functions to get a feel for how they're used and what they do.
 
 ### Actions for Control Flow
 
-You can also use actions to change your program's code path, depending on some condition. We will go over this in more
-detail in a later chapter.
+You can also use actions to determine whether some of your code is executed depending on a condition, along with some
+more complex control flows. We will go over these in more detail in a later chapter.

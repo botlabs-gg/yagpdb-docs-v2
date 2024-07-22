@@ -4,12 +4,12 @@ weight = 220
 +++
 
 In this chapter, we will overview how to store data in variables and the basic data types available, which include
-numbers, strings, and more.
+[strings](#strings), [numbers](#numbers), and [booleans](#booleans).
 
 ## Variables
 
-Before we start, we have to find a way to store data and refer to it later. We can do this by using variables. A
-variable is a way to store a value and give it a name, to which you can refer back to later.
+Before we go over data types, we will cover how to store data and refer to it later. We can do this by using variables.
+A variable is a way to store a value and give it a name, to which you can refer back to later.
 
 In Custom Commands, you define a variable by starting with a `$`, its name, and the assignment operator `:=`. To
 illustrate this, consider the following example:
@@ -28,7 +28,7 @@ When and why this becomes necessary will be discussed in a later chapter.
 {{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
 When debugging your code, you might have to figure out the type of a certain variable. You can do this by using the
-[`printf` function](/docs/reference/templates/functions/#string-manipulation) with the `%T` verb, like so:
+[`printf` function](/docs/reference/templates/functions/#string-manipulation) with the `%T` format verb, like so:
 
 ```go
 {{ $name := "Alice" }}
@@ -40,8 +40,8 @@ When debugging your code, you might have to figure out the type of a certain var
 ## Data Types
 
 If you're completely new to programming, you might not know what a data type is. You can think of a data type as a way
-to distinguish between different kinds of "things". As a real-life analogy, you can separate food into several
-categories, such as fruits, vegetables, and meat. Each category is in that sense its own "data type".
+to distinguish between different kinds of things. As a real-life analogy, you can separate food into several categories,
+such as fruits, vegetables, and meat. Each category is in that sense its own data type.
 
 In programming, we have similar categories, such as numbers, strings, and booleans (true / false values).
 Each of these categories has its own set of operations that can be performed on them. For instance, you can add two
@@ -50,17 +50,18 @@ numbers together, but you cannot add two strings together (at least not in the w
 
 ### Strings
 
-A string is a sequence of characters. You can think of it as a word or a sentence. In the bot's template actions, you
-can create a string by enclosing some text in double quotes (`"`). For instance, `"Hello, world!"` is a string. We call
-those *quoted strings*.
+A string is a sequence of zero or more characters. You can generally think of it as a word or a sentence.
+In the bot's template actions, you can create a string by enclosing some text in double quotes (`"`). For instance,
+`"Hello, world!"` is a string. We call those *double-quoted strings*.
 
 Now, here we might run into a problem quite quickly: what if we want to include a double quote in our string? We can't
-just write `"Peter said "Hello, world!""`, as the bot would not know where to end the string. To solve this, we must
-escape the double quote by adding a backslash (`\`) in front of it. This tells the bot that the double quote is part of
-the string and not the end of it. In other words, `"Peter said \"Hello, world!\""` would yield the expected result.
+just write `"Peter said "Hello, world!""`, as the bot would think the string ends at the quotes before `Hello` and not
+know that we want them included in the string. To solve this, we must escape the double quote by adding a backslash
+(`\`) in front of it. This tells the bot that the double quote is not the end of the string. In other words,
+`"Peter said \"Hello, world!\""` would yield the expected result.
 
-To insert a newline (you would press `Enter` on your keyboard), you can use the escape sequence `\n`. Consider the
-string `"Hello\nWorld!"`, which would result in the following output:
+To insert a newline (you would press `Enter` on your keyboard), you can use the escape sequence `\n`. For example the
+string `"Hello\nWorld!"` would result in the following output:
 
 ```txt
 Hello
@@ -75,7 +76,8 @@ Please note that not all escape sequences are supported by Discord.
 It should become relatively clear that a lot of new lines and other special characters can make a quoted string quite
 hard to read. To make this easier, you can use backticks (`` ` ``) to create a *raw string literal*. A raw string
 literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening ``
-` `` and closing `` ` `` unmodified.
+` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will later
+cover functions that solve this special case.
 
 ```txt
 `This is my
@@ -87,8 +89,8 @@ Look at all the new lines!`
 ### Numbers
 
 Numeric values can be represented in two ways, using integers (whole numbers) and floating-point numbers (numbers with a
-decimal point). In the bot's template actions, you can create an integer by simply writing a number, such as `5`. For
-floating-point numbers, you can add a decimal point, like so: `5.0`.
+decimal point). In the bot's template actions, you can create an integer by simply writing a whole number, such as `5`.
+For floating-point numbers, you can add a decimal point, like so: `5.0`.
 
 #### Integers
 
@@ -122,5 +124,5 @@ There are a lot of ways to define a floating-point number, but the most common w
 A boolean is a data type that can only have one of two values: `true` or `false`. Booleans are used to represent the
 truth value of an expression. For instance, `5 > 3` would evaluate to `true`, while `5 < 3` would evaluate to `false`.
 
-You can think of it as a light switch: it can either be on (`true`) or off (`false`). Booleans are used in conditional
-statements, such as `if` statements, to determine which branch of the code should be executed.
+You can think of it as a light switch: it can either be on (`true`) or off (`false`). Booleans are often used in
+conditional statements, such as `if` statements, to determine which branch of the code should be executed.

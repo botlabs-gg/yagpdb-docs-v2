@@ -15,7 +15,7 @@ condition holds.
 ### Range
 
 The `range` action performs an action for each entry in a slice or map; we say that range _iterates_ over the slice or
-map. If you have worked with other programming languages, `range` is the equivalent of a for-each loop.
+map. If you have worked with other programming languages, `range` is roughly equivalent to a for-each loop.
 
 #### Ranging over slices
 
@@ -55,9 +55,9 @@ chips contain 540 calories.
     crackers contain 500 calories.
 ```
 
-Observe that this output contains some unwanted whitespace; ideally, we want each snack to have its own line, with no
-leading indentation. Yet the extra whitespace is to be expected with our current program: the range block is indented,
-and YAGPDB simply reproduces that indentation.
+Observe that this output contains some unwanted whitespace; ideally, we want each snack to appear on a separate line
+with no leading indentation. However, the extra whitespace is to be expected with our current program: the range block
+is indented, and YAGPDB simply reproduces that indentation.
 
 ```go
 {{ range $snacks }}
@@ -73,8 +73,8 @@ One solution, then, is to remove the whitespace in our source code, save the fin
 {{ end }}
 ```
 
-Although this version works, we have sacrificed readability in the process. To keep the indentation in our source code
-while simultaneously avoiding the undesired whitespace in our output, we can use _trim markers_.
+Although this version works, we have sacrificed readability. To retain the indentation in our source code while
+simultaneously avoiding unwanted whitespace in our output, we can use _trim markers_.
 
 ```go
 {{ range $snacks }}
@@ -88,16 +88,17 @@ whitespace.
 
 {{< callout context="tip" title="Tip: Trim Markers" icon="outline/rocket" >}}
 
-Use trim markers `{{-` and `-}}` to remove unwanted whitespace in output while maintaining readable source code.
+Use trim markers `{{-` and `-}}` to remove unwanted whitespace in output while keeping your source code readable.
 
 {{< /callout >}}
 
 #### Ranging over maps
 
-Besides iterating over slices, it is also possible to range over the entries of a map. To do so, assign two variables
-to the result of the range action:
+It is also possible to range over the (key, value) pairs of a map. To do so, assign two variables to the result of the
+range action, corresponding to the key and value respectively:
 
 ```go
+{{/* key is fruit; value is price */}}
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
 
 {{/*
@@ -116,7 +117,7 @@ to the result of the range action:
 ```
 
 The two-variable form of range can also be used with a slice, in which case the first variable tracks the position of
-the element.
+the element starting from `0`.
 
 #### Rarer forms of range
 
@@ -225,8 +226,15 @@ For instance, the following code loops as long as `$n` is not 1. In each iterati
 {{ end }}
 ```
 
+As with `range`, it is also possible to attach a `else` branch to a `while` loop, executed if the condition is falsy
+initially.
+
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+
 Many `while` loops can be written as a more idiomatic range loop instead. In particular, to iterate a fixed number of
 times, use `{{ range n }}` as in `{{ range 5 }}` instead of maintaining your own counter variable with `while`.
+
+{{< /callout >}}
 
 ### Break and Continue
 

@@ -3,8 +3,11 @@ title = "Database"
 weight = 340
 +++
 
-Databases are used for storing persistent data that you want to keep between custom command executions. You access and
-manipulate them with functions which we are going to elaborate on in this guide.
+YAGPDB provides a database for use in your CCs. Entries in this database are used to store persistent data that you want
+to keep between custom command executions. You access and manipulate these entries with the [database functions][funcs],
+which we will elaborate on in this guide.
+
+[funcs]: /docs/reference/templates/functions#database
 
 ## Overall
 
@@ -71,8 +74,8 @@ matters.)
 ### Interaction Limits
 
 In addition to limiting the size of your server database, we also limit the number of times you interact with the
-database within a custom command execution. Specifically, you can only call database functions—those prefixed by `db`—up
-to 10 times within a custom command execution. The limit increases to 50 if you have premium active.
+database within a custom command execution. Specifically, you can only call database functions---those prefixed by `db`
+---up to 10 times within a custom command execution. The limit increases to 50 if you have premium active.
 
 Besides the main limit, database functions that act on multiple entries, namely `dbCount`, `dbGetPattern`,
 `dbGetPatternReverse`, `dbTopEntries`, and `dbBottomEntries`, also count toward a separate limit. Specifically, these
@@ -140,19 +143,17 @@ otherwise be quite hard to achieve, or at least not very efficient.
 
 ### dbIncr
 
-`dbIncr` is quite a handy function, as it increases the value inside the entry by the given increment and returns the
-increased value in the same moment, allowing you to save it to a variable. Said increment can be any valid number, so
-integers and floats. Do note, however, that the return type of `dbIncr` is always a float. So if you are using integers
-as increment and plan to use them as such, please don't forget to convert them. Now let us take a quick look at the
-syntax.
+`dbIncr` increases the value of the entry by the given number and returns the incremented value in the same action,
+allowing you to further use the value. Said increment can be any valid number, that is, integers and float. Do note,
+however, that the return type of `dbIncr` is always a float, even if you use an integer for the increment argument.
 
 ```go
 {{dbIncr <UserID> <Key> <Increment>}}
 ```
 
-What's also noteworthy is the fact that `dbIncr` sets the value to the given increment, shouldn't the entry exist
-already. Try thinking about how you would implement a custom command that increases a given entry by a set amount, gets
-the value, but also sets a new entry if it doesn't already exist.
+`dbIncr` also conveniently initializes a database entry to the given increment should one with the given UserID and Key
+not already exist. Try thinking about how you would implement a custom command that increases a given entry by a set
+amount, gets the value, but also sets a new entry if it doesn't already exist.
 
 ```go
 {{$db := dbGet .User.ID "someKey"}}
@@ -167,45 +168,46 @@ precious resource that should not be wasted.
 
 ### dbSetExpire
 
-Now you might want to set entries which get deleted after a while. You could of course use a delay using `execCC`, or
-instead just use `dbSetExpire`.
+Now you might want to set entries which get deleted after a while. To do so, you can use `dbSetExpire`.
 
-Why should we use `dbSetExpire`, though? You don't have to waste an `execCC` to delete the entry afterwards.
-As we recall from the beginning, the `.ExpiresAt` field is of type `time.Time`, so the related functions are
-available to us. Let's take a glimpse at the syntax:
+As we recall from the beginning, database entries have an `.ExpiresAt` field of type `time.Time`. The `dbSetExpire`
+function adds a timestamp to this field, telling the bot that we only want to use the DB entry until then.
 
 ```go
 {{dbSetExpire <userID> <Key> <Value> <Expires in>}}
 ```
 
-The `Expires in` is given in seconds, the rest is standard stuff as explained under
-[Basic Interactions](#basic-interactions).
+The `Expires in` is given in seconds.
 
 A common use case for this function is a cooldown: As long as the entry exists, the command is still on cooldown.
 
 ```go
-{{if $db := (dbGet 2000 "cooldown")}}
-    Command is on cooldown :(
-    Cooldown will be over at {{$db.ExpiresAt.Format "Mon 02 Jan 15:04:05"}}
-{{else}}
-    Command is not on cooldown :)
-    {{dbSetExpire 2000 "cooldown" "random value" 60}}
-{{end}}
+{{ if $db := dbGet 2000 "cooldown" }}
+    Command is  on cooldown :(
+    Cooldown will be over at {{ $db.ExpiresAt.Format "Mon 02 Jan 15:04:05" }}
+    {{ return }}
+{{ end }}
+{{ dbSetExpire 2000 "cooldown" "true" 60 }}
+Command is not on cooldown :)
 ```
 
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+
 As a side effect, expired entries will be considered gone (i.e. deleted) by YAGPDB, but still remain in the underlying
-database.
+database. You can observe this effect by visiting your [database view page](/docs/custom-commands/database).
+
+{{< /callout >}}
 
 ## Multiple Interactions
 
-Lastly there are special functions which allow you to get multiple entries. We call those coincidentally multiple entry
+Lastly there are special functions which allow you to get multiple entries. We coincidentally call those multiple entry
 interactions. Every function except one returns a slice of entries. Depending on what function you use, this slice is
 sorted by certain criteria.
 
 ### dbCount
 
-This is the only function interacting with multiple entries not returning a slice. Since this function is fairly easy to
-understand, we'll start with that. Let's take a quick look at the syntax:
+This is the only function interacting with multiple entries that doesn't return a slice. Since this function is fairly
+easy to understand, we'll start with that. As usual, first the syntax:
 
 ```go
 {{dbCount <userID>}}
@@ -216,26 +218,25 @@ understand, we'll start with that. Let's take a quick look at the syntax:
 ```
 
 dbCount counts the entries either for the given database userID or the pattern for database keys. Alternatively, you can
-make it count entries as one query by passing in an `sdict` with the keys `userID` for the ID and `pattern` for database
-keys that are to be counted.
+make it count entries that match both conditions by passing in an `sdict` with the keys `userID` for the ID and `pattern`
+for database keys that are to be counted. The function returns the number of entries that match the given criteria.
 
-Please note that this function returns the amount of entries, so to avoid random spam, you'd have to store it into a
-variable. Apart from that, this function is very simple to use and might come in handy for a few things.
+`pattern` is a basic PostgreSQL pattern, which we explain further down in the [Patterns](#patterns) section.
 
 ### dbTopEntries / dbBottomEntries
 
-These functions return a slice of entry objects, in case of `dbTopEntries` ordered by descending value, in case of
-`dbBottomEntries` in ascending order. You cannot retrieve more than 100 elements in one call - honestly though, 100
-entries in one go is definitely a lot, probably more you would have to actually deal with.
+These functions return a slice of DB entry objects ordered by the value. `dbTopEntries` orders by descending value, and
+`dbBottomEntries` by ascending value. Both of these are hard-limited to at most 100 entries (for premium as well), and
+this can be limited further with the `amount` argument.
 
 ```go
 {{dbTopEntries <pattern> <amount> <nSkip>}}
 {{dbBottomEntries <pattern> <amount> <nSkip>}}
 ```
 
-What's new here are three things: `pattern`, `amount`, and `nSkip.` Let's walk through them one by one. For `pattern`,
-we use basic PostgreSQL patterns, you can read on them further down. The `amount` specifies how many entries we want to
-retrieve. Lastly, you tell YAGPDB how many entries it should skip using the `nSkip` argument.
+Let's walk through these arguments one by one. For `pattern`, we use basic PostgreSQL patterns.
+The `amount` specifies how many entries we want to retrieve. Lastly, you tell YAGPDB how many entries it should skip
+using the `nSkip` argument.
 
 Now, to retrieve the value of each entry, we range over the given slice and access the `.Value` field:
 
@@ -252,7 +253,7 @@ In analogy to the above code example, you can access any other field as well.
 
 These two functions allow you to get multiple entries under one user ID with matching keys, again using patterns. They
 return a slice of entries sorted by value, just as the above functions. The only difference here is only the limitation
-to one user or ID instead of all IDs.
+to one `UserID` instead of all `UserID`s.
 
 ```go
 {{dbGetPattern <userID> <pattern> <amount> <nSkip>}}
@@ -265,7 +266,7 @@ code example, as it should be pretty clear how to do this.
 
 ### dbDelMultiple
 
-This function allows you to delete multiple entries in one go, making `dbDel` spam no longer necessary. Its syntax is a
+This function allows you to delete multiple entries in one go, instead of one at a time with `dbDel`. Its syntax is a
 little more intricate than other functions:
 
 ```go
@@ -276,14 +277,14 @@ little more intricate than other functions:
 
 - `userID`: delete entries under this user ID. If this key is not provided, it'll default to all IDs.
 - `pattern`: delete entries with keys matching this pattern.
-- `reverse`:if true, start deleting entries with the lowest value first. Defaults to `false`.
+- `reverse`: if true, start deleting entries with the lowest value first. Defaults to `false`.
 
 `amount` specifies how many entries should be deleted in one go, maxing out at 100. `skip` specifies how many of
-matching entries should be skipped. Note that this function returns the amount of deleted entries, so to avoid random
-messages popping up, catch it by assigning it to a variable.
+matching entries should be skipped. Note that this function also returns the amount of deleted entries, which is likely
+most useful assigned to a variable.
 
-With all that in mind, you could use the following code to delete up to 100 matching entries the pattern `test%` under
-the current user:
+With all that in mind, the following example code deletes up to 100 matching entries with `Key`s matching the pattern
+`test%` and `UserID` of the current user, finally outputting the number of entries deleted:
 
 ```go
 {{$deleted := dbDelMultiple (sdict "userID" .User.ID "pattern" "test%") 100 0}}
@@ -292,7 +293,8 @@ Deleted {{$deleted}} entries!
 
 ### dbRank
 
-This function returns the rank of a specified entry in the set of entries matching criteria provided by `query`.
+This function returns the rank (that is, the position in an ordered list) of a specified entry in the set of entries
+matching criteria provided by `query`.
 
 ```go
 {{dbRank <query> <userID> <key>}}
@@ -312,18 +314,17 @@ may want to use the following code:
 The specified entry's rank is {{$rank}}.
 ```
 
-Note that this function **returns** the rank, so to avoid random spam, don't forget to assign it to a variable.
-
 ## Appendix
 
 ### Patterns
 
 As mentioned earlier, we use patterns for a set of functions. Obviously, you need to know what they are and how to use
-them. The patterns are based on PostgreSQL patterns, so if you're familiar with them, you're good to go. If not, don't
+them. The patterns are based on SQL `LIKE` patterns, so if you're familiar with them, you're good to go. If not, don't
 worry, they're quite easy to understand.
 
-There's only two special characters you need to know: `%` and `_`. More are not used, just those two.
-In case you need to escape those, prepend them with a backslash `\`. Their respective purpose is also quite simple:
+There's only two special characters you need to know: `%` and `_`. That's right, just those two!
+In case you need to use those literally in a pattern, escape them with a backslash (`\%` and `\_`). Their respective
+purpose is also quite simple:
 
 - The percent sign `%` matches any sequence of zero or more characters
 - The underscore `_` matches any single character
@@ -367,14 +368,19 @@ retain their original types.
 ### Storing IDs
 
 You might have noticed that, whenever you're storing a user ID, channel ID, etc. into your database, it will come back
-as a weird value, such as `5.241379415938826e+17`. This is because they're saved as floats, hence it being messed up.
+as a weird value, such as `5.241379415938826e+17`. This is because they're saved as floats, hence the bot formatting it
+in scientific notation. Even converting back to an integer will not solve this, because of how floats are represented
+they will round ID numbers.
 To prevent this, simply convert them to a string before storing and converting back to `int` upon retrieving, like so:
 
 ```go
-{{dbSet 2000 "someKey" (str .User.ID)}}
-{{$userID_received := toInt (dbGet 2000 "someKey").Value}}
-{{dbDel 2000 "someKey"}}
+{{ dbSet 2000 "someKey" (str .User.ID) }}
+{{ $userID_received := toInt (dbGet 2000 "someKey").Value }}
+{{ eq .User.ID $userID_received }}
+{{ dbDel 2000 "someKey" }}
 ```
+
+Try removing `str`, and observe that the IDs no longer match.
 
 ### Global vs. User Entries
 
@@ -395,8 +401,8 @@ database functions already.
 #### Understanding a Database Entry Vaguely
 
 In a map, you have key-value pairs, where each value corresponds to its key. Database entries work similarly, except
-each value corresponds to the combination of the `userID` and key. Basically, two database entries are identical
-(rather, the same) when they both have the same `userID` and key.
+each value corresponds to the combination of the `UserID` and key. Basically, two database entries are unique if either
+the `UserID` **or** `Key` differ.
 
 Each of the following line corresponds to and returns different database entries, since they don't share the same set of
 user ID and key.
@@ -415,7 +421,8 @@ Having understood DB entries, we can now define these terms in a better way:
 - **User/Channel-specific entries**: If different users/channels refer to different entries based on any set conditions,
   we call them per-user entries, or similar terms.
 
-Before you write your code, you need to decide how your command will use databases and then take action accordingly.
+Before you write your code, you need to decide how your command will use the CC database and then take action
+accordingly.
 
 Need a different database entry in each channel that is independent of the user? Use `dbSet channelID "key" value`.
 

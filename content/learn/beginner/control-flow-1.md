@@ -48,6 +48,26 @@ them is true:
 {{ end }}
 ```
 
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+
+The condition of an `if` statement need not be a boolean: in general, an `if` statement will trigger if the condition is
+_truthy_: that is, not empty or zero. (Conversely, empty and zero values are _falsy_.)
+
+For example, consider how you would check whether a string `$s` is empty. One way is to explicitly compare the length of
+the string to zero using `if gt (len $s) 0`, but since empty strings are falsy, the more idiomatic solution is to simply
+write `if $s`, like so:
+
+```go
+{{ $s := "" }}
+{{ if $s }}
+  not empty
+{{ else }}
+  empty
+{{ end }}
+```
+
+{{< /callout >}}
+
 #### Guard Clauses
 
 As your code grows, you may find yourself nesting `if` statements inside each other. This can lead to code that is hard

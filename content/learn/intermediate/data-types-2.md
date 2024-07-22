@@ -26,6 +26,22 @@ For available operations on slices, please refer to [our template documentation]
 
 [docs-slices]: /docs/reference/templates/syntax-and-data/#templatesslice
 
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+
+Empty slices are _falsy_, so can be used directly in conditional statements; it is not necessary to explicitly check the
+length:
+
+```go
+{{ $users := cslice }} {{/* imagine this data is dynamically generated */}}
+{{ if $users }}
+    one or more users
+{{ else }}
+    no users
+{{ end }}
+```
+
+{{< /callout >}}
+
 ## Maps
 
 A map is a table that associates values with keys, such that it is easy and efficient to retrieve the value
@@ -54,6 +70,8 @@ To create a map, provide a sequence of key-value pairs to the `sdict` or the `di
 {{/* Pass no arguments for an empty map. */}}
 {{ $empty := sdict }}
 ```
+
+As with slices, empty maps are falsy and so can be used directly in conditional statements.
 
 For available operations on maps, please refer to [our template documentation][docs-maps].
 

@@ -52,7 +52,8 @@ them is true:
 
 As your code grows, you may find yourself nesting `if` statements inside each other. This can lead to code that is hard
 to read and understand. One way to avoid this is to use _guard clauses_. A guard clause is an `if` statement that checks
-for a condition and returns early via the `{{ return }}` action if the condition is false.
+for a condition and returns early via the `{{ return }}` action. Therefore, the condition we checked in the earlier
+`if`/`else` construct must be negated.
 
 Rewriting the second example to use these guard clauses yields the following code:
 
@@ -122,7 +123,8 @@ and understand, as you do not have to search through the entire codebase to find
 {{< callout context="caution" title="Definition and Reassignment" icon="outline/alert-triangle" >}}
 
 In custom commands, you use `:=` to define a variable, and `=` to reassign a variable. The bot will not throw an error
-if you try to re-define a variable using `:=`, but it will not affect the outer scoped variable.
+if you try to re-define a variable using `:=`. Rather, it will define a new variable, effectively overwriting the
+existing variable, but only within that scope---the existing variable is untouched in the outer scope.
 
 {{< /callout >}}
 
@@ -135,9 +137,9 @@ if you try to re-define a variable using `:=`, but it will not affect the outer 
 Try and recall the last example from the introduction of if-statements and notice how, despite us having multiple blocks
 of branching code, there's still only one `{{ end }}` action.
 
-Each control structure's start (`if`, `with`, etc.) must eventually have such a closing statement. Not doing so will
-result in an error similar to `template: :XX: unexpected EOF`, where `:XX:` is the line number where the error
-occurred---an example shown above.
+Each control structure's start must eventually have such a closing statement. Not doing so will result in an error
+similar to `template: :XX: unexpected EOF`, where `:XX:` is the line number where the error occurred---an example shown
+above.
 
 If you're familiar with C-style programming languages, this concept will most likely strike you as the curly braces
 these languages use to denote code blocks.

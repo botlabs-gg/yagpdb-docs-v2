@@ -4,135 +4,265 @@ weight = 330
 +++
 
 In a previous chapter, we learned about [basic control flow](/learn/beginner/control-flow-1). In this chapter, we will
-explore more advanced control flow structures, that is, loops and `with` blocks.
+discuss more advanced control flow actions: namely, `range`, `while`, and `with` actions.
 
-## Loops
+## Loop
 
-Loops allow you to condense a block of code that is otherwise repeated multiple times. In custom commands, we provide to
-looping constructs, `range`, and `while`. Superficially, they both do the same thing, i.e. repeat a block multiple times,
-but they have different applications.
+Fundamentally, loops provide a way to perform repeated actions. There are two loop actions available in custom commands:
+`range`, which repeats an action for each entry in a data structure, and `while`, which repeats an action as long as a
+condition holds.
 
 ### Range
 
-The `range` action is used to iterate over a slice, map, or integer. This is easier to show with some (minimal) code,
-so let's dive right in.
+The `range` action performs an action for each entry in a slice or map; we say that range _iterates_ over the slice or
+map. If you have worked with other programming languages, `range` is the equivalent of a for-each loop.
 
-To iterate just over some values, as you'd generally do with a slice, we'd write the following code. This might look
-somewhat familiar to you if you have used some other programming languages before.
+#### Ranging over slices
+
+Consider the following program, which iterates over a slice of snacks and generates a line of output for each one.
 
 ```go
-{{ range $some_slice }}
-    {{/* Action executed with each value of this pipeline */}}
-{{ else }} {{/* Note that this is optional, you can skip to the end clause */}}
-    {{/* Action executed when the length of the pipeline is 0 */}}
+{{ $snacks := cslice
+    (sdict "Name" "chips" "Calories" 540)
+    (sdict "Name" "peanuts" "Calories" 580)
+    (sdict "Name" "crackers" "Calories" 500)
+}}
+{{ range $snacks }}
+    {{ .Name }} contain {{ .Calories }} calories.
 {{ end }}
 ```
 
-Similarly, you can range over an integer, which will iterate from 0 to the given number. Formerly, this was only
-achievable by creating a slice of numbers with `seq`. An `else` block is permitted here as well, although that would
-only run if the given integer is 0.
+Within the range block, the dot `.` is set to successive elements of the slice. In the first iteration, for instance,
+`.` holds the first element of the slice: `(sdict "Name" "chips" "Calories" 540)`. Hence
+
+```txt
+{{ .Name }} contain {{ .Calories }} calories.
+```
+
+evaluates to
+
+```txt
+chips contains 540 calories.
+```
+
+and likewise for the second and third elements. The complete output is
+
+```txt
+chips contain 540 calories.
+
+    peanuts contain 580 calories.
+
+    crackers contain 500 calories.
+```
+
+Observe that this output contains some unwanted whitespace; ideally, we want each snack to have its own line, with no
+leading indentation. Yet the extra whitespace is to be expected with our current program: the range block is indented,
+and YAGPDB simply reproduces that indentation.
 
 ```go
-{{ range 5 }}
-    {{/* Action executed with each value of this pipeline */}}
+{{ range $snacks }}
+    {{ .Name }} contain {{ .Calories }} calories.
+^^^^
 {{ end }}
 ```
 
-If we have a map instead, and wish to iterate over its keys and values, we assign two variables to the result of the
-range action:
+One solution, then, is to remove the whitespace in our source code, save the final newline:
 
 ```go
-{{ range $key, $value := $some_map }}
-    {{/*
-         $key and $value can be any variable name.
-         Here, $key is the key (for maps / sdicts / dicts) and the index,
-         starting from 0 for slices.
-         $value will be the corresponding value belonging to $key.
+{{ range $snacks }}{{ .Name }} contains {{ .Calories }} calories
+{{ end }}
+```
+
+Although this version works, we have sacrificed readability in the process. To keep the indentation in our source code
+while simultaneously avoiding the undesired whitespace in our output, we can use _trim markers_.
+
+```go
+{{ range $snacks }}
+    {{- .Name }} contain {{ .Calories }} calories.
+{{ end }}
+```
+
+`{{-` is a _left trim marker_ that instructs YAGPDB to ignore all leading whitespace, so this new version is
+functionally equivalent to the previous solution. A right trim marker, `-}}`, also exists and trims all trailing
+whitespace.
+
+{{< callout context="tip" title="Tip: Trim Markers" icon="outline/rocket" >}}
+
+Use trim markers (`{{-` and `-}}`) to remove unwanted whitespace in output while maintaining readable source code.
+
+{{< /callout >}}
+
+#### Ranging over maps
+
+Besides iterating over slices, it is also possible to range over the entries of a map. To do so, assign two variables
+to the result of the range action:
+
+```go
+{{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
+
+{{/*
+    Variable names are arbitrary:
+        range $foo, $bar := $fruitPages
+    would work too as long as you are consistent.
+*/}}
+{{ range $fruit, $price := $fruitPrices }}
+    {{- $fruit }} costs ${{ printf "%.02f" $price }}.
+    {{- /*
+        As with a slice, in each iteration the dot . is set to the current value, so
+            printf "%.02f" .
+        also works.
     */}}
-{{ else }} {{/* Optional */}}
-    {{/* Action executed when length of pipeline is 0. */}}
 {{ end }}
 ```
 
-Please note that you're not required to use this syntax when iterating over a map. The first example will work just
-fine, though only give you the values stored in your map. Likewise, you can omit the `{{ else }}` clause if you don't
-need it, the `{{ end }}` statement, however, is still required, as established earlier in this course.
+The two-variable form of range can also be used with a slice, in which case the first variable tracks the position of
+the element.
 
-{{< callout context="caution" title="Caution" icon="outline/alert-triangle" >}}
+#### Rarer forms of range
 
-Inside the range block, the dot `{{ . }}` is set to the current value of the iteration. This means that if you were to
-access some global context data like `.User`, it will not work as expected. To access this global context, you need to
-prefix with `$`. For demonstration purposes, the following code is intentionally left broken, fixing it is an exercise
-for the reader.
+There are a few other, less common ways to invoke the range action.
+
+- **Iterating _n_ times.** To iterate a fixed number of times, provide an integer to `range`:
+
+  ```go
+  {{ range 5 }}
+      {{/* executed 5 times */}}
+  {{ end }}
+  ```
+
+  To iterate over an interval of integers (say, the integers between `5` and `10` exclusive), use the `seq`
+  function to generate a slice of integers and then range over the result:
+
+  ```go
+  {{ range seq 5 10 }}
+      {{/* executed with the dot . set to 5, 6, 7, 8, 9 in succession */}}
+  {{ end }}
+  ```
+
+- **Single-variable range.** Instead of using the dot `.` to access the current element or value, one
+  can also assign it to a variable:
+
+  ```go
+  {{ $sports := cslice "tennis" "basketball" "soccer" }}
+  {{ range $sport := $sports }}
+      {{/* executed with $sport set to "tennis", "basketball", "soccer" in succession */}}
+  {{ end }}
+  ```
+
+  Note that the dot `.` is still overwritten when using a variable.
+
+- **Range with else branch.** Similar to an if conditional, a range action may also have an `else` block,
+  executed if the slice or map is empty.
+
+  ```go
+  {{ $empty := cslice }}
+  {{ range $empty }}
+      {{/* ... */}}
+  {{ else }}
+      slice was empty
+  {{ end }}
+  ```
+
+#### Accessing global context data in range
+
+The following program illustrates a common error for first-time users of `range`.
 
 ```go
-{{ range 5 }}
-  {{- .User.Username }}: {{ . }}!
+{{ $nums := cslice 1 2 3 }}
+{{ range $nums }}
+    {{/* ... */}}
+    {{ .User.Username }} {{/* ERROR: can't evaluate field User in type inteface {} */}}
 {{ end }}
 ```
 
-This does not apply to the optional `else` block following a `range` action.
+The problem is that, inside the range block, the dot `.` is overwritten by successive elements of the slice `1`, `2`,
+`3`. While this behavior is generally useful—we often _want_ to refer to the current element in a range action—it is
+counterproductive here, as `.User.Username` tries to look up the field `User` on an integer (and fails to do so.) What
+we really want is to access the global context data as it was before the range loop. One solution is to save the
+original context data in a variable prior to the loop:
+
+```go
+{{ $dot := . }}
+{{ range $nums }}
+    {{ $dot.User.Username }}
+{{ end }}
+```
+
+To make this pattern easier, before each custom command execution, YAGPDB predefines the variable `$` as the initial
+context data for you.
+
+{{< callout context="caution" title="Common Error" icon="outline/alert-triangle" >}}
+
+In a range block, the dot is overwritten by elements of the slice or map, so code such as `.User.Username` is likely to
+error. If you need to access the global context data, do so through the predefined `$` variable instead.
+
+```go
+{{ range $nums }}
+    {{ $.User.Username }}
+{{ end }}
+```
 
 {{< /callout >}}
 
 ### While
 
-`while` iterates as long as the specified condition is true, or more generally evaluates to a non-empty value. The dot
-(`.`) is not affected, unlike with the `range` action. Analogous to `range`, `while` introduces a new scope which is
-concluded by the `end` action.
+`while` loops as long as the specified condition is truthy. Unlike the `range` action, the dot `.` is not affected.
+
+For instance, the following code loops as long as `$n` is not 1. In each iteration, `$n` is updated to either `n/2` or
+`3n+1`.
 
 ```go
-{{ while $some_condition }}
-    {{/* Action executed as long as $some_condition is true */}}
-{{ else }}
-    {{/* Action executed when $some_condition is false at beginning */}}
-{{ end }}
-```
-Conditions can be combined using logical operators like `and`, `or`, and `not`. For example, to iterate as long as a
-variable is less than 5 and greater than 0:
+{{ $n := 19 }}
 
-```go
-{{ while and (lt $some_variable 5) (gt $some_variable 0) }}
-    {{/* Action executed as long as $some_variable is between 0 and 5 */}}
-    {{ $some_variable = sub $some_variable 1 }}
+{{ print $n " " -}}
+{{ while ne $n 1 }}
+    {{- if eq (mod $n 2) 0. }}
+        {{- $n = div $n 2 }}
+    {{- else }}
+        {{- $n = mult $n 3 | add 1 }}
+    {{- end -}}
+    -> {{ print $n " " -}}
 {{ end }}
 ```
+
+Many `while` loops can be written as a more idiomatic range loop instead. In particular, to iterate a fixed number of
+times, use `{{ range n }}` as in `{{ range 5 }}` instead of maintaining your own counter variable with `while`.
 
 ### Break and Continue
 
-In custom commands, we provide two actions to control the flow of loops: `{{ break }}` and `{{ continue }}`.
-`break` is used to exit the loop prematurely, while `continue` skips the rest of the current iteration and jumps to the
-next one. These can prove very useful to optimize your code for size and readability. `return`, which we previously
-introduced, will exit the entire command, so be careful when using it in loops.
+In custom commands, we provide two actions to control the flow of loops: `{{ break }}` and `{{ continue }}`. `break`
+exits the loop prematurely, whereas `continue` skips the remainder of the current iteration and jumps to the next one.
+These can prove very useful to optimize your code for size and readability, with similar benefits to guard clauses with
+`{{ return }}` introduced in earlier chapters.
 
 ## With Blocks
 
-Just like the `if` action, `with` runs a block of code if the given pipeline is truthy. However, unlike `if`, the dot
-(`.`) is set to the value of the pipeline.
+Just like the `if` action, `with` runs a block of code if the given expression is truthy. The only difference is that
+`with` overwrites the dot `.` with the expression if it is truthy.
+
+For instance, the following program
 
 ```go
-{{ with $some_variable }}
-    {{/*
-         Action executed if $some_variable is truthy.
-         The dot (.) is now set to the value of $some_variable.
-    */}}
+{{ $msg := "I <3 the YAGPDB documentation!" }}
+{{ with reFind `\d+` $msg }}
+    pattern found in text; the dot {{ printf "%q" . }} contains the match
 {{ else }}
-    {{/* Action executed if $some_variable is falsy. */}}
+    pattern did not match
 {{ end }}
 ```
 
-Be careful not to overuse `with` blocks, as they can make your code harder to follow. It makes only really sense to use
-`with` when you drastically shorten your code by doing so, without compromising readability. Consider following negative
-example and think of ways to improve it.
+outputs
 
-```go
-{{ with .CmdArgs }}
-    {{ with reFind `^\d+` (joinStr " " .) }}
-        You sent the number {{ . }}!
-    {{ else }}
-        Not a valid number!
-    {{ end }}
-{{ else }}
-    Please provide a valid number!
-{{ end }}
+```text
+pattern found in text; the dot "3" contains the match
 ```
+
+Note that the dot `.` has been set to `"3"`—the result of `reFind`. See if you can change the text stored in `$msg` so
+that the program hits the `else` branch instead.
+
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
+
+Be careful not to overuse `with` blocks, as they can make your code difficult to follow. In general, prefer using
+a normal `if` conditional and only use `with` if it improves readability; do not use it just to shorten code.
+
+{{< /callout >}}

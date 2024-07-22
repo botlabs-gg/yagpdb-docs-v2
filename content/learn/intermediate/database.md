@@ -21,92 +21,120 @@ A database entry has the following structure:
 | .GuildID   | The server ID.                                             |
 | .UserID    | ID of the associated user.                                 |
 | .User      | The associated user object.                                |
-| .CreatedAt | When this entry was firstly created.                       |
-| .UpdatedAt | When this entry was lastly updated.                        |
+| .CreatedAt | When this entry was created.                               |
+| .UpdatedAt | When this entry was last updated.                          |
 | .ExpiresAt | When this entry will expire.                               |
 | .Key       | The key of this entry.                                     |
 | .Value     | The value of this entry.                                   |
+| .ValueSize | The size of the value in bytes.                            |
 
+The fields `.CreatedAt`, `.UpdatedAt`, and `.ExpiresAt` all evaluate to a `time.Time` object, so all [methods on `time.Time`](/docs/reference/templates/functions#time) are applicable.
 
-It is to note that the user ID doesn't actually have to point to a valid user - it can be any integer. If you,
-for example, used `2000` as ID, this will be `.UserID`. If you used a non-user ID, the `.User` object will be invalid.
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
-The fields `.CreatedAt`, `.UpdatedAt`, and `.ExpiresAt` all evaluate to the `time.Time` structure and can therefore be
-used with [`time.Time` related methods](/docs/reference/templates/functions#time).
+The user ID does not have to point to a valid Discord user—it can be any integer. For instance, it is conventional (but
+not required) to store server-global data under the user ID `0`, in which case the `UserID` field will be `0` and the
+`User` field will be invalid. See also [Global vs. User Entries](#global-vs-user-entries).
+
+{{< /callout >}}
 
 ### Size Limitations
 
-As everything that has to do with computers and data, there are limitations. Our YAGPDB database is no exception.
-However, we tried to make them as large as possible, whilst still remaining somewhat conservative and not going
-completely overboard.
+All things computers and data have limitations, and the YAGPDB database is no exception. However, we have tried to set
+these limits generously (within reason), and we expect most custom commands will never run afoul of them.
 
-In general, you can have `50 * Members` values (entries) in your server's database. If your server has premium activated,
-this increases to `500 * Members`. Note that this will not immediately change as this value is cached, should your
-members leave or newly join. If you go above your maximum entries, all new write functions will fail.
+**Limit on total entries.** You can have up to `50 * member_count` entries in your server's database. If your server has
+premium activated, this limit increases to `500 * member_count`.
 
-Please note though that this is not 50 (or 500 with premium) entries _per user_, but rather for everything.
-This of course means that one user could take up every entry there is.
-Refer to [Global vs. User Entries](#global-vs-user-entries) for more information.
+For instance, if your server has 75 members and does not have premium, your database entry limit is
 
-Database keys are strings and are limited to 256 bytes in length (aka 256 characters). If used with `dbSet` or
-`dbSetExpire`, the key argument will be internally converted to a string, so you can actually pass whatever you want.
+```txt
+50 * member_count = 50 * 75 = 3750
+```
 
-Lastly, each value can hold up to 100 kB, which is, considering we only deal with characters (mostly), a lot.
-Try writing a `.txt` document that is 100 kB large, then you know how much this seemingly small space can actually hold.
+and hence if you exceed 3750 database entries, all functions that create new entries will fail with the error `Above DB
+Limit`.
+
+Note that although the entry limit is a function of your server member count, there is no per-user limit. That is, a
+single user can have more than 50 entries under their ID as long as the total number of entries in the server remains
+under the limit.
+
+---
+
+**Limits on individual entries.** Database entry keys are limited to 256 bytes in length; `dbSet` and `dbSetExpire` will
+silently truncate your input key if its length exceeds this limit.
+
+The size of a database entry, as reported by the `ValueSize` field, is limited to 100 kB. (Internally, your data is
+serialized with [msgpack](https://msgpack.org/index.html) and the length of the serialized sequence of bytes is what
+matters.)
 
 ### Interaction Limits
 
-To prevent spam and therefore possible lag across YAGPDB, we put interaction limits in place. First of all, you can't
-use more than 10 overall interactions, so every function that starts with `db` counts towards that limit. This limit
-increases to 50 if you have premium active. Moreover, there are so-called multiple interactions, namely `dbCount`,
-`dbGetPattern`, `dbGetPatternReverse`, `dbTopEntries`, and `dbBottomEntries`. These are limited at two total calls per
-custom command execution, 10 with premium. You don't have to understand how they work right now, we'll get later into
-that. Just keep in mind that they are counting towards a second limit.
+In addition to limiting the size of your server database, we also limit the number of times you interact with the
+database within a custom command execution. Specifically, you can only call database functions—those prefixed by `db`—up
+to 10 times within a custom command execution. The limit increases to 50 if you have premium active.
+
+Besides the main limit, database functions that act on multiple entries, namely `dbCount`, `dbGetPattern`,
+`dbGetPatternReverse`, `dbTopEntries`, and `dbBottomEntries`, also count toward a separate limit. Specifically, these
+'multiple interaction' database functions can only be used twice in a custom command execution (10 with premium.)
 
 That concludes the overview, now let's get into basic interactions!
 
 ## Basic Interactions
 
-These interactions are your constant companion when dealing with the database. You are most likely to use them more
-often that the upcoming functions, so really get them into your muscle memory, then the rest will be super easy!
-
 ### dbSet
 
-To start, let's take a look at the syntax:
+`dbSet` creates or overwrites an entry in the database.
 
 ```go
-{{dbSet <UserID> <Key> <Value>}}
+{{ dbSet user_id key value }}
 ```
 
-We've already covered `UserID` and `Key` further up. As a small refresher: `UserID` can be any integer, and `Key` is a
-string, the name of the entry so to say. The `Value` can be anything that can also be stored in a variable, so strings,
-integers, floats, slices, and maps.
+where `user_id` is any integer, `key` is the name of the entry, and `value` is arbitrary.
+
+{{< callout context="caution" title="Warning: Storing IDs" icon="outline/alert-triangle" >}}
+
+Numbers are stored as 64-bit floats internally, which can result in a loss of precision when storing IDs or similarly
+large integers. Instead, convert IDs to strings before storing them in database and convert back to integer on
+retrieval.
+
+See [Storing IDs](#storing-ids) for more information.
+
+{{< /callout >}}
 
 ### dbGet
 
-Okay, we can now set a value into the database, but that's fairly useless if we cannot get it back.
-Well, this is where `dbGet` comes in. As its name already suggests, it gets an entry (not the value!) from the database
-with the given Key and ID.
+We know how to create database entries; now, how do we retrieve them?
+
+This is where `dbGet` comes in: as its name suggests, it fetches the database entry with the given user ID and key.
+If no such entry exists, it returns `nil`.
 
 ```go
-{{dbGet <UserID> <Key>}}
+{{ dbGet user_id key }}
 ```
 
-As you can see, we don't have a value as above, just simply `ID` and `Key`. The call of this function returns an entry
-object, as described above. So, before you continue reading, take a moment to think about how to get the value.
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+
+`dbGet` returns the database entry object, not the value. To access the value, read the `Value` field:
+
+```go
+{{ (dbGet user_id key).Value }}
+```
+
+{{< /callout >}}
 
 ### dbDel
 
-Now we know how to set and get stuff with the database, but a good program also frees up unused memory, and custom
-commands are no exemption to that. These cases are where we use `dbDel`.
+Now we know how to create and fetch entries from the database. But a good program also frees unused storage, and custom
+commands are no exception. Use `dbDel` to delete a database entry:
 
 ```go
-{{dbDel <UserID> <Key>}}
+{{ dbDel user_id key }}
 ```
 
 ## Advanced Interactions
 
-Now, you might want to become a little more special with your database---That's why we have a few more functions,
+Now, you might want to become a little more special with your database—that's why we have a few more functions,
 `dbIncr` and `dbSetExpire`. With these functions, you are able to do more complex things with the database that would
 otherwise be quite hard to achieve, or at least not very efficient.
 
@@ -319,7 +347,7 @@ This pattern matches words such as `hello`, `helgo`, `heloo`.
 
 Saving values with custom types to database may result in their values being _serialized_ to a different type, meaning
 that you might have to convert it back to its original type when retrieving. For example, saving the result of a `cembed`
-to call to database will result in it becoming a `map[string] interface{}`.  The following code will showcase this
+to call to database will result in it becoming a `map[string] interface{}`. The following code will showcase this
 behavior:
 
 ```go
@@ -385,7 +413,7 @@ Having understood DB entries, we can now define these terms in a better way:
 
 - **Global Entries**: If everyone/everything refers to the same database entry, we conventionally call it a global entry.
 - **User/Channel-specific entries**: If different users/channels refer to different entries based on any set conditions,
-we call them per-user entries, or similar terms.
+  we call them per-user entries, or similar terms.
 
 Before you write your code, you need to decide how your command will use databases and then take action accordingly.
 

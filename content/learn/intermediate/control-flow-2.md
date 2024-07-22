@@ -88,7 +88,7 @@ whitespace.
 
 {{< callout context="tip" title="Tip: Trim Markers" icon="outline/rocket" >}}
 
-Use trim markers (`{{-` and `-}}`) to remove unwanted whitespace in output while maintaining readable source code.
+Use trim markers `{{-` and `-}}` to remove unwanted whitespace in output while maintaining readable source code.
 
 {{< /callout >}}
 
@@ -183,7 +183,7 @@ original context data in a variable prior to the loop:
 
 ```go
 {{ $dot := . }}
-{{ range $nums }}
+{{ range ... }}
     {{ $dot.User.Username }}
 {{ end }}
 ```
@@ -191,14 +191,14 @@ original context data in a variable prior to the loop:
 To make this pattern easier, before each custom command execution, YAGPDB predefines the variable `$` as the initial
 context data for you.
 
-{{< callout context="caution" title="Common Error" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning: Common Error" icon="outline/alert-triangle" >}}
 
 In a range block, the dot is overwritten by elements of the slice or map, so code such as `.User.Username` is likely to
 error. If you need to access the global context data, do so through the predefined `$` variable instead.
 
 ```go
-{{ range $nums }}
-    {{ $.User.Username }}
+{{ range ... }}
+    {{ $.User.Username }} {{/* instead of .User.Username */}}
 {{ end }}
 ```
 

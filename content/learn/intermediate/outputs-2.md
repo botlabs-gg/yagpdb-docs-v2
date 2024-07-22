@@ -24,14 +24,14 @@ Let's get started with the simplest of them all, `sendMessage`. Its syntax is th
 The `channel_id` is the ID of the channel to send the message to. If you want to send the message in the same channel as
 the one in which the custom command was triggered, simply set `channel_id` to `nil`.
 
-Intuitively, `message_to_be_sent` denotes the output that is to be sent as a message. For now, we will just say it is a
-string with the content you want to send. We will cover sending embeds in a later section on this page.
+Intuitively, `message_to_be_sent` denotes the output that is to be sent as a message. For now, we will just use a string
+with the content you want to send. We will cover sending embeds in a later section on this page.
 
 ### Special Mentions
 
-By default, the bot will escape special mentions like `@everyone`, `@here`, and role mentions. If you want to send a
-message with these mentions, you'll need to tell the bot to not escape them. You do this by using the
-`sendMessageNoEscape` function instead of `sendMessage`.
+By default, the bot will escape special mentions like `@everyone`, `@here`, and role mentions (note that user mentions
+are not escaped by default). If you want to send a message with these mentions, you'll need to tell the bot to not
+escape them. You can do this by using the `sendMessageNoEscape` function instead of `sendMessage`.
 
 ```go
 {{ sendMessageNoEscape channel_id message_to_be_sent }}
@@ -88,11 +88,12 @@ We will illustrate this with a simple example. For a full breakdown of all avail
 
 The above code will generate an embed as shown on the left. Let us dissect it a bit. First, we simply define a variable
 `$embed` and assign it the result of the `cembed` function. This function takes a series of key-value pairs, where the
-key is the field you want to set, and the value is the value you want to set for that field. The `cembed` function will
-return a structured object that can be sent as a message, as demonstrated in the last line of the code.
+key is the embed field you want to set, and the value is the value you want to set for that field. The `cembed` function
+will return a structured object that can be sent as a message, as demonstrated in the last line of the code.
 
 The `"title"` and `"description"` fields are self-explanatory---we can use Discord Markdown in the latter. The `"color"`
-field is in our case a hexadecimal color value that will be used as the color of the embed, but it can also take a
+field takes an integer color value, for which we can conveniently use hexadecimal formatting as mentioned in
+[Data Types 1](/learn/beginner/datatypes-1#integers), but it can also take a
 [decimal value](https://www.binaryhexconverter.com/hex-to-decimal-converter).
 
 The `"fields"` field is a list (more precisely a *slice*) of dictionaries, where each dictionary represents a field in
@@ -201,6 +202,9 @@ following code snippet:
 
 {{/* also add old fields */}}
 {{ $embed.Set "Fields" (cslice.AppendSlice $embed.Fields) }}
+{{ range $i, $field := $embed.Fields }}
+  {{- $embed.Fields.Set $i (structToSdict $field) -}}
+{{ end }}
 
 {{/* ensure all parts of the embed are reconstructed */}}
 {{ if $embed.Author }} {{ $embed.Author.Set "Icon_URL" $embed.Author.IconURL }} {{ end }}

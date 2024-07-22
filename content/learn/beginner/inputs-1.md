@@ -10,8 +10,8 @@ chapter, we'll learn how to create custom commands that take inputs.
 ## Parsing Arguments
 
 Because parsing arguments is no easy task, we provide a convenience function, `parseArgs`, to parse the arguments passed
-to a custom command. For simple commands, this is the recommended way. In a later chapter, we will explore a more
-hands-on approach to parsing arguments.
+to a custom command. For simple commands, this is the recommended way to handle user input. In a later chapter, we will
+explore a more hands-on approach to parsing arguments.
 
 ### Defining Arguments
 

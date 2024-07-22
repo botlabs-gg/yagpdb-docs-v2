@@ -4,7 +4,7 @@ weight = 230
 +++
 
 Until now, we have just written some linear code that executes from top to bottom. However, in real-world applications,
-we often need to execute different code depending on certain states of our program. This is where *control flow* comes
+we often need to execute different code depending on certain states of our program. This is where _control flow_ comes
 into play.
 
 You already have an intuitive understanding of control flow. For instance, when you cross the street, you look left and
@@ -51,7 +51,7 @@ them is true:
 #### Guard Clauses
 
 As your code grows, you may find yourself nesting `if` statements inside each other. This can lead to code that is hard
-to read and understand. One way to avoid this is to use *guard clauses*. A guard clause is an `if` statement that checks
+to read and understand. One way to avoid this is to use _guard clauses_. A guard clause is an `if` statement that checks
 for a condition and returns early via the `{{ return }}` action if the condition is false.
 
 Rewriting the second example to use these guard clauses yields the following code:
@@ -71,7 +71,7 @@ easier to read, especially when you come back to it at a later date.
 ## Comparison Actions
 
 In programming, we can make decisions by comparing values to each other. We can compare numbers, strings, and other data
-types. The result of a comparison is a *boolean* value, which is either `true` or `false`. Normally, comparisons are
+types. The result of a comparison is a _boolean_ value, which is either `true` or `false`. Normally, comparisons are
 binary operators; however, in custom commands, we use functions to compare values.
 
 {{< callout context="caution" title="Comparing across Types" icon="outline/alert-triangle" >}}
@@ -98,7 +98,7 @@ for the syntax of these functions.
 ## Blocks And Scope
 
 In [Data Types 1](/learn/beginner/datatypes-1), we introduced the concept of variables. Variables are used to store
-values and give them a name. In programming, variables have a *scope*, which defines where in the code the variable can
+values and give them a name. In programming, variables have a _scope_, which defines where in the code the variable can
 be accessed. Think of each scope as a "container" for things inside it.
 
 Often, you will want to have a variable available across multiple scopes. In custom commands, the variable is accessible
@@ -142,7 +142,6 @@ occurred---an example shown above.
 If you're familiar with C-style programming languages, this concept will most likely strike you as the curly braces
 these languages use to denote code blocks.
 
-
 ## Exercises
 
 1. Write a Custom Command to determine if the number stored in a variable `$a` is even or odd and print `Number is Even`
@@ -154,11 +153,11 @@ these languages use to denote code blocks.
    ```go
    {{ $num1 := 10 }}
    {{ if $num1 }}
-       {{ num1 := 6 }}
-       {{ $num1 }}
+     {{ num1 := 6 }}
+     {{ $num1 }}
    {{ end }}
    {{ if not (mod $num1 3) }}
-       {{ $num1 }}
+     {{ $num1 }}
    {{ end }}
    {{ $num1 }}
    ```
@@ -166,16 +165,16 @@ these languages use to denote code blocks.
    ```go
    {{ $name := "John" }}
    {{ if eq $name "John" }}
-       {{ $family_name := "Walters" }}
+     {{ $familyName := "Walters" }}
    {{ end }}
-   My name is: {{ $name }} {{ $family_name }}
+   My name is: {{ $name }} {{ $familyName }}
    ```
 
    ```go
-   {{ $string := "happy" }}
-   {{ if gt $string "Sad" }}
-       Be {{ $string }}!
+   {{ $mood := "happy" }}
+   {{ if gt $mood "Sad" }}
+     Be {{ $mood }}!
    {{ else }}
-      Dont be {{ $string }}!
+     Do not be {{ $string }}!
    {{ end }}
    ```

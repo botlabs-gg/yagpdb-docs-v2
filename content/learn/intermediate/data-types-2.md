@@ -61,7 +61,7 @@ For available operations on maps, please refer to [our template documentation][d
 
 {{< callout context="tip" title="Here be Dragons" icon="outline/rocket" >}}
 
-Consider the following code that displays the value of `$fruitPrices` as defined in the previous example
+Consider the following code that displays the value of `$fruitPrices` as defined in the previous example:
 
 ```go
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}

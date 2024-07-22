@@ -75,7 +75,6 @@ map[apple:1.5 banana:2.6 pineapple:3.5]
 ```
 
 Though the output is ordered by key, this feature is only implemented for ease for debugging: maps are otherwise
-unordered data structures. If your program relies on the entries of a map being ordered, consider use a slice of
-key-value pairs instead.
+unordered data structures. If your program relies on the entries of a map being ordered, consider using a slice instead.
 
 {{< /callout >}}

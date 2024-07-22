@@ -168,11 +168,11 @@ There are a few other, less common ways to invoke the range action.
 
 The following program illustrates a common error for first-time users of `range`.
 
-```go
+```go {hl_lines=4}
 {{ $nums := cslice 1 2 3 }}
 {{ range $nums }}
     {{/* ... */}}
-    {{ .User.Username }} {{/* ERROR: can't evaluate field User in type inteface {} */}}
+    {{ .User.Username }} {{/* ERROR: can't evaluate field User in type interface {} */}}
 {{ end }}
 ```
 
@@ -192,7 +192,7 @@ original context data in a variable prior to the loop:
 To make this pattern easier, before each custom command execution, YAGPDB predefines the variable `$` as the initial
 context data for you.
 
-{{< callout context="caution" title="Warning: Common Error" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Accessing Global Context Data" icon="outline/alert-triangle" >}}
 
 In a range block, the dot is overwritten by elements of the slice or map, so code such as `.User.Username` is likely to
 error. If you need to access the global context data, do so through the predefined `$` variable instead.

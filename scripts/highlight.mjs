@@ -14,7 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 main();
 
 async function main() {
-	const LIGHT_THEME = 'vitesse-light';
+	const LIGHT_THEME = 'github-light';
 	const DARK_THEME = 'vitesse-dark';
 
 	const start = Date.now();

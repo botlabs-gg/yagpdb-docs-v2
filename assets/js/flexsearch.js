@@ -1,7 +1,7 @@
 // Patch Doks' builtin flexsearch implementation so that it resolves the search index correctly when deployed to a
 // subdirectory. Original code: https://github.com/gethyas/doks-core/blob/main/assets/js/flexsearch.js.
 //
-// The only line changed compared to the original code above is L133; see comment there.
+// The only line changed compared to the original code above is L134; see comment there.
 
 /*!
  * FlexSearch for Bootstrap based Hyas sites
@@ -129,8 +129,9 @@ import Index from 'flexsearch';
   function buildIndex() {
     document.querySelector('.search-loading').classList.remove('d-none');
 
-    // Originally `fetch("{{ site.LanguagePrefix }}/search-index.json")`; our patch prefixes with {{ site.BaseURL }}.
-    fetch("{{ site.BaseURL }}{{ site.LanguagePrefix }}/search-index.json")
+    // Originally `fetch("{{ site.LanguagePrefix }}/search-index.json")`; our patch resolves the search index relative
+    // to the base URL of the deployment.
+    fetch("{{ relURL `search-index.json` }}")
       .then(function (response) {
         return response.json();
       })

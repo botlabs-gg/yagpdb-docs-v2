@@ -9,17 +9,22 @@ import { parseDocument } from 'htmlparser2';
 import { findAll, textContent, replaceElement } from 'domutils';
 import render from 'dom-serializer';
 
-highlightAll({ lightTheme: 'github-light-default', darkTheme: 'github-dark-default' });
+main();
 
-async function highlightAll({ lightTheme, darkTheme }) {
+async function main() {
+	const LIGHT_THEME = 'github-light-default';
+	const DARK_THEME = 'github-dark-default';
+
 	const start = Date.now();
 
 	const files = await listBuiltContentFiles();
 	const highlighter = await createHighlighter({
-		themes: [lightTheme, darkTheme],
+		themes: [LIGHT_THEME, DARK_THEME],
 		langs: Object.keys(bundledLanguages),
 	});
-	await Promise.all(files.map((filepath) => highlightFile(highlighter, filepath, { lightTheme, darkTheme })));
+	await Promise.all(
+		files.map((filepath) => highlightFile(highlighter, filepath, { lightTheme: LIGHT_THEME, darkTheme: DARK_THEME })),
+	);
 
 	console.log(`Highlighted ${files.length} files in ${Math.round(Date.now() - start)} ms`);
 }

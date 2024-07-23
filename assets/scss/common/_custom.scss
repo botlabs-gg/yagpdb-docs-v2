@@ -20,7 +20,7 @@ a.broken {
 }
 
 // Color inline code in gray.
-code:not(pre.shiki > code) {
+code:not(pre > code) {
     background-color: var(--sl-color-gray-6);
     margin-block: -0.125rem;
     padding: 0.125rem 0.375rem;
@@ -28,7 +28,7 @@ code:not(pre.shiki > code) {
 }
 
 @include color-mode(dark) {
-    code:not(pre.shiki > code) {
+    code:not(pre > code) {
         background-color: var(--sl-color-gray-5);
     }
 }

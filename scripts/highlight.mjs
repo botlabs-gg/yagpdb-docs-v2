@@ -46,7 +46,7 @@ async function highlightFile(highlighter, filepath, { lightTheme, darkTheme }) {
 	await writeFile(filepath, highlightHtml(highlighter, contents, { lightTheme, darkTheme }));
 }
 
-const codeLanguageRe = /^<code class=(?:")?language-(\w+)(?:")?>/;
+const codeLanguageRe = /<code class="language-(\w+)">/;
 
 function highlightHtml(highlighter, htmlContent, { lightTheme, darkTheme }) {
 	const doc = parseDocument(htmlContent);

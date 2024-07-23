@@ -15,16 +15,21 @@ main();
 
 async function main() {
 	const LIGHT_THEME = 'github-light';
-	const DARK_THEME = 'vitesse-dark';
+	const DARK_THEME = 'github-dark-modified';
 
 	const start = Date.now();
 
 	const highlighter = await createHighlighter({
-		themes: [LIGHT_THEME, DARK_THEME],
+		themes: [LIGHT_THEME], // dark theme is custom and registered below
 		langs: Object.keys(bundledLanguages),
 	});
 	const yagTemplateLang = JSON.parse(await readFile(join(__dirname, 'yag.tmLanguage.json'), { encoding: 'utf-8' }));
 	await highlighter.loadLanguage(yagTemplateLang);
+
+	const gitHubDarkModifiedTheme = JSON.parse(
+		await readFile(join(__dirname, 'github-dark-modified.json'), { encoding: 'utf-8' }),
+	);
+	await highlighter.loadTheme(gitHubDarkModifiedTheme);
 
 	const files = await listBuiltContentFiles();
 	await Promise.all(

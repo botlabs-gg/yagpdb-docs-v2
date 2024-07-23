@@ -35,7 +35,7 @@ code:not(pre > code) {
 
 pre.shiki {
   padding: 1.25rem 1.25rem;
-  border: 1px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 25%);
+  border: 0.75px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 25%);
 }
 
 // Make Shiki syntax highlighting theme-aware.

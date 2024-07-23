@@ -367,16 +367,16 @@ the same type -> for example, `toFloat 1`.
 
 {{< /callout >}}
 
-| Case     | Example                                                                                                                                                                                                                                                                     |
-|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| if       | `{{if (condition)}} output {{end}}`<br>Initialization statement can also be inside `if` statement with conditional statement, limiting the initialized scope to that `if` statement.<br>`{{$x := 24}}`<br>`{{if eq ($x := 42) 42}} Inside: {{$x}} {{end}}`<br>`Outside: {{$x}}` |
-| else&nbsp;if  | `{{if (condition)}} output1 {{else if (condition)}} output2 {{end}}`<br>You can have as many `else if` statements as many different conditionals you have.                                                                                                                      |
-| else     | `{{if (condition)}} output1 {{else}} output2 {{end}}`                                                                                                                                                                                                                           |
+| Case         | Example                                                                                                                                                                                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| if           | `{{if (condition)}} output {{end}}`<br>Initialization statement can also be inside `if` statement with conditional statement, limiting the initialized scope to that `if` statement.<br>`{{$x := 24}}`<br>`{{if eq ($x := 42) 42}} Inside: {{$x}} {{end}}`<br>`Outside: {{$x}}` |
+| else&nbsp;if | `{{if (condition)}} output1 {{else if (condition)}} output2 {{end}}`<br>You can have as many `else if` statements as many different conditionals you have.                                                                                                                      |
+| else         | `{{if (condition)}} output1 {{else}} output2 {{end}}`                                                                                                                                                                                                                           |
 
 ### Boolean Logic
 
 | Case | Example                                             |
-|------|-----------------------------------------------------|
+| ---- | --------------------------------------------------- |
 | and  | `{{if and (cond1) (cond2) (cond3)}} output {{end}}` |
 | not  | `{{if not (condition)}} output {{end}}`             |
 | or   | `{{if or (cond1) (cond2) (cond3)}} output {{end}}`  |
@@ -384,7 +384,7 @@ the same type -> for example, `toFloat 1`.
 ### Comparison Operators
 
 | Case                        | Example                                                |
-|-----------------------------|--------------------------------------------------------|
+| --------------------------- | ------------------------------------------------------ |
 | Equal: `eq`                 | `{{if eq .Channel.ID ########}} output {{end}}`        |
 | Not equal: `ne`             | `{{$x := 7}} {{$y := 8}} {{ne $x $y}}` returns `true`  |
 | Less than: `lt`             | `{{if lt (len .Args) 5}} output {{end}}`               |
@@ -418,7 +418,7 @@ case of only one variable, it is assigned the element.\
 \
 Like `if`, `range`is concluded with`{{end}}`action and declared variable scope inside `range` extends to that point.\
 
-```go
+```yag
 {{/* range over an integer */}}
 {{range 2}}{{.}}{{end}}
 {{range $k, $v := toInt64 2}}{{$k}}{{$v}}{{end}}
@@ -468,7 +468,7 @@ context, all errors have a method `Error` which is specified to return a message
 was thrown.) For example, the following example has different behavior depending on whether "Reaction blocked" is in the
 message of the error caught.
 
-```go
+```yag
 {{ try }}
     {{ addReactions "👋" }}
     added reactions successfully
@@ -488,7 +488,7 @@ message of the error caught.
 concluded by the `end` action. Within the body of a `while` action, the `break` and `continue` actions can be used to
 appropriate effect, like in a `range` action.
 
-```go
+```yag
 {{/* efficiently search for an element in a sorted slice using binary search */}}
 {{ $xs := cslice 1 3 5 6 6 8 10 12 }}
 {{ $needle := 8 }}
@@ -525,7 +525,7 @@ and also `range` action would need `$.User.ID` for example.
 
 Like `if` and `range` actions, `with` is concluded using `{{end}}` and variable scope extends to that point.
 
-```go
+```yag
 {{/* Shows the scope and how dot is affected by object's value in pipeline */}}
 {{ $x := "42" }} {{ with and ($z:= seq 0 5) ($x := seq 0 10) }}
 len $x: `{{ len $x }}`
@@ -558,7 +558,7 @@ programming languages.
 
 To define an associated template, use the `define` action. It has the following syntax:
 
-```go
+```yag
 {{ define "template_name" }}
     {{/* associated template body */}}
 {{ end }}
@@ -569,7 +569,7 @@ To define an associated template, use the `define` action. It has the following 
 **Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
 nested in other actions (for example, an if action.) That is, the following custom command is invalid:
 
-```go
+```yag
 {{ if $cond }}
     {{ define "hi" }} hi! {{ end }}
 {{ end }}
@@ -583,7 +583,7 @@ valid template program. Note that the first criterion precludes using variables 
 template; that is, the following custom command is invalid, as the body of the associated template references a variable
 (`$name`) defined in an outer scope:
 
-```go
+```yag
 {{ $name := "YAG" }}
 {{ define "hello" }}
     Hello, {{ $name }}!
@@ -602,7 +602,7 @@ To return a value from an associated template, use the `return` action. Encounte
 execution of the associated template to end immediately and control to be returned to the caller. For example, below is
 an associated template that always returns `1`:
 
-```go
+```yag
 {{ define "getOne" }} {{ return 1 }} {{ end }}
 ```
 
@@ -613,7 +613,7 @@ Note that it is not necessary for a value to be returned; `{{ return }}` by itse
 **Note:** Since all custom commands are themselves templates, using a `return` action at the top level is perfectly
 valid, and will result in execution of the custom command being stopped at the point the `return` is encountered.
 
-```go
+```yag
 {{ if not .CmdArgs }}
     no arguments passed
     {{ return }} {{/* anything beyond this point is not executed */}}
@@ -645,7 +645,7 @@ action if at possible.
 
 Below is an example of the `template` action in action:
 
-```go
+```yag
 {{ define "sayHi" }}
     {{- if . -}}
         hi there, {{ . }}
@@ -665,7 +665,7 @@ template definitions (and actions in general).
 `block` has a structure similar to that of a `define` action. It is equivalent to a `define` action followed by a
 `template` action:
 
-```go
+```yag
 {{ $name := "YAG" }}
 {{ block "sayHi" $name }}
     hi there, {{ . }}
@@ -683,7 +683,7 @@ template definitions (and actions in general).
 `execTemplate` is essentially the same as the `template` action, but it provides access to the return value of the
 template and may be used as part of another action. Below is an example using `execTemplate`:
 
-```go
+```yag
 {{ define "factorial" }}
     {{- $n := 1 }}
     {{- range seq 2 (add . 1) }}
@@ -716,7 +716,7 @@ called an empty interface which allows a value to be of any type. So any argumen
 undesirable in certain situations. That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y :=
 $x` and then mutating `$y` via `Append`/`Set`/`Del`/etc. will modify `$x` as well. For example:
 
-```go
+```yag
 {{ $x := sdict "k" "v" }}
 {{ $y := $x }}
 {{ $y.Set "k" "v2" }} {{/* modify $y */}}
@@ -727,7 +727,7 @@ that is, modifying $y changed $x too. */}}
 
 If this behavior is undesirable, copy the slice/dictionary via `cslice.AppendSlice` or a `range` + `Set` call .
 
-```go
+```yag
 {{ $x := sdict "k" "v" }}
 {{ $y := sdict }}
 {{ range $k, $v := $x }} {{- $y.Set $k $v -}} {{ end }}
@@ -765,7 +765,7 @@ YAGPDB]`. If the flag would have been set to true - \{{...).StringSlice true\}},
 
 General example:
 
-```go
+```yag
 Creating a new cslice: {{ $x := (cslice "red" "red") }} **{{ $x }}**
 Appending to current cslice data
 and assigning newly created cslice to same variable:
@@ -800,7 +800,7 @@ an unordered list and the number of parameters to form key-value pairs must be e
 | .HasKey "key"    | Returns _bool_ true/false regarding whether the key is set or not e.g. `{{(sdict "YAGPDB" "is cool").HasKey "YAGPDB"}}` would return `true`. |
 | .Set "key" value | Changes/sets given key to a new value or creates new one, if no such key exists in _sdict_.                                                  |
 
-```go
+```yag
 Creating sdict: {{ $x := sdict "color1" "green" "color2" "red" }} **{{ $x }}**
 Retrieving key "color2": **{{ $x.Get "color2" }}**
 Changing "color2" to "yellow": {{ $x.Set "color2" "yellow" }} **{{ $x }}**

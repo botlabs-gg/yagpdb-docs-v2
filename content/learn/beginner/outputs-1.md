@@ -3,8 +3,8 @@ title = "Outputs 1"
 weight = 210
 +++
 
-In this chapter, we will go over two ways to output text from a custom command: using the *response*, and later on using
-*template actions*.
+In this chapter, we will go over two ways to output text from a custom command: using the _response_, and later on using
+_template actions_.
 
 ## Response
 
@@ -13,7 +13,7 @@ is triggered.
 
 For instance, create a new custom command with the following response:
 
-```go
+```yag
 Hello World.
 ```
 
@@ -30,7 +30,7 @@ This will make the bot respond "Hello World." in a new message when the command 
 ### Actions As Output
 
 Earlier, we just made the bot respond with some static text. However, often we want our custom command to behave
-differently depending on input. This is where *template actions* come in.
+differently depending on input. This is where _template actions_ come in.
 
 Template actions are a way to dynamically change the output depending on various things, such as the user who triggered
 the command, the arguments passed to the command, or even the current time.
@@ -38,7 +38,7 @@ the command, the arguments passed to the command, or even the current time.
 The bot evaluates the template action and replaces it with the result of the evaluation. For instance, the following
 code will make the bot respond with the server name when the command is triggered:
 
-```go
+```yag
 {{ .Guild.Name }}
 ```
 
@@ -46,14 +46,14 @@ As you can see, we use double curly braces (`{{` and `}}`) to denote a template 
 The braces are essential: without these, the bot would simply respond with the text verbatim. A common pitfall
 we often see in the support channels is something like the following:
 
-```go
+```yag
 Hello .User.Username!
 ```
 
 If we want to bring this a step further, we can combine the plain response with some template actions to make it a bit
 more nicer-looking:
 
-```go
+```yag
 Hey there {{ .User.Username }}!
 Welcome to {{ .Guild.Name }}!
 ```
@@ -67,14 +67,14 @@ Custom command functions allow you to perform calculations, add or remove roles 
 channel, and lots more! The syntax is a little different to what you might be used to; All arguments to a function
 follow the function name itself, like so:
 
-```go
+```yag
 {{ add 5 3 }}
 ```
 
 Some functions also return the result of their operation, which can be passed as arguments to other functions.
 For example:
 
-```go
+```yag
 {{ mult 5 (add 3 2) }}
 ```
 

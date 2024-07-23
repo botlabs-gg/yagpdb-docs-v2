@@ -89,7 +89,7 @@ That concludes the overview, now let's get into basic interactions!
 
 `dbSet` creates or overwrites an entry in the database.
 
-```go
+```yag
 {{ dbSet user_id key value }}
 ```
 
@@ -112,7 +112,7 @@ We know how to create database entries; now, how do we retrieve them?
 This is where `dbGet` comes in: as its name suggests, it fetches the database entry with the given user ID and key.
 If no such entry exists, it returns `nil`.
 
-```go
+```yag
 {{ dbGet user_id key }}
 ```
 
@@ -120,7 +120,7 @@ If no such entry exists, it returns `nil`.
 
 `dbGet` returns the database entry object, not the value. To access the value, read the `Value` field:
 
-```go
+```yag
 {{ (dbGet user_id key).Value }}
 ```
 
@@ -131,7 +131,7 @@ If no such entry exists, it returns `nil`.
 Now we know how to create and fetch entries from the database. But a good program also frees unused storage, and custom
 commands are no exception. Use `dbDel` to delete a database entry:
 
-```go
+```yag
 {{ dbDel user_id key }}
 ```
 
@@ -147,7 +147,7 @@ otherwise be quite hard to achieve, or at least not very efficient.
 allowing you to further use the value. Said increment can be any valid number, that is, integers and float. Do note,
 however, that the return type of `dbIncr` is always a float, even if you use an integer for the increment argument.
 
-```go
+```yag
 {{dbIncr <UserID> <Key> <Increment>}}
 ```
 
@@ -155,7 +155,7 @@ however, that the return type of `dbIncr` is always a float, even if you use an 
 not already exist. Try thinking about how you would implement a custom command that increases a given entry by a set
 amount, gets the value, but also sets a new entry if it doesn't already exist.
 
-```go
+```yag
 {{$db := dbGet .User.ID "someKey"}}
 {{$add := add (toFloat $db.Value) $x}}
 {{dbSet .User.ID "someKey" (str $add)}}
@@ -173,7 +173,7 @@ Now you might want to set entries which get deleted after a while. To do so, you
 As we recall from the beginning, database entries have an `.ExpiresAt` field of type `time.Time`. The `dbSetExpire`
 function adds a timestamp to this field, telling the bot that we only want to use the DB entry until then.
 
-```go
+```yag
 {{dbSetExpire <userID> <Key> <Value> <Expires in>}}
 ```
 
@@ -181,7 +181,7 @@ The `Expires in` is given in seconds.
 
 A common use case for this function is a cooldown: As long as the entry exists, the command is still on cooldown.
 
-```go
+```yag
 {{ if $db := dbGet 2000 "cooldown" }}
     Command is  on cooldown :(
     Cooldown will be over at {{ $db.ExpiresAt.Format "Mon 02 Jan 15:04:05" }}
@@ -209,7 +209,7 @@ sorted by certain criteria.
 This is the only function interacting with multiple entries that doesn't return a slice. Since this function is fairly
 easy to understand, we'll start with that. As usual, first the syntax:
 
-```go
+```yag
 {{dbCount <userID>}}
 {{/* or */}}
 {{dbCount <pattern>}}
@@ -229,7 +229,7 @@ These functions return a slice of DB entry objects ordered by the value. `dbTopE
 `dbBottomEntries` by ascending value. Both of these are hard-limited to at most 100 entries (for premium as well), and
 this can be limited further with the `amount` argument.
 
-```go
+```yag
 {{dbTopEntries <pattern> <amount> <nSkip>}}
 {{dbBottomEntries <pattern> <amount> <nSkip>}}
 ```
@@ -240,7 +240,7 @@ using the `nSkip` argument.
 
 Now, to retrieve the value of each entry, we range over the given slice and access the `.Value` field:
 
-```go
+```yag
 {{$entries := dbTopEntries "someKey" 10 0}}
 {{range $entries}}
     Current Entry Value: {{.Value}}
@@ -255,7 +255,7 @@ These two functions allow you to get multiple entries under one user ID with mat
 return a slice of entries sorted by value, just as the above functions. The only difference here is only the limitation
 to one `UserID` instead of all `UserID`s.
 
-```go
+```yag
 {{dbGetPattern <userID> <pattern> <amount> <nSkip>}}
 {{/* or */}}
 {{dbGetPatternReverse <userID> <pattern> <amount> <nSkip>}}
@@ -269,7 +269,7 @@ code example, as it should be pretty clear how to do this.
 This function allows you to delete multiple entries in one go, instead of one at a time with `dbDel`. Its syntax is a
 little more intricate than other functions:
 
-```go
+```yag
 {{dbDelMultiple <query> <amount> <skip>}}
 ```
 
@@ -286,7 +286,7 @@ most useful assigned to a variable.
 With all that in mind, the following example code deletes up to 100 matching entries with `Key`s matching the pattern
 `test%` and `UserID` of the current user, finally outputting the number of entries deleted:
 
-```go
+```yag
 {{$deleted := dbDelMultiple (sdict "userID" .User.ID "pattern" "test%") 100 0}}
 Deleted {{$deleted}} entries!
 ```
@@ -296,7 +296,7 @@ Deleted {{$deleted}} entries!
 This function returns the rank (that is, the position in an ordered list) of a specified entry in the set of entries
 matching criteria provided by `query`.
 
-```go
+```yag
 {{dbRank <query> <userID> <key>}}
 ```
 
@@ -309,7 +309,7 @@ matching criteria provided by `query`.
 As an example, to find the rank of the entry with the key `test` for the current user in all of this user's entries, you
 may want to use the following code:
 
-```go
+```yag
 {{$rank := dbRank (sdict "userID" .User.ID) .User.ID "test"}}
 The specified entry's rank is {{$rank}}.
 ```
@@ -351,7 +351,7 @@ that you might have to convert it back to its original type when retrieving. For
 to call to database will result in it becoming a `map[string] interface{}`. The following code will showcase this
 behavior:
 
-```go
+```yag
 {{$embed := cembed "description" "Serialization!"}}
 {{printf "Type before storing: %T" $embed}}
 {{dbSet .User.ID "serialization_example" $embed}}
@@ -373,7 +373,7 @@ in scientific notation. Even converting back to an integer will not solve this, 
 they will round ID numbers.
 To prevent this, simply convert them to a string before storing and converting back to `int` upon retrieving, like so:
 
-```go
+```yag
 {{ dbSet 2000 "someKey" (str .User.ID) }}
 {{ $userID_received := toInt (dbGet 2000 "someKey").Value }}
 {{ eq .User.ID $userID_received }}
@@ -407,7 +407,7 @@ the `UserID` **or** `Key` differ.
 Each of the following line corresponds to and returns different database entries, since they don't share the same set of
 user ID and key.
 
-```go
+```yag
 {{ dbGet 20 "apple" }}
 {{ dbGet 20 "banana" }}
 {{ dbGet 30 "apple" }}

@@ -17,7 +17,7 @@ message after sending it. We will cover these functions in detail in the followi
 
 Let's get started with the simplest of them all, `sendMessage`. Its syntax is the following:
 
-```go
+```yag
 {{ sendMessage channel_id message_to_be_sent }}
 ```
 
@@ -33,7 +33,7 @@ By default, the bot will escape special mentions like `@everyone`, `@here`, and 
 are not escaped by default). If you want to send a message with these mentions, you'll need to tell the bot to not
 escape them. You can do this by using the `sendMessageNoEscape` function instead of `sendMessage`.
 
-```go
+```yag
 {{ sendMessageNoEscape channel_id message_to_be_sent }}
 ```
 
@@ -42,13 +42,13 @@ escape them. You can do this by using the `sendMessageNoEscape` function instead
 If you want to store the ID of the message you just sent, for example to later edit it, use the `sendMessageRetID`
 function and assign the result to a variable.
 
-```go
+```yag
 {{ $messageID := sendMessageRetID channel_id message_to_be_sent }}
 ```
 
 Naturally, we provide a variant of the `sendMessageRetID` function that does not escape mentions:
 
-```go
+```yag
 {{ $messageID := sendMessageNoEscapeRetID channel_id message_to_be_sent }}
 ```
 
@@ -63,7 +63,7 @@ structure as defined by the Discord API.
 We will illustrate this with a simple example. For a full breakdown of all available fields, please refer to our
 [custom embeds documentation](/docs/reference/custom-embeds).
 
-```go
+```yag
 {{ $embed := cembed
     "title" "This is a title"
     "description" "This is a description."
@@ -96,7 +96,7 @@ field takes an integer color value, for which we can conveniently use hexadecima
 [Data Types 1](/learn/beginner/datatypes-1#integers), but it can also take a
 [decimal value](https://www.binaryhexconverter.com/hex-to-decimal-converter).
 
-The `"fields"` field is a list (more precisely a *slice*) of dictionaries, where each dictionary represents a field in
+The `"fields"` field is a list (more precisely a _slice_) of dictionaries, where each dictionary represents a field in
 the embed. Each field dictionary must contain a `"name"` and a `"value"` field, and can optionally contain an `"inline"`
 field. This field is a boolean that determines whether the field should be displayed inline with the previous field.
 
@@ -120,7 +120,7 @@ For your convenience, we have [prefilled the above example][prefill] in the visu
 Sending a message is nice and all, but for the sake of keeping things clean, you might want to edit a message instead of
 creating a new one each time something changes. We provide the `editMessage` function for this purpose.
 
-```go
+```yag
 {{ editMessage channel_id message_id new_message_content }}
 ```
 
@@ -132,7 +132,7 @@ messages.
 
 For a quick demonstration, consider the following code:
 
-```go
+```yag
 {{ $messageID := sendMessageRetID nil "Hello, World!" }}
 {{ sleep 5 }}
 {{ editMessage nil $messageID "Goodbye, World!" }}
@@ -149,7 +149,7 @@ fields, and provide the whole embed to `editMessage`.
 
 An elaborate example all within the same custom command looks like the following:
 
-```go
+```yag
 {{ $embed := cembed
     "title" "This is a title"
     "description" "This is a description."
@@ -186,7 +186,7 @@ original embed object, convert and modify it as shown above, then send it back t
 `structToSdict` does not perform deep conversion. For a full conversion of an embed to a dictionary, you can use the
 following code snippet:
 
-```go
+```yag
 {{ if not .Message.Embeds }}
   {{/* no point converting non-existent embed */}}
   {{ return }}
@@ -219,7 +219,7 @@ We learned how to send messages and embeds individually---we can also combine th
 have to use the `complexMessage` builder function. In this case, we will use the `"content"` and `"embed"` key to set
 the respective parts of our message:
 
-```go
+```yag
 {{ $embed := cembed
     "title" "This is a title"
     "description" "This is a description."

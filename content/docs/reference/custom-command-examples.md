@@ -30,7 +30,7 @@ YAGPDB has a built-in random response system for custom commands, but sometimes 
 certain responses to occur. You can do this by creating a singular response and creating a variable with randInt. Then
 use an if else if statement like this to print out your desired output.&#x20;
 
-```go
+```yag
 {{$var := randInt 100}}
 
 {{if lt $var 10}}
@@ -52,7 +52,7 @@ following:
 
 Trigger type: `Join message in server channel`
 
-```go
+```yag
 {{if .UsernameHasInvite}}
 {{$silent := execAdmin "ban" .User.ID "ad blocked"}}
 {{else}}
@@ -69,7 +69,7 @@ This particular command loops over a cslice and a sdict.
 
 Trigger type: `Command` Trigger: `range`
 
-```go
+```yag
 {{/* range can iterate over many things, let's start with slice */}}
 {{ $slice := cslice "YAGPDB " "is " "cool!" }}
 {{/* Here, we range over with 1 argument, meaning the dot will be set to current iteration value */}}
@@ -89,7 +89,7 @@ your input that you are on.&#x20;
 Range will work on any kind of slice/array. for example. If we wanted to look for all the entries in our database we can
 use range and index through them all in the following.&#x20;
 
-```go
+```yag
 {{$lb := dbTopEntries "%" 100 0}}
 {{range $lb}}
 {{.UserID}} **:** {{.Key}} **:** {{.Value}}
@@ -106,7 +106,7 @@ will have to use `dict`.
 
 Trigger type: `Command` Trigger: `dict`
 
-```go
+```yag
 {{ $dict := dict 0 "foobar" "hello" "world" }}
 {{/* Retrieve value with integer key with index */}}
 0 - {{ index $dict 0 -}}
@@ -131,7 +131,7 @@ are:
 
 Trigger type: `Command` Trigger: `send`&#x20;
 
-```go
+```yag
 {{$args := parseArgs 2 "Syntax is <channel> <text>"
     (carg "channel" "channel to send to")
     (carg "string" "text to send")}}
@@ -145,7 +145,7 @@ This example consists of two custom commands, and after copy/paste `REPLACE-WITH
 actual custom command ID's in your system. This custom command is very complex, uses very many advanced functions, all
 it does, constructs a 10 second countdown timer command-system for given starting time.
 
-```go
+```yag
 {{$args := parseArgs 2 ""
  (carg "duration" "countdown-duration")
  (carg "string" "countdown-message")}}
@@ -159,7 +159,7 @@ Second part of the custom commands, here we see, how `data`-part of exeCC was ma
 `sdict`and now we are calling those keys with `.ExecData` - for example `.ExecData.MessageID` sets new variable the same
 as stated in previous code.
 
-```go
+```yag
 {{$timeLeft := .ExecData.T.Sub currentTime}}
 {{$cntDownMessageHeader := print "Countdown Timer: " .ExecData.Message}}
 {{$formattedTimeLeft := humanizeDurationSeconds $timeLeft}}
@@ -190,7 +190,7 @@ inserted to database begins with "notes\_".
 
 #### Save note
 
-```go
+```yag
 {{$args := parseArgs 2 ""
   (carg "string" "key")
   (carg "string" "value")}}
@@ -201,7 +201,7 @@ Saved `{{$args.Get 0}}` as `{{$args.Get 1}}`
 
 #### Get note
 
-```go
+```yag
 {{$key := print "notes_"  .StrippedMsg}}
 {{$note := dbGet .User.ID $key}}
 {{if $note}}
@@ -215,7 +215,7 @@ Note: `{{$strippedKey}}` Created {{humanizeTimeSinceDays $note.CreatedAt}} ago:
 
 #### List user's notes
 
-```go
+```yag
 {{$notes := dbGetPattern .User.ID "notes_%" 100 0}}
 {{range $notes}}
 {{- $strippedKey := slice .Key 6 (len .Key)}}
@@ -230,7 +230,7 @@ You don't have any notes :(
 With YAGPDB's database system, you can now add cooldowns to you custom commands. You can either make them global
 cooldowns or a per user cooldown.
 
-```go
+```yag
 {{/* CONFIGURATION HERE CHANGE VALUES AS NEEDED */}}
 
 {{/* 0 for per user, 1 for global */}}
@@ -271,7 +271,7 @@ Trigger type: `Regex` Trigger: `\A`
 
 `BE SURE TO RESTRICT THE COMMAND TO A SINGLE CHANNEL`&#x20;
 
-```go
+```yag
 {{/* If you are not doing (no twice msg in a row)  or (role assignment for latest user)  you can remove counter_user and by extension everything to do with $lastUser*/}}
 
 {{/* First time running command, set up initial values*/}}
@@ -339,7 +339,7 @@ command take away roles from someone instead of giving them by simply using the 
 
 Trigger type: `Command` Trigger: `giveRoleName`
 
-```go
+```yag
 {{if eq (len .Args) 3}}
     {{$allowedRoles := (cslice "Patron" "Quality Patron" "Paypal Donors")}}
     {{$role := (index .CmdArgs 1)}}
@@ -365,7 +365,7 @@ only string keys), `sendMessage`, and `cembed`in action.
 
 Trigger type: `Command` Trigger: `bc`
 
-```go
+```yag
 {{if eq (len .Args) 3}}
     {{$channel := (index .CmdArgs 0)}}
     {{$msg:= (joinStr " " (slice .CmdArgs 1))}}
@@ -398,7 +398,7 @@ custom commands.&#x20;
 
 Trigger type: `Command` Trigger: `avatar`
 
-```go
+```yag
 {{$ln := (len .Args)}}
 {{$sizes := (cslice "16" "32" "64" "128" "256" "512" "1024" "2048" "4096")}}
 {{$err1 := "Wrong image size input format! Possible values: 16, 32, 64, 128, 256, 512, 1024, 2048, 4096."}}
@@ -456,7 +456,7 @@ This command is used to replace suggestion bots. You can adapt it to your needs.
 
 Trigger type: `Command` Trigger: `suggest`
 
-```go
+```yag
 {{ $channel := 476178740133494784 }} {{/* Replace this with your suggestion channel ID */}}
 
 {{if gt (len .Args) 1}}
@@ -487,7 +487,7 @@ emote file directly from Discord's database.
 
 Trigger type: `Command` Trigger: `bigemote`
 
-```go
+```yag
 {{ $matches := reFindAllSubmatches `<(a)?:.*?:(\d+)>` .StrippedMsg }}
 {{ if $matches }}
   {{ $animated := index $matches 0 1 }}

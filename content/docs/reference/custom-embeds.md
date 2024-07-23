@@ -92,7 +92,7 @@ Embeds in custom commands are a little more difficult. Also, there is no generat
 
 To start off, we'll take a look at this example and break it down:
 
-```go
+```yag
 {{ $embed := cembed "title" "This is my title" "description" "This is my description." }}
 {{ sendMessage nil $embed }}
 ```
@@ -115,7 +115,7 @@ To make your code readable, especially for large embeds, **indents** may be used
 
 {{< callout title="Custom Command \"embed\"" >}}
 
-```go
+```yag
 {{ $advice := execAdmin "advice" }}
 {{ $topic := execAdmin "topic" }}
 {{ $catfact := execAdmin "catfact" }}
@@ -165,7 +165,7 @@ is given as integer and you can convert a hex color to it using
 Up next, I have added some fields. This is a bit more difficult, but doable if you have understood it once. Let's break
 it down in this example:
 
-```go
+```yag
 "fields" (cslice
     (sdict "name" "Title of field 1" "value" "Description of field 1" "inline" false)
     (sdict "name" "Title of field 2" "value" "Description of field 2" "inline" false)
@@ -189,7 +189,7 @@ You can display an image by simply pasting the link to it in the response, or by
 
 Trigger type: command trigger: `imageembed`
 
-```go
+```yag
 {{ $embed := cembed "image" (sdict "url" "https://i.imgur.com/ttIwOmn.png")  }}
 {{ sendMessage nil $embed }}
 ```
@@ -227,7 +227,7 @@ Simple embeds work with switches, here is a list of them all:
 
 The values for simple embeds need to bet placed within quotes:
 
-```go
+```yag
 -se -title "This is my title" -desc "This is my description" -thumbnail "https://via.placeholder.com/300/"
 ```
 

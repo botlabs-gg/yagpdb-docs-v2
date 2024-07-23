@@ -92,7 +92,7 @@ convert the number to type _string_ before saving and later back to its original
 
 - To demonstrate execCC and .ExecData using the same CC.
 
-```go
+```yag
 {{ $yag := "YAGPDB rules! " }}
 {{ $ctr := 0 }} {{ $yourCCID := .CCID }}
 {{ if .ExecData }}
@@ -170,7 +170,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 - To demonstrate creating buttons and menus
 
-```go
+```yag
 {{ $funButton := cbutton
   "label" "My Custom Button"
   "custom_id" "duck-button"
@@ -198,7 +198,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 - To demonstrate responding with a modal (this must be triggered by a component or modal submission)
 
-```go
+```yag
 {{ $modal := sdict
   "title" "My Custom Modal"
   "custom_id" "modals-my_first_modal"
@@ -211,7 +211,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 - To demonstrate sending, getting, and editing responses (this must be triggered by a component or modal submission)
 
-```go
+```yag
 {{ $interactionToken := .Interaction.Token }}
 {{ sendResponse nil "Here's the first message!" }}
 {{ $followupID := sendResponseRetID $interactionToken (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
@@ -223,7 +223,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 - To demonstrate updating the triggering message (this must be triggered by a component or modal submission)
 
-```go
+```yag
 {{ $button := cbutton "label" "I won!" "custom_id" "i_won" }}
 {{ $content := printf "Press this button when you win! The last person who won was %s! They wanted to say they are a %s %s." .User.Mention adjective noun }}
 

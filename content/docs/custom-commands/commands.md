@@ -25,7 +25,7 @@ a page to edit it.
 
 A new custom command has the default response:
 
-```go
+```yag
 Edit this to change the output of the custom command {{.CCID}}!
 ```
 
@@ -195,7 +195,7 @@ need to write that code yourself in the response.
 
 Example:
 
-```go
+```yag
   {{ if eq .Reaction.Emoji.APIName "😀" "⭐️" }}
     This is an allowed reaction!
   {{ else if eq .Reaction.Emoji.APIName "🦆" }}

@@ -106,7 +106,7 @@ _interaction_ to be sent, meaning you'll only be able to show a modal after a us
 
 Let's examine how to make a basic button.
 
-```go
+```yag
 {{ $button := cbutton "label" "Button" }}
 {{ $message := complexMessage "buttons" $button }}
 {{ sendMessage nil $message }}
@@ -128,7 +128,7 @@ Multiple buttons and menus can not have the same custom ID in one message.
 
 {{< /callout >}}
 
-```go
+```yag
 {{ $button := cbutton "label" "Button" "custom_id" "buttons-duck" }}
 {{ $message := complexMessage "buttons" $button }}
 {{ sendMessage nil $message }}
@@ -158,7 +158,7 @@ Select menus are available in the following types:
 
 Here is an example of a select menu with three text options defined.
 
-```go
+```yag
 {{ $menu := cmenu
   "type" "text"
   "placeholder" "Choose a terrible thing"
@@ -191,7 +191,7 @@ because in our code defining the select menu, we defined the `"value"` args of o
 
 The other menu types are more straightforward. `options` should not be defined for any menu type except `text`.
 
-```go
+```yag
 {{ $menu := cmenu
   "type" "role"
   "placeholder" "Choose roles who are secretly ducks"
@@ -215,7 +215,7 @@ Setting default values in these select menus is a more involved process than for
 `default` value on each option, you must instead provide a `default_values` argument containing a slice of
 [default value structures](https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-default-value-structure).
 
-```go
+```yag
 {{ $adminRoleID := "1210128415689285642" }}
 {{ $soggysaussagesUserID := "329826270898683904" }}
 
@@ -246,7 +246,7 @@ it as an `int64`, which would not work.
 A channel type menu optionally allows you to filter which channel types are made available for selection. You can use
 the `channel_types` argument which accepts a slice of [channel types](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
 
-```go
+```yag
 {{ $issuesChannel := "1210135699135926312" }}
 {{ $updatesChannel := "1210135938722693151" }}
 
@@ -279,7 +279,7 @@ Link style buttons do not trigger _interactions_.
 
 {{< /callout >}}
 
-```go
+```yag
 {{ $button1 := cbutton "label" "Duck One" "custom_id" "buttons-duck-alpha" "style" "success" }}
 {{ $button2 := cbutton "emoji" (sdict "name" "🦆") "custom_id" "buttons-duck-beta" "style" "danger" }}
 {{ $button3 := cbutton "label" "Duck Three" "emoji" (sdict "name" "🦆") "url" "https://yagpdb.xyz" "style" "link" }}
@@ -300,7 +300,7 @@ Confirming this behavior will be left as an exercise to the reader (you).
 
 Let's add in a select menu now.
 
-```go
+```yag
 {{ $button1 := cbutton "label" "Duck One" "custom_id" "buttons-duck-alpha" "style" "success" }}
 {{ $button2 := cbutton "emoji" (sdict "name" "🦆") "custom_id" "buttons-duck-beta" "style" "danger" }}
 {{ $button3 := cbutton "label" "Duck Three" "emoji" (sdict "name" "🦆") "url" "https://yagpdb.xyz" "style" "link" }}
@@ -334,7 +334,7 @@ A row of components can have 5 buttons, **or** 1 menu.
 Let's say we want to play tic tac toe. If we just add 9 buttons into the same slice in our complex message, they'll just
 fill the first row with 5 buttons and the second row with 4, which isn't what we're looking for. Here's a solution:
 
-```go
+```yag
 {{ $blankEmoji := sdict "name" "⬜" }}
 
 {{ $row1 := cslice (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-1" "style" "secondary") (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-2" "style" "secondary") (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-3" "style" "secondary") }}
@@ -365,7 +365,7 @@ you need a button to attack them, and a button to befriend them. You also want e
 
 If you always had three enemies, this code would look something like this:
 
-```go
+```yag
 {{ $message := complexMessage
   "content" "Dragon, Ogre, Duck, attack you!"
   "buttons" (cslice
@@ -391,7 +391,7 @@ A quick solution to this problem is to pass all of our buttons into one `"button
 `"menus"`, or even `"components"` with more components than the row can take (i.e 6+ buttons or 2+ menus) results in the
 function automatically distributing the components to new rows.
 
-```go
+```yag
 {{ $msg1 := complexMessage
   "content" "Message 1"
   "buttons" (cslice (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button"))
@@ -450,7 +450,7 @@ end
 
 In scripting, this manifests from the following code:
 
-```go
+```yag
 {{ $row1 := cslice (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") (cbutton "label" "Button") }}
 {{ $row2 := cslice (cbutton "label" "Button") (cbutton "label" "Button") }}
 {{ $row3 := cslice (cmenu "type" "mentionable") }}
@@ -469,7 +469,7 @@ Which produces this message:
 
 When applying this new skill to our turn-based combat game, the code looks something like this:
 
-```go
+```yag
 {{ $rows := cslice }}
 {{ $enemies := cslice "Dragon" "Ogre" "Duck" }}
 
@@ -501,7 +501,7 @@ fields are required, depending on if you are using a custom emoji or not.
 | ID    | ID of the emoji, only necessary when using Custom Emoji.                                             |
 | Name  | Name of the emoji, use the unicode character here. Only necessary when using builtin unicode emojis. |
 
-```go
+```yag
 {{ $unicodeEmojiButton := cbutton "emoji" (sdict "name" "😀") }}
 {{ $customEmojiButton := cbutton "emoji" (sdict "id" "733037741532643428") }}
 {{ $animatedEmojiButton := cbutton "emoji" (sdict "id" "786307104247775302") }}
@@ -559,7 +559,7 @@ button or uses a select menu. You cannot send a modal as a response to a user su
 | Custom ID | The Custom ID is referenced to trigger a custom command when the modal is submitted (which you'll need to do if you care about retrieving what the user inputted). |
 | Fields    | A slice of [discordgo.TextInputComponent](https://discord.com/developers/docs/interactions/message-components#text-input-object)s.                                 |
 
-```go
+```yag
 {{ $modal := sdict
   "title" "My Custom Modal"
   "custom_id" "modals-my_first_modal"
@@ -599,7 +599,7 @@ Example: An UNO custom command system where all uno buttons are parsed in the sa
 with the trigger field `uno-`. This can take individual action for a button with custom ID `uno-join` and one with
 `uno-leave`.
 
-```go
+```yag
 {{ if eq .StrippedID "join" }}
 	{{ sendResponse nil "You joined the UNO game!" }}
 {{ else if eq .StrippedID "leave" }}
@@ -614,7 +614,7 @@ chosen. A modal's values are simply the values of each field in order.
 Example: A user has chosen an option in a select menu whose value is `blue-7`, triggering the following command which will
 determine if it is a playable card.
 
-```go
+```yag
 {{ $selectedOptions := .Values }} {{/* ["blue-7"] */}}
 {{ $cardRaw := index $selectedOptions 0 }} {{/* "blue-7" */}}
 {{ $cardSplit := split $cardRaw "-" }} {{/* ["blue" "7"] */}}
@@ -640,7 +640,7 @@ Example 2: A user is setting up a new UNO game with a modal, they've filled out 
 
 ![A modal for setting up a game of UNO](uno-modal.png)
 
-```go
+```yag
 {{ $numberOfDecks := index .Values 0 }}
 {{ $minCardsForUNO := index .Values 1 }}
 
@@ -711,7 +711,7 @@ Possible followups:
 Here is a basic scenario where you need to use `editResponse` and `getResponse` to work with an _ephemeral_ followup
 message. You cannot use the standard `editMessage` or `getMessage` for this because it is an ephemeral message.
 
-```go
+```yag
 {{ $interactionToken := .Interaction.Token }}
 {{ sendResponse nil "Here's the first message!" }}
 {{ $followupID := sendResponseRetID $interactionToken (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
@@ -723,7 +723,7 @@ message. You cannot use the standard `editMessage` or `getMessage` for this beca
 
 Here's a scenario where you would want to update a message.
 
-```go
+```yag
 {{ $button := cbutton "label" "I won!" "custom_id" "i_won" }}
 {{ $content := printf "Press this button when you win! The last person who won was %s! They wanted to say they are a %s %s." .User.Mention adjective noun }}
 

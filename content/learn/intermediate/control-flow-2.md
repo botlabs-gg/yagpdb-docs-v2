@@ -21,7 +21,7 @@ map. If you have worked with other programming languages, `range` is roughly equ
 
 Consider the following program, which iterates over a slice of snacks and generates a line of output for each one.
 
-```go
+```yag
 {{ $snacks := cslice
     (sdict "Name" "chips" "Calories" 540)
     (sdict "Name" "peanuts" "Calories" 580)
@@ -59,7 +59,7 @@ Observe that this output contains some unwanted whitespace; ideally, we want eac
 with no leading indentation. However, the extra whitespace is to be expected with our current program: the range block
 is indented, and YAGPDB simply reproduces that indentation.
 
-```go
+```yag
 {{ range $snacks }}
     {{ .Name }} contain {{ .Calories }} calories.
 ^^^^
@@ -68,7 +68,7 @@ is indented, and YAGPDB simply reproduces that indentation.
 
 One solution, then, is to remove the whitespace in our source code, save the final newline:
 
-```go
+```yag
 {{ range $snacks }}{{ .Name }} contains {{ .Calories }} calories
 {{ end }}
 ```
@@ -76,7 +76,7 @@ One solution, then, is to remove the whitespace in our source code, save the fin
 Although this version works, we have sacrificed readability. To retain the indentation in our source code while
 simultaneously avoiding unwanted whitespace in our output, we can use _trim markers_.
 
-```go
+```yag
 {{ range $snacks }}
     {{- .Name }} contain {{ .Calories }} calories.
 {{ end }}
@@ -97,7 +97,7 @@ Use trim markers `{{-` and `-}}` to remove unwanted whitespace in output while k
 It is also possible to range over the (key, value) pairs of a map. To do so, assign two variables to the result of the
 range action, corresponding to the key and value respectively:
 
-```go
+```yag
 {{/* key is fruit; value is price */}}
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
 
@@ -125,7 +125,7 @@ There are a few other, less common ways to invoke the range action.
 
 - **Iterating _n_ times.** To iterate a fixed number of times, provide an integer to `range`:
 
-  ```go
+  ```yag
   {{ range 5 }}
       {{/* executed 5 times */}}
   {{ end }}
@@ -134,7 +134,7 @@ There are a few other, less common ways to invoke the range action.
   To iterate over an interval of integers (say, the integers between `5` and `10` exclusive), use the `seq`
   function to generate a slice of integers and then range over the result:
 
-  ```go
+  ```yag
   {{ range seq 5 10 }}
       {{/* executed with the dot . set to 5, 6, 7, 8, 9 in succession */}}
   {{ end }}
@@ -143,7 +143,7 @@ There are a few other, less common ways to invoke the range action.
 - **Single-variable range.** Instead of using the dot `.` to access the current element or value, one
   can also assign it to a variable:
 
-  ```go
+  ```yag
   {{ $sports := cslice "tennis" "basketball" "soccer" }}
   {{ range $sport := $sports }}
       {{/* executed with $sport set to "tennis", "basketball", "soccer" in succession */}}
@@ -155,7 +155,7 @@ There are a few other, less common ways to invoke the range action.
 - **Range with else branch.** Similar to an if conditional, a range action may also have an `else` block,
   executed if the slice or map is empty.
 
-  ```go
+  ```yag
   {{ $empty := cslice }}
   {{ range $empty }}
       {{/* ... */}}
@@ -168,7 +168,7 @@ There are a few other, less common ways to invoke the range action.
 
 The following program illustrates a common error for first-time users of `range`.
 
-```go {hl_lines=4}
+```yag
 {{ $nums := cslice 1 2 3 }}
 {{ range $nums }}
     {{/* ... */}}
@@ -182,7 +182,7 @@ counterproductive here, as `.User.Username` tries to look up the field `User` on
 we really want is to access the global context data as it was before the range loop. One solution is to save the
 original context data in a variable prior to the loop:
 
-```go
+```yag
 {{ $dot := . }}
 {{ range ... }}
     {{ $dot.User.Username }}
@@ -197,7 +197,7 @@ context data for you.
 In a range block, the dot is overwritten by elements of the slice or map, so code such as `.User.Username` is likely to
 error. If you need to access the global context data, do so through the predefined `$` variable instead.
 
-```go
+```yag
 {{ range ... }}
     {{ $.User.Username }} {{/* instead of .User.Username */}}
 {{ end }}
@@ -212,7 +212,7 @@ error. If you need to access the global context data, do so through the predefin
 For instance, the following code loops as long as `$n` is not 1. In each iteration, `$n` is updated to either `n/2` or
 `3n+1`.
 
-```go
+```yag
 {{ $n := 19 }}
 
 {{ print $n " " -}}
@@ -250,7 +250,7 @@ Just like the `if` action, `with` runs a block of code if the given expression i
 
 For instance, the following program
 
-```go
+```yag
 {{ $msg := "I <3 the YAGPDB documentation!" }}
 {{ with reFind `\d+` $msg }}
     pattern found in text; the dot {{ printf "%q" . }} contains the match

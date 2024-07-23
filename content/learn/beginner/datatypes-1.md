@@ -14,7 +14,7 @@ A variable is a way to store a value and give it a name, to which you can refer 
 In Custom Commands, you define a variable by starting with a `$`, its name, and the assignment operator `:=`. To
 illustrate this, consider the following example:
 
-```go
+```yag
 {{ $name := "Alice" }}
 {{ $age := 42 }}
 {{ $isCool := true }}
@@ -30,7 +30,7 @@ When and why this becomes necessary will be discussed in a later chapter.
 When debugging your code, you might have to figure out the type of a certain variable. You can do this by using the
 [`printf` function](/docs/reference/templates/functions/#string-manipulation) with the `%T` format verb, like so:
 
-```go
+```yag
 {{ $name := "Alice" }}
 {{ printf "%T" $name }}
 ```
@@ -47,12 +47,11 @@ In programming, we have similar categories, such as numbers, strings, and boolea
 Each of these categories has its own set of operations that can be performed on them. For instance, you can add two
 numbers together, but you cannot add two strings together (at least not in the way you might expect).
 
-
 ### Strings
 
 A string is a sequence of zero or more characters. You can generally think of it as a word or a sentence.
 In the bot's template actions, you can create a string by enclosing some text in double quotes (`"`). For instance,
-`"Hello, world!"` is a string. We call those *double-quoted strings*.
+`"Hello, world!"` is a string. We call those _double-quoted strings_.
 
 Now, here we might run into a problem quite quickly: what if we want to include a double quote in our string? We can't
 just write `"Peter said "Hello, world!""`, as the bot would think the string ends at the quotes before `Hello` and not
@@ -74,9 +73,8 @@ Please note that not all escape sequences are supported by Discord.
 #### Raw String Literals
 
 It should become relatively clear that a lot of new lines and other special characters can make a quoted string quite
-hard to read. To make this easier, you can use backticks (`` ` ``) to create a *raw string literal*. A raw string
-literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening ``
-` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will later
+hard to read. To make this easier, you can use backticks (`` ` ``) to create a _raw string literal_. A raw string
+literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening `` ` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will later
 cover functions that solve this special case.
 
 ```txt

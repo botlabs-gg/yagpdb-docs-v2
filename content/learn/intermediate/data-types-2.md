@@ -12,7 +12,7 @@ In this chapter, we will explore these data types in more detail.
 A slice is an ordered list of items. In custom commands, we can **c**reate a **slice** by providing the items in order
 to the `cslice` function:
 
-```go
+```yag
 {{ $fruits := cslice "banana" "orange" "apple" }}
 ```
 
@@ -31,7 +31,7 @@ For available operations on slices, please refer to [our template documentation]
 Empty slices are _falsy_, so can be used directly in conditional statements; it is not necessary to explicitly check the
 length:
 
-```go
+```yag
 {{ $users := cslice }} {{/* imagine this data is dynamically generated */}}
 {{ if $users }}
     one or more users
@@ -58,7 +58,7 @@ Custom commands offer two kinds of maps: sdicts and dicts. A sdict only supports
 
 To create a map, provide a sequence of key-value pairs to the `sdict` or the `dict` function as appropriate:
 
-```go
+```yag
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
 
 {{/* For readability, it's common to put each key/value pair on a new line. */}}
@@ -81,7 +81,7 @@ For available operations on maps, please refer to [our template documentation][d
 
 Consider the following code that displays the value of `$fruitPrices` as defined in the previous example:
 
-```go
+```yag
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
 {{ $fruitPrices }}
 ```

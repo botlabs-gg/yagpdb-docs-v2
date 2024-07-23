@@ -16,7 +16,7 @@ incoming cars have passed, then check again. This is a simple example of a decis
 The most basic form of control flow is the `if` statement. An `if` statement checks a condition and executes a block of
 code if the condition is true. If the condition is false, the block of code is skipped.
 
-```go
+```yag
 {{ if eq 5 5 }}
   {{/* It is conventional, though not required, to consistently indent inner blocks of code with spaces or tabs. */}}
   Five is equal to five!
@@ -28,7 +28,7 @@ functions in a [later section](#comparison-actions) on this page.
 
 We can expand this to execute a different block of code if the condition is false by using an `else` block:
 
-```go
+```yag
 {{ if eq 5 3 }}
   Five is equal to three!
 {{ else }}
@@ -39,7 +39,7 @@ We can expand this to execute a different block of code if the condition is fals
 This can be further expanded to check multiple conditions using `else if`, which are checked sequentially until one of
 them is true:
 
-```go
+```yag
 {{ if eq 5 3 }}
   Five is equal to three!
 {{ else if eq 5 5 }}
@@ -58,7 +58,7 @@ For example, consider how you would check whether a string `$s` is empty. One wa
 the string to zero using `if gt (len $s) 0`, but since empty strings are falsy, the more idiomatic solution is to simply
 write `if $s`, like so:
 
-```go
+```yag
 {{ $s := "" }}
 {{ if $s }}
   not empty
@@ -78,7 +78,7 @@ for a condition and returns early via the `{{ return }}` action. Therefore, the 
 
 Rewriting the second example to use these guard clauses yields the following code:
 
-```go
+```yag
 {{ if ne 5 3 }}
   Five is not equal to three!
   {{ return }}
@@ -128,7 +128,7 @@ in the scope in which it was defined, as well as all nested scopes within. Let u
 coolness value, which should be true if the user's name is "alice". We can achieve this by defining a variable in
 the outer scope and re-assigning, using the `=` operator, its value in the inner scope:
 
-```go
+```yag
 {{ $isCool := false }}
 
 {{ if eq .User.Username "alice" }}
@@ -174,7 +174,7 @@ block of code.
 2. Predict the output of the following code snippets. If there is an error in the snippet, what is the cause of the
    error, and how can it be fixed? Also note down potential improvements to the code that make it easier to follow.
 
-   ```go
+   ```yag
    {{ $num1 := 10 }}
    {{ if $num1 }}
      {{ num1 := 6 }}
@@ -186,7 +186,7 @@ block of code.
    {{ $num1 }}
    ```
 
-   ```go
+   ```yag
    {{ $name := "John" }}
    {{ if eq $name "John" }}
      {{ $familyName := "Walters" }}
@@ -194,7 +194,7 @@ block of code.
    My name is: {{ $name }} {{ $familyName }}
    ```
 
-   ```go
+   ```yag
    {{ $mood := "happy" }}
    {{ if gt $mood "Sad" }}
      Be {{ $mood }}!

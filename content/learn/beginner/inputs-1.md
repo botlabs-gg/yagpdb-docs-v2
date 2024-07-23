@@ -18,7 +18,7 @@ explore a more hands-on approach to parsing arguments.
 The first step is to define the arguments that the command will take. This is done using the aforementioned `parseArgs`
 function. The syntax is as follows:
 
-```go
+```yag
 {{ $args := parseArgs required_args error_message ...cargs }}
 ```
 
@@ -31,7 +31,7 @@ the user about what went wrong.
 The `...carg` is a variadic argument, that is, it can take any number of arguments.
 Each `carg` is a single argument definition. The `carg` function has the following syntax:
 
-```go
+```yag
 {{ carg <"type"> <"description"> }}
 ```
 
@@ -43,11 +43,11 @@ Following types are supported:
 - `user` (user mentions, resolves to the [user](https://docs.yagpdb.xyz/reference/templates#user) structure)
 - `userid` (mentions or user IDs, resolves to the ID itself)
 - `member` (mentions or user IDs, resolves to the [member](https://docs.yagpdb.xyz/reference/templates#member)
- structure)
+  structure)
 - `channel` (channel mention or ID, resolves to the channel structure)
 - `role` (role name or ID, resolves as type _\*discordgo.Role_)
 - `duration` (duration that is human-readable, i.e `10h5m` or `10 hour 5 minutes` would both resolve to the same
-   duration)
+  duration)
 
 The `description` is a human-readable description of the argument. This is used in the error message if the argument is
 not valid.
@@ -55,7 +55,7 @@ not valid.
 Combining all of this, let's create a custom command that takes two arguments: a coolness level and a user that is part
 of the server to apply said level to.
 
-```go
+```yag
 {{ $args := parseArgs 2 "" (carg "int" "coolness level") (carg "member" "target member") }}
 ```
 
@@ -64,14 +64,14 @@ of the server to apply said level to.
 Currently, our code doesn't do anything with the arguments. To access the arguments, we use the `.Get` method on the
 `$args` variable. The syntax is as follows:
 
-```go
+```yag
 {{ $args.Get <index> }}
 ```
 
 The `index` is the position of the argument, starting from 0. The arguments are stored in the order they are defined in
 the `parseArgs` function call. Let us now modify our custom command to access these arguments:
 
-```go
+```yag
 {{ $args := parseArgs 2 "" (carg "int" "coolness level") (carg "member" "target member") }}
 
 coolness: {{ $args.Get 0 }}
@@ -84,7 +84,7 @@ member: {{ ($args.Get 1).Nick }}
 
 Now, we want to limit the coolness level to a number between 0 and 100. We can do this by adding a simple check:
 
-```go
+```yag
 {{ $args := parseArgs 2 "" (carg "int" "coolness level") (carg "member" "target member") }}
 
 {{ if or (gt ($args.Get 0) 100) (lt ($args.Get 0) 0) }}
@@ -99,7 +99,7 @@ member: {{ ($args.Get 1).Nick }}
 There is one major thing to note about this code: we're starting to repeat a lot of our `$args.Get N` calls! Let's fix
 that first.
 
-```go
+```yag
 {{ $args := parseArgs 2 "" (carg "int" "coolness level") (carg "member" "target member") }}
 
 {{ $coolness := $args.Get 0 }}
@@ -118,7 +118,7 @@ Now, we can make use of another great feature of `parseArgs`: Certain types supp
 used to validate the input. For example, the `int` type supports two additional arguments that can be used to specify a
 range of valid values, such that the bot will do the validation for us.
 
-```go
+```yag
 {{ $args := parseArgs 2 "" (carg "int" "coolness level" 0 100) (carg "member" "target member") }}
 
 {{ $coolness := $args.Get 0 }}
@@ -142,13 +142,13 @@ easier to read.
 If you have optional arguments, you can check if they were provided by using the `.IsSet` method on the `$args`
 variable. The syntax is as follows:
 
-```go
+```yag
 {{ $args.IsSet <index> }}
 ```
 
 Let us modify our custom command to introduce a third optional argument, a message to send to the user.
 
-```go
+```yag
 {{ $args := parseArgs 2 "" (carg "int" "coolness level" 0 100) (carg "member" "target member")
     (carg "string" "message") }}
 

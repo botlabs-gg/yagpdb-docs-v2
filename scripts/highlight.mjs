@@ -9,19 +9,24 @@ import { parseDocument } from 'htmlparser2';
 import { findAll, textContent, replaceElement } from 'domutils';
 import render from 'dom-serializer';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 main();
 
 async function main() {
-	const LIGHT_THEME = 'github-light-default';
-	const DARK_THEME = 'github-dark-default';
+	const LIGHT_THEME = 'vitesse-light';
+	const DARK_THEME = 'vitesse-dark';
 
 	const start = Date.now();
 
-	const files = await listBuiltContentFiles();
 	const highlighter = await createHighlighter({
 		themes: [LIGHT_THEME, DARK_THEME],
 		langs: Object.keys(bundledLanguages),
 	});
+	const yagTemplateLang = JSON.parse(await readFile(join(__dirname, 'yag.tmLanguage.json'), { encoding: 'utf-8' }));
+	await highlighter.loadLanguage(yagTemplateLang);
+
+	const files = await listBuiltContentFiles();
 	await Promise.all(
 		files.map((filepath) => highlightFile(highlighter, filepath, { lightTheme: LIGHT_THEME, darkTheme: DARK_THEME })),
 	);
@@ -31,7 +36,7 @@ async function main() {
 
 // Return the paths of all index.html files under the public/docs and public/learn directories.
 async function listBuiltContentFiles() {
-	const publicDir = join(dirname(fileURLToPath(import.meta.url)), '../public');
+	const publicDir = join(__dirname, '../public');
 
 	const docsDir = join(publicDir, 'docs');
 	const docsIndexFiles = (await readdir(docsDir, { recursive: true, encoding: 'utf-8' }))

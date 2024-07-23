@@ -284,7 +284,7 @@ based on warning count, you can take advantage of the template scripting within 
 
 Example:
 
-```go
+```yag
 {{/* Number of warnings at which action is to be taken (eg: for action to take place at 4 warnings set threshold to 4) */}}
 {{ $threshold := 4 }}
 {{ define "punish_check" }}

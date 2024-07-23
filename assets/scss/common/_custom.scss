@@ -19,6 +19,20 @@ a.broken {
   max-width: 900px;
 }
 
+// Color inline code in gray.
+code:not(pre.shiki > code) {
+    background-color: var(--sl-color-gray-6);
+    margin-block: -0.125rem;
+    padding: 0.125rem 0.375rem;
+    color: inherit;
+}
+
+@include color-mode(dark) {
+    code:not(pre.shiki > code) {
+        background-color: var(--sl-color-gray-5);
+    }
+}
+
 pre.shiki {
   padding: 1.25rem 1.25rem;
   border: 1px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 25%);

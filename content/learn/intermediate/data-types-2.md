@@ -16,11 +16,11 @@ to the `cslice` function:
 {{ $fruits := cslice "banana" "orange" "apple" }}
 ```
 
-All the elements in the `$fruits` have the same type (_string_), but this is not a requirement: it is valid, though
-rare, for a slice to contain values of different types.
+All the elements in the `$fruits` slice happen to have the same type (_string_), but this is not a requirement: it is
+valid, though rare, for a slice to contain elements of different types.
 
-Besides primitives, slices may also contain more complex data types. In the previous chapter, for instance, we
-represented the fields of an embed as a slice of dictionaries.
+Besides primitives, slices may also contain more complex data types. In previous chapters, for instance, we represented
+the fields of an embed as a slice of dictionaries.
 
 For available operations on slices, please refer to [our template documentation][docs-slices].
 

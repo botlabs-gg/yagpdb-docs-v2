@@ -15,11 +15,12 @@ condition holds.
 ### Range
 
 The `range` action performs an action for each entry in a slice or map; we say that range _iterates_ over the slice or
-map. If you have worked with other programming languages, `range` is roughly equivalent to a for-each loop.
+map. If you have experience with other programming languages, `range` is roughly equivalent to a for-each loop.
 
 #### Ranging over slices
 
-Consider the following program, which iterates over a slice of snacks and generates a line of output for each one.
+We will explain how `range` works with a slice using an illustrative example. The program below iterates over a slice of
+snacks and generates a line of output for each one.
 
 ```yag
 {{ $snacks := cslice
@@ -32,8 +33,11 @@ Consider the following program, which iterates over a slice of snacks and genera
 {{ end }}
 ```
 
-Within the range block, the dot `.` is set to successive elements of the slice. In the first iteration, for instance,
-`.` holds the first element of the slice: `(sdict "Name" "chips" "Calories" 540)`. Hence
+The loop body—that is, the code between the opening `range $snacks` and the closing `end`—is executed
+multiple times, with the dot `.` set to each element of the slice in succession.
+
+For instance, in the first iteration, the `.` holds the first element of the slice:
+`(sdict "Name" "chips" "Calories" 540)`. So
 
 ```yag
 {{ .Name }} contain {{ .Calories }} calories.
@@ -45,7 +49,8 @@ evaluates to
 chips contain 540 calories.
 ```
 
-and likewise for the second and third elements. The complete output is
+Likewise, the second iteration produces `peanuts contain 580 calories`, and the third produces `crackers contain 500 calories.`
+The complete output of the program is
 
 ```txt
 chips contain 540 calories.
@@ -55,9 +60,9 @@ chips contain 540 calories.
     crackers contain 500 calories.
 ```
 
-This output contains some unwanted whitespace: ideally, we want each snack to appear on a separate line with no leading
-indentation. However, the extra whitespace is to be expected with our current program: the range block is indented, and
-YAGPDB is simply reproducing that indentation.
+Notice that this output contains some unwanted whitespace: ideally, we want each snack to appear on a separate line with
+no leading indentation. However, the extra whitespace is to be expected with our current program; the range block is
+indented, and YAGPDB is simply reproducing that indentation:
 
 ```yag
 {{ range $snacks }}
@@ -66,37 +71,46 @@ YAGPDB is simply reproducing that indentation.
 {{ end }}
 ```
 
-One solution, then, is to remove the whitespace in our source code, save the final newline:
+To fix the excess whitespace in the output, then, one solution is to remove the corresponding whitespace in our source
+code:
 
 ```yag
-{{ range $snacks }}{{ .Name }} contains {{ .Calories }} calories
+{{ range $snacks }}{{ .Name }} contains {{ .Calories }} calories.
 {{ end }}
 ```
 
-Although this version works, we have sacrificed readability in the process. To retain the indentation in our source code
-while simultaneously avoiding unwanted whitespace in our output, we can use _trim markers_.
+However, though this version works, we have sacrificed readability in the process. Can we find a way to keep our source
+code indented while simultaneously hiding this indentation from the final output? It turns out that we can, by carefully
+adding _trim markers_.
 
 ```yag
 {{ range $snacks }}
     {{- .Name }} contain {{ .Calories }} calories.
+    ^^^
 {{ end }}
 ```
 
 `{{-` is a _left trim marker_ that instructs YAGPDB to ignore all leading whitespace, so this new version is
-functionally equivalent to the previous solution. A right trim marker, `-}}`, also exists and trims all trailing
-whitespace.
+functionally equivalent to the previous solution. A corresponding _right trim marker_, `-}}`, also exists and trims all
+trailing whitespace.
 
 {{< callout context="tip" title="Tip: Trim Markers" icon="outline/rocket" >}}
 
-Use trim markers `{{-` and `-}}` to remove unwanted whitespace in output while keeping your source code readable.
+Use trim markers `{{-` and `-}}` to control the whitespace output by your program.
+
+A mnemonic to help remember what `{{-` and `-}}` do is to view them as arrows that gobble up whitespace in the direction
+they point; for instance, `{{-` points left, and eats all whitespace to the left.
 
 {{< /callout >}}
 
 #### Ranging over maps
 
 It is also possible to range over the (key, value) pairs of a map. To do so, assign two variables to the result of the
-range action, corresponding to the key and value respectively. For example, the following program outputs the prices of
-various types of fruit, formatted nicely to 2 decimal places with the `printf` function.
+range action, corresponding to the key and value respectively. (Note that the dot `.` is still overwritten when ranging
+with variables.)
+
+For example, the following program displays the prices of various types of fruit, formatted nicely to 2 decimal places
+with the `printf` function.
 
 ```yag
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
@@ -106,19 +120,19 @@ various types of fruit, formatted nicely to 2 decimal places with the `printf` f
 {{ end }}
 ```
 
-Note that the names of the variables assigned to the key and value are arbitrary; instead of
-`range $fruit, $price := $fruitPrices`, we could also have written `range $k, $v := $fruitPrices`. However,
-if we use the names `$k`, `$v`, we must consistently refer to those in the loop body. That is, the following program
-is erroneous:
+The names of the variables assigned to the key and value are arbitrary; instead of
+`range $fruit, $price := $fruitPrices`, we could also have written `range $k, $v := $fruitPrices`.
+However, if we use the names `$k`, `$v`, we must consistently refer to those in the loop body. That is, the following
+program is erroneous:
 
 ```yag
 {{ range $k, $v := $fruitPrices }}
-    {{- /* ERROR: undefined variables $fruit, $price */}}
+    {{- /* ERROR: $fruit and $price are undefined; must use $k and $v instead */}}
     {{- $fruit }} costs ${{ printf "%.02f" $price }}.
 {{ end }}
 ```
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
 The two-variable form of range can also be used with a slice, in which case the first variable tracks the position of
 the element starting from `0`.
@@ -162,11 +176,11 @@ There are a few other, less common ways to invoke the range action.
   executed if the slice or map is empty.
 
   ```yag
-  {{ $empty := cslice }}
-  {{ range $empty }}
-      {{/* ... */}}
+  {{ $users := cslice }} {{/* imagine this data is dynamically generated */}}
+  {{ range $user := $users }}
+      {{/* do something with $user */}}
   {{ else }}
-      slice was empty
+      no users
   {{ end }}
   ```
 

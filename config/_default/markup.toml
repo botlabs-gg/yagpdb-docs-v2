@@ -23,6 +23,7 @@ defaultMarkdownHandler = "goldmark"
   hl_inline = false
   codeFences = true
   noClasses = false
+  guessSyntax = true
 
 [tableOfContents]
   endLevel = 3

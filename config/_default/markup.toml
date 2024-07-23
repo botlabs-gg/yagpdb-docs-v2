@@ -20,19 +20,9 @@ defaultMarkdownHandler = "goldmark"
       enableDefault = true
 
 [highlight]
-  anchorLineNos = false
-  codeFences = true
-  guessSyntax = false
-  hl_Lines = ''
   hl_inline = false
-  lineAnchors = ''
-  lineNoStart = 1
-  lineNos = false
-  lineNumbersInTable = false
+  codeFences = true
   noClasses = false
-  noHl = false
-  style = 'monokai'
-  tabWidth = 2
 
 [tableOfContents]
   endLevel = 3

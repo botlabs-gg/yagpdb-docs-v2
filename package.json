@@ -8,7 +8,8 @@
 		"create": "hugo new",
 		"dev": "hugo server --disableFastRender --noHTTPCache",
 		"format": "prettier **/** -w -c",
-		"build": "hugo --minify --gc",
+		"build": "hugo --minify --gc && npm run highlight",
+		"highlight": "node scripts/highlight.mjs",
 		"preview": "vite preview --outDir public"
 	},
 	"dependencies": {
@@ -18,7 +19,11 @@
 		"@hyas/inline-svg": "^1.1.0",
 		"@hyas/seo": "^2.3.0",
 		"@tabler/icons": "^3.2.0",
-		"gethyas": "^2.4.2"
+		"dom-serializer": "^2.0.0",
+		"domutils": "^3.1.0",
+		"gethyas": "^2.4.2",
+		"htmlparser2": "^9.1.0",
+		"shiki": "^1.11.0"
 	},
 	"devDependencies": {
 		"vite": "^5.2.10"

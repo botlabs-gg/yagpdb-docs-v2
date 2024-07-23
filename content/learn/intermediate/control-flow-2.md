@@ -35,7 +35,7 @@ Consider the following program, which iterates over a slice of snacks and genera
 Within the range block, the dot `.` is set to successive elements of the slice. In the first iteration, for instance,
 `.` holds the first element of the slice: `(sdict "Name" "chips" "Calories" 540)`. Hence
 
-```txt
+```yag
 {{ .Name }} contain {{ .Calories }} calories.
 ```
 
@@ -55,9 +55,9 @@ chips contain 540 calories.
     crackers contain 500 calories.
 ```
 
-Observe that this output contains some unwanted whitespace; ideally, we want each snack to appear on a separate line
-with no leading indentation. However, the extra whitespace is to be expected with our current program: the range block
-is indented, and YAGPDB simply reproduces that indentation.
+This output contains some unwanted whitespace: ideally, we want each snack to appear on a separate line with no leading
+indentation. However, the extra whitespace is to be expected with our current program: the range block is indented, and
+YAGPDB is simply reproducing that indentation.
 
 ```yag
 {{ range $snacks }}
@@ -73,8 +73,8 @@ One solution, then, is to remove the whitespace in our source code, save the fin
 {{ end }}
 ```
 
-Although this version works, we have sacrificed readability. To retain the indentation in our source code while
-simultaneously avoiding unwanted whitespace in our output, we can use _trim markers_.
+Although this version works, we have sacrificed readability in the process. To retain the indentation in our source code
+while simultaneously avoiding unwanted whitespace in our output, we can use _trim markers_.
 
 ```yag
 {{ range $snacks }}
@@ -95,29 +95,35 @@ Use trim markers `{{-` and `-}}` to remove unwanted whitespace in output while k
 #### Ranging over maps
 
 It is also possible to range over the (key, value) pairs of a map. To do so, assign two variables to the result of the
-range action, corresponding to the key and value respectively:
+range action, corresponding to the key and value respectively. For example, the following program outputs the prices of
+various types of fruit, formatted nicely to 2 decimal places with the `printf` function.
 
 ```yag
-{{/* key is fruit; value is price */}}
 {{ $fruitPrices := sdict "pineapple" 3.50 "apple" 1.50 "banana" 2.60 }}
 
-{{/*
-    Variable names are arbitrary:
-        range $foo, $bar := $fruitPages
-    would work too as long as you are consistent.
-*/}}
 {{ range $fruit, $price := $fruitPrices }}
     {{- $fruit }} costs ${{ printf "%.02f" $price }}.
-    {{- /*
-        As with a slice, in each iteration the dot . is set to the current value, so
-            printf "%.02f" .
-        also works.
-    */}}
 {{ end }}
 ```
 
+Note that the names of the variables assigned to the key and value are arbitrary; instead of
+`range $fruit, $price := $fruitPrices`, we could also have written `range $k, $v := $fruitPrices`. However,
+if we use the names `$k`, `$v`, we must consistently refer to those in the loop body. That is, the following program
+is erroneous:
+
+```yag
+{{ range $k, $v := $fruitPrices }}
+    {{- /* ERROR: undefined variables $fruit, $price */}}
+    {{- $fruit }} costs ${{ printf "%.02f" $price }}.
+{{ end }}
+```
+
+{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+
 The two-variable form of range can also be used with a slice, in which case the first variable tracks the position of
 the element starting from `0`.
+
+{{< /callout >}}
 
 #### Rarer forms of range
 

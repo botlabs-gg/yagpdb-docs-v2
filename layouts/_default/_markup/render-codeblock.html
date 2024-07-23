@@ -1,0 +1,21 @@
+{{- if hugo.IsProduction }}
+  {{- /*
+    In production, scripts/highlight.mjs post-processes all codeblocks with Shiki,
+    so do not transform the codeblock here.
+  */ -}}
+  <div class="highlight">
+    <pre><code class="language-{{ .Type }}">{{ .Inner }}</code></pre>
+  </div>
+{{- else }}
+    {{- /*
+      In development, fall back on the faster default highlighting built in to Doks.
+      See https://github.com/gethyas/doks-core/blob/main/layouts/_default/_markup/render-codeblock.html.
+    */}}
+    {{- $result := transform.HighlightCodeBlock . -}}
+    <div class="expressive-code">
+      <figure class="frame not-content">
+        {{ $result.Wrapped }}
+        </figure>
+      </figure>
+    </div>
+{{- end -}}

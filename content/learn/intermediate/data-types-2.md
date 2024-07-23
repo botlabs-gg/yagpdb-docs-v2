@@ -75,7 +75,7 @@ As with slices, empty maps are falsy and so can be used directly in conditional 
 
 For available operations on maps, please refer to [our template documentation][docs-maps].
 
-[docs-maps]: /docs/reference/templates/syntax-and-data/#templatessdict
+[docs-maps]: /docs/reference/templates/syntax-and-data/#templates-sdict
 
 {{< callout context="tip" title="Here be Dragons" icon="outline/rocket" >}}
 

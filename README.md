@@ -22,13 +22,18 @@ _\*The `--` serves to pass `baseURL` to Hugo as opposed to the `npm run` command
 As this project uses the [EditorConfig](https://editorconfig.org/) standard, you will have to make sure that your
 editor supports it. Most modern editors do, but if you are unsure, check the EditorConfig page.
 
-### Adding a new page
+### Authoring content
 
-Pages are written in Markdown, with additional shortcodes provided by the Doks theme; refer to [its
+Pages are written in Markdown with additional shortcodes provided by the Doks theme; refer to [its
 documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.
 
-Note that if you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate
-in Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd> followed by `note`, `tip`, `warning`, or `danger`.
+If you are editing pages related to custom commands, note that codeblocks support a custom `yag` language for accurate
+syntax highlighting—do not use `go`. However, this feature is only enabled in production builds for performance, so `npm run dev` will _not_ highlight `yag` codeblocks. Use `npm run build` followed by `npm run preview` instead if you need to verify
+that code is highlighted correctly.
+
+> [!TIP]
+> If you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate in
+> Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd> followed by `note`, `tip`, `warning`, or `danger`.
 
 ## License
 

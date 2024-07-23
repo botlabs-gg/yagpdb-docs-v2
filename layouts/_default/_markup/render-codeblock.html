@@ -3,7 +3,9 @@
     In production, scripts/highlight.mjs post-processes all codeblocks with Shiki,
     so do not transform the codeblock here.
   */ -}}
-  <pre><code class="language-{{ .Type }}">{{ .Inner }}</code></pre>
+  <div class="highlight">
+    <pre><code class="language-{{ .Type }}">{{ .Inner }}</code></pre>
+  </div>
 {{- else }}
     {{- /*
       In development, fall back on the faster default highlighting built in to Doks.

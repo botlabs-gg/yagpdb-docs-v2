@@ -39,7 +39,7 @@ pre.shiki {
 }
 
 // Make Shiki syntax highlighting theme-aware.
-html[data-bs-theme="dark"] {
+@include color-mode(dark) {
   .shiki,
   .shiki span {
     color: var(--shiki-dark) !important;
@@ -85,11 +85,17 @@ html[data-bs-theme="dark"] {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: var(--ec-frm-inlBtnBg);
+  background: white;
   opacity: var(--ec-frm-inlBtnBgIdleOpa);
   transition-property: inherit;
   transition-duration: inherit;
   transition-timing-function: inherit;
+}
+
+@include color-mode(dark) {
+  .highlight .copy button div {
+    background: black;
+  }
 }
 
 .highlight .copy button::before {

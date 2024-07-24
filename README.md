@@ -10,12 +10,10 @@ an experiment to see if it is a viable alternative.
 Install [Node.js](https://nodejs.org/en), clone this repository, install the dependencies with `npm install`, and run
 `npm run dev` to start a local server. The server will automatically rebuild the page when you make changes.
 
-To build the page in release mode, use `npm run build -- --baseURL ...`\*, then serve the generated `public/` directory
+To build the page in release mode, use `HUGO_BASEURL=... npm run build`, then serve the generated `public/` directory
 with your webserver of choice.
 
 For more information, please view our [Contributing Guidelines](.github/CONTRIBUTING.md).
-
-_\*The `--` serves to pass `baseURL` to Hugo as opposed to the `npm run` command._
 
 ### Editor Setup
 

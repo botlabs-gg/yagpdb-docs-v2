@@ -18,7 +18,7 @@ concurrency:
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
-  HUGO_BASE_URL: 'https://docs-beta.yagpdb.xyz'
+  HUGO_BASEURL: 'https://docs-beta.yagpdb.xyz'
 
 jobs:
   build:
@@ -46,9 +46,7 @@ jobs:
           [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
 
       - name: Build website
-        # See https://discourse.gohugo.io/t/solved-what-should-be-used-for-the-value-of-site-baseurl/5896
-        # for why we set baseURL here and not in hugo.toml.
-        run: npm run build -- --baseURL=${{ env.HUGO_BASE_URL }}
+        run: npm run build
 
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}

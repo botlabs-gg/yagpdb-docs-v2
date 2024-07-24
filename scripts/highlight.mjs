@@ -14,22 +14,25 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 main();
 
 async function main() {
-	const LIGHT_THEME = 'github-light';
+	const LIGHT_THEME = 'github-light-modified';
 	const DARK_THEME = 'nord-darker';
 
 	const start = Date.now();
 
 	const highlighter = await createHighlighter({
-		themes: [LIGHT_THEME], // dark theme is custom and registered below
+		themes: [], // both themes are custom and are loaded below
 		langs: Object.keys(bundledLanguages),
 	});
-	const yagTemplateLang = JSON.parse(await readFile(join(__dirname, 'yag.tmLanguage.json'), { encoding: 'utf-8' }));
+	const yagTemplateLang = await readJsonFile(join(__dirname, 'yag.tmLanguage.json'));
 	await highlighter.loadLanguage(yagTemplateLang);
 
-	const nordDarkerTheme = JSON.parse(await readFile(join(__dirname, 'nord-darker.json'), { encoding: 'utf-8' }));
+	const gitHubLightModifiedTheme = await readJsonFile(join(__dirname, 'github-light-modified.json'));
+	await highlighter.loadTheme(gitHubLightModifiedTheme);
+
+	const nordDarkerTheme = await readJsonFile(join(__dirname, 'nord-darker.json'));
 	await highlighter.loadTheme(nordDarkerTheme);
 
-	const files = await listBuiltContentFiles();
+	const files = await listBuiltIndexHtmlFiles();
 	await Promise.all(
 		files.map((filepath) => highlightFile(highlighter, filepath, { lightTheme: LIGHT_THEME, darkTheme: DARK_THEME })),
 	);
@@ -37,8 +40,12 @@ async function main() {
 	console.log(`Highlighted ${files.length} files in ${Math.round(Date.now() - start)} ms`);
 }
 
+async function readJsonFile(filepath) {
+	return JSON.parse(await readFile(filepath, { encoding: 'utf-8' }));
+}
+
 // Return the paths of all index.html files under the public/docs and public/learn directories.
-async function listBuiltContentFiles() {
+async function listBuiltIndexHtmlFiles() {
 	const publicDir = join(__dirname, '../public');
 
 	const docsDir = join(publicDir, 'docs');

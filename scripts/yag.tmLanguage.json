@@ -28,7 +28,7 @@
 					"name": "keyword.operator.yag"
 				},
 				{
-					"match": "\\b\\d+(\\.\\d+)?\\b",
+					"match": "(?<!\\w)\\.?\\d(?:(?:[0-9a-zA-Z_\\.])|(?<=[eEpP])[+-])*",
 					"name": "constant.numeric.yag"
 				},
 				{

@@ -15,7 +15,7 @@ main();
 
 async function main() {
 	const LIGHT_THEME = 'github-light';
-	const DARK_THEME = 'github-dark-modified';
+	const DARK_THEME = 'nord-darker';
 
 	const start = Date.now();
 
@@ -26,10 +26,8 @@ async function main() {
 	const yagTemplateLang = JSON.parse(await readFile(join(__dirname, 'yag.tmLanguage.json'), { encoding: 'utf-8' }));
 	await highlighter.loadLanguage(yagTemplateLang);
 
-	const gitHubDarkModifiedTheme = JSON.parse(
-		await readFile(join(__dirname, 'github-dark-modified.json'), { encoding: 'utf-8' }),
-	);
-	await highlighter.loadTheme(gitHubDarkModifiedTheme);
+	const nordDarkerTheme = JSON.parse(await readFile(join(__dirname, 'nord-darker.json'), { encoding: 'utf-8' }));
+	await highlighter.loadTheme(nordDarkerTheme);
 
 	const files = await listBuiltContentFiles();
 	await Promise.all(

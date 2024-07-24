@@ -1,4 +1,4 @@
-# yagpdb-cc-ext
+# Ranger-4297/yagpdb-cc-ext
 
 The TextMate language definition for YAGPDB templates in yag.tmLanguage.json is adapted
 from https://github.com/Ranger-4297/yagpdb-cc-ext. Its license is reproduced below.
@@ -27,16 +27,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-# github-vscode-theme
+# nordtheme/visual-studio-code
 
-The modified GitHub Dark theme in github-dark-modified.json is adapted from
-https://github.com/primer/github-vscode-theme. Its license is reproduced below:
+The modified Nord theme in nord-dark.json is adapted from https://github.com/nordtheme/visual-studio-code. Its license
+is reproduced below:
 
 ---
 
-MIT License
+MIT License (MIT)
 
-Copyright (c) 2020 Primer
+Copyright (c) 2016-present Sven Greb <development@svengreb.de> (https://www.svengreb.de)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

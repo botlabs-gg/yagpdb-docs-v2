@@ -45,8 +45,15 @@ jobs:
         run: |
           [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
 
+      # The website builds are notoriously flaky; specifically, Kroki tends to return
+      # a "Bad Request" error for no apparent reason. We will retry up to 3 times and then
+      # assume that the build is actually broken, rather than temperamental.
       - name: Build website
-        run: npm run build
+        uses: nick-fields/retry@v3
+        with:
+          retry_on: error
+          max_attempts: 3
+          command: npm run build
 
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}

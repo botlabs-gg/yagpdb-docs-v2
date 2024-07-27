@@ -53,6 +53,7 @@ jobs:
         with:
           retry_on: error
           max_attempts: 3
+          timeout_seconds: 10
           command: npm run build
 
       - name: Setup Pages

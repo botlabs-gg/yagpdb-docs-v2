@@ -5,4 +5,4 @@
   [en.params]
     languageISO = "EN"
     languageTag = "en-US"
-    footer = 'Built using <a class="text-muted" href="https://getdoks.com/">Doks</a> and <a class="text-muted" href="https://https://gohugo.io/">Hugo</a>'
+    footer = 'Built using <a class="text-muted" href="https://getdoks.org/">Doks</a> and <a class="text-muted" href="https://gohugo.io/">Hugo</a>'

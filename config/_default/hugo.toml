@@ -42,6 +42,10 @@ defaultContentLanguageInSubdir = false
   [caches.getjson]
     dir = ":cacheDir/:project"
     maxAge = -1 # "30m"
+  [caches.getresource]
+    dir = ":resourceDir/_gen"
+    maxAge = -1
+
 
 [taxonomies]
   contributor = "contributors"

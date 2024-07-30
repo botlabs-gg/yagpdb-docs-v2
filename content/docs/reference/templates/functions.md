@@ -167,33 +167,164 @@ Removes the given member from the given thread.
 
 ## Database
 
-| **Function**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `dbBottomEntries` pattern amount nSkip            | Returns `amount (max 100)`top entries of keys determined by the `pattern` from the database, sorted by the numeric value in a ascending order, next by entry ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `dbCount` (userID\|pattern\|query)                | Returns the count of all database entries which are not expired. Optional arguments: if `userID` is given, counts entries for that userID; if `pattern`, only those keys are counted that match the given pattern; and if `query` is provided, it should be an sdict with the following keys:<ul><li>`userID` - only counts entries with that userID, defaults to counting entries with any userID.</li><li>`pattern` - only counts dbEntry keys with names matching the pattern given, defaults to counting entries with any name.</li></ul>                                                                                                                      |
-| `dbDel` userID key                                | Deletes the specified key for the specified value from the database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `dbDelByID` userID ID                             | Deletes database entry by its ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `dbDelMultiple` query amount skip                 | Deletes `amount (max 100)` entries from the database matching the criteria provided. `query` should be an _sdict_ with the following options:<ul><li>`userID` - only deletes entries with the dbEntry field .UserID provided, defaults to deleting entries with any ID.</li><li>`pattern` - only deletes entry keys with a name matching the pattern given.</li><li>`reverse` - if true, starts deleting entries with the lowest values first; otherwise starts deleting entries with the highest values first. Default is `false`.</li></ul>Returns the number of rows that got deleted or an error.                                                              |
-| `dbGet` userID key                                | Retrieves a value from the database for the specified user, this returns DBEntry object. Does not fetch member data as user object for .User like `dbGetPattern`, `dbBottom/TopEntries` do.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `dbGetPattern` userID pattern amount nSkip        | Retrieves up to`amount (max 100)`entries from the database in ascending order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `dbGetPatternReverse` userID pattern amount nSkip | Retrieves`amount (max 100)`entries from the database in descending order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `dbIncr` userID key incrBy                        | Increments the value for specified key for the specified user, if there was no value then it will be set to `incrBy`. Also returns the entry's current, increased value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `dbRank` query userID key                         | Returns the rank of the entry specified by the user ID and key provided in the set of entries matching the criteria provided. `query` specifies the set of entries that should be considered, and should be a sdict with the following options:<ul><li>`userID` - only includes entries with that user ID, defaults to including entries with any user ID</li><li>`pattern` - only includes database's `key` entries with names matching the pattern given, defaults to counting entries with any name</li><li>`reverse` - if true, entries with lower value have higher rank; otherwise entries with higher value have higher rank. Default is `false`.</li></ul> |
-| `dbSet` userID key value                          | Sets the value for the specified `key` for the specific `userID` to the specified `value`. `userID` can be any number of type _int64_. <br><br>Values are stored either as of type _float64_ (for numbers, oct or hex) or as varying type in bytes (for _slices_, _maps_, _strings_ etc) depending on input argument.                                                                                                                                                                                                                                                                                                                                              |
-| `dbSetExpire` userID key value ttl                | Same as `dbSet` but with an expiration `ttl` which is an _int_ and represents seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `dbTopEntries` pattern amount nSkip               | Returns `amount (max 100)`top entries of keys determined by the `pattern` from the database, sorted by the numeric value in a descending order, next by entry ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+These functions help you interact with the [custom command database](/learn/intermediate/database).
 
-Patterns are basic PostgreSQL patterns, not Regexp: An underscore `(_)` matches any single character; a percent sign
-`(%)` matches any sequence of zero or more characters.
+### dbBottomEntries
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+```yag
+{{ $entries := dbBottomEntries <pattern> <amount> <nSkip> }}
+```
 
-**Note about saving numbers into database:** As stated above, database stores numbers as type _float64_. If you save a
-large number into database like an _int64_ (which IDs are), the value will be truncated. To avoid this behavior, you can
-convert the number to type _string_ before saving and later back to its original type when retrieving it. Example: `{{$v
-:= .User.ID}} {{dbSet 0 "userid" (str $v)}} {{$fromDB := toInt (dbGet 0 "user_id").Value}}`
+Returns up to `amount` entries from the database, sorted in ascending order by the numeric value, then by entry ID.
 
-`dict` key values are also retrieved as _int64,_ so to use them for indexing one has to e.g. `index $x (toInt64 0)`
+- `amount`: the maximum number of entries to return, capped at 100.
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `nSkip`: the number of entries to skip before returning results.
+
+### dbCount
+
+```yag
+{{ $count := dbCount <userID|pattern|query> }}
+```
+
+Returns the count of all matching database entries that are not expired.
+
+The argument must be one of the following:
+- `userID`: count entries for the given user ID.
+- `pattern`: count only entries with keys matching the given pattern.
+- `query`: an sdict with the following (all optional) keys:
+  - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
+  - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
+
+### dbDelByID
+
+```yag
+{{ dbDelByID <userID> <ID> }}
+```
+
+Deletes a database entry under the given `userID` by its `ID`.
+
+### dbDelMultiple
+
+```yag
+{{ $numDeleted := dbDelMultiple <query> <amount> <nSkip> }}
+```
+
+Deletes up to `amount` entries from the database matching the given criteria. Returns the number of deleted entries.
+
+- `query`: an sdict with the following (all optional) keys:
+  - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
+  - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
+  - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
+- `amount`: the maximum number of entries to delete, capped at 100.
+- `nSkip`: the number of entries to skip before deleting.
+
+### dbDel
+
+```yag
+{{ dbDel <userID> <key> }}
+```
+
+Deletes the specified entry from the database.
+
+### dbGetPatternReverse
+
+```yag
+{{ $entries := dbGetPatternReverse <userID> <pattern> <amount> <nSkip> }}
+```
+
+Retrieves up to `amount` entries from the database in descending order as a slice.
+
+- `userID`: the user ID to retrieve entries for.
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `amount`: the maximum number of entries to return, capped at 100.
+- `nSkip`: the number of entries to skip before returning results.
+
+See [dbGetPattern](#dbgetpattern) for a function that retrieves entries in ascending order.
+
+### dbGetPattern
+
+```yag
+{{ $entries := dbGetPattern <userID> <pattern> <amount> <nSkip> }}
+```
+
+Returns up to `amount` entries from the database in ascending order as a slice.
+
+- `userID`: the user ID to retrieve entries for.
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `amount`: the maximum number of entries to return, capped at 100.
+- `nSkip`: the number of entries to skip before returning results.
+
+See [dbGetPatternReverse](#dbgetpatternreverse) for a function that retrieves entries in descending order.
+
+### dbGet
+
+```yag
+{{ $entry := dbGet <userID> <key> }}
+```
+
+Returns the specified database entry.
+
+### dbIncr
+
+```yag
+{{ $newValue := dbIncr <userID> <key> <incrBy> }}
+```
+
+Increments the value of the specified database entry by `incrBy`. Returns the new value as a floating-point number.
+
+- `incrBy`: the amount to increment the value by. Must be a valid number.
+
+### dbRank
+
+```yag
+{{ $rank := dbRank <query> <userID> <key> }}
+```
+
+Returns the rank of the specified entry in the set of entries as defined by `query`.
+
+- `query`: an sdict with the following (all optional) keys:
+  - `userID`: only include entries with the given user ID.
+  - `pattern`: only include entries with keys matching the given pattern.
+  - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
+
+### dbSetExpire
+
+```yag
+{{ dbSetExpire <userID> <key> <value> <ttl> }}
+```
+
+Same as [dbSet](#dbset) but with an additional expiration `ttl` in seconds.
+
+### dbSet
+
+```yag
+{{ dbSet <userID> <key> <value> }}
+```
+
+Sets the value for the specified `key` and `userID` to `value`.
+
+- `value`: an arbitrary value to set.
+
+### dbTopEntries
+
+```yag
+{{ $entries := dbTopEntries <pattern> <amount> <nSkip> }}
+```
+
+Returns up to `amount` entries from the database, sorted in descending order by the numeric value, then by entry ID.
+
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `amount`: the maximum number of entries to return, capped at 100.
+- `nSkip`: the number of entries to skip before returning results.
+
+{{< callout context="caution" title="Caution: Storing Numerical Values" icon="outline/alert-triangle" >}}
+
+Numerical values are stored as floating-point numbers in the database; large numbers such as user IDs will lose
+precision. To avoid this, convert them to a string before writing to the database.
+
+Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write<br>
+`{{ $dict.Get (toInt64 N)}}` to retrieve the value associated with the numerical key `N`.
 
 {{< /callout >}}
 

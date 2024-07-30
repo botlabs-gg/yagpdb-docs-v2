@@ -18,7 +18,7 @@ concurrency:
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
-  HUGO_BASEURL: 'https://docs-beta.yagpdb.xyz'
+  HUGO_BASEURL: 'https://help.yagpdb.xyz'
 
 jobs:
   build:

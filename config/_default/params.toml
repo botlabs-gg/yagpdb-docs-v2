@@ -1,6 +1,6 @@
-title = "YAGPDB Docs"
-description = "YAGPDB documentation"
-images = ["cover.png"]
+title = "YAGPDB Help Center" # og:site_name
+description = "YAGPDB documentation and learning resources." # twitter:description, og:description
+images = [] # og:image; not needed.
 
 mainSections = ["docs"]
 

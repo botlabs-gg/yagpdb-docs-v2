@@ -1,10 +1,11 @@
 import docsearch from "@docsearch/js";
 
 docsearch({
+  appId: "ER865HD7LN",
+  apiKey: "56b4cffcb36dc6b444754b5cdf907917",
   container: "#docsearch",
-  appId: "YOUR_APP_ID",
-  indexName: "YOUR_INDEX_NAME",
-  apiKey: "YOUR_SEARCH_API_KEY",
+  debug: false,
+  indexName: "help-yagpdb",
   insights: true
 });
 

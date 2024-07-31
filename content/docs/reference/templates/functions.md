@@ -328,38 +328,66 @@ Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write
 
 {{< /callout >}}
 
-## ExecCC
+## Executing Custom Commands
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+These functions enable you to execute a custom command within an already running custom command.
 
-`execCC` calls are limited to 1 / CC for non-premium users and 10 / CC for premium users.
+{{< callout context="note" title="" icon="outline/info-circle" >}}
+
+ee
 
 {{< /callout >}}
 
-| **Function**                                   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cancelScheduledUniqueCC` ccID key             | Cancels a previously scheduled custom command execution using `scheduleUniqueCC`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `execCC` ccID channel delay data               | Function that executes another custom command specified by `ccID`. With delay 0 the max recursion depth is 2 (using `.StackDepth` shows the current depth). `execCC` is rate-limited strictly at max 10 delayed custom commands executed per channel per minute, if you go over that it will be simply thrown away. Argument `channel` can be `nil`, channel's ID or name. The`delay` argument is execution delay of another CC is in seconds. The `data` argument is content that you pass to the other executed custom command. To retrieve that `data` you use `.ExecData`. This example is important > [execCC example](/docs/reference/custom-command-examples#countdown-example-exec-cc) also next snippet which shows you same thing run using the same custom command > [Snippets](#execcc-sections-snippets). `execCC` is also thoroughly covered in this [GitHub gist](https://gist.github.com/l-zeuch/9f10d128184509ad531778f26550ed6d). |
-| `scheduleUniqueCC` ccID channel delay key data | Same as `execCC`except there can only be 1 scheduled cc execution per server per key (unique name for the scheduler), if key already exists then it is overwritten with the new data and delay (as above, in seconds).An example would be a mute command that schedules the unmute action sometime in the future. However, let's say you use the unmute command again on the same user, you would want to override the last scheduled unmute to the new one. This can be used for that.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-
-### ExecCC section's snippets
-
-- To demonstrate execCC and .ExecData using the same CC.
+### cancelScheduledUniqueCC
 
 ```yag
-{{ $yag := "YAGPDB rules! " }}
-{{ $ctr := 0 }} {{ $yourCCID := .CCID }}
-{{ if .ExecData }}
-    {{ $ctr = add .ExecData.number 1 }}
-    {{ $yag = print $yag $ctr }} {{ .ExecData.YAGPDB }}
-{{ else }}
-    So, someone rules.
-    {{ $ctr = add $ctr 1 }} {{ $yag = print $yag 1 }}
-{{ end }}
-{{ if lt $ctr 5 }}
-    {{ execCC $yourCCID nil 3 (sdict "YAGPDB" $yag "number" $ctr) }}
-{{ else }} FUN'S OVER! {{ end }}
+{{ cancelScheduledUniqueCC <ccID> <key> }}
 ```
+
+Cancels a previously scheduled custom command execution using [scheduleUniqueCC](#scheduleuniquecc).
+
+### execCC
+
+```yag
+{{ execCC <ccID> <channel> <delay> <data> }}
+```
+
+Executes another custom command specified by `ccID`.
+
+- `ccID`: the ID of the custom command to execute.
+- `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
+- `delay`: the delay in seconds before executing the custom command.
+- `data`: some arbitrary data to pass to the executed custom command.
+
+#### Example
+
+The following example showcases a custom command executing itself.
+
+```yag
+{{ if .ExecData }}
+  {{ sendMessage nil (print "Executing custom command... Got data: " .ExecData) }}
+  {{ return }}
+{{ end }}
+
+{{ sendMessage nil "Starting up..." }}
+{{ execCC .CCID nil 5 "Hello, world!" }}
+```
+
+### scheduleUniqueCC
+
+```yag
+{{ scheduleUniqueCC <ccID> <channel> <delay> <key> <data> }}
+```
+
+Schedules a custom command execution to occur in the future, identified by `key`.
+
+- `ccID`: the ID of the custom command to execute.
+- `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
+- `delay`: the delay in seconds before executing the custom command.
+- `key`: a unique key to identify the scheduled custom command.
+- `data`: some arbitrary data to pass to the executed custom command.
+
+To cancel such a scheduled custom command before it runs, use [cancelScheduledUniqueCC](#cancelscheduleduniquecc).
 
 ## Interactions
 

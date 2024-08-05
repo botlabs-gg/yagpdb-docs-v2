@@ -634,47 +634,210 @@ object](/docs/reference/templates/syntax-and-data#message). Is also valid for ep
 
 ## Math
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+### add
 
-Boolean logic (and, not, or) and comparison operators (eq, gt, lt, etc.) are covered in [conditional
-branching](/docs/reference/templates/syntax-and-data#if-conditional-branching).
+```yag
+{{ $sum := add x y [...] }}
+```
 
-{{< /callout >}}
+Returns the sum of the provided numbers. Detects the first number's type and performs the operation accordingly.
 
-| **Function**                    | **Description**                                                                                                                                                                                                                                                                                                                                                        |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add` x y z ...                 | Returns x + y + z + ..., detects first number's type - is it _int_ or _float_ and based on that adds. (use `toFloat` on the first argument to force floating point math.)`{{add 5 4 3 2 -1}}` sums all these numbers and returns `13`.                                                                                                                                 |
-| `bitwiseAnd` x y                | The output of bitwise AND is 1 if the corresponding bits of two operands is 1. If either bit of an operand is 0, the result of corresponding bit is evaluated to 0. Example: `{{bitwiseAnd 12 25}}` returns `8`, that in binary 00001100 AND 00011001 is 00001000.                                                                                                     |
-| `bitwiseAndNot` x y             | This function is called bit clear because of AND NOT. For example in the expression z = x AND NOT y, each bit of z is 0 if the corresponding bit of y is 1; otherwise it equals to the corresponding bit of x. `{{bitwiseAndNot 7 12}}` returns `3`, that is 0111 AND NOT 1100 is 11.                                                                                  |
-| `bitwiseNot` x                  | The bitwise NOT operator inverts the bits of the argument. Example: `{{bitwiseNot 7}}` returns `-8`. that in binary 0111 to 1000                                                                                                                                                                                                                                       |
-| `bitwiseOr` x y z...            | The output of bitwise OR is 1 if at least one corresponding bit of two operands is 1. Example: `{{bitwiseOr 12 25}}` returns `29`, that in binary 00001100 OR 00011001 is 00011101.                                                                                                                                                                                    |
-| `bitwiseXor` x y                | The result of bitwise XOR operator is 1 if the corresponding bits of two operands are opposite. Example: `{{bitwiseXor 12 25}}` returns `21`, that in binary 00001100 OR 00011001 is 00010101.                                                                                                                                                                         |
-| `bitwiseLeftShift` x y          | Left shift operator shifts all bits towards left by a certain number of specified bits. The bit positions that have been vacated by the left shift operator are filled with 0. Example: `{{range seq 0 3}} {{bitwiseLeftShift 212 .}} {{end}}` returns `212 424 848`                                                                                                   |
-| `bitwiseRightShift` x y         | Right shift operator shifts all bits towards right by certain number of specified bits. Example: `{{range seq 0 3}} {{bitwiseRightShift 212 .}} {{end}}` returns `212 106 53`.                                                                                                                                                                                         |
-| `cbrt` x                        | Returns the cube root of given argument in type _float64_ e.g. `{{cbrt 64}}` returns `4`.                                                                                                                                                                                                                                                                              |
-| `div` x y z ...                 | Division, like `add` or `mult`, detects first number's type first. `{{div 11 3}}` returns `3` whereas `{{div 11.1 3}}` returns `3.6999999999999997`                                                                                                                                                                                                                    |
-| `fdiv` x y z ...                | Meant specifically for floating point numbers division.                                                                                                                                                                                                                                                                                                                |
-| `log` x (base)                  | Log is a logarithm function using (log base of x). Arguments can be any type of numbers, as long as they follow logarithm logic. Return value is of type _float64_. If base argument is not given It is using natural logarithm (base e - The Euler's constant) as default.`{{ log "123" 2 }}` will return `6.94251450533924`.                                         |
-| `mathConst` "arg"               | Function returns all constants available in go's math package as _float64_. `"arg"` has to be a case-insensitive _string_ from [math constants list](https://pkg.go.dev/math@go1.18.2#pkg-constants). For example `{{mathConst "sqrtphi"}}` would return `1.272019649514069`.                                                                                          |
-| `max` x y                       | Returns the larger of x or y as type _float64_.                                                                                                                                                                                                                                                                                                                        |
-| `min` x y                       | Returns the smaller of x or y as type _float64_.                                                                                                                                                                                                                                                                                                                       |
-| `mod` x y                       | Mod returns the floating-point remainder of the division of x by y. For example, `mod 17 3` returns `2` as type _float64_.<br><br>Note that like Go's `[math.Mod](https://pkg.go.dev/math#Mod)` function, `mod` takes the sign of `x`, so `mod -5 3` results in `-2`, not `1`. To ensure a non-negative result, use `mod` twice, like such: `mod (add (mod x y) y) y`. |
-| `mult` x y z ...                | Multiplication, like `add` or `div`, detects first number's type. `{{mult 3.14 2}}` returns `6.28`                                                                                                                                                                                                                                                                     |
-| `pow` x y                       | Pow returns x\*\*y, the base-x exponential of y which have to be both numbers. Type is returned as _float64_. `{{ pow 2 3 }}` returns `8`.                                                                                                                                                                                                                             |
-| `randInt` (stop, or start stop) | Returns a random integer between 0 and stop, or start - stop if two args are provided.Result will be `start &#x3C;= random number &#x3C; stop`. Without arguments, range is 0..10. Example in section's [Snippets](#math-sections-snippets).                                                                                                                           |
-| `round` x                       | Returns the nearest integer, rounding half away from zero. Regular rounding > 10.4 is `10` and 10.5 is `11`. All round functions return type _float64_, so use conversion functions to get integers. For more complex rounding, example in section's [Snippets](#math-sections-snippets).                                                                              |
-| `roundCeil` x                   | Returns the least integer value greater than or equal to input or rounds up. `{{roundCeil 1.1}}` returns `2`.                                                                                                                                                                                                                                                          |
-| `roundEven` x                   | Returns the nearest integer, rounding ties to even.<br>`{{roundEven 10.5}}` returns `10 {{roundEven 11.5}}` returns `12`.                                                                                                                                                                                                                                              |
-| `roundFloor` x                  | Returns the greatest integer value less than or equal to input or rounds down. `{{roundFloor 1.9}}` returns `1`.                                                                                                                                                                                                                                                       |
-| `sqrt` x                        | Returns the square root of a number as type _float64_.<br>`{{sqrt 49}}` returns `7, {{sqrt 12.34 \|printf "%.4f"}} returns 3.5128`                                                                                                                                                                                                                                     |
-| `sub` x y z ...                 | Returns x - y -z - ... Works like add, just subtracts.                                                                                                                                                                                                                                                                                                                 |
+###  bitwiseAnd
 
-### Math section's snippets
+```yag
+{{ $result := bitwiseAnd x y }}
+```
 
-- `{{$d := randInt 10}}` Stores random _int_ into variable `$d` (a random number from 0-9).
-- To demonstrate rounding float to 2 decimal places.\
-  `{{div (round (mult 12.3456 100)) 100}}` returns 12.35\
-  `{{div (roundFloor (mult  12.3456 100)) 100}}` returns 12.34
+Performs a bitwise AND operation on the two provided numbers and returns the result.
+
+### bitwiseAndNot
+
+```yag
+{{ $result := bitwiseAndNot x y }}
+```
+
+Performs a bitwise AND NOT operation on the two provided numbers and returns the result.
+
+### bitwiseNot
+
+```yag
+{{ $result := bitwiseNot x }}
+```
+
+Performs a bitwise NOT operation on the provided number and returns the result.
+
+### bitwiseOr
+
+```yag
+{{ $result := bitwiseOr x y [...] }}
+```
+
+Performs a bitwise OR operation on the provided numbers and returns the result.
+
+### bitwiseXor
+
+```yag
+{{ $result := bitwiseXor x y }}
+```
+
+Performs a bitwise XOR operation on the two provided numbers and returns the result.
+
+### bitwiseLeftShift
+
+```yag
+{{ $result := bitwiseLeftShift x y }}
+```
+
+Shifts X left by Y bits and returns the result.
+
+### bitwiseRightShift
+
+```yag
+{{ $result := bitwiseRightShift x y }}
+```
+
+Shifts X right by Y bits and returns the result.
+
+### cbrt
+
+```yag
+{{ $result := cbrt x }}
+```
+
+Returns the cube root of the provided number.
+
+### div
+
+```yag
+{{ $result := div x y [...] }}
+```
+
+Performs division on the provided numbers. Detects the first number's type and performs the operation accordingly.
+If you need a floating-point number as a result of integer division, use [fdiv](#fdiv).
+
+### fdiv
+
+```yag
+{{ $result := fdiv x y [...] }}
+```
+
+Special case of [div](#div); always returns a floating-point number as result.
+
+### log
+
+```yag
+{{ $result := log x [base] }}
+```
+
+Returns the logarithm of X with the given base. If no base is provided, the natural logarithm is used.
+
+### mathConst
+
+```yag
+{{ $result := mathConst "constant" }}
+```
+
+Returns the value of the specified math constant. See the [math constants list](https://pkg.go.dev/math#pkg-constants).
+
+### max
+
+```yag
+{{ $result := max x y }}
+```
+
+Returns the larger of the two provided numbers.
+
+### min
+
+```yag
+{{ $result := min x y }}
+```
+
+Returns the smaller of the two provided numbers.
+
+### mod
+
+```yag
+{{ $result := mod x y }}
+```
+
+Returns the floating-point remainder of the division of X by Y.
+
+Takes the sign of X, so `mod -5 3` results in `-2`, not `1`. To ensure a non-negative result, use `mod` twice:
+`{{ mod (add (mod x y) y) y }}`.
+
+### mult
+
+```yag
+{{ $result := mult x y [...] }}
+```
+
+Performs multiplication on the provided numbers. Detects the first number's type and returns the result accordingly.
+
+### pow
+
+```yag
+{{ $result := pow x y }}
+```
+
+Returns X raised to the power of Y as a floating-point number.
+
+### randInt
+
+```yag
+{{ $result := randInt [start] stop }}
+```
+
+Returns a random integer in the right-closed interval of `[0, stop)` or `[start, stop)` if two arguments are provided.
+That is, the result is always greater than or equal to `start` and strictly less than `stop`.
+
+### round
+
+```yag
+{{ $result := round x }}
+```
+
+Returns the nearest integer to X as float. Normal rounding rules apply.
+
+### roundCeil
+
+```yag
+{{ $result := roundCeil x }}
+```
+
+Returns the smallest integer greater than or equal to X. Put simply, always round up.
+
+### roundEven
+
+```yag
+{{ $result := roundEven x }}
+```
+
+Returns the nearest integer to X, rounding ties (x.5) to the nearest even integer.
+
+### roundFloor
+
+```yag
+{{ $result := roundFloor x }}
+```
+
+Returns the largest integer less than or equal to X. Put simply, always round down.
+
+### sqrt
+
+```yag
+{{ $result := sqrt x }}
+```
+
+Returns the square root of X as a floating-point number.
+
+### sub
+
+```yag
+{{ $result := sub x y [...] }}
+```
+
+Subtracts the provided numbers from each other. Detects the first number's type and returns the result accordingly.
 
 ## Member
 

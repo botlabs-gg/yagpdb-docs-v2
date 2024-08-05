@@ -841,18 +841,83 @@ Subtracts the provided numbers from each other. Detects the first number's type 
 
 ## Member
 
-| **Function**                                | **Description**                                                                                                                                                                        |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `getTargetPermissionsIn` memberID channelID | Returns target’s permissions in the given channel.                                                                                                                                     |
-| `editNickname` "newNick"                    | Edits triggering user's nickname, argument has to be of type _string_. YAGPDB's highest role has to be above the highest role of the member and bot can't edit owner's nickname.       |
-| `hasPermissions` arg                        | Returns true/false on whether triggering user has the permission bit _int64_ that is also set in .Permissions*.*                                                                       |
-| `getMember` mention/userID                  | Function returns [Member object](/docs/reference/templates/syntax-and-data#member) having above methods. `{{(getMember .User.ID).JoinedAt}}` <br>is the same as `{{.Member.JoinedAt}}` |
-| `onlineCount`                               | Returns the count of online users/members on current server.                                                                                                                           |
-| `targetHasPermissions` memberID arg         | Returns true/false on whether targeted member has the permission bit _int64_.                                                                                                          |
+### editNickname
 
-Permissions are covered on
-[Discord permissions documentation](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags). For example to get
-permission bit for "use application commands" `{{bitwiseLeftShift 1 32}}` would return _int64_ `4294967296`.
+```yag
+{{ editNickname "newNick" }}
+```
+
+Edits the nickname of the member who triggered the command. The bot must have the `MANAGE_NICKNAMES` permission and be
+higher in the role hierarchy than the member. The bot cannot change the nickname of the server owner.
+
+### getMember
+
+```yag
+{{ $member := getMember <mention|userID> }}
+```
+
+Returns the [member object](/docs/reference/templates/syntax-and-data#member) for the given mention or user ID.
+
+### getTargetPermissionsIn
+
+```yag
+{{ $perms := getTargetPermissionsIn <memberID> <channelID> }}
+```
+
+Returns the permissions of the specified member in the given channel as a [permissions bitfield][perms].
+
+[perms]: https://discord.com/developers/docs/topics/permissions#permissions
+
+#### Example
+
+To calculate the permission in a channel other than the current channel, for which we could just use the
+[hasPermissions](#haspermissions) or [targetHasPermissions](#targethaspermissions) function, we will have to use bitwise
+operations:
+
+```yag
+{{ $perms := getTargetPermissionsIn .User.ID $someChannel }}
+{{ $mask := bitwiseAnd .Permissions.ManageRoles $perms }}
+{{ if eq $mask .Permissions.ManageRoles }}
+  You have the permissions to manage roles!
+{{ else }}
+  You do not have the permissions to manage roles!
+{{ end }}
+```
+
+### hasPermissions
+
+```yag
+{{ $hasPerms := hasPermissions <permission> }}
+```
+
+Returns whether the member who triggered the command has the specified permission bit.
+See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) for more information.
+
+#### Example
+
+```yag
+{{ if hasPermissions .Permissions.Administrator }}
+  You have the Administrator permission!
+{{ else }}
+  You do not have the Administrator permission.
+{{ end }}
+```
+
+### onlineCount
+
+```yag
+{{ $count := onlineCount }}
+```
+
+Returns the count of online members on the current server, including bots.
+
+### targetHasPermissions
+
+```yag
+{{ $hasPerms := targetHasPermissions <memberID> <permission> }}
+```
+
+Returns whether the specified member has the specified permission bit.
 
 ## Mentions
 

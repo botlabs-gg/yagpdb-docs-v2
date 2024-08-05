@@ -921,27 +921,42 @@ Returns whether the specified member has the specified permission bit.
 
 ## Mentions
 
-| **Function**                 | **Description**                                                          |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| `mentionEveryone`            | Mentions `@everyone`.                                                    |
-| `mentionHere`                | Mentions `@here`.                                                        |
-| `mentionRoleID` roleID       | Mentions the role found with the provided ID.                            |
-| `mentionRoleName` "rolename" | Mentions the first role found with the provided name (case-insensitive). |
+Certain mentions are escaped by default, such that they don't ping. These functions help you actually *pinging* these
+special mentions.
 
-There is also .Mention method available for channel, role, user structs/objects.
+### mentionEveryone
 
-### Mentions section's snippets
+```yag
+{{ mentionEveryone }}
+```
 
-- `<@{{.User.ID}}>` Outputs a mention to the user that called the command and is the same as `{{.User.Mention}}`
-- `<@###########>` Mentions the user that has the ID ###### (See [How to get IDs](/docs/reference/how-to-get-ids) to get ID).
-- `<#&&&&&&&&&&&>` Mentions the channel that has ID &&&&&& (See [How to get IDs](/docs/reference/how-to-get-ids) to get ID).
+Mentions `@everyone` without escaping it.
 
-* `<@&##########>` Mentions the role with ID ######## ([listroles](/docs/core/all-commands#listroles) command
-  gives roleIDs). This is usable for example with `{{sendMessageNoEscape nil "Welcome to role <@&11111111...>"}}`.
-  Mentioning that role has to be enabled server- side in Discord.
+### mentionHere
 
-- `</cmdName:cmdID>` Mentions a slash command, and makes it clickable and interactive with proper arguments e.g.
-  `</howlongtobeat:842397645104087061>`.
+```yag
+{{ mentionHere }}
+```
+
+Mentions `@here` without escaping it.
+
+### mentionRoleID
+
+```yag
+{{ mentionRoleID <roleID> }}
+```
+
+Mentions the given role without escaping it.
+
+### mentionRoleName
+
+```yag
+{{ mentionRoleName <roleName> }}
+```
+
+Mentions the role with the given name without escaping it. Searches for first case-insensitive match.
+
+Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
 
 ## Message
 

@@ -8,106 +8,388 @@ values you can send in your response or use as arguments for other functions.
 
 <!--more-->
 
-> Functions are underappreciated. In general, not just in templates. // Rob Pike
+## Channel
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+These functions relate to channels and threads.
 
-Every function having both cases possible for an argument - ID/name, then this name is handled case insensitive, for
-example `getRole "yagpdb"` and `getRole "yAgPdB"` would have same responses even if server has both of these roles, so
-using IDs is better.
+{{< callout context="tip" title="Tip: Current Channel or Thread" icon="outline/rocket" >}}
 
-{{< /callout >}}
-
-### Channel
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-The ratelimit for editing a channel is 2 requests per 10 minutes per channel.
+Unless specified otherwise, these functions accept an ID, name, or `nil` for their thread or channel argument.
 
 {{< /callout >}}
 
-| **Function**                                    | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addThreadMember` thread member                 | Adds a member to an existing thread. Does nothing if either thread or member arguments are invalid. Argument `thread` can be either ID, "name" or even `nil` for current thread, and `member` can either be ID or @ mention.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `createForumPost` channel name content (values) | Creates a new forum post in forum `channel`. Argument `name` represents the title of the post, `content` can be a string, an embed or a complex message. The optional `"values"` argument consists of key-value pairs:`"slowmode" value` allows the user to specify the thread's slowmode in seconds. `"tags" value` allows the user to specify one or more forum tags. Duplicate and invalid tags are ignored, and its `value` can be either a string or cslice for multiple tags. Returns \*templates.CtxChannel upon success.<br><br>Example: `{{createForumPost &#x3C;forumChannelID> "Post Title" "content as a string" "slowmode" 60}}`.                                                                                                                                                                                                                                                                                                                                  |
-| `createThread` channel messageID name (values)  | Creates a new thread in `channel`. `messageID` can point to a valid message (creates a message thread) or nil. `name` is the title of the thread. Optional `values` determine how thread is created and come in following order - `private` of type _bool_ determines whether the thread is private; `auto_archive_duration` must be an integer between 60 and 10080 and it determines when the thread will stop showing in the channel list after given minutes of inactivity, can be set to: 60, 1440, 4320, 10080 ; `invitable` of type _bool_, whether non-moderators can add other non-moderators to a thread, it is only available on private threads. Returns \*templates.CtxChannel upon success.<br>Example: `{{createThread nil nil "YAGPDB is cool" true 60 true}}` will create a thread named "YAGPDB is cool" under current channel without any message reference, thread is private, it will get archived in an hour and non-moderators can add others to thread. |
-| `deleteForumPost` post                          | Deletes existing post in the forum - `post` can be either its ID, post’s name or even `nil` if done inside that post. If supplied argument is not a valid active post then it is ignored. Is an alias of `deleteThread` function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `deleteThread` thread                           | Deletes existing thread - `thread` can be either its ID, thread’s name or even `nil` if done inside that thread. If supplied argument is not a valid active thread then it is ignored.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `editChannelName` <br>channel "newName"         | Function edits channel's name. `channel` can be either ID, "name" or even `nil` if triggered in that channel name change is intended to happen. `"newName"` has to be of type _string_. For example >`{{editChannelName nil (print "YAG - " (randInt 1000))}}`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `editChannelTopic` channel "newTopic"           | Function edits channel's topic/description. `channel` can be either ID, "name" or `nil` if triggered in that channel where name change is intended to happen. `"newTopic"` has to be of type _string_. For example >`{{editChannelTopic nil "YAG is cool"}}`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `getChannel` channel                            | Function returns full channel object of given `channel` argument which can be either its ID, name or `nil` for triggering channel, and is of type _\*templates.CtxChannel_. For example > `{{(getChannel nil).Name}}` returns the name of the channel command was triggered in.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `getChannelOrThread` channel                    | Returns type _\*templates.CtxChannel_ corresponding to [Channel](/docs/reference/templates/syntax-and-data#channel) object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `getChannelPins` channel                        | Returns a slice of all pinned message objects in targeted channel.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `getPinCount` channel                           | Returns the count of pinned messages in given channel which can be either its ID, name or `nil` for triggering channel. Can be called 2 times for regular and 4 for premium servers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `getThread` channel                             | Returns type _\*templates.CtxChannel_ corresponding to [Channel](/docs/reference/templates/syntax-and-data#channel) object.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `removeThreadMember` thread member              | Removes a member from an existing thread. Does nothing if either thread or user are invalid. Argument `thread` can be either ID, "name" or even `nil` for current thread, and `member` can either be ID or @ mention.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-
-### Database
-
-| **Function**                                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `dbBottomEntries` pattern amount nSkip            | Returns `amount (max 100)`top entries of keys determined by the `pattern` from the database, sorted by the numeric value in a ascending order, next by entry ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `dbCount` (userID\|pattern\|query)                | Returns the count of all database entries which are not expired. Optional arguments: if `userID` is given, counts entries for that userID; if `pattern`, only those keys are counted that match the given pattern; and if `query` is provided, it should be an sdict with the following keys:<ul><li>`userID` - only counts entries with that userID, defaults to counting entries with any userID.</li><li>`pattern` - only counts dbEntry keys with names matching the pattern given, defaults to counting entries with any name.</li></ul>                                                                                                                      |
-| `dbDel` userID key                                | Deletes the specified key for the specified value from the database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `dbDelByID` userID ID                             | Deletes database entry by its ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `dbDelMultiple` query amount skip                 | Deletes `amount (max 100)` entries from the database matching the criteria provided. `query` should be an _sdict_ with the following options:<ul><li>`userID` - only deletes entries with the dbEntry field .UserID provided, defaults to deleting entries with any ID.</li><li>`pattern` - only deletes entry keys with a name matching the pattern given.</li><li>`reverse` - if true, starts deleting entries with the lowest values first; otherwise starts deleting entries with the highest values first. Default is `false`.</li></ul>Returns the number of rows that got deleted or an error.                                                              |
-| `dbGet` userID key                                | Retrieves a value from the database for the specified user, this returns DBEntry object. Does not fetch member data as user object for .User like `dbGetPattern`, `dbBottom/TopEntries` do.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `dbGetPattern` userID pattern amount nSkip        | Retrieves up to`amount (max 100)`entries from the database in ascending order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `dbGetPatternReverse` userID pattern amount nSkip | Retrieves`amount (max 100)`entries from the database in descending order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `dbIncr` userID key incrBy                        | Increments the value for specified key for the specified user, if there was no value then it will be set to `incrBy`. Also returns the entry's current, increased value.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `dbRank` query userID key                         | Returns the rank of the entry specified by the user ID and key provided in the set of entries matching the criteria provided. `query` specifies the set of entries that should be considered, and should be a sdict with the following options:<ul><li>`userID` - only includes entries with that user ID, defaults to including entries with any user ID</li><li>`pattern` - only includes database's `key` entries with names matching the pattern given, defaults to counting entries with any name</li><li>`reverse` - if true, entries with lower value have higher rank; otherwise entries with higher value have higher rank. Default is `false`.</li></ul> |
-| `dbSet` userID key value                          | Sets the value for the specified `key` for the specific `userID` to the specified `value`. `userID` can be any number of type _int64_. <br><br>Values are stored either as of type _float64_ (for numbers, oct or hex) or as varying type in bytes (for _slices_, _maps_, _strings_ etc) depending on input argument.                                                                                                                                                                                                                                                                                                                                              |
-| `dbSetExpire` userID key value ttl                | Same as `dbSet` but with an expiration `ttl` which is an _int_ and represents seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `dbTopEntries` pattern amount nSkip               | Returns `amount (max 100)`top entries of keys determined by the `pattern` from the database, sorted by the numeric value in a descending order, next by entry ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-
-Patterns are basic PostgreSQL patterns, not Regexp: An underscore `(_)` matches any single character; a percent sign
-`(%)` matches any sequence of zero or more characters.
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-**Note about saving numbers into database:** As stated above, database stores numbers as type _float64_. If you save a
-large number into database like an _int64_ (which IDs are), the value will be truncated. To avoid this behavior, you can
-convert the number to type _string_ before saving and later back to its original type when retrieving it. Example: `{{$v
-:= .User.ID}} {{dbSet 0 "userid" (str $v)}} {{$fromDB := toInt (dbGet 0 "user_id").Value}}`
-
-`dict` key values are also retrieved as _int64,_ so to use them for indexing one has to e.g. `index $x (toInt64 0)`
-
-{{< /callout >}}
-
-### ExecCC
-
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
-
-`execCC` calls are limited to 1 / CC for non-premium users and 10 / CC for premium users.
-
-{{< /callout >}}
-
-| **Function**                                   | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cancelScheduledUniqueCC` ccID key             | Cancels a previously scheduled custom command execution using `scheduleUniqueCC`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `execCC` ccID channel delay data               | Function that executes another custom command specified by `ccID`. With delay 0 the max recursion depth is 2 (using `.StackDepth` shows the current depth). `execCC` is rate-limited strictly at max 10 delayed custom commands executed per channel per minute, if you go over that it will be simply thrown away. Argument `channel` can be `nil`, channel's ID or name. The`delay` argument is execution delay of another CC is in seconds. The `data` argument is content that you pass to the other executed custom command. To retrieve that `data` you use `.ExecData`. This example is important > [execCC example](/docs/reference/custom-command-examples#countdown-example-exec-cc) also next snippet which shows you same thing run using the same custom command > [Snippets](#execcc-sections-snippets). `execCC` is also thoroughly covered in this [GitHub gist](https://gist.github.com/l-zeuch/9f10d128184509ad531778f26550ed6d). |
-| `scheduleUniqueCC` ccID channel delay key data | Same as `execCC`except there can only be 1 scheduled cc execution per server per key (unique name for the scheduler), if key already exists then it is overwritten with the new data and delay (as above, in seconds).An example would be a mute command that schedules the unmute action sometime in the future. However, let's say you use the unmute command again on the same user, you would want to override the last scheduled unmute to the new one. This can be used for that.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-
-#### ExecCC section's snippets
-
-- To demonstrate execCC and .ExecData using the same CC.
+### addThreadMember
 
 ```yag
-{{ $yag := "YAGPDB rules! " }}
-{{ $ctr := 0 }} {{ $yourCCID := .CCID }}
-{{ if .ExecData }}
-    {{ $ctr = add .ExecData.number 1 }}
-    {{ $yag = print $yag $ctr }} {{ .ExecData.YAGPDB }}
-{{ else }}
-    So, someone rules.
-    {{ $ctr = add $ctr 1 }} {{ $yag = print $yag 1 }}
-{{ end }}
-{{ if lt $ctr 5 }}
-    {{ execCC $yourCCID nil 3 (sdict "YAGPDB" $yag "number" $ctr) }}
-{{ else }} FUN'S OVER! {{ end }}
+{{ addThreadMember <thread> <member> }}
 ```
 
-### Interactions
+Adds a member to an existing thread. Does nothing if either argument is invalid.
+
+### createForumPost
+
+```yag
+{{ $post := createForumPost <channel> <name> <content> [values] }}
+```
+
+Creates a new forum post. Returns a channel object on success.
+
+- `channel`: the forum channel to post to.
+- `name`: The post title. May not be empty. Must be a string.
+- `content`: the initial message's content; may be a string, an embed, or a complex message. May not be empty.
+- `values` (optional): Additional options for the post. May include:
+  - `"slowmode"`: The thread's slowmode in seconds.
+  - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
+
+
+### createThread
+
+```yag
+{{ $thread := createThread <channel> <messageID> <name> [private] [auto_archive_duration] [invitable] }}
+```
+
+Creates a new thread in the specified channel. Returns a channel object on success.
+
+- `channel`: the parent channel to create the thread in.
+- `message`: either `nil` to create a channel thread, or a message ID to create a message thread.
+- `private`: whether the thread is private. Default `false`.
+- `auto_archive_duration`: how long the thread will show in the channel list after inactivity.<br>
+   Valid values are 60, 1440, 4320, and 10080 minutes. Defaults to 10080 (7 days).
+- `invitable`: whether non-moderators can add other members to the thread. (true/false)
+
+Note: There is no functional difference between a channel thread and a message thread.
+
+Because the optional arguments are positional, you must provide the preceding ones if you wish to override a later
+option. Consider the following example to create a public thread in the current channel with no message reference that
+is archived after an hour and allows non-moderators to add others:
+
+```yag
+{{ createThread nil nil "new thread" false 60 true }}
+```
+
+### deleteForumPost
+
+```yag
+{{ deleteForumPost <post> }}
+```
+
+Deletes the given forum post.
+
+This function is functionally the same to [deleteThread](#deletethread).
+Use whichever function is semantically more meaningful in the context of your custom command.
+
+### deleteThread
+
+```yag
+{{ deleteThread <thread> }}
+```
+
+Deletes the given thread.
+
+This function is functionally the same to [deleteForumPost](#deleteforumpost).
+Use whichever function is semantically more meaningful in the context of your custom command.
+
+### editChannelName
+
+```yag
+{{ editChannelName <channel> <newName> }}
+```
+
+Edits the name of the given channel.
+
+- `newName`: the new name for the channel. Must be a string.
+
+This function is, together with [editChannelTopic](#editchanneltopic), limited to 10 calls per custom command execution.
+In addition to this, Discord limits the number of channel modifications to 2 per 10 minutes.
+
+### editChannelTopic
+
+```yag
+{{ editChannelTopic <channel> <newTopic> }}
+```
+
+Edits the topic of the given channel.
+
+- `newTopic`: the channel's new topic. Must be a string. Discord markdown is supported.
+
+This function is, together with [editChannelName](#editchannelname), limited to 10 calls per custom command execution.
+In addition to this, Discord limits the number of channel modifications to 2 per 10 minutes.
+
+### getChannelOrThread
+
+```yag
+{{ $channel := getChannelOrThread <channel> }}
+```
+
+Returns the full channel or thread object for the given channel.
+
+### getChannelPins
+
+```yag
+{{ $pins := getChannelPins <channel> }}
+```
+
+Returns a slice of message objects pinned to the given channel or thread.
+
+Rate-limited to 2 (premium: 4) calls per custom command execution.
+
+### getChannel
+
+```yag
+{{ $channel := getChannel <channel> }}
+```
+
+Returns the full channel object for the given channel. Will not work for threads.
+
+### getPinCount
+
+```yag
+{{ $numPins := getPinCount <channel> }}
+```
+
+Returns the number of pinned messages in given channel.
+
+### getThread
+
+```yag
+{{ $thread := getThread <thread> }}
+```
+
+Returns the full thread object for the given thread. Will not work for channels.
+
+### removeThreadMember
+
+```yag
+{{ removeThreadMember <thread> <member> }}
+```
+
+Removes the given member from the given thread.
+
+## Database
+
+These functions help you interact with the [custom command database](/learn/intermediate/database).
+
+### dbBottomEntries
+
+```yag
+{{ $entries := dbBottomEntries <pattern> <amount> <nSkip> }}
+```
+
+Returns up to `amount` entries from the database, sorted in ascending order by the numeric value, then by entry ID.
+
+- `amount`: the maximum number of entries to return, capped at 100.
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `nSkip`: the number of entries to skip before returning results.
+
+### dbCount
+
+```yag
+{{ $count := dbCount <userID|pattern|query> }}
+```
+
+Returns the count of all matching database entries that are not expired.
+
+The argument must be one of the following:
+- `userID`: count entries for the given user ID.
+- `pattern`: count only entries with keys matching the given pattern.
+- `query`: an sdict with the following (all optional) keys:
+  - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
+  - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
+
+### dbDelByID
+
+```yag
+{{ dbDelByID <userID> <ID> }}
+```
+
+Deletes a database entry under the given `userID` by its `ID`.
+
+### dbDelMultiple
+
+```yag
+{{ $numDeleted := dbDelMultiple <query> <amount> <nSkip> }}
+```
+
+Deletes up to `amount` entries from the database matching the given criteria. Returns the number of deleted entries.
+
+- `query`: an sdict with the following (all optional) keys:
+  - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
+  - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
+  - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
+- `amount`: the maximum number of entries to delete, capped at 100.
+- `nSkip`: the number of entries to skip before deleting.
+
+### dbDel
+
+```yag
+{{ dbDel <userID> <key> }}
+```
+
+Deletes the specified entry from the database.
+
+### dbGetPatternReverse
+
+```yag
+{{ $entries := dbGetPatternReverse <userID> <pattern> <amount> <nSkip> }}
+```
+
+Retrieves up to `amount` entries from the database in descending order as a slice.
+
+- `userID`: the user ID to retrieve entries for.
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `amount`: the maximum number of entries to return, capped at 100.
+- `nSkip`: the number of entries to skip before returning results.
+
+See [dbGetPattern](#dbgetpattern) for a function that retrieves entries in ascending order.
+
+### dbGetPattern
+
+```yag
+{{ $entries := dbGetPattern <userID> <pattern> <amount> <nSkip> }}
+```
+
+Returns up to `amount` entries from the database in ascending order as a slice.
+
+- `userID`: the user ID to retrieve entries for.
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `amount`: the maximum number of entries to return, capped at 100.
+- `nSkip`: the number of entries to skip before returning results.
+
+See [dbGetPatternReverse](#dbgetpatternreverse) for a function that retrieves entries in descending order.
+
+### dbGet
+
+```yag
+{{ $entry := dbGet <userID> <key> }}
+```
+
+Returns the specified database entry.
+
+### dbIncr
+
+```yag
+{{ $newValue := dbIncr <userID> <key> <incrBy> }}
+```
+
+Increments the value of the specified database entry by `incrBy`. Returns the new value as a floating-point number.
+
+- `incrBy`: the amount to increment the value by. Must be a valid number.
+
+### dbRank
+
+```yag
+{{ $rank := dbRank <query> <userID> <key> }}
+```
+
+Returns the rank of the specified entry in the set of entries as defined by `query`.
+
+- `query`: an sdict with the following (all optional) keys:
+  - `userID`: only include entries with the given user ID.
+  - `pattern`: only include entries with keys matching the given pattern.
+  - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
+
+### dbSetExpire
+
+```yag
+{{ dbSetExpire <userID> <key> <value> <ttl> }}
+```
+
+Same as [dbSet](#dbset) but with an additional expiration `ttl` in seconds.
+
+### dbSet
+
+```yag
+{{ dbSet <userID> <key> <value> }}
+```
+
+Sets the value for the specified `key` and `userID` to `value`.
+
+- `value`: an arbitrary value to set.
+
+### dbTopEntries
+
+```yag
+{{ $entries := dbTopEntries <pattern> <amount> <nSkip> }}
+```
+
+Returns up to `amount` entries from the database, sorted in descending order by the numeric value, then by entry ID.
+
+- `pattern`: the PostgreSQL pattern to match entries against.
+- `amount`: the maximum number of entries to return, capped at 100.
+- `nSkip`: the number of entries to skip before returning results.
+
+{{< callout context="caution" title="Caution: Storing Numerical Values" icon="outline/alert-triangle" >}}
+
+Numerical values are stored as floating-point numbers in the database; large numbers such as user IDs will lose
+precision. To avoid this, convert them to a string before writing to the database.
+
+Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write<br>
+`{{ $dict.Get (toInt64 N)}}` to retrieve the value associated with the numerical key `N`.
+
+{{< /callout >}}
+
+## Executing Custom Commands
+
+These functions enable you to execute a custom command within an already running custom command.
+
+{{< callout context="note" title="" icon="outline/info-circle" >}}
+
+ee
+
+{{< /callout >}}
+
+### cancelScheduledUniqueCC
+
+```yag
+{{ cancelScheduledUniqueCC <ccID> <key> }}
+```
+
+Cancels a previously scheduled custom command execution using [scheduleUniqueCC](#scheduleuniquecc).
+
+### execCC
+
+```yag
+{{ execCC <ccID> <channel> <delay> <data> }}
+```
+
+Executes another custom command specified by `ccID`.
+
+- `ccID`: the ID of the custom command to execute.
+- `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
+- `delay`: the delay in seconds before executing the custom command.
+- `data`: some arbitrary data to pass to the executed custom command.
+
+#### Example
+
+The following example showcases a custom command executing itself.
+
+```yag
+{{ if .ExecData }}
+  {{ sendMessage nil (print "Executing custom command... Got data: " .ExecData) }}
+  {{ return }}
+{{ end }}
+
+{{ sendMessage nil "Starting up..." }}
+{{ execCC .CCID nil 5 "Hello, world!" }}
+```
+
+### scheduleUniqueCC
+
+```yag
+{{ scheduleUniqueCC <ccID> <channel> <delay> <key> <data> }}
+```
+
+Schedules a custom command execution to occur in the future, identified by `key`.
+
+- `ccID`: the ID of the custom command to execute.
+- `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
+- `delay`: the delay in seconds before executing the custom command.
+- `key`: a unique key to identify the scheduled custom command.
+- `data`: some arbitrary data to pass to the executed custom command.
+
+To cancel such a scheduled custom command before it runs, use [cancelScheduledUniqueCC](#cancelscheduleduniquecc).
+
+## Interactions
 
 {{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
@@ -116,7 +398,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 {{< /callout >}}
 
-#### Interaction Responses
+### Interaction Responses
 
 - Only one interaction response may be sent to each interaction.
 - If you do not send an interaction response, members will see "This application did not respond" on Discord.
@@ -126,77 +408,27 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 - A CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
 - A response is not the same thing as a followup.
 
-| **Function**                       | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sendModal` modal                  | Responds to an interaction by showing the member a modal. `modal` must be an `sdict` with the following keys: `title`, `custom_id`, and `fields`. The `fields` argument should be a slice of sdicts with the following keys: `label`, `placeholder`, `value` (default value if they don't enter anything), `required`, `style` (1 for short, 2 for long), `min_length`, and `max_length`, however only the `label` argument is required for each field. You cannot send a modal in response to a user submitting another modal. Example in section's [Snippets](#interactions-sections-snippets). |
-| `updateMessage` newMessage         | Edits the message on which the button, select menu, or modal was triggered on.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `updateMessageNoEscape` newMessage | Edits the message triggered on and has same logic in escaping characters as `sendMessageNoEscape`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-
-#### Interaction Followups
-
-- Interaction followups may be sent up to 15 minutes after an interaction.
-- To send a followup, you must have the interaction token of the interaction you are following up.
-- You can send as many followups as you'd like.
-- Text output directly to the response is automatically sent as an interaction followup if the interaction has
-  already been responded to.
-- A followup is not the same thing as a response.
-
-| **Function**                                                        | **Description**                                                                                                                                                                                                                                                                                                                   |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `editResponse` interactionToken messageID newMessageContent         | Edits one of the bot's responses to an interaction. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets). |
-| `editResponseNoEscape` interactionToken messageID newMessageContent | Edits the response and has same logic in escaping characters as `sendMessageNoEscape`.                                                                                                                                                                                                                                            |
-
-#### Interaction Response/Followup Hybrids
-
-- Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise they will send the equivalent followup function.
-
-| **Function**                                         | **Description**                                                                                                                                                                                                                                                                                |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sendResponse` interactionToken message              | Sends a message (string, embed, or complexMessage) in response to an interaction. Supports the `ephemeral` flag in `complexMessage`. `interactionToken` must be a valid token or `nil` to target the triggering interaction. Example in section's [Snippets](#interactions-sections-snippets). |
-| `sendResponseNoEscape` interactionToken message      | Sends a message as a response, and doesn't escape mentions (e.g. role mentions, reply mentions or @here/@everyone).                                                                                                                                                                            |
-| `sendResponseNoEscapeRetID` interactionToken message | Same as `sendResponseNoEscape`, but also returns messageID to assigned variable for later use.                                                                                                                                                                                                 |
-| `sendResponseRetID` interactionToken message         | Same as `sendResponse`, but also returns messageID to assigned variable for later use. Example in section's [Snippets](#interactions-sections-snippets).                                                                                                                                       |
-
-#### Interaction Miscellaneous
-
-| **Function**                             | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `cbutton` "list of button values"        | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#button-object) A Link style button must have a URL and cannot have a Custom ID. All other styles must have a Custom ID and cannot have a URL. All buttons must have either a label or an emoji. Example in section's [Snippets](#interactions-sections-snippets).                                                               |
-| `cmenu` "list of select menu values"     | Functions similarly to `cembed`. [Available values](https://discord.com/developers/docs/interactions/message-components#select-menu-object) Type should be provided as a string, either `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus must have `options`, all other types cannot. Example in section's [Snippets](#interactions-sections-snippets).                                                                   |
-| `ephemeralResponse`                      | Send the response text ephemerally. Only works when triggered by an interaction. Works on responses and followups.                                                                                                                                                                                                                                                                                                                                      |
-| `getResponse` interactionToken messageID | Can be used to get the bot's responses or followup messages, including ephemeral messages. Returns a [Message](/docs/reference/templates/syntax-and-data#message) object. `interactionToken` must be a valid token or `nil` to target the triggering interaction. `messageID` must be a valid message ID of a followup message, or `nil` to target the original interaction response. Example in section's [Snippets](#interactions-sections-snippets). |
-
-#### Interactions section's snippets
-
-- To demonstrate creating buttons and menus
+### sendModal
 
 ```yag
-{{ $funButton := cbutton
-  "label" "My Custom Button"
-  "custom_id" "duck-button"
-  "style" "success" }}
-{{ $badButton := cbutton
-  "label" "My Useless Button"
-  "style" "secondary"
-  "disabled" true }}
-{{ $emojiButton := cbutton
-  "emoji" ( sdict "name" "🦆" )
-  "style" "link"
-  "url" "https://yagpdb.xyz" }}
-{{ $menu := cmenu
-  "type" "text"
-  "placeholder" "Choose a terrible thing"
-  "custom_id" "duck-menus-my_first_menu"
-  "options" (cslice
-    (sdict "label" "Ducks" "value" "opt-1" "default" true)
-    (sdict "label" "Duck" "value" "opt-2" "emoji" (sdict "name" "🦆"))
-    (sdict "label" "Half a Duck" "value" "opt-3" "description" "Don't let the smaller amount fool you."))
-  "max_values" 3 }}
-{{ $message := complexMessage "buttons" (cslice $funButton $badButton $emojiButton) "menus" $menu }}
-{{ sendMessage nil $message }}
+{{ sendModal <modal> }}
 ```
 
-- To demonstrate responding with a modal (this must be triggered by a component or modal submission)
+Sends a modal to the member who triggered the interaction.
+
+- `modal`: an sdict with the following keys:
+  - `title`: the title of the modal.
+  - `custom_id`: a unique identifier for the modal.
+  - `fields`: a slice of sdicts with the following keys:
+    - `label`: the label for the field.
+    - `placeholder`: the placeholder text for the field.
+    - `value`: the default value for the field.
+    - `required`: whether the field is required.
+    - `style`: the style of the field (1 for short, 2 for long).
+    - `min_length`: the minimum length of the field.
+    - `max_length`: the maximum length of the field.
+
+#### Example
 
 ```yag
 {{ $modal := sdict
@@ -205,23 +437,23 @@ about using interactions, [see here](/docs/reference/custom-interactions).
   "fields" (cslice
     (sdict "label" "Name" "placeholder" "Duck" "required" true)
     (sdict "label" "Do you like ducks?" "value" "Heck no")
-    (sdict "label" "Duck hate essay" "min_length" 100)) }}
+    (sdict "label" "Duck hate essay" "min_length" 100 "style")) }}
 {{ sendModal $modal }}
 ```
 
-- To demonstrate sending, getting, and editing responses (this must be triggered by a component or modal submission)
+### updateMessage
 
 ```yag
-{{ $interactionToken := .Interaction.Token }}
-{{ sendResponse nil "Here's the first message!" }}
-{{ $followupID := sendResponseRetID $interactionToken (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
-{{ sleep 2 }}
-{{ editResponse $interactionToken $followupID (print "I've edited this message to say " noun) }}
-{{ $editedResponse := getResponse $interactionToken $followupID }}
-{{ editResponse $interactionToken nil $editedResponse.Content }}
+{{ updateMessage <newMessage> }}
 ```
 
-- To demonstrate updating the triggering message (this must be triggered by a component or modal submission)
+Edits the message on which the button, select menu, or modal was triggered on.
+
+- `newMessage`: the new message content. May be a string, an embed, or a complex message.
+
+#### Example
+
+The following example must be triggered by a component or modal submission.
 
 ```yag
 {{ $button := cbutton "label" "I won!" "custom_id" "i_won" }}
@@ -231,90 +463,502 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 {{ updateMessage $message }}
 ```
 
-### Math
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+### updateMessageNoEscape
 
-Boolean logic (and, not, or) and comparison operators (eq, gt, lt, etc.) are covered in [conditional
-branching](/docs/reference/templates/syntax-and-data#if-conditional-branching).
+```yag
+{{ updateMessageNoEscape <newMessage> }}
+```
 
-{{< /callout >}}
+Same as [updateMessage](#updatemessage), plus it does not escape mentions.
 
-| **Function**                    | **Description**                                                                                                                                                                                                                                                                                                                                                        |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add` x y z ...                 | Returns x + y + z + ..., detects first number's type - is it _int_ or _float_ and based on that adds. (use `toFloat` on the first argument to force floating point math.)`{{add 5 4 3 2 -1}}` sums all these numbers and returns `13`.                                                                                                                                 |
-| `bitwiseAnd` x y                | The output of bitwise AND is 1 if the corresponding bits of two operands is 1. If either bit of an operand is 0, the result of corresponding bit is evaluated to 0. Example: `{{bitwiseAnd 12 25}}` returns `8`, that in binary 00001100 AND 00011001 is 00001000.                                                                                                     |
-| `bitwiseAndNot` x y             | This function is called bit clear because of AND NOT. For example in the expression z = x AND NOT y, each bit of z is 0 if the corresponding bit of y is 1; otherwise it equals to the corresponding bit of x. `{{bitwiseAndNot 7 12}}` returns `3`, that is 0111 AND NOT 1100 is 11.                                                                                  |
-| `bitwiseNot` x                  | The bitwise NOT operator inverts the bits of the argument. Example: `{{bitwiseNot 7}}` returns `-8`. that in binary 0111 to 1000                                                                                                                                                                                                                                       |
-| `bitwiseOr` x y z...            | The output of bitwise OR is 1 if at least one corresponding bit of two operands is 1. Example: `{{bitwiseOr 12 25}}` returns `29`, that in binary 00001100 OR 00011001 is 00011101.                                                                                                                                                                                    |
-| `bitwiseXor` x y                | The result of bitwise XOR operator is 1 if the corresponding bits of two operands are opposite. Example: `{{bitwiseXor 12 25}}` returns `21`, that in binary 00001100 OR 00011001 is 00010101.                                                                                                                                                                         |
-| `bitwiseLeftShift` x y          | Left shift operator shifts all bits towards left by a certain number of specified bits. The bit positions that have been vacated by the left shift operator are filled with 0. Example: `{{range seq 0 3}} {{bitwiseLeftShift 212 .}} {{end}}` returns `212 424 848`                                                                                                   |
-| `bitwiseRightShift` x y         | Right shift operator shifts all bits towards right by certain number of specified bits. Example: `{{range seq 0 3}} {{bitwiseRightShift 212 .}} {{end}}` returns `212 106 53`.                                                                                                                                                                                         |
-| `cbrt` x                        | Returns the cube root of given argument in type _float64_ e.g. `{{cbrt 64}}` returns `4`.                                                                                                                                                                                                                                                                              |
-| `div` x y z ...                 | Division, like `add` or `mult`, detects first number's type first. `{{div 11 3}}` returns `3` whereas `{{div 11.1 3}}` returns `3.6999999999999997`                                                                                                                                                                                                                    |
-| `fdiv` x y z ...                | Meant specifically for floating point numbers division.                                                                                                                                                                                                                                                                                                                |
-| `log` x (base)                  | Log is a logarithm function using (log base of x). Arguments can be any type of numbers, as long as they follow logarithm logic. Return value is of type _float64_. If base argument is not given It is using natural logarithm (base e - The Euler's constant) as default.`{{ log "123" 2 }}` will return `6.94251450533924`.                                         |
-| `mathConst` "arg"               | Function returns all constants available in go's math package as _float64_. `"arg"` has to be a case-insensitive _string_ from [math constants list](https://pkg.go.dev/math@go1.18.2#pkg-constants). For example `{{mathConst "sqrtphi"}}` would return `1.272019649514069`.                                                                                          |
-| `max` x y                       | Returns the larger of x or y as type _float64_.                                                                                                                                                                                                                                                                                                                        |
-| `min` x y                       | Returns the smaller of x or y as type _float64_.                                                                                                                                                                                                                                                                                                                       |
-| `mod` x y                       | Mod returns the floating-point remainder of the division of x by y. For example, `mod 17 3` returns `2` as type _float64_.<br><br>Note that like Go's `[math.Mod](https://pkg.go.dev/math#Mod)` function, `mod` takes the sign of `x`, so `mod -5 3` results in `-2`, not `1`. To ensure a non-negative result, use `mod` twice, like such: `mod (add (mod x y) y) y`. |
-| `mult` x y z ...                | Multiplication, like `add` or `div`, detects first number's type. `{{mult 3.14 2}}` returns `6.28`                                                                                                                                                                                                                                                                     |
-| `pow` x y                       | Pow returns x\*\*y, the base-x exponential of y which have to be both numbers. Type is returned as _float64_. `{{ pow 2 3 }}` returns `8`.                                                                                                                                                                                                                             |
-| `randInt` (stop, or start stop) | Returns a random integer between 0 and stop, or start - stop if two args are provided.Result will be `start &#x3C;= random number &#x3C; stop`. Without arguments, range is 0..10. Example in section's [Snippets](#math-sections-snippets).                                                                                                                           |
-| `round` x                       | Returns the nearest integer, rounding half away from zero. Regular rounding > 10.4 is `10` and 10.5 is `11`. All round functions return type _float64_, so use conversion functions to get integers. For more complex rounding, example in section's [Snippets](#math-sections-snippets).                                                                              |
-| `roundCeil` x                   | Returns the least integer value greater than or equal to input or rounds up. `{{roundCeil 1.1}}` returns `2`.                                                                                                                                                                                                                                                          |
-| `roundEven` x                   | Returns the nearest integer, rounding ties to even.<br>`{{roundEven 10.5}}` returns `10 {{roundEven 11.5}}` returns `12`.                                                                                                                                                                                                                                              |
-| `roundFloor` x                  | Returns the greatest integer value less than or equal to input or rounds down. `{{roundFloor 1.9}}` returns `1`.                                                                                                                                                                                                                                                       |
-| `sqrt` x                        | Returns the square root of a number as type _float64_.<br>`{{sqrt 49}}` returns `7, {{sqrt 12.34 \|printf "%.4f"}} returns 3.5128`                                                                                                                                                                                                                                     |
-| `sub` x y z ...                 | Returns x - y -z - ... Works like add, just subtracts.                                                                                                                                                                                                                                                                                                                 |
+### Interaction Followups
 
-#### Math section's snippets
+- Interaction followups may be sent up to 15 minutes after an interaction.
+- To send a followup, you must have the interaction token of the interaction you are following up.
+- You can send as many followups as you'd like.
+- Text output directly to the response is automatically sent as an interaction followup if the interaction has
+  already been responded to.
+- A followup is not the same thing as a response.
 
-- `{{$d := randInt 10}}` Stores random _int_ into variable `$d` (a random number from 0-9).
-- To demonstrate rounding float to 2 decimal places.\
-  `{{div (round (mult 12.3456 100)) 100}}` returns 12.35\
-  `{{div (roundFloor (mult  12.3456 100)) 100}}` returns 12.34
+### editResponse
 
-### Member
+```yag
+{{ editResponse <interactionToken> <messageID> <newContent> }}
+```
 
-| **Function**                                | **Description**                                                                                                                                                                        |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `getTargetPermissionsIn` memberID channelID | Returns target’s permissions in the given channel.                                                                                                                                     |
-| `editNickname` "newNick"                    | Edits triggering user's nickname, argument has to be of type _string_. YAGPDB's highest role has to be above the highest role of the member and bot can't edit owner's nickname.       |
-| `hasPermissions` arg                        | Returns true/false on whether triggering user has the permission bit _int64_ that is also set in .Permissions*.*                                                                       |
-| `getMember` mention/userID                  | Function returns [Member object](/docs/reference/templates/syntax-and-data#member) having above methods. `{{(getMember .User.ID).JoinedAt}}` <br>is the same as `{{.Member.JoinedAt}}` |
-| `onlineCount`                               | Returns the count of online users/members on current server.                                                                                                                           |
-| `targetHasPermissions` memberID arg         | Returns true/false on whether targeted member has the permission bit _int64_.                                                                                                          |
+Edits a response to an interaction.
 
-Permissions are covered on
-[Discord permissions documentation](https://discord.com/developers/docs/topics/permissions#permissions-bitwise-permission-flags). For example to get
-permission bit for "use application commands" `{{bitwiseLeftShift 1 32}}` would return _int64_ `4294967296`.
+- `interactionToken`: the token of the interaction to edit. `nil` for the triggering interaction.
+- `messageID`: the ID of a follow-up message. `nil` for the original interaction response.
+- `newContent`: the new content for the message.
 
-### Mentions
+#### Example
 
-| **Function**                 | **Description**                                                          |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| `mentionEveryone`            | Mentions `@everyone`.                                                    |
-| `mentionHere`                | Mentions `@here`.                                                        |
-| `mentionRoleID` roleID       | Mentions the role found with the provided ID.                            |
-| `mentionRoleName` "rolename" | Mentions the first role found with the provided name (case-insensitive). |
+The following example must be triggered by a component trigger or modal submission.
 
-There is also .Mention method available for channel, role, user structs/objects.
+```yag
+{{ $token := .Interaction.Token }}
 
-#### Mentions section's snippets
+{{ sendResponse nil "Here's the first message!" }}
+{{ $id := sendResponseRetID $token (complexMessage "content" "Here's a sneaky one!" "ephemeral" true) }}
 
-- `<@{{.User.ID}}>` Outputs a mention to the user that called the command and is the same as `{{.User.Mention}}`
-- `<@###########>` Mentions the user that has the ID ###### (See [How to get IDs](/docs/reference/how-to-get-ids) to get ID).
-- `<#&&&&&&&&&&&>` Mentions the channel that has ID &&&&&& (See [How to get IDs](/docs/reference/how-to-get-ids) to get ID).
+{{ sleep 2 }}
 
-* `<@&##########>` Mentions the role with ID ######## ([listroles](/docs/core/all-commands#listroles) command
-  gives roleIDs). This is usable for example with `{{sendMessageNoEscape nil "Welcome to role <@&11111111...>"}}`.
-  Mentioning that role has to be enabled server- side in Discord.
+{{ editResponse $token $id (print "I've edited this message to say " noun) }}
+{{ $editedResponse := getResponse $token $id }}
+{{ editResponse $token nil $editedResponse.Content }}
+```
 
-- `</cmdName:cmdID>` Mentions a slash command, and makes it clickable and interactive with proper arguments e.g.
-  `</howlongtobeat:842397645104087061>`.
+### editResponseNoEscape
 
-### Message
+```yag
+{{ editResponseNoEscape <interactionToken> <messageID> <newContent> }}
+```
+
+Same as [editResponse](#editresponse), plus it does not escape mentions.
+
+### Interaction Response/Followup Hybrids
+
+Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise
+they will send the equivalent followup function. See [editResponse](#editresponse) for an example using
+`sendResponse*` functions.
+
+### sendResponse
+
+```yag
+{{ sendResponse <interactionToken> <message> }}
+```
+
+Sends a message in response to an interaction. Supports the `ephemeral` flag in `complexMessage`.
+
+### sendResponseNoEscape
+
+```yag
+{{ sendResponseNoEscape <interactionToken> <message> }}
+```
+
+Same as [sendResponse](#sendresponse), plus it does not escape mentions.
+
+### sendResponseNoEscapeRetID
+
+```yag
+{{ sendResponseNoEscapeRetID <interactionToken> <message> }}
+```
+
+Same as [sendResponseNoEscape](#sendresponsenoescape), but also returns the message ID.
+
+### sendResponseRetID
+
+```yag
+{{ sendResponseRetID <interactionToken> <message> }}
+```
+
+Same as [sendResponse](#sendresponse), but also returns the message ID.
+
+### Interaction Miscellaneous
+
+### cbutton
+
+```yag
+{{ $button := cbutton "list of button values" }}
+```
+
+Creates a [button object](https://discord.com/developers/docs/interactions/message-components#button-object) for use in
+interactions.
+
+A link style button *must* have a URL and may not have a Custom ID. All other styles *must* have a Custom ID and cannot
+have a URL. All buttons must have either a label or an emoji.
+
+#### Example
+
+```yag
+{{ $button := cbutton "label" "Button" "custom_id" "buttons-duck" }}
+{{ $message := complexMessage "buttons" $button }}
+{{ sendMessage nil $message }}
+```
+
+### cmenu
+
+```yag
+{{ $menu := cmenu "list of select menu values" }}
+```
+
+Creates a [select menu object](https://discord.com/developers/docs/interactions/message-components#select-menu-object)
+for use in interactions.
+
+The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus
+*must* have `options`, while all other types cannot.
+
+#### Example
+
+```yag
+{{ $menu := cmenu
+  "type" "text"
+  "placeholder" "Choose a terrible thing"
+  "custom_id" "menus-duck"
+  "options" (cslice
+    (sdict "label" "Two Ducks" "value" "opt-1" "default" true)
+    (sdict "label" "A Duck" "value" "duck-option" "emoji" (sdict "name" "🦆"))
+    (sdict "label" "Half a Duck" "value" "third-option" "description" "Don't let the smaller amount fool you."))
+  "max_values" 3 }}
+
+{{ sendMessage nil (complexMessage "menus" $menu) }}
+```
+
+### ephemeralResponse
+
+```yag
+{{ ephemeralResponse }}
+```
+
+Tells the bot to send the response text as an ephemeral message. Only works when triggered by an interaction. Works on
+responses and follow-ups.
+
+#### Example
+
+```yag
+{{ ephemeralResponse }}
+
+This text is invisible to others!
+```
+
+### getResponse
+
+```yag
+{{ $response := getResponse <interactionToken> <messageID> }}
+```
+
+Returns the response or follow-up with the specified message ID belonging to the given interaction as a [message
+object](/docs/reference/templates/syntax-and-data#message). Is also valid for ephemeral messages.
+
+## Math
+
+### add
+
+```yag
+{{ $sum := add x y [...] }}
+```
+
+Returns the sum of the provided numbers. Detects the first number's type and performs the operation accordingly.
+
+###  bitwiseAnd
+
+```yag
+{{ $result := bitwiseAnd x y }}
+```
+
+Performs a bitwise AND operation on the two provided numbers and returns the result.
+
+### bitwiseAndNot
+
+```yag
+{{ $result := bitwiseAndNot x y }}
+```
+
+Performs a bitwise AND NOT operation on the two provided numbers and returns the result.
+
+### bitwiseNot
+
+```yag
+{{ $result := bitwiseNot x }}
+```
+
+Performs a bitwise NOT operation on the provided number and returns the result.
+
+### bitwiseOr
+
+```yag
+{{ $result := bitwiseOr x y [...] }}
+```
+
+Performs a bitwise OR operation on the provided numbers and returns the result.
+
+### bitwiseXor
+
+```yag
+{{ $result := bitwiseXor x y }}
+```
+
+Performs a bitwise XOR operation on the two provided numbers and returns the result.
+
+### bitwiseLeftShift
+
+```yag
+{{ $result := bitwiseLeftShift x y }}
+```
+
+Shifts X left by Y bits and returns the result.
+
+### bitwiseRightShift
+
+```yag
+{{ $result := bitwiseRightShift x y }}
+```
+
+Shifts X right by Y bits and returns the result.
+
+### cbrt
+
+```yag
+{{ $result := cbrt x }}
+```
+
+Returns the cube root of the provided number.
+
+### div
+
+```yag
+{{ $result := div x y [...] }}
+```
+
+Performs division on the provided numbers. Detects the first number's type and performs the operation accordingly.
+If you need a floating-point number as a result of integer division, use [fdiv](#fdiv).
+
+### fdiv
+
+```yag
+{{ $result := fdiv x y [...] }}
+```
+
+Special case of [div](#div); always returns a floating-point number as result.
+
+### log
+
+```yag
+{{ $result := log x [base] }}
+```
+
+Returns the logarithm of X with the given base. If no base is provided, the natural logarithm is used.
+
+### mathConst
+
+```yag
+{{ $result := mathConst "constant" }}
+```
+
+Returns the value of the specified math constant. See the [math constants list](https://pkg.go.dev/math#pkg-constants).
+
+### max
+
+```yag
+{{ $result := max x y }}
+```
+
+Returns the larger of the two provided numbers.
+
+### min
+
+```yag
+{{ $result := min x y }}
+```
+
+Returns the smaller of the two provided numbers.
+
+### mod
+
+```yag
+{{ $result := mod x y }}
+```
+
+Returns the floating-point remainder of the division of X by Y.
+
+Takes the sign of X, so `mod -5 3` results in `-2`, not `1`. To ensure a non-negative result, use `mod` twice:
+`{{ mod (add (mod x y) y) y }}`.
+
+### mult
+
+```yag
+{{ $result := mult x y [...] }}
+```
+
+Performs multiplication on the provided numbers. Detects the first number's type and returns the result accordingly.
+
+### pow
+
+```yag
+{{ $result := pow x y }}
+```
+
+Returns X raised to the power of Y as a floating-point number.
+
+### randInt
+
+```yag
+{{ $result := randInt [start] stop }}
+```
+
+Returns a random integer in the right-closed interval of `[0, stop)` or `[start, stop)` if two arguments are provided.
+That is, the result is always greater than or equal to `start` and strictly less than `stop`.
+
+### round
+
+```yag
+{{ $result := round x }}
+```
+
+Returns the nearest integer to X as float. Normal rounding rules apply.
+
+### roundCeil
+
+```yag
+{{ $result := roundCeil x }}
+```
+
+Returns the smallest integer greater than or equal to X. Put simply, always round up.
+
+### roundEven
+
+```yag
+{{ $result := roundEven x }}
+```
+
+Returns the nearest integer to X, rounding ties (x.5) to the nearest even integer.
+
+### roundFloor
+
+```yag
+{{ $result := roundFloor x }}
+```
+
+Returns the largest integer less than or equal to X. Put simply, always round down.
+
+### sqrt
+
+```yag
+{{ $result := sqrt x }}
+```
+
+Returns the square root of X as a floating-point number.
+
+### sub
+
+```yag
+{{ $result := sub x y [...] }}
+```
+
+Subtracts the provided numbers from each other. Detects the first number's type and returns the result accordingly.
+
+## Member
+
+### editNickname
+
+```yag
+{{ editNickname "newNick" }}
+```
+
+Edits the nickname of the member who triggered the command. The bot must have the `MANAGE_NICKNAMES` permission and be
+higher in the role hierarchy than the member. The bot cannot change the nickname of the server owner.
+
+### getMember
+
+```yag
+{{ $member := getMember <mention|userID> }}
+```
+
+Returns the [member object](/docs/reference/templates/syntax-and-data#member) for the given mention or user ID.
+
+### getTargetPermissionsIn
+
+```yag
+{{ $perms := getTargetPermissionsIn <memberID> <channelID> }}
+```
+
+Returns the permissions of the specified member in the given channel as a [permissions bitfield][perms].
+
+[perms]: https://discord.com/developers/docs/topics/permissions#permissions
+
+#### Example
+
+To calculate the permission in a channel other than the current channel, for which we could just use the
+[hasPermissions](#haspermissions) or [targetHasPermissions](#targethaspermissions) function, we will have to use bitwise
+operations:
+
+```yag
+{{ $perms := getTargetPermissionsIn .User.ID $someChannel }}
+{{ $mask := bitwiseAnd .Permissions.ManageRoles $perms }}
+{{ if eq $mask .Permissions.ManageRoles }}
+  You have the permissions to manage roles!
+{{ else }}
+  You do not have the permissions to manage roles!
+{{ end }}
+```
+
+### hasPermissions
+
+```yag
+{{ $hasPerms := hasPermissions <permission> }}
+```
+
+Returns whether the member who triggered the command has the specified permission bit.
+See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) for more information.
+
+#### Example
+
+```yag
+{{ if hasPermissions .Permissions.Administrator }}
+  You have the Administrator permission!
+{{ else }}
+  You do not have the Administrator permission.
+{{ end }}
+```
+
+### onlineCount
+
+```yag
+{{ $count := onlineCount }}
+```
+
+Returns the count of online members on the current server, including bots.
+
+### targetHasPermissions
+
+```yag
+{{ $hasPerms := targetHasPermissions <memberID> <permission> }}
+```
+
+Returns whether the specified member has the specified permission bit.
+
+## Mentions
+
+Certain mentions are escaped by default, such that they don't ping. These functions help you actually *pinging* these
+special mentions.
+
+### mentionEveryone
+
+```yag
+{{ mentionEveryone }}
+```
+
+Mentions `@everyone` without escaping it.
+
+### mentionHere
+
+```yag
+{{ mentionHere }}
+```
+
+Mentions `@here` without escaping it.
+
+### mentionRoleID
+
+```yag
+{{ mentionRoleID <roleID> }}
+```
+
+Mentions the given role without escaping it.
+
+### mentionRoleName
+
+```yag
+{{ mentionRoleName <roleName> }}
+```
+
+Mentions the role with the given name without escaping it. Searches for first case-insensitive match.
+
+Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
+
+## Message
 
 | **Function**                                                                                                         | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -341,7 +985,7 @@ There is also .Mention method available for channel, role, user structs/objects.
 | `sendMessageRetID` channel message                                                                                   | Same as `sendMessage`, but also returns messageID to assigned variable for later use. Example in section's [Snippets](#message-sections-snippets).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `unpinMessage` channel messageID                                                                                     | Unpins the message by its ID in given channel. `channel` can be either its ID, name or nil for triggering channel. Can be called 5 times.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-#### Message section's snippets
+### Message section's snippets
 
 - Sends message to current channel `nil` and gets messageID to variable `$x`. Also adds reactions to this message. After
   5 seconds, deletes that message. >
@@ -361,7 +1005,7 @@ something nice - you all are doing awesome!" "filename" currentTime.Weekday)}}`
 "color" 0x89aa00) "content" "Yes, it's always working with...")}}{{sleep 3}}{{editMessage nil $mID (complexMessageEdit
 "embed" nil` "content" "Will delete this message in a sec, goodbye YAG!"`)}}{{deleteMessage nil $mID 3}}`
 
-### Miscellaneous
+## Miscellaneous
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
@@ -398,7 +1042,7 @@ something nice - you all are doing awesome!" "filename" currentTime.Weekday)}}`
 | `sort` slice (...args)                            | Sorts a slice of same type values with optional arguments. These arguments are presented in an `sdict` as keys: `"reverse"` true/false and `"key"` with dictionary/map's key name as value. Example > `{{sort (cslice (sdict "name" "bob") (sdict "name" "alice") (sdict "name" "yagpdb")) (sdict "key" "name" "reverse" true)}}` would return `[map[name:yagpdb] map[name:bob] map[name:alice]]`. Sorting mixed types is not supported. Previous sorting options `"subslices"` and `"emptyslices"` have been removed.<br>Sort function is limited to 1/3 CC calls regular/premium.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `verb`                                            | Returns a random verb.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-### Role functions
+## Role functions
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
@@ -424,7 +1068,7 @@ In all role functions where userID is required as argument to target a user, it 
 | `targetHasRoleID` userID roleID          | Returns true if the given/targeted user has the role with the specified ID (use the listroles command for a list of roles). Example in section's Snippets.                                                                       |
 | `targetHasRoleName` userID "roleName"    | Returns true if the given/targeted user has the role with the specified name (case-insensitive).                                                                                                                                 |
 
-### String manipulation
+## String manipulation
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
@@ -467,7 +1111,7 @@ You can use backquotes/ticks to simplify this:`{{reFind "\\d+" (toString 42)}}` 
 
 {{< /callout >}}
 
-#### String manipulation section's snippets
+### String manipulation section's snippets
 
 - `{{$args:= (joinStr " " (slice .CmdArgs 1))}}` Saves all the arguments except the first one to a variable `$args`.&#x20;
 - To demonstrate usage of `split` function. >\
@@ -476,7 +1120,7 @@ You can use backquotes/ticks to simplify this:`{{reFind "\\d+" (toString 42)}}` 
   `Before regex: {{$msg := "1 YAGPDB and over 100000 servers conquered."}} {{$re2 := reFindAll "[0-9]+" $msg}} {{$msg}}` \
   `After regex matches: {{println "Only" (index $re2 0) "YAGPDB and already" (index $re2 1) "servers captured."}}`
 
-### Time
+## Time
 
 | **Function**                                           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -504,7 +1148,7 @@ function e.g.
 
 {{< /callout >}}
 
-#### Time section's snippets
+### Time section's snippets
 
 - To demonstrate `humanizeDurationHours` and also how to parse a timestamp, output will be like `whois` command shows
   user's _join server age_.\
@@ -513,7 +1157,7 @@ function e.g.
   `{{$unixEpoch := newDate 1970 1 1 0 0 0}} in seconds > {{$unixEpoch.Unix}}`\
   `{{$discordEpoch := newDate 2015 1 1 0 0 0}} in seconds > {{$discordEpoch.Unix}}`
 
-### Type conversion
+## Type conversion
 
 | Function               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -528,7 +1172,7 @@ function e.g.
 | `toRune` "arg"         | Function converts input to a slice of runes - meaning _[]int32_. `{{toRune "YAG€"}}` would output `[89 65 71 8364]`. These two functions - the one above, are good for further analysis of Unicode strings. `toString` is capable of converting that slice back to _string_.                                                                                                                                                                                                                                                                       |
 | `toString`             | Has alias `str`. Converts some other types into a _string_. Usage: `(toString x)`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-#### Type conversion section's snippets
+### Type conversion section's snippets
 
 - To demonstrate `toDuration`, outputs 12 hours from current time in UTC.\
   `{{(currentTime.Add (toDuration (mult 12 .TimeHour))).Format "15:04"}}`is the same as`{{(currentTime.Add (toDuration "12h")).Format "15:04"}}` or`{{(currentTime.Add (toDuration 43200000000000)).Format "15:04"}}`
@@ -542,7 +1186,7 @@ in the next section, further documentation can be found in [Go formatting docume
 
 {{< /callout >}}
 
-### User
+## User
 
 | **Function**                    | **Description**                                                                                                                                                                                                                                                       |
 | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -553,7 +1197,7 @@ in the next section, further documentation can be found in [Go formatting docume
 | \~`pastUsernames` userID offset | Returns a _slice_ of type _[ ]\*logs.CCNameChange_ having fields .Name and .Time of previous 15 usernames and skips `offset` number in that list.`{{range pastUsernames .User.ID 0}}` <br>`{{.Name}} - {{.Time.Format "Jan _2 2006"}}` <br>`{{end}}`                  |
 | `userArg` mention/userID        | Function that can be used to retrieve .User object from a mention or userID.`{{(userArg .User.ID).Mention}}` mentions triggering user. Explained more in [this section's snippets](#user-sections-snippets). Previous limit of 5 to this function is no longer there. |
 
-#### User section's snippets
+### User section's snippets
 
 `{{(userArg .Guild.OwnerID).String}}` this template's action-structure returns Guild/Server owner's username and
 discriminator as of type _string_. First, `userArg` function is given `.Guild.OwnerID` as argument (what it does,

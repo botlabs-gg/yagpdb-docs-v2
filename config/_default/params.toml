@@ -76,7 +76,7 @@ mainSections = ["docs"]
   docsRepoBranch = "master" # main (default), master, or <branch name>
   docsRepoSubPath = "" # "" (none, default) or <sub path>
 
-  krokiURL = "http://localhost:8000" # "https://kroki.io" (default) or custom URL (with :port if needed), e.g http://localhost:8000.
+  krokiUrl = "https://kroki.io" # "https://kroki.io" (default) or custom URL
 
 # Debug
 [render_hooks.image]

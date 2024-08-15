@@ -20,7 +20,7 @@ For more information, please view our [Contributing Guidelines](.github/CONTRIBU
 As this project uses the [EditorConfig](https://editorconfig.org/) standard, you will have to make sure that your
 editor supports it. Most modern editors do, but if you are unsure, check the EditorConfig page.
 
-### Authoring content
+### Authoring Content
 
 Pages are written in Markdown with additional shortcodes provided by the Doks theme; refer to [its
 documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.

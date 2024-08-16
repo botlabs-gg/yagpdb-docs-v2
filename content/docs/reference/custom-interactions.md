@@ -35,7 +35,7 @@ An interaction's lifetime starts with the initial _interaction_ with an _interac
    interaction.
 4. _(optional)_ Continue to send followup responses for up to 15 minutes until the interaction token expires.
 
-```kroki {type=mermaid}
+```mermaid
 graph LR;
 A[Button pressed] --> B{CC Triggered}
 C[Menu used] --> B
@@ -421,7 +421,7 @@ A `row` must also be a slice. It either contains 1-5 buttons, _or_ a single sele
 
 Below is an example of a `components` structure.
 
-```kroki {type=mermaid}
+```mermaid
 graph TB
 subgraph Components
 subgraph Row 1

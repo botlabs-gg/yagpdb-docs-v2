@@ -346,7 +346,7 @@ There is also .Mention method available for channel, role, user structs/objects.
 - Sends message to current channel `nil` and gets messageID to variable `$x`. Also adds reactions to this message. After
   5 seconds, deletes that message. >
 
-  `{{$x := sendMessageRetID nil "Hello there!"}} {{addMessageReactions nil $x (cslice "👍" "👎") "`❤️`" }}
+  `{{$x := sendMessageRetID nil "Hello there!"}} {{addMessageReactions nil $x (cslice "👍" "👎") "❤️" }}
 {{deleteMessage nil $x 5}}`
 
 - To demonstrate `sleep` and slightly also `editMessage` functions. >\

@@ -8,6 +8,8 @@ values you can send in your response or use as arguments for other functions.
 
 <!--more-->
 
+----
+
 ## Channel
 
 These functions relate to channels and threads.
@@ -213,6 +215,8 @@ Removes the given member from the given thread.
 
 Unpins the given forum post, which may be specified by its ID or name.
 
+----
+
 ## Database
 
 These functions help you interact with the [custom command database](/learn/intermediate/database).
@@ -376,6 +380,8 @@ Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write
 
 {{< /callout >}}
 
+----
+
 ## Encoding and Decoding
 
 ### decodeBase64
@@ -447,6 +453,8 @@ byte `0xAB`.
 Returns the escaped value of the textual representation of the arguments in a form suitable for embedding in a URL
 query.
 
+----
+
 ## Executing Custom Commands
 
 These functions enable you to execute a custom command within an already running custom command.
@@ -471,6 +479,8 @@ Executes another custom command specified by `ccID`.
 - `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
 - `delay`: the delay in seconds before executing the custom command.
 - `data`: some arbitrary data to pass to the executed custom command.
+
+Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2.
 
 #### Example
 
@@ -501,6 +511,8 @@ Schedules a custom command execution to occur in the future, identified by `key`
 - `data`: some arbitrary data to pass to the executed custom command.
 
 To cancel such a scheduled custom command before it runs, use [cancelScheduledUniqueCC](#cancelscheduleduniquecc).
+
+----
 
 ## Interactions
 
@@ -745,6 +757,8 @@ This text is invisible to others!
 Returns the response or follow-up with the specified message ID belonging to the given interaction as a [message
 object](/docs/reference/templates/syntax-and-data#message). Is also valid for ephemeral messages.
 
+----
+
 ## Math
 
 ### add
@@ -952,6 +966,8 @@ Returns the square root of X as a floating-point number.
 
 Subtracts the provided numbers from each other. Detects the first number's type and returns the result accordingly.
 
+----
+
 ## Member
 
 ### editNickname
@@ -1040,6 +1056,8 @@ Returns the count of online members on the current server, including bots.
 
 Returns whether the specified member has the specified permission bit.
 
+----
+
 ## Mentions
 
 Certain mentions are escaped by default, such that they don't ping. These functions help you actually *pinging* these
@@ -1086,6 +1104,8 @@ Mentions the given role without escaping it.
 Mentions the role with the given name without escaping it. Searches for first case-insensitive match.
 
 Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
+
+----
 
 ## Message
 
@@ -1357,6 +1377,8 @@ Sends a message in the specified channel.
 
 Unpins the specified message.
 
+----
+
 ## Miscellaneous
 
 ### adjective
@@ -1396,7 +1418,7 @@ All keys are optional, but the Discord API will reject completey empty embeds, s
 - `footer`: Shows some details at the very bottom of the embed. Is an sdict with the following keys:
   - `text`: the footer's text
   - `icon_url`: a small icon to display to the left of the footer's text
-  - `timestamp`: a (static) timestamp to display to the right of the footer's text
+- `timestamp`: a (static) timestamp to display to the right of the footer's text
 
 {{< callout context="tip" title="Tip" icon="outline/rocket" >}}
 
@@ -1672,6 +1694,8 @@ Limited to 1 call on regular servers and 3 calls on premium servers.
 
 Returns a random verb.
 
+----
+
 ## Role functions
 
 ### addRole
@@ -1897,6 +1921,8 @@ Reports whether the specified target has the specified role ID.
 Reports whether the specified target has the specified role name (case-insensitive).
 `target` may be a user ID, mention, or user object, but must be a member of the server.
 
+----
+
 ## String manipulation
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
@@ -2070,6 +2096,8 @@ Returns the string with all leading and trailing white space removed.
 
 Converts `string` to all uppercase and returns the result.
 
+----
+
 ## Time
 
 ### currentTime
@@ -2226,6 +2254,8 @@ function e.g.
 {{< /callout >}}
 
 
+----
+
 ## Type conversion
 
 ### structToSdict
@@ -2294,6 +2324,8 @@ Converts the given string to a slice of runes (Unicode code points).
 ```
 
 Converts the input to a string, returning the empty string for invalid inputs.
+
+----
 
 ## User
 

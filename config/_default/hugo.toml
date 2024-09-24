@@ -6,7 +6,7 @@ baseURL = ""
 canonifyURLs = false
 disableAliases = true
 enableGitInfo = false
-enableRobotsTXT = true
+enableRobotsTXT = false
 languageCode = "en-US"
 
 defaultContentLanguage = "en"

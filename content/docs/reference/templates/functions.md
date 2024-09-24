@@ -736,7 +736,7 @@ The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mention
 ### cmodal
 
 ```yag
-{{ $modal := cmodal  }}
+{{ $modal := cmodal "list of modal values" }}
 ```
 
 Creates a [modal object][modals] for use in interactions. See [`sendModal`](#sendmodal) for more detail.

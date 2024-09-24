@@ -553,6 +553,8 @@ Sends a modal to the member who triggered the interaction.
     - `min_length`: the minimum length of the field.
     - `max_length`: the maximum length of the field.
 
+Alternatively, you can create a modal object using the [`cmodal`](#cmodal) function.
+
 #### Example
 
 ```yag
@@ -730,6 +732,16 @@ The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mention
 
 {{ sendMessage nil (complexMessage "menus" $menu) }}
 ```
+
+### cmodal
+
+```yag
+{{ $modal := cmodal  }}
+```
+
+Creates a [modal object][modals] for use in interactions. See [`sendModal`](#sendmodal) for more detail.
+
+[modals]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
 
 ### ephemeralResponse
 

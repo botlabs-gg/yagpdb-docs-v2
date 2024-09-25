@@ -2004,8 +2004,6 @@ Converts the input to an integer, returning zero for invalid inputs.
 
 #### toRune
 
-Aliases: `str`.
-
 ```yag
 {{ $runes := toRune <string> }}
 ```
@@ -2013,6 +2011,9 @@ Aliases: `str`.
 Converts the given string to a slice of runes (Unicode code points).
 
 #### toString
+
+Aliases: `str`.
+
 
 ```yag
 {{ $str := toString <x> }}

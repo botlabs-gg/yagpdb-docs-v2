@@ -2127,7 +2127,7 @@ For this function to work correctly, the ticketing system must be enabled.
 #### cslice
 
 ```yag
-{{ $slice := cslice <values...> }}
+{{ $slice := cslice [values...] }}
 ```
 
 Creates a slice of the provided values.
@@ -2297,6 +2297,16 @@ Please see our [in-depth guide] in the learning resources for a full breakdown o
 of it.
 
 [in-depth guide]: /learn/beginner/inputs-1
+
+#### sdict
+
+```yag
+{{ $map := sdict [values...] }}
+```
+
+Creates a dictionary from the provided key-value pairs. The number of parameters must be even. The keys must be of
+string type.
+
 
 #### sendTemplateDM
 

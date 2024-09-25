@@ -20,7 +20,7 @@ Unless specified otherwise, these functions accept an ID, name, or `nil` for the
 
 {{< /callout >}}
 
-### addThreadMember
+#### addThreadMember
 
 ```yag
 {{ addThreadMember <thread> <member> }}
@@ -28,7 +28,7 @@ Unless specified otherwise, these functions accept an ID, name, or `nil` for the
 
 Adds a member to an existing thread. Does nothing if either argument is invalid.
 
-### closeThread
+#### closeThread
 
 ```yag
 {{ closeThread <thread> <lock> }}
@@ -38,7 +38,7 @@ Closes the given thread.
 
 - `lock`: whether to also lock the thread. Default `false`.
 
-### createForumPost
+#### createForumPost
 
 ```yag
 {{ $post := createForumPost <channel> <name> <content> [values] }}
@@ -54,7 +54,7 @@ Creates a new forum post. Returns a channel object on success.
   - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
 
 
-### createThread
+#### createThread
 
 ```yag
 {{ $thread := createThread <channel> <messageID> <name> [private] [auto_archive_duration] [invitable] }}
@@ -79,7 +79,7 @@ is archived after an hour and allows non-moderators to add others:
 {{ createThread nil nil "new thread" false 60 true }}
 ```
 
-### deleteForumPost
+#### deleteForumPost
 
 ```yag
 {{ deleteForumPost <post> }}
@@ -87,10 +87,10 @@ is archived after an hour and allows non-moderators to add others:
 
 Deletes the given forum post.
 
-This function is functionally the same to [deleteThread](#deletethread).
+This function is functionally the same to [deleteThread](##deletethread).
 Use whichever function is semantically more meaningful in the context of your custom command.
 
-### deleteThread
+#### deleteThread
 
 ```yag
 {{ deleteThread <thread> }}
@@ -98,10 +98,10 @@ Use whichever function is semantically more meaningful in the context of your cu
 
 Deletes the given thread.
 
-This function is functionally the same to [deleteForumPost](#deleteforumpost).
+This function is functionally the same to [deleteForumPost](##deleteforumpost).
 Use whichever function is semantically more meaningful in the context of your custom command.
 
-### editChannelName
+#### editChannelName
 
 ```yag
 {{ editChannelName <channel> <newName> }}
@@ -111,10 +111,10 @@ Edits the name of the given channel.
 
 - `newName`: the new name for the channel. Must be a string.
 
-This function is, together with [editChannelTopic](#editchanneltopic), limited to 10 calls per custom command execution.
+This function is, together with [editChannelTopic](##editchanneltopic), limited to 10 calls per custom command execution.
 In addition to this, Discord limits the number of channel modifications to 2 per 10 minutes.
 
-### editChannelTopic
+#### editChannelTopic
 
 ```yag
 {{ editChannelTopic <channel> <newTopic> }}
@@ -124,10 +124,10 @@ Edits the topic of the given channel.
 
 - `newTopic`: the channel's new topic. Must be a string. Discord markdown is supported.
 
-This function is, together with [editChannelName](#editchannelname), limited to 10 calls per custom command execution.
+This function is, together with [editChannelName](##editchannelname), limited to 10 calls per custom command execution.
 In addition to this, Discord limits the number of channel modifications to 2 per 10 minutes.
 
-### editThread
+#### editThread
 
 ```yag
 {{ editThread <thread> <opts> }}
@@ -141,7 +141,7 @@ Edits the specified thread.
   - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
   - `invitable`: whether non-moderators can add other members to the thread. Defaults to false.
 
-### getChannelOrThread
+#### getChannelOrThread
 
 ```yag
 {{ $channel := getChannelOrThread <channel> }}
@@ -149,7 +149,7 @@ Edits the specified thread.
 
 Returns the full channel or thread object for the given channel.
 
-### getChannelPins
+#### getChannelPins
 
 ```yag
 {{ $pins := getChannelPins <channel> }}
@@ -159,7 +159,7 @@ Returns a slice of message objects pinned to the given channel or thread.
 
 Rate-limited to 2 (premium: 4) calls per custom command execution.
 
-### getChannel
+#### getChannel
 
 ```yag
 {{ $channel := getChannel <channel> }}
@@ -167,7 +167,7 @@ Rate-limited to 2 (premium: 4) calls per custom command execution.
 
 Returns the full channel object for the given channel. Will not work for threads.
 
-### getPinCount
+#### getPinCount
 
 ```yag
 {{ $numPins := getPinCount <channel> }}
@@ -175,7 +175,7 @@ Returns the full channel object for the given channel. Will not work for threads
 
 Returns the number of pinned messages in given channel.
 
-### getThread
+#### getThread
 
 ```yag
 {{ $thread := getThread <thread> }}
@@ -183,7 +183,7 @@ Returns the number of pinned messages in given channel.
 
 Returns the full thread object for the given thread. Will not work for channels.
 
-### openThread
+#### openThread
 
 ```yag
 {{ openThread <thread> }}
@@ -191,7 +191,7 @@ Returns the full thread object for the given thread. Will not work for channels.
 
 Reopens the given thread.
 
-### pinForumPost
+#### pinForumPost
 
 ```yag
 {{ pinForumPost <post> }}
@@ -199,7 +199,7 @@ Reopens the given thread.
 
 Pins the given forum post, which may be specified by its ID or name.
 
-### removeThreadMember
+#### removeThreadMember
 
 ```yag
 {{ removeThreadMember <thread> <member> }}
@@ -207,7 +207,7 @@ Pins the given forum post, which may be specified by its ID or name.
 
 Removes the given member from the given thread.
 
-### unpinForumPost
+#### unpinForumPost
 
 ```yag
 {{ unpinForumPost <post> }}
@@ -221,7 +221,7 @@ Unpins the given forum post, which may be specified by its ID or name.
 
 These functions help you interact with the [custom command database](/learn/intermediate/database).
 
-### dbBottomEntries
+#### dbBottomEntries
 
 ```yag
 {{ $entries := dbBottomEntries <pattern> <amount> <nSkip> }}
@@ -233,7 +233,7 @@ Returns up to `amount` entries from the database, sorted in ascending order by t
 - `pattern`: the PostgreSQL pattern to match entries against.
 - `nSkip`: the number of entries to skip before returning results.
 
-### dbCount
+#### dbCount
 
 ```yag
 {{ $count := dbCount <userID|pattern|query> }}
@@ -248,7 +248,7 @@ The argument must be one of the following:
   - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
   - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
 
-### dbDelByID
+#### dbDelByID
 
 ```yag
 {{ dbDelByID <userID> <ID> }}
@@ -256,7 +256,7 @@ The argument must be one of the following:
 
 Deletes a database entry under the given `userID` by its `ID`.
 
-### dbDelMultiple
+#### dbDelMultiple
 
 ```yag
 {{ $numDeleted := dbDelMultiple <query> <amount> <nSkip> }}
@@ -271,7 +271,7 @@ Deletes up to `amount` entries from the database matching the given criteria. Re
 - `amount`: the maximum number of entries to delete, capped at 100.
 - `nSkip`: the number of entries to skip before deleting.
 
-### dbDel
+#### dbDel
 
 ```yag
 {{ dbDel <userID> <key> }}
@@ -279,7 +279,7 @@ Deletes up to `amount` entries from the database matching the given criteria. Re
 
 Deletes the specified entry from the database.
 
-### dbGetPatternReverse
+#### dbGetPatternReverse
 
 ```yag
 {{ $entries := dbGetPatternReverse <userID> <pattern> <amount> <nSkip> }}
@@ -292,9 +292,9 @@ Retrieves up to `amount` entries from the database in descending order as a slic
 - `amount`: the maximum number of entries to return, capped at 100.
 - `nSkip`: the number of entries to skip before returning results.
 
-See [dbGetPattern](#dbgetpattern) for a function that retrieves entries in ascending order.
+See [dbGetPattern](##dbgetpattern) for a function that retrieves entries in ascending order.
 
-### dbGetPattern
+#### dbGetPattern
 
 ```yag
 {{ $entries := dbGetPattern <userID> <pattern> <amount> <nSkip> }}
@@ -307,9 +307,9 @@ Returns up to `amount` entries from the database in ascending order as a slice.
 - `amount`: the maximum number of entries to return, capped at 100.
 - `nSkip`: the number of entries to skip before returning results.
 
-See [dbGetPatternReverse](#dbgetpatternreverse) for a function that retrieves entries in descending order.
+See [dbGetPatternReverse](##dbgetpatternreverse) for a function that retrieves entries in descending order.
 
-### dbGet
+#### dbGet
 
 ```yag
 {{ $entry := dbGet <userID> <key> }}
@@ -317,7 +317,7 @@ See [dbGetPatternReverse](#dbgetpatternreverse) for a function that retrieves en
 
 Returns the specified database entry.
 
-### dbIncr
+#### dbIncr
 
 ```yag
 {{ $newValue := dbIncr <userID> <key> <incrBy> }}
@@ -327,7 +327,7 @@ Increments the value of the specified database entry by `incrBy`. Returns the ne
 
 - `incrBy`: the amount to increment the value by. Must be a valid number.
 
-### dbRank
+#### dbRank
 
 ```yag
 {{ $rank := dbRank <query> <userID> <key> }}
@@ -340,15 +340,15 @@ Returns the rank of the specified entry in the set of entries as defined by `que
   - `pattern`: only include entries with keys matching the given pattern.
   - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
 
-### dbSetExpire
+#### dbSetExpire
 
 ```yag
 {{ dbSetExpire <userID> <key> <value> <ttl> }}
 ```
 
-Same as [dbSet](#dbset) but with an additional expiration `ttl` in seconds.
+Same as [dbSet](##dbset) but with an additional expiration `ttl` in seconds.
 
-### dbSet
+#### dbSet
 
 ```yag
 {{ dbSet <userID> <key> <value> }}
@@ -358,7 +358,7 @@ Sets the value for the specified `key` and `userID` to `value`.
 
 - `value`: an arbitrary value to set.
 
-### dbTopEntries
+#### dbTopEntries
 
 ```yag
 {{ $entries := dbTopEntries <pattern> <amount> <nSkip> }}
@@ -384,17 +384,17 @@ Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write
 
 ## Encoding and Decoding
 
-### decodeBase64
+#### decodeBase64
 
 ```yag
 {{ $decoded := decodeBase64 <string> }}
 ```
 
-Undoes the transformation performed by [`encodeBase64`](#encodebase64), converting the base64-encoded `string` back to
+Undoes the transformation performed by [`encodeBase64`](##encodebase64), converting the base64-encoded `string` back to
 its original form.
 
 
-### encodeBase64
+#### encodeBase64
 
 ```yag
 {{ $encoded := encodeBase64 <string> }}
@@ -402,7 +402,7 @@ its original form.
 
 Encodes the input `string` to base64.
 
-### hash
+#### hash
 
 ```yag
 {{ $hash := hash <string> }}
@@ -410,7 +410,7 @@ Encodes the input `string` to base64.
 
 Generates the SHA256 hash of the input string.
 
-### json
+#### json
 
 ```yag
 {{ $json := json <value> [indent] }}
@@ -418,7 +418,7 @@ Generates the SHA256 hash of the input string.
 
 Encodes `value` as JSON. If the `indent` flag is `true`, the output is pretty-printed with appropriate indentation.
 
-### jsonToSdict
+#### jsonToSdict
 
 ```yag
 {{ $sdict := jsonToSdict <json> }}
@@ -426,7 +426,7 @@ Encodes `value` as JSON. If the `indent` flag is `true`, the output is pretty-pr
 
 Parses the JSON-encoded data into a string-dictionary, returning an error if the input was invalid JSON.
 
-### urlescape
+#### urlescape
 
 ```yag
 {{ $result := urlescape <string> }}
@@ -435,16 +435,16 @@ Parses the JSON-encoded data into a string-dictionary, returning an error if the
 Escapes the input `string` such that it can be safely placed inside a URL path segment, replacing special characters
 (including `/`) with `%XX` sequences as needed.
 
-### urlunescape
+#### urlunescape
 
 ```yag
 {{ $result := urlunescape <string> }}
 ```
 
-Undos the transformation performed by [`urlescape`](#urlescape), converting encoded substrings of the form `%AB` to the
+Undos the transformation performed by [`urlescape`](##urlescape), converting encoded substrings of the form `%AB` to the
 byte `0xAB`.
 
-### urlquery
+#### urlquery
 
 ```yag
 {{ $result := urlquery <string> }}
@@ -459,15 +459,15 @@ query.
 
 These functions enable you to execute a custom command within an already running custom command.
 
-### cancelScheduledUniqueCC
+#### cancelScheduledUniqueCC
 
 ```yag
 {{ cancelScheduledUniqueCC <ccID> <key> }}
 ```
 
-Cancels a previously scheduled custom command execution using [scheduleUniqueCC](#scheduleuniquecc).
+Cancels a previously scheduled custom command execution using [scheduleUniqueCC](##scheduleuniquecc).
 
-### execCC
+#### execCC
 
 ```yag
 {{ execCC <ccID> <channel> <delay> <data> }}
@@ -482,7 +482,7 @@ Executes another custom command specified by `ccID`.
 
 Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2.
 
-#### Example
+##### Example
 
 The following example showcases a custom command executing itself.
 
@@ -496,7 +496,7 @@ The following example showcases a custom command executing itself.
 {{ execCC .CCID nil 5 "Hello, world!" }}
 ```
 
-### scheduleUniqueCC
+#### scheduleUniqueCC
 
 ```yag
 {{ scheduleUniqueCC <ccID> <channel> <delay> <key> <data> }}
@@ -510,7 +510,7 @@ Schedules a custom command execution to occur in the future, identified by `key`
 - `key`: a unique key to identify the scheduled custom command.
 - `data`: some arbitrary data to pass to the executed custom command.
 
-To cancel such a scheduled custom command before it runs, use [cancelScheduledUniqueCC](#cancelscheduleduniquecc).
+To cancel such a scheduled custom command before it runs, use [cancelScheduledUniqueCC](##cancelscheduleduniquecc).
 
 ----
 
@@ -523,7 +523,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 {{< /callout >}}
 
-### Interaction Responses
+#### Interaction Responses
 
 - Only one interaction response may be sent to each interaction.
 - If you do not send an interaction response, members will see "This application did not respond" on Discord.
@@ -533,7 +533,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 - A CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction.
 - A response is not the same thing as a followup.
 
-### sendModal
+#### sendModal
 
 ```yag
 {{ sendModal <modal> }}
@@ -553,9 +553,9 @@ Sends a modal to the member who triggered the interaction.
     - `min_length`: the minimum length of the field.
     - `max_length`: the maximum length of the field.
 
-Alternatively, you can create a modal object using the [`cmodal`](#cmodal) function.
+Alternatively, you can create a modal object using the [`cmodal`](##cmodal) function.
 
-#### Example
+##### Example
 
 ```yag
 {{ $modal := sdict
@@ -568,7 +568,7 @@ Alternatively, you can create a modal object using the [`cmodal`](#cmodal) funct
 {{ sendModal $modal }}
 ```
 
-### updateMessage
+#### updateMessage
 
 ```yag
 {{ updateMessage <newMessage> }}
@@ -578,7 +578,7 @@ Edits the message on which the button, select menu, or modal was triggered on.
 
 - `newMessage`: the new message content. May be a string, an embed, or a complex message.
 
-#### Example
+##### Example
 
 The following example must be triggered by a component or modal submission.
 
@@ -591,15 +591,15 @@ The following example must be triggered by a component or modal submission.
 ```
 
 
-### updateMessageNoEscape
+#### updateMessageNoEscape
 
 ```yag
 {{ updateMessageNoEscape <newMessage> }}
 ```
 
-Same as [updateMessage](#updatemessage), plus it does not escape mentions.
+Same as [updateMessage](##updatemessage), plus it does not escape mentions.
 
-### Interaction Followups
+#### Interaction Followups
 
 - Interaction followups may be sent up to 15 minutes after an interaction.
 - To send a followup, you must have the interaction token of the interaction you are following up.
@@ -608,7 +608,7 @@ Same as [updateMessage](#updatemessage), plus it does not escape mentions.
   already been responded to.
 - A followup is not the same thing as a response.
 
-### editResponse
+#### editResponse
 
 ```yag
 {{ editResponse <interactionToken> <messageID> <newContent> }}
@@ -620,7 +620,7 @@ Edits a response to an interaction.
 - `messageID`: the ID of a follow-up message. `nil` for the original interaction response.
 - `newContent`: the new content for the message.
 
-#### Example
+##### Example
 
 The following example must be triggered by a component trigger or modal submission.
 
@@ -637,21 +637,21 @@ The following example must be triggered by a component trigger or modal submissi
 {{ editResponse $token nil $editedResponse.Content }}
 ```
 
-### editResponseNoEscape
+#### editResponseNoEscape
 
 ```yag
 {{ editResponseNoEscape <interactionToken> <messageID> <newContent> }}
 ```
 
-Same as [editResponse](#editresponse), plus it does not escape mentions.
+Same as [editResponse](##editresponse), plus it does not escape mentions.
 
-### Interaction Response/Followup Hybrids
+#### Interaction Response/Followup Hybrids
 
 Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise
-they will send the equivalent followup function. See [editResponse](#editresponse) for an example using
+they will send the equivalent followup function. See [editResponse](##editresponse) for an example using
 `sendResponse*` functions.
 
-### sendResponse
+#### sendResponse
 
 ```yag
 {{ sendResponse <interactionToken> <message> }}
@@ -659,45 +659,45 @@ they will send the equivalent followup function. See [editResponse](#editrespons
 
 Sends a message in response to an interaction. Supports the `ephemeral` flag in `complexMessage`.
 
-### sendResponseNoEscape
+#### sendResponseNoEscape
 
 ```yag
 {{ sendResponseNoEscape <interactionToken> <message> }}
 ```
 
-Same as [sendResponse](#sendresponse), plus it does not escape mentions.
+Same as [sendResponse](##sendresponse), plus it does not escape mentions.
 
-### sendResponseNoEscapeRetID
+#### sendResponseNoEscapeRetID
 
 ```yag
 {{ sendResponseNoEscapeRetID <interactionToken> <message> }}
 ```
 
-Same as [sendResponseNoEscape](#sendresponsenoescape), but also returns the message ID.
+Same as [sendResponseNoEscape](##sendresponsenoescape), but also returns the message ID.
 
-### sendResponseRetID
+#### sendResponseRetID
 
 ```yag
 {{ sendResponseRetID <interactionToken> <message> }}
 ```
 
-Same as [sendResponse](#sendresponse), but also returns the message ID.
+Same as [sendResponse](##sendresponse), but also returns the message ID.
 
-### Interaction Miscellaneous
+#### Interaction Miscellaneous
 
-### cbutton
+#### cbutton
 
 ```yag
 {{ $button := cbutton "list of button values" }}
 ```
 
-Creates a [button object](https://discord.com/developers/docs/interactions/message-components#button-object) for use in
+Creates a [button object](https://discord.com/developers/docs/interactions/message-components##button-object) for use in
 interactions.
 
 A link style button *must* have a URL and may not have a Custom ID. All other styles *must* have a Custom ID and cannot
 have a URL. All buttons must have either a label or an emoji.
 
-#### Example
+##### Example
 
 ```yag
 {{ $button := cbutton "label" "Button" "custom_id" "buttons-duck" }}
@@ -705,19 +705,19 @@ have a URL. All buttons must have either a label or an emoji.
 {{ sendMessage nil $message }}
 ```
 
-### cmenu
+#### cmenu
 
 ```yag
 {{ $menu := cmenu "list of select menu values" }}
 ```
 
-Creates a [select menu object](https://discord.com/developers/docs/interactions/message-components#select-menu-object)
+Creates a [select menu object](https://discord.com/developers/docs/interactions/message-components##select-menu-object)
 for use in interactions.
 
 The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus
 *must* have `options`, while all other types cannot.
 
-#### Example
+##### Example
 
 ```yag
 {{ $menu := cmenu
@@ -733,17 +733,17 @@ The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mention
 {{ sendMessage nil (complexMessage "menus" $menu) }}
 ```
 
-### cmodal
+#### cmodal
 
 ```yag
 {{ $modal := cmodal "list of modal values" }}
 ```
 
-Creates a [modal object][modals] for use in interactions. See [`sendModal`](#sendmodal) for more detail.
+Creates a [modal object][modals] for use in interactions. See [`sendModal`](##sendmodal) for more detail.
 
-[modals]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
+[modals]: https://discord.com/developers/docs/interactions/receiving-and-responding##interaction-response-object-modal
 
-### ephemeralResponse
+#### ephemeralResponse
 
 ```yag
 {{ ephemeralResponse }}
@@ -752,7 +752,7 @@ Creates a [modal object][modals] for use in interactions. See [`sendModal`](#sen
 Tells the bot to send the response text as an ephemeral message. Only works when triggered by an interaction. Works on
 responses and follow-ups.
 
-#### Example
+##### Example
 
 ```yag
 {{ ephemeralResponse }}
@@ -760,20 +760,20 @@ responses and follow-ups.
 This text is invisible to others!
 ```
 
-### getResponse
+#### getResponse
 
 ```yag
 {{ $response := getResponse <interactionToken> <messageID> }}
 ```
 
 Returns the response or follow-up with the specified message ID belonging to the given interaction as a [message
-object](/docs/reference/templates/syntax-and-data#message). Is also valid for ephemeral messages.
+object](/docs/reference/templates/syntax-and-data##message). Is also valid for ephemeral messages.
 
 ----
 
 ## Math
 
-### add
+#### add
 
 ```yag
 {{ $sum := add x y [...] }}
@@ -781,7 +781,7 @@ object](/docs/reference/templates/syntax-and-data#message). Is also valid for ep
 
 Returns the sum of the provided numbers. Detects the first number's type and performs the operation accordingly.
 
-### bitwiseAnd
+#### bitwiseAnd
 
 ```yag
 {{ $result := bitwiseAnd x y }}
@@ -789,7 +789,7 @@ Returns the sum of the provided numbers. Detects the first number's type and per
 
 Performs a bitwise AND operation on the two provided numbers and returns the result.
 
-### bitwiseAndNot
+#### bitwiseAndNot
 
 ```yag
 {{ $result := bitwiseAndNot x y }}
@@ -797,7 +797,7 @@ Performs a bitwise AND operation on the two provided numbers and returns the res
 
 Performs a bitwise AND NOT operation on the two provided numbers and returns the result.
 
-### bitwiseNot
+#### bitwiseNot
 
 ```yag
 {{ $result := bitwiseNot x }}
@@ -805,7 +805,7 @@ Performs a bitwise AND NOT operation on the two provided numbers and returns the
 
 Performs a bitwise NOT operation on the provided number and returns the result.
 
-### bitwiseOr
+#### bitwiseOr
 
 ```yag
 {{ $result := bitwiseOr x y [...] }}
@@ -813,7 +813,7 @@ Performs a bitwise NOT operation on the provided number and returns the result.
 
 Performs a bitwise OR operation on the provided numbers and returns the result.
 
-### bitwiseXor
+#### bitwiseXor
 
 ```yag
 {{ $result := bitwiseXor x y }}
@@ -821,7 +821,7 @@ Performs a bitwise OR operation on the provided numbers and returns the result.
 
 Performs a bitwise XOR operation on the two provided numbers and returns the result.
 
-### bitwiseLeftShift
+#### bitwiseLeftShift
 
 ```yag
 {{ $result := bitwiseLeftShift x y }}
@@ -829,7 +829,7 @@ Performs a bitwise XOR operation on the two provided numbers and returns the res
 
 Shifts X left by Y bits and returns the result.
 
-### bitwiseRightShift
+#### bitwiseRightShift
 
 ```yag
 {{ $result := bitwiseRightShift x y }}
@@ -837,7 +837,7 @@ Shifts X left by Y bits and returns the result.
 
 Shifts X right by Y bits and returns the result.
 
-### cbrt
+#### cbrt
 
 ```yag
 {{ $result := cbrt x }}
@@ -845,24 +845,24 @@ Shifts X right by Y bits and returns the result.
 
 Returns the cube root of the provided number.
 
-### div
+#### div
 
 ```yag
 {{ $result := div x y [...] }}
 ```
 
 Performs division on the provided numbers. Detects the first number's type and performs the operation accordingly.
-If you need a floating-point number as a result of integer division, use [fdiv](#fdiv).
+If you need a floating-point number as a result of integer division, use [fdiv](##fdiv).
 
-### fdiv
+#### fdiv
 
 ```yag
 {{ $result := fdiv x y [...] }}
 ```
 
-Special case of [div](#div); always returns a floating-point number as result.
+Special case of [div](##div); always returns a floating-point number as result.
 
-### log
+#### log
 
 ```yag
 {{ $result := log x [base] }}
@@ -870,15 +870,15 @@ Special case of [div](#div); always returns a floating-point number as result.
 
 Returns the logarithm of X with the given base. If no base is provided, the natural logarithm is used.
 
-### mathConst
+#### mathConst
 
 ```yag
 {{ $result := mathConst "constant" }}
 ```
 
-Returns the value of the specified math constant. See the [math constants list](https://pkg.go.dev/math#pkg-constants).
+Returns the value of the specified math constant. See the [math constants list](https://pkg.go.dev/math##pkg-constants).
 
-### max
+#### max
 
 ```yag
 {{ $result := max x y }}
@@ -886,7 +886,7 @@ Returns the value of the specified math constant. See the [math constants list](
 
 Returns the larger of the two provided numbers.
 
-### min
+#### min
 
 ```yag
 {{ $result := min x y }}
@@ -894,7 +894,7 @@ Returns the larger of the two provided numbers.
 
 Returns the smaller of the two provided numbers.
 
-### mod
+#### mod
 
 ```yag
 {{ $result := mod x y }}
@@ -905,7 +905,7 @@ Returns the floating-point remainder of the division of X by Y.
 Takes the sign of X, so `mod -5 3` results in `-2`, not `1`. To ensure a non-negative result, use `mod` twice:
 `{{ mod (add (mod x y) y) y }}`.
 
-### mult
+#### mult
 
 ```yag
 {{ $result := mult x y [...] }}
@@ -913,7 +913,7 @@ Takes the sign of X, so `mod -5 3` results in `-2`, not `1`. To ensure a non-neg
 
 Performs multiplication on the provided numbers. Detects the first number's type and returns the result accordingly.
 
-### pow
+#### pow
 
 ```yag
 {{ $result := pow x y }}
@@ -921,7 +921,7 @@ Performs multiplication on the provided numbers. Detects the first number's type
 
 Returns X raised to the power of Y as a floating-point number.
 
-### randInt
+#### randInt
 
 ```yag
 {{ $result := randInt [start] stop }}
@@ -930,7 +930,7 @@ Returns X raised to the power of Y as a floating-point number.
 Returns a random integer in the right-closed interval of `[0, stop)` or `[start, stop)` if two arguments are provided.
 That is, the result is always greater than or equal to `start` and strictly less than `stop`.
 
-### round
+#### round
 
 ```yag
 {{ $result := round x }}
@@ -938,7 +938,7 @@ That is, the result is always greater than or equal to `start` and strictly less
 
 Returns the nearest integer to X as float. Normal rounding rules apply.
 
-### roundCeil
+#### roundCeil
 
 ```yag
 {{ $result := roundCeil x }}
@@ -946,7 +946,7 @@ Returns the nearest integer to X as float. Normal rounding rules apply.
 
 Returns the smallest integer greater than or equal to X. Put simply, always round up.
 
-### roundEven
+#### roundEven
 
 ```yag
 {{ $result := roundEven x }}
@@ -954,7 +954,7 @@ Returns the smallest integer greater than or equal to X. Put simply, always roun
 
 Returns the nearest integer to X, rounding ties (x.5) to the nearest even integer.
 
-### roundFloor
+#### roundFloor
 
 ```yag
 {{ $result := roundFloor x }}
@@ -962,7 +962,7 @@ Returns the nearest integer to X, rounding ties (x.5) to the nearest even intege
 
 Returns the largest integer less than or equal to X. Put simply, always round down.
 
-### sqrt
+#### sqrt
 
 ```yag
 {{ $result := sqrt x }}
@@ -970,7 +970,7 @@ Returns the largest integer less than or equal to X. Put simply, always round do
 
 Returns the square root of X as a floating-point number.
 
-### sub
+#### sub
 
 ```yag
 {{ $result := sub x y [...] }}
@@ -982,7 +982,7 @@ Subtracts the provided numbers from each other. Detects the first number's type 
 
 ## Member
 
-### editNickname
+#### editNickname
 
 ```yag
 {{ editNickname "newNick" }}
@@ -991,15 +991,15 @@ Subtracts the provided numbers from each other. Detects the first number's type 
 Edits the nickname of the member who triggered the command. The bot must have the `MANAGE_NICKNAMES` permission and be
 higher in the role hierarchy than the member. The bot cannot change the nickname of the server owner.
 
-### getMember
+#### getMember
 
 ```yag
 {{ $member := getMember <mention|userID> }}
 ```
 
-Returns the [member object](/docs/reference/templates/syntax-and-data#member) for the given mention or user ID.
+Returns the [member object](/docs/reference/templates/syntax-and-data##member) for the given mention or user ID.
 
-### getMemberVoiceState
+#### getMemberVoiceState
 
 ```yag
 {{$state := getMemberVoiceState <member> }}
@@ -1007,7 +1007,7 @@ Returns the [member object](/docs/reference/templates/syntax-and-data#member) fo
 
 Returns the voice state for the member specified by ID or mention, or `nil` if the member is not in a voice channel.
 
-### getTargetPermissionsIn
+#### getTargetPermissionsIn
 
 ```yag
 {{ $perms := getTargetPermissionsIn <memberID> <channelID> }}
@@ -1015,12 +1015,12 @@ Returns the voice state for the member specified by ID or mention, or `nil` if t
 
 Returns the permissions of the specified member in the given channel as a [permissions bitfield][perms].
 
-[perms]: https://discord.com/developers/docs/topics/permissions#permissions
+[perms]: https://discord.com/developers/docs/topics/permissions##permissions
 
-#### Example
+##### Example
 
 To calculate the permission in a channel other than the current channel, for which we could just use the
-[hasPermissions](#haspermissions) or [targetHasPermissions](#targethaspermissions) function, we will have to use bitwise
+[hasPermissions](##haspermissions) or [targetHasPermissions](#targethaspermissions) function, we will have to use bitwise
 operations:
 
 ```yag
@@ -1033,16 +1033,16 @@ operations:
 {{ end }}
 ```
 
-### hasPermissions
+#### hasPermissions
 
 ```yag
 {{ $hasPerms := hasPermissions <permission> }}
 ```
 
 Returns whether the member who triggered the command has the specified permission bit.
-See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) for more information.
+See [`.Permissions`](/docs/reference/templates/syntax-and-data/##context-data) for more information.
 
-#### Example
+##### Example
 
 ```yag
 {{ if hasPermissions .Permissions.Administrator }}
@@ -1052,7 +1052,7 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 {{ end }}
 ```
 
-### onlineCount
+#### onlineCount
 
 ```yag
 {{ $count := onlineCount }}
@@ -1060,7 +1060,7 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 
 Returns the count of online members on the current server, including bots.
 
-### targetHasPermissions
+#### targetHasPermissions
 
 ```yag
 {{ $hasPerms := targetHasPermissions <memberID> <permission> }}
@@ -1075,7 +1075,7 @@ Returns whether the specified member has the specified permission bit.
 Certain mentions are escaped by default, such that they don't ping. These functions help you actually *pinging* these
 special mentions.
 
-### mentionEveryone
+#### mentionEveryone
 
 ```yag
 {{ mentionEveryone }}
@@ -1083,7 +1083,7 @@ special mentions.
 
 Mentions `@everyone` without escaping it.
 
-### mentionHere
+#### mentionHere
 
 ```yag
 {{ mentionHere }}
@@ -1091,7 +1091,7 @@ Mentions `@everyone` without escaping it.
 
 Mentions `@here` without escaping it.
 
-### mentionRole
+#### mentionRole
 
 ```yag
 {{ mentionRole <role> }}
@@ -1099,7 +1099,7 @@ Mentions `@here` without escaping it.
 
 Mentions `role`, which may be specified by ID, mention, name, or role object, without escaping it.
 
-### mentionRoleID
+#### mentionRoleID
 
 ```yag
 {{ mentionRoleID <roleID> }}
@@ -1107,7 +1107,7 @@ Mentions `role`, which may be specified by ID, mention, name, or role object, wi
 
 Mentions the given role without escaping it.
 
-### mentionRoleName
+#### mentionRoleName
 
 ```yag
 {{ mentionRoleName <roleName> }}
@@ -1115,13 +1115,13 @@ Mentions the given role without escaping it.
 
 Mentions the role with the given name without escaping it. Searches for first case-insensitive match.
 
-Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
+Prefer [mentionRoleID](##mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
 
 ----
 
 ## Message
 
-### addMessageReactions
+#### addMessageReactions
 
 ```yag
 {{ addMessageReactions <channel> <messageID> <emojis...> }}
@@ -1134,13 +1134,13 @@ Adds reactions to a message with the given ID.
 Default emojis are best used in the Unicode format for these purposes. Custom emojis follow a specific format in these
 functions. Please see the example below.
 
-#### Example
+##### Example
 
 ```yag
 {{ addMessageReactions nil .Message.ID "👍" "👎" "yagpdb:505114640032858114" }}
 ```
 
-### addReactions
+#### addReactions
 
 ```yag
 {{ addReactions <emojis...> }}
@@ -1150,7 +1150,7 @@ Adds reactions to the message that triggered the command.
 
 - `emojis...`: a list of emojis to add as reactions. May also be a slice of emojis.
 
-### addResponseReactions
+#### addResponseReactions
 
 ```yag
 {{ addResponseReactions <emojis...> }}
@@ -1160,16 +1160,16 @@ Adds reactions to the response message.
 
 - `emojis...`: a list of emojis to add as reactions. May also be a slice of emojis.
 
-Note that a message sent via [sendMessage](#sendmessage) is not the response---use
-[addMessageReactions](#addmessagereactions) for that.
+Note that a message sent via [sendMessage](##sendmessage) is not the response---use
+[addMessageReactions](##addmessagereactions) for that.
 
-### complexMessageEdit
+#### complexMessageEdit
 
 ```yag
 {{ $message := complexMessageEdit [allowed_mentions] [content] [embed] [silent] }}
 ```
 
-Creates a complex message object for use in [editMessage](#editmessage) or [editMessageNoEscape](#editmessagenoescape).
+Creates a complex message object for use in [editMessage](##editmessage) or [editMessageNoEscape](#editmessagenoescape).
 
 - `allowed_mentions`: an sdict with the following keys:
   - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
@@ -1180,16 +1180,16 @@ Creates a complex message object for use in [editMessage](#editmessage) or [edit
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `silent`: whether to suppress push and desktop notifications.
 
-All of these keys are optional, but providing none of them will have no effect. See [complexMessage](#complexmessage)
+All of these keys are optional, but providing none of them will have no effect. See [complexMessage](##complexmessage)
 for an example.
 
-### complexMessage
+#### complexMessage
 
 ```yag
 {{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] }}
 ```
 
-Creates a complex message object for use in [sendMessage](#sendmessage) functions.
+Creates a complex message object for use in [sendMessage](##sendmessage) functions.
 
 - `allowed_mentions`: an sdict with the following keys:
   - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
@@ -1205,7 +1205,7 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 
-#### Example
+##### Example
 
 The following example will output a message with an embed, some content, and a file attachment. It will also reply to
 the triggering message and ping the author of that message, but suppress the resulting notification.
@@ -1229,7 +1229,7 @@ the triggering message and ping the author of that message, but suppress the res
 {{ sendMessage nil $message }}
 ```
 
-### deleteAllMessageReactions
+#### deleteAllMessageReactions
 
 ```yag
 {{ deleteAllMessageReactions <channel> <messageID> [emojis...] }}
@@ -1239,7 +1239,7 @@ Deletes all reactions from a message, optionally constrained to specific emojis.
 
 - `emojis`: the emojis to delete. May also be a slice. Not providing this argument will delete any and all reactions.
 
-### deleteMessageReaction
+#### deleteMessageReaction
 
 ```yag
 {{ deleteMessageReaction <channel> <messageID> <userID> <emojis...> }}
@@ -1250,7 +1250,7 @@ Deletes a specific user's reaction from a message.
 - `userID`: the ID of the user whose reaction to delete.
 - `emojis...`: the emojis to delete. May also be a slice.
 
-### deleteMessage
+#### deleteMessage
 
 ```yag
 {{ deleteMessage <channel> <messageID> [delay] }}
@@ -1260,7 +1260,7 @@ Deletes the specified message.
 
 - `delay`: an optional delay in seconds to delete the message after. Defaults to 10 seconds. Max 86400 seconds (1 day).
 
-### deleteResponse
+#### deleteResponse
 
 ```yag
 {{ deleteResponse [delay] }}
@@ -1270,7 +1270,7 @@ Deletes the response message.
 
 - `delay`: an optional delay in seconds to delete after. Defaults to 10 seconds. Max 86400 seconds (1 day).
 
-### deleteTrigger
+#### deleteTrigger
 
 ```yag
 {{ deleteTrigger [delay] }}
@@ -1280,7 +1280,7 @@ Deletes the triggering message.
 
 - `delay`: an optional delay in seconds to delete after. Defaults to 10 seconds. Max 86400 seconds (1 day).
 
-### editMessageNoEscape
+#### editMessageNoEscape
 
 ```yag
 {{ editMessageNoEscape <channel> <messageID> <newMessageContent> }}
@@ -1289,9 +1289,9 @@ Deletes the triggering message.
 Edits the given message without escaping mentions.
 
 - `newMessageContent`: the new content for the message. May also be the result from
-  [complexMessageEdit](#complexmessageedit).
+  [complexMessageEdit](##complexmessageedit).
 
-### editMessage
+#### editMessage
 
 ```yag
 {{ editMessage <channel> <messageID> <newMessageContent> }}
@@ -1300,18 +1300,18 @@ Edits the given message without escaping mentions.
 Edits the given message with escaping mentions.
 
 - `newMessageContent`: the new content for the message. May also be the result from
-  [complexMessageEdit](#complexmessageedit).
+  [complexMessageEdit](##complexmessageedit).
 
-### getMessage
+#### getMessage
 
 ```yag
 {{ $message := getMessage <channel> <messageID> }}
 ```
 
-Returns the [message object](/docs/reference/templates/syntax-and-data#message) for the given message ID in the
+Returns the [message object](/docs/reference/templates/syntax-and-data##message) for the given message ID in the
 specified channel.
 
-### pinMessage
+#### pinMessage
 
 ```yag
 {{ pinMessage <channel> <messageID> }}
@@ -1319,7 +1319,7 @@ specified channel.
 
 Pins the specified message.
 
-### publishMessage
+#### publishMessage
 
 ```yag
 {{ publishMessage <channel> <messageID> }}
@@ -1327,7 +1327,7 @@ Pins the specified message.
 
 Publishes the specified message.
 
-### publishResponse
+#### publishResponse
 
 ```yag
 {{ publishResponse }}
@@ -1337,7 +1337,7 @@ Publishes the response message.
 
 For this to work, the custom command must be running in such an announcement channel.
 
-### sendDM
+#### sendDM
 
 ```yag
 {{ sendDM <message> }}
@@ -1345,33 +1345,33 @@ For this to work, the custom command must be running in such an announcement cha
 
 Sends a direct message to the triggering user.
 
-- `message`: the message to send. May also be the result from a [complexMessage](#complexmessage) call.
+- `message`: the message to send. May also be the result from a [complexMessage](##complexmessage) call.
 
-### sendMessageNoEscapeRetID
+#### sendMessageNoEscapeRetID
 
 ```yag
 {{ $messageID := sendMessageNoEscapeRetID <channel> <message> }}
 ```
 
-Same as [sendMessageNoEscape](#sendmessagenoescape), but also returns the message ID.
+Same as [sendMessageNoEscape](##sendmessagenoescape), but also returns the message ID.
 
-### sendMessageNoEscape
+#### sendMessageNoEscape
 
 ```yag
 {{ sendMessageNoEscape <channel> <message> }}
 ```
 
-Same as [sendMessage](#sendmessage), but does not escape mentions.
+Same as [sendMessage](##sendmessage), but does not escape mentions.
 
-### sendMessageRetID
+#### sendMessageRetID
 
 ```yag
 {{ $messageID := sendMessageRetID <channel> <message> }}
 ```
 
-Same as [sendMessage](#sendmessage), but also returns the message ID.
+Same as [sendMessage](##sendmessage), but also returns the message ID.
 
-### sendMessage
+#### sendMessage
 
 ```yag
 {{ sendMessage <channel> <message> }}
@@ -1379,9 +1379,9 @@ Same as [sendMessage](#sendmessage), but also returns the message ID.
 
 Sends a message in the specified channel.
 
-- `message`: the message to send. May also be the result from a [complexMessage](#complexmessage) call.
+- `message`: the message to send. May also be the result from a [complexMessage](##complexmessage) call.
 
-### unpinMessage
+#### unpinMessage
 
 ```yag
 {{ unpinMessage <channel> <messageID> }}
@@ -1391,9 +1391,676 @@ Unpins the specified message.
 
 ----
 
+## Role functions
+
+#### addRole
+
+```yag
+{{ $role := addRole <role> [delay] }}
+```
+
+Adds the specified role to the triggering member.
+
+- `role`: a role ID, mention, name, or role object.
+- `delay`: an optional delay in seconds.
+
+#### addRoleID
+
+```yag
+{{ addRoleID <roleID> [delay] }}
+```
+
+Adds the specified role ID to the triggering member.
+
+- `delay`: an optional delay in seconds.
+
+#### addRoleName
+
+```yag
+{{ addRoleName <roleName> [delay] }}
+```
+
+Adds the first case-insensitive matching role name to the triggering member.
+
+- `delay`: an optional delay in seconds.
+
+
+#### getRole
+
+```yag
+{{ $role := getRole <role> }}
+```
+
+Returns a [role object](https://discord.com/developers/docs/topics/permissions##role-object).
+`role` may either be an ID or a name to match against (ignoring case).
+
+#### getRoleID
+
+```yag
+{{ $role := getRoleID <roleID> }}
+```
+
+Returns a [role object](https://discord.com/developers/docs/topics/permissions##role-object) by its ID.
+
+#### getRoleName
+
+```yag
+{{ $role := getRoleName <roleName> }}
+```
+
+Returns a [role object](https://discord.com/developers/docs/topics/permissions##role-object) by its name
+(case-insensitive).
+
+#### giveRole
+
+```yag
+{{ giveRole <member> <role> [delay] }}
+```
+
+Gives the specified role to the target member.
+
+- `role`: a role ID, mention, name, or role object.
+- `delay`: an optional delay in seconds.
+
+#### giveRoleID
+
+```yag
+{{ giveRoleID <member> <roleID> [delay] ]}}
+```
+
+Gives the role specified by its ID to the target member.
+
+- `member`: the member to target. Either an ID, mention, or user object, but must be part of the server.
+- `delay`: an optional delay in seconds.
+
+#### giveRoleName
+
+```yag
+{{ giveRoleName <member> <roleName> [delay] }}
+```
+
+Gives the first case-insensitive matching role name to the target member.
+
+- `delay`: an optional delay in seconds.
+
+#### hasRole
+
+```yag
+{{ $result := hasRole <role> }}
+```
+
+Reports whether the triggering member has the specified role.
+
+- `role`: a role ID, mention, name, or role object.
+
+#### hasRoleID
+
+```yag
+{{ $result := hasRoleID <roleID> }}
+```
+
+Reports whether the triggering member has the specified role ID.
+
+#### hasRoleName
+
+```yag
+{{ $result := hasRoleName <roleName> }}
+```
+
+Reports whether the triggering member has the specified role name (case-insensitive).
+
+#### removeRole
+
+```yag
+{{ removeRole <role> [delay] }}
+```
+
+Removes the specified role from the triggering member.
+
+- `role`: a role ID, mention, name, or role object.
+- `delay`: an optional delay in seconds.
+
+#### removeRoleID
+
+```yag
+{{ removeRoleID <roleID> [delay] }}
+```
+
+Removes the role with the specified ID from the triggering member with an optional delay in seconds.
+
+#### removeRoleName
+
+```yag
+{{ removeRoleName <roleName> [delay] }}
+```
+
+Removes the first case-insensitive matching role name from the triggering member with an optional delay in seconds.
+
+#### roleAbove
+
+```yag
+{{ $result := roleAbove <role1> <role2> }}
+```
+
+Reports whether `role1` is above `role2` in the role hierarchy. Both arguments must be a
+[role object](https://discord.com/developers/docs/topics/permissions##role-object).
+
+#### setRoles
+
+```yag
+{{ setRoles <target> <newRoles> }}
+```
+
+Sets the roles of the specified user to the provided list of role IDs. The roles are overwritten, so any existing roles
+are removed if not included in the new list. `newRoles` must be a slice. `target` may be a user ID, mention, or user
+object, but must be a member of the server.
+
+#### takeRole
+
+```yag
+{{ takeRole <target> <role> [delay] }}
+```
+
+Removes the specified role from the target member.
+
+- `target`: a user ID, mention, or user object. The target must be part of the server.
+- `role`: a role ID, mention, name or role object.
+- `delay`: an optional delay in seconds.
+
+#### takeRoleID
+
+```yag
+{{ takeRoleID <target> <roleID> [delay] }}
+```
+
+Removes the specified role from `target`. `target` may be a user ID, mention, or user object, but must be a member of
+the server.
+
+- `delay`: an optional delay in seconds.
+
+
+#### takeRoleName
+
+```yag
+{{ takeRoleName <target> <roleName> [delay] }}
+```
+
+Removes the first case-insensitive matching role name from `target` with an optional delay in seconds.
+`target` may be a user ID, mention, or user object, but must be a member of the server.
+
+#### targetHasRole
+
+```yag
+{{ $result := targetHasRole <target> <role> }}
+```
+
+Reports whether the target member has the specified role.
+
+- `role`: a role ID, mention, name or role object.
+
+#### targetHasRoleID
+
+```yag
+{{ $result := targetHasRoleID <target> <roleID> }}
+```
+
+Reports whether the specified target has the specified role ID.
+`target` may be a user ID, mention, or user object, but must be a member of the server.
+
+#### targetHasRoleName
+
+```yag
+{{ $result := targetHasRoleName <target> <roleName> }}
+```
+
+Reports whether the specified target has the specified role name (case-insensitive).
+`target` may be a user ID, mention, or user object, but must be a member of the server.
+
+----
+
+## String manipulation
+
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+
+All regexp functions are limited to 10 different pattern calls per CC.
+
+{{< /callout >}}
+
+#### hasPrefix
+
+```yag
+{{ $result := hasPrefix <string> <prefix> }}
+```
+
+Reports whether the given `string` begins with `prefix`.
+
+#### hasSuffix
+
+```yag
+{{ $result := hasSuffix <string> <suffix> }}
+```
+
+Reports whether the given `string` ends with `suffix`.
+
+#### joinStr
+
+```yag
+{{ $result := joinStr <separator> <args...> }}
+```
+
+Concatenates `args...` in order, inserting the given `separator` between consecutive arguments and returns the result.
+As a special case, slices of strings are formatted as if each element was provided separately, so
+
+```yag
+{{ joinStr " " (cslice "cat" "dog") }}
+```
+
+yields `cat dog`.
+
+See also [printf](##printf) if you just want to concatenate arguments without a separator.
+
+#### lower
+
+```yag
+{{ $result := lower <string> }}
+```
+
+Converts `string` to all lowercase and returns the result.
+
+#### print
+
+```yag
+{{ $result := print <args...> }}
+```
+
+Concatenates the arguments in order, adding spaces between arguments when neither is a string.
+
+#### println
+
+```yag
+{{ $result := println <args...> }}
+```
+
+Concatenates the arguments in order, adding spaces between arguments when neither is a string and inserting a newline at
+the end.
+
+#### printf
+
+```yag
+{{ $result := <format> <args...> }}
+```
+
+Interpolates `args...` according to `format`. See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).
+
+#### reFind
+
+```yag
+{{ $result := reFind <regex> <text> }}
+```
+
+Returns the first match of the regular expression `regex` in `text`, or the empty string if the pattern did not match
+anywhere.
+
+#### reFindAll
+
+```yag
+{{ $result := reFindAll <regex> <text> [count] }}
+```
+
+Returns a slice of successive matches of `regex` in `text`. If `count` is provided, the number of matches is limited to
+that amount; otherwise, all matches are returned.
+
+#### reFindAllSubmatches
+
+```yag
+{{ $result := reFindAllSubmatches <regex> <text> [count] }}
+```
+
+Returns a slice of successive submatches of `regex` in `text`. Each submatch is itself a slice containing the match of
+the entire expression, followed by any matches of capturing groups. If `count` is provided, the number of submatches is
+limited to that amount; otherwise, all submatches are returned.
+
+#### reQuoteMeta
+
+```yag
+{{ $result := reQuoteMeta <string> }}
+```
+
+Escapes all regular expression metacharacters in the input `string`; the result is a regular expression matching the
+literal input string.
+
+#### reReplace
+
+```yag
+{{ $result := reReplace <regex> <text> <replacement> }}
+```
+
+Replaces all matches of `regex` in `text` with `replacement`.
+
+#### reSplit
+
+```yag
+{{ $result := reSplit <regex> <text> [count] }}
+```
+
+Splits the `text` around each match of `regex`, returning a slice of delimited substrings.
+
+if the `count` parameter is specified, it limits the number of substrings to return:
+
+- `count > 0`: at most `count` substrings; the last substring will be the unsplit remainder;
+- `count == 0`: the result is `nil` (zero substrings);
+- `count < 0`: all substrings.
+
+#### sanitizeText
+
+```yag
+{{ $result := sanitizeText <string> }}
+```
+
+Replaces accented and confusable characters in `string` with their normal, ISO-Latin variants.
+
+#### split
+
+```yag
+{{ $result := split <string> <separator> }}
+```
+
+Splits `string` around each instance of `separator`, returning a slice of delimited substrings.
+
+#### title
+
+```yag
+{{ $result := title <string> }}
+```
+
+Returns the string with the first letter of each word capitalized. (Title Case)
+
+#### trimSpace
+
+```yag
+{{ $result := trimSpace <string> }}
+```
+
+Returns the string with all leading and trailing white space removed.
+
+#### upper
+
+```yag
+{{ $result := upper <string> }}
+```
+
+Converts `string` to all uppercase and returns the result.
+
+----
+
+## Time
+
+#### currentTime
+
+```yag
+{{ $time := currentTime }}
+```
+
+Returns the current time in UTC.
+
+#### formatTime
+
+```yag
+{{ $formatted := formatTime <time> <layout> }}
+```
+
+Formats `time` according to `layout`. Within the layout string, certain phrases represent placeholders that are replaced
+with the actual data from `time`: for instance, `Monday` is replaced with the weekday. A list of common placeholders
+follows; see the [Go `time` package documentation](https://pkg.go.dev/time##pkg-constants) for the full list.
+
+| Placeholder | Meaning                      |
+|-------------|------------------------------|
+| Mon         | Weekday (abbreviated)        |
+| Monday      | Weekday (full name)          |
+| 2           | Day of month (single digit)  |
+| 02          | Day of month (zero padded)   |
+| Jan         | Month (abbreviated)          |
+| January     | Month (full name)            |
+| 1           | Month (single digit)         |
+| 01          | Month (zero padded)          |
+| 15          | Hour (24-hour format)        |
+| 3           | Hour (12-hour format)        |
+| 04          | Minute (zero padded)         |
+| 05          | Second (zero padded)         |
+| MST         | Timezone (abbreviated)       |
+| 2006        | Year (full year)             |
+| PM          | AM-PM                        |
+
+#### humanizeDurationHours
+
+```yag
+{{ $formatted := humanizeDurationHours <duration> }}
+```
+
+Returns `duration` as a human-readable string, rounded down to the nearest hour.
+
+#### humanizeDurationMinutes
+
+```yag
+{{ $formatted := humanizeDurationMinutes <duration> }}
+```
+
+Returns `duration` as a human-readable string, rounded down to the nearest minute.
+
+#### humanizeDurationSeconds
+
+```yag
+{{ $formatted := humanizeDurationSeconds <duration> }}
+```
+
+Returns `duration` as a human-readable string, rounded down to the nearest second.
+
+#### humanizeTimeSinceDays
+
+```yag
+{{ $formatted := humanizeTimeSinceDays <time> }}
+```
+
+Returns the duration that has passed since the specified `time` as a human-readable string, rounded down to the nearest
+day.
+
+#### loadLocation
+
+```yag
+{{ $location := loadLocation "location" }}
+```
+
+Searches the IANA Time Zone database for the given location name, returning the corresponding location object on
+success. (Given a time object `$time`, `$time.In $location` then returns a copy of the time set in the given location
+for display purposes.)
+
+As a special case, providing `UTC`, or the empty string `""`, yields the UTC location. Providing `Local` yields the
+local time zone of the host YAGPDB server.
+
+#### newDate
+
+```yag
+{{ $time := newDate <year> <month> <day> <hour> <minute> <second> [location] }}
+```
+
+Returns the time object corresponding to
+
+```
+yyyy-mm-dd hh:mm:ss
+```
+
+In the appropriate zone for that time in the given location.
+
+
+The month, day, hour, min, and sec values may be outside their usual ranges and will be normalized during the
+conversion. For example, October 32 converts to November 1.
+
+A daylight savings time transition skips or repeats times. For example, in the United States, March 13, 2011 2:15am
+never occurred, while November 6, 2011 1:15am occurred twice. In such cases, the choice of time zone, and therefore
+the time, is not well-defined. `newDate` returns a time that is correct in one of the two zones involved in the
+transition, but it does not guarantee which.
+
+#### parseTime
+
+```yag
+{{ $time := parseTime <input> <layout> [location] }}
+```
+
+Undos the operation performed by [`formatTime`](##formattime): that is, given some `input` string representing a time
+using the given `layout`, `parseTime` returns the corresponding time object in the specified location, or UTC by
+default. If the input is invalid or does not follow `layout`, the zero time is returned.
+
+A slice of layouts may be provided, in which case the input is matched against each in order until one matches or the
+end of the slice is reached.
+
+#### snowflakeToTime
+
+```yag
+{{ $time := snowflakeToTime <snowflake> }}
+```
+
+Returns the UTC time at which the given Discord snowflake was created.
+
+#### timestampToTime
+
+```yag
+{{ $time := timestampToTime <unixSeconds> }}
+```
+
+Returns the UTC time corresponding to the given UNIX time, measured in seconds since January 1, 1970.
+
+#### weekNumber
+
+```yag
+{{ $week := weekNumber <time> }}
+```
+
+Returns the ISO 8601 week number in which the time occurs, ranging between 1 and 53. Jan 01 to Jan 03 of year n might
+belong to week 52 or 53 of year n-1, and Dec 29 to Dec 31 might belong to week 1 of year n+1.
+
+{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+
+Discord Timestamp Styles referenced on
+[Discord message documentation](https://discord.com/developers/docs/reference##message-formatting-timestamp-styles) can be done using `print`
+function e.g.
+
+`{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
+
+{{< /callout >}}
+
+
+----
+
+## Type conversion
+
+#### structToSdict
+
+```yag
+{{ $sdict := structToSdict <struct> }}
+```
+
+Constructs a sdict form the fields of `struct`.
+
+#### toByte
+
+```yag
+{{ $bytes := toByte <string> }}
+```
+
+Converts `string` to a slice of UTF-8 bytes.
+
+#### toDuration
+
+```yag
+{{ $duration := toDuration <x> }}
+```
+
+Converts the input, which may be a number (interpreted as nanoseconds) or a duration string such as `5m`, to a duration
+object. Returns the zero duration for invalid inputs.
+
+#### toFloat
+
+```yag
+{{ $y := toFloat <x> }}
+```
+
+Converts the input `x` to a float64, returning zero for invalid inputs.
+
+#### toInt64
+
+```yag
+{{ $n := toInt64 <x> }}
+```
+
+Converts the input to an int64, returning zero for invalid inputs.
+
+#### toInt
+
+```yag
+{{ $n := toInt <x> }}
+```
+
+Converts the input to an integer, returning zero for invalid inputs.
+
+#### toRune
+
+Aliases: `str`.
+
+```yag
+{{ $runes := toRune <string> }}
+```
+
+Converts the given string to a slice of runes (Unicode code points).
+
+#### toString
+
+```yag
+{{ $str := toString <x> }}
+```
+
+Converts the input to a string, returning the empty string for invalid inputs.
+
+----
+
+## User
+
+#### currentUserAgeHuman
+
+```yag
+{{ $age := currentUserAgeHuman }}
+```
+
+Returns the account age of the current user as a human-readable string.
+
+#### currentUserAgeMinutes
+
+```yag
+{{ $age := currentUserAgeMinutes }}
+```
+
+Returns the account age of the current user in a human-readable format, rounded down to minutes.
+
+#### currentUserCreated
+
+```yag
+{{ $time := currentUserCreated }}
+```
+
+Returns the time object corresponding to when the current user was created.
+
+#### userArg
+
+```yag
+{{ $user := userArg <input> }}
+```
+
+Returns the full user object specified by `input`, which can be an ID or a mention.
+
+----
+
 ## Miscellaneous
 
-### adjective
+#### adjective
 
 ```yag
 {{ $adj := adjective }}
@@ -1401,13 +2068,13 @@ Unpins the specified message.
 
 Returns a random adjective.
 
-### cembed
+#### cembed
 
 ```yag
 {{ $embed := cembed [title] [url] [description] [color] [fields] [author] [thumbnail] [image] [footer] }}
 ```
 
-Returns an embed object to send with [sendMessage](#sendmessage)-related functions.
+Returns an embed object to send with [sendMessage](##sendmessage)-related functions.
 
 All keys are optional, but the Discord API will reject completey empty embeds, so *some* content is required.
 
@@ -1439,7 +2106,7 @@ community-made embed visualizer for YAGPDB's custom command system.
 
 {{< /callout >}}
 
-### createTicket
+#### createTicket
 
 ```yag
 {{ $ticket := createTicket <author> <topic> }}
@@ -1457,7 +2124,7 @@ For this function to work correctly, the ticketing system must be enabled.
 
 {{< /callout >}}
 
-### cslice
+#### cslice
 
 ```yag
 {{ $slice := cslice <values...> }}
@@ -1465,7 +2132,7 @@ For this function to work correctly, the ticketing system must be enabled.
 
 Creates a slice of the provided values.
 
-### dict
+#### dict
 
 ```yag
 {{ $dict := dict [values...] }}
@@ -1473,7 +2140,7 @@ Creates a slice of the provided values.
 
 Creates a dictionary from the provided key-value pairs. The number of parameters must be even.
 
-### execAdmin
+#### execAdmin
 
 ```yag
 {{ execAdmin "command" [args...] }}
@@ -1481,16 +2148,16 @@ Creates a dictionary from the provided key-value pairs. The number of parameters
 
 Runs the given command with the provided (optional) arguments as the bot.
 
-### execTemplate
+#### execTemplate
 
 ```yag
 {{ execTemplate "template" [data...] }}
 ```
 
 Executes the associated `"template"` template, optionally with data. Please see
-[Associated Templates](/docs/reference/templates/syntax-and-data#associated-templates).
+[Associated Templates](/docs/reference/templates/syntax-and-data##associated-templates).
 
-### exec
+#### exec
 
 ```yag
 {{ exec "command" [args...] }}
@@ -1500,7 +2167,7 @@ Executes the given command with the provided (optional) arguments as the trigger
 
 This will not work for commands with paginated embed results, e.g. `warnings`.
 
-### getWarnings
+#### getWarnings
 
 ```yag
 {{ $warnings := getWarnings <user> }}
@@ -1510,7 +2177,7 @@ Returns a slice of warnings imposed on the specified user.
 
 - `user`: the user to get the warnings for. Can be either a user ID or a user object.
 
-### humanizeThousands
+#### humanizeThousands
 
 ```yag
 {{ $formatted := humanizeThousands <number> }}
@@ -1520,15 +2187,15 @@ Places commas to separate groups of thousands in a number.
 
 - `number`: the number to format. Must be an int or a string. Must be a whole number.
 
-### inFold
+#### inFold
 
 ```yag
 {{ $result := inFold <list> <value> }}
 ```
 
-Same as [in](#in), but is case-insensitive.
+Same as [in](##in), but is case-insensitive.
 
-### in
+#### in
 
 ```yag
 {{ $result := in <list> <value> }}
@@ -1536,7 +2203,7 @@ Same as [in](#in), but is case-insensitive.
 
 Returns whether the case-sensitive `value` is in the provided list.
 
-### index
+#### index
 
 ```yag
 {{ $item := index <list> <index> }}
@@ -1552,18 +2219,18 @@ Indexing a string type returns the character at that position as a rune.
 You may optionally add additional indices in case you have nested structures, like `index $x 0 1`. This is equivalent to
 chaining `index` calls, e.g. `index (index $x 0) 1`.
 
-### kindOf
+#### kindOf
 
 ```
 {{ $kind := kindOf <value> [indirect] }}
 ```
 
-Returns the [kind](https://pkg.go.dev/reflect#Kind) of the provided value.
+Returns the [kind](https://pkg.go.dev/reflect##Kind) of the provided value.
 
 If `value` is behind an `interface{}` or pointer, set `indirect` to true to read the inner value. Most users of this
 function will want to do this.
 
-### len
+#### len
 
 ```yag
 {{ $length := len <list> }}
@@ -1571,7 +2238,7 @@ function will want to do this.
 
 Returns the length of the provided list. `list` can be a slice, map, or string.
 
-### noun
+#### noun
 
 ```yag
 {{ $noun := noun }}
@@ -1579,7 +2246,7 @@ Returns the length of the provided list. `list` can be a slice, map, or string.
 
 Returns a random noun.
 
-### parseArgs
+#### parseArgs
 
 ```yag
 {{ $args := parseArgs <requiredArgs> <errorMessage> [...cargs] }}
@@ -1602,9 +2269,9 @@ An argument's `"type"` must be one of the following:
 - `int` (whole number)
 - `float` (decimal number)
 - `string` (text)
-- `user` (user mentions, resolves to the [user](https://docs.yagpdb.xyz/reference/templates#user) structure)
+- `user` (user mentions, resolves to the [user](https://docs.yagpdb.xyz/reference/templates##user) structure)
 - `userid` (mentions or user IDs, resolves to the ID itself)
-- `member` (mentions or user IDs, resolves to the [member](https://docs.yagpdb.xyz/reference/templates#member)
+- `member` (mentions or user IDs, resolves to the [member](https://docs.yagpdb.xyz/reference/templates##member)
   structure)
 - `channel` (channel mention or ID, resolves to the channel structure)
 - `role` (role name or ID, resolves as type \*discordgo.Role)
@@ -1614,7 +2281,7 @@ An argument's `"type"` must be one of the following:
 Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for
 `duration` it is in seconds.
 
-#### Example
+##### Example
 
 ```yag
 {{ $args := parseArgs 1 "" (carg "int" "coolness level" 0 100) (carg "member" "target member") }}
@@ -1631,25 +2298,25 @@ of it.
 
 [in-depth guide]: /learn/beginner/inputs-1
 
-### sendTemplateDM
+#### sendTemplateDM
 
 ```yag
 {{ $messageID := sendTemplateDM "template" [data] }}
 ```
 
-Same as [sendTemplate](#sendtemplate), but sends it to the triggering user's direct messages instead and returns the
+Same as [sendTemplate](##sendtemplate), but sends it to the triggering user's direct messages instead and returns the
 *response* message's ID.
 
-### sendTemplate
+#### sendTemplate
 
 ```yag
 {{ $messageID := sendTemplate <channel> "template" [data] }}
 ```
 
-Sends an [Associated Template](/docs/reference/templates/syntax-and-data#associated-templates) to `channel`, with
+Sends an [Associated Template](/docs/reference/templates/syntax-and-data##associated-templates) to `channel`, with
 optional `data`, returning the *response* message's ID.
 
-### seq
+#### seq
 
 ```yag
 {{ $sequence := seq <start> <stop> }}
@@ -1658,7 +2325,7 @@ optional `data`, returning the *response* message's ID.
 Creates a new slice with integer-type elements, starting from `start` and ending at `stop-1`. `start` and `stop` must be
 whole numbers. Limited to 10,000 elements.
 
-### shuffle
+#### shuffle
 
 ```yag
 {{ $shuffled := shuffle <list> }}
@@ -1666,7 +2333,7 @@ whole numbers. Limited to 10,000 elements.
 
 Returns a shuffled (randomized) version of the provided list.
 
-### sleep
+#### sleep
 
 ```yag
 {{ sleep <seconds> }}
@@ -1675,7 +2342,7 @@ Returns a shuffled (randomized) version of the provided list.
 Pauses the execution of the custom command for the specified number of seconds. The maximum duration is 60 seconds,
 combined across all `sleep` calls within the custom command and its associated templates.
 
-### slice
+#### slice
 
 ```yag
 {{ $result := slice <item> <start> [end] }}
@@ -1685,7 +2352,7 @@ Returns a subslice of the input `item` (which may be an array, slice, or string)
 index `start` (inclusive), and ending at index `end`, exclusive. If only `start` is provided, it is interpreted as the
 start index and the subslice extends to the end of `item`.
 
-### sort
+#### sort
 
 ```yag
 {{ $sorted := <list> [options] }}
@@ -1698,7 +2365,7 @@ is an sdict with the following (optional) keys:
 
 Limited to 1 call on regular servers and 3 calls on premium servers.
 
-### verb
+#### verb
 
 ```yag
 {{ $verb := verb }}
@@ -1706,669 +2373,3 @@ Limited to 1 call on regular servers and 3 calls on premium servers.
 
 Returns a random verb.
 
-----
-
-## Role functions
-
-### addRole
-
-```yag
-{{ $role := addRole <role> [delay] }}
-```
-
-Adds the specified role to the triggering member.
-
-- `role`: a role ID, mention, name, or role object.
-- `delay`: an optional delay in seconds.
-
-### addRoleID
-
-```yag
-{{ addRoleID <roleID> [delay] }}
-```
-
-Adds the specified role ID to the triggering member.
-
-- `delay`: an optional delay in seconds.
-
-### addRoleName
-
-```yag
-{{ addRoleName <roleName> [delay] }}
-```
-
-Adds the first case-insensitive matching role name to the triggering member.
-
-- `delay`: an optional delay in seconds.
-
-
-### getRole
-
-```yag
-{{ $role := getRole <role> }}
-```
-
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object).
-`role` may either be an ID or a name to match against (ignoring case).
-
-### getRoleID
-
-```yag
-{{ $role := getRoleID <roleID> }}
-```
-
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its ID.
-
-### getRoleName
-
-```yag
-{{ $role := getRoleName <roleName> }}
-```
-
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its name
-(case-insensitive).
-
-### giveRole
-
-```yag
-{{ giveRole <member> <role> [delay] }}
-```
-
-Gives the specified role to the target member.
-
-- `role`: a role ID, mention, name, or role object.
-- `delay`: an optional delay in seconds.
-
-### giveRoleID
-
-```yag
-{{ giveRoleID <member> <roleID> [delay] ]}}
-```
-
-Gives the role specified by its ID to the target member.
-
-- `member`: the member to target. Either an ID, mention, or user object, but must be part of the server.
-- `delay`: an optional delay in seconds.
-
-### giveRoleName
-
-```yag
-{{ giveRoleName <member> <roleName> [delay] }}
-```
-
-Gives the first case-insensitive matching role name to the target member.
-
-- `delay`: an optional delay in seconds.
-
-### hasRole
-
-```yag
-{{ $result := hasRole <role> }}
-```
-
-Reports whether the triggering member has the specified role.
-
-- `role`: a role ID, mention, name, or role object.
-
-### hasRoleID
-
-```yag
-{{ $result := hasRoleID <roleID> }}
-```
-
-Reports whether the triggering member has the specified role ID.
-
-### hasRoleName
-
-```yag
-{{ $result := hasRoleName <roleName> }}
-```
-
-Reports whether the triggering member has the specified role name (case-insensitive).
-
-### removeRole
-
-```yag
-{{ removeRole <role> [delay] }}
-```
-
-Removes the specified role from the triggering member.
-
-- `role`: a role ID, mention, name, or role object.
-- `delay`: an optional delay in seconds.
-
-### removeRoleID
-
-```yag
-{{ removeRoleID <roleID> [delay] }}
-```
-
-Removes the role with the specified ID from the triggering member with an optional delay in seconds.
-
-### removeRoleName
-
-```yag
-{{ removeRoleName <roleName> [delay] }}
-```
-
-Removes the first case-insensitive matching role name from the triggering member with an optional delay in seconds.
-
-### roleAbove
-
-```yag
-{{ $result := roleAbove <role1> <role2> }}
-```
-
-Reports whether `role1` is above `role2` in the role hierarchy. Both arguments must be a
-[role object](https://discord.com/developers/docs/topics/permissions#role-object).
-
-### setRoles
-
-```yag
-{{ setRoles <target> <newRoles> }}
-```
-
-Sets the roles of the specified user to the provided list of role IDs. The roles are overwritten, so any existing roles
-are removed if not included in the new list. `newRoles` must be a slice. `target` may be a user ID, mention, or user
-object, but must be a member of the server.
-
-### takeRole
-
-```yag
-{{ takeRole <target> <role> [delay] }}
-```
-
-Removes the specified role from the target member.
-
-- `target`: a user ID, mention, or user object. The target must be part of the server.
-- `role`: a role ID, mention, name or role object.
-- `delay`: an optional delay in seconds.
-
-### takeRoleID
-
-```yag
-{{ takeRoleID <target> <roleID> [delay] }}
-```
-
-Removes the specified role from `target`. `target` may be a user ID, mention, or user object, but must be a member of
-the server.
-
-- `delay`: an optional delay in seconds.
-
-
-### takeRoleName
-
-```yag
-{{ takeRoleName <target> <roleName> [delay] }}
-```
-
-Removes the first case-insensitive matching role name from `target` with an optional delay in seconds.
-`target` may be a user ID, mention, or user object, but must be a member of the server.
-
-### targetHasRole
-
-```yag
-{{ $result := targetHasRole <target> <role> }}
-```
-
-Reports whether the target member has the specified role.
-
-- `role`: a role ID, mention, name or role object.
-
-### targetHasRoleID
-
-```yag
-{{ $result := targetHasRoleID <target> <roleID> }}
-```
-
-Reports whether the specified target has the specified role ID.
-`target` may be a user ID, mention, or user object, but must be a member of the server.
-
-### targetHasRoleName
-
-```yag
-{{ $result := targetHasRoleName <target> <roleName> }}
-```
-
-Reports whether the specified target has the specified role name (case-insensitive).
-`target` may be a user ID, mention, or user object, but must be a member of the server.
-
-----
-
-## String manipulation
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-All regexp functions are limited to 10 different pattern calls per CC.
-
-{{< /callout >}}
-
-### hasPrefix
-
-```yag
-{{ $result := hasPrefix <string> <prefix> }}
-```
-
-Reports whether the given `string` begins with `prefix`.
-
-### hasSuffix
-
-```yag
-{{ $result := hasSuffix <string> <suffix> }}
-```
-
-Reports whether the given `string` ends with `suffix`.
-
-### joinStr
-
-```yag
-{{ $result := joinStr <separator> <args...> }}
-```
-
-Concatenates `args...` in order, inserting the given `separator` between consecutive arguments and returns the result.
-As a special case, slices of strings are formatted as if each element was provided separately, so
-
-```yag
-{{ joinStr " " (cslice "cat" "dog") }}
-```
-
-yields `cat dog`.
-
-See also [printf](#printf) if you just want to concatenate arguments without a separator.
-
-### lower
-
-```yag
-{{ $result := lower <string> }}
-```
-
-Converts `string` to all lowercase and returns the result.
-
-### print
-
-```yag
-{{ $result := print <args...> }}
-```
-
-Concatenates the arguments in order, adding spaces between arguments when neither is a string.
-
-### println
-
-```yag
-{{ $result := println <args...> }}
-```
-
-Concatenates the arguments in order, adding spaces between arguments when neither is a string and inserting a newline at
-the end.
-
-### printf
-
-```yag
-{{ $result := <format> <args...> }}
-```
-
-Interpolates `args...` according to `format`. See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).
-
-### reFind
-
-```yag
-{{ $result := reFind <regex> <text> }}
-```
-
-Returns the first match of the regular expression `regex` in `text`, or the empty string if the pattern did not match
-anywhere.
-
-### reFindAll
-
-```yag
-{{ $result := reFindAll <regex> <text> [count] }}
-```
-
-Returns a slice of successive matches of `regex` in `text`. If `count` is provided, the number of matches is limited to
-that amount; otherwise, all matches are returned.
-
-### reFindAllSubmatches
-
-```yag
-{{ $result := reFindAllSubmatches <regex> <text> [count] }}
-```
-
-Returns a slice of successive submatches of `regex` in `text`. Each submatch is itself a slice containing the match of
-the entire expression, followed by any matches of capturing groups. If `count` is provided, the number of submatches is
-limited to that amount; otherwise, all submatches are returned.
-
-### reQuoteMeta
-
-```yag
-{{ $result := reQuoteMeta <string> }}
-```
-
-Escapes all regular expression metacharacters in the input `string`; the result is a regular expression matching the
-literal input string.
-
-### reReplace
-
-```yag
-{{ $result := reReplace <regex> <text> <replacement> }}
-```
-
-Replaces all matches of `regex` in `text` with `replacement`.
-
-### reSplit
-
-```yag
-{{ $result := reSplit <regex> <text> [count] }}
-```
-
-Splits the `text` around each match of `regex`, returning a slice of delimited substrings.
-
-if the `count` parameter is specified, it limits the number of substrings to return:
-
-- `count > 0`: at most `count` substrings; the last substring will be the unsplit remainder;
-- `count == 0`: the result is `nil` (zero substrings);
-- `count < 0`: all substrings.
-
-### sanitizeText
-
-```yag
-{{ $result := sanitizeText <string> }}
-```
-
-Replaces accented and confusable characters in `string` with their normal, ISO-Latin variants.
-
-### split
-
-```yag
-{{ $result := split <string> <separator> }}
-```
-
-Splits `string` around each instance of `separator`, returning a slice of delimited substrings.
-
-### title
-
-```yag
-{{ $result := title <string> }}
-```
-
-Returns the string with the first letter of each word capitalized. (Title Case)
-
-### trimSpace
-
-```yag
-{{ $result := trimSpace <string> }}
-```
-
-Returns the string with all leading and trailing white space removed.
-
-### upper
-
-```yag
-{{ $result := upper <string> }}
-```
-
-Converts `string` to all uppercase and returns the result.
-
-----
-
-## Time
-
-### currentTime
-
-```yag
-{{ $time := currentTime }}
-```
-
-Returns the current time in UTC.
-
-### formatTime
-
-```yag
-{{ $formatted := formatTime <time> <layout> }}
-```
-
-Formats `time` according to `layout`. Within the layout string, certain phrases represent placeholders that are replaced
-with the actual data from `time`: for instance, `Monday` is replaced with the weekday. A list of common placeholders
-follows; see the [Go `time` package documentation](https://pkg.go.dev/time#pkg-constants) for the full list.
-
-| Placeholder | Meaning                      |
-|-------------|------------------------------|
-| Mon         | Weekday (abbreviated)        |
-| Monday      | Weekday (full name)          |
-| 2           | Day of month (single digit)  |
-| 02          | Day of month (zero padded)   |
-| Jan         | Month (abbreviated)          |
-| January     | Month (full name)            |
-| 1           | Month (single digit)         |
-| 01          | Month (zero padded)          |
-| 15          | Hour (24-hour format)        |
-| 3           | Hour (12-hour format)        |
-| 04          | Minute (zero padded)         |
-| 05          | Second (zero padded)         |
-| MST         | Timezone (abbreviated)       |
-| 2006        | Year (full year)             |
-| PM          | AM-PM                        |
-
-### humanizeDurationHours
-
-```yag
-{{ $formatted := humanizeDurationHours <duration> }}
-```
-
-Returns `duration` as a human-readable string, rounded down to the nearest hour.
-
-### humanizeDurationMinutes
-
-```yag
-{{ $formatted := humanizeDurationMinutes <duration> }}
-```
-
-Returns `duration` as a human-readable string, rounded down to the nearest minute.
-
-### humanizeDurationSeconds
-
-```yag
-{{ $formatted := humanizeDurationSeconds <duration> }}
-```
-
-Returns `duration` as a human-readable string, rounded down to the nearest second.
-
-### humanizeTimeSinceDays
-
-```yag
-{{ $formatted := humanizeTimeSinceDays <time> }}
-```
-
-Returns the duration that has passed since the specified `time` as a human-readable string, rounded down to the nearest
-day.
-
-### loadLocation
-
-```yag
-{{ $location := loadLocation "location" }}
-```
-
-Searches the IANA Time Zone database for the given location name, returning the corresponding location object on
-success. (Given a time object `$time`, `$time.In $location` then returns a copy of the time set in the given location
-for display purposes.)
-
-As a special case, providing `UTC`, or the empty string `""`, yields the UTC location. Providing `Local` yields the
-local time zone of the host YAGPDB server.
-
-### newDate
-
-```yag
-{{ $time := newDate <year> <month> <day> <hour> <minute> <second> [location] }}
-```
-
-Returns the time object corresponding to
-
-```
-yyyy-mm-dd hh:mm:ss
-```
-
-In the appropriate zone for that time in the given location.
-
-
-The month, day, hour, min, and sec values may be outside their usual ranges and will be normalized during the
-conversion. For example, October 32 converts to November 1.
-
-A daylight savings time transition skips or repeats times. For example, in the United States, March 13, 2011 2:15am
-never occurred, while November 6, 2011 1:15am occurred twice. In such cases, the choice of time zone, and therefore
-the time, is not well-defined. `newDate` returns a time that is correct in one of the two zones involved in the
-transition, but it does not guarantee which.
-
-### parseTime
-
-```yag
-{{ $time := parseTime <input> <layout> [location] }}
-```
-
-Undos the operation performed by [`formatTime`](#formattime): that is, given some `input` string representing a time
-using the given `layout`, `parseTime` returns the corresponding time object in the specified location, or UTC by
-default. If the input is invalid or does not follow `layout`, the zero time is returned.
-
-A slice of layouts may be provided, in which case the input is matched against each in order until one matches or the
-end of the slice is reached.
-
-### snowflakeToTime
-
-```yag
-{{ $time := snowflakeToTime <snowflake> }}
-```
-
-Returns the UTC time at which the given Discord snowflake was created.
-
-### timestampToTime
-
-```yag
-{{ $time := timestampToTime <unixSeconds> }}
-```
-
-Returns the UTC time corresponding to the given UNIX time, measured in seconds since January 1, 1970.
-
-### weekNumber
-
-```yag
-{{ $week := weekNumber <time> }}
-```
-
-Returns the ISO 8601 week number in which the time occurs, ranging between 1 and 53. Jan 01 to Jan 03 of year n might
-belong to week 52 or 53 of year n-1, and Dec 29 to Dec 31 might belong to week 1 of year n+1.
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-Discord Timestamp Styles referenced on
-[Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles) can be done using `print`
-function e.g.
-
-`{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
-
-{{< /callout >}}
-
-
-----
-
-## Type conversion
-
-### structToSdict
-
-```yag
-{{ $sdict := structToSdict <struct> }}
-```
-
-Constructs a sdict form the fields of `struct`.
-
-### toByte
-
-```yag
-{{ $bytes := toByte <string> }}
-```
-
-Converts `string` to a slice of UTF-8 bytes.
-
-### toDuration
-
-```yag
-{{ $duration := toDuration <x> }}
-```
-
-Converts the input, which may be a number (interpreted as nanoseconds) or a duration string such as `5m`, to a duration
-object. Returns the zero duration for invalid inputs.
-
-### toFloat
-
-```yag
-{{ $y := toFloat <x> }}
-```
-
-Converts the input `x` to a float64, returning zero for invalid inputs.
-
-### toInt64
-
-```yag
-{{ $n := toInt64 <x> }}
-```
-
-Converts the input to an int64, returning zero for invalid inputs.
-
-### toInt
-
-```yag
-{{ $n := toInt <x> }}
-```
-
-Converts the input to an integer, returning zero for invalid inputs.
-
-### toRune
-
-Aliases: `str`.
-
-```yag
-{{ $runes := toRune <string> }}
-```
-
-Converts the given string to a slice of runes (Unicode code points).
-
-### toString
-
-```yag
-{{ $str := toString <x> }}
-```
-
-Converts the input to a string, returning the empty string for invalid inputs.
-
-----
-
-## User
-
-### currentUserAgeHuman
-
-```yag
-{{ $age := currentUserAgeHuman }}
-```
-
-Returns the account age of the current user as a human-readable string.
-
-### currentUserAgeMinutes
-
-```yag
-{{ $age := currentUserAgeMinutes }}
-```
-
-Returns the account age of the current user in a human-readable format, rounded down to minutes.
-
-### currentUserCreated
-
-```yag
-{{ $time := currentUserCreated }}
-```
-
-Returns the time object corresponding to when the current user was created.
-
-### userArg
-
-```yag
-{{ $user := userArg <input> }}
-```
-
-Returns the full user object specified by `input`, which can be an ID or a mention.

@@ -1,10 +1,10 @@
 +++
-title = "Data Types 2"
+title = "Maps and Slices"
 weight = 320
 +++
 
-When you first started this course, you learned about [primitive data types](/learn/beginner/datatypes-1). In the
-previous chapter we name-dropped two more types: "slice", and "sdict" ("map"), both without much elaboration.
+When you first started this course, you learned about [primitive data types](/learn/beginner/variables-and-data-types).
+In the previous chapter we name-dropped two more types: "slice", and "sdict" ("map"), both without much elaboration.
 In this chapter, we will explore these data types in more detail.
 
 ## Slices

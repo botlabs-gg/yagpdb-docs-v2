@@ -1,5 +1,5 @@
 +++
-title = "Data Types 1"
+title = "Variables and Data Types"
 weight = 220
 +++
 

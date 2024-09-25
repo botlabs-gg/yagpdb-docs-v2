@@ -2297,7 +2297,7 @@ Target: {{ .User }}
 Please see our [in-depth guide] in the learning resources for a full breakdown of this function and how to make good use
 of it.
 
-[in-depth guide]: /learn/beginner/inputs-1
+[in-depth guide]: /learn/beginner/command-arguments
 
 #### sdict
 

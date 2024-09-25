@@ -1,5 +1,5 @@
 +++
-title = "Control Flow 1"
+title = "Conditional Branching"
 weight = 230
 +++
 
@@ -113,15 +113,17 @@ We provide the following comparison functions in custom commands:
 - `gt` (greater than `>`)
 - `ge` (greater than or equal to `>=`)
 
-These functions can only compare basic data types as introduced in [Data Types 1](/learn/beginner/datatypes-1). Strings
+These functions can only compare basic data types as introduced in [Variables and Data Types][dtypes]. Strings
 are compared on a byte-by-byte basis. Please refer to the [functions documentation](/docs/reference/templates/functions)
 for the syntax of these functions.
 
+[dtypes]: /learn/beginner/variables-and-data-types
+
 ## Blocks And Scope
 
-In [Data Types 1](/learn/beginner/datatypes-1), we introduced the concept of variables. Variables are used to store
-values and give them a name. In programming, variables have a _scope_, which defines where in the code the variable can
-be accessed. Think of each scope as a "container" for things inside it.
+In the previous chapter, we introduced the concept of variables. Variables are used to store values and give them a name.
+In programming, variables have a _scope_, which defines where in the code the variable can be accessed. Think of each
+scope as a "container" for things inside it.
 
 Often, you will want to have a variable available across multiple scopes. In custom commands, the variable is accessible
 in the scope in which it was defined, as well as all nested scopes within. Let us assume that we want to assign a
@@ -165,6 +167,39 @@ If you are familiar with C-family programming languages, this error is analogous
 block of code.
 
 {{< /callout >}}
+
+## With Blocks
+
+Just like the `if` action, `with` runs a block of code if the given expression is truthy. The only difference is that
+`with` overwrites the dot `.` with the expression if it is truthy.
+
+For instance, the following program
+
+```yag
+{{ $msg := "I <3 the YAGPDB documentation!" }}
+{{ with reFind `\d+` $msg }}
+    pattern found in text; the dot {{ printf "%q" . }} contains the match
+{{ else }}
+    pattern did not match
+{{ end }}
+```
+
+outputs
+
+```text
+pattern found in text; the dot "3" contains the match
+```
+
+Note that the dot `.` has been set to `"3"`—the result of `reFind`. See if you can change the text stored in `$msg` so
+that the program hits the `else` branch instead.
+
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
+
+Be careful not to overuse `with` blocks, as they can make your code difficult to follow. In general, prefer using
+a normal `if` conditional and only use `with` if it improves readability; do not use it just to shorten code.
+
+{{< /callout >}}
+
 
 ## Exercises
 

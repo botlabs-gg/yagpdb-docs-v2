@@ -1,10 +1,10 @@
 +++
-title = "Outputs 2"
+title = "Embeds and Messages"
 weight = 310
 +++
 
-Until now, we have just used the [default response behavior](/learn/beginner/outputs-1) to make our custom commands
-respond with some text. This makes sense for quick mockups or relatively simple commands. However, this may be
+Until now, we have just used the [default response behavior](/learn/beginner/simple-responses) to make our custom
+commands respond with some text. This makes sense for quick mockups or relatively simple commands. However, this may be
 inconvenient or Not What You Want in some cases. In this chapter, we will explore how to send messages to different
 channels, edit existing messages, and send messages with embeds, vastly expanding your toolbox for creating complex
 custom command systems.
@@ -93,7 +93,7 @@ will return a structured object that can be sent as a message, as demonstrated i
 
 The `"title"` and `"description"` fields are self-explanatory---we can use Discord Markdown in the latter. The `"color"`
 field takes an integer color value, for which we can conveniently use hexadecimal formatting as mentioned in
-[Data Types 1](/learn/beginner/datatypes-1#integers), but it can also take a
+[Variables and Data Types](/learn/beginner/variables-and-data-types#integers), but it can also take a
 [decimal value](https://www.binaryhexconverter.com/hex-to-decimal-converter).
 
 The `"fields"` field is a list (more precisely a _slice_) of dictionaries, where each dictionary represents a field in

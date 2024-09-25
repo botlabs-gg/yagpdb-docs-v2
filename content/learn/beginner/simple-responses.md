@@ -1,5 +1,5 @@
 +++
-title = "Outputs 1"
+title = "Simple Responses"
 weight = 210
 +++
 

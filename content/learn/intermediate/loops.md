@@ -1,10 +1,10 @@
 +++
-title = "Control Flow 2"
+title = "Loops"
 weight = 330
 +++
 
-In a previous chapter, we learned about [basic control flow](/learn/beginner/control-flow-1). In this chapter, we will
-discuss more advanced control flow actions: namely, `range`, `while`, and `with` actions.
+In a previous chapter, we learned about [conditional branching](/learn/beginner/conditional-branching).
+In this chapter, we will discuss more advanced control flow actions: namely, `range`, `while`, and `with` actions.
 
 ## Loop
 
@@ -262,35 +262,3 @@ In custom commands, we provide two actions to control the flow of loops: `{{ bre
 exits the loop prematurely, whereas `continue` skips the remainder of the current iteration and jumps to the next one.
 These can prove very useful to optimize your code for size and readability, with similar benefits to guard clauses with
 `{{ return }}` introduced in earlier chapters.
-
-## With Blocks
-
-Just like the `if` action, `with` runs a block of code if the given expression is truthy. The only difference is that
-`with` overwrites the dot `.` with the expression if it is truthy.
-
-For instance, the following program
-
-```yag
-{{ $msg := "I <3 the YAGPDB documentation!" }}
-{{ with reFind `\d+` $msg }}
-    pattern found in text; the dot {{ printf "%q" . }} contains the match
-{{ else }}
-    pattern did not match
-{{ end }}
-```
-
-outputs
-
-```text
-pattern found in text; the dot "3" contains the match
-```
-
-Note that the dot `.` has been set to `"3"`—the result of `reFind`. See if you can change the text stored in `$msg` so
-that the program hits the `else` branch instead.
-
-{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
-
-Be careful not to overuse `with` blocks, as they can make your code difficult to follow. In general, prefer using
-a normal `if` conditional and only use `with` if it improves readability; do not use it just to shorten code.
-
-{{< /callout >}}

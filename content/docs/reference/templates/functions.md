@@ -523,7 +523,7 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 
 {{< /callout >}}
 
-#### Interaction Responses
+### Interaction Responses
 
 - Only one interaction response may be sent to each interaction.
 - If you do not send an interaction response, members will see "This application did not respond" on Discord.
@@ -599,7 +599,7 @@ The following example must be triggered by a component or modal submission.
 
 Same as [updateMessage](#updatemessage), plus it does not escape mentions.
 
-#### Interaction Followups
+### Interaction Followups
 
 - Interaction followups may be sent up to 15 minutes after an interaction.
 - To send a followup, you must have the interaction token of the interaction you are following up.
@@ -683,7 +683,7 @@ Same as [sendResponseNoEscape](#sendresponsenoescape), but also returns the mess
 
 Same as [sendResponse](#sendresponse), but also returns the message ID.
 
-#### Interaction Miscellaneous
+### Interaction Miscellaneous
 
 #### cbutton
 
@@ -742,6 +742,21 @@ The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mention
 Creates a [modal object][modals] for use in interactions. See [`sendModal`](#sendmodal) for more detail.
 
 [modals]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
+
+#### deleteInteractionResponse
+
+```yag
+{{ deleteInteractionResponse <interactionToken> <messageID> [delay] }}
+```
+
+Deletes the specified response or follow-up message.
+
+- `interactionToken`: a valid interaction token or `nil` for the triggering interaction.
+- `messageID`: valid message ID of a follow-up, or `nil` for the original interaction response.
+- `delay`: an optional delay in seconds, max 10 seconds. Default: 10 seconds.
+
+If you require a delay of more than 10 seconds, consider using `execCC` for deletion of an ephemeral response, or
+`deleteMessage` to delete a regular interaction response.
 
 #### ephemeralResponse
 

@@ -8,7 +8,7 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - if: ${{ github.event.environment == 'github-pages' }}
+      - if: ${{ github.event.deployment.environment == 'github-pages' }}
         uses: algolia/algoliasearch-crawler-github-actions@v1.1.10
         id: algolia_crawler
         with: # mandatory parameters

@@ -1,6 +1,7 @@
 +++
-title = 'Logging'
+title = "Logging"
 weight = 440
+description = "On-demand message logging."
 +++
 
 Capture a moment in time with message logging of the last messages in a channel when the log is created, including a

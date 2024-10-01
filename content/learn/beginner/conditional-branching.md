@@ -1,6 +1,7 @@
 +++
 title = "Conditional Branching"
 weight = 230
+description = "Learn how to make decisions in your custom commands using control flow."
 +++
 
 Until now, we have just written some linear code that executes from top to bottom. However, in real-world applications,

@@ -1,11 +1,10 @@
 +++
-title = 'Soundboard'
+title = "Soundboard"
 weight = 820
+description = "Play sounds in voice channels with the soundboard system."
 +++
 
 The soundboard system allows the bot to join a voice channel, and play sounds triggered by soundboard commands.
-
-<!--more-->
 
 ## Uploading New Sounds
 

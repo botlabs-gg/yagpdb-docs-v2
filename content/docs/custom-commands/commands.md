@@ -1,12 +1,11 @@
 +++
-title = 'Commands'
+title = "Commands"
 weight = 310
+description = "Custom command settings and editor."
 +++
 
 The commands page displays all custom commands and allows you to add, delete, or edit custom commands and custom command
 groups.
-
-<!--more-->
 
 ![Overview of the Commands page.](command_overview.png)
 

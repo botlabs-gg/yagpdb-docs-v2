@@ -1,11 +1,8 @@
 +++
-title = 'Basic Automoderator'
+title = "Basic Automoderator"
 weight = 420
+description = "A very basic automoderator to get things done quickly."
 +++
-
-A very basic automoderator to get things done quickly.
-
-<!--more-->
 
 ## Intro
 

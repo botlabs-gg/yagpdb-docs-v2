@@ -1,6 +1,7 @@
 +++
 title = "Introduction"
 weight = 110
+description = "Learn how to write custom commands for YAGPDB."
 +++
 
 > The first thing you gotta discard, whenever you're learning about something, is your ego. - Luke Smith

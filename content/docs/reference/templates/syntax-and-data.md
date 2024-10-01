@@ -1,11 +1,10 @@
 +++
 title = "Syntax and Data"
 weight = 911
+description = "Available data in custom commands and a quick syntax refresher."
 +++
 
 Library of base data accessible within custom scripting.
-
-<!--more-->
 
 > "Go is all about type... Type is life." // William Kennedy
 

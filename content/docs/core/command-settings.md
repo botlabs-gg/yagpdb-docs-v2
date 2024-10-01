@@ -1,11 +1,10 @@
 +++
-title = 'Command Settings'
+title = "Command Settings"
 weight = 230
+description = "Configure command overrides to restrict access to YAGPDB commands and optional autodelete intervals."
 +++
 
-Fine-grained control over all of YAGPDB's inbuilt commands.
-
-<!--more-->
+Fine-grained control over all of YAGPDB's inbuild commands.
 
 ## Overview
 

@@ -1,6 +1,7 @@
 +++
-title = 'Custom Interactions'
+title = "Custom Interactions"
 weight = 950
+description = "Even better than embeds!"
 +++
 
 Buttons, Modals, Select Menus, Ephemeral Messages, and more!

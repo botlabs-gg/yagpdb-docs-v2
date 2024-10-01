@@ -1,11 +1,8 @@
 +++
-title = 'Control Panel Logs'
+title = "Control Panel Logs"
 weight = 220
+description = "View a list of recent changes to your YAGPDB configuration."
 +++
-
-View a list of recent changes to your YAGPDB configuration.
-
-<!--more-->
 
 This page is the analogue of the audit log built in to Discord for YAGPDB settings and summarizes recent edits on the
 control panel, listing the time, action, and responsible user for each. It is useful to audit who may be responsible if

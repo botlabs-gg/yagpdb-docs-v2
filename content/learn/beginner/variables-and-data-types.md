@@ -1,6 +1,7 @@
 +++
 title = "Variables and Data Types"
 weight = 220
+description = "Learn how to store data in variables and the basic data types available."
 +++
 
 In this chapter, we will overview how to store data in variables and the basic data types available, which include

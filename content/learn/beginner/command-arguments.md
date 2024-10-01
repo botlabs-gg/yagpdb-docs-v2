@@ -1,6 +1,7 @@
 +++
 title = "Command Arguments"
 weight = 240
+description = "Learn how to parse and validate arguments for custom commands."
 +++
 
 When we were starting to write Custom Commands, we stuck to a somewhat static custom command---one that doesn't take

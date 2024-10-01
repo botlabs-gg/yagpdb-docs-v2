@@ -1,6 +1,7 @@
 +++
-title = 'YouTube'
+title = "YouTube"
 weight = 530
+description = "Subscribe to your favorite YouTubers without polluting your own feed."
 +++
 
 Get notifications from your favorite YouTubers directly in your Discord server.

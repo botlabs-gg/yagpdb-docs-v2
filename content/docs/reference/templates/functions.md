@@ -1,12 +1,11 @@
 +++
-title = 'Functions'
+title = "Functions"
 weight = 912
+description = "A list of all available functions in YAGPDB's custom command templates."
 +++
 
 Functions are used to take action within template scripts. Some functions accept arguments, and some functions return
 values you can send in your response or use as arguments for other functions.
-
-<!--more-->
 
 ----
 

@@ -1,11 +1,8 @@
 +++
-title = 'Control Panel Access'
+title = "Control Panel Access"
 weight = 210
+description = "Select who can view or edit your control panel."
 +++
-
-Select who can view or edit your control panel.
-
-<!--more-->
 
 This page is relatively simple, yet very powerful. An overview of the settings follows.
 

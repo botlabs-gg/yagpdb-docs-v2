@@ -1,9 +1,8 @@
 +++
-title = 'Tickets'
+title = "Tickets"
 weight = 730
+description = "No ticket no entry"
 +++
-
-<!--more-->
 
 Tickets let your members interact with your server staff in a private and more organized way. The bot will create a
 dedicated channel that can only be seen by the staff and the member who created the ticket, with the option to add more

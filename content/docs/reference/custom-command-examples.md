@@ -1,6 +1,7 @@
 +++
-title = 'Custom Commands Examples'
+title = "Custom Commands Examples"
 weight = 920
+description = "Copy-and-paste code, \"for education purposes only\"."
 +++
 
 Prebuilt custom commands for use as a learning reference.

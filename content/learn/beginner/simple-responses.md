@@ -1,6 +1,7 @@
 +++
 title = "Simple Responses"
 weight = 210
+description = "Learn how to get YAGPDB to say something!"
 +++
 
 In this chapter, we will go over two ways to output text from a custom command: using the _response_, and later on using

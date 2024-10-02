@@ -1,6 +1,7 @@
 +++
 title = "Database"
 weight = 340
+description = "Learn how to store data across time and space with YAGPDB."
 +++
 
 YAGPDB provides a database for use in your CCs. Entries in this database are used to store persistent data that you want

@@ -1,11 +1,10 @@
 +++
-title = 'Verification'
+title = "Verification"
 weight = 450
+description = "Google reCAPTCHA v2 verification for new members."
 +++
 
 Use Google reCAPTCHA v2 to verify your members before permitting them access to your server.
-
-<!--more-->
 
 ![Default Verification Page](page_verification.png)
 

@@ -1,12 +1,11 @@
 +++
-title = 'Reputation'
+title = "Reputation"
 weight = 810
+description = "Track and manage reputation points for users."
 +++
 
 The reputation system tracks each user's reputation score, and allows users to add or remove reputation points from
 other users.
-
-<!--more-->
 
 ## Setup
 

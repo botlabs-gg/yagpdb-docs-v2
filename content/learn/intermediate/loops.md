@@ -1,6 +1,7 @@
 +++
 title = "Loops"
 weight = 330
+description = "Brother do you have some Loops?"
 +++
 
 In a previous chapter, we learned about [conditional branching](/learn/beginner/conditional-branching).

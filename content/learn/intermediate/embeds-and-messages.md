@@ -1,6 +1,7 @@
 +++
 title = "Embeds and Messages"
 weight = 310
+description = "Learn how to send messages to different channels, edit existing messages, and send messages with embeds."
 +++
 
 Until now, we have just used the [default response behavior](/learn/beginner/simple-responses) to make our custom

@@ -1,11 +1,10 @@
 +++
-title = 'All Commands'
+title = "All Commands"
 weight = 240
+description = "List of all available commands offered by YAGPDB and their syntax."
 +++
 
 List of all available commands offered by YAGPDB and their syntax.
-
-<!--more-->
 
 ## Legend
 

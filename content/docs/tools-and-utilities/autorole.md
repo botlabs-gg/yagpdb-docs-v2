@@ -1,9 +1,9 @@
 +++
-title = 'Autorole'
+title = "Autorole"
 weight = 710
+description = "Automatically assign roles to members when they join."
 +++
 
-<!--more-->
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 

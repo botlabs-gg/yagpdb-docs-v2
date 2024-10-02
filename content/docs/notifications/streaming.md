@@ -1,11 +1,11 @@
 +++
-title = 'Streaming'
+title = "Streaming"
 weight = 540
+description = "Spam your server with notifications when someone starts streaming."
 +++
 
 Let everyone know that someone is currently streaming.
 
-<!--more-->
 
 ### Streaming Feed
 

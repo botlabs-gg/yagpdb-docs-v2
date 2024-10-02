@@ -1,6 +1,7 @@
 +++
 title = "Maps and Slices"
 weight = 320
+description = "No, we don't mean roadmaps or cake slices, but they are a piece of cake nevertheless!"
 +++
 
 When you first started this course, you learned about [primitive data types](/learn/beginner/variables-and-data-types).

@@ -1,6 +1,7 @@
 +++
 title = "Exercises"
 weight = 350
+description = "Exercise your skills with these custom command challenges."
 +++
 
 Below are some exercises to help you practice and reinforce your understanding of the concepts discussed in the previous

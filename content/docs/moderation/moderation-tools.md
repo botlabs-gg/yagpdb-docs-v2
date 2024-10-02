@@ -1,11 +1,10 @@
 +++
 title = "Moderation Tools"
 weight = 410
+description = "Everything in moderation, including moderation."
 +++
 
 Everything in moderation, including moderation.
-
-<!--more-->
 
 ![Overview of the moderation page](overview_moderation.png)
 

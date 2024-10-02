@@ -1,6 +1,7 @@
 +++
-title = 'Using RegEx'
+title = "Using RegEx"
 weight = 970
+description = "s/regex/dark voodoo/i"
 +++
 
 A quick overview of golang flavored RegEx for your convenience.

@@ -1,12 +1,11 @@
 +++
-title = 'Database'
+title = "Database"
 weight = 320
+description = "See what's in your custom command database."
 +++
 
 The Custom Command Database is used for persistent storage between custom command executions. The database page displays
 all database entries created by custom commands, allowing you to view details on or delete individual entries.
-
-<!--more-->
 
 ![Overview of the Database page.](overview_database.png)
 

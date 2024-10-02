@@ -1,6 +1,7 @@
 +++
-title = 'Reddit'
+title = "Reddit"
 weight = 520
+description = "Stalk Reddit without actually using Reddit."
 +++
 
 Get notifications from your favorite subreddits directly in your Discord server.

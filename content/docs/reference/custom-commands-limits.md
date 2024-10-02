@@ -1,11 +1,10 @@
 +++
-title = 'Custom Commands Limits'
+title = "Custom Commands Limits"
 weight = 930
+description = "Limits? I'm at my limit!"
 +++
 
 Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot and misuse prevention.
-
-<!--more-->
 
 ## OVERALL
 

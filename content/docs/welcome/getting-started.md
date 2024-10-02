@@ -1,6 +1,7 @@
 +++
 title = "Getting Started"
 weight = 120
+description = "The first steps to setting up YAGPDB on your server."
 +++
 
 > The hardest thing about getting started, is getting started. - Guy Kawasaki

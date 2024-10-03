@@ -14,8 +14,9 @@
 # SVGs should be handled as text, though.
 *.svg      text
 
-# Do some GitHub stats trickery.
-_vendor/*  linguist-vendored=true
+# The majority of our files are Markdown, therefore they should be visible in
+# language statistics on GitHub.
+*.md       linguist-detectable
 
 # Scripts
 *.bash     text eol=lf

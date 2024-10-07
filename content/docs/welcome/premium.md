@@ -5,10 +5,8 @@ description = "Unlock additional features and functionality by supporting YAGPDB
 +++
 
 YAGPDB provides added functionality to servers which are assigned a premium slot by a user. On the official instance of
-YAGPDB, these premium slots can be acquired as a perk of being a [Patreon](https://www.patreon.com/yagpdb) to Botlabs'
+YAGPDB, these premium slots can be acquired as a perk of being a [Patron](https://www.patreon.com/yagpdb) to Botlabs'
 YAGPDB.
-
-<!--more-->
 
 ## Benefits
 
@@ -78,7 +76,7 @@ A premium server unlocks the following benefits:
 Some features enhanced or enabled by premium have been disabled on Botlabs' publicly hosted instance, often due to
 ratelimits with 3rd party APIs YAGPDB relies on.
 
-Any features marked as **DISABLED ON OFFICIAL INSTANCE** will **not** be available if you become a patreon to botlabs.
+Any features marked as **DISABLED ON OFFICIAL INSTANCE** will **not** be available if you become a Patron to Botlabs.
 
 {{< /callout >}}
 
@@ -104,7 +102,8 @@ slots in return. This is the only way to purchase more than one premium slot.
 #### Discord Store
 
 If you prefer not to use Patreon, you can purchase **a single premium slot** directly from [our Discord Store][d-store].
-Simply click on "Subscribe" and follow the on-screen instructions to complete your purchase.
+Simply click on "Subscribe" and follow the on-screen instructions to complete your purchase---it may take up to 30
+minutes until the slot is available for assignment to a server on the [premium page](https://yagpdb.xyz/premium).
 
 If you wish to purchase multiple slots, you will need to go through Patreon as explained above.
 

@@ -91,14 +91,24 @@ Discord user ID and cannot be transferred.
 
 #### Patreon
 
-Patreon is the primary method of acquiring premium slots.
+We have a [Patreon campaign](https://www.patreon.com/yagpdb) where you can pledge to support YAGPDB and get premium
+slots in return. This is the only way to purchase more than one premium slot.
 
-1. Pledge the required minimum amount to unlock a premium slot. For the publicly hosted instance, pledge on
-   [botlabs' Patreon](https://www.patreon.com/yagpdb).
-2. Link your Patreon account to your Discord account ([details
-   here](https://support.patreon.com/hc/en-us/articles/212052266-How-do-I-get-my-Discord-Rewards-#h_21f22930-84c5-4950-b6b1-3e83312f66dc)).
+1. Pledge the required minimum amount to unlock a premium slot.
+2. [Link your Patreon account][p-link] to your Discord account.
 3. Wait for up to 5 minutes for YAGPDB to verify your Patreon status.
 4. If slot(s) still do not appear, you may need to unlink and relink your Patreon and Discord account again.
+
+[p-link]: https://support.patreon.com/hc/en-us/articles/212052266-How-do-I-get-my-Discord-Rewards-#h_21f22930-84c5-4950-b6b1-3e83312f66dc
+
+#### Discord Store
+
+If you prefer not to use Patreon, you can purchase **a single premium slot** directly from [our Discord Store][d-store].
+Simply click on "Subscribe" and follow the on-screen instructions to complete your purchase.
+
+If you wish to purchase multiple slots, you will need to go through Patreon as explained above.
+
+[d-store]: https://discord.com/application-directory/204255083083333633/store
 
 #### From a Code
 

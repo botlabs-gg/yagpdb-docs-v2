@@ -8,7 +8,7 @@ Tickets let your members interact with your server staff in a private and more o
 dedicated channel that can only be seen by the staff and the member who created the ticket, with the option to add more
 users as-needed.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Required Bot Permissions" icon="outline/info-circle" >}}
 
 Make sure that the bot has permission to manage channels in the category you want the bot to create tickets in, as well
 as permission to send messages in said category, the transcript channels, and the ticket log channel.
@@ -57,7 +57,7 @@ have different responsibilities, but nothing prevents you from selecting the sam
 The bot uses channels for tickets, and these channels are created in a category of your choosing. This category should
 be set up with the necessary permissions for the bot to create channels in it.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Discord Channel Limit" icon="outline/info-circle" >}}
 
 Discord limits categories to contain at most 50 channels. If you experience a high volume of tickets, consider closing
 some or researching alternative bots that handle tickets differently.

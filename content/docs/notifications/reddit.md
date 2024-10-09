@@ -8,12 +8,6 @@ Get notifications from your favorite subreddits directly in your Discord server.
 
 <!--more-->
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
-
-Fast Reddit feeds to the **top 10 subreddits** are disabled, due to being too spammy for YAGPDB's current system.
-
-{{< /callout >}}
-
 ## Reddit Feed
 
 ![Small showcase of the Reddit feeds interface.](./reddit.png)

@@ -50,7 +50,7 @@ them is true:
 {{ end }}
 ```
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Truthiness" icon="outline/info-circle" >}}
 
 The condition of an `if` statement need not be a boolean: in general, an `if` statement will trigger if the condition is
 _truthy_: that is, not empty or zero. (Conversely, empty and zero values are _falsy_.)
@@ -97,7 +97,7 @@ In programming, we can make decisions by comparing values to each other. We can 
 types. The result of a comparison is a _boolean_ value, which is either `true` or `false`. Normally, comparisons are
 binary operators; however, in custom commands, we use functions to compare values.
 
-{{< callout context="caution" title="Comparing across Types" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning: Comparing Across Types" icon="outline/alert-triangle" >}}
 
 Just like you cannot quite compare apples and oranges, you cannot compare values of different types. For instance, you
 cannot compare a number to a string. The bot will throw an error if you try to do so, you will have to convert either of
@@ -144,7 +144,7 @@ Are you cool? {{ $isCool }}
 It is considered good practice to define variables in the smallest scope possible. This makes your code easier to read
 and understand, as you do not have to search through the entire codebase to find where a variable was defined.
 
-{{< callout context="caution" title="Definition and Reassignment" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning: Definition and Reassignment" icon="outline/alert-triangle" >}}
 
 In custom commands, you use `:=` to define a variable, and `=` to reassign a variable. The bot will not throw an error
 if you try to re-define a variable using `:=`. Rather, it will define a new variable, effectively overwriting the
@@ -152,7 +152,7 @@ existing variable, but only within that scope---the existing variable is untouch
 
 {{< /callout >}}
 
-{{< callout context="danger" title="Unexpected EOF" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Unexpected EOF" icon="outline/alert-octagon" >}}
 
 The following error appears when you are missing an `{{ end }}` action.
 
@@ -194,7 +194,7 @@ pattern found in text; the dot "3" contains the match
 Note that the dot `.` has been set to `"3"`—the result of `reFind`. See if you can change the text stored in `$msg` so
 that the program hits the `else` branch instead.
 
-{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning: Readability of `with` Blocks" icon="outline/alert-triangle" >}}
 
 Be careful not to overuse `with` blocks, as they can make your code difficult to follow. In general, prefer using
 a normal `if` conditional and only use `with` if it improves readability; do not use it just to shorten code.

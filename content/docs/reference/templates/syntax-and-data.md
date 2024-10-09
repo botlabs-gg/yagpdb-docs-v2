@@ -14,33 +14,13 @@ All available data that can be used in YAGPDB's templating "engine" which is sli
 stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
 len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
 a concise and to the point reference document for all available templates/functions. **Functions** are covered
-in [Function documentation](/docs/reference/templates/functions). For detailed explanations and syntax guide refer to the [learning
-resource](https://learn.yagpdb.xyz/).
+in [Function documentation](/docs/reference/templates/functions). For detailed explanations and a syntax guide, please
+refer to the [learning resource](/learn/welcome/introduction).
 
-**Legend**: at current state this is still prone to formatting errors, but everything in a `code block` should refer to
-a function, parts of a template's action-structure or output returned by YAGPDB; single word/literal-structure in
-_italics_ refers to type. Methods and fields (e.g. .Append, .User) are usually kept in standard formatting. If argument
-for a function is optional, it's enclosed in parenthesis `( )`. If there are many optional arguments possible, it's
-usually denoted by 3-dot `...`ellipsis.&#x20;
+{{< callout context="note" title="Note: Disable \"Smart\" Quotes" icon="outline/info-circle" >}}
 
-\
-If functions or methods are denoted with an accent, tilde \~, they are not yet deployed in actual YAGPDB bot or have
-been disabled in main bot, but are in master code branch.
-
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
-
-**Always put curly brackets around the data and "actions you perform" you want to formulate as a template** like
-this:`{{.User.Username}}`
-
-This `{{ ... }}` syntax of having two curly brackets aka braces around context is necessary to form a template's control
-structure also known as an action with methods and functions stated below.
-
-{{< /callout >}}
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-Templating system uses standard ASCII quotation marks:\
-0x22 > `"` for straight double quotes, 0x27 > `'`for apostrophes and 0x60 `` ` `` for backticks/back quotes; so make
+Templating system uses standard ASCII quotation marks:
+`"` for straight double quotes,  `'` for apostrophes or single quotes and`` ` `` for backticks/back quotes; so make
 sure no "smart-quotes" are being used.
 
 The difference between back quotes and double quotes in string literals is covered in
@@ -51,38 +31,34 @@ the [Go Language Specification](https://go.dev/ref/spec#String_literals).
 ## The Dot and Variables
 
 The dot (also known as cursor) `{{ . }}` encompasses all active data available for use in the templating system, in
-other words it always refers to current context. \
-\
+other words it always refers to current context.
+
 For example .User is a Discord User object/structure of current context, meaning the triggering user. To get user object
 for other users, functions `getMember`, `userArg` would help. Same meaning of object/struct applies to other **Fields**
 with dot prefix. If it is mentioned as a **Method** (for example, .Append for type _cslice_) or as a field on a struct
 (for example, .User.Bot) then it can not be used alone in template context and always belongs on a parent value. That
 is, `{{.Bot}}` would return `<no value>` whereas `{{.User.Bot}}` returns _bool_ true/false. Another good example is
 .Reaction.Emoji.MessageFormat, here you can use .MessageFormat every time you get emoji structure of type
-_discordgo.Emoji_, either using reaction triggers or for example .Guild.Emojis.\
-\
+_discordgo.Emoji_, either using reaction triggers or for example .Guild.Emojis.
+
 From official docs > "Execution of the template walks the structure and sets the cursor, represented by a period `.` and
 called "dot", to the value at the current location in the structure as execution proceeds." All following
 fields/methods/objects like User/Guild/Member/Channel etc are all part of that dot-structure and there are some more in
 tables below.
 
 For commenting something inside a template, use this syntax: `{{/* this is a comment */}}`. May contain newlines.
-Comments do not nest and they start and end at the delimiters.
+Comments do not nest, and they start and end at the delimiters.
 
-To trim spaces use hyphens after/before curly brackets, for example >`{{- /* this is a multi-line` \
-`comment with whitespace trimmed from  preceding and following text */ -}}` \
-Using`{{- ... -}}` is also handy inside`range` actions, because whitespaces and newlines are rendered there as output.\
-\
 `$` has a special significance in templates, it is set to the [starting value of a
 dot](https://golang.org/pkg/text/template/#hdr-Variables). This means you have access to the global context from
 anywhere - e.g., inside `range`/`with` actions. `$` for global context would cease to work if you redefine it inside
-template, to recover it `{{ $ := .  }}`.\
-\
+template, to recover it `{{ $ := .  }}`.
+
 `$` also denotes the beginning of a variable, which maybe be initialized inside a template action. So data passed around
 template pipeline can be initialized using syntax > `$variable := value`. Previously declared variable can also be
 assigned with new data > `$variable = value`, it has to have a white-space before it or control panel will error out.
 Variable scope extends to the `end` action of the control structure (`if`, `with`, `range`, `etc.`) in which it is
-declared, or to the end of custom command if there are no control structures - call it global scope.&#x20;
+declared, or to the end of custom command if there are no control structures - call it global scope.
 
 ## Pipes
 
@@ -97,7 +73,7 @@ would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also 
 not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas
 `{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Use Sparingly" icon="outline/alert-octagon" >}}
 
 Pipes are useful in select cases to shorten code and in some cases improve readability, but they **should not be
 overused**. In most cases, pipes are unnecessary and cause a dip in readability that helps nobody.
@@ -108,7 +84,7 @@ overused**. In most cases, pipes are unnecessary and cause a dip in readability 
 
 Context data refers to information accessible via the dot, `{{ . }}`. The accessible data ranges from useful constants
 to information regarding the environment in which the custom command was executed, such as the user that ran it, the
-channel it was ran in, and so on.&#x20;
+channel it was ran in, and so on.
 
 Fields documented as accessible on specific structures, like the context user `.User`, are usable on all values that
 share the same type. That is, given a user `$user`, `$user.ID` is a valid construction that yields the ID of the user.
@@ -196,12 +172,8 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 ### Interaction
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
-
 Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
 about using interactions, please view our [interactions cookbook](/docs/reference/custom-interactions).
-
-{{< /callout >}}
 
 This is available and part of the dot when a component or modal trigger is used.
 
@@ -350,15 +322,15 @@ Branching using `if` action's pipeline and comparison operators - these operator
 `if` statements always need to have an enclosing `end`.\
 Learning resources covers conditional branching [more in depth](https://learn.yagpdb.xyz/beginner/control_flow_1).\
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Test Many Arguments at Once" icon="outline/rocket" >}}
 
-`eq` , though often used with 2 arguments (`eq x y`) can actually be used with more than 2. If there are more than 2
+`eq`, though often used with 2 arguments (`eq x y`) can actually be used with more than 2. If there are more than 2
 arguments, it checks whether the first argument is equal to any one of the following arguments. This behavior is unique
 to `eq`.
 
 {{< /callout >}}
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Only Compare the Same Data Type" icon="outline/info-circle" >}}
 
 Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for
 comparison`** error as they are not the same type (one is float, the other int). To fix this, you should convert both to
@@ -397,7 +369,7 @@ the same type -> for example, `toFloat 1`.
 channels. The dot `.` is set to successive elements of those data structures and output will follow execution. If the
 value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Continue and Break a Loop" icon="outline/info-circle" >}}
 
 To skip execution of a single iteration and jump to the next iteration, the `{{continue}}` action may be used. Likewise,
 if one wishes to skip all remaining iterations, the `{{break}}` action may be used. These both are usable also inside
@@ -432,27 +404,37 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 {{ $x := 42 }} {{ range $x := seq 2 4 }} {{ $x }} {{ end }} {{ $x }}
 ```
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Stripping Whitespace Characters" icon="outline/alert-octagon" >}}
 
-**Custom command response was longer than 2k (contact an admin on the server...)**\
-or \
-**Failed executing template: response grew too big (>25k)**
+If you're getting an error along the lines of `Custom command response was longer than 2k` or `response grew too big
+(>25k)`, that means you're rendering a lot of whitespace characters.
 
-\
-This is quite common error users will get whilst using range. Simple example to reproduce it:\
-_\{{ range seq 0 10000 \}}_\
-_\{{ $x := . \}}_\
-_\{{ end \}}_\
-_HELLO!_\
-This will happen because of whitespaces and newlines, so make sure you one-line the range or trim spaces, in this
-context _\{{- $x := . -\}}_
+Consider the following code:
+
+```yag
+{{ range 10000 }}
+  {{ $x := . }}
+{{ end }}
+Hello!
+```
+This program iterates ten *thousand* times, adding a newline and a tab character on every iteration to the output---we
+can fix this error by telling the bot to throw away (or "strip") whitespace characters by using the trim indicator `-`:
+
+```yag
+{{ range 10000 }}
+  {{- $x := . -}}
+{{ end }}
+Hello!
+```
+
+This code will work as expected: iterating 10000 times essentially doing nothing, then sending `Hello!` to the chat.
 
 {{< /callout >}}
 
 ### Try-catch
 
 Multiple template functions have the possibility of returning an error upon failure. For example, `dbSet` can return a
-short write error if the size of the database entry exceeds some threshold.&#x20;
+short write error if the size of the database entry exceeds some threshold.
 
 While it is possible to write code that simply ignores the possibility of such issues occurring (letting the error stop
 the code completely), there are times at which one may wish to write more robust code that handles such errors
@@ -563,7 +545,7 @@ To define an associated template, use the `define` action. It has the following 
 {{ end }}
 ```
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Associated Templates at Top Level" icon="outline/alert-octagon" >}}
 
 **Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
 nested in other actions (for example, an if action.) That is, the following custom command is invalid:
@@ -590,7 +572,7 @@ template; that is, the following custom command is invalid, as the body of the a
 ```
 
 If accessing the value of `$name` is desired, then it needs to be passed as part of the context when executing the
-associated template.&#x20;
+associated template.
 
 Within the body of an associated template, the variable `$` and the context dot (`.`) both initially refer to the data
 passed as context during execution. Consequently, any data on the original context that needs to be accessed must be
@@ -607,10 +589,10 @@ an associated template that always returns `1`:
 
 Note that it is not necessary for a value to be returned; `{{ return }}` by itself is completely valid.
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Clean up Your Code With `return`" icon="outline/rocket" >}}
 
-**Note:** Since all custom commands are themselves templates, using a `return` action at the top level is perfectly
-valid, and will result in execution of the custom command being stopped at the point the `return` is encountered.
+Since all custom commands are themselves templates, using a `return` action at the top level is perfectly valid, and
+will result in execution of the custom command being stopped at the point the `return` is encountered.
 
 ```yag
 {{ if not .CmdArgs }}
@@ -633,7 +615,7 @@ To execute a custom command, one of three methods may be used: `template`, `bloc
 value. Note that the name of the template to execute must be a string constant; similar to `define` actions, a variable
 referencing a value of string type is invalid. Data to use as the context may optionally be provided following the name.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Consider Using `execTemplate`" icon="outline/info-circle" >}}
 
 While `template` is function-like, it is not an actual function, leading to certain quirks; notably, it must be used
 alone, not part of another action (like a variable declaration), and the data argument need not be parenthesized. Due to
@@ -698,22 +680,22 @@ template and may be used as part of another action. Below is an example using `e
 ## Custom Types
 
 Go has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types
-(_array_, _slice_, _map_, ...) which also are used in custom commands. \
-\
+(_array_, _slice_, _map_, ...) which also are used in custom commands.
+
 YAGPDB's templating "engine" has currently two user-defined, custom data types - _templates.Slice_ and
 _templates.SDict_. There are other custom data types used like _discordgo.Timestamp_, but these are outside of the main
-code of YAGPDB, so not explained here further. Type _time.Time_ is covered in its own [section](#time).\
-\
+code of YAGPDB, so not explained here further. Type _time.Time_ is covered in its own [section](#time).
+
 Custom Types section discusses functions that initialize values carrying those _templates.Slice_ (abridged to _cslice_),
 _templates.SDict_ (abridged to _sdict_) types and their methods. Both types handle type _interface{}_ element. It's
 called an empty interface which allows a value to be of any type. So any argument of any type given is handled. (In
 "custom commands"-wise mainly primitive data types, but _slices_ as well.)
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Reference Type-Like Behavior" icon="outline/alert-octagon" >}}
 
-**Reference type-like behavior:** Slices and dictionaries in CCs exhibit reference-type like behavior, which may be
-undesirable in certain situations. That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y :=
-$x` and then mutating `$y` via `Append`/`Set`/`Del`/etc. will modify `$x` as well. For example:
+Slices and dictionaries in CCs exhibit reference-type like behavior, which may be undesirable in certain situations.
+That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y := $x` and then mutating `$y` via
+`Append`/`Set`/`Del`/etc. will modify `$x` as well. For example:
 
 ```yag
 {{ $x := sdict "k" "v" }}
@@ -724,7 +706,7 @@ $x` and then mutating `$y` via `Append`/`Set`/`Del`/etc. will modify `$x` as wel
 that is, modifying $y changed $x too. */}}
 ```
 
-If this behavior is undesirable, copy the slice/dictionary via `cslice.AppendSlice` or a `range` + `Set` call .
+If this behavior is undesirable, copy the slice/dictionary via `cslice.AppendSlice` or a `range` + `Set` call.
 
 ```yag
 {{ $x := sdict "k" "v" }}
@@ -741,7 +723,7 @@ aforementioned operation recursively.
 
 ### templates.Slice
 
-`templates.Slice` - This is a custom composite data type defined using an underlying data type _\[]interface{}_ . It is
+`templates.Slice` - This is a custom composite data type defined using an underlying data type _\[]interface{}_. It is
 of kind _slice_ (similar to _array_) having _interface{}_ type as its value and can be initialized using `cslice`
 function. Retrieving specific element inside _templates.Slice_ is by indexing its position number.
 
@@ -807,26 +789,26 @@ Adding "color3" as "blue": {{ $x.Set "color3" "blue" }} **{{ $x }}**
 Deleting key "color1" {{ $x.Del "color1" }} and whole sdict: **{{ $x }}**
 ```
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Database Serialization" icon="outline/rocket" >}}
 
-**Tip:** Previously, when saving cslices, sdicts, and dicts into database, they were serialized into their underlying
-native types - slices and maps. This meant that if you wanted to get the custom type back, you needed to convert
-manually, e.g. `{{cslice.AppendSlice $dbSlice}}` or `{{sdict $dbDict}}`. Recent changes to YAG have changed this: values
-with custom types are now serialized properly, making manual conversion unnecessary.
+Previously, when saving cslices, sdicts, and dicts into database, they were serialized into their underlying native
+types - slices and maps. This meant that if you wanted to get the custom type back, you needed to convert manually, e.g.
+`{{cslice.AppendSlice $dbSlice}}` or `{{sdict $dbDict}}`. Recent changes to YAG have changed this: values with custom
+types are now serialized properly, making manual conversion unnecessary.
 
 {{< /callout >}}
 
 ## Database
 
 You have access to a basic set of Database functions having return of type _\*customcommands.LightDBEntry_ called here
-[DBEntry](#dbentry). \
+[DBEntry](#dbentry).
 This is almost a key value store ordered by the key and value combined.
 
 You can have max 50 \* user_count (or 500 \* user_count for premium) values in the database, if you go above this all
-new write functions will fail, this value is also cached so it won't be detected immediately when you go above nor
+new write functions will fail, this value is also cached, so it won't be detected immediately when you go above nor
 immediately when you're under again.
 
-Patterns are basic PostgreSQL patterns, not Regexp: An underscore `(_)` matches any single character; a percent sign
+Patterns are basic PostgreSQL patterns, not RegEx: An underscore `(_)` matches any single character; a percent sign
 `(%)` matches any sequence of zero or more characters.
 
 Keys can be max 256 bytes long and has to be strings or numbers. Values can be anything, but if their serialized
@@ -860,16 +842,7 @@ Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/inte
 
 ## Tickets
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
-
-Ticket functions are limited to 1 call per custom command for both normal and premium guilds and limited to max 10 open
-tickets per user.
-
-{{< /callout >}}
-
-| **Function**                | **Description**                                                                                                                                                                                                                                                                         |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `createTicket author topic` | Creates a new ticket with the author and topic provided. Author can be `nil` (to use the triggering member); user ID in form of a string or an integer; a user struct; or a member struct. The topic must be a string. Returns a [template ticket](#template-ticket) struct on success. |
+See [`createTicket`](functions#createTicket) for creating a ticket.
 
 ### Template Ticket
 

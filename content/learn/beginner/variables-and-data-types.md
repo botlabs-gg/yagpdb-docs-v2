@@ -26,7 +26,7 @@ illustrate this, consider the following example:
 Later on, we may wish to reassign a new value to a variable. We can do this by using the re-assignment operator `=`.
 When and why this becomes necessary will be discussed in a later chapter.
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Troubleshooting Data Types" icon="outline/rocket" >}}
 
 When debugging your code, you might have to figure out the type of a certain variable. You can do this by using the
 [`printf` function](/docs/reference/templates/functions/#string-manipulation) with the `%T` format verb, like so:

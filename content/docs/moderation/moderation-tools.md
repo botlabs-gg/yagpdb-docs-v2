@@ -185,7 +185,7 @@ mute tab on the control panel.
 
 [Unmute Command Syntax](/docs/core/all-commands#unmute)
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Discord Permission Precedence" icon="outline/alert-octagon" >}}
 
 Within a server channel's permission overrides, allowing a permission to a specific role or user supersedes disallowing
 a permission to a specific role. This means if you grant Role X the permission to send messages in a channel and
@@ -199,7 +199,7 @@ when configuring other roles' permission overrides.
 
 {{< /callout >}}
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Unmute Author After Duration Expired" icon="outline/info-circle" >}}
 
 If you set a duration for the mute, the bot will unmute the user after the specified duration. When this occurs, it
 appears as an unmute action taken by YAGPDB in your mod log, regardless of which moderator initially muted the user.
@@ -237,7 +237,7 @@ field in the ban tab on the control panel which enables automatic deletion when 
 
 [Unban Command Syntax](/docs/core/all-commands#unban)
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Unban Author After Duration Expired" icon="outline/info-circle" >}}
 
 If you set a duration for the ban, the bot will unban the user after the specified duration. When this occurs, it
 appears as an unban action taken by YAGPDB in your mod log, regardless of which moderator initially banned the user.
@@ -276,7 +276,7 @@ You may optionally send warnings to the mod log, this is enabled in the warnings
 [TopWarnings Command Syntax](/docs/core/all-commands#topwarnings) - Shows ranked list of warnings on the server, allowing you to turn
 misbehavior into a fun minigame for your server members.
 
-{{< callout context="tip" title="Taking Action on Warn Count" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Taking Action on Warn Count" icon="outline/rocket" >}}
 
 Some users prescribe an "x warnings => mute/kick/ban" rule for their servers. To have YAGPDB automatically take action
 based on warning count, you can take advantage of the template scripting within the warning DM.

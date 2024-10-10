@@ -8,7 +8,7 @@ description = "The first steps to setting up YAGPDB on your server."
 
 ## Adding The Bot
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Required User Permission" icon="outline/info-circle" >}}
 
 You need to have the **Manage Server** permission to add the bot to your server.
 

@@ -104,7 +104,7 @@ field. This field is a boolean that determines whether the field should be displ
 The `"author"` field is a dictionary that contains the name and icon URL of the author of the embed. In this case, we
 use the username of the user who triggered the custom command as the name, and the user's avatar URL as the icon URL.
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Custom Commands Embed Generator" icon="outline/rocket" >}}
 
 There is a [community-made embed visualizer][v-embed] that can help you create custom command embeds more easily.
 However, it is still a good idea to not wholly rely on the GUI and understand the structure of the embeds yourself.
@@ -182,7 +182,7 @@ the title and description of the embed, and remove all fields. Finally, we send 
 As mentioned previously, this example is contrived: in practice, we're more likely to use `.Message.Embeds` to get the
 original embed object, convert and modify it as shown above, then send it back to the `editMessage` function.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Full Conversion" icon="outline/info-circle" >}}
 
 `structToSdict` does not perform deep conversion. For a full conversion of an embed to a dictionary, you can use the
 following code snippet:

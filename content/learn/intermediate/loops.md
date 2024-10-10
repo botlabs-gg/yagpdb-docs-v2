@@ -133,9 +133,9 @@ program is erroneous:
 {{ end }}
 ```
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Index-Value-Pairs of a Slice" icon="outline/info-circle" >}}
 
-The two-variable form of range can also be used with a slice, in which case the first variable tracks the position of
+This two-variable form of `range` can also be used with a slice, in which case the first variable tracks the position of
 the element starting from `0`.
 
 {{< /callout >}}
@@ -250,7 +250,7 @@ For instance, the following code loops as long as `$n` is not 1. In each iterati
 As with `range`, it is also possible to attach a `else` branch to a `while` loop, executed if the condition is falsy
 initially.
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Idiomatic Iteration" icon="outline/rocket" >}}
 
 Many `while` loops can be written as a more idiomatic range loop instead. In particular, to iterate a fixed number of
 times, use `{{ range n }}` as in `{{ range 5 }}` instead of maintaining your own counter variable with `while`.

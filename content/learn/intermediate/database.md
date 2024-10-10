@@ -32,9 +32,10 @@ A database entry has the following structure:
 | .Value     | The value of this entry.                                   |
 | .ValueSize | The size of the value in bytes.                            |
 
-The fields `.CreatedAt`, `.UpdatedAt`, and `.ExpiresAt` all evaluate to a `time.Time` object, so all [methods on `time.Time`](/docs/reference/templates/functions#time) are applicable.
+The fields `.CreatedAt`, `.UpdatedAt`, and `.ExpiresAt` all evaluate to a `time.Time` object, so all
+[methods on `time.Time`](/docs/reference/templates/functions#time) are applicable.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: About That User ID" icon="outline/info-circle" >}}
 
 The user ID does not have to point to a valid Discord user—it can be any integer. For instance, it is conventional (but
 not required) to store server-global data under the user ID `0`, in which case the `UserID` field will be `0` and the
@@ -117,7 +118,7 @@ If no such entry exists, it returns `nil`.
 {{ dbGet user_id key }}
 ```
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Beware the Return Type" icon="outline/info-circle" >}}
 
 `dbGet` returns the database entry object, not the value. To access the value, read the `Value` field:
 
@@ -192,7 +193,7 @@ A common use case for this function is a cooldown: As long as the entry exists, 
 Command is not on cooldown :)
 ```
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Backend Expiry Behavior" icon="outline/info-circle" >}}
 
 As a side effect, expired entries will be considered gone (i.e. deleted) by YAGPDB, but still remain in the underlying
 database. You can observe this effect by visiting your [database view page](/docs/custom-commands/database).

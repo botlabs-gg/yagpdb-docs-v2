@@ -8,12 +8,12 @@ Buttons, Modals, Select Menus, Ephemeral Messages, and more!
 
 <!--more-->
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Advanced Topic" icon="outline/alert-octagon" >}}
 
 Use of interactions within YAGPDB is an advanced topic; you will need a thorough understanding of YAGPDB's scripting
 language before learning interactions.
 
-We have a [comprehensive learning course](https://learn.yagpdb.xyz) for you to get started.
+We have a [comprehensive learning course](/learn/welcome/introduction) for you to get started.
 
 {{< /callout >}}
 
@@ -123,7 +123,7 @@ ID which can trigger a custom command.
 
 ##### Custom IDs
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Unique Custom ID" icon="outline/info-circle" >}}
 
 Multiple buttons and menus can not have the same custom ID in one message.
 
@@ -234,7 +234,7 @@ Setting default values in these select menus is a more involved process than for
 
 ![The above mentionable menu with default options selected](mentionable_menu_with_defaults.png)
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Correct Data Type" icon="outline/info-circle" >}}
 
 The `default_values` `id`s must be `string`s, not `int64`s. Note how in the above example, `$adminRoleID :=
 "1210128415689285642"` defining it as a string, as opposed to `$adminRoleID := 1210128415689285642` which would define
@@ -272,7 +272,7 @@ This gives us a select menu which we can only select guild announcement and guil
 
 Now, let's add some more buttons.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Button Type Limitations" icon="outline/info-circle" >}}
 
 Buttons with the "link" style cannot have a Custom ID, and instead require a URL field.
 

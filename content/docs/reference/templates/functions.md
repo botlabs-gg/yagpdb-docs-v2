@@ -515,12 +515,8 @@ To cancel such a scheduled custom command before it runs, use [cancelScheduledUn
 
 ## Interactions
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
-
 Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
 about using interactions, [see here](/docs/reference/custom-interactions).
-
-{{< /callout >}}
 
 ### Interaction Responses
 
@@ -1634,7 +1630,7 @@ Reports whether the specified target has the specified role name (case-insensiti
 
 ## String manipulation
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: RegEx Limitations" icon="outline/info-circle" >}}
 
 All regexp functions are limited to 10 different pattern calls per CC.
 
@@ -1952,11 +1948,11 @@ Returns the UTC time corresponding to the given UNIX time, measured in seconds s
 Returns the ISO 8601 week number in which the time occurs, ranging between 1 and 53. Jan 01 to Jan 03 of year n might
 belong to week 52 or 53 of year n-1, and Dec 29 to Dec 31 might belong to week 1 of year n+1.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Discord Timestamp Formatting" icon="outline/info-circle" >}}
 
 Discord Timestamp Styles referenced on
-[Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles) can be done using `print`
-function e.g.
+[Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles)
+can be done using the `print` function:
 
 `{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
 
@@ -2114,7 +2110,7 @@ All keys are optional, but the Discord API will reject completey empty embeds, s
   - `icon_url`: a small icon to display to the left of the footer's text
 - `timestamp`: a (static) timestamp to display to the right of the footer's text
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Custom Commands Embed Generator" icon="outline/rocket" >}}
 
 To help you get used to the embed structure in custom commands, check out <https://yagpdbembeds.netlify.app>, a
 community-made embed visualizer for YAGPDB's custom command system.
@@ -2132,9 +2128,8 @@ Creates a new ticket associated to the specified author with given topic.
 - `author`: the member to associate this ticket with.
 - `topic`: the topic of this ticket. Must be a string.
 
-{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
+{{< callout context="caution" title="Warning: Dependency on Ticketing System" icon="outline/alert-triangle" >}}
 
-<!-- TODO: ticket system missing from docs. -->
 For this function to work correctly, the ticketing system must be enabled.
 
 {{< /callout >}}

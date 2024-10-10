@@ -19,11 +19,12 @@ Choose to require users to have a role in order to play this sound.
 
 ### Upload file
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="note" title="Note: Choose Either URL or File Upload" icon="outline/info-circle" >}}
 
 Do **not** fill in the URL if you are going uploaded from local files, and vice versa.
 
 {{< /callout >}}
+
 
 You have two options to upload sounds:
 
@@ -32,26 +33,21 @@ You have two options to upload sounds:
 
 #### Upload with local files
 
-Click on _Choose file_ and \_\_ select an audio file to upload. All types of sound files, including videos with sound
-tracks, are supported.
+Click on _Choose file_ and select an audio file to upload. All types of sound files, including videos with soundtracks,
+are supported.
 
 #### Specify a URL
 
-You can also specify a sound URL instead of uploading one.&#x20;
+You can also specify a sound URL instead of uploading one.
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
-
-This has to be the direct link to the media file, and not a YouTube link. A direct link should end with`.mp3`(or other
-relevant audio/video type), such as
-[http://soundboard.panictank.net/AIRHORN.mp3](http://soundboard.panictank.net/AIRHORN.mp3).&#x20;
-
-{{< /callout >}}
+This has to be the direct link to the media file, and not, for example, a YouTube Video link. A direct link should end
+with `.mp3` (or other relevant audio/video type), such as <https://soundboard.panictank.net/AIRHORN.mp3>.
 
 ### Finish
 
 Click on _Upload/Download_ after you are done with the previous steps. You should see a _Success_ notification when the
-upload is completed. Check the status of the sound under _Existing sounds_. \__ Wait for several minutes, and press
-\_Save_ again if the status does not show _Ready_.
+upload is completed. Check the status of the sound under _Existing sounds_. Wait for several minutes, and press
+_Save_ again if the status does not show _Ready_.
 
 ![An example of a successfully uploaded sound](example_soundboard.png)
 

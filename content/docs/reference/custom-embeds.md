@@ -8,14 +8,14 @@ A guide to creating custom embeds in various contexts across YAGPDB.
 
 <!--more-->
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Embed Limitations" icon="outline/alert-octagon" >}}
 
 Embeds have limits, summarized in [Discord channel
 documentation](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).
 
 {{< /callout >}}
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Custom Commands use Custom Syntax" icon="outline/info-circle" >}}
 
 Custom Embeds with the `-customembed` command don't work in custom commands. If you want to know how you can use embeds
 in custom commands, scroll down to [Embeds in Custom Commands](#embeds-in-custom-commands).
@@ -24,12 +24,12 @@ in custom commands, scroll down to [Embeds in Custom Commands](#embeds-in-custom
 
 ## The `customembed` command
 
-One method of sending an embed with YAGPDB is using the command `customembed` (or for short, `ce`).&#x20;
+One method of sending an embed with YAGPDB is using the command `customembed` (or for short, `ce`).
 
 ### Create embeds by hand
 
 YAGPDB accepts embeds in JSON following the rules of [this
-format](https://discordapp.com/developers/docs/resources/channel#embed-object).&#x20;
+format](https://discordapp.com/developers/docs/resources/channel#embed-object).
 
 There, we'll take a look at the **Embed Objects**. You can add a value to each of these objects. A very simple embed
 would look like this:
@@ -47,7 +47,7 @@ curly brace. Then we have the name of the object (title) and the value of it (Th
 commas. After that we have the same thing again, but for the description. In the end we close the object (embed) with
 another curly brace.
 
-You can add the multiple objects to this, but keep in mind that Discord limits your message to 2000 characters.&#x20;
+You can add the multiple objects to this, but keep in mind that Discord limits your message to 2000 characters.
 
 #### The syntax of JSON
 
@@ -71,7 +71,7 @@ false statements). You can play around with this a bit.
 
 Creating embeds with a generator can be more difficult if you don't need any difficult features. If you want your embed
 to be super shiny, you can use [this embed generator](https://leovoel.github.io/embed-visualizer/). YAGPDB does not use
-the first part of its code, so you have to remove the following:&#x20;
+the first part of its code, so you have to remove the following:
 
 ````javascript
 {
@@ -85,13 +85,7 @@ and the last curly brace (`}`). After this you can just copy and paste it into D
 
 ## Embeds in Custom Commands
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
-
-Embeds in custom commands are a little more difficult. Also, there is no generator that you could use for this. **Please only proceed if you have a good amount of knowledge about custom commands and templates in general.**
-
-{{< /callout >}}
-
-To start off, we'll take a look at this example and break it down:
+Embeds in custom commands are a little more involved. To start off, we'll take a look at this example and break it down:
 
 ```yag
 {{ $embed := cembed "title" "This is my title" "description" "This is my description." }}
@@ -104,13 +98,14 @@ braces. This makes it a bit clearer as your embed can get difficult to read. Aft
 define everything one after the other ("`name`" "`value`" et cetera). Now we use the objects for discord embeds from the
 [developer page](https://discordapp.com/developers/docs/resources/channel#embed-object) again. So far, so good. In the
 end we send our embed with the sendMessage template. `nil` sends it in the same channel, but you could also replace it
-with a channel name or ID (or send the embed with sendDM as a direct message).&#x20;
+with a channel name or ID (or send the embed with sendDM as a direct message).
 
 Next, we'll take a look at this more lavish example:
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Indentation is Your Friend" icon="outline/info-circle" >}}
 
-To make your code readable, especially for large embeds, **indents** may be used, as YAGPDB's templating system allows this sort of formatting.
+To make your code readable, especially for large embeds, **indents** may be used, as YAGPDB's templating system allows
+this sort of formatting.
 
 {{< /callout >}}
 
@@ -157,11 +152,11 @@ To make your code readable, especially for large embeds, **indents** may be used
 In this example, we can ignore lines 1 to 5. I'm just defining some variables there which I am later using in my embed.
 One thing to notice is the two ways of getting user's avatar URL for variables `$avatar` and `$botAvatar`. Line 7 starts
 with our already known definition of the embed. Then I start with the first object, the title. Notice how I use `print`
-to join two strings (text snippets) together.\
-\
+to join two strings (text snippets) together.
+
 Next, we have the description. We can use markdown of Discord in here. After that object, I define the color. The color
 is given as integer and you can convert a hex color to it using
-[BinaryHex Converter](https://www.binaryhexconverter.com/hex-to-decimal-converter), for example..
+[BinaryHex Converter](https://www.binaryhexconverter.com/hex-to-decimal-converter), for example.
 
 Up next, I have added some fields. This is a bit more difficult, but doable if you have understood it once. Let's break
 it down in this example:
@@ -183,10 +178,10 @@ template. After this we just have to send the embed using `SendMessage` or `Send
 
 ![Result of Embedding with Custom Command](embed_custom_command_result.png)
 
-### Display an image&#x20;
+### Display an image
 
-You can display an image by simply pasting the link to it in the response, or by doing it fancy this way:\
-(make sure to replace the link with your own image ;))
+You can display an image by simply pasting the link to it in the response, or by doing it fancy this way
+(make sure to replace the link with your own image):
 
 Trigger type: command trigger: `imageembed`
 
@@ -236,12 +231,4 @@ This generates the following embed:
 
 ![SimpleEmbed Result](simpleembed_example.png)
 
-You can play around with this command a bit, it's really easy to use.&#x20;
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-Simple embeds can be used in custom commands:
-
-`{{execAdmin "se" "-desc" "This is my description"}}`&#x20;
-
-{{< /callout >}}
+You can play around with this command a bit, it's really easy to use.

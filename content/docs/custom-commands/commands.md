@@ -30,7 +30,7 @@ Edit this to change the output of the custom command {{.CCID}}!
 
 Each custom command is assigned a unique incrementing ID, which cannot be modified after creation.
 
-{{< callout context="tip" title="Troubleshooting" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Troubleshooting" icon="outline/rocket" >}}
 
 ![Empty CC Discord Messages](empty_cc_1.png)
 
@@ -79,20 +79,12 @@ Selecting a group allows you to edit it. Changes must be saved (**11**) to take 
 Using role/channel restrictions, it is possible to set conditions on which users can trigger a custom command.
 
 Specifically, whitelisted roles or channels are required to run the command, whereas blacklisted roles or channels
-cannot use the command at all.
+cannot use the command at all. These role restrictions are unrelated to member permissions. Having `Administrator`
+permissions will not override these restrictions.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Priority of Ignored vs. Required Roles" icon="outline/info-circle" >}}
 
 YAGPDB was raised well and honors a "no" when told "no". In other words, blacklists take precedence over whitelists.
-
-This is a relatively common trip-hazard, so take great care when you set up both whitelists and blacklists.
-
-{{< /callout >}}
-
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
-Role restrictions are unrelated to member permissions. Having `Administrator` permissions will not override these
-restrictions.
 
 {{< /callout >}}
 
@@ -125,7 +117,7 @@ commands like `customcommands` accept a CC ID as an argument.
 
 Within a command response, the ID may be retrieved using the `{{ .CCID }}` template.
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Deleting is Irreversible" icon="outline/alert-octagon" >}}
 
 Deleting a custom command does not allow its ID to be reassigned. If you delete a CC, its ID is lost forever.
 
@@ -187,7 +179,7 @@ Reactions to a message will trigger the command.
 
 Can specify **Added Only**, **Removed Only**, or **Both** to restrict which types of Reactions will trigger the command.
 
-{{< callout context="tip" title="Filtering Emojis" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Filtering Emojis" icon="outline/rocket" >}}
 
 You cannot specify which emojis the command will trigger on. If you'd like to limit which emojis run the code, you will
 need to write that code yourself in the response.
@@ -232,11 +224,7 @@ When editing an interval command, a **Run Now** button appears at the bottom of 
 long as the command is not disabled and a channel is selected. Running an interval command using this button reschedules
 all subsequent runs based off the current time.
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
 You must specify a channel to run interval commands in even if the command doesn't output a message.
-
-{{< /callout >}}
 
 ##### Component
 
@@ -282,13 +270,6 @@ getting data from users, sending messages to other channels, and more. Visit the
 
 {{< link-card href="/docs/reference/templates/syntax-and-data" description="Templates" target="_blank" >}}
 
-{{< callout context="tip" title="Keeping your code safe" icon="outline/rocket" >}}
-
-It is recommended to save local copies of your custom commands. There is no way to recover deleted or overwritten CCs.
-Use an editor like **Vim**, **VS Code**, or **Notepad++** for the best coding experience.
-
-{{< /callout >}}
-
 ### Custom Command Group
 
 Dropdown selection (**9**) to change which command group the command is in. Select `None` to ungroup the command.
@@ -319,7 +300,7 @@ not send a response. It also increases if the command is run via `execCC`.
 
 The run count will not increase if the user who ran the command did not pass the restrictions.
 
-{{< callout context="tip" title="Troubleshooting" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Troubleshooting" icon="outline/rocket" >}}
 
 If your command fails to run, check the run count. If the run count increases when you attempt to run the command, the
 issue is with your code. Otherwise, the issue may be with YAGPDB's permissions in your server, or improperly configured
@@ -359,7 +340,7 @@ A custom command **will not save** if there is an error in your input. Examples 
 
 If you save a command with an interval trigger which has never been run, it will run immediately upon saving.
 
-{{< callout context="tip" title="Keeping your code safe" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Keeping Your Code Safe" icon="outline/rocket" >}}
 
 It is recommended to code your custom command using a local editor on your device. You will not be able to save your
 code on the dashboard if there are syntax errors in your code. Use an editor like **Vim**, **VS Code**, or **Notepad++**
@@ -367,7 +348,7 @@ for the best coding experience.
 
 {{< /callout >}}
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Remember to Save" icon="outline/alert-octagon" >}}
 
 Custom commands do not autosave.
 

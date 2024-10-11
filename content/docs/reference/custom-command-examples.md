@@ -8,7 +8,7 @@ Prebuilt custom commands for use as a learning reference.
 
 <!--more-->
 
-{{< callout context="danger" title="Danger" icon="outline/alert-octagon" >}}
+{{< callout context="danger" title="Danger: Out of Date" icon="outline/alert-octagon" >}}
 
 Note: This page is no longer updated with the latest versions of codes/commands. If you plan to copy paste codes for
 your server, see [this website](https://yagpdb-cc.github.io) which is frequently updated with new community-contributed
@@ -16,20 +16,15 @@ commands.
 
 {{< /callout >}}
 
-{{< callout context="note" title="Note" icon="outline/info-circle" >}}
-
 This isn't the actual page about custom commands. A brief overview about custom commands can be found in the
-[Custom Commands documentation](/docs/custom-commands/commands). Please take notice, some of examples presented here are not up to
-date with current capabilities of YAGPDB. Please visit our [support server](https://discord.gg/0vYlUK2XBKldPSMY) for
-newer solutions.
-
-{{< /callout >}}
+[Custom Commands documentation](/docs/custom-commands/commands). Please take notice, some of examples presented here are
+not up to date with current capabilities of YAGPDB. Please visit our [support server](/discord) for newer solutions.
 
 ### Controlled randomizer example
 
 YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for
 certain responses to occur. You can do this by creating a singular response and creating a variable with randInt. Then
-use an if else if statement like this to print out your desired output.&#x20;
+use an if-else-if statement like this to print out your desired output.&#x20;
 
 ```yag
 {{$var := randInt 100}}

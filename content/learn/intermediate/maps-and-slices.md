@@ -27,7 +27,7 @@ For available operations on slices, please refer to [our template documentation]
 
 [docs-slices]: /docs/reference/templates/syntax-and-data/#templatesslice
 
-{{< callout context="tip" title="Tip" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Truthiness of Empty Slices" icon="outline/rocket" >}}
 
 Empty slices are _falsy_, so can be used directly in conditional statements; it is not necessary to explicitly check the
 length:
@@ -78,7 +78,7 @@ For available operations on maps, please refer to [our template documentation][d
 
 [docs-maps]: /docs/reference/templates/syntax-and-data/#templates-sdict
 
-{{< callout context="tip" title="Here be Dragons" icon="outline/rocket" >}}
+{{< callout context="note" title="Note: Maps Print Ordered by Key" icon="outline/info-circle" >}}
 
 Consider the following code that displays the value of `$fruitPrices` as defined in the previous example:
 

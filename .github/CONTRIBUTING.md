@@ -1,151 +1,205 @@
 # Contributing Guidelines
 
-## <a name="question"></a> Got a Question?
+## Got a Question?
 
-Please do not open issues for general support such as "how to do reaction roles" — use the
-[support server](https://discord.gg/4udtcA5) for that.
+We welcome suggestions for improving the documentation on our issue tracker—outdated information, missing items, typos,
+or clarity issues are all relevant.
 
-To keep this tracker clean, we will systematically close issues regarding general support and redirect to the
-aforementioned support server.
+General support queries and possible bugs in YAGPDB are **not** in scope and will be closed without comment; use the
+[support server] instead.
 
-## <a name="bug"></a> Found a Bug?
+[support server]: https://discord.gg/4udtcA5
 
-Do **not** use this tracker to file maybe-bugs in YAGPDB. We have a dedicated channel on the support server for that, to
-which you can post after it was confirmed to be one.
 
-Should there be general issues with the documentation (grammatical structure, general flow, clarification needed), do
-feel free to open an issue clearly outlining what is wrong about it and consider suggesting how to fix it.
+## Submission Guide
 
-## Submission Guidelines
+Thanks for contributing to the YAGPDB documentation! Please take a moment to review this document in order to make the
+contribution process easy and effective for everyone involved.
 
 ### Requirements
 
-- An [editorconfig](https://editorconfig.org)-capable (text) editor.
-- The latest extended release of [Hugo](https://gohugo.io).
-- Optional: a webserver to serve a release build of the website.
+Small changes can be authored directly using the GitHub web interface, though we highly recommend an
+[EditorConfig]-capable editor like VSCode or Neovim for any extended work.
+
+To preview your changes locally, you will also need [Node.js], [NPM], and the latest **extended** release of [Hugo]. NPM
+should come along with installing Node.js by default.
+
+[Node.js]: https://nodejs.org/en
+[NPM]: https://www.npmjs.com/
+[Hugo]: https://gohugo.io/installation
+[EditorConfig]: https://editorconfig.org/
 
 ### Instructions
 
-1. Search this repo's issues and pull requests tab for any open or closed PRs / issues that relate to your submission.
-   You wouldn't want to duplicate existing efforts.
+The usual set of steps to contribute to anything hosted on GitHub applies: fork the repository, clone the fork,
+cut a new branch from `master`, make and commit your changes, and submit a pull request. We've outlined key parts of
+this process below.
 
-2. [Fork](https://github.com/botlabs-gg/yagpdb-docs-v2/fork) and then clone your fork.
+> [!TIP]
+> Though you could work directly on the `master` branch, it is recommended to isolate your changes into a separate
+> branch. This way, you can work on multiple contributions simultaneously without them interfering with each other.
+> To create a new branch, simply run `git switch -c <branch-name> master` in the cloned repository.
 
-3. In your cloned repository, make your changes on a new branch stemming from `master`:
+#### Preparing Your Environment
 
-    ```shell
-    git switch -c my-branch master
-    ```
+In your local clone, install the required dependencies via NPM by running the following command:
 
-4. Launch the Hugo development environment via `hugo server`. It'll watch your worktree for changes and reload the page
-   when changes are detected.
+```shellsession
+$ npm install
+```
 
-5. Make your changes, ensuring that the page still builds in release mode via `hugo`. You may need to run `hugo mod
-   vendor` prior to that.
+This will ensure that you can fully build the documentation site locally, including the custom syntax highlighting we
+use.
 
-6. Commit your changes using a descriptive commit message following our [commit message conventions](#commit). As a nice
-   bonus, GitHub should automatically fill in the [pull request template](PULL_REQUEST_TEMPLATE.md) with your formatted
-   message, saving you some work.
+#### Making Your Changes
 
-7. Push your branch to GitHub:
+##### Markdown Features
 
-    ```shell
-    git push origin my-branch
-    ```
+The documentation is written in Markdown, with some additional shortcodes provided by the [Doks theme]; refer to its
+documentation for a complete list of features. If you are writing or editing custom command-related code, please use the
+`yag` language in fenced code blocks for accurate syntax highlighting:
 
-8. On GitHub, submit a pull request to `botlabs-gg:master`
+````markdown
+```yag
+{{/* your YAGPDB custom command code here */}}
+```
+````
 
-Lastly, if you are unsure where to place a potential new file, do not hesitate to ask either on the support server or
-open an issue.
+For consistency within the raw Markdown, please **do not** use the four-space indentation for code blocks, even if you
+don't intend on highlighting them.
 
-## <a name="commit"></a> Commit Message Format
+Use headers if possible to structure your content more clearly. Hugo will generate a table of contents based on those
+headers, displaying up to `h3` (`###`) headers on the right side of the page. Algolia indexes by section (which headers
+introduce), so it's beneficial to have a clear structure to improve search results.
 
-Formatting commit messages according to a specification makes it easier to parse and read commit history.
+Ensure each header is unique in its respective file—if necessary, you can give them a custom ID to make them unique:
 
-Each commit message consists of a header, a body, and a footer:
+```markdown
+### non-unique header{#my-unique-id}
+```
+
+This issue tends to especially arise on levels with a lower level of granularity, like `h4` (`####`) or `h5` (`#####`).
+It helps to have a linter or similar tools that tell you when a header becomes ambiguous.
+
+##### Repository Structure
+
+```txt
+content/
+├── docs/
+│  ├── core/
+│  ├── custom-commands/
+│  ├── fun/
+│  ├── moderation/
+│  │  └── advanced-automoderator/
+│  ├── notifications/
+│  ├── reference/
+│  │  └── templates/
+│  ├── tools-and-utilities/
+│  └── welcome/
+└── learn/
+   ├── beginner/
+   ├── intermediate/
+   └── welcome/
+```
+
+All page files are located in the `content/` directory, with the documentation being in the `docs/` subdirectory and the
+learning resources in `learn/`. From there on, we separate `docs/` into categories as seen on the control panel, with
+the actual pages representing whichever feature is in said category.
+
+If you wish to include images, please store them alongside the file you're including the image in, similar to how it is
+already the case with the existing images and pages.
+
+[Doks theme]: https://getdoks.org/docs/
+
+#### Previewing Your Changes
+
+In order to preview your changes locally, you will need to run a local instance of the documentation site. Assuming that
+you have Node.js (and NPM) and Hugo installed, you can do so by running the following command:
+
+```shellsession
+$ npm run dev
+```
+
+This will run a local server on `http://localhost:1313` that will automatically update whenever you save a file, though
+without our custom syntax highlighting. If you prefer to view the site as it would appear on production, run the
+following commands instead:
+
+```shellsession
+$ npm run build && npm run preview
+```
+
+This will build the site, execute the highlighting post-processor, and run a local server on `http://localhost:4173`.
+
+#### Committing Your Changes
+
+Once you are happy with your changes and ensured that the page builds without errors, you can commit your changes. We
+have a small set of rules for commit messages, which help both you and us keep track of changes more easily.
+
+A commit message consists of a header, a body, and a footer:
 
 ```txt
 <header>
 <blank line>
 <body>
 <blank line>
-<footer
+<footer>
 ```
 
-The `header` is *mandatory* and must conform to the [commit header](#commit-header) format.
+The header is mandatory and should ideally be limited to about 50 characters. GitHub will automatically break the header
+line once it exceeds 72 characters, so consider that the hard limit. If your change is trivial enough, like a typo or
+fixing a broken link, the header is all you need. It should be written in the imperative mood and be descriptive of what
+precisely was changed.
 
-The `body` is *strongly recommended*. The [commit body](#commit-body) structure describes how it should be used.
+```diff
+- Update README.md
++ readme: fix broken link to support server
+```
 
-The `footer` is *optional*. The [commit footer](#commit-footer) format describes what the footer is used for.
+If you find yourself struggling to concisely summarize your changes in the header, consider splitting them up into
+multiple commits or perhaps even multiple PRs if appropriate.
 
-### <a name="commit-header"></a> Commit Message Header
+For more sophisticated changes that require a bit more context (and summary), you can add a body. Simply insert a blank
+line after the header and write your body text. The body should be wrapped at 72 characters as well, but if you paste
+logs or other pre-formatted output, please do not wrap those lines. Like the header, the body should be written in the
+imperative mood, as if you were giving the codebase a command to apply the changes.
+
+The footer is optional and should be used to reference issues or pull requests that are related to the commit. You can
+also use it to close issues or pull requests by inserting `Closes #<issue-number>` or `Fixes #<issue-number>`. This is
+also the place where you can add a `Signed-off-by` line, certifying that you have the right to submit the code under
+[the license](../LICENSE) we publish this documentation under.
 
 ```txt
-scope>: <short summary>
-   |           |
-   |           └─> Summary in imperative present tense. Not capitalized. No period at the end.
-   |
-   └─> Commit Scope: Where did this commit happen?
-         e.g. core, customcommands, moderation, meta, repo, ...
+Signed-off-by: John Doe <john@doe.com>
 ```
 
-#### Scope
+Your sign-off should be with an identity that can be associated with you—for us, your GitHub username is sufficient, but
+please make sure that your email address is valid and reachable (so no `noreply`-addresses). Git will automatically
+append your sign-off to the commit message when you use the `-s` flag when committing, assuming you have properly
+configured your committer identity.
 
-The scope should be descriptive. If your commit contained multiple scopes, consider splitting them up appropriately and
-sending individual pull requests should they not be tightly knit together.
+> [!NOTE]
+> *We* do **not** require you to sign off on your commits, but it is a good practice to do so. Some projects may
+> actually require it and attach a bigger legal meaning to it, so it's good to get into the habit of doing it.
 
-There isn't a set list you have to pick from. Choose whatever seems most appropriate and most descriptive.
+### Submitting the Pull Request
 
-#### Summary
+Once you have committed your changes, push your branch to your fork on GitHub and open a pull request against the
+`master` branch of the main repository. If you prefer the CLI, GitHub provides a [CLI tool] that can help you with that.
 
-Use the summary to provide a succint description of the change.
+[CLI tool]: https://cli.github.com/
 
-* Use the imperative, present tense: "change", not "changed" nor "changes". Think of it as if you're giving the codebase
-  the instruction to *do this* in order to achieve the new desired state.
-* don't capitalise the first letter
-* no dot (.) at the end
-* in total no longer than 50 characters
+> [!TIP]
+> Using a header and body in your commit message will automatically fill in the pull request title and description on
+> GitHub, respectively, saving you some typing work you'd have to do anyway.
 
-Some people use email to receive and send commits around, having long headers makes listing them not very nice. Any
-decent git-aware editor should tell you when you're exceeding these 50 characters.
+Once your pull request is opened, some automated checks will run on it, and it will be reviewed by one of the
+maintainers. Make sure to check back in a timely manner, you may already have received feedback!
+Once everything is in order and the changes are approved, your pull request will be merged into the main repository.
 
-### <a name="commit-body"></a> Commit Message Body
+Fret not if your pull request was only approved but not merged immediately. If there's a larger batch of changes that
+need merging, we will merge them all at once as to not spam the GitHub servers with a bunch of deployments and
+Algolia Docsearch with a ton of re-crawls.
 
-Just as in the summary, use the imperative, present tense: "fix", not "fixed", nor "fixes".
-
-Explain the motivation for the change in the commit message body. This part should explain *why* you are making that
-change and cleanly summarise what was changed for easier viewing in git logs.
-
-Lines should be broken at 72 characters, unless you are including a terminal log dump, then do not break the lines. Any
-decent git-capable editor should do this automatically for you.
-
-### <a name="commit-footer"></a> Commit Message Footer
-
-The footer can contain information about breaking changes (if any) and is also the place to reference GitHub issues and
-other pull requests that this commit closes, or is related to, as well as Co-Authors:
-
-```txt
-BREAKING CHANGE: <breaking change summary>
-<blank line>
-<breaking change description + migrate instructions>
-<blank line>
-<blank line>
-Closes #<issue number>
-<blank line>
-<blank line>
-Co-authored-by: name <name@example.com>
-```
-
-We also recommend you sign-off your commits with `git commit -s`, thereby certifying the
-[Developer Certificate of Origin](https://developercertificate.org/) and that you read these guidelines. If you do so,
-include your realname and a proper email.
-
-#### Revert commits
-
-If the commit reverts a previous commit, it should begin with `revert:`, followed by the header of the reverted commit.
-Obviously the header length limit of 50 characters does not apply to this.
-
-The content of the commit message body should contain:
-
-* information about the SHA of the commit being reverted in the following format: `This reverts commit <SHA>`,
-* a clear description of the reason for reverting the commit message.
+> [!NOTE]
+> If you prefer to use email to send your commits (for example because you don't have a GitHub account), please send
+> your patches to `l-zeuch@email.de` using `git send-email`.

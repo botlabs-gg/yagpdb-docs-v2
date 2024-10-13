@@ -842,7 +842,7 @@ Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/inte
 
 ## Tickets
 
-See [`createTicket`](functions#createTicket) for creating a ticket.
+See [`createTicket`](functions#createticket) for creating a ticket.
 
 ### Template Ticket
 

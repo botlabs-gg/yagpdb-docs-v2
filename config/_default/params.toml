@@ -4,6 +4,9 @@ images = [] # og:image; not needed.
 
 mainSections = ["docs"]
 
+[social]
+  twitter = ""
+
 [add_ons]
   docSearch = true
 

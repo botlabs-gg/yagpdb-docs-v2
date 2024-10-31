@@ -183,7 +183,7 @@ We have also set the `max_values` to 3, and we haven't set a `min_values` argume
 server member could select anywhere between 1 and 3 of these options.
 
 If the member selected all three options and submitted it (which would send an interaction to YAGPDB), while [parsing
-that interaction](#parsing-an-interaction) the `.Values` context data would be `["opt-1" "duck-option" "opt-3"]`. This is
+that interaction](#parsing-an-interaction) the `.Values` context data would be `["opt-1" "duck-option" "third-option"]`. This is
 because in our code defining the select menu, we defined the `"value"` args of our menu options as `opt-1`,
 `duck-option`, and `third-option`. If the member only selected the "Half a Duck" option, `.Values` would be
 `["third-option"]`.

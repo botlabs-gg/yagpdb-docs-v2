@@ -16,7 +16,7 @@ to set it up.
 Advanced automoderator operates on the basis of user-configurable rules, which trigger on specific actions and
 conditions to produce certain effects. Collections of rules are referred to as rulesets.
 
-Finally, there are lists you can create, which can be used to black- or whitelist words or domains.
+Finally, there are lists you can create, which can be used to black- or allowlist words or domains.
 
 ## Overview
 
@@ -28,7 +28,7 @@ This tab is your first stop when starting with Advanced Automoderator, as it is 
 telling name and click the **Create** button. This will create a new tab with that name.
 
 Furthermore, this is also the place to create and manage your lists. Lists are used to store words or domains that you
-want to use as black- or whitelist triggers in your rules. More on that under [Lists](#lists).
+want to use as black- or allowlist triggers in your rules. More on that under [Lists](#lists).
 
 ### Logs
 
@@ -42,11 +42,11 @@ With that out of the way, we'll go through how to _actually_ make Advanced Autom
 
 ### Lists
 
-As mentioned above, lists are used to store words or domains that you want to use as black- or whitelist triggers in your
+As mentioned above, lists are used to store words or domains that you want to use as black- or allowlist triggers in your
 rules.
 
 Multiple entries in word lists are separated by either a newline or a space. Entries in word lists must be single words
-containing no spaces; to blacklist complete phrases, use a regex trigger instead.
+containing no spaces; to denylist complete phrases, use a regex trigger instead.
 
 For website / link lists, specify _just_ the site's domain, without any protocol or path. Subdomains will be
 automatically included. Logically, if you want to _only_ check against some specific subdomain (and its sub-subdomains),

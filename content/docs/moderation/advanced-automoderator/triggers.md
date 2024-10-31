@@ -50,8 +50,8 @@ This trigger will fire when a message exceeds the configured threshold for *uniq
 
 This trigger will fire when a message contains *any* valid link.[^1]
 
-For more fine-grained control, consider using the [Website blacklist](#website-blacklist) or
-[Website whitelist](#website-whitelist) trigger.
+For more fine-grained control, consider using the [Website denylist](#website-denylist) or
+[Website allowlist](#website-allowlist) trigger.
 
 #### X Violations in y minutes
 
@@ -69,7 +69,7 @@ This will trigger when the offending user has amassed x violations in y minutes,
 - **Ignore if a higher violation trigger of this name was activated**<br>
     Whether to ignore this if a trigger with a higher threshold for the same violation was activated. (Default: on)
 
-#### Word blacklist
+#### Word denylist
 
 This trigger will fire when a message contains any word from the specified list.
 
@@ -79,23 +79,23 @@ This trigger will fire when a message contains any word from the specified list.
 - **Also match visually similar characters**<br>
     Whether to also match visually similar characters, like `Ĥéĺĺó`. (Default: off)
 
-#### Word whitelist
+#### Word allowlist
 
-Triggers when a message contains words **not** in the specified list. See [Word blacklist](#word-blacklist) for
+Triggers when a message contains words **not** in the specified list. See [Word denylist](#word-denylist) for
 configuration.
 
-#### Website blacklist
+#### Website denylist
 
 This trigger will fire when a message contains any link to a domain from the specified list, subdomains included.
 
 - **List**<br>
     The list to check against. (Default: first found list)
 
-#### Website whitelist
+#### Website allowlist
 
-Triggers when a message contains links **not** in the specified list. See [Website blacklist](#website-blacklist).
+Triggers when a message contains links **not** in the specified list. See [Website denylist](#website-denylist).
 
-Depending on your use-case, it may be more time-efficient to use a whitelist instead of a blacklist.
+Depending on your use-case, it may be more time-efficient to use a allowlist instead of a denylist.
 
 #### Server invites
 
@@ -186,7 +186,7 @@ This trigger will fire when the nickname of the user matches the specified regul
 
 The inverse of [Nickname matches regex](#nickname-matches-regex). See there for configuration.
 
-#### Nickname word whitelist
+#### Nickname word allowlist
 
 This trigger will fire when the nickname of the user contains words **not** in the specified list.
 
@@ -195,10 +195,10 @@ This trigger will fire when the nickname of the user contains words **not** in t
 - **Also match visually similar characters**<br>
     Whether to also match visually similar characters, like `Ĥéĺĺó`. (Default: off)
 
-#### Nickname word blacklist
+#### Nickname word denylist
 
 This trigger will fire when the nickname of the user contains any word from the specified list.
-See [Nickname word whitelist](#nickname-word-whitelist) for configuration.
+See [Nickname word allowlist](#nickname-word-allowlist) for configuration.
 
 - **List**<br>
     The list to check against. (Default: first found list)
@@ -221,7 +221,7 @@ This trigger will fire when the offending user has sent x attachments in y secon
 See [X user attachments in Y seconds](#x-user-attachments-in-y-seconds), but now applied to the channel as a whole,
 instead of a single user.
 
-#### Join username word whitelist
+#### Join username word allowlist
 
 This trigger will fire when the username of a user joining the server contains words **not** in the specified list.
 
@@ -230,10 +230,10 @@ This trigger will fire when the username of a user joining the server contains w
 - **Also match visually similar characters**<br>
     Whether to also match visually similar characters, like `Ĥéĺĺó`. (Default: off)
 
-#### Join username word blacklist
+#### Join username word denylist
 
 This trigger will fire when the username of a user joining the server contains any word from the specified list. See
-[Join username word whitelist](#join-username-word-whitelist) for configuration.
+[Join username word allowlist](#join-username-word-allowlist) for configuration.
 
 #### Join username matches regex
 

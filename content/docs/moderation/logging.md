@@ -105,9 +105,9 @@ messages, they will not be able to see deleted messages, or that a message was d
 
 ## Blacklisting Channels
 
-Under the Logging page on the control panel you may blacklist channels for log creation. Using the logs command in a
-blacklisted channel will return an error message. Moderation actions will also not generate or attach logs in
-blacklisted channels.
+Under the Logging page on the control panel you may denylist channels for log creation. Using the logs command in a
+denylisted channel will return an error message. Moderation actions will also not generate or attach logs in
+denylisted channels.
 
 ## Deleting Logs
 

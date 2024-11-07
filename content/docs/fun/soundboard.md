@@ -8,14 +8,21 @@ The soundboard system allows the bot to join a voice channel, and play sounds tr
 
 ## Uploading New Sounds
 
+The settings listed below only apply to that specific sound, and not the entire soundboard. Use a [command
+override](/docs/core/command-settings) to restrict access to the soundboard system as a whole.
+
 ### Name
 
 Give the sound a name. This name will be shown in the list to play later on. Avoid giving duplicated names for easier
 reference.
 
-### Required role
+### Allowed roles
 
 Choose to require users to have a role in order to play this sound.
+
+### Disallowed roles
+
+These roles cannot play the sound, even if they have an allowed role.
 
 ### Upload file
 

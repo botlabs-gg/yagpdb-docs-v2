@@ -50,11 +50,11 @@ Use regex to filter out games to post announcements and assign roles for specifi
 
 Assign this role to the people streaming.
 
-### Whitelist role
+### Allowed Role
 
 Only assign a role and make announcement for the people with this role.
 
-### Ignore role
+### Ignore Role
 
 Do not assign a role and make an announcement for people with this role.
 

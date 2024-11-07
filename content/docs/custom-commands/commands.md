@@ -78,13 +78,13 @@ Selecting a group allows you to edit it. Changes must be saved (**11**) to take 
 
 Using role/channel restrictions, it is possible to set conditions on which users can trigger a custom command.
 
-Specifically, allowlisted roles or channels are required to run the command, whereas denylisted roles or channels
+Specifically, allowed roles or channels are required to run the command, whereas denied roles or channels
 cannot use the command at all. These role restrictions are unrelated to member permissions. Having `Administrator`
 permissions will not override these restrictions.
 
 {{< callout context="note" title="Note: Priority of Ignored vs. Required Roles" icon="outline/info-circle" >}}
 
-YAGPDB was raised well and honors a "no" when told "no". In other words, denylists take precedence over allowlists.
+YAGPDB was raised well and honors a "no" when told "no". In other words, a denylist takes precedence over an allowlist.
 
 {{< /callout >}}
 

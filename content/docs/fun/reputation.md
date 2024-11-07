@@ -47,12 +47,12 @@ able to use these commands.
 Users with this role participates in the point system which they can be given/taken away points from. If set to none,
 everyone will be participating.
 
-### Blacklisted role for giving/taking away points
+### Disallowed role for giving/taking away points
 
 Users with this role cannot use the `-giverep` and `-takerep` commands. This also overrides the _Required role to
 give/remove points._
 
-### Blacklisted role for receiving/being taken away points from
+### Disallowed role for receiving/being taken away points from
 
 Users with this role cannot participate in the point system which they can be given/taken away points from. This also
 overrides the _Required role to receive/being taken away points from_.

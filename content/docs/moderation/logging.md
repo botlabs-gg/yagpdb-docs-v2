@@ -103,11 +103,11 @@ removed. On [premium](/docs/welcome/premium) servers, they are cached for `12` h
 In a message log, deleted messages are shown to users permitted to view them. If a user is not permitted to view deleted
 messages, they will not be able to see deleted messages, or that a message was deleted at all.
 
-## Blacklisting Channels
+## Disallowed Channels
 
-Under the Logging page on the control panel you may denylist channels for log creation. Using the logs command in a
-denylisted channel will return an error message. Moderation actions will also not generate or attach logs in
-denylisted channels.
+Under the Logging page on the control panel you may exclude certain channels from log creation. Using the logs command
+in a disallowed channel will return an error message. Moderation actions will also not generate or attach logs in such
+channels.
 
 ## Deleting Logs
 

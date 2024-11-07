@@ -16,7 +16,7 @@ to set it up.
 Advanced automoderator operates on the basis of user-configurable rules, which trigger on specific actions and
 conditions to produce certain effects. Collections of rules are referred to as rulesets.
 
-Finally, there are lists you can create, which can be used to black- or allowlist words or domains.
+Finally, there are lists you can create, which can be used to denylist or allowlist words or domains.
 
 ## Overview
 

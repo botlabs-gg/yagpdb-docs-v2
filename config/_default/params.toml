@@ -47,7 +47,7 @@ mainSections = ["docs"]
   # Nav
   sectionNav = ["docs", "learn"] # ["docs"] (default) or list of sections (e.g. ["docs", "guides"])
   toTopButton = false # false (default) or true
-  breadcrumbTrail = false # false (default) or true
+  breadcrumbTrail = true # false (default) or true
   headlineHash = true # true (default) or false
   scrollSpy = true # true (default) or false
 

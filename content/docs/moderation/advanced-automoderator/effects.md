@@ -136,3 +136,13 @@ functionality instead of applying a muted role.
     The duration of the timeout in minutes. (Default: 0)
 - **Custom message**<br>
     A custom reason for the timeout. (Default: None)
+
+#### Send Alert
+
+Sends an embed to the specified channel with some information about the triggered rule, similar to Discord's inbuilt
+automoderator alerts.
+
+- **Custom message**<br>
+    The message to send. Max 280 characters. (Default: (empty))
+- **Channel to send alert embed in**<br>
+    The channel to send the alert to. (Default: same channel as the rule was triggered in)

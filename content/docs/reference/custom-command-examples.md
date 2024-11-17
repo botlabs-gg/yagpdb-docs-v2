@@ -11,8 +11,8 @@ Prebuilt custom commands for use as a learning reference.
 {{< callout context="danger" title="Danger: Out of Date" icon="outline/alert-octagon" >}}
 
 Note: This page is no longer updated with the latest versions of codes/commands. If you plan to copy paste codes for
-your server, see [this website](https://yagpdb-cc.github.io) which is frequently updated with new community-contributed
-commands.
+your server, please see the [community-ran repository](https://yagpdb-cc.github.io) of custom commands, which is
+frequently updated with newly contributed commands.
 
 {{< /callout >}}
 

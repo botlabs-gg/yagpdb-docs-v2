@@ -91,6 +91,11 @@ has passed. To activate it, make sure to click the checkbox next to the respecti
 
 If 10 seconds are not enough, or too long, feel free to adjust as you see fit; the intervals need not be equal.
 
+#### Slash command response always ephemeral
+
+Toggling this setting on will make YAGPDB always respond to slash commands with an ephemeral message. This means that
+only the user who triggered the command will be able to see the response.
+
 ### Channel Override Options
 
 These options are only available for channel overrides (**8**). To add a new one, head to the _New channel override_

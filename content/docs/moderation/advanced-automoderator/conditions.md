@@ -121,3 +121,11 @@ Only apply this rule to messages in threads.
 #### Ignore threads
 
 Do not apply this rule to messages in threads.
+
+#### Ignore messages with forwards
+
+Do not apply this rule to messages that contain forwarded messages.
+
+#### Only match messages with forwards
+
+Only apply this rule to messages that contain forwarded messages.

@@ -33,9 +33,9 @@ Adds a member to an existing thread. Does nothing if either argument is invalid.
 {{ closeThread <thread> <lock> }}
 ```
 
-Closes the given thread.
+Closes or locks the given thread. You cannot lock a closed thread, but you can close a locked thread.
 
-- `lock`: whether to also lock the thread. Default `false`.
+- `lock`: whether to lock the thread instead. Default `false`.
 
 #### createForumPost
 

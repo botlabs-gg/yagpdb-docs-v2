@@ -1196,7 +1196,7 @@ for an example.
 #### complexMessage
 
 ```yag
-{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] }}
+{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons]  }}
 ```
 
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
@@ -1212,6 +1212,8 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `filename`: the name of the file.
 - `reply`: the ID of the message to reply to.
 - `silent`: whether to suppress push and desktop notifications.
+- `menus`: a single [select menu object](#cmenu).
+- `buttons`: a slice of [button objects](#cbutton).
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 

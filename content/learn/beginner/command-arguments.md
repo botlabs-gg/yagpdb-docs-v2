@@ -133,7 +133,7 @@ Following types support these validation ranges:
 
 - `int`
 - `float`
-- `duration` (in seconds)
+- `duration` (in [time.Duration format](/docs/reference/templates/syntax-and-data#time))
 
 Make sure to use these instead of manually verifying a valid range, if possible, as it makes your code cleaner and
 easier to read.

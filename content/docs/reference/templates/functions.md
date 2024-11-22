@@ -2289,7 +2289,7 @@ An argument's `"type"` must be one of the following:
   duration)
 
 Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for
-`duration` it is in seconds.
+`duration` it is in nanoseconds, or simply pass [time.Duration format](/docs/reference/templates/syntax-and-data#time) values.
 
 ##### Example
 

@@ -236,7 +236,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | .Message.Activity                    | Represents the activity sent with a message, such as a game invite, of type _\*discordgo.MessageActivity_. Sent with Rich Presence-related chat embeds.                                                                                                                  |
 | .Message.ApplicationID               | If the message is an interaction- or application-owned webhook, this is the ID of that application.                                                                                                                                                                      |
-| .Message.Attachments                 | Attachments of this message (_slice_ of [attachment](https://discord.com/developers/docs/resources/channel#attachment-object) objects).                                                                                                                                  |
+| .Message.Attachments                 | Attachments of this message (_slice_ of [attachment](https://discord.com/developers/docs/resources/message#attachment-object) objects).                                                                                                                                  |
 | .Message.Author                      | Author of the message ([User](#user) object).                                                                                                                                                                                                                            |
 | .Message.ChannelID                   | Channel ID this message is in.                                                                                                                                                                                                                                           |
 | .Message.Components                  | Slice of [discordgo.ActionsRow](https://discord.com/developers/docs/interactions/message-components#action-rows)s, which each contain components. Example on indexing the first button or menu under a message: `( index ( index .Message.Components 0 ).Components 0 )` |
@@ -273,7 +273,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 
 \* denotes field that will not have proper return when using `getMessage` function.
 
-[Message object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#message-object).
+[Message object in Discord documentation](https://discordapp.com/developers/docs/resources/message#message-object).
 
 [Message functions documentation](functions#message).
 

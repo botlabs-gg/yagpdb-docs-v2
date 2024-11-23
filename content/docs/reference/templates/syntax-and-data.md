@@ -289,7 +289,7 @@ This is available and part of the dot when reaction trigger type is used.
 | .ReactionAdded                | Returns a boolean type _bool_ true/false indicating whether reaction was added or removed.                                                                                                                                                                                                     |
 | .ReactionMessage              | Returns the message object reaction was added to. Not all regular .Message fields are filled though e.g. .Member. `{{range .ReactionMessage.Reactions}}`<br>`{{.Count}} - {{.Emoji.Name}}` <br>`{{end}}`Returns emoji count and their name.Has an alias `.Message` and it works the same way.  |
 
-[Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#reaction-object).\
+[Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/message#reaction-object).\
 [Emoji object in Discord documentation.](https://discord.com/developers/docs/resources/emoji)
 
 ### User

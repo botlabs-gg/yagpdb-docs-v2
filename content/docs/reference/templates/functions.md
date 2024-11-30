@@ -1196,7 +1196,7 @@ for an example.
 #### complexMessage
 
 ```yag
-{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons]  }}
+{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [forward] }}
 ```
 
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
@@ -1214,6 +1214,7 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `silent`: whether to suppress push and desktop notifications.
 - `menus`: a single [select menu object](#cmenu).
 - `buttons`: a slice of [button objects](#cbutton).
+- `forward`: must contain an sdict with a channel and message value
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 
@@ -1239,6 +1240,17 @@ the triggering message and ping the author of that message, but suppress the res
   "silent" true
 }}
 {{ sendMessage nil $message }}
+```
+
+Example of a message forward:
+
+```yag
+{{ sendMessage nil (complexMessage
+    "forward" (sdict
+        "channel" .Channel.ID
+        "message" <messageID>
+    )
+) }}
 ```
 
 #### deleteAllMessageReactions

@@ -1215,7 +1215,7 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `menus`: a single [select menu object](#cmenu).
 - `buttons`: a slice of [button objects](#cbutton).
 - `sticker`: single sticker ID or a slice of sticker IDs
-- `forward`: must contain an sdict with a channel and message value
+- `forward`: an sdict containing `channel` and `message` keys specifying the message to forward
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 
@@ -1265,7 +1265,7 @@ Example of a message forward:
 {{ sendMessage nil (complexMessage
     "forward" (sdict
         "channel" .Channel.ID
-        "message" <messageID>
+        "message" .Message.ID
     )
 ) }}
 ```

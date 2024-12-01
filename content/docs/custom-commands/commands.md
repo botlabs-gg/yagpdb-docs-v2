@@ -226,6 +226,16 @@ all subsequent runs based off the current time.
 
 You must specify a channel to run interval commands in even if the command doesn't output a message.
 
+{{< callout context="caution" title="Warning: Interval duration limits" icon="outline/info-circle" >}}
+
+An interval trigger may have at minimum an interval of 5 minutes.
+
+You may only have up to 5x interval trigger custom commands with an interval of 10 minutes or lower.
+
+An interval trigger may have at maximum an interval of 1 month.
+
+{{< /callout >}}
+
 ##### Component
 
 [In-depth Interactions Guide](/docs/reference/custom-interactions)
@@ -241,6 +251,61 @@ The trigger is matched using [RegEx](/docs/reference/regex).
 The modal trigger is used to trigger custom commands via submitting a modal.
 
 The trigger is matched using [RegEx](/docs/reference/regex).
+
+##### Crontab
+
+This trigger will run the command at scheduled intervals using [Cron Job Scheduling](https://en.wikipedia.org/wiki/Cron). This allows for advanced specificity in scheduling execution, such as scheduling execution at 23:45 every Saturday.
+
+When using an interval trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
+and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.
+
+![Overview of crontab configuration options.](crontab_trigger_options.png?width=60vw)
+
+<center>
+
+**1** Cron Expression **2** Channel **3** Excluding hours/weekdays
+
+</center>
+
+Cron Expression (**1**) defines the expression used to schedule the cron job. It uses the standard expression format (`minute hour day month dayofweek`). It does not support predefined schedules such as `@hourly`. The cron scheduler uses UTC always.
+
+Each field additionally supports special characters: `* / , -`. To read more about use of special characters, visit [Robfig's Cron package documentation - Special Characters](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Special_Characters).
+
+To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
+
+Quick examples:
+
+```txt
+45 23 * * 6
+Run once a week, on Saturday at 23:45.
+
+0 * * * *
+Run once an hour, beginning of hour.
+
+0 0 * * *
+Run once a day, midnight.
+
+0 0 * * 0
+Run once a week, midnight between Sat/Sun.
+
+0 0 1 * *
+Run once a month, midnight, first of month.
+
+0 0 1 1 *
+Run once a year, midnight, Jan. 1st.
+```
+
+Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
+
+Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses UTC time**, not your local timezone.
+
+You must specify a channel to run interval commands in even if the command doesn't output a message.
+
+{{< callout context="caution" title="Warning: Cron interval limits" icon="outline/info-circle" >}}
+
+Your cron expression must schedule jobs with greater than a 10 minute interval between executions.
+
+{{< /callout >}}
 
 #### Case Sensitivity
 

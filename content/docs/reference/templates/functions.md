@@ -1196,7 +1196,7 @@ for an example.
 #### complexMessage
 
 ```yag
-{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [forward] }}
+{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [sticker] [forward] }}
 ```
 
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
@@ -1214,6 +1214,7 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `silent`: whether to suppress push and desktop notifications.
 - `menus`: a single [select menu object](#cmenu).
 - `buttons`: a slice of [button objects](#cbutton).
+- `sticker`: single sticker ID or a slice of sticker IDs
 - `forward`: must contain an sdict with a channel and message value
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
@@ -1240,6 +1241,22 @@ the triggering message and ping the author of that message, but suppress the res
   "silent" true
 }}
 {{ sendMessage nil $message }}
+```
+
+Example for sending a sticker message:
+
+```yag
+{{ sendMessage nil ( complexMessage
+  "sticker" 749054660769218631
+) }}
+```
+
+Example for sending multiple stickers in a message:
+
+```yag
+{{ sendMessage nil ( complexMessage
+  "sticker" ( cslice 749054660769218631 819128604311027752 1308344035563274291 )
+) }}
 ```
 
 Example of a message forward:

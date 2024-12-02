@@ -251,7 +251,10 @@ The trigger is matched using [RegEx](/docs/reference/regex).
 
 ##### Crontab
 
-This trigger will run the command at scheduled intervals using [Cron Job Scheduling](https://en.wikipedia.org/wiki/Cron). This allows for advanced specificity in scheduling execution, such as scheduling execution at 23:45 every Saturday.
+This trigger will run the command periodically using [Cron Syntax](https://en.wikipedia.org/wiki/Cron) to schedule runs.
+In contrast to interval triggers, which run a command with a fixed delay but unknown time, cron triggers can be made to
+execute periodically at fixed times, dates, and/or intervals. For instance, you could schedule execution for 23:45 every
+Saturday.
 
 When using an interval trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
 and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.

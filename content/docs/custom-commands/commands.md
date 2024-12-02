@@ -271,14 +271,39 @@ Cron Expression (**1**) defines the expression used to schedule the cron job. It
 (`minute hour day month dayofweek`). It does not support predefined schedules such as `@hourly`. The cron scheduler uses
 UTC always.
 
-Each field additionally supports special characters: `* / , -`. To read more about use of special characters, visit
-[Robfig's Cron package documentation - Special
-Characters](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Special_Characters).
-
 To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression
 Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
 
-Quick examples:
+**Special Characters**
+
+Each field additionally supports special characters: `* / , -`.
+
+- Asterisk ( * )
+
+The asterisk indicates that the cron expression will match for all values of the field; e.g., using an asterisk in the
+5th field (month) would indicate every month.
+
+- Slash ( / )
+
+Slashes are used to describe increments of ranges. For example 3-59/15 in the 1st field (minutes) would indicate the 3rd
+minute of the hour and every 15 minutes thereafter. The form "*\/..." is equivalent to the form "first-last/...", that
+is, an increment over the largest possible range of the field. The form "N/..." is accepted as meaning "N-MAX/...", that
+is, starting at N, use the increment until the end of that specific range. It does not wrap around.
+
+- Comma ( , )
+
+Commas are used to separate items of a list. For example, using "MON,WED,FRI" in the 5th field (day of week) would mean
+Mondays, Wednesdays and Fridays.
+
+- Hyphen ( - )
+
+Hyphens are used to define ranges. For example, 9-17 would indicate every hour between 9am and 5pm inclusive.
+
+- Question mark ( ? )
+
+Question mark may be used instead of '*' for leaving either day-of-month or day-of-week blank.
+
+Quick Examples:
 
 ```txt
 45 23 * * 6

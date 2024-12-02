@@ -268,8 +268,17 @@ and similar templates will result in no value and member-dependent functions suc
 </center>
 
 Cron Expression (**1**) defines the expression used to schedule the cron job. It uses the standard expression format
-(`minute hour day month dayofweek`). It does not support predefined schedules such as `@hourly`. The cron scheduler uses
-UTC always.
+(see below). It does not support predefined schedules such as `@hourly`. The cron scheduler uses UTC always.
+
+A cron expression represents a set of times, using 5 space-separated fields.
+
+Field name   | Mandatory? | Allowed values  | Allowed special characters
+----------   | ---------- | --------------  | --------------------------
+Minutes      | Yes        | 0-59            | * / , -
+Hours        | Yes        | 0-23            | * / , -
+Day of month | Yes        | 1-31            | * / , - ?
+Month        | Yes        | 1-12 or JAN-DEC | * / , -
+Day of week  | Yes        | 0-6 or SUN-SAT  | * / , - ?
 
 To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression
 Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
@@ -283,8 +292,6 @@ on Corntab Guru, but are not supported with YAGPDB.
 {{< /callout >}}
 
 **Special Characters**
-
-Each field additionally supports special characters: `* / , -`.
 
 - Asterisk ( * )
 

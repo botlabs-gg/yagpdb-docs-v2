@@ -202,7 +202,7 @@ Example:
 These triggers will run the command at a regular interval of time -- for instance, every 2 hours -- in the selected
 channel.
 
-When using an interval trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
+When using a time-based trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
 and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.
 
 ![Overview of interval configuration options.](interval_trigger_options.png?width=60vw)
@@ -224,14 +224,14 @@ or shorter.
 
 Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
 
+You must specify a channel to run time-based commands in even if the command doesn't output a message.
+
 Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
 UTC time**, not your local timezone.
 
 When editing an interval command, a **Run Now** button appears at the bottom of the page. It executes the command as
 long as the command is not disabled and a channel is selected. Running an interval command using this button reschedules
 all subsequent runs based off the current time.
-
-You must specify a channel to run interval commands in even if the command doesn't output a message.
 
 ##### Component
 
@@ -256,7 +256,7 @@ In contrast to interval triggers, which run a command with a fixed delay but unk
 execute periodically at fixed times, dates, and/or intervals. For instance, you could schedule execution for 23:45 every
 Saturday.
 
-When using an interval trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
+When using a time-based trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
 and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.
 
 ![Overview of crontab configuration options.](crontab_trigger_options.png?width=60vw)
@@ -267,11 +267,16 @@ and similar templates will result in no value and member-dependent functions suc
 
 </center>
 
-Cron Expression (**1**) defines the expression used to schedule the cron job. It uses the standard expression format (`minute hour day month dayofweek`). It does not support predefined schedules such as `@hourly`. The cron scheduler uses UTC always.
+Cron Expression (**1**) defines the expression used to schedule the cron job. It uses the standard expression format
+(`minute hour day month dayofweek`). It does not support predefined schedules such as `@hourly`. The cron scheduler uses
+UTC always.
 
-Each field additionally supports special characters: `* / , -`. To read more about use of special characters, visit [Robfig's Cron package documentation - Special Characters](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Special_Characters).
+Each field additionally supports special characters: `* / , -`. To read more about use of special characters, visit
+[Robfig's Cron package documentation - Special
+Characters](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-Special_Characters).
 
-To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
+To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression
+Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
 
 Quick examples:
 
@@ -303,9 +308,10 @@ Your cron expression must schedule jobs with greater than a 10 minute interval b
 
 Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
 
-Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses UTC time**, not your local timezone.
+Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
+UTC time**, not your local timezone.
 
-You must specify a channel to run interval commands in even if the command doesn't output a message.
+You must specify a channel to run time-based commands in even if the command doesn't output a message.
 
 #### Case Sensitivity
 

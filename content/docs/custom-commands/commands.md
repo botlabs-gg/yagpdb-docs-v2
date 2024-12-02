@@ -215,6 +215,13 @@ and similar templates will result in no value and member-dependent functions suc
 
 Interval (**1**) sets how often the command will run in **hours** or **minutes**.
 
+{{< callout context="caution" title="Warning: Interval duration limits" icon="outline/info-circle" >}}
+
+The minimum interval is 5 minutes, and the max is 1 month. Up to 5 interval triggers may have an interval of 10 minutes
+or shorter.
+
+{{< /callout >}}
+
 Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
 
 Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
@@ -225,16 +232,6 @@ long as the command is not disabled and a channel is selected. Running an interv
 all subsequent runs based off the current time.
 
 You must specify a channel to run interval commands in even if the command doesn't output a message.
-
-{{< callout context="caution" title="Warning: Interval duration limits" icon="outline/info-circle" >}}
-
-An interval trigger may have at minimum an interval of 5 minutes.
-
-You may only have up to 5x interval trigger custom commands with an interval of 10 minutes or lower.
-
-An interval trigger may have at maximum an interval of 1 month.
-
-{{< /callout >}}
 
 ##### Component
 
@@ -295,17 +292,17 @@ Run once a month, midnight, first of month.
 Run once a year, midnight, Jan. 1st.
 ```
 
-Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
-
-Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses UTC time**, not your local timezone.
-
-You must specify a channel to run interval commands in even if the command doesn't output a message.
-
 {{< callout context="caution" title="Warning: Cron interval limits" icon="outline/info-circle" >}}
 
 Your cron expression must schedule jobs with greater than a 10 minute interval between executions.
 
 {{< /callout >}}
+
+Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
+
+Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses UTC time**, not your local timezone.
+
+You must specify a channel to run interval commands in even if the command doesn't output a message.
 
 #### Case Sensitivity
 

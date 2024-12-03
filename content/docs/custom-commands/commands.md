@@ -202,7 +202,7 @@ Example:
 These triggers will run the command at a regular interval of time -- for instance, every 2 hours -- in the selected
 channel.
 
-When using an interval trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
+When using a time-based trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
 and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.
 
 ![Overview of interval configuration options.](interval_trigger_options.png?width=60vw)
@@ -215,7 +215,16 @@ and similar templates will result in no value and member-dependent functions suc
 
 Interval (**1**) sets how often the command will run in **hours** or **minutes**.
 
+{{< callout context="caution" title="Warning: Interval duration limits" icon="outline/info-circle" >}}
+
+The minimum interval is 5 minutes, and the max is 1 month. Up to 5 interval triggers may have an interval of 10 minutes
+or shorter.
+
+{{< /callout >}}
+
 Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
+
+You must specify a channel to run time-based commands in even if the command doesn't output a message.
 
 Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
 UTC time**, not your local timezone.
@@ -223,8 +232,6 @@ UTC time**, not your local timezone.
 When editing an interval command, a **Run Now** button appears at the bottom of the page. It executes the command as
 long as the command is not disabled and a channel is selected. Running an interval command using this button reschedules
 all subsequent runs based off the current time.
-
-You must specify a channel to run interval commands in even if the command doesn't output a message.
 
 ##### Component
 
@@ -241,6 +248,114 @@ The trigger is matched using [RegEx](/docs/reference/regex).
 The modal trigger is used to trigger custom commands via submitting a modal.
 
 The trigger is matched using [RegEx](/docs/reference/regex).
+
+##### Crontab
+
+This trigger will run the command periodically using [Cron Syntax](https://en.wikipedia.org/wiki/Cron) to schedule runs.
+In contrast to interval triggers, which run a command with a fixed delay but unknown time, cron triggers can be made to
+execute periodically at fixed times, dates, and/or intervals. For instance, you could schedule execution for 23:45 every
+Saturday.
+
+When using a time-based trigger, the custom command does not receive any user or member context. Thus, `{{ .User.ID }}`
+and similar templates will result in no value and member-dependent functions such as `addRoleID` will fail.
+
+![Overview of crontab configuration options.](crontab_trigger_options.png?width=60vw)
+
+<center>
+
+**1** Cron Expression **2** Channel **3** Excluding hours/weekdays
+
+</center>
+
+Cron Expression (**1**) defines the expression used to schedule the cron job. It uses the standard expression format
+(see below). It does not support predefined schedules such as `@hourly`. The cron scheduler uses UTC always.
+
+Read more on [Cron Expressions](#cron-expressions) below.
+
+Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
+
+Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
+UTC time**, not your local timezone.
+
+You must specify a channel to run time-based commands in even if the command doesn't output a message.
+
+###### Cron Expressions
+
+A cron expression represents a set of times, using 5 space-separated fields.
+
+Field name       | Mandatory? | Allowed values  | Allowed special characters
+--------------   | ---------- | --------------  | --------------------------
+Minutes          | Yes        | 0-59            | * / , -
+Hours            | Yes        | 0-23            | * / , -
+Day of month     | Yes        | 1-31            | * / , - ?
+Month            | Yes        | 1-12 or JAN-DEC | * / , -
+Day of week (DOW)| Yes        | 0-6 or SUN-SAT  | * / , - ?
+
+To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression
+Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
+
+{{< callout context="tip" title="Tip: Debugging Cron Expressions" icon="outline/rocket" >}}
+
+To help build and debug cron expressions, we reccomend using [Cronitor's Crontab Guru](https://crontab.guru/) or a
+similar site. Note that predefined schedules such as `@hourly`, and the use of `7` in the DOW field may parse correctly
+on Corntab Guru, but are not supported with YAGPDB.
+
+{{< /callout >}}
+
+**Special Characters**
+
+- Asterisk ( * )
+
+The asterisk indicates that the cron expression will match for all values of the field; e.g., using an asterisk in the
+5th field (month) would indicate every month.
+
+- Slash ( / )
+
+Slashes are used to describe increments of ranges. For example 3-59/15 in the 1st field (minutes) would indicate the 3rd
+minute of the hour and every 15 minutes thereafter. The form "*\/..." is equivalent to the form "first-last/...", that
+is, an increment over the largest possible range of the field. The form "N/..." is accepted as meaning "N-MAX/...", that
+is, starting at N, use the increment until the end of that specific range. It does not wrap around.
+
+- Comma ( , )
+
+Commas are used to separate items of a list. For example, using "MON,WED,FRI" in the 5th field (day of week) would mean
+Mondays, Wednesdays and Fridays.
+
+- Hyphen ( - )
+
+Hyphens are used to define ranges. For example, 9-17 would indicate every hour between 9am and 5pm inclusive.
+
+- Question mark ( ? )
+
+Question mark may be used instead of '*' for leaving either day-of-month or day-of-week blank.
+
+Quick Examples:
+
+```txt
+45 23 * * 6
+Run once a week, on Saturday at 23:45.
+
+0 * * * *
+Run once an hour, beginning of hour.
+
+0 0 * * *
+Run once a day, midnight.
+
+0 0 * * 0
+Run once a week, midnight between Sat/Sun.
+
+0 0 1 * *
+Run once a month, midnight, first of month.
+
+0 0 1 1 *
+Run once a year, midnight, Jan. 1st.
+```
+
+{{< callout context="caution" title="Warning: Cron interval limits" icon="outline/info-circle" >}}
+
+Your cron expression must schedule jobs with greater than a 10 minute interval between executions.
+
+{{< /callout >}}
 
 #### Case Sensitivity
 

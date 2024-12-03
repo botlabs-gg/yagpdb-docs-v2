@@ -270,6 +270,17 @@ and similar templates will result in no value and member-dependent functions suc
 Cron Expression (**1**) defines the expression used to schedule the cron job. It uses the standard expression format
 (see below). It does not support predefined schedules such as `@hourly`. The cron scheduler uses UTC always.
 
+Read more on [Cron Expressions](#cron-expressions) below.
+
+Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
+
+Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
+UTC time**, not your local timezone.
+
+You must specify a channel to run time-based commands in even if the command doesn't output a message.
+
+###### Cron Expressions
+
 A cron expression represents a set of times, using 5 space-separated fields.
 
 Field name       | Mandatory? | Allowed values  | Allowed special characters
@@ -345,13 +356,6 @@ Run once a year, midnight, Jan. 1st.
 Your cron expression must schedule jobs with greater than a 10 minute interval between executions.
 
 {{< /callout >}}
-
-Channel (**2**) specifies a channel to run the command in. The response, if any, will be sent to this channel.
-
-Excluding hours and/or weekdays (**3**) prevents the command from triggering during those hours or weekdays. **This uses
-UTC time**, not your local timezone.
-
-You must specify a channel to run time-based commands in even if the command doesn't output a message.
 
 #### Case Sensitivity
 

@@ -1722,7 +1722,7 @@ Concatenates the arguments in order, adding spaces between arguments when neithe
 {{ $result := println <args...> }}
 ```
 
-Concatenates the arguments in order, adding spaces between arguments when neither is a string and inserting a newline at
+Concatenates the arguments in order, adding spaces between arguments and inserting a newline at
 the end.
 
 #### printf

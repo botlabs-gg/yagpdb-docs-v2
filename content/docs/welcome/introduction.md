@@ -26,9 +26,8 @@ patient when they don't respond in 10<sup>-3</sup> seconds, they are probably bu
 
 ### Learning Center
 
-This page is also a work in progress, and can be found at [learn.yagpdb.xyz](https://learn.yagpdb.xyz). It is a more
-step-by-step guide to get you started with YAGPDB's custom command system and is less in-your-face than the
-documentation.
+If you are new to YAGPDB's custom command system, you might want to check out the
+[Learning Center](/learn/welcome/introduction) for a more structured approach to learning how to write custom commands.
 
 However, it is not a replacement for the documentation, so you will need to read both to actually write custom commands.
 

@@ -2307,17 +2307,21 @@ present, respectively, at position `N` (starting from 0).
 
 An argument's `"type"` must be one of the following:
 
-- `int` (whole number)
-- `float` (decimal number)
-- `string` (text)
-- `user` (user mentions, resolves to the [user](https://docs.yagpdb.xyz/reference/templates#user) structure)
-- `userid` (mentions or user IDs, resolves to the ID itself)
-- `member` (mentions or user IDs, resolves to the [member](https://docs.yagpdb.xyz/reference/templates#member)
-  structure)
-- `channel` (channel mention or ID, resolves to the channel structure)
-- `role` (role name or ID, resolves as type \*discordgo.Role)
-- `duration` (duration that is human-readable, i.e `10h5m` or `10 hour 5 minutes` would both resolve to the same
-  duration)
+- `int`: whole number
+- `float`: decimal number
+- `string`: text
+- `user`: user mentions, resolves to a [user object]
+- `userid`: mentions or user IDs, resolves to the ID itself
+- `member`: mentions or user IDs, resolves to a [member object]
+- `channel`: channel mention or ID, resolves to a [channel object]
+- `role`: role name or ID, resolves to a [role object]
+- `duration`: duration that is human-readable, i.e `10h5m` or `10 hour 5 minutes` would both resolve to the same
+  duration
+
+[user object]: /docs/reference/templates/syntax-and-data/#user
+[member object]: /docs/reference/templates/syntax-and-data/#member
+[channel object]: /docs/reference/templates/syntax-and-data/#channel
+[role object]: https://discord.com/developers/docs/topics/permissions#role-object
 
 Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for
 `duration` it is in [time.Duration format](/docs/reference/templates/syntax-and-data#time) values.

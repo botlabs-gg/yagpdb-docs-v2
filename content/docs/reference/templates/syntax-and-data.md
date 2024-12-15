@@ -326,8 +326,9 @@ times, while conditional actions like `if` and `with` allow for alteration of wh
 ### If (conditional branching)
 
 Branching using `if` action's pipeline and comparison operators - these operators don't need to be inside `if` branch.
-`if` statements always need to have an enclosing `end`.\
-Learning resources covers conditional branching [more in depth](https://learn.yagpdb.xyz/beginner/control_flow_1).\
+`if` statements always need to have an enclosing `end`.
+
+See also the [conditional branching chapter](/learn/beginner/conditional-branching) in the learning resources.
 
 {{< callout context="tip" title="Tip: Test Many Arguments at Once" icon="outline/rocket" >}}
 
@@ -821,12 +822,12 @@ Patterns are basic PostgreSQL patterns, not RegEx: An underscore `(_)` matches a
 Keys can be max 256 bytes long and has to be strings or numbers. Values can be anything, but if their serialized
 representation exceeds 100kB a `short write` error gets raised.
 
-You can just pass a `userID`of 0 to make it global (or any other number, but 0 is safe).\
-\
+You can just pass a `userID`of 0 to make it global (or any other number, but 0 is safe).
+
 There can be 10 database interactions per CC, out of which dbTop/BottomEntries, dbCount, dbGetPattern, and dbDelMultiple
 may only be run twice. (50,10 for premium users).
 
-Learning resources covers database [more in-depth](https://learn.yagpdb.xyz/intermediate/custom-command-database).
+See also the [chapter on the database](/learn/intermediate/database) in the learning resources.
 
 [Database functions documentation](functions#database).
 

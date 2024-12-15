@@ -76,7 +76,7 @@ Calc <Expression:Text>
 
 **Aliases:** ce
 
-Creates an embed from what you give it in json form: https://docs.yagpdb.xyz/others/custom-embeds
+Creates an embed from what you give it in JSON form: https://help.yagpdb.xyz/docs/refehttps://help.yagpdb.xyz/docs/reference/custom-embeds/#the-customembed-command
 Example: `-ce {"title": "hello", "description": "wew"}`
 
 **Usage:**

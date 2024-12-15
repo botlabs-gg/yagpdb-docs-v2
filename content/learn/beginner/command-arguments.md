@@ -38,17 +38,21 @@ Each `carg` is a single argument definition. The `carg` function has the followi
 
 Following types are supported:
 
-- `int` (whole number)
-- `float` (decimal number)
-- `string` (text)
-- `user` (user mentions, resolves to the [user](https://docs.yagpdb.xyz/reference/templates#user) structure)
-- `userid` (mentions or user IDs, resolves to the ID itself)
-- `member` (mentions or user IDs, resolves to the [member](https://docs.yagpdb.xyz/reference/templates#member)
-  structure)
-- `channel` (channel mention or ID, resolves to the channel structure)
-- `role` (role name or ID, resolves as type _\*discordgo.Role_)
-- `duration` (duration that is human-readable, i.e `10h5m` or `10 hour 5 minutes` would both resolve to the same
-  duration)
+- `int`: whole number
+- `float`: decimal number
+- `string`: text
+- `user`: user mentions, resolves to a [user object]
+- `userid`: mentions or user IDs, resolves to the ID itself
+- `member`: mentions or user IDs, resolves to a [member object]
+- `channel`: channel mention or ID, resolves to a [channel object]
+- `role`: role name or ID, resolves to a [role object]
+- `duration`: duration that is human-readable, i.e `10h5m` or `10 hour 5 minutes` would both resolve to the same
+  duration
+
+[user object]: /docs/reference/templates/syntax-and-data/#user
+[member object]: /docs/reference/templates/syntax-and-data/#member
+[channel object]: /docs/reference/templates/syntax-and-data/#channel
+[role object]: https://discord.com/developers/docs/topics/permissions#role-object
 
 The `description` is a human-readable description of the argument. This is used in the error message if the argument is
 not valid.

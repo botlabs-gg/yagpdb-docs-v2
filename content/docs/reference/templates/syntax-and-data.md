@@ -425,6 +425,7 @@ Consider the following code:
 {{ end }}
 Hello!
 ```
+
 This program iterates ten *thousand* times, adding a newline and a tab character on every iteration to the output---we
 can fix this error by telling the bot to throw away (or "strip") whitespace characters by using the trim indicator `-`:
 
@@ -748,9 +749,9 @@ function. Retrieving specific element inside _templates.Slice_ is by indexing it
 
 #### This section's snippets
 
-- To demonstrate .StringSlice `{{(cslice currentTime.Month 42 "YAGPDB").StringSlice}}` will return a slice `[February
-YAGPDB]`. If the flag would have been set to true - \{{...).StringSlice true\}}, all elements in that slice were not
-  strings and `<no value>` is returned.
+- To demonstrate .StringSlice `{{(cslice currentTime.Month 42 "YAGPDB").StringSlice}}` will return a slice
+  `[February YAGPDB]`. If the flag would have been set to true - \{{...).StringSlice true\}}, all elements in that slice
+  were not strings and `<no value>` is returned.
 
 General example:
 
@@ -809,8 +810,7 @@ types are now serialized properly, making manual conversion unnecessary.
 ## Database
 
 You have access to a basic set of Database functions having return of type _\*customcommands.LightDBEntry_ called here
-[DBEntry](#dbentry).
-This is almost a key value store ordered by the key and value combined.
+[DBEntry](#dbentry). This is almost a key value store ordered by the key and value combined.
 
 You can have max 50 \* user_count (or 500 \* user_count for premium) values in the database, if you go above this all
 new write functions will fail, this value is also cached, so it won't be detected immediately when you go above nor

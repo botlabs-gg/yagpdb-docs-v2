@@ -70,7 +70,7 @@ write `if $s`, like so:
 
 {{< /callout >}}
 
-#### Guard Clauses
+### Guard Clauses
 
 As your code grows, you may find yourself nesting `if` statements inside each other. This can lead to code that is hard
 to read and understand. One way to avoid this is to use _guard clauses_. A guard clause is an `if` statement that checks
@@ -200,7 +200,6 @@ Be careful not to overuse `with` blocks, as they can make your code difficult to
 a normal `if` conditional and only use `with` if it improves readability; do not use it just to shorten code.
 
 {{< /callout >}}
-
 
 ## Exercises
 

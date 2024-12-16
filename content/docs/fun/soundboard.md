@@ -32,7 +32,6 @@ Do **not** fill in the URL if you are going uploaded from local files, and vice 
 
 {{< /callout >}}
 
-
 You have two options to upload sounds:
 
 - Upload with local files

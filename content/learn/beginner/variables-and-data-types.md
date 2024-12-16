@@ -75,8 +75,9 @@ Please note that not all escape sequences are supported by Discord.
 
 It should become relatively clear that a lot of new lines and other special characters can make a quoted string quite
 hard to read. To make this easier, you can use backticks (`` ` ``) to create a _raw string literal_. A raw string
-literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening `` ` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will later
-cover functions that solve this special case.
+literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening
+`` ` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will
+later cover functions that solve this special case.
 
 ```txt
 `This is my

@@ -156,7 +156,6 @@ This trigger will fire when a message matches the specified regular expression.[
 - **Also match visually similar characters**<br>
     Whether to also match visually similar characters, like `Ĥéĺĺó`. (Default: off)
 
-
 #### Message not matching Regex
 
 The inverse of [Message matches Regex](#message-matches-regex). See there for configuration.
@@ -305,12 +304,11 @@ This trigger will fire when a message triggers Discord's Automod.
 
 <!-- footnotes -->
 
-[^1]: The regular expression used to match links is the following:
-<code>(?i)([a-z\d]+://)([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])</code>
+[^1]: The regular expression used to match links is the following:<br>
+``(?i)([a-z\d]+://)([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])``
 
 [^2]: Under the hood, the bot will only check the last 1000 messages in the channel. If you have a high-traffic channel
 in combination with an extremely long time frame, the bot could (theoretically) miss some messages.
 
 [^3]: The RegEx engine used in YAGPDB is RE2. Some features are not supported, like lookaheads and lookbehinds. See
     [regex101](https://regex101.com/?flavor=golang) for some help with writing RE2-compatible regular expressions.
-

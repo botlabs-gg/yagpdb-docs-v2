@@ -49,9 +49,8 @@ Creates a new forum post. Returns a channel object on success.
 - `name`: The post title. May not be empty. Must be a string.
 - `content`: the initial message's content; may be a string, an embed, or a complex message. May not be empty.
 - `values` (optional): Additional options for the post. May include:
-  - `"slowmode"`: The thread's slowmode in seconds.
-  - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
-
+   - `"slowmode"`: The thread's slowmode in seconds.
+   - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
 
 #### createThread
 
@@ -135,10 +134,10 @@ In addition to this, Discord limits the number of channel modifications to 2 per
 Edits the specified thread.
 
 - `opts`: a sdict containing the thread parameters to edit, supporting the following keys (all optional):
-  - `slowmode`: the thread's slowmode in seconds.
-  - `tags`: one or more forum tag name or ID. Duplicate and invalid tags are ignored.
-  - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
-  - `invitable`: whether non-moderators can add other members to the thread. Defaults to false.
+   - `slowmode`: the thread's slowmode in seconds.
+   - `tags`: one or more forum tag name or ID. Duplicate and invalid tags are ignored.
+   - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
+   - `invitable`: whether non-moderators can add other members to the thread. Defaults to false.
 
 #### getChannelOrThread
 
@@ -241,11 +240,12 @@ Returns up to `amount` entries from the database, sorted in ascending order by t
 Returns the count of all matching database entries that are not expired.
 
 The argument must be one of the following:
+
 - `userID`: count entries for the given user ID.
 - `pattern`: count only entries with keys matching the given pattern.
 - `query`: an sdict with the following (all optional) keys:
-  - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
-  - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
+   - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
+   - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
 
 #### dbDelByID
 
@@ -264,9 +264,9 @@ Deletes a database entry under the given `userID` by its `ID`.
 Deletes up to `amount` entries from the database matching the given criteria. Returns the number of deleted entries.
 
 - `query`: an sdict with the following (all optional) keys:
-  - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
-  - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
-  - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
+   - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
+   - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
+   - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
 - `amount`: the maximum number of entries to delete, capped at 100.
 - `nSkip`: the number of entries to skip before deleting.
 
@@ -335,9 +335,9 @@ Increments the value of the specified database entry by `incrBy`. Returns the ne
 Returns the rank of the specified entry in the set of entries as defined by `query`.
 
 - `query`: an sdict with the following (all optional) keys:
-  - `userID`: only include entries with the given user ID.
-  - `pattern`: only include entries with keys matching the given pattern.
-  - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
+   - `userID`: only include entries with the given user ID.
+   - `pattern`: only include entries with keys matching the given pattern.
+   - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
 
 #### dbSetExpire
 
@@ -391,7 +391,6 @@ Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write
 
 Undoes the transformation performed by [`encodeBase64`](#encodebase64), converting the base64-encoded `string` back to
 its original form.
-
 
 #### encodeBase64
 
@@ -537,16 +536,16 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 Sends a modal to the member who triggered the interaction.
 
 - `modal`: an sdict with the following keys:
-  - `title`: the title of the modal.
-  - `custom_id`: a unique identifier for the modal.
-  - `fields`: a slice of sdicts with the following keys:
-    - `label`: the label for the field.
-    - `placeholder`: the placeholder text for the field.
-    - `value`: the default value for the field.
-    - `required`: whether the field is required.
-    - `style`: the style of the field (1 for short, 2 for long).
-    - `min_length`: the minimum length of the field.
-    - `max_length`: the maximum length of the field.
+   - `title`: the title of the modal.
+   - `custom_id`: a unique identifier for the modal.
+   - `fields`: a slice of sdicts with the following keys:
+      - `label`: the label for the field.
+      - `placeholder`: the placeholder text for the field.
+      - `value`: the default value for the field.
+      - `required`: whether the field is required.
+      - `style`: the style of the field (1 for short, 2 for long).
+      - `min_length`: the minimum length of the field.
+      - `max_length`: the maximum length of the field.
 
 Alternatively, you can create a modal object using the [`cmodal`](#cmodal) function.
 
@@ -584,7 +583,6 @@ The following example must be triggered by a component or modal submission.
 {{ $message := complexMessageEdit "content" $content "buttons" $button }}
 {{ updateMessage $message }}
 ```
-
 
 #### updateMessageNoEscape
 
@@ -1182,10 +1180,10 @@ Note that a message sent via [sendMessage](#sendmessage) is not the response---u
 Creates a complex message object for use in [editMessage](#editmessage) or [editMessageNoEscape](#editmessagenoescape).
 
 - `allowed_mentions`: an sdict with the following keys:
-  - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
-  - `users`: a slice of user IDs to mention.
-  - `roles`: a slice of role IDs to mention.
-  - `replied_user`: whether to mention the replied user.
+   - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
+   - `users`: a slice of user IDs to mention.
+   - `roles`: a slice of role IDs to mention.
+   - `replied_user`: whether to mention the replied user.
 - `content`: the new content for the message.
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `silent`: whether to suppress push and desktop notifications.
@@ -1202,10 +1200,10 @@ for an example.
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
 
 - `allowed_mentions`: an sdict with the following keys:
-  - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
-  - `users`: a slice of user IDs to mention.
-  - `roles`: a slice of role IDs to mention.
-  - `replied_user`: whether to mention the replied user.
+   - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
+   - `users`: a slice of user IDs to mention.
+   - `roles`: a slice of role IDs to mention.
+   - `replied_user`: whether to mention the replied user.
 - `content`: the message content.
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `file`: the content to print as a file.
@@ -1465,7 +1463,6 @@ Adds the first case-insensitive matching role name to the triggering member.
 
 - `delay`: an optional delay in seconds.
 
-
 #### getRole
 
 ```yag
@@ -1618,7 +1615,6 @@ Removes the specified role from `target`. `target` may be a user ID, mention, or
 the server.
 
 - `delay`: an optional delay in seconds.
-
 
 #### takeRoleName
 
@@ -1926,12 +1922,11 @@ local time zone of the host YAGPDB server.
 
 Returns the time object corresponding to
 
-```
+```txt
 yyyy-mm-dd hh:mm:ss
 ```
 
 In the appropriate zone for that time in the given location.
-
 
 The month, day, hour, min, and sec values may be outside their usual ranges and will be normalized during the
 conversion. For example, October 32 converts to November 1.
@@ -1988,7 +1983,6 @@ can be done using the `print` function:
 `{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
 
 {{< /callout >}}
-
 
 ----
 
@@ -2054,7 +2048,6 @@ Converts the given string to a slice of runes (Unicode code points).
 #### toString
 
 Aliases: `str`.
-
 
 ```yag
 {{ $str := toString <x> }}
@@ -2125,20 +2118,20 @@ All keys are optional, but the Discord API will reject completey empty embeds, s
 - `description`: the main text
 - `color`: which color to display on the left side of the embed
 - `fields`: a slice of sdicts with the following keys:
-  - `name`: the name of the field
-  - `value`: which text to have inside this field
-  - `inline`: an optional boolean whether this field should be displayed in-line with other fields
+   - `name`: the name of the field
+   - `value`: which text to have inside this field
+   - `inline`: an optional boolean whether this field should be displayed in-line with other fields
 - `author`: Shows some details at the very top of the embed. Is an sdict with the following keys:
-  - `name`: The name of the author
-  - `url`: the URL to hyperlink the name with
-  - `icon_url`: the author's icon
+   - `name`: The name of the author
+   - `url`: the URL to hyperlink the name with
+   - `icon_url`: the author's icon
 - `thumbnail`: a small image in the top-right corner. Is an sdict with the following keys:
-  - `url`: the image's URL
+   - `url`: the image's URL
 - `image`: an image to display at full width at the bottom of the embed. Is an sdict with the following keys:
-  - `url`: the image's URL
+   - `url`: the image's URL
 - `footer`: Shows some details at the very bottom of the embed. Is an sdict with the following keys:
-  - `text`: the footer's text
-  - `icon_url`: a small icon to display to the left of the footer's text
+   - `text`: the footer's text
+   - `icon_url`: a small icon to display to the left of the footer's text
 - `timestamp`: a (static) timestamp to display to the right of the footer's text
 
 {{< callout context="tip" title="Tip: Custom Commands Embed Generator" icon="outline/rocket" >}}
@@ -2262,7 +2255,7 @@ chaining `index` calls, e.g. `index (index $x 0) 1`.
 
 #### kindOf
 
-```
+```yag
 {{ $kind := kindOf <value> [indirect] }}
 ```
 
@@ -2302,8 +2295,8 @@ The result has the `.Get N` and `.IsSet N` methods available, returning the valu
 present, respectively, at position `N` (starting from 0).
 
 - `...cargs`: a list of argument definitions. Must have at least `requiredArgs` elements. Has the following arguments:
-  - `"type"`: the type of this argument as a quoted string.
-  - `"name"`: the name of this argument. Must be a string.
+   - `"type"`: the type of this argument as a quoted string.
+   - `"name"`: the name of this argument. Must be a string.
 
 An argument's `"type"` must be one of the following:
 
@@ -2351,7 +2344,6 @@ of it.
 
 Creates a dictionary from the provided key-value pairs. The number of parameters must be even. The keys must be of
 string type.
-
 
 #### sendTemplateDM
 
@@ -2415,6 +2407,7 @@ start index and the subslice extends to the end of `item`.
 
 Returns the given list in a sorted order. The list's items must all be of the same type. The optional `options` argument
 is an sdict with the following (optional) keys:
+
 - `key`: if sorting a list of maps, the key's value to sort by. This key must be present on all maps in the slice.
 - `reverse`: whether to sort in reverse (descending) order. Default: `false`.
 
@@ -2427,4 +2420,3 @@ Limited to 1 call on regular servers and 3 calls on premium servers.
 ```
 
 Returns a random verb.
-

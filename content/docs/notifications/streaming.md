@@ -6,7 +6,6 @@ description = "Spam your server with notifications when someone starts streaming
 
 Let everyone know that someone is currently streaming.
 
-
 ### Streaming Feed
 
 {{< callout context="note" title="Note: Announcements may not Post" icon="outline/info-circle" >}}

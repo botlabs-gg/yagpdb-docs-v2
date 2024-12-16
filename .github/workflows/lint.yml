@@ -1,0 +1,17 @@
+name: Lint
+
+on:
+  pull_request:
+    paths:
+      - 'content/**/*.md'
+
+jobs:
+  lint-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Lint markdown files
+        uses: actionshub/markdownlint@main
+        with:
+          filesToIgnoreRegex: 'all-commands.md|scripts/.*|.github/.*'

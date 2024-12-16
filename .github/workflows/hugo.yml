@@ -30,7 +30,9 @@ jobs:
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: latest
+          # FIXME: At the moment, the 0.139.5 release does not include all assets,
+          # which fails this specific step. We use the previous version instead.
+          hugo-version: '0.139.4'
           # We use the extended version just to be on the safe side.
           # It is recommended anyway.
           extended: true

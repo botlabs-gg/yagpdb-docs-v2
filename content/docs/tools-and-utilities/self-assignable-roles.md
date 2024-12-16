@@ -86,7 +86,7 @@ Role groups have additional options that can be enabled/disabled by selecting th
 - Requiring a user to have one of the following role at all time (after initial assignment).
 - Removing the previous role when they assign themselves another role from the group.
 
-#### Example usage:
+#### Example usage
 
 Say you have a server with 3 factions and want people to be able to assign their own faction when they join. That's
 simple enough - all we have to do is:
@@ -143,7 +143,8 @@ message with -skip flag.
 
 {{< /callout >}}
 
-To set up a role menu, the related roles **have to be added to a role group**, then you invoke the command `-rolemenu create (role group name)`
+To set up a role menu, the related roles **have to be added to a role group**, then you invoke the command
+`-rolemenu create (role group name)`.
 
 The group mode and other restrictions from the role group and role still apply to the roles in the role menu.
 

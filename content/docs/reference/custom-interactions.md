@@ -210,7 +210,7 @@ mentionable type select menus where an ID could be either a user or a role, `.Va
 you are parsing options from mentionable type menus, you will need to use your own methods of determining if an ID is a
 role or a user.
 
-**Default Values**
+###### Default Values
 
 Setting default values in these select menus is a more involved process than for text type menus. Instead of setting a
 `default` value on each option, you must instead provide a `default_values` argument containing a slice of
@@ -242,7 +242,7 @@ it as an `int64`, which would not work.
 
 {{< /callout >}}
 
-**Channel Type Filtering**
+###### Channel Type Filtering
 
 A channel type menu optionally allows you to filter which channel types are made available for selection. You can use
 the `channel_types` argument which accepts a slice of [channel types](https://discord.com/developers/docs/resources/channel#channel-object-channel-types).
@@ -602,9 +602,9 @@ with the trigger field `uno-`. This can take individual action for a button with
 
 ```yag
 {{ if eq .StrippedID "join" }}
-	{{ sendResponse nil "You joined the UNO game!" }}
+  {{ sendResponse nil "You joined the UNO game!" }}
 {{ else if eq .StrippedID "leave" }}
-	{{ sendResponse nil "You left the UNO game :(" }}
+  {{ sendResponse nil "You left the UNO game :(" }}
 {{ end }}
 ```
 
@@ -663,12 +663,12 @@ well.
 Possible initial responses:
 
 - Output text in your script response field. This text will be sent as an interaction response.
-  - You can even use the `ephemeralResponse` function to turn it _ephemeral_.
+   - You can even use the `ephemeralResponse` function to turn it _ephemeral_.
 - Use the `sendResponse` function to send a response as soon as the function runs.
-  - You can also use this to send `embeds` or `complexMessages`.
-  - You'll need to send a `complexMessage` and pass it `"ephemeral" true` as an argument to send _ephemeral_ messages.
-  - `sendResponse` comes in `NoEscape` and `RetID` variants too.
-  - When sending an initial response, `sendResponse` does not need an interaction token, `nil` can be used.
+   - You can also use this to send `embeds` or `complexMessages`.
+   - You'll need to send a `complexMessage` and pass it `"ephemeral" true` as an argument to send _ephemeral_ messages.
+   - `sendResponse` comes in `NoEscape` and `RetID` variants too.
+   - When sending an initial response, `sendResponse` does not need an interaction token, `nil` can be used.
 - Use the `sendModal` function to show the user a modal. You cannot respond to a user submitting a modal by sending them
   another modal.
 - Use the `updateMessage` function to edit the message the command triggered from. This works the same way as editing a
@@ -686,24 +686,24 @@ interaction token of the interaction they should be following up on.
 Possible followups:
 
 - Output text in your script response field. This text will be sent as an interaction followup.
-  - You can even use the `ephemeralResponse` function to turn it _ephemeral_.
+   - You can even use the `ephemeralResponse` function to turn it _ephemeral_.
 - Use the `sendResponse` function to send a followup as soon as the function runs. Note that this function morphs into
   sending followups if an initial response has already been made.
-  - You can also use this to send `embeds` or `complexMessages`.
-  - `sendResponse` comes in `NoEscape` and `RetID` variants too.
-  - It's important to capture the message ID of any
-    followups you'll want to edit or retrieve later, especially if you followup ephemerally. If you followup ephemerally
-    without saving the message ID, you'll never be able to interface with that message again.
+   - You can also use this to send `embeds` or `complexMessages`.
+   - `sendResponse` comes in `NoEscape` and `RetID` variants too.
+   - It's important to capture the message ID of any
+     followups you'll want to edit or retrieve later, especially if you follow up ephemerally. If you follow up
+     ephemerally without saving the message ID, you'll never be able to interface with that message again.
 - Use the `editResponse` function to edit an initial response or a followup message.
-  - When editing an initial response, the `messageID` argument should be `nil`.
-  - When editing a followup message, the `messageID` argument is required.
-  - You can still edit any initial responses or followups using the standard `editMessage` function as long as they
-    aren't _ephemeral_.
+   - When editing an initial response, the `messageID` argument should be `nil`.
+   - When editing a followup message, the `messageID` argument is required.
+   - You can still edit any initial responses or followups using the standard `editMessage` function as long as they
+     aren't _ephemeral_.
 - Use the `getResponse` function to get an initial response or a followup message.
-  - When getting an initial response, the `messageID` argument should be `nil`.
-  - When getting a followup message, the `messageID` argument is required.
-  - You can still get any initial responses or followups using the standard `getMessage` function as long as they
-    aren't _ephemeral_.
+   - When getting an initial response, the `messageID` argument should be `nil`.
+   - When getting a followup message, the `messageID` argument is required.
+   - You can still get any initial responses or followups using the standard `getMessage` function as long as they
+     aren't _ephemeral_.
 
 [Interaction Function documentation](/docs/reference/templates/functions#interactions)
 

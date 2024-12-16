@@ -39,7 +39,7 @@ Flags and switches are **_not_** affected by your prefix setting.
 
 For example, if your prefix is `?`, a command usage with flags and/or switches is as follows:
 
-```
+```txt
 ?wouldyourather -raw
 ```
 

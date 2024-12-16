@@ -221,7 +221,7 @@ You don't have any notes :(
 {{end}}
 ```
 
-### Cooldown Example&#x20;
+### Cooldown Example
 
 With YAGPDB's database system, you can now add cooldowns to you custom commands. You can either make them global
 cooldowns or a per user cooldown.

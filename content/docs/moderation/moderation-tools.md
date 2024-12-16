@@ -112,22 +112,29 @@ To remove the requirement and make the reason optional, you may toggle this on (
 
 #### Moderation DMs
 
-Moderation DMs are template scripts (**3**) which are executed within the offending user's DM. Text output to the response will
-be directly sent to the offending user.
+Moderation DMs are template scripts (**3**) which are executed within the offending user's DM. Text output to the
+response will be directly sent to the offending user.
 
 {{< link-card href="/docs/reference/templates/syntax-and-data" description="Templates Reference" target="_blank" >}}
 
 Additional template dot context data is available for Moderation Actions:
 
 - `{{.Reason}}`: The reason specified in the timeout.
-- `{{.Author}}`: The author of the punishment, is a [user object](/docs/reference/templates/syntax-and-data#user).
-- `{{.Duration}}`: The duration of the mod action as a [time.Duration format](/docs/reference/templates/syntax-and-data#time).
+- `{{.Author}}`: The author of the punishment, is a [user object].
+- `{{.Duration}}`: The duration of the mod action as a [time.Duration format].
 - `{{.HumanDuration}}`: The duration in a human friendly format (`1 hour and 3 minutes` for example).
 - `{{.WarningID}}`: The ID of the warning (when using the warn command).
+
+[user object]: /docs/reference/templates/syntax-and-data#user
+[time.Duration format]: /docs/reference/templates/syntax-and-data#time
+
+{{< callout context="danger" title="Danger: Template Execution Errors" icon="outline/alert-octagon" >}}
 
 Any errors which occur in the template execution will not be logged by default. The offending user will only receive a
 DM from your server saying **Failed executing template.** Setting a [Moderation DM Error channel](#mod-channels) allows
 for the more detailed errors to be captured.
+
+{{< /callout >}}
 
 Moderation actions which send DMs are:
 
@@ -273,8 +280,8 @@ You may optionally send warnings to the mod log, this is enabled in the warnings
 
 [ClearWarnings Command Syntax](/docs/core/all-commands#clearwarnings) - Clears the warnings of a user.
 
-[TopWarnings Command Syntax](/docs/core/all-commands#topwarnings) - Shows ranked list of warnings on the server, allowing you to turn
-misbehavior into a fun minigame for your server members.
+[TopWarnings Command Syntax](/docs/core/all-commands#topwarnings) - Shows ranked list of warnings on the server,
+allowing you to turn misbehavior into a fun minigame for your server members.
 
 {{< callout context="tip" title="Tip: Taking Action on Warn Count" icon="outline/rocket" >}}
 

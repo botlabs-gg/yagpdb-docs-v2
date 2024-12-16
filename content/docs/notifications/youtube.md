@@ -24,18 +24,17 @@ may need to scroll down a bit); then select a channel to post it to. For a visua
 
 </center>
 
-
 If you are unable to obtain a direct channel URL, similar to<br>
-*https://youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw*, we also support the following URLs:
+*<https://youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw>*, we also support the following URLs:
 
-- Video links (https://youtube.com/watch?v=dQw4w9WgXcQ)
-- Shorts links (https://youtube.com/shorts/pBZ_2pX_8mg)
-- Share links (https://youtu.be/dQw4w9WgXcQ)
-- Live links (https://youtube.com/live/jfKfPfyJRdk)
-- Playlist links (https://youtube.com/playlist?list=PLEamUZtdyTMxwDNQ97Y7im8EwqRyht12R)
+- Video links (<https://youtube.com/watch?v=dQw4w9WgXcQ>)
+- Shorts links (<https://youtube.com/shorts/pBZ_2pX_8mg>)
+- Share links (<https://youtu.be/dQw4w9WgXcQ>)
+- Live links (<https://youtube.com/live/jfKfPfyJRdk>)
+- Playlist links (<https://youtube.com/playlist?list=PLEamUZtdyTMxwDNQ97Y7im8EwqRyht12R>)
 
-Although we make an attempt at extracting the channel from usernames (https://youtube.com/user/MontyPython),
-custom links (https://youtube.com/c/Taskmaster), and handles (https://youtube.com/@TomScottGo), these are not as
+Although we make an attempt at extracting the channel from usernames (<https://youtube.com/user/MontyPython>),
+custom links (<https://youtube.com/c/Taskmaster>), and handles (<https://youtube.com/@TomScottGo>), these are not as
 reliable as the links listed above, as we use the first result of a YouTube search to determine the channel via these
 URLs.
 

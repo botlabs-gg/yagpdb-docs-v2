@@ -10,7 +10,6 @@ General support queries and possible bugs in YAGPDB are **not** in scope and wil
 
 [support server]: https://discord.gg/4udtcA5
 
-
 ## Submission Guide
 
 Thanks for contributing to the YAGPDB documentation! Please take a moment to review this document in order to make the
@@ -45,7 +44,7 @@ this process below.
 In your local clone, install the required dependencies via NPM by running the following command:
 
 ```shellsession
-$ npm install
+npm install
 ```
 
 This will ensure that you can fully build the documentation site locally, including the custom syntax highlighting we
@@ -117,7 +116,7 @@ In order to preview your changes locally, you will need to run a local instance 
 you have Node.js (and NPM) and Hugo installed, you can do so by running the following command:
 
 ```shellsession
-$ npm run dev
+npm run dev
 ```
 
 This will run a local server on `http://localhost:1313` that will automatically update whenever you save a file, though
@@ -125,7 +124,7 @@ without our custom syntax highlighting. If you prefer to view the site as it wou
 following commands instead:
 
 ```shellsession
-$ npm run build && npm run preview
+npm run build && npm run preview
 ```
 
 This will build the site, execute the highlighting post-processor, and run a local server on `http://localhost:4173`.

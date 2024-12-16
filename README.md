@@ -26,8 +26,9 @@ Pages are written in Markdown with additional shortcodes provided by the Doks th
 documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.
 
 If you are editing pages related to custom commands, note that codeblocks support a custom `yag` language for accurate
-syntax highlighting—do not use `go`. However, this feature is only enabled in production builds for performance, so `npm run dev` will _not_ highlight `yag` codeblocks. Use `npm run build` followed by `npm run preview` instead if you need to verify
-that code is highlighted correctly.
+syntax highlighting—do not use `go`. However, this feature is only enabled in production builds for performance, so
+`npm run dev` will _not_ highlight `yag` codeblocks. Use `npm run build` followed by `npm run preview` instead if you
+need to verify that code is highlighted correctly.
 
 > [!TIP]
 > If you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate in

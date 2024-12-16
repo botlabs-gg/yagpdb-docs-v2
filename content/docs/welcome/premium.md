@@ -136,9 +136,11 @@ Do not proceed unless you are hosting your own version of the YAGPDB codebase.
 When hosting YAGPDB yourself, you have access to a few methods to source premium slots to your users.
 
 - Patreon
+
   1. Configure your price per premium slot in `premium/patreonpremiumsource/patreonpremiumsource.go > func
-CalcSlotsForPledge`.
+    CalcSlotsForPledge`.
   2. Configure relevant env variables to connect YAGPDB to your Patreon API.
+
 - Generating premium codes with the `GeneratePremiumCode` command.
 - Setting the `premium.all_guilds_premium` env variable to true.
 

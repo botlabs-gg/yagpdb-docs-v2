@@ -283,13 +283,13 @@ You must specify a channel to run time-based commands in even if the command doe
 
 A cron expression represents a set of times, using 5 space-separated fields.
 
-Field name       | Mandatory? | Allowed values  | Allowed special characters
---------------   | ---------- | --------------  | --------------------------
-Minutes          | Yes        | 0-59            | * / , -
-Hours            | Yes        | 0-23            | * / , -
-Day of month     | Yes        | 1-31            | * / , - ?
-Month            | Yes        | 1-12 or JAN-DEC | * / , -
-Day of week (DOW)| Yes        | 0-6 or SUN-SAT  | * / , - ?
+| Field name       | Mandatory? | Allowed values  | Allowed special characters |
+| --------------   | ---------- | --------------  | -------------------------- |
+| Minutes          | Yes        | 0-59            | * / , -                    |
+| Hours            | Yes        | 0-23            | * / , -                    |
+| Day of month     | Yes        | 1-31            | * / , - ?                  |
+| Month            | Yes        | 1-12 or JAN-DEC | * / , -                    |
+| Day of week (DOW)| Yes        | 0-6 or SUN-SAT  | * / , - ?                  |
 
 To read more about the supported format of cron expressions, visit [Robfig's Cron package documentation - Expression
 Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format).
@@ -302,7 +302,7 @@ on Corntab Guru, but are not supported with YAGPDB.
 
 {{< /callout >}}
 
-**Special Characters**
+###### Special Characters
 
 - Asterisk ( * )
 

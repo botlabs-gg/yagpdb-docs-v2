@@ -97,6 +97,8 @@ If a new user who verifies is detected as an alt but none of their associated ac
 send a log to the verification log channel if specified, identifying the new user as an alt and listing other users who
 verified at the same IP address.
 
+{{< selfhosting >}}
+
 ### Disable Alt Detection Globally
 
 For self hosters, the environment variable to enable this feature is `verification.track_ips`. It is `true` by default.
@@ -112,3 +114,5 @@ Do not proceed unless you are hosting your own version of the YAGPDB codebase.
 Verification requires the `google.recaptcha_secret` and `google.recaptcha_site_key` env variables to be configured and
 valid. To get a reCAPTCHA secret and site key, [register a site on
 reCAPTCHA](https://www.google.com/recaptcha/admin/create) and copy the generated secret and key.
+
+{{< /selfhosting >}}

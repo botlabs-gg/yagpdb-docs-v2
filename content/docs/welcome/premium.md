@@ -127,6 +127,8 @@ You can assign your premium slots to any server with YAGPDB in it and no existin
 
 ![Redeemed Premium Slots](slots_premium.png)
 
+{{< selfhosting >}}
+
 ## Self Hosting YAGPDB
 
 Do not proceed unless you are hosting your own version of the YAGPDB codebase.
@@ -153,3 +155,5 @@ recommended you familiarize yourself with the codebase before making changes. Fi
 defined and alter their values as you wish.
 
 ![Example of limit definitions in Advanced Automoderator](limits_example.png)
+
+{{< /selfhosting >}}

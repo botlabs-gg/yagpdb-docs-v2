@@ -167,6 +167,10 @@ html[data-selfhost="no"] {
   .icon-tabler-server-off {
     display: block;
   }
+
+  .selfhosting {
+    display: none;
+  }
 }
 
 @media (hover: hover) {

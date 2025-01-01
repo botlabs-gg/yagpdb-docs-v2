@@ -26,6 +26,7 @@ module.exports = {
 				'data-global-alert',
 				'data-pane', // tabs.js
 				'data-popper-placement',
+				'data-selfhost',
 				'data-sizes',
 				'data-toggle-tab', // tabs.js
 				'id',

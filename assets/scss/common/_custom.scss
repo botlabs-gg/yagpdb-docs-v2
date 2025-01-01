@@ -147,6 +147,32 @@ pre.shiki {
   opacity: var(--ec-frm-inlBtnBgActOpa);
 }
 
+// show active server if self-hosting view enabled
+html[data-selfhost="yes"] {
+  .icon-tabler-server {
+    display: block;
+  }
+
+  .icon-tabler-server-off {
+    display: none;
+  }
+}
+
+// hide active server if self-hosting view disabled
+html[data-selfhost="no"] {
+  .icon-tabler-server {
+    display: none;
+  }
+
+  .icon-tabler-server-off {
+    display: block;
+  }
+
+  .selfhosting {
+    display: none;
+  }
+}
+
 @media (hover: hover) {
   .highlight .copy button {
       opacity: 0;

@@ -123,12 +123,24 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 | .Channel.ParentID             | The ID of the channel's parent (category), returns 0 if none.                                                                                                       |
 | .Channel.PermissionOverwrites | A slice of [Discord permission overwrite](https://discord.com/developers/docs/resources/channel#overwrite-object) structures applicable to the channel.             |
 | .Channel.Position             | Channel position from top-down.                                                                                                                                     |
+| .Channel.ThreadMetadata       | [Metadata for threads](#thread-metadata). Only present on threads.                                                                                                  |
 | .Channel.Topic                | The topic of the channel.                                                                                                                                           |
 | .Channel.Type                 | The type of the channel. Explained further in [Discord's channel documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types) |
+
 
 [Channel object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#channel-object).
 
 [Channel functions documentation](functions#channel).
+
+#### Thread Metadata
+
+| **Field**                   | **Description**                                                                |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| .Archived                   | Whether the thread is archived.                                                |
+| .AutoArchiveDuration        | Duration in minutes to automatically archive the thread after recent activity. |
+| .ArchiveTimestamp           | When the thread was archived.                                                  |
+| .Locked                     | Whether the thread is locked.                                                  |
+| .Invitable                  | Whether non-moderators can add other members to the thread.                    |
 
 ### Guild / Server{#guild-server}
 

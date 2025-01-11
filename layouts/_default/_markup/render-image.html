@@ -124,7 +124,7 @@ the License.
 {{- if $lightbox -}}
 </a>
 <a href="javascript:history.back();" class="lightbox" id="{{ print $id "-lightbox" }}">
-  <img
+  <img loading="lazy"
   {{- range $k, $v := $attrs }}
     {{- if or $v (eq $k "alt") }}
       {{- printf " %s=%q" $k $v | safeHTMLAttr }}

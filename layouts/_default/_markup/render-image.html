@@ -108,7 +108,12 @@ the License.
   {{- end }}
 {{- end }}
 
+{{- $lightbox := true }}
+
 {{- /* Render image element. */ -}}
+{{- if $lightbox -}}
+<a href="#{{ print $id "-lightbox" }}">
+{{- end }}
 <img
   {{- range $k, $v := $attrs }}
     {{- if or $v (eq $k "alt") }}
@@ -116,3 +121,15 @@ the License.
     {{- end }}
   {{- end -}}
 >
+{{- if $lightbox -}}
+</a>
+<a href="javascript:history.back();" class="lightbox" id="{{ print $id "-lightbox" }}">
+  <img
+  {{- range $k, $v := $attrs }}
+    {{- if or $v (eq $k "alt") }}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
+    {{- end }}
+  {{- end -}}
+>
+</a>
+{{- end }}

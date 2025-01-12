@@ -28,10 +28,8 @@ figcaption {
 
 /* CSS-only lightbox. See https://codesalad.dev/blog/how-to-create-an-image-lightbox-in-pure-css-25 */
 .lightbox {
-  /* Default to hidden */
   display: none;
 
-  /* Overlay entire screen */
   position: fixed;
   z-index: 99999;
   top: 0;
@@ -39,16 +37,20 @@ figcaption {
   right: 0;
   bottom: 0;
 
-  /* A bit of padding around image */
   padding: 1em;
 
-  /* Translucent background */
-  background: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 0.85);
+
+  /* center that thang, ya get me? */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Unhide the lightbox when it's the target */
 .lightbox:target {
-  display: block;
+  display: flex;
 }
 
 .lightbox span {

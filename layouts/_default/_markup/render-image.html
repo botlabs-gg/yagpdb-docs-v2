@@ -109,6 +109,11 @@ the License.
 {{- end }}
 
 {{- $lightbox := true }}
+{{- if $u.RawQuery }}
+  {{- if $u.Query.Has "lightbox" }}
+    {{- $lightbox = ne ($u.Query.Get "lightbox") "false" }}
+  {{- end }}
+{{- end }}
 
 {{- /* Render image element. */ -}}
 {{- if $lightbox -}}

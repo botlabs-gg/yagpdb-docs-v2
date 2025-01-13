@@ -92,13 +92,13 @@ the License.
 {{- end }}
 
 {{- /* Determine id attribute. */}}
-{{- $id := printf "h-rh-i-%d" .Ordinal }}
+{{- $id := printf "h-rh-i-%s" (md5 $u.Path) }}
 {{- with .Attributes.id }}
   {{- $id = . }}
 {{- end }}
 
 {{- /* Initialize attributes. */}}
-{{- $attrs := merge .Attributes (dict "id" $id "alt" .Text "title" (.Title | transform.HTMLEscape) "src" $u.String) }}
+{{- $attrs := merge .Attributes (dict "id" $id "alt" .Text "title" (.Title | transform.HTMLEscape) "src" $u.Path) }}
 
 {{- /* Merge attributes from resource. */}}
 {{- with $r }}

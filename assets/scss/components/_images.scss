@@ -25,3 +25,42 @@ figcaption {
   margin-top: 0.5rem;
   font-style: italic;
 }
+
+/* CSS-only lightbox. See https://codesalad.dev/blog/how-to-create-an-image-lightbox-in-pure-css-25 */
+.lightbox {
+  display: none;
+
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 1em;
+
+  background: rgba(0, 0, 0, 0.85);
+
+  /* center that thang, ya get me? */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Unhide the lightbox when it's the target */
+.lightbox:target {
+  display: flex;
+}
+
+.lightbox span {
+  /* Full width and height */
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  /* Size and position background image */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

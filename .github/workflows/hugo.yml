@@ -30,7 +30,7 @@ jobs:
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.140.2'
           # We use the extended version just to be on the safe side.
           # It is recommended anyway.
           extended: true

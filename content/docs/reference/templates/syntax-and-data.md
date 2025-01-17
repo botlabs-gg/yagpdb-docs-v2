@@ -4,23 +4,17 @@ weight = 911
 description = "Available data in custom commands and a quick syntax refresher."
 +++
 
-Library of base data accessible within custom scripting.
+This page lists the available data within your custom commands, such as the user who triggered the command, or the
+channel it is running in. For available functions, please see our [list of functions]. In case you need a refresher on
+the syntax, please revisit our [learning resources].
 
-> "Go is all about type... Type is life." // William Kennedy
-
-## Preface
-
-All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Go's
-stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
-len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
-a concise and to the point reference document for all available templates/functions. **Functions** are covered
-in [Function documentation](/docs/reference/templates/functions). For detailed explanations and a syntax guide, please
-refer to the [learning resource](/learn/welcome/introduction).
+[list of functions]: /docs/reference/templates/functions
+[learning resources]: /learn/welcome/introduction
 
 {{< callout context="note" title="Note: Disable \"Smart\" Quotes" icon="outline/info-circle" >}}
 
 Templating system uses standard ASCII quotation marks:
-`"` for straight double quotes,  `'` for apostrophes or single quotes and`` ` `` for backticks/back quotes; so make
+`"` for straight double quotes, `'` for apostrophes or single quotes and `` ` `` for backticks/back quotes; so make
 sure no "smart-quotes" are being used.
 
 The difference between back quotes and double quotes in string literals is covered in
@@ -65,11 +59,11 @@ declared, or to the end of custom command if there are no control structures - c
 A powerful component of templates is the ability to stack actions - like function calls, together - chaining one after
 another. This is done by using pipes `|`. Borrowed from Unix pipes, the concept is simple: each pipeline’s output
 becomes the input of the following pipe. One limitation of the pipes is that they can only work with a single value and
-that value becomes the last parameter of the next pipeline. \
-\
+that value becomes the last parameter of the next pipeline.
+
 **Example**: `{{randInt 41| add 2}}` would pipeline`randInt` function's return to addition `add` as second parameter
 and it would be added to 2; this more simplified would be like `{{40| add 2}}` with return 42. If written normally, it
-would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also useful one -`{{$x:=40| add 2}}` would
+would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also useful one - `{{$x:=40| add 2}}` would
 not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas
 `{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
 
@@ -84,7 +78,7 @@ overused**. In most cases, pipes are unnecessary and cause a dip in readability 
 
 Context data refers to information accessible via the dot, `{{ . }}`. The accessible data ranges from useful constants
 to information regarding the environment in which the custom command was executed, such as the user that ran it, the
-channel it was ran in, and so on.
+channel it was run in, and so on.
 
 Fields documented as accessible on specific structures, like the context user `.User`, are usable on all values that
 share the same type. That is, given a user `$user`, `$user.ID` is a valid construction that yields the ID of the user.
@@ -161,7 +155,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 | .Guild.OwnerID                     | Outputs the ID of the owner.                                                                                                                                                                                                                                               |
 | .Guild.PreferredLocale             | The preferred locale of a guild with the "PUBLIC" feature; used in server discovery and notices from Discord; defaults to "en-US"                                                                                                                                          |
 | .Guild.Roles                       | Outputs all roles and indexing them gives more information about the role. For example `{{len .Guild.Roles}}` gives you how many roles are there in that guild. Role struct has [following fields](https://discordapp.com/developers/docs/topics/permissions#role-object). |
-| .Guild.Stickers                    | A slice of all [sticker objects] in the guild.                                                                                                                                                                                                                               |
+| .Guild.Stickers                    | A slice of all [sticker objects] in the guild.                                                                                                                                                                                                                             |
 | .Guild.Splash                      | Outputs the [splash hash](https://discordapp.com/developers/docs/reference#image-formatting) ID of the guild's splash.                                                                                                                                                     |
 | .Guild.SystemChannelID             | The ID of the channel where guild notices such as welcome messages and boost events are posted.                                                                                                                                                                            |
 | .Guild.Threads                     | Returns all active threads in the guild as a slice of type _\[]dstate.ChannelState_.                                                                                                                                                                                       |
@@ -252,7 +246,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 | .Message.ChannelID                   | Channel ID this message is in.                                                                                                                                                                                                                                                                                                                                                                                                        |
 | .Message.Components                  | Slice of [discordgo.ActionsRow](https://discord.com/developers/docs/interactions/message-components#action-rows)s, which each contain components. Example on indexing the first button or menu under a message: `( index ( index .Message.Components 0 ).Components 0 )`                                                                                                                                                              |
 | .Message.Content                     | Text content of this message.                                                                                                                                                                                                                                                                                                                                                                                                         |
-| .Message.ContentWithMentionsReplaced | Replaces all <@ID> mentions with the username of the mention.                                                                                                                                                                                                                                                                                                                                                                         |
+| .Message.ContentWithMentionsReplaced | Replaces all `<@ID>` mentions with the username of the mention.                                                                                                                                                                                                                                                                                                                                                                         |
 | .Message.EditedTimestamp             | The time at which the last edit of the message occurred, if it has been edited. As with .Message.Timestamp, it is of type _discordgo.Timestamp._                                                                                                                                                                                                                                                                                      |
 | .Message.Embeds                      | Embeds of this message (_slice_ of embed objects).                                                                                                                                                                                                                                                                                                                                                                                    |
 | .Message.Flags                       | Message flags, represented as a bit set.                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -312,7 +306,7 @@ This is available and part of the dot when reaction trigger type is used.
 | .ReactionAdded                | Returns a boolean type _bool_ true/false indicating whether reaction was added or removed.                                                                                                                                                                                                     |
 | .ReactionMessage              | Returns the message object reaction was added to. Not all regular .Message fields are filled though e.g. .Member. `{{range .ReactionMessage.Reactions}}`<br>`{{.Count}} - {{.Emoji.Name}}` <br>`{{end}}`Returns emoji count and their name.Has an alias `.Message` and it works the same way.  |
 
-[Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/message#reaction-object).\
+[Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/message#reaction-object).
 [Emoji object in Discord documentation.](https://discord.com/developers/docs/resources/emoji)
 
 ### User
@@ -379,7 +373,7 @@ to `eq`.
 
 Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for
 comparison`** error as they are not the same type (one is float, the other int). To fix this, you should convert both to
-the same type -> for example, `toFloat 1`.
+the same type, for example, `toFloat 1`.
 
 {{< /callout >}}
 
@@ -422,17 +416,18 @@ if one wishes to skip all remaining iterations, the `{{break}}` action may be us
 
 {{< /callout >}}
 
-Affected dot inside `range` is important because methods mentioned above in this documentation:`.Server.ID`,
-`.Message.Content` etc are all already using the dot on the pipeline and if they are not carried over to the `range`
-control structure directly, these fields do not exists and template will error out. Getting those values inside `range`
-and also `with` action would need `$.User.ID` for example.\
-\
+Affected dot inside `range` is important because methods mentioned above in this documentation like `.Server.ID`,
+are all already using the dot on the pipeline and if they are not carried over to the `range` control structure
+directly, these fields do not necessarily exists and template will error out. Getting those values inside `range`
+and also `with` action would need to use the global syntax (e.g. `$.Server.ID`).
+
 `range` on slices/arrays provides both the index and element for each entry; `range` on map iterates over key/element
 pairs. If a `range` action initializes a variable, that variable is set to the successive elements of the iteration.
 `range` can also declare two variables, separated by a comma and set by index and element or key and element pair. In
-case of only one variable, it is assigned the element.\
-\
-Like `if`, `range`is concluded with`{{end}}`action and declared variable scope inside `range` extends to that point.\
+case of only one variable, it is assigned the element.
+
+Like `if`, `range` is concluded with the `{{end}}` action and declared variable scope inside `range` extends to that
+point.
 
 ```yag
 {{/* range over an integer */}}
@@ -464,7 +459,7 @@ Hello!
 ```
 
 This program iterates ten *thousand* times, adding a newline and a tab character on every iteration to the output---we
-can fix this error by telling the bot to throw away (or "strip") whitespace characters by using the trim indicator `-`:
+can fix this error by telling the bot to throw away (or "strip") whitespace characters by using the trim indicator `-`.
 
 ```yag
 {{ range 10000 }}
@@ -490,10 +485,10 @@ Similar to an `if` action with an associated `else` branch, the `try`-`catch` co
 `try` branch and the `catch` branch. First, the code in the `try` branch is ran, and if an error is raised by a function
 during execution, the `catch` branch is executed instead with the context (`.`) set to the offending error.
 
-To check for a specific error, one can compare the result of the `Error` method with a predetermined message. (For
+To check for a specific error, one can compare the result of the `Error` method with a predetermined message. For
 context, all errors have a method `Error` which is specified to return a message describing the reason that the error
-was thrown.) For example, the following example has different behavior depending on whether "Reaction blocked" is in the
-message of the error caught.
+was thrown. The following example has different behavior depending on whether "Reaction blocked" is in the message of
+the error caught.
 
 ```yag
 {{ try }}
@@ -543,8 +538,8 @@ appropriate effect, like in a `range` action.
 
 `with` lets you assign and carry pipeline value with its type as a dot (`.`) inside that control structure, it's like a
 shorthand. If the value of the pipeline is empty, dot is unaffected and when an `else` or `else if` action is used,
-execution moves on to those branches instead, similar to the `if` action. \
-\
+execution moves on to those branches instead, similar to the `if` action.
+
 Affected dot inside `with` is important because methods mentioned above in this documentation:`.Server.ID`,
 `.Message.Content` etc are all already using the dot on the pipeline and if they are not carried over to the `with`
 control structure directly, these fields do not exists and template will error out. Getting those values inside `with`
@@ -593,7 +588,7 @@ To define an associated template, use the `define` action. It has the following 
 
 {{< callout context="danger" title="Danger: Associated Templates at Top Level" icon="outline/alert-octagon" >}}
 
-**Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
+Template definitions must be at the top level of the custom command program; in other words, they cannot be
 nested in other actions (for example, an if action.) That is, the following custom command is invalid:
 
 ```yag
@@ -653,7 +648,7 @@ will result in execution of the custom command being stopped at the point the `r
 
 ### Execution
 
-To execute a custom command, one of three methods may be used: `template`, `block`, or `execTemplate`.
+To execute an associated template, one of three methods may be used: `template`, `block`, or `execTemplate`.
 
 #### Template action
 
@@ -684,7 +679,7 @@ Below is an example of the `template` action in action:
 {{ template "sayHi" "YAG" }} {{/* hi there, YAG */}}
 ```
 
-Trim markers: `{{- ... -}}`were used in above example because whitespace is considered as part of output for associated
+Trim markers: `{{- ... -}}` were used in above example because whitespace is considered as part of output for associated
 template definitions (and actions in general).
 
 #### Block action
@@ -853,13 +848,13 @@ You can have max 50 \* user_count (or 500 \* user_count for premium) values in t
 new write functions will fail, this value is also cached, so it won't be detected immediately when you go above nor
 immediately when you're under again.
 
-Patterns are basic PostgreSQL patterns, not RegEx: An underscore `(_)` matches any single character; a percent sign
-`(%)` matches any sequence of zero or more characters.
+Patterns are basic PostgreSQL patterns, not RegEx: An underscore `_` matches any single character; a percent sign
+`%` matches any sequence of zero or more characters.
 
-Keys can be max 256 bytes long and has to be strings or numbers. Values can be anything, but if their serialized
-representation exceeds 100kB a `short write` error gets raised.
+Keys can be at most 256 bytes long and has to be strings or numbers. Values can be anything, but if their serialized
+representation exceeds 100 kB a `short write` error is raised.
 
-You can just pass a `userID`of 0 to make it global (or any other number, but 0 is safe).
+You can just pass a `userID` of 0 to make it global (or any other number, but 0 is safe).
 
 There can be 10 database interactions per CC, out of which dbTop/BottomEntries, dbCount, dbGetPattern, and dbDelMultiple
 may only be run twice. (50,10 for premium users).

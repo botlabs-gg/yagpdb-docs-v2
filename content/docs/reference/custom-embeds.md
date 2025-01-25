@@ -28,11 +28,10 @@ One method of sending an embed with YAGPDB is using the command `customembed` (o
 
 ### Create embeds by hand
 
-YAGPDB accepts embeds in JSON following the rules of [this
-format](https://discordapp.com/developers/docs/resources/channel#embed-object).
+YAGPDB accepts embeds in JSON following the rules of Discord's [Embed Object] structure.
 
-There, we'll take a look at the **Embed Objects**. You can add a value to each of these objects. A very simple embed
-would look like this:
+[Embed Object]: https://discord.com/developers/docs/resources/message#embed-object.
+
 
 ```javascript
 { "title": "This is my title", "description": "This is my description." }

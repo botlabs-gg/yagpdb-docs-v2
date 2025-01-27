@@ -296,7 +296,7 @@ Format](https://pkg.go.dev/github.com/robfig/cron/v3#hdr-CRON_Expression_Format)
 
 {{< callout context="tip" title="Tip: Debugging Cron Expressions" icon="outline/rocket" >}}
 
-To help build and debug cron expressions, we reccomend using [Cronitor's Crontab Guru](https://crontab.guru/) or a
+To help build and debug cron expressions, we recommend using [Cronitor's Crontab Guru](https://crontab.guru/) or a
 similar site. Note that predefined schedules such as `@hourly`, and the use of `7` in the DOW field may parse correctly
 on Corntab Guru, but are not supported with YAGPDB.
 

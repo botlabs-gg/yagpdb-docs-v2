@@ -2227,7 +2227,7 @@ Places commas to separate groups of thousands in a number.
 {{ $result := inFold <list> <value> }}
 ```
 
-Same as [in](#in), but is case-insensitive.
+Same as [in](#in), but is case-insensitive. List can be a slice or string.
 
 #### in
 
@@ -2235,7 +2235,7 @@ Same as [in](#in), but is case-insensitive.
 {{ $result := in <list> <value> }}
 ```
 
-Returns whether the case-sensitive `value` is in the provided list.
+Returns whether the case-sensitive `value` is in the provided list. List can be a slice or string.
 
 #### index
 

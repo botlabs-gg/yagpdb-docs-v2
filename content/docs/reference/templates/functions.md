@@ -2221,14 +2221,6 @@ Places commas to separate groups of thousands in a number.
 
 - `number`: the number to format. Must be an int or a string. Must be a whole number.
 
-#### inFold
-
-```yag
-{{ $result := inFold <list> <value> }}
-```
-
-Same as [in](#in), but is case-insensitive. List can be a slice or string.
-
 #### in
 
 ```yag
@@ -2236,6 +2228,14 @@ Same as [in](#in), but is case-insensitive. List can be a slice or string.
 ```
 
 Returns whether the case-sensitive `value` is in the provided list. List can be a slice or string.
+
+#### inFold
+
+```yag
+{{ $result := inFold <list> <value> }}
+```
+
+Same as [in](#in), but is case-insensitive. List can be a slice or string.
 
 #### index
 

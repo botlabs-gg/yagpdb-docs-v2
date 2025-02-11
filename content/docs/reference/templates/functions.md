@@ -2224,18 +2224,17 @@ Places commas to separate groups of thousands in a number.
 #### in
 
 ```yag
-{{ $result := in <list> <value> }}
+{{ $result := in <sequence> <value> }}
 ```
 
-Returns whether the case-sensitive `value` is in the provided list. List can be a slice or string.
+Returns whether the case-sensitive `value` is in the `sequence`. `sequence` can be a slice or string.
 
 #### inFold
 
 ```yag
-{{ $result := inFold <list> <value> }}
+{{ $result := inFold <sequence> <value> }}
 ```
-
-Same as [in](#in), but is case-insensitive. List can be a slice or string.
+Same as [in](#in), but is case-insensitive. `sequence` can be a slice or string.
 
 #### index
 

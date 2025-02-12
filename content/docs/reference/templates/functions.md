@@ -2234,6 +2234,7 @@ Returns whether the case-sensitive `value` is in the `sequence`. `sequence` can 
 ```yag
 {{ $result := inFold <sequence> <value> }}
 ```
+
 Same as [in](#in), but is case-insensitive. `sequence` can be a slice or string.
 
 #### index

@@ -1,3 +1,0 @@
-git_recurse true
-ignore_front_matter true
-style 'config/markdownlint.rb'

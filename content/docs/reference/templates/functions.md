@@ -1724,7 +1724,7 @@ the end.
 #### printf
 
 ```yag
-{{ $result := <format> <args...> }}
+{{ $result := printf <format> <args...> }}
 ```
 
 Interpolates `args...` according to `format`. See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).
@@ -2402,7 +2402,7 @@ start index and the subslice extends to the end of `item`.
 #### sort
 
 ```yag
-{{ $sorted := <list> [options] }}
+{{ $sorted := sort <list> [options] }}
 ```
 
 Returns the given list in a sorted order. The list's items must all be of the same type. The optional `options` argument

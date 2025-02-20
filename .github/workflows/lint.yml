@@ -2,16 +2,19 @@ name: Lint
 
 on:
   pull_request:
-    paths:
-      - 'content/**/*.md'
 
 jobs:
-  lint-markdown:
+  markdown:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Lint markdown files
-        uses: actionshub/markdownlint@main
+      - uses: actions/checkout@v4
         with:
-          filesToIgnoreRegex: 'all-commands.md|scripts/.*|.github/.*'
+          fetch-depth: 0
+      - name: Lint markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        continue-on-error: true
+        with:
+          globs: |
+            content/**/*.md
+            !content/docs/core/all-commands.md
+          config: config/.markdownlint.yaml

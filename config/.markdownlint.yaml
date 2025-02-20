@@ -1,49 +1,91 @@
 # Enable all rules; we'll configure some of them below.
-all
+default: true
 
 # MD001: Header levels should only increment by one level at a time.
 # Normally, this is a fair rule, but it does not quite work for our cases,
 # especially in our humongous functions list. So disable it.
-exclude_rule 'MD001'
+MD001: false
 
 # MD002: First header should be a top level header.
 # Some files do not have a top-level header, because it doesn't make sense for
 # them, or just looks incredibly stupid on the rendered page. So disable this
 # entire rule.
-exclude_rule 'MD002'
+MD002: false
 
 # MD004: Unordered list style.
 # Use dashes for unordered lists. All lists. Even sublists.
-rule 'MD004', :style => :dash
+MD004:
+  style: "dash"
 
 # MD013: Line length.
 # Allow lines to be up to 120 characters long, see the .editorconfig file.
 # We also ignore code blocks, because they are often long and should not be
 # wrapped at all. Same goes for tables.
-rule 'MD013', :line_length => 120, :ignore_code_blocks => true, :tables => false
+MD013:
+  line_length: 120
+  code_blocks: false
+  tables: false
 
 # MD024: Multiple headers with the same content.
 # Allow multiple headers with the same content so long they are under different
 # parent headers.
-rule 'MD024', :allow_different_nesting => true
+MD024:
+  siblings_only: true
 
 # MD026: Trailling punctuation in header.
 # Allow question marks (FAQ-style).
-rule 'MD026', :punctuation => '.,;:!'
+MD026:
+  punctuation: ".,;:!"
 
 # MD029: Ordered list item prefix.
 # Should increase in numerical order.
-rule 'MD029', :style => :ordered
+MD029:
+  style: "ordered"
 
 # MD033: Inline HTML.
 # Allow certain HTML elements, because we use them for nicer page layout.
-rule 'MD033', :allowed_elements => 'center, div, sup, br, kbd'
+MD033:
+  allowed_elements: ["center", "div", "sup", "br", "kbd"]
 
 # MD037: Spaces inside emphasis markers.
 # This rule is broken. See https://github.com/markdownlint/markdownlint/issues/84
-exclude_rule 'MD037'
+MD037: false
 
 # MD041: First line in file should be a top-level header.
 # See comment to MD002. It makes no sense to set this to H2 for similar reasons,
 # we have TOML frontmatter with an automatic h1 in the rendered page.
-exclude_rule 'MD041'
+MD041: false
+
+# MD048: Code fence style.
+# Use backticks for code fences.
+MD048:
+  style: "backtick"
+
+# MD049: Emphasis style. (Italics)
+# Use asterisks for italics.
+# MD049:
+#  style: "asterisk"
+#  FIXME: Re-enable this rule once we have fixed all the italics in the docs.
+MD049: false
+
+# MD050: Strong style.
+# Use double asterisks for bold text.
+MD050:
+  style: "asterisk"
+
+# MD051: Link fragments should be valid.
+# Disable this rule, because Hugo already checks for (potentially) broken links.
+MD051: false
+
+# MD052: Reference links and images should use a label that is defined.
+# Similar reasons as MD051, Hugo already checks for broken links.
+MD052: false
+
+# MD053: Link and image reference definitions should be needed.
+# Similar reasons as MD051, Hugo already checks for broken links.
+MD053: false
+
+# MD054: Link and image style.
+# Disable this rule, because it is very extensive and thus painful to configure.
+# By extension, also very painful to fix.
+MD054: false

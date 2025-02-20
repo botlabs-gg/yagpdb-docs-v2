@@ -7,7 +7,7 @@ description = "A list of all available functions in YAGPDB's custom command temp
 Functions are used to take action within template scripts. Some functions accept arguments, and some functions return
 values you can send in your response or use as arguments for other functions.
 
-----
+---
 
 ## Channel
 
@@ -49,8 +49,8 @@ Creates a new forum post. Returns a channel object on success.
 - `name`: The post title. May not be empty. Must be a string.
 - `content`: the initial message's content; may be a string, an embed, or a complex message. May not be empty.
 - `values` (optional): Additional options for the post. May include:
-   - `"slowmode"`: The thread's slowmode in seconds.
-   - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
+  - `"slowmode"`: The thread's slowmode in seconds.
+  - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
 
 #### createThread
 
@@ -64,7 +64,7 @@ Creates a new thread in the specified channel. Returns a channel object on succe
 - `message`: either `nil` to create a channel thread, or a message ID to create a message thread.
 - `private`: whether the thread is private. Default `false`.
 - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.<br>
-   Valid values are 60, 1440, 4320, and 10080 minutes. Defaults to 10080 (7 days).
+  Valid values are 60, 1440, 4320, and 10080 minutes. Defaults to 10080 (7 days).
 - `invitable`: whether non-moderators can add other members to the thread. (true/false)
 
 Note: There is no functional difference between a channel thread and a message thread.
@@ -134,10 +134,10 @@ In addition to this, Discord limits the number of channel modifications to 2 per
 Edits the specified thread.
 
 - `opts`: a sdict containing the thread parameters to edit, supporting the following keys (all optional):
-   - `slowmode`: the thread's slowmode in seconds.
-   - `tags`: one or more forum tag name or ID. Duplicate and invalid tags are ignored.
-   - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
-   - `invitable`: whether non-moderators can add other members to the thread. Defaults to false.
+  - `slowmode`: the thread's slowmode in seconds.
+  - `tags`: one or more forum tag name or ID. Duplicate and invalid tags are ignored.
+  - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
+  - `invitable`: whether non-moderators can add other members to the thread. Defaults to false.
 
 #### getChannelOrThread
 
@@ -213,7 +213,7 @@ Removes the given member from the given thread.
 
 Unpins the given forum post, which may be specified by its ID or name.
 
-----
+---
 
 ## Database
 
@@ -244,8 +244,8 @@ The argument must be one of the following:
 - `userID`: count entries for the given user ID.
 - `pattern`: count only entries with keys matching the given pattern.
 - `query`: an sdict with the following (all optional) keys:
-   - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
-   - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
+  - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
+  - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
 
 #### dbDelByID
 
@@ -264,9 +264,9 @@ Deletes a database entry under the given `userID` by its `ID`.
 Deletes up to `amount` entries from the database matching the given criteria. Returns the number of deleted entries.
 
 - `query`: an sdict with the following (all optional) keys:
-   - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
-   - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
-   - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
+  - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
+  - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
+  - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
 - `amount`: the maximum number of entries to delete, capped at 100.
 - `nSkip`: the number of entries to skip before deleting.
 
@@ -335,9 +335,9 @@ Increments the value of the specified database entry by `incrBy`. Returns the ne
 Returns the rank of the specified entry in the set of entries as defined by `query`.
 
 - `query`: an sdict with the following (all optional) keys:
-   - `userID`: only include entries with the given user ID.
-   - `pattern`: only include entries with keys matching the given pattern.
-   - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
+  - `userID`: only include entries with the given user ID.
+  - `pattern`: only include entries with keys matching the given pattern.
+  - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
 
 #### dbSetExpire
 
@@ -379,7 +379,7 @@ Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write
 
 {{< /callout >}}
 
-----
+---
 
 ## Encoding and Decoding
 
@@ -451,7 +451,7 @@ byte `0xAB`.
 Returns the escaped value of the textual representation of the arguments in a form suitable for embedding in a URL
 query.
 
-----
+---
 
 ## Executing Custom Commands
 
@@ -510,7 +510,7 @@ Schedules a custom command execution to occur in the future, identified by `key`
 
 To cancel such a scheduled custom command before it runs, use [cancelScheduledUniqueCC](#cancelscheduleduniquecc).
 
-----
+---
 
 ## Interactions
 
@@ -536,16 +536,16 @@ about using interactions, [see here](/docs/reference/custom-interactions).
 Sends a modal to the member who triggered the interaction.
 
 - `modal`: an sdict with the following keys:
-   - `title`: the title of the modal.
-   - `custom_id`: a unique identifier for the modal.
-   - `fields`: a slice of sdicts with the following keys:
-      - `label`: the label for the field.
-      - `placeholder`: the placeholder text for the field.
-      - `value`: the default value for the field.
-      - `required`: whether the field is required.
-      - `style`: the style of the field (1 for short, 2 for long).
-      - `min_length`: the minimum length of the field.
-      - `max_length`: the maximum length of the field.
+  - `title`: the title of the modal.
+  - `custom_id`: a unique identifier for the modal.
+  - `fields`: a slice of sdicts with the following keys:
+    - `label`: the label for the field.
+    - `placeholder`: the placeholder text for the field.
+    - `value`: the default value for the field.
+    - `required`: whether the field is required.
+    - `style`: the style of the field (1 for short, 2 for long).
+    - `min_length`: the minimum length of the field.
+    - `max_length`: the maximum length of the field.
 
 Alternatively, you can create a modal object using the [`cmodal`](#cmodal) function.
 
@@ -687,7 +687,7 @@ Same as [sendResponse](#sendresponse), but also returns the message ID.
 Creates a [button object](https://discord.com/developers/docs/interactions/message-components#button-object) for use in
 interactions.
 
-A link style button *must* have a URL and may not have a Custom ID. All other styles *must* have a Custom ID and cannot
+A link style button _must_ have a URL and may not have a Custom ID. All other styles _must_ have a Custom ID and cannot
 have a URL. All buttons must have either a label or an emoji.
 
 ##### Example
@@ -708,7 +708,7 @@ Creates a [select menu object](https://discord.com/developers/docs/interactions/
 for use in interactions.
 
 The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus
-*must* have `options`, while all other types cannot.
+_must_ have `options`, while all other types cannot.
 
 ##### Example
 
@@ -777,7 +777,7 @@ This text is invisible to others!
 Returns the response or follow-up with the specified message ID belonging to the given interaction as a [message
 object](/docs/reference/templates/syntax-and-data#message). Is also valid for ephemeral messages.
 
-----
+---
 
 ## Math
 
@@ -986,7 +986,7 @@ Returns the square root of X as a floating-point number.
 
 Subtracts the provided numbers from each other. Detects the first number's type and returns the result accordingly.
 
-----
+---
 
 ## Member
 
@@ -1076,11 +1076,11 @@ Returns the count of online members on the current server, including bots.
 
 Returns whether the specified member has the specified permission bit.
 
-----
+---
 
 ## Mentions
 
-Certain mentions are escaped by default, such that they don't ping. These functions help you actually *pinging* these
+Certain mentions are escaped by default, such that they don't ping. These functions help you actually _pinging_ these
 special mentions.
 
 #### mentionEveryone
@@ -1125,7 +1125,7 @@ Mentions the role with the given name without escaping it. Searches for first ca
 
 Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
 
-----
+---
 
 ## Message
 
@@ -1180,10 +1180,10 @@ Note that a message sent via [sendMessage](#sendmessage) is not the response---u
 Creates a complex message object for use in [editMessage](#editmessage) or [editMessageNoEscape](#editmessagenoescape).
 
 - `allowed_mentions`: an sdict with the following keys:
-   - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
-   - `users`: a slice of user IDs to mention.
-   - `roles`: a slice of role IDs to mention.
-   - `replied_user`: whether to mention the replied user.
+  - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
+  - `users`: a slice of user IDs to mention.
+  - `roles`: a slice of role IDs to mention.
+  - `replied_user`: whether to mention the replied user.
 - `content`: the new content for the message.
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `silent`: whether to suppress push and desktop notifications.
@@ -1200,10 +1200,10 @@ for an example.
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
 
 - `allowed_mentions`: an sdict with the following keys:
-   - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
-   - `users`: a slice of user IDs to mention.
-   - `roles`: a slice of role IDs to mention.
-   - `replied_user`: whether to mention the replied user.
+  - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
+  - `users`: a slice of user IDs to mention.
+  - `roles`: a slice of role IDs to mention.
+  - `replied_user`: whether to mention the replied user.
 - `content`: the message content.
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `file`: the content to print as a file.
@@ -1428,7 +1428,7 @@ Sends a message in the specified channel.
 
 Unpins the specified message.
 
-----
+---
 
 ## Role functions
 
@@ -1653,7 +1653,7 @@ Reports whether the specified target has the specified role ID.
 Reports whether the specified target has the specified role name (case-insensitive).
 `target` may be a user ID, mention, or user object, but must be a member of the server.
 
-----
+---
 
 ## String manipulation
 
@@ -1828,7 +1828,7 @@ Returns the string with all leading and trailing white space removed.
 
 Converts `string` to all uppercase and returns the result.
 
-----
+---
 
 ## Time
 
@@ -1850,23 +1850,23 @@ Formats `time` according to `layout`. Within the layout string, certain phrases 
 with the actual data from `time`: for instance, `Monday` is replaced with the weekday. A list of common placeholders
 follows; see the [Go `time` package documentation](https://pkg.go.dev/time#pkg-constants) for the full list.
 
-| Placeholder | Meaning                      |
-|-------------|------------------------------|
-| Mon         | Weekday (abbreviated)        |
-| Monday      | Weekday (full name)          |
-| 2           | Day of month (single digit)  |
-| 02          | Day of month (zero padded)   |
-| Jan         | Month (abbreviated)          |
-| January     | Month (full name)            |
-| 1           | Month (single digit)         |
-| 01          | Month (zero padded)          |
-| 15          | Hour (24-hour format)        |
-| 3           | Hour (12-hour format)        |
-| 04          | Minute (zero padded)         |
-| 05          | Second (zero padded)         |
-| MST         | Timezone (abbreviated)       |
-| 2006        | Year (full year)             |
-| PM          | AM-PM                        |
+| Placeholder | Meaning                     |
+| ----------- | --------------------------- |
+| Mon         | Weekday (abbreviated)       |
+| Monday      | Weekday (full name)         |
+| 2           | Day of month (single digit) |
+| 02          | Day of month (zero padded)  |
+| Jan         | Month (abbreviated)         |
+| January     | Month (full name)           |
+| 1           | Month (single digit)        |
+| 01          | Month (zero padded)         |
+| 15          | Hour (24-hour format)       |
+| 3           | Hour (12-hour format)       |
+| 04          | Minute (zero padded)        |
+| 05          | Second (zero padded)        |
+| MST         | Timezone (abbreviated)      |
+| 2006        | Year (full year)            |
+| PM          | AM-PM                       |
 
 #### humanizeDurationHours
 
@@ -1984,7 +1984,7 @@ can be done using the `print` function:
 
 {{< /callout >}}
 
-----
+---
 
 ## Type conversion
 
@@ -2055,7 +2055,7 @@ Aliases: `str`.
 
 Converts the input to a string, returning the empty string for invalid inputs.
 
-----
+---
 
 ## User
 
@@ -2091,7 +2091,7 @@ Returns the time object corresponding to when the current user was created.
 
 Returns the full user object specified by `input`, which can be an ID or a mention.
 
-----
+---
 
 ## Miscellaneous
 
@@ -2111,27 +2111,27 @@ Returns a random adjective.
 
 Returns an embed object to send with [sendMessage](#sendmessage)-related functions.
 
-All keys are optional, but the Discord API will reject completey empty embeds, so *some* content is required.
+All keys are optional, but the Discord API will reject completey empty embeds, so _some_ content is required.
 
 - `title`: the title of the embed
 - `url`: the URL to hyperlink the title with
 - `description`: the main text
 - `color`: which color to display on the left side of the embed
 - `fields`: a slice of sdicts with the following keys:
-   - `name`: the name of the field
-   - `value`: which text to have inside this field
-   - `inline`: an optional boolean whether this field should be displayed in-line with other fields
+  - `name`: the name of the field
+  - `value`: which text to have inside this field
+  - `inline`: an optional boolean whether this field should be displayed in-line with other fields
 - `author`: Shows some details at the very top of the embed. Is an sdict with the following keys:
-   - `name`: The name of the author
-   - `url`: the URL to hyperlink the name with
-   - `icon_url`: the author's icon
+  - `name`: The name of the author
+  - `url`: the URL to hyperlink the name with
+  - `icon_url`: the author's icon
 - `thumbnail`: a small image in the top-right corner. Is an sdict with the following keys:
-   - `url`: the image's URL
+  - `url`: the image's URL
 - `image`: an image to display at full width at the bottom of the embed. Is an sdict with the following keys:
-   - `url`: the image's URL
+  - `url`: the image's URL
 - `footer`: Shows some details at the very bottom of the embed. Is an sdict with the following keys:
-   - `text`: the footer's text
-   - `icon_url`: a small icon to display to the left of the footer's text
+  - `text`: the footer's text
+  - `icon_url`: a small icon to display to the left of the footer's text
 - `timestamp`: a (static) timestamp to display to the right of the footer's text
 
 {{< callout context="tip" title="Tip: Custom Commands Embed Generator" icon="outline/rocket" >}}
@@ -2295,8 +2295,8 @@ The result has the `.Get N` and `.IsSet N` methods available, returning the valu
 present, respectively, at position `N` (starting from 0).
 
 - `...cargs`: a list of argument definitions. Must have at least `requiredArgs` elements. Has the following arguments:
-   - `"type"`: the type of this argument as a quoted string.
-   - `"name"`: the name of this argument. Must be a string.
+  - `"type"`: the type of this argument as a quoted string.
+  - `"name"`: the name of this argument. Must be a string.
 
 An argument's `"type"` must be one of the following:
 
@@ -2352,7 +2352,7 @@ string type.
 ```
 
 Same as [sendTemplate](#sendtemplate), but sends it to the triggering user's direct messages instead and returns the
-*response* message's ID.
+_response_ message's ID.
 
 #### sendTemplate
 
@@ -2361,7 +2361,7 @@ Same as [sendTemplate](#sendtemplate), but sends it to the triggering user's dir
 ```
 
 Sends an [Associated Template](/docs/reference/templates/syntax-and-data#associated-templates) to `channel`, with
-optional `data`, returning the *response* message's ID.
+optional `data`, returning the _response_ message's ID.
 
 #### seq
 

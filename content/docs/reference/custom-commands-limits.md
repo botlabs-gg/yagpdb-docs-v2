@@ -39,21 +39,21 @@ Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot 
 
 - **Max file size (complexMessage):** 100kB
 - **joinStr max string length:** 1000kB
-- **sendDM:** 1 call per CC -> counter key "send\_dm"
-- **sendTemplate/sendTemplateDM:** 3 calls per CC -> counter key "exec\_child"
-- **addReactions:** 20 calls per CC -> counter key "add\_reaction\_trigger". Each reaction added counts towards the
+- **sendDM:** 1 call per CC -> counter key "send_dm"
+- **sendTemplate/sendTemplateDM:** 3 calls per CC -> counter key "exec_child"
+- **addReactions:** 20 calls per CC -> counter key "add_reaction_trigger". Each reaction added counts towards the
   limit.
-- **addResponseReactions:** 20 calls per CC -> counter key "add\_reaction\_response". Each reaction added counts towards
+- **addResponseReactions:** 20 calls per CC -> counter key "add_reaction_response". Each reaction added counts towards
   the limit.
-- **addMessageReactions:** 20 calls per CC -> counter key "add\_reaction\_message". Each reaction added counts towards
+- **addMessageReactions:** 20 calls per CC -> counter key "add_reaction_message". Each reaction added counts towards
   the limit.
-- **deleteMessageReaction: 1**0 calls per CC -> counter key "del\_reaction\_message". Each removed added counts towards
+- **deleteMessageReaction: 1**0 calls per CC -> counter key "del_reaction_message". Each removed added counts towards
   the limit.
-- **editChannelName/Topic:** 10 calls per CC -> counter key "edit\_channel"
+- **editChannelName/Topic:** 10 calls per CC -> counter key "edit_channel"
 - **regex cache limit:** 10 (this means you cant have more than 10 different regexes on a CC)
-- **onlineCount:** 1 call per cc -> counter key "online\_users"
-- **onlineCountBots:** 1 call per cc -> counter key "online\_bots"
-- **editNickname:** 2 calls per cc -> counter key "edit\_nick"
+- **onlineCount:** 1 call per cc -> counter key "online_users"
+- **onlineCountBots:** 1 call per cc -> counter key "online_bots"
+- **editNickname:** 2 calls per cc -> counter key "edit_nick"
 - **Append/AppendSlice limit:** 10k size limit of resulting slice
 - **exec/execAdmin:** 5 calls per cc -> no key
 - **deleteResponse/deleteMessage/deleteTrigger max delay:** 86400s
@@ -71,21 +71,21 @@ Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot 
 
 ### Database Interactions
 
-- **Calls per CC:** 10/50 (free/prem) -> counter key "db\_interactions"
+- **Calls per CC:** 10/50 (free/prem) -> counter key "db_interactions"
 - Valid for all database commands ->
-   - dbDel/dbDelByID
-   - dbGet
-   - dbIncr
-   - dbSet/dbSetExpire
+  - dbDel/dbDelByID
+  - dbGet
+  - dbIncr
+  - dbSet/dbSetExpire
 
 ### Database Multiple Entry Interactions
 
-Multiple entries all count to general "db\_interactions" limit as well.
+Multiple entries all count to general "db_interactions" limit as well.
 
-- **Calls per CC:** 2/10 (free/prem) -> counter key "db\_multiple"
+- **Calls per CC:** 2/10 (free/prem) -> counter key "db_multiple"
 - Valid for all database multiple entry related commands ->
-   - dbCount
-   - dbDelMultiple
-   - dbGetPattern
-   - dbRank
-   - dbTopEntries
+  - dbCount
+  - dbDelMultiple
+  - dbGetPattern
+  - dbRank
+  - dbTopEntries

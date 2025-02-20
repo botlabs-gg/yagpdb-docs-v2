@@ -1724,7 +1724,7 @@ the end.
 #### printf
 
 ```yag
-{{ $result := <format> <args...> }}
+{{ $result := printf <format> <args...> }}
 ```
 
 Interpolates `args...` according to `format`. See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).

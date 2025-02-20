@@ -127,7 +127,6 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 | .Channel.Topic                | The topic of the channel.                                                                                                                                           |
 | .Channel.Type                 | The type of the channel. Explained further in [Discord's channel documentation](https://discord.com/developers/docs/resources/channel#channel-object-channel-types) |
 
-
 [Channel object in Discord documentation](https://discordapp.com/developers/docs/resources/channel#channel-object).
 
 [Channel functions documentation](functions#channel).

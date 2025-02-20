@@ -32,7 +32,6 @@ YAGPDB accepts embeds in JSON following the rules of Discord's [Embed Object] st
 
 [Embed Object]: https://discord.com/developers/docs/resources/message#embed-object.
 
-
 ```javascript
 { "title": "This is my title", "description": "This is my description." }
 ```

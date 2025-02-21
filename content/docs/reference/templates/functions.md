@@ -2147,7 +2147,8 @@ community-made embed visualizer for YAGPDB's custom command system.
 {{ $ticket := createTicket <author> <topic> }}
 ```
 
-Creates a new ticket associated to the specified author with given topic.
+Creates a new ticket associated to the specified author with given topic, returning a [template
+ticket](/docs/reference/templates/syntax-and-data#template-ticket) for that ticket.
 
 - `author`: the member to associate this ticket with.
 - `topic`: the topic of this ticket. Must be a string.

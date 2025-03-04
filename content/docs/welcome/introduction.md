@@ -49,8 +49,8 @@ can help them. This is a great way to give back to the community and help the pr
 
 #### Improving the Bot
 
-Additionally, you can contribute to YAGPDB itself by submitting pull requests to the [GitHub repository](https://botlabs-gg/yagpdb)
-if you are feeling comfortable with [Go](https://golang.org/).
+Additionally, you can contribute to YAGPDB itself by submitting pull requests to its
+[GitHub repository](https://github.com/botlabs-gg/yagpdb) if you are feeling comfortable with [Go](https://golang.org/).
 
 Please take a closer look at the [contributing guidelines](https://github.com/botlabs-gg/yagpdb/blob/master/CONTRIBUTING.md)
 to increase the chances of your pull request being accepted; a good starting point is also to implement highly-upvoted

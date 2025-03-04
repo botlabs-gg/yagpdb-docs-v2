@@ -47,7 +47,7 @@ are supported.
 You can also specify a sound URL instead of uploading one.
 
 This has to be the direct link to the media file, and not, for example, a YouTube Video link. A direct link should end
-with `.mp3` (or other relevant audio/video type), such as <https://soundboard.panictank.net/AIRHORN.mp3>.
+with `.mp3` (or other relevant audio/video type), such as <https://www.myinstants.com/media/sounds/airhorn_1.mp3>.
 
 ### Finish
 

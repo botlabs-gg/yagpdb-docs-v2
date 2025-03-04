@@ -11,7 +11,7 @@ Details on obtaining IDs for users, channels, roles, etc. for use within YAGPDB.
 Can be found by mentioning the user then adding a \ such as `\@YAGPDB.xyz#8760`. Alternatively if you have
 developer mode on, you can right-click and select Copy ID. [How to enable developer mode in Discord][devmode]
 
-[devmode]: https://support.discordapp.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-
+[devmode]: https://support.discordapp.com/hc/en-us/articles/206346498
 
 ### Channel IDs
 

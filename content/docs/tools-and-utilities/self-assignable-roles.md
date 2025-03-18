@@ -238,8 +238,7 @@ be used to fix the order.
 ### Updating a role menu
 
 If you added a new role to your role group, you can update your role menu. Update it by typing in
-`-rolemenu update (message id)` and follow the instructions given. If you removed a role, you will have to delete it
-and make a new one from scratch.
+`-rolemenu update (message id)` and follow the instructions given.
 
 ## How to get a message ID (Desktop)
 

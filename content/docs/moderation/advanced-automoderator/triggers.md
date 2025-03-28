@@ -305,7 +305,7 @@ This trigger will fire when a message triggers Discord's Automod.
 <!-- footnotes -->
 
 [^1]: The regular expression used to match links is the following:<br>
-``(?i)([a-z\d]+://)([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])``
+``(?i)([a-z\d]+:[//])([\w-._~:/?#\[\]@!$&'()*+,;%=]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])``
 
 [^2]: Under the hood, the bot will only check the last 1000 messages in the channel. If you have a high-traffic channel
 in combination with an extremely long time frame, the bot could (theoretically) miss some messages.

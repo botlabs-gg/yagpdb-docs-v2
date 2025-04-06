@@ -27,7 +27,6 @@ Result:
 
 ![A basic button, sent with the above code.](basic_button.png)
 
-
 We've successfully crated a basic button! It doesn't do anything yet, but we'll cover that in a later section.
 In the meantime, play around with the values `cbutton` takes. Try to attach an emoji to it, or change its style!
 
@@ -96,5 +95,3 @@ automatically populates the options, you need not---nor can you---define these o
 ```
 
 ![A photo of the above role select menu.](role_select_menu_example.png)
-
-

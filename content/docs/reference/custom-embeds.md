@@ -17,7 +17,7 @@ documentation](https://discord.com/developers/docs/resources/channel#embed-objec
 
 {{< callout context="note" title="Note: Custom Commands use Custom Syntax" icon="outline/info-circle" >}}
 
-Custom Embeds with the `-customembed` command don't work in custom commands. If you want to know how you can use embeds
+Custom Embeds with the `customembed` command don't work in custom commands. If you want to know how you can use embeds
 in custom commands, scroll down to [Embeds in Custom Commands](#embeds-in-custom-commands).
 
 {{< /callout >}}
@@ -28,56 +28,84 @@ One method of sending an embed with YAGPDB is using the command `customembed` (o
 
 ### Create embeds by hand
 
-YAGPDB accepts embeds in JSON following the rules of Discord's [Embed Object] structure.
+YAGPDB accepts embeds in JSON or YAML following the rules of Discord's [Embed Object] structure.
 
-[Embed Object]: https://discord.com/developers/docs/resources/message#embed-object.
-
-```javascript
-{ "title": "This is my title", "description": "This is my description." }
-```
-
-The output of this would look like the following:
+[Embed Object]: https://discord.com/developers/docs/resources/message#embed-object
 
 ![An Example of the Custom Embed Command](custom_embed_example.png)
 
-Let's break this down: We start of with the customembed command `-ce`. After this, I start my object (the embed) with a
-curly brace. Then we have the name of the object (title) and the value of it (This is my title). We separate data with
-commas. After that we have the same thing again, but for the description. In the end we close the object (embed) with
-another curly brace.
+#### Using YAML
 
-You can add the multiple objects to this, but keep in mind that Discord limits your message to 2000 characters.
+```yaml
+title: This is my title
+footer:
+	text: This is my footer text.
+```
 
-#### The syntax of JSON
+YAML input is formatted as a list of names with associated values for each part of the embed. In this example I start
+with a name (title) and the associated value (This is my title) after a semicolon. On a new line, we have another name
+(footer), this time with another list of name-value pairs as the value. An indent indicates that the name-value pair
+(text: This is ...) is part of the value of the footer.
 
-The syntax of json is pretty easy. You start off with a curly brace (`{`) and end with a curly brace (`}`). Between
-this, you can add names and their according values. Data (a name and a value) get separated by commas (`,`) . Around
-strings (text) you wrap two quotation marks (`""`), but nothing around integers (whole numbers) or booleans (true or
-false statements). You can play around with this a bit.
+##### The syntax of YAML
 
-| Special character  | Escaped output |
-| ------------------ | -------------- |
-| Quotation mark (") | \\"            |
-| Backslash (\\)     | \\\\           |
-| Slash (/)          | \\/            |
-| Backspace          | \b             |
-| Form feed          | \f             |
-| New line           | \n             |
-| Carriage return    | \r             |
-| Horizontal tab     | \t             |
+[YAML] has an intuitive, lenient syntax. Most parts of the embed are simple name-value pairs (or nested name-value
+maps like in the footer shown above). New lines separate each pair, unless the next line is indented to indicate that
+that line is the value. Strings (text) can be included as-is without quotes, unless the text contains special characters
+like `:`, in which case single quotes (`'`) or double quotes (`"`) may be used. Double quotes allow backslash-escapes to
+add newlines, double quotes, and more.
+
+[YAML]: https://en.wikipedia.org/wiki/YAML#Syntax
+
+#### Using JSON
+
+```javascript
+{ "title": "This is my title", "footer": { "text": "This is my footer text." } }
+```
+
+As shown in the example above, I start my object (the embed) with a curly brace. Like YAML, we then have a name (title)
+and the value for that name (This is my title). We separate each name-value pair with a comma. Then we have something
+similar, but with another object as the value. Within that object we have a name-value pair with the same format as the
+title, this time for the footer text. In the end we close the objects (footer and embed) with more curly braces.
+
+##### The syntax of JSON
+
+[JSON]'s syntax is also quite simple. Objects start with an opening curly brace (`{`) and end with a closing curly brace
+(`}`). Between these, you can add names and their associated values. Each name-value pair is separated by a comma (`,`).
+Around strings (text) you wrap two quotation marks (`""`), but nothing around integers (whole numbers) or booleans
+(`true` or `false` values). You can play around with this a bit.
+
+Some special characters need to be prefixed with a backslash in strings to indicate that they aren't part of the JSON
+syntax:
+
+| Special character   | Escaped input |
+| ------------------  | ------------- |
+| Quotation mark (")  | \\"           |
+| Backslash (\\)      | \\\\          |
+| Slash (/)           | \\/           |
+| Backspace           | \b            |
+| Form feed           | \f            |
+| New line            | \n            |
+| Carriage return     | \r            |
+| Horizontal tab      | \t            |
+| [Unicode character] | \uXXXX        |
+
+[JSON]: https://en.wikipedia.org/wiki/JSON#Syntax
+[Unicode character]: https://en.wikipedia.org/wiki/List_of_Unicode_characters
 
 ### Create embeds with a generator
 
 Creating embeds with a generator can be more difficult if you don't need any difficult features. If you want your embed
-to be super shiny, you can use [this embed generator](https://leovoel.github.io/embed-visualizer/). YAGPDB does not use
-the first part of its code, so you have to remove the following:
+to be super shiny, you can use [an embed generator](https://leovoel.github.io/embed-visualizer/). The customembed
+command only sends an embed, so you'll need to remove everything around it:
 
 ````javascript
 {
-  "content": "this `supports` __a__ **subset** *of* ~~markdown~~ 😃 ```js\nfunction foo(bar) {\n  console.log(bar);\n}\n\nfoo(1);```",
+  "content": "...",
   "embed":
 ````
 
-and the last curly brace (`}`). After this you can just copy and paste it into Discord:
+and the last curly brace (`}`). After this you can copy and paste it after the `ce` command:
 
 ![Result of the Embed Generator](embed_generator_result.png)
 

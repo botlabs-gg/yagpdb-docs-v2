@@ -17,6 +17,11 @@ MD002: false
 MD004:
   style: "dash"
 
+# MD010: Hard tabs.
+# ALlow hard tabs in code blocks, but not in normal text.
+MD010:
+  code_blocks: false
+
 # MD013: Line length.
 # Allow lines to be up to 120 characters long, see the .editorconfig file.
 # We also ignore code blocks, because they are often long and should not be

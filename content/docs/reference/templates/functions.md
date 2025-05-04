@@ -1182,7 +1182,7 @@ Note that a message sent via [sendMessage](#sendmessage) is not the response---u
 #### complexMessageEdit
 
 ```yag
-{{ $message := complexMessageEdit [allowed_mentions] [content] [embed] [silent] }}
+{{ $message := complexMessageEdit [allowed_mentions] [content] [embed] [silent] [suppress_embeds] }}
 ```
 
 Creates a complex message object for use in [editMessage](#editmessage) or [editMessageNoEscape](#editmessagenoescape).
@@ -1195,14 +1195,17 @@ Creates a complex message object for use in [editMessage](#editmessage) or [edit
 - `content`: the new content for the message.
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `silent`: whether to suppress push and desktop notifications.
+- `suppress_embeds`: whether to suppress embeds in the message.
 
 All of these keys are optional, but providing none of them will have no effect. See [complexMessage](#complexmessage)
 for an example.
 
+Setting `suppress_embeds` to `false` on a message with already suppressed embeds will not re-enable them.
+
 #### complexMessage
 
 ```yag
-{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [sticker] [forward] }}
+{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [sticker] [forward] [suppress_embeds] }}
 ```
 
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
@@ -1222,6 +1225,7 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `buttons`: a slice of [button objects](#cbutton).
 - `sticker`: single sticker ID or a slice of sticker IDs
 - `forward`: an sdict containing `channel` and `message` keys specifying the message to forward
+- `suppress_embeds`: whether to suppress embeds in the message.
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 

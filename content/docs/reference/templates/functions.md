@@ -781,6 +781,14 @@ object](/docs/reference/templates/syntax-and-data#message). Is also valid for ep
 
 ## Math
 
+#### abs
+
+```yag
+{{ $result := abs x }}
+```
+
+Returns the absolute value of the provided number.
+
 #### add
 
 ```yag

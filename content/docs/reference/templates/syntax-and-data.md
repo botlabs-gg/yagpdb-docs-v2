@@ -891,7 +891,7 @@ See [`createTicket`](functions#createticket) for creating a ticket.
 
 ## Time
 
-Time and duration types use [Go's time package](https://golang.org/pkg/time/#Time). Go by example lists [some examples
+Time and duration types use [Go's time package](https://golang.org/pkg/time/#Time). Go by Example lists [some examples
 of using _time.Time_](https://gobyexample.com/time) in Go code, which can be referenced for similar use in YAGPDB's
 templates.
 

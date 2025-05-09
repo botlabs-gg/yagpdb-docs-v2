@@ -891,9 +891,12 @@ See [`createTicket`](functions#createticket) for creating a ticket.
 
 ## Time
 
-Time and duration types use Go's time package library and its methods >
-[https://golang.org/pkg/time/#time](https://golang.org/pkg/time/#Time) and also this although slightly different syntax
-all applies here > [https://gobyexample.com/time](https://gobyexample.com/time).
+Time and duration types use [Go's time package](https://golang.org/pkg/time/#Time). Go by Example lists [some examples
+of using *time.Time*](https://gobyexample.com/time) in Go code, which can be referenced for similar use in YAGPDB's
+templates.
+
+Some time types in the data that Discord API functions return instead use the *discordgo.Timestamp* type. These can be
+converted to *time.Time* with the `.Parse` method. These cases are mentioned in the type documentation on this page.
 
 | **Field**     | **Description**                                                                                             |
 | ------------- | ----------------------------------------------------------------------------------------------------------- |

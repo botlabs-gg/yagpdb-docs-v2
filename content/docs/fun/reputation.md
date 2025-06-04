@@ -57,6 +57,21 @@ give/remove points._
 Users with this role cannot participate in the point system which they can be given/taken away points from. This also
 overrides the _Required role to receive/being taken away points from_.
 
+## Reputation roles
+
+You can set up role rewards for reaching certain reputation amounts. Up to 5 rewards on free, 25 for premium. This system
+is basic and offers little customization. For more advanced setups, custom commands are recommended.
+
+![Overview of Reputation Role Rewards](overview_reuptationRewards.png)
+
+### Create new reputation role
+
+Select a rep point threshold and role to assign when a user receives that many points.
+
+### Existing reputation roles
+
+A listing of all your existing reputation roles with their respective threshold.
+
 ## Reputation logs
 
 Besides using the command `-replog` , you can also check the logs from the control panel. Specify a user ID to check the

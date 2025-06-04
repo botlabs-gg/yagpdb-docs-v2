@@ -70,7 +70,7 @@ Select a rep point threshold and role to assign when a user receives that many p
 
 ### Existing reputation roles
 
-This will show all existing reputation roles on your guild
+A listing of all your existing reputation roles with their respective threshold.
 
 ## Reputation logs
 

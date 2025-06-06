@@ -31,7 +31,6 @@ parse out arguments in your custom ID, and use them in your response.
 menu and defining the options, the `"value"` field for each option defines which values will show up in this slice if
 chosen. A modal's values are simply the values of each field in order.
 
-
 ## Parsing Buttons
 
 As buttons do not provide any `.Values` data, we have to rely on the custom ID to pass around any data that a button may

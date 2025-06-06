@@ -133,9 +133,11 @@ the second field is a text input with a default value, and the third field is a 
 least 100 characters. The custom ID is set to `modals-my_first_modal`, which helps us identifying the modal when we use
 a modal submission trigger for a custom command.
 
+![My first modal example](modal_example.png)
+
 ## Multiple Components
 
-You learnt how to create messages with just one component attached to it, but the whole point of components is to have
+You learned how to create messages with just one component attached to it, but the whole point of components is to have
 *a lot* of them available. Let's start with adding some more buttons!
 
 ### More Buttons
@@ -199,7 +201,7 @@ created menu to the `"menu"` key of the complex message builder, and sending sai
 
 ### Ordering Components
 
-Let's say we want to play Tic Tac Toe. If we just add nine buttons into the same slice in our complex message builder,
+Let's say we want to play Tic-Tac-Toe. If we just add nine buttons into the same slice in our complex message builder,
 they will just fill the first row with five buttons, and the second row with four buttons, which is definitely not what
 we are looking for. The solution is to tell YAGPDB precisely how the rows look like and then pass each row to the
 `"button"` or `"menu"` key.
@@ -215,7 +217,7 @@ we are looking for. The solution is to tell YAGPDB precisely how the rows look l
 {{ sendMessage nil $message }}
 ```
 
-![Tic Tac Toe](tictactoe.png)
+![Tic-Tac-Toe](tictactoe.png)
 
 #### Action Rows
 
@@ -250,10 +252,10 @@ formula like reactions do. Emojis in components follow the [partial emoji
 object](https://discord.com/developers/docs/resources/emoji#emoji-object) structure, however only the ID *or* the Name
 fields are required, depending on if you are using a custom emoji or not.
 
-| Field | Description                                                                                          |
-| ----- | ---------------------------------------------------------------------------------------------------- |
-| ID    | ID of the emoji, only necessary when using Custom Emoji.                                             |
-| Name  | Name of the emoji, use the unicode character here. Only necessary when using builtin unicode emojis. |
+| Field | Description                                                                                           |
+| ----- | ----------------------------------------------------------------------------------------------------- |
+| ID    | ID of the emoji, only necessary when using Custom Emoji.                                              |
+| Name  | Name of the emoji, use the unicode character here. Only necessary when using built-in unicode emojis. |
 
 ```yag
 {{ $unicodeEmojiButton := cbutton "emoji" (sdict "name" "😀") }}

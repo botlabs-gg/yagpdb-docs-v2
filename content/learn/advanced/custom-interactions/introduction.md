@@ -12,7 +12,7 @@ language before learning interactions.
 {{< /callout >}}
 
 Interactions within Discord allow server members to use alternative, built-in features to trigger bots to take action
-other than messages or reactions. These features include builtin buttons, dropdown selection menus, or submitting a
+other than messages or reactions. These features include built-in buttons, dropdown selection menus, or submitting a
 modal (basically a pop-up form). Within custom commands it is possible to not only create and customize these new
 interactive features, but respond to them as well, opening up new possibilities for ephemeral message responses, modals,
 and more within custom commands.
@@ -47,13 +47,14 @@ On the following pages, we will use the listed terms with their respective defin
 the Discord API.
 
 Interaction
-: A user engaging with YAGPDB through one of Discord's builtin features: Clicking a button, Making a
+: A user engaging with YAGPDB through one of Discord's built-in features: Clicking a button, Making a
 selection with a select menu, or Submitting a modal.
 
 Response
-: YAGPDB is required to respond promptly after receiving an interaction by either sending a message or modal, or by
-updating the message on which the interaction was triggered. If it does not do this, the user triggering the interaction
-will see a "This application did not respond" error. The bot cannot respond to an interaction more than once.
+: YAGPDB is required to respond promptly -- that is, within three (3) seconds -- after receiving an interaction by
+either sending a message or modal, or by updating the message on which the interaction was triggered. If it does not do
+this, the user triggering the interaction will see a "This application did not respond" error. The bot cannot respond to
+an interaction more than once.
 
 Followup
 : Since YAGPDB may only *respond* to an *interaction* once, it is subsequently required to send an interaction

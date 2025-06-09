@@ -53,8 +53,8 @@ ordered by the order in which the user selected the options, so if a user select
 option, then the second option, the `.Values` slice will be `["first", "third", "second"]`. Of course, when you set your
 menu to allow only one selection, this need not be a concern, as `.Values` will only ever contain one value.
 
-Let us consider a select menu with several options for Uno cards, which the user can select only one of. We will have to
-verify that the user selected a valid option, that is, same color or same number. To simplify, we do not consider
+Let us consider a select menu with several options for Uno cards, where the user can choose only one card. We will have
+to verify that the user selected a valid option, that is, same color or same number. To simplify, we do not consider
 wildcards here. Our code could look similar to the following listing.
 
 ```yag

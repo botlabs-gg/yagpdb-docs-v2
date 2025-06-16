@@ -12,7 +12,7 @@ description = "how2 reaction role"
 
 [Tutorial Video](https://www.youtube.com/watch?v=IaTfJ4vqHhc)
 
-## Roles
+## Role Commands
 
 {{< callout context="caution" title="Warning: Required Bot Permissions" icon="outline/alert-triangle" >}}
 
@@ -32,7 +32,7 @@ Simply give the role command a name and then select which role you want the bot 
 
 ![Creation of a role command](role_command_creation.png)
 
-### Optional features{#roles-optional-features}
+### Command Configuration
 
 {{< callout context="caution" title="Warning: Required and Ignored Roles" icon="outline/alert-triangle" >}}
 
@@ -41,8 +41,8 @@ the role you are assigning either, _unless_ you wish to prevent the user from re
 
 {{< /callout >}}
 
-- **Require role**: Requires a person to have a certain role in order for them to give themselves this role.
-- **Ignore role**: Ignore any person who has this role.
+- **Require roles**: require any of the selected roles.
+- **Ignore roles**: ignore any of the selected roles.
 - **Group:** Put the role in a role group (will be explained more further down).
 
 ## Role Groups
@@ -68,7 +68,7 @@ affected. Be careful with that, it's permanent and can't be undone.
 2. Single: They can only have 1 role in the group. (e.g. for colors)
 3. Multiple: You can set the minimum and maximum number of roles a member can have in the group.
 
-### Optional features{#groups-optional-features}
+### Groups Configuration
 
 {{< callout context="caution" title="Warning: Required and Ignored Roles" icon="outline/alert-triangle" >}}
 
@@ -77,8 +77,8 @@ the role you are assigning either, _unless_ you wish to prevent the user from re
 
 {{< /callout >}}
 
-- **Require role**: requires a person to have a certain role in order for them to give them this role.
-- **Ignore role**: Ignore any person who has this role.
+- **Require roles**: require any of the selected roles.
+- **Ignore roles**: ignore any of the selected roles.
 - **Mode**: Select between none, single, multiple to restrict the number of roles they can assign them themselves.
 
 Role groups have additional options that can be enabled/disabled by selecting the corresponding checkbox such as:

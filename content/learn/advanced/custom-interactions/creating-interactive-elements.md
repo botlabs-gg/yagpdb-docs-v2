@@ -96,6 +96,34 @@ automatically populates the options, you need not---nor can you---define these o
 
 ![A screenshot of the above role select menu.](role_select_menu_example.png)
 
+##### Channel Select Menus
+
+Channel select menus are a bit different from the other types, as they allow you to specify which channel types you
+want to include in the menu. You do this by using the `channel_types` field, which accepts a slice of [channel types].
+
+[channel types]: https://discord.com/developers/docs/resources/channel#channel-object-channel-types
+
+```yag
+{{ $issuesChannel := "1210135699135926312" }}
+{{ $updatesChannel := "1210135938722693151" }}
+
+{{ $menu := cmenu
+  "type" "channel"
+  "placeholder" "Choose channels which are secretly duck hideouts"
+  "custom_id" "menus-duck-channels"
+  "default_values" ( cslice
+  ( sdict "type" "channel" "id" $issuesChannel )
+  ( sdict "type" "channel" "id" $updatesChannel ))
+  "max_values" 3
+  "channel_types" (cslice 5 15) }}
+
+{{ sendMessage nil (complexMessage "menus" $menu) }}
+```
+
+This gives us a select menu that allows us to select only guild announcement and guild form channels.
+
+![A screenshot of the above channel select menu.](channel_menu_with_filters.png)
+
 ## Modals
 
 Modals are a pop-up form that YAGPDB can send in response to an interaction. It allows users to privately input text

@@ -81,7 +81,7 @@ wildcards here. Our code could look similar to the following listing.
 Having only one option users can choose certainly simplifies working with `.Values` under select menus, but most of the
 time it's probably not that easy. Here, we encourage you to fully consider what `.Values` gives you and what
 specifically you're interested in. If, for instance, you only want to find out whether a certain option was selected, we
-can use [`inFold`](/docs/reference/templates/functions/#inFold). In some other cases, we simply may not care at all,
+can use [`inFold`](/docs/reference/templates/functions/#infold). In some other cases, we simply may not care at all,
 just that we got a slice of things.
 
 ## Parsing Modals

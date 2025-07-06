@@ -1442,7 +1442,70 @@ Unpins the specified message.
 
 ---
 
-## Role functions
+## Regex Functions
+
+#### reFind
+
+```yag
+{{ $result := reFind <regex> <text> }}
+```
+
+Returns the first match of the regular expression `regex` in `text`, or the empty string if the pattern did not match
+anywhere.
+
+#### reFindAll
+
+```yag
+{{ $result := reFindAll <regex> <text> [count] }}
+```
+
+Returns a slice of successive matches of `regex` in `text`. If `count` is provided, the number of matches is limited to
+that amount; otherwise, all matches are returned.
+
+#### reFindAllSubmatches
+
+```yag
+{{ $result := reFindAllSubmatches <regex> <text> [count] }}
+```
+
+Returns a slice of successive submatches of `regex` in `text`. Each submatch is itself a slice containing the match of
+the entire expression, followed by any matches of capturing groups. If `count` is provided, the number of submatches is
+limited to that amount; otherwise, all submatches are returned.
+
+#### reQuoteMeta
+
+```yag
+{{ $result := reQuoteMeta <string> }}
+```
+
+Escapes all regular expression metacharacters in the input `string`; the result is a regular expression matching the
+literal input string.
+
+#### reReplace
+
+```yag
+{{ $result := reReplace <regex> <text> <replacement> }}
+```
+
+Replaces all matches of `regex` in `text` with `replacement`.
+
+#### reSplit
+
+```yag
+{{ $result := reSplit <regex> <text> [count] }}
+```
+
+Splits the `text` around each match of `regex`, returning a slice of delimited substrings.
+
+if the `count` parameter is specified, it limits the number of substrings to return:
+
+- `count > 0`: at most `count` substrings; the last substring will be the unsplit remainder;
+- `count == 0`: the result is `nil` (zero substrings);
+- `count < 0`: all substrings.
+
+---
+
+## Role Functions
 
 #### addRole
 
@@ -1667,7 +1730,7 @@ Reports whether the specified target has the specified role name (case-insensiti
 
 ---
 
-## String manipulation
+## String Manipulation
 
 {{< callout context="note" title="Note: RegEx Limitations" icon="outline/info-circle" >}}
 
@@ -1740,65 +1803,6 @@ the end.
 ```
 
 Interpolates `args...` according to `format`. See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).
-
-#### reFind
-
-```yag
-{{ $result := reFind <regex> <text> }}
-```
-
-Returns the first match of the regular expression `regex` in `text`, or the empty string if the pattern did not match
-anywhere.
-
-#### reFindAll
-
-```yag
-{{ $result := reFindAll <regex> <text> [count] }}
-```
-
-Returns a slice of successive matches of `regex` in `text`. If `count` is provided, the number of matches is limited to
-that amount; otherwise, all matches are returned.
-
-#### reFindAllSubmatches
-
-```yag
-{{ $result := reFindAllSubmatches <regex> <text> [count] }}
-```
-
-Returns a slice of successive submatches of `regex` in `text`. Each submatch is itself a slice containing the match of
-the entire expression, followed by any matches of capturing groups. If `count` is provided, the number of submatches is
-limited to that amount; otherwise, all submatches are returned.
-
-#### reQuoteMeta
-
-```yag
-{{ $result := reQuoteMeta <string> }}
-```
-
-Escapes all regular expression metacharacters in the input `string`; the result is a regular expression matching the
-literal input string.
-
-#### reReplace
-
-```yag
-{{ $result := reReplace <regex> <text> <replacement> }}
-```
-
-Replaces all matches of `regex` in `text` with `replacement`.
-
-#### reSplit
-
-```yag
-{{ $result := reSplit <regex> <text> [count] }}
-```
-
-Splits the `text` around each match of `regex`, returning a slice of delimited substrings.
-
-if the `count` parameter is specified, it limits the number of substrings to return:
-
-- `count > 0`: at most `count` substrings; the last substring will be the unsplit remainder;
-- `count == 0`: the result is `nil` (zero substrings);
-- `count < 0`: all substrings.
 
 #### sanitizeText
 
@@ -1998,7 +2002,7 @@ can be done using the `print` function:
 
 ---
 
-## Type conversion
+## Type Conversion
 
 #### structToSdict
 

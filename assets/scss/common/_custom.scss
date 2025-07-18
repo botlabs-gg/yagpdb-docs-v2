@@ -1,0 +1,207 @@
+// Highlight broken links in development.
+a.broken {
+  background: #ff0;
+  border: 2px solid #f00;
+  padding: 0.1em 0.2em;
+}
+
+// Reduce spacing between cards on the homepage.
+.home .card {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.quick-links-container .card-nav {
+  column-gap: 2rem;
+}
+
+// Also ensure homepage cards are not too wide.
+.quick-links-container {
+  max-width: 900px;
+}
+
+// Color inline code in gray.
+code:not(pre > code) {
+    background-color: var(--sl-color-gray-6);
+    margin-block: -0.125rem;
+    padding: 0.125rem 0.375rem;
+    color: inherit;
+}
+
+@include color-mode(dark) {
+    code:not(pre > code) {
+        background-color: var(--sl-color-gray-5);
+    }
+}
+
+pre.shiki {
+  padding: 1.25rem 1.25rem;
+  border: 0.75px solid color-mix(in srgb, var(--sl-color-gray-5), transparent 25%);
+}
+
+// Make Shiki syntax highlighting theme-aware.
+@include color-mode(dark) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    /* Optional, if you also want font styles */
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+// Add a copy button to codeblocks. Adapted from
+// https://github.com/gethyas/doks-core/blob/main/assets/scss/components/_expressive-code.scss.
+.highlight .copy {
+  display: flex;
+  gap: 0.25rem;
+  flex-direction: row;
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.highlight .copy button {
+  position: relative;
+  align-self: flex-end;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0.2rem;
+  z-index: 1;
+  cursor: pointer;
+  transition-property: opacity, background, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.75;
+}
+
+.highlight .copy button div {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: white;
+  opacity: var(--ec-frm-inlBtnBgIdleOpa);
+  transition-property: inherit;
+  transition-duration: inherit;
+  transition-timing-function: inherit;
+}
+
+@include color-mode(dark) {
+  .highlight .copy button div {
+    background: black;
+  }
+}
+
+.highlight .copy button::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: inherit;
+  border: var(--ec-brdWd) solid var(--ec-frm-inlBtnBrd);
+  opacity: var(--ec-frm-inlBtnBrdOpa);
+}
+
+.highlight .copy button::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  background-color: var(--ec-frm-inlBtnFg);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75'%3E%3Cpath d='M3 19a2 2 0 0 1-1-2V2a2 2 0 0 1 1-1h13a2 2 0 0 1 2 1'/%3E%3Crect x='6' y='5' width='16' height='18' rx='1.5' ry='1.5'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  margin: 0.475rem;
+  line-height: 0;
+}
+
+.highlight .copy button:focus::after,
+.highlight .copy button:active::after {
+  display: inline-block;
+  content: "";
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' stroke-width='1.25' stroke='black' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'%3E%3C/path%3E%3Cpath d='M5 12l5 5l10 -10'%3E%3C/path%3E%3C/svg%3E") no-repeat 50% 50%;
+  mask-size: cover;
+  margin: 0.2375rem;
+}
+
+.highlight .copy button:hover,
+.highlight .copy button:focus:focus-visible {
+  opacity: 1;
+}
+
+.highlight .copy button:hover div,
+.highlight .copy button:focus:focus-visible div {
+  opacity: var(--ec-frm-inlBtnBgHoverOrFocusOpa);
+}
+
+.highlight .copy button:active {
+  opacity: 1;
+}
+
+.highlight .copy button:active div {
+  opacity: var(--ec-frm-inlBtnBgActOpa);
+}
+
+// show active server if self-hosting view enabled
+html[data-selfhost="yes"] {
+  .icon-tabler-server {
+    display: block;
+  }
+
+  .icon-tabler-server-off {
+    display: none;
+  }
+}
+
+// hide active server if self-hosting view disabled
+html[data-selfhost="no"] {
+  .icon-tabler-server {
+    display: none;
+  }
+
+  .icon-tabler-server-off {
+    display: block;
+  }
+
+  .selfhosting {
+    display: none;
+  }
+}
+
+@media (hover: hover) {
+  .highlight .copy button {
+      opacity: 0;
+      width: 2rem;
+      height: 2rem;
+  }
+
+  .highlight:hover .copy button:not(:hover) {
+    opacity: 0.75;
+  }
+}
+
+// DocSearch
+
+.DocSearch-Container {
+  z-index: 2000 !important;
+}
+
+.DocSearch-Hit-icon {
+  display: flex;
+  align-items: center;
+}
+
+.DocSearch-Hits mark {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .DocSearch-Modal {
+    position: fixed !important;
+  }
+}

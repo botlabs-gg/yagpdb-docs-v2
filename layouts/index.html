@@ -1,0 +1,100 @@
+{{ define "main" }}
+<section class="section container-fluid mt-n3 pb-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 text-center">
+      <h1>{{ .Title }}</h1>
+    </div>
+    <div class="col-lg-9 col-xl-8 text-center">
+      <p class="lead">Reference documentation and guides for the <a href="https://yagpdb.xyz">YAGPDB Discord bot</a></p>
+      <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="{{ absURL `docs/welcome/introduction` }}" role="button">Introduction</a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ define "sidebar-prefooter" }}
+  {{ if site.Params.doks.backgroundDots -}}
+  <div class="d-flex justify-content-start">
+    <div class="bg-dots"></div>
+  </div>
+  {{ end -}}
+  <section class="section section-md section-features">
+    <div class="container quick-links-container">
+      <div class="row justify-content-center">
+        <h2 id="quick-links" class="text-center">Quick Links</h2>
+        <p class="text-center">Consult the <a href="{{ absURL `docs/welcome/introduction` }}">full introduction</a> if you don't see what you're looking for.</p>
+        <div class="card-nav d-flex flex-column flex-sm-row">
+          {{ $opts := dict
+            "title" "Custom Commands"
+            "icon" "outline/puzzle"
+            "content" `
+- [Adding custom commands](/docs/custom-commands/commands)
+- [Template syntax and data reference](/docs/reference/templates/syntax-and-data)
+- [Template functions reference](/docs/reference/templates/functions)
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
+
+          {{ $opts := dict
+            "title" "Moderation"
+            "icon" "outline/shield-check"
+            "content" `
+- [Advanced automoderator overview](/docs/moderation/advanced-automoderator/overview)
+- [Message logging](/docs/moderation/logging/)
+- [Verification](/docs/moderation/verification/)
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
+        </div>
+
+        <div class="card-nav d-flex flex-column flex-sm-row">
+          {{ $opts := dict
+            "title" "Tools & Utilities"
+            "icon" "outline/tools"
+            "content" `
+- [Self-assignable roles](/docs/tools-and-utilities/self-assignable-roles/)
+  - [YouTube tutorial video](https://www.youtube.com/watch?v=IaTfJ4vqHhc)
+- [Autoroles](/docs/tools-and-utilities/autorole)
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
+
+          {{ $opts := dict
+            "title" "Learning Resources"
+            "icon" "outline/book"
+            "content" `
+- [Custom Commands: Simple Responses](/learn/beginner/simple-responses)
+- [Custom Commands: Conditional Branching](/learn/beginner/conditional-branching)
+- [Custom Commands: Command Arguments](/learn/beginner/command-arguments)
+            ` }}
+          {{ partial "inline/home-card.html" $opts }}
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}
+
+{{- define "partials/inline/home-card.html" }}
+  <div class="card card-box w-100">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-3">
+        {{- $colors := slice "yellow" "purple" "green" "red" "blue" }}
+        {{- $color := .color }}
+        {{- if not (in $colors .color) }}
+          {{ $color = "yellow" }}
+        {{- end }}
+        {{ $class := printf "svg-inline-custom mb-0 me-3 card-icon icon-%s" $color }}
+        {{- with .icon }}
+          {{ partial "inline-svg" (dict "src" . "stroke-width" "1.5" "height" "1.875rem" "width" "1.875rem" "class" $class) }}
+        {{- end }}
+        <span class="card-title h4 my-0">{{ .title }}</span>
+      </div>
+      {{ with .content }}
+      <div class="d-flex flex-column">
+        {{ . | markdownify }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+{{- end -}}
+
+{{ define "sidebar-footer" }}
+  {{/* nothing */}}
+{{ end }}

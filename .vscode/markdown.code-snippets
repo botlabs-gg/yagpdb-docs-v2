@@ -1,0 +1,46 @@
+{
+	"Info callout": {
+		"prefix": "note",
+		"body": [
+			"{{< callout context=\"note\" title=\"${1:Note}\" icon=\"outline/info-circle\" >}}",
+			"",
+			"$0",
+			"",
+			"{{< /callout >}}"
+		],
+		"description": "A note callout"
+	},
+	"Tip callout": {
+		"prefix": "tip",
+		"body": [
+			"{{< callout context=\"tip\" title=\"${1:Tip}\" icon=\"outline/rocket\" >}}",
+			"",
+			"$0",
+			"",
+			"{{< /callout >}}"
+		],
+		"description": "A tip callout"
+	},
+	"Warning callout": {
+		"prefix": "warning",
+		"body": [
+			"{{< callout context=\"caution\" title=\"${1:Warning}\" icon=\"outline/alert-triangle\" >}}",
+			"",
+			"$0",
+			"",
+			"{{< /callout >}}"
+		],
+		"description": "A warning callout"
+	},
+	"Danger callout": {
+		"prefix": "danger",
+		"body": [
+			"{{< callout context=\"danger\" title=\"${1:Danger}\" icon=\"outline/alert-octagon\" >}}",
+			"",
+			"$0",
+			"",
+			"{{< /callout >}}"
+		],
+		"description": "A warning callout"
+	}
+}

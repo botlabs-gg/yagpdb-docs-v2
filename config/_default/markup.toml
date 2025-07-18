@@ -1,0 +1,31 @@
+defaultMarkdownHandler = "goldmark"
+
+[goldmark]
+  [goldmark.extensions]
+    linkify = false
+  [goldmark.parser]
+    autoHeadingID = true
+    autoHeadingIDType = "github"
+    [goldmark.parser.attribute]
+      block = true
+      title = true
+  [goldmark.renderer]
+    unsafe = true
+
+  # See https://github.com/gohugoio/hugo/issues/4733, https://www.veriphor.com/articles/link-and-image-render-hooks/.
+  [goldmark.renderHooks]
+    [goldmark.renderHooks.image]
+      enableDefault = true
+    [goldmark.renderHooks.link]
+      enableDefault = true
+
+[highlight]
+  hl_inline = false
+  codeFences = true
+  noClasses = false
+  guessSyntax = true
+
+[tableOfContents]
+  endLevel = 3
+  ordered = false
+  startLevel = 2

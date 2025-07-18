@@ -1,0 +1,6 @@
+# all: lint markdown files
+cda9101702ba38e05c3d776c720855e2b4992229
+
+# images: optimise images using optipng
+# find content/ -type f -iname "*.png" -print0 | xargs -I {} -0 optipng -o5 -preserve -clobber "{}"
+16eb1d5f0bbcc91ab25f2f56ed6239abf84c963b

@@ -1,7 +1,10 @@
 .hugo_build.lock
+hugo_stats.json
+node_modules
 
 _vendor/
 public/
 resources/
 
 .DS_Store
+.vscode/settings.json

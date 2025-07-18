@@ -1,0 +1,129 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "yag",
+	"scopeName": "source.yag",
+	"patterns": [
+		{
+			"begin": "\\{\\{(\\-\\s)?/\\*",
+			"end": "\\*/(\\s\\-)?\\}\\}",
+			"name": "punctuation.section.embedded.yag",
+			"contentName": "comment.block.yag"
+		},
+		{
+			"begin": "\\{\\{(\\-\\s)?",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.section.embedded.yag"
+				}
+			},
+			"end": "(\\s\\-)?\\}\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.embedded.yag"
+				}
+			},
+			"patterns": [
+				{
+					"match": ":?=",
+					"name": "keyword.operator.yag"
+				},
+				{
+					"match": "(?<!\\w)\\.?\\d(?:(?:[0-9a-zA-Z_\\.])|(?<=[eEpP])[+-])*",
+					"name": "constant.numeric.yag"
+				},
+				{
+					"match": "\\$\\w+|\\$?\\.\\w*",
+					"name": "variable.other.yag"
+				},
+				{
+					"match": "\\b(nil|true|false)\\b",
+					"name": "constant.language.yag"
+				},
+				{
+					"match": "\\b(if|e(lse|nd)|r(ange|eturn)|t(emplate|ry)|b(loc|rea)k|define|w(ith|hile)|c(ontinue|atch))\\b",
+					"name": "keyword.control.yag"
+				},
+				{
+					"match": "\\b(and|call|html|index|js|slice|urlquery|urlescape|urlunescape|l(t|en?)|not|or|print(f|ln)?|eq|ne|g(e|t))\\b",
+					"name": "support.function.yag"
+				},
+				{
+					"match": "\\b(editMessage|editMessageNoEscape|pinMessage|publishMessage|publishResponse|sendDM|sendMessage|sendMessageNoEscape|sendMessageNoEscapeRetID|sendMessageRetID|sendTemplate|sendTemplateDM|unpinMessage|mentionEveryone|mentionHere|mentionRole|mentionRoleName|mentionRoleID|getRole|getRoleID|getRoleName|hasRole|hasRoleID|hasRoleName|targetHasRole|targetHasRoleID|targetHasRoleName|giveRole|giveRoleID|giveRoleName|addRole|addRoleID|addRoleName|takeRole|takeRoleID|takeRoleName|removeRole|removeRoleID|removeRoleName|setRoles|hasPermissions|targetHasPermissions|getTargetPermissionsIn|addMessageReactions|addReactions|addResponseReactions|deleteAllMessageReactions|deleteMessage|deleteMessageReaction|deleteResponse|deleteTrigger|getChannel|getChannelPins|getChannelOrThread|getPinCount|getMember|getMessage|getThread|addThreadMember|closeThread|createThread|deleteThread|editThread|openThread|removeThreadMember|createForumPost|deleteForumPost|pinForumPost|unpinForumPost|currentUserAgeHuman|currentUserAgeMinutes|currentUserCreated|reFind|reFindAll|reFindAllSubmatches|reReplace|reSplit|sleep|editChannelName|editChannelTopic|editNickname|onlineCount|onlineCountBots|sort|str|toString|toInt|toInt64|toFloat|toDuration|toRune|toByte|hasPrefix|hasSuffix|joinStr|lower|slice|split|title|trimSpace|upper|sanitizeText|reQuoteMeta|add|cbrt|div|fdiv|log|mathConst|max|min|mod|mult|pow|round|roundCeil|roundEven|roundFloor|sqrt|sub|bitwiseAnd|bitwiseOr|bitwiseXor|bitwiseNot|bitwiseAndNot|bitwiseLeftShift|bitwiseRightShift|humanizeThousands|dict|sdict|structToSdict|cembed|cbutton|cmenu|cmodal|cslice|complexMessage|complexMessageEdit|kindOf|adjective|in|inFold|json|jsonToSdict|noun|randInt|roleAbove|seq|shuffle|verb|hash|decodeBase64|encodeBase64|currentTime|parseTime|formatTime|loadLocation|newDate|snowflakeToTime|timestampToTime|weekNumber|humanizeDurationHours|humanizeDurationMinutes|humanizeDurationSeconds|humanizeTimeSinceDays|editResponse|editResponseNoEscape|ephemeralResponse|getResponse|sendModal|sendResponse|sendResponseNoEscape|sendResponseNoEscapeRetID|sendResponseRetID|updateMessage|updateMessageNoEscape|execTemplate|pastUsernames|pastNicknames|createTicket|exec|execAdmin|userArg|parseArgs|carg|execCC|scheduleUniqueCC|cancelScheduledUniqueCC|dbSet|dbSetExpire|dbIncr|dbGet|dbGetPattern|dbGetPatternReverse|dbDel|dbDelById|dbDelByID|dbDelMultiple|dbTopEntries|dbBottomEntries|dbCount|dbRank)\\b",
+					"name": "support.class.yag"
+				},
+				{
+					"begin": "\"",
+					"end": "\"",
+					"name": "string.quoted.double.yag",
+					"patterns": [
+						{
+							"include": "#string_placeholder"
+						},
+						{
+							"include": "#string_escaped_char"
+						}
+					]
+				},
+				{
+					"begin": "'",
+					"end": "'",
+					"name": "string.quoted.single.yag",
+					"patterns": [
+						{
+							"include": "#string_placeholder"
+						},
+						{
+							"include": "#string_escaped_char"
+						}
+					]
+				},
+				{
+					"begin": "`",
+					"end": "`",
+					"name": "string.quoted.other.yag",
+					"patterns": [
+						{
+							"include": "#string_placeholder"
+						}
+					]
+				},
+				{
+					"begin": "```",
+					"end": "```",
+					"name": "string.quoted.raw.yag",
+					"patterns": [
+						{
+							"include": "#string_placeholder"
+						}
+					]
+				}
+			]
+		}
+	],
+	"repository": {
+		"string_escaped_char": {
+			"patterns": [
+				{
+					"match": "\\G(\\\\([0-7]{3}|[abfnrtv\\\\'\"]|x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})|.)(?=')",
+					"name": "constant.character.escape.yag"
+				},
+				{
+					"match": "\\\\.",
+					"name": "invalid.illegal.unknown-escape.yag"
+				}
+			]
+		},
+		"string_placeholder": {
+			"patterns": [
+				{
+					"match": "(?x)%\n                        (\\d+\\$)?                                    # field (argument #)\n                        [#0\\- +']*                                  # flags\n                        [,;:_]?                                     # separator character (AltiVec)\n                        ((-?\\d+)|\\*(-?\\d+\\$)?)?                     # minimum field width\n                        (\\.((-?\\d+)|\\*(-?\\d+\\$)?)?)?                # precision\n                        [diouxXDOUeEfFgGaAcCsSqpnvtTbyYhHmMzZ%]     # conversion type\n                    ",
+					"name": "constant.other.placeholder.yag"
+				},
+				{
+					"match": "%",
+					"name": "invalid.illegal.placeholder.yag"
+				}
+			]
+		}
+	}
+}

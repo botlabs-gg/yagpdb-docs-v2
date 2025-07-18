@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  pull_request:
+
+jobs:
+  markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lint markdown files
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        continue-on-error: true
+        with:
+          globs: |
+            content/**/*.md
+            !content/docs/core/all-commands.md
+          config: config/.markdownlint.yaml

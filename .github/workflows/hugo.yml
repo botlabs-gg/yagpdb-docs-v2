@@ -1,0 +1,77 @@
+---
+name: Hugo (CD)
+
+on:
+  # Only deploy when it is accepted for production
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+env:
+  HUGO_CACHEDIR: /tmp/hugo_cache/
+  HUGO_BASEURL: 'https://help.yagpdb.xyz'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          # We use the extended version just to be on the safe side.
+          # It is recommended anyway.
+          extended: true
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
+
+      - name: Build website
+        run: npm run build
+
+      - name: Setup Pages
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    # Only deploy if it's actually on production branch
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

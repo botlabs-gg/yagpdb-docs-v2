@@ -46,6 +46,13 @@ command on `uno-` as custom ID regex.
 {{ end }}
 ```
 
+{{< callout context="caution" title="Warning: Unique Custom ID" icon="outline/alert-triangle" >}}
+
+Multiple buttons and menus cannot have the same custom ID in one message. It is a good idea to have a common prefix and
+then encode the action the menu or button carries in the custom ID.
+
+{{< /callout >}}
+
 ## Parsing Select Menus
 
 Select menus provide us with a `.Values` slice, which we can use to parse the values selected by the user. This slice is

@@ -111,9 +111,10 @@ want to include in the menu. You do this by using the `channel_types` field, whi
   "type" "channel"
   "placeholder" "Choose channels which are secretly duck hideouts"
   "custom_id" "menus-duck-channels"
-  "default_values" ( cslice
-  ( sdict "type" "channel" "id" $issuesChannel )
-  ( sdict "type" "channel" "id" $updatesChannel ))
+  "default_values" (cslice
+    (sdict "type" "channel" "id" $issuesChannel)
+    (sdict "type" "channel" "id" $updatesChannel)
+  )
   "max_values" 3
   "channel_types" (cslice 5 15) }}
 
@@ -241,7 +242,7 @@ we are looking for. The solution is to tell YAGPDB precisely how the rows look l
 {{ $row2 := cslice (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-4" "style" "secondary") (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-5" "style" "secondary") (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-6" "style" "secondary") }}
 {{ $row3 := cslice (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-7" "style" "secondary") (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-8" "style" "secondary") (cbutton "emoji" $blankEmoji "custom_id" "tictactoe-button-9" "style" "secondary") }}
 
-{{ $message := complexMessage "buttons" $row1 "buttons" $row2 "buttons" $row3 "menus" }}
+{{ $message := complexMessage "buttons" $row1 "buttons" $row2 "buttons" $row3 }}
 {{ sendMessage nil $message }}
 ```
 

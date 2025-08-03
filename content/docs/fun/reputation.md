@@ -62,7 +62,7 @@ overrides the _Required role to receive/being taken away points from_.
 You can set up role rewards for reaching certain reputation amounts. Up to 5 rewards on free, 25 for premium. This system
 is basic and offers little customization. For more advanced setups, custom commands are recommended.
 
-![Overview of Reputation Role Rewards](overview_reuptationRewards.png)
+![Overview of Reputation Role Rewards](overview_reputationRewards.png)
 
 ### Create new reputation role
 

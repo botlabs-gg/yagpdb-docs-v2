@@ -112,15 +112,15 @@ Roles can only be assigned to one group.
 
 {{< /callout >}}
 
-Refer back to the [optional features for roles](#roles-optional-features) and select the role group you want to assign
+Refer back to the [optional features for roles](#command-configuration) and select the role group you want to assign
 the role to.
 
 ## Role Menu
 
 {{< callout context="caution" title="Warning: Required Setup" icon="outline/alert-triangle" >}}
 
-Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting.
-Role menu will **not** work if you have not done so.
+Make sure you created your [role commands](#role-commands) and assigned them a [role group](#role-groups) before
+starting. Role menu will **not** work if you have not done so.
 
 {{< /callout >}}
 
@@ -155,9 +155,9 @@ message, or add new role to your role menu, be sure to read until the end.
 
 {{< callout context="caution" title="Warning: Prerequisites" icon="outline/alert-triangle" >}}
 
-Make sure you created your [role commands](#roles) and assigned them a [role group](#role-groups) before starting.
-Role menu will **not** work if you have not done so. All switches and flags (nodm, rr, etc...) start with hyphen symbol
-`-`, not your prefix.
+Make sure you created your [role commands](#role-commands) and assigned them a [role group](#role-groups) before
+starting. Role menu will **not** work if you have not done so. All switches and flags (nodm, rr, etc...) start with
+hyphen symbol `-`, not your prefix.
 
 {{< /callout >}}
 

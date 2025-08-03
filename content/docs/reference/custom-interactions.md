@@ -345,4 +345,4 @@ Action rows are simply a slice of components, which can be buttons or select men
 
 This will nicely format our components, like shown in the screenshot below.
 
-![Result of above custom command.](/learn/advanced/custom-interactions/rows_example.png)
+![Result of above custom command.](rows_example.png)

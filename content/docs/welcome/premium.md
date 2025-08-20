@@ -27,7 +27,7 @@ A premium server unlocks the following benefits:
 ### Common Template Scripting
 
 - Increase max operation count from 1 million to 2.5 million (`MaxOpsPremium`).
-- Increase max operation count with `evalcc` command from 5,000 to 10,000 (`MaxOpsPremium`).
+- Increase max operation count with `evalcc` command from 200,000 to 500,000 (`MaxOpsPremium`).
 - Increase max `getChannelPins` uses in one script execution from 2 to 4 (`channel_pins`).
 - Increase max `sort` uses in one script execution from 1 to 3 (`sort`).
 - Increase max `execCC` and `scheduleUniqueCC` uses in one script execution from 1 to 10 (`runcc`).

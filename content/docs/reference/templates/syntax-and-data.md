@@ -90,7 +90,7 @@ Fields documented as accessible on specific structures, like the context user `.
 share the same type. That is, given a user `$user`, `$user.ID` is a valid construction that yields the ID of the user.
 Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the channel.
 
-| **Field**      | **Description**                                                                                                                                                                                                                                                                                                     |
+| Field          | Description                                                                                                                                                                                                                                                                                                         |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .BotUser       | Returns bot's user object.                                                                                                                                                                                                                                                                                          |
 | .CCID          | The ID of currently executing custom command in type of _int64_.                                                                                                                                                                                                                                                    |
@@ -106,7 +106,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 ### Channel
 
-| **Field**                     | **Description**                                                                                                                                                     |
+| Field                         | Description                                                                                                                                                         |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .Channel.AppliedTags          | All tags applied to a forum channel post as _\[]int64_ slice of tag IDs.                                                                                            |
 | .Channel.AvailableTags        | All tags available for forum channel posts as a slice of _\[]discordgo.ForumTag_.                                                                                   |
@@ -133,7 +133,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 #### Thread Metadata
 
-| **Field**                   | **Description**                                                                |
+| Field                       | Description                                                                    |
 | --------------------------- | ------------------------------------------------------------------------------ |
 | .Archived                   | Whether the thread is archived.                                                |
 | .AutoArchiveDuration        | Duration in minutes to automatically archive the thread after recent activity. |
@@ -143,7 +143,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 ### Guild / Server{#guild-server}
 
-| **Field**                          | **Description**                                                                                                                                                                                                                                                            |
+| Field                              | Description                                                                                                                                                                                                                                                                |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .Guild.AfkChannelID                | Outputs the AFK channel ID.                                                                                                                                                                                                                                                |
 | .Guild.AfkTimeout                  | Outputs the time when a user gets moved into the AFK channel while not being active.                                                                                                                                                                                       |
@@ -172,7 +172,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 [sticker objects]: https://discord.com/developers/docs/resources/sticker#sticker-object
 
-| **Method**                                                   | **Description**                                                                                                                                                                                                                                                                                                                                                          |
+| Method                                                       | Description                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `.Guild.BannerURL` "256"                                     | Gives the URL for guild's banner, argument “256” is the size of the picture and increases/decreases twofold (e.g. 512, 1024 or 128, 64 etc.).                                                                                                                                                                                                                            |
 | `.Guild.GetChannel` id                                       | Gets the channel with the ID provided, returning a _\*dstate.ChannelState_.                                                                                                                                                                                                                                                                                              |
@@ -191,7 +191,7 @@ about using interactions, please view our [interactions cookbook](/docs/referenc
 
 This is available and part of the dot when a component or modal trigger is used.
 
-| **Field**                | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Field                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | .Interaction.ChannelID   | The ID of the channel the interaction was made in.                                                                                                                                                                                                                                                                                                                                                                                               |
 | .InteractionData         | Is either a [discordgo.MessageComponentInteractionData](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-message-component-data-structure) (if triggered by a button/select menu) or a [discordgo.ModalSubmitInteractionData](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-modal-submit-data-structure) (if triggered by a modal submission) object. |
@@ -220,7 +220,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 
 ### Member
 
-| **Field**                          | **Description**                                                                                                                                               |
+| Field                              | Description                                                                                                                                                   |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .Member.Avatar                     | Member’s avatar hash, if it is custom per server, then custom avatar hash.                                                                                    |
 | .Member.CommunicationDisabledUntil | Returns _time.Time_ when member’s time out expires. Time is in the past or `nil` if the user is not timed out.<br>NB. was previously called TimeoutExpiresAt. |
@@ -233,7 +233,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 | .Member.Roles                      | A _slice_ of role IDs that the member has.                                                                                                                    |
 | .Member.User                       | Underlying user object on which the member is based on.                                                                                                       |
 
-| **Method**                | **Description**                                                                                                                                |
+| Method                    | Description                                                                                                                                    |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.Member.AvatarURL` "256" | Gives the URL for member’s avatar, argument “256” is the size of the picture and increases/decreases twofold (e.g. 512, 1024 or 128, 64 etc.). |
 
@@ -243,7 +243,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 
 ### Message
 
-| **Field**                            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Field                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                              |
 | .Message.Activity                    | Represents the activity sent with a message, such as a game invite, of type _\*discordgo.MessageActivity_. Sent with Rich Presence-related chat embeds.                                                                                                                                                                                                                                                                               |
 | .Message.ApplicationID               | If the message is an interaction- or application-owned webhook, this is the ID of that application.                                                                                                                                                                                                                                                                                                                                   |
@@ -293,7 +293,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 
 #### RoleSubscriptionData
 
-| **Field**                      | **Description**                                                        |
+| Field                          | Description                                                            |
 |--------------------------------|------------------------------------------------------------------------|
 | .RoleSubscriptionListingID     | The ID of the SKU and listing that the user is subscribed to.          |
 | .TierName                      | The name of the tier that the user is subscribed to.                   |
@@ -304,7 +304,7 @@ Interaction functions are covered [here](/docs/reference/templates/functions#int
 
 This is available and part of the dot when reaction trigger type is used.
 
-| **Field**                     | **Description**                                                                                                                                                                                                                                                                                |
+| Field                         | Description                                                                                                                                                                                                                                                                                    |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | .Reaction                     | Returns reaction object which has following fields `UserID`, `MessageID`, <br>`Emoji.(ID/Name/...)`, `ChannelID`, `GuildID`. The Emoji.ID is the ID of the emoji for custom emojis, and Emoji.Name will hold the Unicode emoji if its a default one. (otherwise the name of the custom emoji). |
 | .Reaction.Emoji.APIName       | Returns type _string_, a correctly formatted API name for use in the MessageReactions endpoints. For custom emojis it is `emojiname:ID`.                                                                                                                                                       |
@@ -317,7 +317,7 @@ This is available and part of the dot when reaction trigger type is used.
 
 ### User
 
-| **Field**           | **Description**                                                                                                                                  |
+| Field               | Description                                                                                                                                      |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | .User               | The user's username together with discriminator.                                                                                                 |
 | .User.Avatar        | The user's avatar [hash](https://discord.com/developers/docs/reference#image-formatting).                                                        |
@@ -326,18 +326,32 @@ This is available and part of the dot when reaction trigger type is used.
 | .User.Globalname    | User's global username from the new naming system.                                                                                               |
 | .User.ID            | The user's ID.                                                                                                                                   |
 | .User.Mention       | Mentions user.                                                                                                                                   |
+| .User.PrimaryGuild  | The user's [primary guild](#primary-guild), which holds information about the guild tag, if it exists.                                           |
 | .User.String        | The user's username, with legacy discriminator if available, as _string_ type.                                                                   |
 | .User.Username      | The user's username.                                                                                                                             |
 | .UsernameHasInvite  | Only works with join and leave messages (not join dms). It will determine does the username contain an invite link.                              |
 | .RealUsername       | Only works with join and leave messages (not join DMs). This can be used to send the real username to a staff channel when invites are censored. |
 
-| **Method**              | **Description**                                                                                                                                    |
+| Method                  | Description                                                                                                                                        |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `.User.AvatarURL` "256" | Gives the URL for user's avatar, argument "256" is the size of the picture <br>and can increase/decrease twofold (e.g. 512, 1024 or 128, 64 etc.). |
 
 [User object in Discord documentation](https://discordapp.com/developers/docs/resources/user#user-object).
 
 [User functions documentation](functions#user).
+
+#### Primary Guild
+
+| Field            | Description                                             |
+| ---------------- | ------------------------------------------------------- |
+| .IdentityGuildID | The ID of the user's primary guild.                     |
+| .IdentityEnabled | Whether the user is displaying the primary guild's tag. |
+| .Tag             | The text of the user's server tag.                      |
+| .Badge           | The server tag badge hash.                              |
+
+| Method    | Description                                |
+| --------- | ------------------------------------------ |
+| .BadgeURL | Gives the URL for user's server tag badge. |
 
 ## Actions
 
@@ -759,7 +773,7 @@ aforementioned operation recursively.
 of kind _slice_ (similar to _array_) having _interface{}_ type as its value and can be initialized using `cslice`
 function. Retrieving specific element inside _templates.Slice_ is by indexing its position number.
 
-| **Function**               | **Description**                                                                                                                                                                                                                                                                                                                                                                       |
+| Function                   | Description                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `cslice value1 value2 ...` | Function creates a slice of type _templates.Slice_ that can be used elsewhere (as an argument for `cembed` and `sdict` for example).<br>Example: `cslice 1 "2" (dict "three" 3) 4.5` returns `[1 2 map[three:3] 4.5]`, having length of 4 and index positions from 0 to 3. Notice that thanks to type _interface{}_ value, _templates.Slice_ elements' inherent type does not change. |
 
@@ -802,11 +816,11 @@ using `sdict` function. A map is key-value store. This means you store value and
 an unordered list and the number of parameters to form key-value pairs must be even, difference to regular _map_ is that
 `templates.SDict` is ordered by its key. Retrieving specific element inside _templates.Sdict_ is by indexing its key.
 
-| **Function**                            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Function                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sdict "key1" value1 "key2" value2 ...` | Like `dict` function, creating a _templates.SDict_ type map, key must be of type _string_. Can be used for example in `cembed`. If only one argument is passed to `sdict` function having type _map[string]interface{};_ for example .ExecData and data retrieved from database can be of such type if `sdict` was used, it is converted to a new _sdict_.Example: `sdict "one" 1 "two" 2 "three" (cslice 3 4) "five" 5.5` returns unordered `map[five:5.5 one:1 three:[3 4] two:2]`, having length of four and index positions are its keys. Notice that thanks to type _interface{}_ value, _templates.SDict_ elements' inherent type does not change. |
 
-| **Method**       | **Description**                                                                                                                              |
+| Method           | Description                                                                                                                                  |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | .Del "key"       | Deletes given key from _sdict_.                                                                                                              |
 | .Get "key"       | Retrieves given key from _sdict_.                                                                                                            |
@@ -858,7 +872,7 @@ See also the [chapter on the database](/learn/intermediate/database) in the lear
 
 ### DBEntry
 
-| **Fields** | **Description**                                                                                                         |
+| Field      | Description                                                                                                             |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------- |
 | .ID        | ID of the entry of type _int64_.                                                                                        |
 | .GuildID   | ID of the server of type _int64_.                                                                                       |
@@ -877,7 +891,7 @@ See [`createTicket`](functions#createticket) for creating a ticket.
 
 ### Template Ticket
 
-| **Field**              | **Description**                                                                                               |
+| Field                  | Description                                                                                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
 | .AuthorID              | Author ID of the ticket.                                                                                      |
 | .AuthorUsernameDiscrim | The Discord tag of the author of the ticket, formatted like `username#discrim`.                               |
@@ -898,7 +912,7 @@ templates.
 Some time types in the data that Discord API functions return instead use the *discordgo.Timestamp* type. These can be
 converted to *time.Time* with the `.Parse` method. These cases are mentioned in the type documentation on this page.
 
-| **Field**     | **Description**                                                                                             |
+| Field         | Description                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------- |
 | .DiscordEpoch | Gives you Discord Epoch time in _time.Time._ `{{.DiscordEpoch.Unix}}` would return in seconds > 1420070400. |
 | .UnixEpoch    | Gives you Unix Epoch time in _time.Time._                                                                   |

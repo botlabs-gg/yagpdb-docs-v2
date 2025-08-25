@@ -10,8 +10,6 @@ description = "how2 reaction role"
 
 {{< youtube IaTfJ4vqHhc >}}
 
-[Tutorial Video](https://www.youtube.com/watch?v=IaTfJ4vqHhc)
-
 ## Role Commands
 
 {{< callout context="caution" title="Warning: Required Bot Permissions" icon="outline/alert-triangle" >}}
@@ -47,18 +45,14 @@ the role you are assigning either, _unless_ you wish to prevent the user from re
 
 ## Role Groups
 
-{{< callout context="note" title="Note: Role Menu Configuration" icon="outline/info-circle" >}}
-
-Role groups are essential if you want to set up a role menu.
-
-{{< /callout >}}
-
 Role groups are useful for applying restrictions on a group of roles such as only being able to have one or the other
 role etc. They're also essential if you want to create a role menu. To create one, simply give the role group a name and
 then select which mode you want the role group to use.
 
 Every role group, even Ungrouped has the option to delete all roles inside that group, other groups will not be
 affected. Be careful with that, it's permanent and can't be undone.
+
+They're essential if you want to create a role menu.
 
 ![Creation of a role command group](role_command_group_creation.png)
 
@@ -124,22 +118,17 @@ starting. Role menu will **not** work if you have not done so.
 
 {{< /callout >}}
 
-The role menu makes it possible to have people assign roles by adding reactions to a message.
+The role menu makes it possible to have people assign roles by adding reactions to a message. If you'd like to create a
+message like in the example to create a rolemenu on, take a look at the [Custom Embeds](/docs/reference/custom-embeds)
+chapter.
 
 ![Example of a role menu](rolemenu_example.png)
 
-{{< callout context="note" title="Note: Custom Embeds" icon="outline/info-circle" >}}
-
-If you'd like to create a message like the above to create a rolemenu on, take a look at the
-[Custom Embeds](/docs/reference/custom-embeds) chapter.
-
-{{< /callout >}}
-
-{{< callout context="caution" title="Warning: Message Reactions Limit" icon="outline/alert-triangle" >}}
+{{< callout context="note" title="Note: Message Reactions Limit" icon="outline/info-circle" >}}
 
 A role menu can only support up to 20 roles due to the reaction limit discord places on messages.
-If your role group has more then twenty you have to use finish sub-command and then add the rest of roles to a new
-message with -skip flag.
+If your role group has more than twenty you have to use the `rolemenu finish` sub-command and then add the rest of roles
+to a new message using the `-skip` flag.
 
 {{< /callout >}}
 
@@ -153,13 +142,9 @@ message, or add new role to your role menu, be sure to read until the end.
 
 ### Step by step tutorial
 
-{{< callout context="caution" title="Warning: Prerequisites" icon="outline/alert-triangle" >}}
-
 Make sure you created your [role commands](#role-commands) and assigned them a [role group](#role-groups) before
 starting. Role menu will **not** work if you have not done so. All switches and flags (nodm, rr, etc...) start with
 hyphen symbol `-`, not your prefix.
-
-{{< /callout >}}
 
 Once you've made your role commands and assigned them to a role group, go to the channel in Discord where you want the
 role menu to be created. Then type `-rolemenu create (group name)`; applying our "Sports" role group example, we'd have
@@ -180,7 +165,7 @@ And similar for the final role, **Basketball:**
 
 ![Third reaction on a rolemenu setup](rolemenu_react_3.png)
 
-And we're done --- people can start using the menu by clicking on the reaction associated with their desired role.
+And we're done---people can start using the menu by clicking on the reaction associated with their desired role.
 The setup message will be automatically deleted in a couple of minutes, but you can also delete it manually, if you so
 desire.
 
@@ -197,15 +182,10 @@ If you do not want the bot to send you a DM when you are given or removed from a
 `-rolemenu update (message id) -nodm`.
 
 After you have finish editing or creating your role menu, it will display whether DM notifications are enabled or not.
-
-![Rolemenu flags display](rolemenu_flags.png)
-
-{{< callout context="caution" title="Warning: Errors Cannot be Disabled" icon="outline/alert-triangle" >}}
-
 Note that YAGPDB does not allow you to disable error messages such as cool-down messages with the `nodm` switch or any
 other method.
 
-{{< /callout >}}
+![Rolemenu flags display](rolemenu_flags.png)
 
 ### Remove roles on reaction remove
 
@@ -242,13 +222,10 @@ If you added a new role to your role group, you can update your role menu. Updat
 
 ## How to get a message ID (Desktop)
 
-{{< callout context="note" title="Note: Developer Mode" icon="outline/info-circle" >}}
-
-Make sure you have [developer mode turned on in your discord settings.](https://support.discordapp.com/hc/en-us/articles/206346498)
-
-{{< /callout >}}
+Make sure you have enabled [developer mode](https://support.discordapp.com/hc/en-us/articles/206346498) in your Discord
+settings.
 
 To get the ID of the message you want to set the custom role menu on, click on the three dots on the far right hand side
-of the message and click on `Copy ID.`
+of the message and click on `Copy Message ID`.
 
 ![Copying a message ID](copy_message_id.png)

@@ -115,7 +115,6 @@ representing allowed channel types.
 | text        | A simple dropdown menu with custom text options.                                     |
 | user        | A list of users part of the server, automatically populated by Discord.              |
 
-
 #### Select Menu Option
 
 A select menu option for the `text` type has the structure as outlined in the table below. A text menu may not have more

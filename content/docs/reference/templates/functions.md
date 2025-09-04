@@ -800,10 +800,10 @@ Returns the sum of the provided numbers. Detects the first number's type and per
 #### bitwiseAnd
 
 ```yag
-{{ $result := bitwiseAnd x y }}
+{{ $result := bitwiseAnd x y [...] }}
 ```
 
-Performs a bitwise AND operation on the two provided numbers and returns the result.
+Performs a bitwise AND operation on the provided numbers and returns the result.
 
 #### bitwiseAndNot
 

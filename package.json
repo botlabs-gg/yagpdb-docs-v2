@@ -15,20 +15,20 @@
 	"dependencies": {
 		"@docsearch/css": "^3.6.1",
 		"@docsearch/js": "^3.6.1",
-		"@tabler/icons": "^3.19.0",
-		"@thulite/doks-core": "^1.7.0",
-		"@thulite/images": "^3.3.0",
+		"@tabler/icons": "^3.34.1",
+		"@thulite/doks-core": "^1.8.3",
+		"@thulite/images": "^3.3.1",
 		"@thulite/inline-svg": "^1.2.0",
-		"@thulite/seo": "^2.4.0",
+		"@thulite/seo": "^2.4.1",
 		"dom-serializer": "^2.0.0",
 		"domutils": "^3.1.0",
 		"glob": "^11.0.0",
 		"htmlparser2": "^9.1.0",
 		"shiki": "^1.11.0",
-		"thulite": "^2.5.0"
+		"thulite": "^2.6.3"
 	},
 	"devDependencies": {
-		"vite": "^5.2.10"
+		"vite": "^7.1.5"
 	},
 	"engines": {
 		"node": ">=20.11.0"

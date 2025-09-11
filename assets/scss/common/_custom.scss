@@ -5,6 +5,10 @@ a.broken {
   padding: 0.1em 0.2em;
 }
 
+.docs-content p a {
+    text-decoration: underline;
+}
+
 // Reduce spacing between cards on the homepage.
 .home .card {
   margin-top: 2rem;

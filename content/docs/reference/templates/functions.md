@@ -781,6 +781,112 @@ object](/docs/reference/templates/syntax-and-data#message). Is also valid for ep
 
 ---
 
+## Component V2
+
+Components V2 provides a new way to create interactive and visually appealing message layouts in Discord applications,
+making it easier to control message formatting and user interaction while maintaining line length under 120 characters.
+
+### componentBuilder
+
+A `componentBuilder` simplifies building Discord's ComponentsV2 in custom commands.
+
+```yag
+{{ $component := componentBuilder (sdict [text] [section] [gallery] [file] [separator] [container] [buttons] [menus] [interactive_components] [allowed_mentions] [reply] [silent] [ephemeral]) }}
+```
+
+Returns a complex message object with the given components.
+
+All keys are optional, but the Discord API will reject completey empty messages, so some content is required.
+
+- `text`: A string or a slice of strings.
+- `section`: A layout block that shows text with one optional accessory: a button **or** a thumbnail with the following keys:
+  - `text`: A string or a slice of strings.
+  - `button`: A [button object](#cbutton).
+  - `thumbnail`: An sdict with the following keys:
+    - `media`: A string.
+    - `description`: A string.
+    - `spoiler`: A bool.
+- `gallery`: Displays one or more media items with optional descriptions and spoiler flags with the following keys:
+  - `media`: A string.
+  - `description`: A string.
+  - `spoiler`: A bool.
+- `file`: Attaches text files to the message and optionally displays them with the following keys:
+  - `content`: A string. (max 100 000 chars)
+  - `name`: A string. (.txt appended automatically)
+- `separator`: Adds spacing between components with the following keys:
+  - `true`: large separator
+  - `false` or `nil`: small separator
+- `container`: Top-level layout. Containers offer the ability to visually encapsulate a collection of components,
+ and have an optional customizable accent color bar. Contains the following keys:
+  - `components`: A [componentBuilder](#componentbuilder) or a slice thereof.
+  - `color`: hex accent color (optional).
+  - `spoiler`: hides content until revealed (optional).
+- `buttons`: Interactive [buttons](#cbutton) users can click. Can be single or multiple.
+- `menus`: Interactive [menus](#cmenu)s users can select from. Can be single or multiple.
+- `interactive_components`: Mix of buttons and menus, auto-distributed.
+- `allowed_mentions`: A sdict with the following keys:
+  - `users`: A slice of user IDs.
+  - `roles`: A slice of role IDs.
+  - `everyone`: A bool.
+  - `replied_user`: A bool.
+- `reply`: A sdict with the following keys:
+  - `message_id`: A string.
+  - `thread_id`: A string.
+- `silent`: A bool.
+- `ephemeral`: A bool.
+
+### Component Builder Functions
+
+The `ComponentBuilder` simplifies building Discord's V2 components, allowing complex layouts to be built incrementally.
+It provides methods for constructing, manipulating, and exporting components in a format Discord understands,
+ensuring line length doesn't exceed 120 characters.
+
+#### ComponentBuilder.Add
+
+Adds a single component entry to the builder under the given key.
+
+```yag
+{{ $builder.Add <key> <value> }}
+```
+
+- `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+- `value` – The component data (string, sdict, Button, SelectMenu, etc.).
+
+#### ComponentBuilder.AddSlice
+
+Adds multiple components under one key.
+
+```yag
+{{ $builder.AddSlice <key> <values...> }}
+```
+
+- `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+- `values` – The component data (string, sdict, Button, SelectMenu, etc.).
+
+#### ComponentBuilder.Merge
+
+Combine another builder into the current one.
+
+```yag
+{{ $builder.Merge <other> }}
+```
+
+- `other` – The other component builder to merge.
+
+#### ComponentBuilder.Get
+
+Returns the component data for the given key.
+
+```yag
+{{ $value := <builder>.Get <key> }}
+```
+
+- `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+
+Example usage can be found at the [Components v2](/docs/reference/components-v2).
+
+---
+
 ## Math
 
 #### abs

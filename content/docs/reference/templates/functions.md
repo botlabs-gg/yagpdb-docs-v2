@@ -779,6 +779,104 @@ object](/docs/reference/templates/syntax-and-data#message). Is also valid for ep
 
 ---
 
+## Component V2
+
+Components V2 introduces a new way to create interactive and visually appealing message layouts in Discord applications, allowing for greater control over message formatting and user interaction.
+
+### componentBuilder
+
+`componentBuilder` is a helper for building Discord's new Components V2 (sections, buttons, menus, galleries, etc.) in YAGPDB custom commands.
+
+```yag
+{{ $component := componentBuilder (sdict [text] [section] [gallery] [file] [separator] [container] [buttons] [menus] [interactive_components] [allowed_mentions] [reply] [silent] [ephemeral])}}
+```
+Returns a complex message object with the given components.
+
+All keys are optional, but the Discord API will reject completey empty messages, so some content is required.
+
+- `text`: A string or a slice of strings.
+- `section`: A layout block that shows text with one optional accessory: a button **OR** a thumbnail with the following keys:
+  - `text`: A string or a slice of strings.
+  - `button`: A Button object, check [cbutton](#cbutton).
+  - `thumbnail`: A sdict with the following keys:
+    - `media`: A string.
+    - `description`: A string.
+    - `spoiler`: A bool.
+- `gallery`: Displays one or more media items with optional descriptions and spoiler flags with the following keys:
+  - `media`: A string.
+  - `description`: A string.
+  - `spoiler`: A bool.
+- `file`: Attaches text files to the message and optionally displays them with the following keys:
+  - `content`: A string. (≤ 100,000 chars)
+  - `name`: A string. (.txt appended automatically)
+- `separator`: Adds spacing between components with the following keys:
+  - `true`: large separator
+  - `false` or `nil`: small separator
+- `container`: top-level layout component. containers offer the ability to visually encapsulate a collection of components and have an optional customizable accent color bar. with the following keys:
+  - `components`: [componentbuilder](#componentbuilder) or list of [componentbuilder](#componentbuilder).
+  - `color`: hex accent color (optional).
+  - `spoiler`: hides content until revealed (optional).
+- `buttons`: Interactive buttons users can click. Can be single or multiple. see [cbutton](#cbutton).
+- `menus`: Interactive menus users can select from. Can be single or multiple. see [cmenu](#cmenu).
+- `interactive_components`: Mix of buttons and menus, auto-distributed. see [cbutton](#cbutton) and [cmenu](#cmenu).
+- `allowed_mentions`: A sdict with the following keys:
+  - `users`: A slice of user IDs.
+  - `roles`: A slice of role IDs.
+  - `everyone`: A bool.
+  - `replied_user`: A bool.
+- `reply`: A sdict with the following keys:
+  - `message_id`: A string.
+  - `thread_id`: A string.
+- `silent`: A bool.
+- `ephemeral`: A bool.
+
+### Component Builder Functions
+
+The `ComponentBuilder` object provides methods to construct, manipulate, and export Discord V2 message components programmatically. These methods allow you to build complex layouts incrementally and retrieve them in a format that Discord understands.
+
+#### ComponentBuilder.Add
+
+Adds a single component entry to the builder under the given key.
+```yag
+{{ $builder := componentBuilder }}
+{{ $builder.Add "key" "value" }}
+```
+
+- `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+- `value` – The component data (string, sdict, Button, SelectMenu, etc.).
+
+#### ComponentBuilder.AddSlice
+Adds multiple components under one key.
+```yag
+{{ $builder := componentBuilder }}
+{{ $builder.AddSlice "key" (cslice "value1" "value2" "value3") }}
+```
+
+- `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+- `values` – The component data (string, sdict, Button, SelectMenu, etc.).
+
+#### ComponentBuilder.Merge
+Combine another builder into the current one.
+```yag
+{{ $builder1 := componentBuilder }}
+{{ $builder2 := componentBuilder }}
+{{ $builder1.Merge $builder2 }}
+```
+- `other` – The builder to merge.
+
+#### ComponentBuilder.Get
+Returns the component data for the given key.
+```yag
+{{ $builder := componentBuilder }}
+{{ $builder.Add "key" "value" }}
+{{ $value := $builder.Get "key" }}
+```
+- `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+
+Example usage can be found at the [Components v2](../components-v2.md).
+
+---
+
 ## Math
 
 #### abs

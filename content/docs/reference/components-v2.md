@@ -6,9 +6,11 @@ description = "Be fancier, use components!"
 
 ## componentBuilder
 
-`componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries, etc.) in YAGPDB custom commands.
+`componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries, etc.)
 
-It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON. Instead, you describe components with key–value pairs (sdict, strings, arrays), and `componentBuilder` handles conversion and validation for you.
+It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON.
+
+You describe components with key–value pairs and `componentBuilder` handles conversion and validation for you.
 
 This makes it easier to:
 
@@ -319,15 +321,17 @@ This example combines text, sections, gallery, files, buttons, menus, and contai
 
 ## Component Builder Helper Functions
 
-The `componentBuilder` helper function provides methods to construct, manipulate, and get Discord V2 message components programmatically. These methods allow you to build complex layouts incrementally and retrieve them in a format that Discord understands.
+The helper function provides methods to construct, manipulate, and get Discord V2 message components programmatically.
+
+These methods allow you to build complex layouts incrementally and retrieve them in a format that Discord understands.
 
 ### componentBuilder.Add
 
 Adds a single component entry to the builder under the given key.
 
 - Parameters:
-    - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
-    - `value` – The component data (string, sdict, Button, SelectMenu, etc.).
+  - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+  - `value` – The component data (string, sdict, Button, SelectMenu, etc.).
 
 - Example:
 
@@ -341,12 +345,12 @@ Adds a single component entry to the builder under the given key.
 ```
 
 ### componentBuilder.AddSlice
-A
-dds multiple components under one key.
+
+Adds multiple components under one key.
 
 - Parameters:
-    - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
-    - `values` – The component data (string, sdict, Button, SelectMenu, etc.).
+  - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+  - `values` – The component data (string, sdict, Button, SelectMenu, etc.).
 
 - Example:
 
@@ -368,7 +372,7 @@ dds multiple components under one key.
 Combine another builder into the current one.
 
 - Parameters:
-    - `other` – The builder to merge.
+  - `other` – The builder to merge.
 
 - Example:
 
@@ -395,7 +399,7 @@ Combine another builder into the current one.
 Retrieve components stored under a key.
 
 - Parameters:
-    - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
+  - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
 
 - Example:
 

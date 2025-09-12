@@ -5,6 +5,7 @@ description = "Be fancier, use components!"
 +++
 
 ## componentBuilder
+
 `componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries, etc.) in YAGPDB custom commands.
 
 It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON. Instead, you describe components with key–value pairs (sdict, strings, arrays), and `componentBuilder` handles conversion and validation for you.
@@ -23,7 +24,8 @@ Displays plain text content, supporting markdown. Can be a string or a slice of 
 `text`: string | []string
 
 Example:
-```go
+
+```yag
 {{$text := componentBuilder (sdict
     "text" "Component Builder v2 test!"
 )}}
@@ -38,6 +40,7 @@ Example:
 )}}
 {{sendMessage nil $text}}
 ```
+
 ![example of text](texts.png)
 
 ### Section
@@ -49,7 +52,8 @@ A layout block that shows text with one optional accessory: a button OR a thumbn
 `button`: Button (optional)
 
 `thumbnail`: sdict with keys media, description, spoiler (optional)
-```go
+
+```yag
 {{$section := componentBuilder (sdict
     "section" (sdict
         "text" "🍲 **Lasagna Recipe**"
@@ -62,9 +66,13 @@ A layout block that shows text with one optional accessory: a button OR a thumbn
     )
 )}}
 ```
+
 {{< callout context="note" icon="outline/info-circle" >}}
+
 The above example shows `button` and `thumbnail` in `section`, however you can use only one of them, not both at same time.
+
 {{< /callout >}}
+
 ![example of section](section.png)
 
 ### Gallery
@@ -76,7 +84,8 @@ Displays one or more media items with optional descriptions and spoiler flags.
 `description`: string (optional)
 
 `spoiler`: bool (optional)
-```go
+
+```yag
 {{$gallery := componentBuilder (sdict
     "gallery" (cslice
         (sdict "media" "https://http.cat/103")
@@ -85,6 +94,7 @@ Displays one or more media items with optional descriptions and spoiler flags.
     )
 )}}
 ```
+
 ![example of gallery](gallery.png)
 
 ### File
@@ -94,7 +104,8 @@ Attaches text files to the message and optionally displays them.
 `content`: string (≤ 100,000 chars)
 
 `name`: string (filename, .txt appended automatically)
-```go
+
+```yag
 {{$file := componentBuilder (sdict
     "file" (cslice
         (sdict
@@ -109,6 +120,7 @@ Attaches text files to the message and optionally displays them.
     )
 )}}
 ```
+
 ![example of file](file.png)
 
 ### Separator
@@ -118,7 +130,8 @@ Adds spacing between components.
 `true`: large separator
 
 `false` or `nil`: small separator
-```go
+
+```yag
 {{$separator := componentBuilder (sdict "separator" true)}}
 ```
 
@@ -132,7 +145,7 @@ Groups multiple components with optional styling.
 
 `spoiler`: hides content until revealed (optional)
 
-```go
+```yag
 {{$container := sdict
     "color" 0xF5CDF6
     "spoiler" false
@@ -148,6 +161,7 @@ Groups multiple components with optional styling.
     "container" $container
 )}}
 ```
+
 ![example of container](container.png)
 
 ### Buttons
@@ -157,7 +171,8 @@ Interactive buttons users can click. Can be single or multiple. see [cbutton](..
 - Maximum 25 buttons total (5 rows × 5 buttons)
 
 - Link buttons don’t need a `custom_id`
-```go
+
+```yag
 {{$buttons := componentBuilder (sdict
 "buttons" (cslice
     (cbutton (sdict "label" "-" "custom_id" "decrease" "style" "danger"))
@@ -166,6 +181,7 @@ Interactive buttons users can click. Can be single or multiple. see [cbutton](..
 )
 )}}
 ```
+
 ![example of buttons](button.png)
 
 ### Menus
@@ -175,7 +191,8 @@ Select menus for user options. see [cmenu](../reference/templates/functions.md#c
 - Maximum 5 menus per message
 
 - Each menu occupies its own row
-```go
+
+```yag
 {{$menu := componentBuilder (sdict
 "menus" (cmenu (sdict
     "custom_id" "unit-select"
@@ -187,6 +204,7 @@ Select menus for user options. see [cmenu](../reference/templates/functions.md#c
 )))
 }}
 ```
+
 ![example of menus](menu.png)
 
 ### Interactive Components
@@ -200,7 +218,8 @@ Accepts:
 - Slice of components
 
 - Slice of slices (to define rows)
-```go
+
+```yag
 {{$interactive := componentBuilder (sdict "interactive_components" (cslice
     (cbutton (sdict "label" "Approve" "custom_id" "approve" "style" "success"))
     (cbutton (sdict "label" "Reject" "custom_id" "reject" "style" "danger"))
@@ -226,8 +245,10 @@ Accepts:
 - `ephemeral`: message visible only to interaction user
 
 ### Example
+
 This example combines text, sections, gallery, files, buttons, menus, and container styling into a single, cohesive layout.
-```go
+
+```yag
 {{$section := sdict
   "text" "🍲 **Lasagna Recipe**"
   "button" (cbutton (sdict "label" "Set Servings" "custom_id" "set-servings" "style" "primary"))
@@ -293,6 +314,7 @@ This example combines text, sections, gallery, files, buttons, menus, and contai
 )}}
 {{sendMessage nil $comp}}
 ```
+
 ![example of full](all.png)
 
 ## Component Builder Helper Functions
@@ -300,13 +322,16 @@ This example combines text, sections, gallery, files, buttons, menus, and contai
 The `componentBuilder` helper function provides methods to construct, manipulate, and get Discord V2 message components programmatically. These methods allow you to build complex layouts incrementally and retrieve them in a format that Discord understands.
 
 ### componentBuilder.Add
+
 Adds a single component entry to the builder under the given key.
+
 - Parameters:
     - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
     - `value` – The component data (string, sdict, Button, SelectMenu, etc.).
 
 - Example:
-```go
+
+```yag
 {{$builder := componentBuilder}}
 {{$section := sdict
     "text" "🍲 **Lasagna Recipe**"
@@ -316,14 +341,16 @@ Adds a single component entry to the builder under the given key.
 ```
 
 ### componentBuilder.AddSlice
-Adds multiple components under one key.
+A
+dds multiple components under one key.
 
 - Parameters:
     - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
     - `values` – The component data (string, sdict, Button, SelectMenu, etc.).
 
 - Example:
-```go
+
+```yag
 {{$builder := componentBuilder}}
 {{$pasta := cslice
     "### Ingredients"
@@ -337,13 +364,15 @@ Adds multiple components under one key.
 ```
 
 ### componentBuilder.Merge
+
 Combine another builder into the current one.
 
 - Parameters:
     - `other` – The builder to merge.
 
 - Example:
-```go
+
+```yag
 {{$builder1 := componentBuilder}}
 {{$builder2 := componentBuilder}}
 {{$oven := cslice
@@ -362,19 +391,23 @@ Combine another builder into the current one.
 ```
 
 ### componentBuilder.Get
+
 Retrieve components stored under a key.
 
 - Parameters:
     - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
 
 - Example:
-```go
+
+```yag
 {{$textComponents := $builder1.Get "text"}}
 ```
+
 `$textComponents` now contains the ingredient and oven text slices.
 
 ### Example (With helper functions)
-```go
+
+```yag
 {{$section := sdict
   "text" "🍲 **Lasagna Recipe**"
   "button" (cbutton (sdict "label" "Set Servings" "custom_id" "set-servings" "style" "primary"))

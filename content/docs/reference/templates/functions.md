@@ -790,6 +790,7 @@ Components V2 introduces a new way to create interactive and visually appealing 
 ```yag
 {{ $component := componentBuilder (sdict [text] [section] [gallery] [file] [separator] [container] [buttons] [menus] [interactive_components] [allowed_mentions] [reply] [silent] [ephemeral])}}
 ```
+
 Returns a complex message object with the given components.
 
 All keys are optional, but the Discord API will reject completey empty messages, so some content is required.
@@ -837,6 +838,7 @@ The `ComponentBuilder` object provides methods to construct, manipulate, and exp
 #### ComponentBuilder.Add
 
 Adds a single component entry to the builder under the given key.
+
 ```yag
 {{ $builder := componentBuilder }}
 {{ $builder.Add "key" "value" }}
@@ -846,7 +848,9 @@ Adds a single component entry to the builder under the given key.
 - `value` – The component data (string, sdict, Button, SelectMenu, etc.).
 
 #### ComponentBuilder.AddSlice
+
 Adds multiple components under one key.
+
 ```yag
 {{ $builder := componentBuilder }}
 {{ $builder.AddSlice "key" (cslice "value1" "value2" "value3") }}
@@ -856,24 +860,30 @@ Adds multiple components under one key.
 - `values` – The component data (string, sdict, Button, SelectMenu, etc.).
 
 #### ComponentBuilder.Merge
+
 Combine another builder into the current one.
+
 ```yag
 {{ $builder1 := componentBuilder }}
 {{ $builder2 := componentBuilder }}
 {{ $builder1.Merge $builder2 }}
 ```
+
 - `other` – The builder to merge.
 
 #### ComponentBuilder.Get
+
 Returns the component data for the given key.
+
 ```yag
 {{ $builder := componentBuilder }}
 {{ $builder.Add "key" "value" }}
 {{ $value := $builder.Get "key" }}
 ```
+
 - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
 
-Example usage can be found at the [Components v2](../components-v2.md).
+Example usage can be found at the [Components v2](/docs/reference/components-v2).
 
 ---
 

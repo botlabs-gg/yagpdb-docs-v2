@@ -216,7 +216,7 @@ This is available and part of the dot when a component or modal trigger is used.
 
 [Interaction object in Discord documentation](https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object).
 
-Interaction functions are covered [here](/docs/reference/templates/functions#interactions).
+Interaction functions are covered in their respective section on the [functions page](/docs/reference/templates/functions#interactions).
 
 ### Member
 

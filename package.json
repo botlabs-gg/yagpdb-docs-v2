@@ -10,7 +10,8 @@
 		"format": "prettier **/** -w -c",
 		"build": "hugo --minify --gc && npm run highlight",
 		"highlight": "node scripts/highlight.mjs",
-		"preview": "vite preview --outDir public"
+		"preview": "vite preview --outDir public",
+		"lint": "markdownlint-cli2 'content/**/*.md' '!content/docs/core/all-commands.md' --config config/.markdownlint.yaml"
 	},
 	"dependencies": {
 		"@docsearch/css": "^3.6.1",
@@ -28,6 +29,7 @@
 		"thulite": "^2.6.3"
 	},
 	"devDependencies": {
+		"markdownlint-cli2": "^0.18.1",
 		"vite": "^7.1.5"
 	},
 	"engines": {

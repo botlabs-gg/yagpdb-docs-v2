@@ -781,11 +781,12 @@ object](/docs/reference/templates/syntax-and-data#message). Is also valid for ep
 
 ## Component V2
 
-Components V2 introduces a new way to create interactive and visually appealing message layouts in Discord applications, allowing for greater control over message formatting and user interaction.
+Components V2 provides a new way to create interactive and visually appealing message layouts in Discord applications,
+making it easier to control message formatting and user interaction while maintaining line length under 120 characters.
 
 ### componentBuilder
 
-`componentBuilder` is a helper for building Discord's new Components V2 (sections, buttons, menus, galleries, etc.) in YAGPDB custom commands.
+`componentBuilder` simplifies building Discord's ComponentsV2, including buttons, menus, etc, in YAGPDB custom commands.
 
 ```yag
 {{ $component := componentBuilder (sdict [text] [section] [gallery] [file] [separator] [container] [buttons] [menus] [interactive_components] [allowed_mentions] [reply] [silent] [ephemeral])}}
@@ -813,8 +814,9 @@ All keys are optional, but the Discord API will reject completey empty messages,
 - `separator`: Adds spacing between components with the following keys:
   - `true`: large separator
   - `false` or `nil`: small separator
-- `container`: top-level layout component. containers offer the ability to visually encapsulate a collection of components and have an optional customizable accent color bar. with the following keys:
-  - `components`: [componentbuilder](#componentbuilder) or list of [componentbuilder](#componentbuilder).
+- `container`: Top-level layout. Containers offer the ability to visually encapsulate a collection of components,
+ and have an optional customizable accent color bar. Contains the following keys:
+  - `components`: [componentBuilder](#componentbuilder) or list of [componentBuilder](#componentbuilder).
   - `color`: hex accent color (optional).
   - `spoiler`: hides content until revealed (optional).
 - `buttons`: Interactive buttons users can click. Can be single or multiple. see [cbutton](#cbutton).
@@ -833,7 +835,9 @@ All keys are optional, but the Discord API will reject completey empty messages,
 
 ### Component Builder Functions
 
-The `ComponentBuilder` object provides methods to construct, manipulate, and export Discord V2 message components programmatically. These methods allow you to build complex layouts incrementally and retrieve them in a format that Discord understands.
+The `ComponentBuilder` simplifies building Discord's V2 components, allowing complex layouts to be built incrementally.
+It provides methods for constructing, manipulating, and exporting components in a format Discord understands,
+ensuring line length doesn't exceed 120 characters.
 
 #### ComponentBuilder.Add
 

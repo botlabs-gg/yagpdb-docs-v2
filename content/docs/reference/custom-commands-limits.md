@@ -24,6 +24,7 @@ Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot 
 - **Calls per CC:** 1/10 (free/prem) -> counter key "runcc"
 - **StackDepth limit:** 2 (executing with 0 delay)
 - **Delay limit:** int64 limit (292 years)
+- **Channel limit:** 10 executions per channel, per minute
 
 ### scheduleUniqueCC
 

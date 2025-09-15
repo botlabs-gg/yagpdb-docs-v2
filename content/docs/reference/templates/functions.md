@@ -479,6 +479,8 @@ Executes another custom command specified by `ccID`.
 - `data`: some arbitrary data to pass to the executed custom command.
 
 Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2.
+`execCC` is rate-limited strictly to a maximum of 10 delayed custom commands executed per channel per minute. Executions
+beyond this number will be dropped.
 
 ##### Example
 

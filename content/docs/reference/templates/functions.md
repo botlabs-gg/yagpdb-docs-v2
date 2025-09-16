@@ -786,10 +786,10 @@ making it easier to control message formatting and user interaction while mainta
 
 ### componentBuilder
 
-`componentBuilder` simplifies building Discord's ComponentsV2, including buttons, menus, etc, in YAGPDB custom commands.
+A `componentBuilder` simplifies building Discord's ComponentsV2 in custom commands.
 
 ```yag
-{{ $component := componentBuilder (sdict [text] [section] [gallery] [file] [separator] [container] [buttons] [menus] [interactive_components] [allowed_mentions] [reply] [silent] [ephemeral])}}
+{{ $component := componentBuilder (sdict [text] [section] [gallery] [file] [separator] [container] [buttons] [menus] [interactive_components] [allowed_mentions] [reply] [silent] [ephemeral]) }}
 ```
 
 Returns a complex message object with the given components.
@@ -799,8 +799,8 @@ All keys are optional, but the Discord API will reject completey empty messages,
 - `text`: A string or a slice of strings.
 - `section`: A layout block that shows text with one optional accessory: a button **OR** a thumbnail with the following keys:
   - `text`: A string or a slice of strings.
-  - `button`: A Button object, check [cbutton](#cbutton).
-  - `thumbnail`: A sdict with the following keys:
+  - `button`: A [button object](#cbutton).
+  - `thumbnail`: An sdict with the following keys:
     - `media`: A string.
     - `description`: A string.
     - `spoiler`: A bool.
@@ -809,19 +809,19 @@ All keys are optional, but the Discord API will reject completey empty messages,
   - `description`: A string.
   - `spoiler`: A bool.
 - `file`: Attaches text files to the message and optionally displays them with the following keys:
-  - `content`: A string. (≤ 100,000 chars)
+  - `content`: A string. (max 100 000 chars)
   - `name`: A string. (.txt appended automatically)
 - `separator`: Adds spacing between components with the following keys:
   - `true`: large separator
   - `false` or `nil`: small separator
 - `container`: Top-level layout. Containers offer the ability to visually encapsulate a collection of components,
  and have an optional customizable accent color bar. Contains the following keys:
-  - `components`: [componentBuilder](#componentbuilder) or list of [componentBuilder](#componentbuilder).
+  - `components`: A [componentBuilder](#componentbuilder) or a slice thereof.
   - `color`: hex accent color (optional).
   - `spoiler`: hides content until revealed (optional).
-- `buttons`: Interactive buttons users can click. Can be single or multiple. see [cbutton](#cbutton).
-- `menus`: Interactive menus users can select from. Can be single or multiple. see [cmenu](#cmenu).
-- `interactive_components`: Mix of buttons and menus, auto-distributed. see [cbutton](#cbutton) and [cmenu](#cmenu).
+- `buttons`: Interactive [buttons](#cbutton) users can click. Can be single or multiple.
+- `menus`: Interactive [menus](#cmenu)s users can select from. Can be single or multiple.
+- `interactive_components`: Mix of buttons and menus, auto-distributed.
 - `allowed_mentions`: A sdict with the following keys:
   - `users`: A slice of user IDs.
   - `roles`: A slice of role IDs.
@@ -844,8 +844,7 @@ ensuring line length doesn't exceed 120 characters.
 Adds a single component entry to the builder under the given key.
 
 ```yag
-{{ $builder := componentBuilder }}
-{{ $builder.Add "key" "value" }}
+{{ $builder.Add <key> <value> }}
 ```
 
 - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
@@ -856,8 +855,7 @@ Adds a single component entry to the builder under the given key.
 Adds multiple components under one key.
 
 ```yag
-{{ $builder := componentBuilder }}
-{{ $builder.AddSlice "key" (cslice "value1" "value2" "value3") }}
+{{ $builder.AddSlice <key> <values...> }}
 ```
 
 - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
@@ -868,21 +866,17 @@ Adds multiple components under one key.
 Combine another builder into the current one.
 
 ```yag
-{{ $builder1 := componentBuilder }}
-{{ $builder2 := componentBuilder }}
-{{ $builder1.Merge $builder2 }}
+{{ $builder.Merge <other> }}
 ```
 
-- `other` – The builder to merge.
+- `other` – The other component builder to merge.
 
 #### ComponentBuilder.Get
 
 Returns the component data for the given key.
 
 ```yag
-{{ $builder := componentBuilder }}
-{{ $builder.Add "key" "value" }}
-{{ $value := $builder.Get "key" }}
+{{ $value := <builder>.Get <key> }}
 ```
 
 - `key` – The top-level key for the component (e.g., "text", "section", "buttons").

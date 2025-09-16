@@ -7,7 +7,6 @@
 	"scripts": {
 		"create": "hugo new",
 		"dev": "hugo server --disableFastRender --noHTTPCache",
-		"format": "prettier **/** -w -c",
 		"build": "hugo --minify --gc && npm run highlight",
 		"highlight": "node scripts/highlight.mjs",
 		"preview": "vite preview --outDir public",

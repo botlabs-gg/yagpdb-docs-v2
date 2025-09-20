@@ -1,6 +1,6 @@
 +++
 title = "Custom Commands Examples"
-weight = 920
+weight = 1020
 description = "Copy-and-paste code, \"for education purposes only\"."
 +++
 

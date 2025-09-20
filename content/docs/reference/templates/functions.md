@@ -1,6 +1,6 @@
 +++
 title = "Functions"
-weight = 912
+weight = 1012
 description = "A list of all available functions in YAGPDB's custom command templates."
 +++
 

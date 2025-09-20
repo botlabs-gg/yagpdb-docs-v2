@@ -1,6 +1,6 @@
 +++
 title = "Syntax and Data"
-weight = 911
+weight = 1011
 description = "Available data in custom commands and a quick syntax refresher."
 +++
 

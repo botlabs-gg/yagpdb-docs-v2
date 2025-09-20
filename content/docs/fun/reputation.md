@@ -1,6 +1,6 @@
 +++
 title = "Reputation"
-weight = 810
+weight = 910
 description = "Track and manage reputation points for users."
 +++
 

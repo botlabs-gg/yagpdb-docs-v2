@@ -24,6 +24,10 @@ A premium server unlocks the following benefits:
 
 - Enables retroactively applying a role to all members of a server.
 
+### Bulk Role
+
+- The [bulk role](/docs/roles/bulk-role) feature becomes available, allowing you to assign or remove a role in bulk.
+
 ### Common Template Scripting
 
 - Increase max operation count from 1 million to 2.5 million (`MaxOpsPremium`).

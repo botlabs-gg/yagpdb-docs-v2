@@ -1,4 +1,6 @@
 +++
 title = "Tools and Utilities"
-weight = 700
+weight = 800
+[sidebar]
+    collapsed = true
 +++

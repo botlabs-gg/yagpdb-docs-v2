@@ -1,6 +1,6 @@
 +++
 title = "Custom Commands Limits"
-weight = 930
+weight = 1030
 description = "Limits? I'm at my limit!"
 +++
 

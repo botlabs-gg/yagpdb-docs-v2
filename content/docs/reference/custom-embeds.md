@@ -1,6 +1,6 @@
 +++
 title = "Custom Embeds"
-weight = 940
+weight = 1040
 description = "Be fancy, use embeds!"
 +++
 

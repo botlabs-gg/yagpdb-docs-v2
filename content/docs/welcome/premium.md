@@ -50,6 +50,12 @@ A premium server unlocks the following benefits:
 - Increase length of deleted message history for logs saved by moderation actions from 1 hour to 12 hours.
 - Increase length of deleted message history by `undelete` command from 1 hour to 12 hours.
 
+### Personalizer
+
+- Enables you to change the bot's avatar and banner on your server.
+
+![personalizer settings page](personalizer.png)
+
 ### Reddit
 
 - Increase maximum Reddit feeds per guild from 100 to 1000 (`GuildMaxFeedsPremium`).

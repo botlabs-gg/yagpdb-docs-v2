@@ -1184,7 +1184,7 @@ Note that a message sent via [sendMessage](#sendmessage) is not the response---u
 #### complexMessageEdit
 
 ```yag
-{{ $message := complexMessageEdit [allowed_mentions] [content] [embed] [silent] [suppress_embeds] }}
+{{ $message := complexMessageEdit [allowed_mentions] [content] [embed] [silent] [suppress_embeds] [is_components_v2] }}
 ```
 
 Creates a complex message object for use in [editMessage](#editmessage) or [editMessageNoEscape](#editmessagenoescape).
@@ -1198,6 +1198,7 @@ Creates a complex message object for use in [editMessage](#editmessage) or [edit
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `silent`: whether to suppress push and desktop notifications.
 - `suppress_embeds`: whether to suppress embeds in the message.
+- `is_components_v2`: whether the message uses components v2. Irreversibly switches the message to use components v2.
 
 All of these keys are optional, but providing none of them will have no effect. See [complexMessage](#complexmessage)
 for an example.
@@ -1207,7 +1208,7 @@ Setting `suppress_embeds` to `false` on a message with already suppressed embeds
 #### complexMessage
 
 ```yag
-{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [sticker] [forward] [suppress_embeds] }}
+{{ $message := complexMessage [allowed_mentions] [content] [embed] [file] [filename] [reply] [silent] [menus] [buttons] [sticker] [forward] [suppress_embeds] [is_components_v2] }}
 ```
 
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
@@ -1228,6 +1229,7 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `sticker`: single sticker ID or a slice of sticker IDs
 - `forward`: an sdict containing `channel` and `message` keys specifying the message to forward
 - `suppress_embeds`: whether to suppress embeds in the message.
+- `is_components_v2`: whether the message uses components v2. Irreversibly switches the message to use components v2.
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 

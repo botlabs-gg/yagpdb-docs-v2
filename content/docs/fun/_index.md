@@ -1,6 +1,6 @@
 +++
 title = "Fun"
-weight = 800
+weight = 900
 [sidebar]
     collapsed = true
 +++

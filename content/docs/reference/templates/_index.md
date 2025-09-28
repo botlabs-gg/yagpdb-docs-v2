@@ -1,6 +1,6 @@
 +++
 title = 'Templates'
-weight = 910
+weight = 1010
 [sidebar]
     collapsed = true
 +++

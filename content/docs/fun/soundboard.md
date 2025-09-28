@@ -1,6 +1,6 @@
 +++
 title = "Soundboard"
-weight = 820
+weight = 920
 description = "Play sounds in voice channels with the soundboard system."
 +++
 

@@ -1,6 +1,6 @@
 +++
 title = "Using RegEx"
-weight = 970
+weight = 1070
 description = "s/regex/dark voodoo/i"
 +++
 

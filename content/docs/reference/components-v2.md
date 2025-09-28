@@ -1,6 +1,6 @@
 +++
 title = "Components V2"
-weight = 920
+weight = 1020
 description = "Be fancier, use components!"
 +++
 

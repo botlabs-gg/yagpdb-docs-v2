@@ -236,11 +236,11 @@ Accepts:
 
 - `allowed_mentions`: control pings (users, roles, everyone)
 
-- `reply`: message ID to reply to (only available in interactions)
+- `reply`: message ID to reply to
 
 - `silent`: suppress notifications
 
-- `ephemeral`: message visible only to interaction user
+- `ephemeral`: message visible only to interaction user (only available in interactions)
 
 ###### Example
 

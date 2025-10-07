@@ -2309,6 +2309,8 @@ Creates a dictionary from the provided key-value pairs. The number of parameters
 
 Runs the given command with the provided (optional) arguments as the bot.
 
+Returns the command response. If the response isn't captured in a variable, outputs it to chat where the command was triggered.
+
 #### execTemplate
 
 ```yag
@@ -2327,6 +2329,8 @@ Executes the associated `"template"` template, optionally with data. Please see
 Executes the given command with the provided (optional) arguments as the triggering user.
 
 This will not work for commands with paginated embed results, e.g. `warnings`.
+
+Returns the command response. If the response isn't captured in a variable, outputs it to chat where the command was triggered.
 
 #### getWarnings
 

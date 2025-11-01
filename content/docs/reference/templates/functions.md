@@ -2304,10 +2304,12 @@ Creates a dictionary from the provided key-value pairs. The number of parameters
 #### execAdmin
 
 ```yag
-{{ execAdmin "command" [args...] }}
+{{ $resp := execAdmin "command" [args...] }}
 ```
 
-Runs the given command with the provided (optional) arguments as the bot.
+Runs the given command with the provided (optional) arguments as the bot and returns the response.
+
+This will not work for commands which have their response marked as a manual response, i.e. `wouldyourather` and `poll`.
 
 #### execTemplate
 
@@ -2321,12 +2323,12 @@ Executes the associated `"template"` template, optionally with data. Please see
 #### exec
 
 ```yag
-{{ exec "command" [args...] }}
+{{ $resp := exec "command" [args...] }}
 ```
 
-Executes the given command with the provided (optional) arguments as the triggering user.
+Executes the given command with the provided (optional) arguments as the triggering user and returns the response.
 
-This will not work for commands with paginated embed results, e.g. `warnings`.
+This will not work for commands which have their response marked as a manual response, i.e. `wouldyourather` and `poll`.
 
 #### getWarnings
 

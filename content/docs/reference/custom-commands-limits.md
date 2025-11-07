@@ -42,14 +42,14 @@ Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot 
 - **joinStr max string length:** 1000kB
 - **sendDM:** 1 call per CC -> counter key "send_dm"
 - **sendTemplate/sendTemplateDM:** 3 calls per CC -> counter key "exec_child"
-- **addReactions:** 20 calls per CC -> counter key "add_reaction_trigger". Each reaction added counts towards the
-  limit.
-- **addResponseReactions:** 20 calls per CC -> counter key "add_reaction_response". Each reaction added counts towards
-  the limit.
-- **addMessageReactions:** 20 calls per CC -> counter key "add_reaction_message". Each reaction added counts towards
-  the limit.
-- **deleteMessageReaction:** 10 calls per CC -> counter key "del_reaction_message". Each reaction removed counts towards
-  the limit.
+- **addReactions:** 20 calls per CC -> counter key "add_reaction_trigger".
+  Each reaction added counts towards the limit.
+- **addResponseReactions:** 20 calls per CC -> counter key "add_reaction_response".
+  Each reaction added counts towards the limit.
+- **addMessageReactions:** 20 calls per CC -> counter key "add_reaction_message".
+  Each reaction added counts towards the limit.
+- **deleteMessageReaction:** 10 calls per CC -> counter key "del_reaction_message".
+  Each reaction removed counts towards the limit.
 - **editChannelName/Topic:** 10 calls per CC -> counter key "edit_channel"
 - **regex cache limit:** 10 (this means you cant have more than 10 different regexes on a CC)
 - **onlineCount:** 1 call per cc -> counter key "online_users"

@@ -4,8 +4,8 @@ weight = 1012
 description = "A list of all available functions in YAGPDB's custom command templates."
 +++
 
-Functions are used to take action within template scripts. Some functions accept arguments, and some functions return
-values you can send in your response or use as arguments for other functions.
+Functions are used to take action within template scripts.
+Some functions accept arguments, and some functions return values you can send in your response or use as arguments for other functions.
 
 ---
 
@@ -25,7 +25,8 @@ Unless specified otherwise, these functions accept an ID, name, or `nil` for the
 {{ addThreadMember <thread> <member> }}
 ```
 
-Adds a member to an existing thread. Does nothing if either argument is invalid.
+Adds a member to an existing thread.
+Does nothing if either argument is invalid.
 
 #### closeThread
 
@@ -33,9 +34,11 @@ Adds a member to an existing thread. Does nothing if either argument is invalid.
 {{ closeThread <thread> <lock> }}
 ```
 
-Closes or locks the given thread. You cannot lock a closed thread, but you can close a locked thread.
+Closes or locks the given thread.
+You cannot lock a closed thread, but you can close a locked thread.
 
-- `lock`: whether to lock the thread instead. Default `false`.
+- `lock`: whether to lock the thread instead.
+  Default `false`.
 
 #### createForumPost
 
@@ -43,14 +46,20 @@ Closes or locks the given thread. You cannot lock a closed thread, but you can c
 {{ $post := createForumPost <channel> <name> <content> [values] }}
 ```
 
-Creates a new forum post. Returns a channel object on success.
+Creates a new forum post.
+Returns a channel object on success.
 
 - `channel`: the forum channel to post to.
-- `name`: The post title. May not be empty. Must be a string.
-- `content`: the initial message's content; may be a string, an embed, or a complex message. May not be empty.
-- `values` (optional): Additional options for the post. May include:
+- `name`: The post title.
+  May not be empty.
+  Must be a string.
+- `content`: the initial message's content; may be a string, an embed, or a complex message.
+  May not be empty.
+- `values` (optional): Additional options for the post.
+  May include:
   - `"slowmode"`: The thread's slowmode in seconds.
-  - `"tags"`: One or more forum tag name or ID. Duplicate and invalid tags are ignored.
+  - `"tags"`: One or more forum tag name or ID.
+    Duplicate and invalid tags are ignored.
 
 #### createThread
 
@@ -58,20 +67,21 @@ Creates a new forum post. Returns a channel object on success.
 {{ $thread := createThread <channel> <messageID> <name> [private] [auto_archive_duration] [invitable] }}
 ```
 
-Creates a new thread in the specified channel. Returns a channel object on success.
+Creates a new thread in the specified channel.
+Returns a channel object on success.
 
 - `channel`: the parent channel to create the thread in.
 - `message`: either `nil` to create a channel thread, or a message ID to create a message thread.
-- `private`: whether the thread is private. Default `false`.
-- `auto_archive_duration`: how long the thread will show in the channel list after inactivity.<br>
-  Valid values are 60, 1440, 4320, and 10080 minutes. Defaults to 10080 (7 days).
+- `private`: whether the thread is private.
+  Default `false`.
+- `auto_archive_duration`: how long the thread will show in the channel list after inactivity. : how long the thread will show in the channel list after inactivity.<br> Valid values are 60, 1440, 4320, and 10080 minutes.
+  Defaults to 10080 (7 days).
 - `invitable`: whether non-moderators can add other members to the thread. (true/false)
 
 Note: There is no functional difference between a channel thread and a message thread.
 
-Because the optional arguments are positional, you must provide the preceding ones if you wish to override a later
-option. Consider the following example to create a public thread in the current channel with no message reference that
-is archived after an hour and allows non-moderators to add others:
+Because the optional arguments are positional, you must provide the preceding ones if you wish to override a later option.
+Consider the following example to create a public thread in the current channel with no message reference that is archived after an hour and allows non-moderators to add others:
 
 ```yag
 {{ createThread nil nil "new thread" false 60 true }}
@@ -107,7 +117,8 @@ Use whichever function is semantically more meaningful in the context of your cu
 
 Edits the name of the given channel.
 
-- `newName`: the new name for the channel. Must be a string.
+- `newName`: the new name for the channel.
+  Must be a string.
 
 This function is, together with [editChannelTopic](#editchanneltopic), limited to 10 calls per custom command execution.
 In addition to this, Discord limits the number of channel modifications to 2 per 10 minutes.
@@ -120,7 +131,9 @@ In addition to this, Discord limits the number of channel modifications to 2 per
 
 Edits the topic of the given channel.
 
-- `newTopic`: the channel's new topic. Must be a string. Discord markdown is supported.
+- `newTopic`: the channel's new topic.
+  Must be a string.
+  Discord markdown is supported.
 
 This function is, together with [editChannelName](#editchannelname), limited to 10 calls per custom command execution.
 In addition to this, Discord limits the number of channel modifications to 2 per 10 minutes.
@@ -135,9 +148,11 @@ Edits the specified thread.
 
 - `opts`: a sdict containing the thread parameters to edit, supporting the following keys (all optional):
   - `slowmode`: the thread's slowmode in seconds.
-  - `tags`: one or more forum tag name or ID. Duplicate and invalid tags are ignored.
+  - `tags`: one or more forum tag name or ID.
+    Duplicate and invalid tags are ignored.
   - `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
-  - `invitable`: whether non-moderators can add other members to the thread. Defaults to false.
+  - `invitable`: whether non-moderators can add other members to the thread.
+    Defaults to false.
 
 #### getChannelOrThread
 
@@ -163,7 +178,8 @@ Rate-limited to 2 (premium: 4) calls per custom command execution.
 {{ $channel := getChannel <channel> }}
 ```
 
-Returns the full channel object for the given channel. Will not work for threads.
+Returns the full channel object for the given channel.
+Will not work for threads.
 
 #### getPinCount
 
@@ -179,7 +195,8 @@ Returns the number of pinned messages in given channel.
 {{ $thread := getThread <thread> }}
 ```
 
-Returns the full thread object for the given thread. Will not work for channels.
+Returns the full thread object for the given thread.
+Will not work for channels.
 
 #### openThread
 
@@ -244,8 +261,10 @@ The argument must be one of the following:
 - `userID`: count entries for the given user ID.
 - `pattern`: count only entries with keys matching the given pattern.
 - `query`: an sdict with the following (all optional) keys:
-  - `userID`: only count entries with a matching UserID field. Defaults to all UserIDs.
-  - `pattern`: only counts entries with keys matching the given pattern. Defaults to all keys.
+  - `userID`: only count entries with a matching UserID field.
+    Defaults to all UserIDs.
+  - `pattern`: only counts entries with keys matching the given pattern.
+    Defaults to all keys.
 
 #### dbDelByID
 
@@ -261,12 +280,16 @@ Deletes a database entry under the given `userID` by its `ID`.
 {{ $numDeleted := dbDelMultiple <query> <amount> <nSkip> }}
 ```
 
-Deletes up to `amount` entries from the database matching the given criteria. Returns the number of deleted entries.
+Deletes up to `amount` entries from the database matching the given criteria.
+Returns the number of deleted entries.
 
 - `query`: an sdict with the following (all optional) keys:
-  - `userID`: only delete entries with a matching UserID field. Defaults to all UserIDs.
-  - `pattern`: only delete entries with keys matching the given pattern. Defaults to all keys.
-  - `reverse`: whether to delete entries with the lowest value first. Default is `false` (highest value first).
+  - `userID`: only delete entries with a matching UserID field.
+    Defaults to all UserIDs.
+  - `pattern`: only delete entries with keys matching the given pattern.
+    Defaults to all keys.
+  - `reverse`: whether to delete entries with the lowest value first.
+    Default is `false` (highest value first).
 - `amount`: the maximum number of entries to delete, capped at 100.
 - `nSkip`: the number of entries to skip before deleting.
 
@@ -322,9 +345,11 @@ Returns the specified database entry.
 {{ $newValue := dbIncr <userID> <key> <incrBy> }}
 ```
 
-Increments the value of the specified database entry by `incrBy`. Returns the new value as a floating-point number.
+Increments the value of the specified database entry by `incrBy`.
+Returns the new value as a floating-point number.
 
-- `incrBy`: the amount to increment the value by. Must be a valid number.
+- `incrBy`: the amount to increment the value by.
+  Must be a valid number.
 
 #### dbRank
 
@@ -337,7 +362,8 @@ Returns the rank of the specified entry in the set of entries as defined by `que
 - `query`: an sdict with the following (all optional) keys:
   - `userID`: only include entries with the given user ID.
   - `pattern`: only include entries with keys matching the given pattern.
-  - `reverse`: if `true`, entries with lower values have higher ranks. Default is `false`.
+  - `reverse`: if `true`, entries with lower values have higher ranks.
+    Default is `false`.
 
 #### dbSetExpire
 
@@ -371,11 +397,10 @@ Returns up to `amount` entries from the database, sorted in descending order by 
 
 {{< callout context="caution" title="Caution: Storing Numerical Values" icon="outline/alert-triangle" >}}
 
-Numerical values are stored as floating-point numbers in the database; large numbers such as user IDs will lose
-precision. To avoid this, convert them to a string before writing to the database.
+Numerical values are stored as floating-point numbers in the database; large numbers such as user IDs will lose precision.
+To avoid this, convert them to a string before writing to the database.
 
-Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write<br>
-`{{ $dict.Get (toInt64 N)}}` to retrieve the value associated with the numerical key `N`.
+Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write , therefore you'd have to write<br> `{{ $dict.Get (toInt64 N)}}` to retrieve the value associated with the numerical key `N`.
 
 {{< /callout >}}
 
@@ -389,8 +414,7 @@ Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write
 {{ $decoded := decodeBase64 <string> }}
 ```
 
-Undoes the transformation performed by [`encodeBase64`](#encodebase64), converting the base64-encoded `string` back to
-its original form.
+Undoes the transformation performed by [`encodeBase64`](#encodebase64), converting the base64-encoded `string` back to its original form.
 
 #### encodeBase64
 
@@ -414,7 +438,8 @@ Generates the SHA256 hash of the input string.
 {{ $json := json <value> [indent] }}
 ```
 
-Encodes `value` as JSON. If the `indent` flag is `true`, the output is pretty-printed with appropriate indentation.
+Encodes `value` as JSON.
+If the `indent` flag is `true`, the output is pretty-printed with appropriate indentation.
 
 #### jsonToSdict
 
@@ -430,8 +455,7 @@ Parses the JSON-encoded data into a string-dictionary, returning an error if the
 {{ $result := urlescape <string> }}
 ```
 
-Escapes the input `string` such that it can be safely placed inside a URL path segment, replacing special characters
-(including `/`) with `%XX` sequences as needed.
+Escapes the input `string` such that it can be safely placed inside a URL path segment, replacing special characters (including `/`) with `%XX` sequences as needed.
 
 #### urlunescape
 
@@ -439,8 +463,7 @@ Escapes the input `string` such that it can be safely placed inside a URL path s
 {{ $result := urlunescape <string> }}
 ```
 
-Undos the transformation performed by [`urlescape`](#urlescape), converting encoded substrings of the form `%AB` to the
-byte `0xAB`.
+Undos the transformation performed by [`urlescape`](#urlescape), converting encoded substrings of the form `%AB` to the byte `0xAB`.
 
 #### urlquery
 
@@ -448,8 +471,7 @@ byte `0xAB`.
 {{ $result := urlquery <string> }}
 ```
 
-Returns the escaped value of the textual representation of the arguments in a form suitable for embedding in a URL
-query.
+Returns the escaped value of the textual representation of the arguments in a form suitable for embedding in a URL query.
 
 ---
 
@@ -474,13 +496,13 @@ Cancels a previously scheduled custom command execution using [scheduleUniqueCC]
 Executes another custom command specified by `ccID`.
 
 - `ccID`: the ID of the custom command to execute.
-- `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
+- `channel`: the channel to execute the custom command in.
+  May be `nil`, a channel ID, or a channel name.
 - `delay`: the delay in seconds before executing the custom command.
 - `data`: some arbitrary data to pass to the executed custom command.
 
-Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2.
-`execCC` is rate-limited strictly to a maximum of 10 delayed custom commands executed per channel per minute. Executions
-beyond this number will be dropped.
+Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2. `execCC` is rate-limited strictly to a maximum of 10 delayed custom commands executed per channel per minute.
+Executions beyond this number will be dropped.
 
 ##### Example
 
@@ -505,7 +527,8 @@ The following example showcases a custom command executing itself.
 Schedules a custom command execution to occur in the future, identified by `key`.
 
 - `ccID`: the ID of the custom command to execute.
-- `channel`: the channel to execute the custom command in. May be `nil`, a channel ID, or a channel name.
+- `channel`: the channel to execute the custom command in.
+  May be `nil`, a channel ID, or a channel name.
 - `delay`: the delay in seconds before executing the custom command.
 - `key`: a unique key to identify the scheduled custom command.
 - `data`: some arbitrary data to pass to the executed custom command.
@@ -516,8 +539,8 @@ To cancel such a scheduled custom command before it runs, use [cancelScheduledUn
 
 ## Interactions
 
-Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
-about using interactions, [see here](/docs/reference/custom-interactions).
+Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference.
+To learn about using interactions, [see here](/docs/reference/custom-interactions).
 
 ### Interaction Responses
 
@@ -572,7 +595,8 @@ Alternatively, you can create a modal object using the [`cmodal`](#cmodal) funct
 
 Edits the message on which the button, select menu, or modal was triggered on.
 
-- `newMessage`: the new message content. May be a string, an embed, or a complex message.
+- `newMessage`: the new message content.
+  May be a string, an embed, or a complex message.
 
 ##### Example
 
@@ -642,9 +666,8 @@ Same as [editResponse](#editresponse), plus it does not escape mentions.
 
 #### Interaction Response/Followup Hybrids
 
-Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise
-they will send the equivalent followup function. See [editResponse](#editresponse) for an example using
-`sendResponse*` functions.
+Hybrid functions will send an interaction response if the interaction has not already been responded to, otherwise they will send the equivalent followup function.
+See [editResponse](#editresponse) for an example using `sendResponse*` functions.
 
 #### sendResponse
 
@@ -652,7 +675,8 @@ they will send the equivalent followup function. See [editResponse](#editrespons
 {{ sendResponse <interactionToken> <message> }}
 ```
 
-Sends a message in response to an interaction. Supports the `ephemeral` flag in `complexMessage`.
+Sends a message in response to an interaction.
+Supports the `ephemeral` flag in `complexMessage`.
 
 #### sendResponseNoEscape
 
@@ -686,11 +710,11 @@ Same as [sendResponse](#sendresponse), but also returns the message ID.
 {{ $button := cbutton "list of button values" }}
 ```
 
-Creates a [button object](https://discord.com/developers/docs/interactions/message-components#button-object) for use in
-interactions.
+Creates a [button object](https://discord.com/developers/docs/interactions/message-components#button-object) for use in interactions.
 
-A link style button _must_ have a URL and may not have a Custom ID. All other styles _must_ have a Custom ID and cannot
-have a URL. All buttons must have either a label or an emoji.
+A link style button _must_ have a URL and may not have a Custom ID.
+All other styles _must_ have a Custom ID and cannot have a URL.
+All buttons must have either a label or an emoji.
 
 ##### Example
 
@@ -706,11 +730,10 @@ have a URL. All buttons must have either a label or an emoji.
 {{ $menu := cmenu "list of select menu values" }}
 ```
 
-Creates a [select menu object](https://discord.com/developers/docs/interactions/message-components#select-menu-object)
-for use in interactions.
+Creates a [select menu object](https://discord.com/developers/docs/interactions/message-components#select-menu-object) for use in interactions.
 
-The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`. Text type menus
-_must_ have `options`, while all other types cannot.
+The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`.
+Text type menus _must_ have `options`, while all other types cannot.
 
 ##### Example
 
@@ -734,7 +757,8 @@ _must_ have `options`, while all other types cannot.
 {{ $modal := cmodal "list of modal values" }}
 ```
 
-Creates a [modal object][modals] for use in interactions. See [`sendModal`](#sendmodal) for more detail.
+Creates a [modal object][modals] for use in interactions.
+See [`sendModal`](#sendmodal) for more detail.
 
 [modals]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
 
@@ -748,10 +772,10 @@ Deletes the specified response or follow-up message.
 
 - `interactionToken`: a valid interaction token or `nil` for the triggering interaction.
 - `messageID`: valid message ID of a follow-up, or `nil` for the original interaction response.
-- `delay`: an optional delay in seconds, max 10 seconds. Default: 10 seconds.
+- `delay`: an optional delay in seconds, max 10 seconds.
+  Default: 10 seconds.
 
-If you require a delay of more than 10 seconds, consider using `execCC` for deletion of an ephemeral response, or
-`deleteMessage` to delete a regular interaction response.
+If you require a delay of more than 10 seconds, consider using `execCC` for deletion of an ephemeral response, or `deleteMessage` to delete a regular interaction response.
 
 #### ephemeralResponse
 
@@ -759,8 +783,9 @@ If you require a delay of more than 10 seconds, consider using `execCC` for dele
 {{ ephemeralResponse }}
 ```
 
-Tells the bot to send the response text as an ephemeral message. Only works when triggered by an interaction. Works on
-responses and follow-ups.
+Tells the bot to send the response text as an ephemeral message.
+Only works when triggered by an interaction.
+Works on responses and follow-ups.
 
 ##### Example
 
@@ -776,15 +801,14 @@ This text is invisible to others!
 {{ $response := getResponse <interactionToken> <messageID> }}
 ```
 
-Returns the response or follow-up with the specified message ID belonging to the given interaction as a [message
-object](/docs/reference/templates/syntax-and-data#message). Is also valid for ephemeral messages.
+Returns the response or follow-up with the specified message ID belonging to the given interaction as a [message object](/docs/reference/templates/syntax-and-data#message).
+Is also valid for ephemeral messages.
 
 ---
 
 ## Component V2
 
-Components V2 provides a new way to create interactive and visually appealing message layouts in Discord applications,
-making it easier to control message formatting and user interaction while maintaining line length under 120 characters.
+Components V2 provides a new way to create interactive and visually appealing message layouts in Discord applications, making it easier to control message formatting and user interaction while maintaining line length under 120 characters.
 
 ### componentBuilder
 
@@ -816,13 +840,19 @@ All keys are optional, but the Discord API will reject completey empty messages,
 - `separator`: Adds spacing between components with the following keys:
   - `true`: large separator
   - `false` or `nil`: small separator
-- `container`: Top-level layout. Containers offer the ability to visually encapsulate a collection of components,
- and have an optional customizable accent color bar. Contains the following keys:
+- `container`: Top-level layout.
+  Containers offer the ability to visually encapsulate a collection of components,
+and have an optional customizable accent color bar.
+
+Contains the following keys:
+
   - `components`: A [componentBuilder](#componentbuilder) or a slice thereof.
   - `color`: hex accent color (optional).
   - `spoiler`: hides content until revealed (optional).
-- `buttons`: Interactive [buttons](#cbutton) users can click. Can be single or multiple.
-- `menus`: Interactive [menus](#cmenu)s users can select from. Can be single or multiple.
+- `buttons`: Interactive [buttons](#cbutton) users can click.
+  Can be single or multiple.
+- `menus`: Interactive [menus](#cmenu)s users can select from.
+  Can be single or multiple.
 - `interactive_components`: Mix of buttons and menus, auto-distributed.
 - `allowed_mentions`: A sdict with the following keys:
   - `users`: A slice of user IDs.
@@ -838,8 +868,7 @@ All keys are optional, but the Discord API will reject completey empty messages,
 ### Component Builder Functions
 
 The `ComponentBuilder` simplifies building Discord's V2 components, allowing complex layouts to be built incrementally.
-It provides methods for constructing, manipulating, and exporting components in a format Discord understands,
-ensuring line length doesn't exceed 120 characters.
+It provides methods for constructing, manipulating, and exporting components in a format Discord understands, ensuring line length doesn't exceed 120 characters.
 
 #### ComponentBuilder.Add
 
@@ -903,7 +932,8 @@ Returns the absolute value of the provided number.
 {{ $sum := add x y [...] }}
 ```
 
-Returns the sum of the provided numbers. Detects the first number's type and performs the operation accordingly.
+Returns the sum of the provided numbers.
+Detects the first number's type and performs the operation accordingly.
 
 #### bitwiseAnd
 
@@ -975,7 +1005,8 @@ Returns the cube root of the provided number.
 {{ $result := div x y [...] }}
 ```
 
-Performs division on the provided numbers. Detects the first number's type and performs the operation accordingly.
+Performs division on the provided numbers.
+Detects the first number's type and performs the operation accordingly.
 If you need a floating-point number as a result of integer division, use [fdiv](#fdiv).
 
 #### fdiv
@@ -992,7 +1023,8 @@ Special case of [div](#div); always returns a floating-point number as result.
 {{ $result := log x [base] }}
 ```
 
-Returns the logarithm of X with the given base. If no base is provided, the natural logarithm is used.
+Returns the logarithm of X with the given base.
+If no base is provided, the natural logarithm is used.
 
 #### mathConst
 
@@ -1000,7 +1032,8 @@ Returns the logarithm of X with the given base. If no base is provided, the natu
 {{ $result := mathConst "constant" }}
 ```
 
-Returns the value of the specified math constant. See the [math constants list](https://pkg.go.dev/math#pkg-constants).
+Returns the value of the specified math constant.
+See the [math constants list](https://pkg.go.dev/math#pkg-constants).
 
 #### max
 
@@ -1026,8 +1059,8 @@ Returns the smaller of the two provided numbers.
 
 Returns the floating-point remainder of the division of X by Y.
 
-Takes the sign of X, so `mod -5 3` results in `-2`, not `1`. To ensure a non-negative result, use `mod` twice:
-`{{ mod (add (mod x y) y) y }}`.
+Takes the sign of X, so `mod -5 3` results in `-2`, not `1`.
+To ensure a non-negative result, use `mod` twice: `{{ mod (add (mod x y) y) y }}`.
 
 #### mult
 
@@ -1035,7 +1068,8 @@ Takes the sign of X, so `mod -5 3` results in `-2`, not `1`. To ensure a non-neg
 {{ $result := mult x y [...] }}
 ```
 
-Performs multiplication on the provided numbers. Detects the first number's type and returns the result accordingly.
+Performs multiplication on the provided numbers.
+Detects the first number's type and returns the result accordingly.
 
 #### pow
 
@@ -1060,7 +1094,8 @@ That is, the result is always greater than or equal to `start` and strictly less
 {{ $result := round x }}
 ```
 
-Returns the nearest integer to X as float. Normal rounding rules apply.
+Returns the nearest integer to X as float.
+Normal rounding rules apply.
 
 #### roundCeil
 
@@ -1068,7 +1103,8 @@ Returns the nearest integer to X as float. Normal rounding rules apply.
 {{ $result := roundCeil x }}
 ```
 
-Returns the smallest integer greater than or equal to X. Put simply, always round up.
+Returns the smallest integer greater than or equal to X.
+Put simply, always round up.
 
 #### roundEven
 
@@ -1084,7 +1120,8 @@ Returns the nearest integer to X, rounding ties (x.5) to the nearest even intege
 {{ $result := roundFloor x }}
 ```
 
-Returns the largest integer less than or equal to X. Put simply, always round down.
+Returns the largest integer less than or equal to X.
+Put simply, always round down.
 
 #### sqrt
 
@@ -1100,7 +1137,8 @@ Returns the square root of X as a floating-point number.
 {{ $result := sub x y [...] }}
 ```
 
-Subtracts the provided numbers from each other. Detects the first number's type and returns the result accordingly.
+Subtracts the provided numbers from each other.
+Detects the first number's type and returns the result accordingly.
 
 ---
 
@@ -1112,8 +1150,9 @@ Subtracts the provided numbers from each other. Detects the first number's type 
 {{ editNickname "newNick" }}
 ```
 
-Edits the nickname of the member who triggered the command. The bot must have the `MANAGE_NICKNAMES` permission and be
-higher in the role hierarchy than the member. The bot cannot change the nickname of the server owner.
+Edits the nickname of the member who triggered the command.
+The bot must have the `MANAGE_NICKNAMES` permission and be higher in the role hierarchy than the member.
+The bot cannot change the nickname of the server owner.
 
 #### getMember
 
@@ -1143,9 +1182,7 @@ Returns the permissions of the specified member in the given channel as a [permi
 
 ##### Example
 
-To calculate the permission in a channel other than the current channel, for which we could just use the
-[hasPermissions](#haspermissions) or [targetHasPermissions](#targethaspermissions) function, we will have to use bitwise
-operations:
+To calculate the permission in a channel other than the current channel, for which we could just use the [hasPermissions](#haspermissions) or [targetHasPermissions](#targethaspermissions) function, we will have to use bitwise operations:
 
 ```yag
 {{ $perms := getTargetPermissionsIn .User.ID $someChannel }}
@@ -1196,8 +1233,8 @@ Returns whether the specified member has the specified permission bit.
 
 ## Mentions
 
-Certain mentions are escaped by default, such that they don't ping. These functions help you actually _pinging_ these
-special mentions.
+Certain mentions are escaped by default, such that they don't ping.
+These functions help you actually _pinging_ these special mentions.
 
 #### mentionEveryone
 
@@ -1237,7 +1274,8 @@ Mentions the given role without escaping it.
 {{ mentionRoleName <roleName> }}
 ```
 
-Mentions the role with the given name without escaping it. Searches for first case-insensitive match.
+Mentions the role with the given name without escaping it.
+Searches for first case-insensitive match.
 
 Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and do not change with role edits.
 
@@ -1253,10 +1291,12 @@ Prefer [mentionRoleID](#mentionroleid), as IDs are guaranteed to be unique and d
 
 Adds reactions to a message with the given ID.
 
-- `emojis...`: a list of emojis to add as reactions. May also be a slice of emojis.
+- `emojis...`: a list of emojis to add as reactions.
+  May also be a slice of emojis.
 
-Default emojis are best used in the Unicode format for these purposes. Custom emojis follow a specific format in these
-functions. Please see the example below.
+Default emojis are best used in the Unicode format for these purposes.
+Custom emojis follow a specific format in these functions.
+Please see the example below.
 
 ##### Example
 
@@ -1272,7 +1312,8 @@ functions. Please see the example below.
 
 Adds reactions to the message that triggered the command.
 
-- `emojis...`: a list of emojis to add as reactions. May also be a slice of emojis.
+- `emojis...`: a list of emojis to add as reactions.
+  May also be a slice of emojis.
 
 #### addResponseReactions
 
@@ -1282,10 +1323,10 @@ Adds reactions to the message that triggered the command.
 
 Adds reactions to the response message.
 
-- `emojis...`: a list of emojis to add as reactions. May also be a slice of emojis.
+- `emojis...`: a list of emojis to add as reactions.
+  May also be a slice of emojis.
 
-Note that a message sent via [sendMessage](#sendmessage) is not the response---use
-[addMessageReactions](#addmessagereactions) for that.
+Note that a message sent via [sendMessage](#sendmessage) is not the response---use [addMessageReactions](#addmessagereactions) for that.
 
 #### complexMessageEdit
 
@@ -1296,7 +1337,8 @@ Note that a message sent via [sendMessage](#sendmessage) is not the response---u
 Creates a complex message object for use in [editMessage](#editmessage) or [editMessageNoEscape](#editmessagenoescape).
 
 - `allowed_mentions`: an sdict with the following keys:
-  - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
+  - `parse`: a slice of accepted values for mentions.
+    May include `users`, `roles`, and `everyone`.
   - `users`: a slice of user IDs to mention.
   - `roles`: a slice of role IDs to mention.
   - `replied_user`: whether to mention the replied user.
@@ -1304,10 +1346,11 @@ Creates a complex message object for use in [editMessage](#editmessage) or [edit
 - `embed`: an embed object or a slice of up to 10 embed objects.
 - `silent`: whether to suppress push and desktop notifications.
 - `suppress_embeds`: whether to suppress embeds in the message.
-- `is_components_v2`: whether the message uses components v2. Irreversibly switches the message to use components v2.
+- `is_components_v2`: whether the message uses components v2.
+  Irreversibly switches the message to use components v2.
 
-All of these keys are optional, but providing none of them will have no effect. See [complexMessage](#complexmessage)
-for an example.
+All of these keys are optional, but providing none of them will have no effect.
+See [complexMessage](#complexmessage) for an example.
 
 Setting `suppress_embeds` to `false` on a message with already suppressed embeds will not re-enable them.
 
@@ -1320,7 +1363,8 @@ Setting `suppress_embeds` to `false` on a message with already suppressed embeds
 Creates a complex message object for use in [sendMessage](#sendmessage) functions.
 
 - `allowed_mentions`: an sdict with the following keys:
-  - `parse`: a slice of accepted values for mentions. May include `users`, `roles`, and `everyone`.
+  - `parse`: a slice of accepted values for mentions.
+    May include `users`, `roles`, and `everyone`.
   - `users`: a slice of user IDs to mention.
   - `roles`: a slice of role IDs to mention.
   - `replied_user`: whether to mention the replied user.
@@ -1335,14 +1379,15 @@ Creates a complex message object for use in [sendMessage](#sendmessage) function
 - `sticker`: single sticker ID or a slice of sticker IDs
 - `forward`: an sdict containing `channel` and `message` keys specifying the message to forward
 - `suppress_embeds`: whether to suppress embeds in the message.
-- `is_components_v2`: whether the message uses components v2. Irreversibly switches the message to use components v2.
+- `is_components_v2`: whether the message uses components v2.
+  Irreversibly switches the message to use components v2.
 
 All of these keys are optional, but providing an empty content, file, or no embeds will result in no message being sent.
 
 ##### Example
 
-The following example will output a message with an embed, some content, and a file attachment. It will also reply to
-the triggering message and ping the author of that message, but suppress the resulting notification.
+The following example will output a message with an embed, some content, and a file attachment.
+It will also reply to the triggering message and ping the author of that message, but suppress the resulting notification.
 
 ```yag
 {{ $message := complexMessage
@@ -1398,7 +1443,9 @@ Example of a message forward:
 
 Deletes all reactions from a message, optionally constrained to specific emojis.
 
-- `emojis`: the emojis to delete. May also be a slice. Not providing this argument will delete any and all reactions.
+- `emojis`: the emojis to delete.
+  May also be a slice.
+  Not providing this argument will delete any and all reactions.
 
 #### deleteMessageReaction
 
@@ -1409,7 +1456,8 @@ Deletes all reactions from a message, optionally constrained to specific emojis.
 Deletes a specific user's reaction from a message.
 
 - `userID`: the ID of the user whose reaction to delete.
-- `emojis...`: the emojis to delete. May also be a slice.
+- `emojis...`: the emojis to delete.
+  May also be a slice.
 
 #### deleteMessage
 
@@ -1419,7 +1467,9 @@ Deletes a specific user's reaction from a message.
 
 Deletes the specified message.
 
-- `delay`: an optional delay in seconds to delete the message after. Defaults to 10 seconds. Max 86400 seconds (1 day).
+- `delay`: an optional delay in seconds to delete the message after.
+  Defaults to 10 seconds.
+  Max 86400 seconds (1 day).
 
 #### deleteResponse
 
@@ -1429,7 +1479,9 @@ Deletes the specified message.
 
 Deletes the response message.
 
-- `delay`: an optional delay in seconds to delete after. Defaults to 10 seconds. Max 86400 seconds (1 day).
+- `delay`: an optional delay in seconds to delete after.
+  Defaults to 10 seconds.
+  Max 86400 seconds (1 day).
 
 #### deleteTrigger
 
@@ -1439,7 +1491,9 @@ Deletes the response message.
 
 Deletes the triggering message.
 
-- `delay`: an optional delay in seconds to delete after. Defaults to 10 seconds. Max 86400 seconds (1 day).
+- `delay`: an optional delay in seconds to delete after.
+  Defaults to 10 seconds.
+  Max 86400 seconds (1 day).
 
 #### editMessageNoEscape
 
@@ -1449,8 +1503,8 @@ Deletes the triggering message.
 
 Edits the given message without escaping mentions.
 
-- `newMessageContent`: the new content for the message. May also be the result from
-  [complexMessageEdit](#complexmessageedit).
+- `newMessageContent`: the new content for the message.
+  May also be the result from [complexMessageEdit](#complexmessageedit).
 
 #### editMessage
 
@@ -1460,8 +1514,8 @@ Edits the given message without escaping mentions.
 
 Edits the given message with escaping mentions.
 
-- `newMessageContent`: the new content for the message. May also be the result from
-  [complexMessageEdit](#complexmessageedit).
+- `newMessageContent`: the new content for the message.
+  May also be the result from [complexMessageEdit](#complexmessageedit).
 
 #### getMessage
 
@@ -1469,8 +1523,7 @@ Edits the given message with escaping mentions.
 {{ $message := getMessage <channel> <messageID> }}
 ```
 
-Returns the [message object](/docs/reference/templates/syntax-and-data#message) for the given message ID in the
-specified channel.
+Returns the [message object](/docs/reference/templates/syntax-and-data#message) for the given message ID in the specified channel.
 
 #### pinMessage
 
@@ -1506,7 +1559,8 @@ For this to work, the custom command must be running in such an announcement cha
 
 Sends a direct message to the triggering user.
 
-- `message`: the message to send. May also be the result from a [complexMessage](#complexmessage) call.
+- `message`: the message to send.
+  May also be the result from a [complexMessage](#complexmessage) call.
 
 #### sendMessageNoEscapeRetID
 
@@ -1540,7 +1594,8 @@ Same as [sendMessage](#sendmessage), but also returns the message ID.
 
 Sends a message in the specified channel.
 
-- `message`: the message to send. May also be the result from a [complexMessage](#complexmessage) call.
+- `message`: the message to send.
+  May also be the result from a [complexMessage](#complexmessage) call.
 
 #### unpinMessage
 
@@ -1560,8 +1615,7 @@ Unpins the specified message.
 {{ $result := reFind <regex> <text> }}
 ```
 
-Returns the first match of the regular expression `regex` in `text`, or the empty string if the pattern did not match
-anywhere.
+Returns the first match of the regular expression `regex` in `text`, or the empty string if the pattern did not match anywhere.
 
 #### reFindAll
 
@@ -1569,8 +1623,8 @@ anywhere.
 {{ $result := reFindAll <regex> <text> [count] }}
 ```
 
-Returns a slice of successive matches of `regex` in `text`. If `count` is provided, the number of matches is limited to
-that amount; otherwise, all matches are returned.
+Returns a slice of successive matches of `regex` in `text`.
+If `count` is provided, the number of matches is limited to that amount; otherwise, all matches are returned.
 
 #### reFindAllSubmatches
 
@@ -1578,9 +1632,9 @@ that amount; otherwise, all matches are returned.
 {{ $result := reFindAllSubmatches <regex> <text> [count] }}
 ```
 
-Returns a slice of successive submatches of `regex` in `text`. Each submatch is itself a slice containing the match of
-the entire expression, followed by any matches of capturing groups. If `count` is provided, the number of submatches is
-limited to that amount; otherwise, all submatches are returned.
+Returns a slice of successive submatches of `regex` in `text`.
+Each submatch is itself a slice containing the match of the entire expression, followed by any matches of capturing groups.
+If `count` is provided, the number of submatches is limited to that amount; otherwise, all submatches are returned.
 
 #### reQuoteMeta
 
@@ -1588,8 +1642,7 @@ limited to that amount; otherwise, all submatches are returned.
 {{ $result := reQuoteMeta <string> }}
 ```
 
-Escapes all regular expression metacharacters in the input `string`; the result is a regular expression matching the
-literal input string.
+Escapes all regular expression metacharacters in the input `string`; the result is a regular expression matching the literal input string.
 
 #### reReplace
 
@@ -1654,8 +1707,7 @@ Adds the first case-insensitive matching role name to the triggering member.
 {{ $role := getRole <role> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object).
-`role` may either be an ID or a name to match against (ignoring case).
+Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object). `role` may either be an ID or a name to match against (ignoring case).
 
 #### getRoleID
 
@@ -1671,8 +1723,7 @@ Returns a [role object](https://discord.com/developers/docs/topics/permissions#r
 {{ $role := getRoleName <roleName> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its name
-(case-insensitive).
+Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its name (case-insensitive).
 
 #### giveRole
 
@@ -1693,7 +1744,8 @@ Gives the specified role to the target member.
 
 Gives the role specified by its ID to the target member.
 
-- `member`: the member to target. Either an ID, mention, or user object, but must be part of the server.
+- `member`: the member to target.
+  Either an ID, mention, or user object, but must be part of the server.
 - `delay`: an optional delay in seconds.
 
 #### giveRoleName
@@ -1765,8 +1817,8 @@ Removes the first case-insensitive matching role name from the triggering member
 {{ $result := roleAbove <role1> <role2> }}
 ```
 
-Reports whether `role1` is above `role2` in the role hierarchy. Both arguments must be a
-[role object](https://discord.com/developers/docs/topics/permissions#role-object).
+Reports whether `role1` is above `role2` in the role hierarchy.
+Both arguments must be a [role object](https://discord.com/developers/docs/topics/permissions#role-object).
 
 #### setRoles
 
@@ -1774,9 +1826,9 @@ Reports whether `role1` is above `role2` in the role hierarchy. Both arguments m
 {{ setRoles <target> <newRoles> }}
 ```
 
-Sets the roles of the specified user to the provided list of role IDs. The roles are overwritten, so any existing roles
-are removed if not included in the new list. `newRoles` must be a slice. `target` may be a user ID, mention, or user
-object, but must be a member of the server.
+Sets the roles of the specified user to the provided list of role IDs.
+The roles are overwritten, so any existing roles are removed if not included in the new list.
+`newRoles` must be a slice. `target` may be a user ID, mention, or user object, but must be a member of the server.
 
 #### takeRole
 
@@ -1786,7 +1838,8 @@ object, but must be a member of the server.
 
 Removes the specified role from the target member.
 
-- `target`: a user ID, mention, or user object. The target must be part of the server.
+- `target`: a user ID, mention, or user object.
+  The target must be part of the server.
 - `role`: a role ID, mention, name or role object.
 - `delay`: an optional delay in seconds.
 
@@ -1796,8 +1849,7 @@ Removes the specified role from the target member.
 {{ takeRoleID <target> <roleID> [delay] }}
 ```
 
-Removes the specified role from `target`. `target` may be a user ID, mention, or user object, but must be a member of
-the server.
+Removes the specified role from `target`. `target` may be a user ID, mention, or user object, but must be a member of the server.
 
 - `delay`: an optional delay in seconds.
 
@@ -1807,8 +1859,7 @@ the server.
 {{ takeRoleName <target> <roleName> [delay] }}
 ```
 
-Removes the first case-insensitive matching role name from `target` with an optional delay in seconds.
-`target` may be a user ID, mention, or user object, but must be a member of the server.
+Removes the first case-insensitive matching role name from `target` with an optional delay in seconds. `target` may be a user ID, mention, or user object, but must be a member of the server.
 
 #### targetHasRole
 
@@ -1826,8 +1877,7 @@ Reports whether the target member has the specified role.
 {{ $result := targetHasRoleID <target> <roleID> }}
 ```
 
-Reports whether the specified target has the specified role ID.
-`target` may be a user ID, mention, or user object, but must be a member of the server.
+Reports whether the specified target has the specified role ID. `target` may be a user ID, mention, or user object, but must be a member of the server.
 
 #### targetHasRoleName
 
@@ -1835,8 +1885,7 @@ Reports whether the specified target has the specified role ID.
 {{ $result := targetHasRoleName <target> <roleName> }}
 ```
 
-Reports whether the specified target has the specified role name (case-insensitive).
-`target` may be a user ID, mention, or user object, but must be a member of the server.
+Reports whether the specified target has the specified role name (case-insensitive). `target` may be a user ID, mention, or user object, but must be a member of the server.
 
 ---
 
@@ -1903,8 +1952,7 @@ Concatenates the arguments in order, adding spaces between arguments when neithe
 {{ $result := println <args...> }}
 ```
 
-Concatenates the arguments in order, adding spaces between arguments and inserting a newline at
-the end.
+Concatenates the arguments in order, adding spaces between arguments and inserting a newline at the end.
 
 #### printf
 
@@ -1912,7 +1960,8 @@ the end.
 {{ $result := printf <format> <args...> }}
 ```
 
-Interpolates `args...` according to `format`. See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).
+Interpolates `args...` according to `format`.
+See the [Go `fmt` package documentation](https://pkg.go.dev/fmt).
 
 #### sanitizeText
 
@@ -1972,9 +2021,9 @@ Returns the current time in UTC.
 {{ $formatted := formatTime <time> <layout> }}
 ```
 
-Formats `time` according to `layout`. Within the layout string, certain phrases represent placeholders that are replaced
-with the actual data from `time`: for instance, `Monday` is replaced with the weekday. A list of common placeholders
-follows; see the [Go `time` package documentation](https://pkg.go.dev/time#pkg-constants) for the full list.
+Formats `time` according to `layout`.
+Within the layout string, certain phrases represent placeholders that are replaced with the actual data from `time`: for instance, `Monday` is replaced with the weekday.
+A list of common placeholders follows; see the [Go `time` package documentation](https://pkg.go.dev/time#pkg-constants) for the full list.
 
 | Placeholder | Meaning                     |
 | ----------- | --------------------------- |
@@ -2024,8 +2073,7 @@ Returns `duration` as a human-readable string, rounded down to the nearest secon
 {{ $formatted := humanizeTimeSinceDays <time> }}
 ```
 
-Returns the duration that has passed since the specified `time` as a human-readable string, rounded down to the nearest
-day.
+Returns the duration that has passed since the specified `time` as a human-readable string, rounded down to the nearest day.
 
 #### loadLocation
 
@@ -2033,12 +2081,10 @@ day.
 {{ $location := loadLocation "location" }}
 ```
 
-Searches the IANA Time Zone database for the given location name, returning the corresponding location object on
-success. (Given a time object `$time`, `$time.In $location` then returns a copy of the time set in the given location
-for display purposes.)
+Searches the IANA Time Zone database for the given location name, returning the corresponding location object on success. (Given a time object `$time`, `$time.In $location` then returns a copy of the time set in the given location for display purposes.)
 
-As a special case, providing `UTC`, or the empty string `""`, yields the UTC location. Providing `Local` yields the
-local time zone of the host YAGPDB server.
+As a special case, providing `UTC`, or the empty string `""`, yields the UTC location.
+Providing `Local` yields the local time zone of the host YAGPDB server.
 
 #### newDate
 
@@ -2054,13 +2100,13 @@ yyyy-mm-dd hh:mm:ss
 
 In the appropriate zone for that time in the given location.
 
-The month, day, hour, min, and sec values may be outside their usual ranges and will be normalized during the
-conversion. For example, October 32 converts to November 1.
+The month, day, hour, min, and sec values may be outside their usual ranges and will be normalized during the conversion.
+For example, October 32 converts to November 1.
 
-A daylight savings time transition skips or repeats times. For example, in the United States, March 13, 2011 2:15am
-never occurred, while November 6, 2011 1:15am occurred twice. In such cases, the choice of time zone, and therefore
-the time, is not well-defined. `newDate` returns a time that is correct in one of the two zones involved in the
-transition, but it does not guarantee which.
+A daylight savings time transition skips or repeats times.
+For example, in the United States, March 13, 2011 2:15am never occurred, while November 6, 2011 1:15am occurred twice.
+In such cases, the choice of time zone, and therefore the time, is not well-defined.
+`newDate` returns a time that is correct in one of the two zones involved in the transition, but it does not guarantee which.
 
 #### parseTime
 
@@ -2068,12 +2114,10 @@ transition, but it does not guarantee which.
 {{ $time := parseTime <input> <layout> [location] }}
 ```
 
-Undos the operation performed by [`formatTime`](#formattime): that is, given some `input` string representing a time
-using the given `layout`, `parseTime` returns the corresponding time object in the specified location, or UTC by
-default. If the input is invalid or does not follow `layout`, the zero time is returned.
+Undos the operation performed by [`formatTime`](#formattime): that is, given some `input` string representing a time using the given `layout`, `parseTime` returns the corresponding time object in the specified location, or UTC by default.
+If the input is invalid or does not follow `layout`, the zero time is returned.
 
-A slice of layouts may be provided, in which case the input is matched against each in order until one matches or the
-end of the slice is reached.
+A slice of layouts may be provided, in which case the input is matched against each in order until one matches or the end of the slice is reached.
 
 #### snowflakeToTime
 
@@ -2097,14 +2141,12 @@ Returns the UTC time corresponding to the given UNIX time, measured in seconds s
 {{ $week := weekNumber <time> }}
 ```
 
-Returns the ISO 8601 week number in which the time occurs, ranging between 1 and 53. Jan 01 to Jan 03 of year n might
-belong to week 52 or 53 of year n-1, and Dec 29 to Dec 31 might belong to week 1 of year n+1.
+Returns the ISO 8601 week number in which the time occurs, ranging between 1 and 53.
+Jan 01 to Jan 03 of year n might belong to week 52 or 53 of year n-1, and Dec 29 to Dec 31 might belong to week 1 of year n+1.
 
 {{< callout context="note" title="Note: Discord Timestamp Formatting" icon="outline/info-circle" >}}
 
-Discord Timestamp Styles referenced on
-[Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles)
-can be done using the `print` function:
+Discord Timestamp Styles referenced on [Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles) can be done using the `print` function:
 
 `{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
 
@@ -2136,8 +2178,8 @@ Converts `string` to a slice of UTF-8 bytes.
 {{ $duration := toDuration <x> }}
 ```
 
-Converts the input, which may be a number (interpreted as nanoseconds) or a duration string such as `5m`, to a duration
-object. Returns the zero duration for invalid inputs.
+Converts the input, which may be a number (interpreted as nanoseconds) or a duration string such as `5m`, to a duration object.
+Returns the zero duration for invalid inputs.
 
 #### toFloat
 
@@ -2247,23 +2289,26 @@ All keys are optional, but the Discord API will reject completey empty embeds, s
   - `name`: the name of the field
   - `value`: which text to have inside this field
   - `inline`: an optional boolean whether this field should be displayed in-line with other fields
-- `author`: Shows some details at the very top of the embed. Is an sdict with the following keys:
+- `author`: Shows some details at the very top of the embed.
+  Is an sdict with the following keys:
   - `name`: The name of the author
   - `url`: the URL to hyperlink the name with
   - `icon_url`: the author's icon
-- `thumbnail`: a small image in the top-right corner. Is an sdict with the following keys:
+- `thumbnail`: a small image in the top-right corner.
+  Is an sdict with the following keys:
   - `url`: the image's URL
-- `image`: an image to display at full width at the bottom of the embed. Is an sdict with the following keys:
+- `image`: an image to display at full width at the bottom of the embed.
+  Is an sdict with the following keys:
   - `url`: the image's URL
-- `footer`: Shows some details at the very bottom of the embed. Is an sdict with the following keys:
+- `footer`: Shows some details at the very bottom of the embed.
+  Is an sdict with the following keys:
   - `text`: the footer's text
   - `icon_url`: a small icon to display to the left of the footer's text
 - `timestamp`: a (static) timestamp to display to the right of the footer's text
 
 {{< callout context="tip" title="Tip: Custom Commands Embed Generator" icon="outline/rocket" >}}
 
-To help you get used to the embed structure in custom commands, check out <https://yagpdbembeds.netlify.app>, a
-community-made embed visualizer for YAGPDB's custom command system.
+To help you get used to the embed structure in custom commands, check out <https://yagpdbembeds.netlify.app>, a community-made embed visualizer for YAGPDB's custom command system.
 
 {{< /callout >}}
 
@@ -2273,11 +2318,11 @@ community-made embed visualizer for YAGPDB's custom command system.
 {{ $ticket := createTicket <author> <topic> }}
 ```
 
-Creates a new ticket associated to the specified author with given topic, returning a [template
-ticket](/docs/reference/templates/syntax-and-data#template-ticket) for that ticket.
+Creates a new ticket associated to the specified author with given topic, returning a [template ticket](/docs/reference/templates/syntax-and-data#template-ticket) for that ticket.
 
 - `author`: the member to associate this ticket with.
-- `topic`: the topic of this ticket. Must be a string.
+- `topic`: the topic of this ticket.
+  Must be a string.
 
 {{< callout context="caution" title="Warning: Dependency on Ticketing System" icon="outline/alert-triangle" >}}
 
@@ -2299,7 +2344,8 @@ Creates a slice of the provided values.
 {{ $dict := dict [values...] }}
 ```
 
-Creates a dictionary from the provided key-value pairs. The number of parameters must be even.
+Creates a dictionary from the provided key-value pairs.
+The number of parameters must be even.
 
 #### execAdmin
 
@@ -2317,8 +2363,8 @@ This will not work for commands which have their response marked as a manual res
 {{ execTemplate "template" [data...] }}
 ```
 
-Executes the associated `"template"` template, optionally with data. Please see
-[Associated Templates](/docs/reference/templates/syntax-and-data#associated-templates).
+Executes the associated `"template"` template, optionally with data.
+Please see [Associated Templates](/docs/reference/templates/syntax-and-data#associated-templates).
 
 #### exec
 
@@ -2338,7 +2384,8 @@ This will not work for commands which have their response marked as a manual res
 
 Returns a slice of warnings imposed on the specified user.
 
-- `user`: the user to get the warnings for. Can be either a user ID or a user object.
+- `user`: the user to get the warnings for.
+  Can be either a user ID or a user object.
 
 #### humanizeThousands
 
@@ -2348,7 +2395,9 @@ Returns a slice of warnings imposed on the specified user.
 
 Places commas to separate groups of thousands in a number.
 
-- `number`: the number to format. Must be an int or a string. Must be a whole number.
+- `number`: the number to format.
+  Must be an int or a string.
+  Must be a whole number.
 
 #### in
 
@@ -2379,8 +2428,8 @@ Returns the item at the specified index in `list`.
 If you are indexing a map (that is, `dict` or `sdict`), `index` must be matching the key (as maps are unordered).
 Indexing a string type returns the character at that position as a rune.
 
-You may optionally add additional indices in case you have nested structures, like `index $x 0 1`. This is equivalent to
-chaining `index` calls, e.g. `index (index $x 0) 1`.
+You may optionally add additional indices in case you have nested structures, like `index $x 0 1`.
+This is equivalent to chaining `index` calls, e.g. `index (index $x 0) 1`.
 
 #### kindOf
 
@@ -2390,8 +2439,8 @@ chaining `index` calls, e.g. `index (index $x 0) 1`.
 
 Returns the [kind](https://pkg.go.dev/reflect#Kind) of the provided value.
 
-If `value` is behind an `interface{}` or pointer, set `indirect` to true to read the inner value. Most users of this
-function will want to do this.
+If `value` is behind an `interface{}` or pointer, set `indirect` to true to read the inner value.
+Most users of this function will want to do this.
 
 #### len
 
@@ -2415,17 +2464,20 @@ Returns a random noun.
 {{ $args := parseArgs <requiredArgs> <errorMessage> [...cargs] }}
 ```
 
-Parses arguments passed to the custom command. Ensures that at least `requiredArgs` are passed and checks that these
-arguments match as specified by `carg...`, emits `errorMessage` otherwise.
+Parses arguments passed to the custom command.
+Ensures that at least `requiredArgs` are passed and checks that these arguments match as specified by `carg...`, emits `errorMessage` otherwise.
 
 Passing an empty string as `errorMessage` will generate one for you based on the provided argument definitions.
 
-The result has the `.Get N` and `.IsSet N` methods available, returning the value or reporting whether the argument is
-present, respectively, at position `N` (starting from 0).
+The result has the `.Get N` and `.IsSet N` methods available, returning the value or reporting whether the argument is present, respectively, at position `N` (starting from 0).
 
-- `...cargs`: a list of argument definitions. Must have at least `requiredArgs` elements. Has the following arguments:
+- `...cargs`: a list of argument definitions.
+  Must have at least `requiredArgs` elements.
+  Has the following arguments:
+
   - `"type"`: the type of this argument as a quoted string.
-  - `"name"`: the name of this argument. Must be a string.
+  - `"name"`: the name of this argument.
+    Must be a string.
 
 An argument's `"type"` must be one of the following:
 
@@ -2445,8 +2497,7 @@ An argument's `"type"` must be one of the following:
 [channel object]: /docs/reference/templates/syntax-and-data/#channel
 [role object]: https://discord.com/developers/docs/topics/permissions#role-object
 
-Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for
-`duration` it is in [time.Duration format](/docs/reference/templates/syntax-and-data#time) values.
+Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for `duration` it is in [time.Duration format](/docs/reference/templates/syntax-and-data#time) values.
 
 ##### Example
 
@@ -2460,8 +2511,7 @@ Target: {{ .User }}
 {{ end }}
 ```
 
-Please see our [in-depth guide] in the learning resources for a full breakdown of this function and how to make good use
-of it.
+Please see our [in-depth guide] in the learning resources for a full breakdown of this function and how to make good use of it.
 
 [in-depth guide]: /learn/beginner/command-arguments
 
@@ -2471,8 +2521,9 @@ of it.
 {{ $map := sdict [values...] }}
 ```
 
-Creates a dictionary from the provided key-value pairs. The number of parameters must be even. The keys must be of
-string type.
+Creates a dictionary from the provided key-value pairs.
+The number of parameters must be even.
+The keys must be of string type.
 
 #### sendTemplateDM
 
@@ -2480,8 +2531,7 @@ string type.
 {{ $messageID := sendTemplateDM "template" [data] }}
 ```
 
-Same as [sendTemplate](#sendtemplate), but sends it to the triggering user's direct messages instead and returns the
-_response_ message's ID.
+Same as [sendTemplate](#sendtemplate), but sends it to the triggering user's direct messages instead and returns the _response_ message's ID.
 
 #### sendTemplate
 
@@ -2489,8 +2539,7 @@ _response_ message's ID.
 {{ $messageID := sendTemplate <channel> "template" [data] }}
 ```
 
-Sends an [Associated Template](/docs/reference/templates/syntax-and-data#associated-templates) to `channel`, with
-optional `data`, returning the _response_ message's ID.
+Sends an [Associated Template](/docs/reference/templates/syntax-and-data#associated-templates) to `channel`, with optional `data`, returning the _response_ message's ID.
 
 #### seq
 
@@ -2498,8 +2547,8 @@ optional `data`, returning the _response_ message's ID.
 {{ $sequence := seq <start> <stop> }}
 ```
 
-Creates a new slice with integer-type elements, starting from `start` and ending at `stop-1`. `start` and `stop` must be
-whole numbers. Limited to 10,000 elements.
+Creates a new slice with integer-type elements, starting from `start` and ending at `stop-1`. `start` and `stop` must be whole numbers.
+Limited to 10,000 elements.
 
 #### shuffle
 
@@ -2515,8 +2564,8 @@ Returns a shuffled (randomized) version of the provided list.
 {{ sleep <seconds> }}
 ```
 
-Pauses the execution of the custom command for the specified number of seconds. The maximum duration is 60 seconds,
-combined across all `sleep` calls within the custom command and its associated templates.
+Pauses the execution of the custom command for the specified number of seconds.
+The maximum duration is 60 seconds, combined across all `sleep` calls within the custom command and its associated templates.
 
 #### slice
 
@@ -2524,9 +2573,8 @@ combined across all `sleep` calls within the custom command and its associated t
 {{ $result := slice <item> <start> [end] }}
 ```
 
-Returns a subslice of the input `item` (which may be an array, slice, or string) containing the elements starting at
-index `start` (inclusive), and ending at index `end`, exclusive. If only `start` is provided, it is interpreted as the
-start index and the subslice extends to the end of `item`.
+Returns a subslice of the input `item` (which may be an array, slice, or string) containing the elements starting at index `start` (inclusive), and ending at index `end`, exclusive.
+If only `start` is provided, it is interpreted as the start index and the subslice extends to the end of `item`.
 
 #### sort
 
@@ -2534,11 +2582,14 @@ start index and the subslice extends to the end of `item`.
 {{ $sorted := sort <list> [options] }}
 ```
 
-Returns the given list in a sorted order. The list's items must all be of the same type. The optional `options` argument
-is an sdict with the following (optional) keys:
+Returns the given list in a sorted order.
+The list's items must all be of the same type.
+The optional `options` argument is an sdict with the following (optional) keys:
 
-- `key`: if sorting a list of maps, the key's value to sort by. This key must be present on all maps in the slice.
-- `reverse`: whether to sort in reverse (descending) order. Default: `false`.
+- `key`: if sorting a list of maps, the key's value to sort by.
+  This key must be present on all maps in the slice.
+- `reverse`: whether to sort in reverse (descending) order.
+  Default: `false`.
 
 Limited to 1 call on regular servers and 3 calls on premium servers.
 

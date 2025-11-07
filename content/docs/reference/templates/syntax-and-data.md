@@ -10,84 +10,70 @@ Library of base data accessible within custom scripting.
 
 ## Preface
 
-All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Go's
-stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index,
-len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) . This section is meant to be
-a concise and to the point reference document for all available templates/functions. **Functions** are covered
-in [Function documentation](/docs/reference/templates/functions). For detailed explanations and a syntax guide, please
-refer to the [learning resource](/learn/welcome/introduction).
+All available data that can be used in YAGPDB's templating "engine" which is slightly modified version of Go's stdlib text/template package; more in depth and info about actions, pipelines and global functions like `printf, index, len,`etc > [https://golang.org/pkg/text/template/](https://golang.org/pkg/text/template/) .
+This section is meant to be a concise and to the point reference document for all available templates/functions.
+**Functions** are covered in [Function documentation](/docs/reference/templates/functions).
+For detailed explanations and a syntax guide, please refer to the [learning resource](/learn/welcome/introduction).
 
 {{< callout context="note" title="Note: Disable \"Smart\" Quotes" icon="outline/info-circle" >}}
 
-Templating system uses standard ASCII quotation marks:
-`"` for straight double quotes,  `'` for apostrophes or single quotes and`` ` `` for backticks/back quotes; so make
-sure no "smart-quotes" are being used.
+Templating system uses standard ASCII quotation marks: `"` for straight double quotes,  `'` for apostrophes or single quotes and `` ` `` for backticks/back quotes; so make sure no "smart-quotes" are being used.
 
-The difference between back quotes and double quotes in string literals is covered in
-the [Go Language Specification](https://go.dev/ref/spec#String_literals).
+The difference between back quotes and double quotes in string literals is covered in the [Go Language Specification](https://go.dev/ref/spec#String_literals).
 
 {{< /callout >}}
 
 ## The Dot and Variables
 
-The dot (also known as cursor) `{{ . }}` encompasses all active data available for use in the templating system, in
-other words it always refers to current context.
+The dot (also known as cursor) `{{ . }}` encompasses all active data available for use in the templating system, in other words it always refers to current context.
 
-For example .User is a Discord User object/structure of current context, meaning the triggering user. To get user object
-for other users, functions `getMember`, `userArg` would help. Same meaning of object/struct applies to other **Fields**
-with dot prefix. If it is mentioned as a **Method** (for example, .Append for type _cslice_) or as a field on a struct
-(for example, .User.Bot) then it can not be used alone in template context and always belongs on a parent value. That
-is, `{{.Bot}}` would return `<no value>` whereas `{{.User.Bot}}` returns _bool_ true/false. Another good example is
-.Reaction.Emoji.MessageFormat, here you can use .MessageFormat every time you get emoji structure of type
-_discordgo.Emoji_, either using reaction triggers or for example .Guild.Emojis.
+For example .User is a Discord User object/structure of current context, meaning the triggering user.
+To get user object for other users, functions `getMember`, `userArg` would help.
+Same meaning of object/struct applies to other **Fields** with dot prefix.
+If it is mentioned as a **Method** (for example, .Append for type _cslice_) or as a field on a struct (for example, .User.Bot) then it can not be used alone in template context and always belongs on a parent value.
+That is, `{{.Bot}}` would return `<no value>` whereas `{{.User.Bot}}` returns _bool_ true/false.
+Another good example is .Reaction.Emoji.MessageFormat, here you can use .MessageFormat every time you get emoji structure of type _discordgo.Emoji_, either using reaction triggers or for example .Guild.Emojis.
 
-From official docs > "Execution of the template walks the structure and sets the cursor, represented by a period `.` and
-called "dot", to the value at the current location in the structure as execution proceeds." All following
-fields/methods/objects like User/Guild/Member/Channel etc are all part of that dot-structure and there are some more in
-tables below.
+From official docs > "Execution of the template walks the structure and sets the cursor, represented by a period `.` and called "dot", to the value at the current location in the structure as execution proceeds." All following fields/methods/objects like User/Guild/Member/Channel etc are all part of that dot-structure and there are some more in tables below.
 
-For commenting something inside a template, use this syntax: `{{/* this is a comment */}}`. May contain newlines.
+For commenting something inside a template, use this syntax: `{{/* this is a comment */}}`.
+May contain newlines.
 Comments do not nest, and they start and end at the delimiters.
 
-`$` has a special significance in templates, it is set to the [starting value of a
-dot](https://golang.org/pkg/text/template/#hdr-Variables). This means you have access to the global context from
-anywhere - e.g., inside `range`/`with` actions. `$` for global context would cease to work if you redefine it inside
-template, to recover it `{{ $ := .  }}`.
+`$` has a special significance in templates, it is set to the [starting value of a dot](https://golang.org/pkg/text/template/#hdr-Variables).
+This means you have access to the global context from anywhere - e.g., inside `range`/ `with` actions. `$` for global context would cease to work if you redefine it inside template, to recover it `{{ $ := .  }}`.
 
-`$` also denotes the beginning of a variable, which maybe be initialized inside a template action. So data passed around
-template pipeline can be initialized using syntax > `$variable := value`. Previously declared variable can also be
-assigned with new data > `$variable = value`, it has to have a white-space before it or control panel will error out.
-Variable scope extends to the `end` action of the control structure (`if`, `with`, `range`, `etc.`) in which it is
-declared, or to the end of custom command if there are no control structures - call it global scope.
+`$` also denotes the beginning of a variable, which maybe be initialized inside a template action.
+So data passed around template pipeline can be initialized using syntax > `$variable := value`.
+Previously declared variable can also be assigned with new data > `$variable = value`, it has to have a white-space before it or control panel will error out.
+Variable scope extends to the `end` action of the control structure (`if`, `with`, `range`, `etc.`) in which it is declared, or to the end of custom command if there are no control structures - call it global scope.
 
 ## Pipes
 
 A powerful component of templates is the ability to stack actions - like function calls, together - chaining one after
 another. This is done by using pipes `|`. Borrowed from Unix pipes, the concept is simple: each pipeline’s output
-becomes the input of the following pipe. One limitation of the pipes is that they can only work with a single value and
-that value becomes the last parameter of the next pipeline. \
+becomes the input of the following pipe.
+One limitation of the pipes is that they can only work with a single value and that value becomes the last parameter of the next pipeline. \
 \
 **Example**: `{{randInt 41| add 2}}` would pipeline`randInt` function's return to addition `add` as second parameter
 and it would be added to 2; this more simplified would be like `{{40| add 2}}` with return 42. If written normally, it
 would be `{{ add 2 (randInt 41) }}`. Same pipeline but using a variable is also useful one -`{{$x:=40| add 2}}` would
-not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas
-`{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
+not return anything as printout, 40 still goes through pipeline to addition and 42 is stored to variable `$x` whereas `{{($x:=40)| add 2}}` would return 42 and store 40 to `$x`.
 
 {{< callout context="danger" title="Danger: Use Sparingly" icon="outline/alert-octagon" >}}
 
-Pipes are useful in select cases to shorten code and in some cases improve readability, but they **should not be
-overused**. In most cases, pipes are unnecessary and cause a dip in readability that helps nobody.
+Pipes are useful in select cases to shorten code and in some cases improve readability, but they **should not be overused**.
+In most cases, pipes are unnecessary and cause a dip in readability that helps nobody.
 
 {{< /callout >}}
 
 ## Context Data
 
-Context data refers to information accessible via the dot, `{{ . }}`. The accessible data ranges from useful constants
-to information regarding the environment in which the custom command was executed, such as the user that ran it, the
-channel it was ran in, and so on.
+Context data refers to information accessible via the dot, `{{ . }}`.
+The accessible data ranges from useful constants to information regarding the environment in which the custom command was executed, such as the user that ran it, the channel it was ran in, and so on.
 
-Fields documented as accessible on specific structures, like the context user `.User`, are usable on all values that
-share the same type. That is, given a user `$user`, `$user.ID` is a valid construction that yields the ID of the user.
+Fields documented as accessible on specific structures, like the context user `.User`, are usable on all values that share the same type.
+That is, given a user `$user`, `$user.ID` is a valid construction that yields the ID of the user.
 Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the channel.
 
 | Field          | Description                                                                                                                                                                                                                                                                                                         |
@@ -186,8 +172,8 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 
 ### Interaction
 
-Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference. To learn
-about using interactions, please view our [interactions cookbook](/docs/reference/custom-interactions).
+Use of interactions within YAGPDB is an advanced topic; the documentation should be used only as reference.
+To learn about using interactions, please view our [interactions cookbook](/docs/reference/custom-interactions).
 
 This is available and part of the dot when a component or modal trigger is used.
 
@@ -355,31 +341,29 @@ This is available and part of the dot when reaction trigger type is used.
 
 ## Actions
 
-Actions, or elements enclosed in double braces `{{ }}`, are what makes templates dynamic. Without them, templates would
-be no more than static text. In this section, we introduce several special kinds of actions which affect the control
-flow of the program. For example, iteration actions like `range` and `while` permit statements to be executed multiple
-times, while conditional actions like `if` and `with` allow for alteration of what statements are ran or are not ran.
+Actions, or elements enclosed in double braces `{{ }}`, are what makes templates dynamic.
+Without them, templates would be no more than static text.
+In this section, we introduce several special kinds of actions which affect the control flow of the program.
+For example, iteration actions like `range` and `while` permit statements to be executed multiple times, while conditional actions like `if` and `with` allow for alteration of what statements are ran or are not ran.
 
 ### If (conditional branching)
 
-Branching using `if` action's pipeline and comparison operators - these operators don't need to be inside `if` branch.
-`if` statements always need to have an enclosing `end`.
+Branching using `if` action's pipeline and comparison operators - these operators don't need to be inside `if` branch. `if` statements always need to have an enclosing `end`.
 
 See also the [conditional branching chapter](/learn/beginner/conditional-branching) in the learning resources.
 
 {{< callout context="tip" title="Tip: Test Many Arguments at Once" icon="outline/rocket" >}}
 
-`eq`, though often used with 2 arguments (`eq x y`) can actually be used with more than 2. If there are more than 2
-arguments, it checks whether the first argument is equal to any one of the following arguments. This behavior is unique
-to `eq`.
+`eq`, though often used with 2 arguments (`eq x y`) can actually be used with more than 2.
+If there are more than 2 arguments, it checks whether the first argument is equal to any one of the following arguments.
+This behavior is unique to `eq`.
 
 {{< /callout >}}
 
 {{< callout context="note" title="Note: Only Compare the Same Data Type" icon="outline/info-circle" >}}
 
-Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for
-comparison`** error as they are not the same type (one is float, the other int). To fix this, you should convert both to
-the same type -> for example, `toFloat 1`.
+Comparison operators always require the same type: i.e comparing `1.23` and `1` would throw **`incompatible types for comparison`** error as they are not the same type (one is float, the other int).
+To fix this, you should convert both to the same type -> for example, `toFloat 1`.
 
 {{< /callout >}}
 
@@ -410,27 +394,24 @@ the same type -> for example, `toFloat 1`.
 
 ### Range
 
-`range` iterates over element values in variety of data structures in pipeline - integers, slices/arrays, maps or
-channels. The dot `.` is set to successive elements of those data structures and output will follow execution. If the
-value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
+`range` iterates over element values in variety of data structures in pipeline - integers, slices/arrays, maps or channels.
+The dot `.` is set to successive elements of those data structures and output will follow execution.
+If the value of pipeline has zero length, nothing is output or if an `{{else}}` action is used, that section will be executed.
 
 {{< callout context="note" title="Note: Continue and Break a Loop" icon="outline/info-circle" >}}
 
-To skip execution of a single iteration and jump to the next iteration, the `{{continue}}` action may be used. Likewise,
-if one wishes to skip all remaining iterations, the `{{break}}` action may be used. These both are usable also inside
-`while` action.
+To skip execution of a single iteration and jump to the next iteration, the `{{continue}}` action may be used.
+Likewise, if one wishes to skip all remaining iterations, the `{{break}}` action may be used.
+These both are usable also inside `while` action.
 
 {{< /callout >}}
 
-Affected dot inside `range` is important because methods mentioned above in this documentation:`.Server.ID`,
-`.Message.Content` etc are all already using the dot on the pipeline and if they are not carried over to the `range`
-control structure directly, these fields do not exists and template will error out. Getting those values inside `range`
-and also `with` action would need `$.User.ID` for example.\
+Affected dot inside `range` is important because methods mentioned above in this documentation: `.Server.ID`, `.Message.Content` etc are all already using the dot on the pipeline and if they are not carried over to the `range` control structure directly, these fields do not exists and template will error out.
+Getting those values inside `range` and also `with` action would need `$.User.ID` for example.\
 \
-`range` on slices/arrays provides both the index and element for each entry; `range` on map iterates over key/element
-pairs. If a `range` action initializes a variable, that variable is set to the successive elements of the iteration.
-`range` can also declare two variables, separated by a comma and set by index and element or key and element pair. In
-case of only one variable, it is assigned the element.\
+`range` on slices/arrays provides both the index and element for each entry; `range` on map iterates over key/element pairs.
+If a `range` action initializes a variable, that variable is set to the successive elements of the iteration. `range` can also declare two variables, separated by a comma and set by index and element or key and element pair.
+In case of only one variable, it is assigned the element.\
 \
 Like `if`, `range`is concluded with`{{end}}`action and declared variable scope inside `range` extends to that point.\
 
@@ -451,8 +432,7 @@ Like `if`, `range`is concluded with`{{end}}`action and declared variable scope i
 
 {{< callout context="danger" title="Danger: Stripping Whitespace Characters" icon="outline/alert-octagon" >}}
 
-If you're getting an error along the lines of `Custom command response was longer than 2k` or `response grew too big
-(>25k)`, that means you're rendering a lot of whitespace characters.
+If you're getting an error along the lines of `Custom command response was longer than 2k` or `response grew too big (>25k)`, that means you're rendering a lot of whitespace characters.
 
 Consider the following code:
 
@@ -463,8 +443,7 @@ Consider the following code:
 Hello!
 ```
 
-This program iterates ten *thousand* times, adding a newline and a tab character on every iteration to the output---we
-can fix this error by telling the bot to throw away (or "strip") whitespace characters by using the trim indicator `-`:
+This program iterates ten *thousand* times, adding a newline and a tab character on every iteration to the output---we can fix this error by telling the bot to throw away (or "strip") whitespace characters by using the trim indicator `-`:
 
 ```yag
 {{ range 10000 }}
@@ -479,21 +458,16 @@ This code will work as expected: iterating 10000 times essentially doing nothing
 
 ### Try-catch
 
-Multiple template functions have the possibility of returning an error upon failure. For example, `dbSet` can return a
-short write error if the size of the database entry exceeds some threshold.
+Multiple template functions have the possibility of returning an error upon failure.
+For example, `dbSet` can return a short write error if the size of the database entry exceeds some threshold.
 
-While it is possible to write code that simply ignores the possibility of such issues occurring (letting the error stop
-the code completely), there are times at which one may wish to write more robust code that handles such errors
-gracefully. The `try`-`catch` construct enables this possibility.
+While it is possible to write code that simply ignores the possibility of such issues occurring (letting the error stop the code completely), there are times at which one may wish to write more robust code that handles such errors gracefully.
+The `try`- `catch` construct enables this possibility.
 
-Similar to an `if` action with an associated `else` branch, the `try`-`catch` construct is composed of two blocks: the
-`try` branch and the `catch` branch. First, the code in the `try` branch is ran, and if an error is raised by a function
-during execution, the `catch` branch is executed instead with the context (`.`) set to the offending error.
+Similar to an `if` action with an associated `else` branch, the `try`- `catch` construct is composed of two blocks: the `try` branch and the `catch` branch.
+First, the code in the `try` branch is ran, and if an error is raised by a function during execution, the `catch` branch is executed instead with the context (`.`) set to the offending error.
 
-To check for a specific error, one can compare the result of the `Error` method with a predetermined message. (For
-context, all errors have a method `Error` which is specified to return a message describing the reason that the error
-was thrown.) For example, the following example has different behavior depending on whether "Reaction blocked" is in the
-message of the error caught.
+To check for a specific error, one can compare the result of the `Error` method with a predetermined message. (For context, all errors have a method `Error` which is specified to return a message describing the reason that the error was thrown.) For example, the following example has different behavior depending on whether "Reaction blocked" is in the message of the error caught.
 
 ```yag
 {{ try }}
@@ -510,10 +484,10 @@ message of the error caught.
 
 ### While
 
-`while` iterates as long as the specified condition is true, or more generally evaluates to a non-empty value. The dot
-(`.`) is not affected, unlike with the `range` action. Analogous to `range`, `while` introduces a new scope which is
-concluded by the `end` action. Within the body of a `while` action, the `break` and `continue` actions can be used to
-appropriate effect, like in a `range` action.
+`while` iterates as long as the specified condition is true, or more generally evaluates to a non-empty value.
+The dot (`.`) is not affected, unlike with the `range` action.
+Analogous to `range`, `while` introduces a new scope which is concluded by the `end` action.
+Within the body of a `while` action, the `break` and `continue` actions can be used to appropriate effect, like in a `range` action.
 
 ```yag
 {{/* efficiently search for an element in a sorted slice using binary search */}}
@@ -541,14 +515,11 @@ appropriate effect, like in a `range` action.
 
 ### With
 
-`with` lets you assign and carry pipeline value with its type as a dot (`.`) inside that control structure, it's like a
-shorthand. If the value of the pipeline is empty, dot is unaffected and when an `else` or `else if` action is used,
-execution moves on to those branches instead, similar to the `if` action. \
+`with` lets you assign and carry pipeline value with its type as a dot (`.`) inside that control structure, it's like a shorthand.
+If the value of the pipeline is empty, dot is unaffected and when an `else` or `else if` action is used, execution moves on to those branches instead, similar to the `if` action. \
 \
-Affected dot inside `with` is important because methods mentioned above in this documentation:`.Server.ID`,
-`.Message.Content` etc are all already using the dot on the pipeline and if they are not carried over to the `with`
-control structure directly, these fields do not exists and template will error out. Getting those values inside `with`
-and also `range` action would need `$.User.ID` for example.
+Affected dot inside `with` is important because methods mentioned above in this documentation: `.Server.ID`, `.Message.Content` etc are all already using the dot on the pipeline and if they are not carried over to the `with` control structure directly, these fields do not exists and template will error out.
+Getting those values inside `with` and also `range` action would need `$.User.ID` for example.
 
 Like `if` and `range` actions, `with` is concluded using `{{end}}` and variable scope extends to that point.
 
@@ -576,14 +547,14 @@ Outer-scope $x len however: {{ len $x }}
 
 ## Associated Templates
 
-Templates (i.e., custom command programs) may also define additional helper templates that may be invoked from the main
-template. Technically speaking, these helper templates are referred to as _associated templates_. Associated templates
-can be used to create reusable procedures accepting parameters and outputting values, similar to functions in other
-programming languages.
+Templates (i.e., custom command programs) may also define additional helper templates that may be invoked from the main template.
+Technically speaking, these helper templates are referred to as _associated templates_.
+Associated templates can be used to create reusable procedures accepting parameters and outputting values, similar to functions in other programming languages.
 
 ### Definition
 
-To define an associated template, use the `define` action. It has the following syntax:
+To define an associated template, use the `define` action.
+It has the following syntax:
 
 ```yag
 {{ define "template_name" }}
@@ -593,8 +564,7 @@ To define an associated template, use the `define` action. It has the following 
 
 {{< callout context="danger" title="Danger: Associated Templates at Top Level" icon="outline/alert-octagon" >}}
 
-**Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be
-nested in other actions (for example, an if action.) That is, the following custom command is invalid:
+**Warning:** Template definitions must be at the top level of the custom command program; in other words, they cannot be nested in other actions (for example, an if action.) That is, the following custom command is invalid:
 
 ```yag
 {{ if $cond }}
@@ -604,11 +574,9 @@ nested in other actions (for example, an if action.) That is, the following cust
 
 {{< /callout >}}
 
-The template name can be any string constant; however, it cannot be a variable, even if said variable references a value
-of string type. As for the body of the associated template body, it can be anything that is a standalone, syntactically
-valid template program. Note that the first criterion precludes using variables defined outside of the associated
-template; that is, the following custom command is invalid, as the body of the associated template references a variable
-(`$name`) defined in an outer scope:
+The template name can be any string constant; however, it cannot be a variable, even if said variable references a value of string type.
+As for the body of the associated template body, it can be anything that is a standalone, syntactically valid template program.
+Note that the first criterion precludes using variables defined outside of the associated template; that is, the following custom command is invalid, as the body of the associated template references a variable (`$name`) defined in an outer scope:
 
 ```yag
 {{ $name := "YAG" }}
@@ -617,17 +585,15 @@ template; that is, the following custom command is invalid, as the body of the a
 {{ end }}
 ```
 
-If accessing the value of `$name` is desired, then it needs to be passed as part of the context when executing the
-associated template.
+If accessing the value of `$name` is desired, then it needs to be passed as part of the context when executing the associated template.
 
-Within the body of an associated template, the variable `$` and the context dot (`.`) both initially refer to the data
-passed as context during execution. Consequently, any data on the original context that needs to be accessed must be
-explicitly provided as part of the context data. For example, if one wishes to access `.User.Username` in an associated
-template body, it is necessary to pass `.User.Username` as part of the context data when executing said template.
+Within the body of an associated template, the variable `$` and the context dot (`.`) both initially refer to the data passed as context during execution.
+Consequently, any data on the original context that needs to be accessed must be explicitly provided as part of the context data.
+For example, if one wishes to access `.User.Username` in an associated template body, it is necessary to pass `.User.Username` as part of the context data when executing said template.
 
-To return a value from an associated template, use the `return` action. Encountering a `return` action will cause
-execution of the associated template to end immediately and control to be returned to the caller. For example, below is
-an associated template that always returns `1`:
+To return a value from an associated template, use the `return` action.
+Encountering a `return` action will cause execution of the associated template to end immediately and control to be returned to the caller.
+For example, below is an associated template that always returns `1`:
 
 ```yag
 {{ define "getOne" }} {{ return 1 }} {{ end }}
@@ -637,8 +603,7 @@ Note that it is not necessary for a value to be returned; `{{ return }}` by itse
 
 {{< callout context="tip" title="Tip: Clean up Your Code With `return`" icon="outline/rocket" >}}
 
-Since all custom commands are themselves templates, using a `return` action at the top level is perfectly valid, and
-will result in execution of the custom command being stopped at the point the `return` is encountered.
+Since all custom commands are themselves templates, using a `return` action at the top level is perfectly valid, and will result in execution of the custom command being stopped at the point the `return` is encountered.
 
 ```yag
 {{ if not .CmdArgs }}
@@ -657,16 +622,14 @@ To execute a custom command, one of three methods may be used: `template`, `bloc
 
 #### Template action
 
-`template` is a function-like action that executes the associated template with the name provided, ignoring its return
-value. Note that the name of the template to execute must be a string constant; similar to `define` actions, a variable
-referencing a value of string type is invalid. Data to use as the context may optionally be provided following the name.
+`template` is a function-like action that executes the associated template with the name provided, ignoring its return value.
+Note that the name of the template to execute must be a string constant; similar to `define` actions, a variable referencing a value of string type is invalid.
+Data to use as the context may optionally be provided following the name.
 
 {{< callout context="note" title="Note: Consider Using `execTemplate`" icon="outline/info-circle" >}}
 
-While `template` is function-like, it is not an actual function, leading to certain quirks; notably, it must be used
-alone, not part of another action (like a variable declaration), and the data argument need not be parenthesized. Due to
-this, it is recommended that `execTemplate`, which has much more intuitive behavior, be used instead of the `template`
-action if at possible.
+While `template` is function-like, it is not an actual function, leading to certain quirks; notably, it must be used alone, not part of another action (like a variable declaration), and the data argument need not be parenthesized.
+Due to this, it is recommended that `execTemplate`, which has much more intuitive behavior, be used instead of the `template` action if at possible.
 
 {{< /callout >}}
 
@@ -684,13 +647,12 @@ Below is an example of the `template` action in action:
 {{ template "sayHi" "YAG" }} {{/* hi there, YAG */}}
 ```
 
-Trim markers: `{{- ... -}}`were used in above example because whitespace is considered as part of output for associated
-template definitions (and actions in general).
+Trim markers: `{{- ... -}}`were used in above example because whitespace is considered as part of output for associated template definitions (and actions in general).
 
 #### Block action
 
-`block` has a structure similar to that of a `define` action. It is equivalent to a `define` action followed by a
-`template` action:
+`block` has a structure similar to that of a `define` action.
+It is equivalent to a `define` action followed by a `template` action:
 
 ```yag
 {{ $name := "YAG" }}
@@ -707,8 +669,8 @@ template definitions (and actions in general).
 
 #### execTemplate function
 
-`execTemplate` is essentially the same as the `template` action, but it provides access to the return value of the
-template and may be used as part of another action. Below is an example using `execTemplate`:
+`execTemplate` is essentially the same as the `template` action, but it provides access to the return value of the template and may be used as part of another action.
+Below is an example using `execTemplate`:
 
 ```yag
 {{ define "factorial" }}
@@ -725,23 +687,22 @@ template and may be used as part of another action. Below is an example using `e
 
 ## Custom Types
 
-Go has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types
-(_array_, _slice_, _map_, ...) which also are used in custom commands.
+Go has built-in primitive data types (_int_, _string_, _bool_, _float64_, ...) and built-in composite data types (_array_, _slice_, _map_, ...) which also are used in custom commands.
 
-YAGPDB's templating "engine" has currently two user-defined, custom data types - _templates.Slice_ and
-_templates.SDict_. There are other custom data types used like _discordgo.Timestamp_, but these are outside of the main
-code of YAGPDB, so not explained here further. Type _time.Time_ is covered in its own [section](#time).
+YAGPDB's templating "engine" has currently two user-defined, custom data types - _templates.Slice_ and _templates.SDict_.
+There are other custom data types used like _discordgo.Timestamp_, but these are outside of the main code of YAGPDB, so not explained here further.
+Type _time.Time_ is covered in its own [section](#time).
 
-Custom Types section discusses functions that initialize values carrying those _templates.Slice_ (abridged to _cslice_),
-_templates.SDict_ (abridged to _sdict_) types and their methods. Both types handle type _interface{}_ element. It's
-called an empty interface which allows a value to be of any type. So any argument of any type given is handled. (In
-"custom commands"-wise mainly primitive data types, but _slices_ as well.)
+Custom Types section discusses functions that initialize values carrying those _templates.Slice_ (abridged to _cslice_), _templates.SDict_ (abridged to _sdict_) types and their methods.
+Both types handle type _interface{}_ element.
+It's called an empty interface which allows a value to be of any type.
+So any argument of any type given is handled. (In "custom commands"-wise mainly primitive data types, but _slices_ as well.)
 
 {{< callout context="danger" title="Danger: Reference Type-Like Behavior" icon="outline/alert-octagon" >}}
 
 Slices and dictionaries in CCs exhibit reference-type like behavior, which may be undesirable in certain situations.
-That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y := $x` and then mutating `$y` via
-`Append`/`Set`/`Del`/etc. will modify `$x` as well. For example:
+That is, if you have a variable `$x` that holds a slice/dictionary, writing `$y := $x` and then mutating `$y` via `Append`/ `Set`/ `Del`/etc. will modify `$x` as well.
+For example:
 
 ```yag
 {{ $x := sdict "k" "v" }}
@@ -762,16 +723,15 @@ If this behavior is undesirable, copy the slice/dictionary via `cslice.AppendSli
 {{ $x }} {{/* $x is unmodified - k still has value v */}}
 ```
 
-Note that this performs a shallow copy, not a deep copy - if you want the latter you will need to perform the
-aforementioned operation recursively.
+Note that this performs a shallow copy, not a deep copy - if you want the latter you will need to perform the aforementioned operation recursively.
 
 {{< /callout >}}
 
 ### templates.Slice
 
-`templates.Slice` - This is a custom composite data type defined using an underlying data type _\[]interface{}_. It is
-of kind _slice_ (similar to _array_) having _interface{}_ type as its value and can be initialized using `cslice`
-function. Retrieving specific element inside _templates.Slice_ is by indexing its position number.
+`templates.Slice` - This is a custom composite data type defined using an underlying data type _\[]interface{}_.
+It is of kind _slice_ (similar to _array_) having _interface{}_ type as its value and can be initialized using `cslice` function.
+Retrieving specific element inside _templates.Slice_ is by indexing its position number.
 
 | Function                   | Description                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -786,9 +746,8 @@ function. Retrieving specific element inside _templates.Slice_ is by indexing it
 
 #### This section's snippets
 
-- To demonstrate .StringSlice `{{(cslice currentTime.Month 42 "YAGPDB").StringSlice}}` will return a slice
-  `[February YAGPDB]`. If the flag would have been set to true - \{{...).StringSlice true\}}, all elements in that slice
-  were not strings and `<no value>` is returned.
+- To demonstrate .StringSlice `{{(cslice currentTime.Month 42 "YAGPDB").StringSlice}}` will return a slice `[February YAGPDB]`.
+  If the flag would have been set to true - \{{...).StringSlice true\}}, all elements in that slice were not strings and `<no value>` is returned.
 
 General example:
 
@@ -810,11 +769,11 @@ Type of variable: **{{ printf "%T" $x }}**
 
 ### templates.SDict{#templates-sdict}
 
-`templates.SDict` - This is a custom composite data type defined on an underlying data type _map\[string]interface{}._
-This is of kind _map_ having _string_ type as its key and _interface{}_ type as that key's value and can be initialized
-using `sdict` function. A map is key-value store. This means you store value and you access that value by a key. Map is
-an unordered list and the number of parameters to form key-value pairs must be even, difference to regular _map_ is that
-`templates.SDict` is ordered by its key. Retrieving specific element inside _templates.Sdict_ is by indexing its key.
+`templates.SDict` - This is a custom composite data type defined on an underlying data type _map\[string]interface{}._ This is of kind _map_ having _string_ type as its key and _interface{}_ type as that key's value and can be initialized using `sdict` function.
+A map is key-value store.
+This means you store value and you access that value by a key.
+Map is an unordered list and the number of parameters to form key-value pairs must be even, difference to regular _map_ is that `templates.SDict` is ordered by its key.
+Retrieving specific element inside _templates.Sdict_ is by indexing its key.
 
 | Function                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -837,32 +796,27 @@ Deleting key "color1" {{ $x.Del "color1" }} and whole sdict: **{{ $x }}**
 
 {{< callout context="tip" title="Tip: Database Serialization" icon="outline/rocket" >}}
 
-Previously, when saving cslices, sdicts, and dicts into database, they were serialized into their underlying native
-types - slices and maps. This meant that if you wanted to get the custom type back, you needed to convert manually, e.g.
-`{{cslice.AppendSlice $dbSlice}}` or `{{sdict $dbDict}}`. Recent changes to YAG have changed this: values with custom
-types are now serialized properly, making manual conversion unnecessary.
+Previously, when saving cslices, sdicts, and dicts into database, they were serialized into their underlying native types - slices and maps.
+This meant that if you wanted to get the custom type back, you needed to convert manually, e.g. `{{cslice.AppendSlice $dbSlice}}` or `{{sdict $dbDict}}`.
+Recent changes to YAG have changed this: values with custom types are now serialized properly, making manual conversion unnecessary.
 
 {{< /callout >}}
 
 ## Database
 
-You have access to a basic set of Database functions having return of type _\*customcommands.LightDBEntry_ called here
-[DBEntry](#dbentry). This is almost a key value store ordered by the key and value combined.
+You have access to a basic set of Database functions having return of type _\*customcommands.LightDBEntry_ called here [DBEntry](#dbentry).
+This is almost a key value store ordered by the key and value combined.
 
-You can have max 50 \* user_count (or 500 \* user_count for premium) values in the database, if you go above this all
-new write functions will fail, this value is also cached, so it won't be detected immediately when you go above nor
-immediately when you're under again.
+You can have max 50 \ * user_count (or 500 \* user_count for premium) values in the database, if you go above this all new write functions will fail, this value is also cached, so it won't be detected immediately when you go above nor immediately when you're under again.
 
-Patterns are basic PostgreSQL patterns, not RegEx: An underscore `(_)` matches any single character; a percent sign
-`(%)` matches any sequence of zero or more characters.
+Patterns are basic PostgreSQL patterns, not RegEx: An underscore `(_)` matches any single character; a percent sign `(%)` matches any sequence of zero or more characters.
 
-Keys can be max 256 bytes long and has to be strings or numbers. Values can be anything, but if their serialized
-representation exceeds 100kB a `short write` error gets raised.
+Keys can be max 256 bytes long and has to be strings or numbers.
+Values can be anything, but if their serialized representation exceeds 100kB a `short write` error gets raised.
 
 You can just pass a `userID`of 0 to make it global (or any other number, but 0 is safe).
 
-There can be 10 database interactions per CC, out of which dbTop/BottomEntries, dbCount, dbGetPattern, and dbDelMultiple
-may only be run twice. (50,10 for premium users).
+There can be 10 database interactions per CC, out of which dbTop/BottomEntries, dbCount, dbGetPattern, and dbDelMultiple may only be run twice. (50,10 for premium users).
 
 See also the [chapter on the database](/learn/intermediate/database) in the learning resources.
 
@@ -905,12 +859,12 @@ See [`createTicket`](functions#createticket) for creating a ticket.
 
 ## Time
 
-Time and duration types use [Go's time package](https://golang.org/pkg/time/#Time). Go by Example lists [some examples
-of using *time.Time*](https://gobyexample.com/time) in Go code, which can be referenced for similar use in YAGPDB's
-templates.
+Time and duration types use [Go's time package](https://golang.org/pkg/time/#Time).
+Go by Example lists [some examples of using *time.Time*](https://gobyexample.com/time) in Go code, which can be referenced for similar use in YAGPDB's templates.
 
-Some time types in the data that Discord API functions return instead use the *discordgo.Timestamp* type. These can be
-converted to *time.Time* with the `.Parse` method. These cases are mentioned in the type documentation on this page.
+Some time types in the data that Discord API functions return instead use the *discordgo.Timestamp* type.
+These can be converted to *time.Time* with the `.Parse` method.
+These cases are mentioned in the type documentation on this page.
 
 | Field         | Description                                                                                                 |
 | ------------- | ----------------------------------------------------------------------------------------------------------- |

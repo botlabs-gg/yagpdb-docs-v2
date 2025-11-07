@@ -10,21 +10,22 @@ Prebuilt custom commands for use as a learning reference.
 
 {{< callout context="danger" title="Danger: Out of Date" icon="outline/alert-octagon" >}}
 
-Note: This page is no longer updated with the latest versions of codes/commands. If you plan to copy paste codes for
-your server, please see the [community-ran repository](https://yagpdb-cc.github.io) of custom commands, which is
-frequently updated with newly contributed commands.
+Note: This page is no longer updated with the latest versions of codes/commands.
+If you plan to copy paste codes for your server, please see the [community-ran repository](https://yagpdb-cc.github.io) of custom commands, which is frequently updated with newly contributed commands.
 
 {{< /callout >}}
 
-This isn't the actual page about custom commands. A brief overview about custom commands can be found in the
-[Custom Commands documentation](/docs/custom-commands/commands). Please take notice, some of examples presented here are
-not up to date with current capabilities of YAGPDB. Please visit our [support server](/discord) for newer solutions.
+This isn't the actual page about custom commands.
+A brief overview about custom commands can be found in the [Custom Commands documentation](/docs/custom-commands/commands).
+Please take notice, some of examples presented here are not up to date with current capabilities of YAGPDB.
+Please visit our [support server](/discord) for newer solutions.
 
 ### Controlled randomizer example
 
-YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for
-certain responses to occur. You can do this by creating a singular response and creating a variable with randInt. Then
-use an if-else-if statement like this to print out your desired output.&#x20;
+YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for certain responses to occur.
+You can do this by creating a singular response and creating a variable with randInt.
+Then use an if-else-if statement like this to print out your desired output.
+YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for certain responses to occur. You can do this by creating a singular response and creating a variable with randInt. Then use an if-else-if statement like this to print out your desired output.&#x20;
 
 ```yag
 {{$var := randInt 100}}
@@ -40,11 +41,12 @@ This has a 65% chance of being triggered
 
 ### Silent execution of commands or storage in a variable
 
-This command is to be placed in the welcome message. It filters out people with invites in their name. Make sure that
-the checkbox **Censor server invites in usernames?** and the ban command are enabled on your server.&#x20;
+This command is to be placed in the welcome message.
+It filters out people with invites in their name.
+Make sure that the checkbox **Censor server invites in usernames?** and the ban command are enabled on your server.  and the ban command are enabled on your server.&#x20;
 
-You might not want the response for the executed command to show. You can suppress the response of a command like the
-following:
+You might not want the response for the executed command to show.
+You can suppress the response of a command like the following:
 
 Trigger type: `Join message in server channel`
 
@@ -58,8 +60,8 @@ Trigger type: `Join message in server channel`
 
 ### Range example
 
-This command will teach you on how the range function works. It can iterate over many items including but not limited to
-a `cslice`, slice, `sdict`, and `dict`
+This command will teach you on how the range function works.
+It can iterate over many items including but not limited to a `cslice`, slice, `sdict`, and `dict`
 
 This particular command loops over a cslice and a sdict.
 
@@ -79,11 +81,11 @@ Trigger type: `Command` Trigger: `range`
 {{- end }}
 ```
 
-`$k` is the index for arrays / cslices (starting at 0) or the key for maps and sdicts, while `$v` is the current word in
-your input that you are on.&#x20;
+`$k` is the index for arrays / cslices (starting at 0) or the key for maps and sdicts, while `$v` is the current word in your input that you are on.  is the current word in your input that you are on.&#x20;
 
-Range will work on any kind of slice/array. for example. If we wanted to look for all the entries in our database we can
-use range and index through them all in the following.&#x20;
+Range will work on any kind of slice/array. for example.
+If we wanted to look for all the entries in our database we can use range and index through them all in the following.
+Range will work on any kind of slice/array. for example. If we wanted to look for all the entries in our database we can use range and index through them all in the following.&#x20;
 
 ```yag
 {{$lb := dbTopEntries "%" 100 0}}
@@ -96,9 +98,8 @@ Note that we can go through everything that is in $lb with range.
 
 ### Dictionary example
 
-A dictionary does not currently have a lot of practical use, because YAGPDB has a data type more suited for most use
-cases - `sdict`. However, sdict only supports string keys, which means that in the case you want non-string keys, you
-will have to use `dict`.
+A dictionary does not currently have a lot of practical use, because YAGPDB has a data type more suited for most use cases - `sdict`.
+However, sdict only supports string keys, which means that in the case you want non-string keys, you will have to use `dict`.
 
 Trigger type: `Command` Trigger: `dict`
 
@@ -112,9 +113,10 @@ hello - {{ $dict.hello }}
 
 ### parseArgs example
 
-The `parseArgs` template can check if specific arguments are given. If not, it will return a custom error message. It
-also checks if specific args are of a specific type and simplifies the argument management. Available types for `carg`
-are:
+The `parseArgs` template can check if specific arguments are given.
+If not, it will return a custom error message.
+It also checks if specific args are of a specific type and simplifies the argument management.
+Available types for `carg` are:
 
 - `int` (whole number)
 - `string` (text)
@@ -137,9 +139,8 @@ Trigger type: `Command` Trigger: `send`&#x20;
 
 ### Countdown example (Exec CC)
 
-This example consists of two custom commands, and after copy/paste `REPLACE-WITH-...` arguments need to be replaced by
-actual custom command ID's in your system. This custom command is very complex, uses very many advanced functions, all
-it does, constructs a 10 second countdown timer command-system for given starting time.
+This example consists of two custom commands, and after copy/paste `REPLACE-WITH-...` arguments need to be replaced by actual custom command ID's in your system.
+This custom command is very complex, uses very many advanced functions, all it does, constructs a 10 second countdown timer command-system for given starting time.
 
 ```yag
 {{$args := parseArgs 2 ""
@@ -151,9 +152,7 @@ it does, constructs a 10 second countdown timer command-system for given startin
 {{execCC REPLACE-WITH-NEXT-CC-ID nil 0 (sdict "MessageID" $mID "T" $t "Message" ($args.Get 1)) }}
 ```
 
-Second part of the custom commands, here we see, how `data`-part of exeCC was made in previous custom command as
-`sdict`and now we are calling those keys with `.ExecData` - for example `.ExecData.MessageID` sets new variable the same
-as stated in previous code.
+Second part of the custom commands, here we see, how `data`-part of exeCC was made in previous custom command as `sdict`and now we are calling those keys with `.ExecData` - for example `.ExecData.MessageID` sets new variable the same as stated in previous code.
 
 ```yag
 {{$timeLeft := .ExecData.T.Sub currentTime}}
@@ -181,8 +180,8 @@ as stated in previous code.
 
 ### Database example
 
-This is a simple note taking system containing 3 separate custom commands. Also note that the actual name of the key
-inserted to database begins with "notes\_".
+This is a simple note taking system containing 3 separate custom commands.
+Also note that the actual name of the key inserted to database begins with "notes\_".
 
 #### Save note
 
@@ -223,8 +222,8 @@ You don't have any notes :(
 
 ### Cooldown Example
 
-With YAGPDB's database system, you can now add cooldowns to you custom commands. You can either make them global
-cooldowns or a per user cooldown.
+With YAGPDB's database system, you can now add cooldowns to you custom commands.
+You can either make them global cooldowns or a per user cooldown.
 
 ```yag
 {{/* CONFIGURATION HERE CHANGE VALUES AS NEEDED */}}
@@ -261,7 +260,8 @@ cooldowns or a per user cooldown.
 > By **Timcampy#5636**
 
 With YAGPDB's database system, I made a command to have users count from 0 and keep counting to the next number.
-Relatively simple command that involves database and type conversion.&#x20;
+Relatively simple command that involves database and type conversion.
+With YAGPDB's database system, I made a command to have users count from 0 and keep counting to the next number. Relatively simple command that involves database and type conversion.&#x20;
 
 Trigger type: `Regex` Trigger: `\A`
 
@@ -326,12 +326,11 @@ Trigger type: `Regex` Trigger: `\A`
 
 > By **GryTrean#8957**
 
-This command will allow you to give a role to someone, making sure that the role given is in a list of allowed roles. We
-use the `{{giveRoleName <user> <role>}}` template which allows us to give a user a role by name. We also make sure that
-the command has the correct number of arguments and if not, we give a response with the correct usage of the command. To
-add a new exception to the roles that can be given, you simply add another role in line 2. You could also make the
-command take away roles from someone instead of giving them by simply using the `{{takeRoleName}}` template instead of
-`{{giveRoleName}}`.
+This command will allow you to give a role to someone, making sure that the role given is in a list of allowed roles.
+We use the `{{giveRoleName <user> <role>}}` template which allows us to give a user a role by name.
+We also make sure that the command has the correct number of arguments and if not, we give a response with the correct usage of the command.
+To add a new exception to the roles that can be given, you simply add another role in line 2.
+You could also make the command take away roles from someone instead of giving them by simply using the `{{takeRoleName}}` template instead of `{{giveRoleName}}`.
 
 Trigger type: `Command` Trigger: `giveRoleName`
 
@@ -356,8 +355,8 @@ Trigger type: `Command` Trigger: `giveRoleName`
 > By **GryTrean#8957** \
 > Updated by: **Timcampy#5636**
 
-This command lets the bot send a message to another channel. It uses embeds so you can see `sdict`(dictionary but with
-only string keys), `sendMessage`, and `cembed`in action.
+This command lets the bot send a message to another channel.
+It uses embeds so you can see `sdict`(dictionary but with only string keys), `sendMessage`, and `cembed`in action.
 
 Trigger type: `Command` Trigger: `bc`
 
@@ -387,10 +386,10 @@ Trigger type: `Command` Trigger: `bc`
 
 > By: **L-z#7749**
 
-This command does a good job at using a little bit of everything. Which include but is not limited to, `conditional
-statement`, `assigning values to variable`, `getting command arguments`, `using template code`, and `creating embeds`.
-If you are able to understand everything in this command, you are at a very good place in being able to make advanced
-custom commands.&#x20;
+This command does a good job at using a little bit of everything.
+Which include but is not limited to, `conditional statement`, `assigning values to variable`, `getting command arguments`, `using template code`, and `creating embeds`.
+If you are able to understand everything in this command, you are at a very good place in being able to make advanced custom commands.
+. If you are able to understand everything in this command, you are at a very good place in being able to make advanced custom commands.&#x20;
 
 Trigger type: `Command` Trigger: `avatar`
 
@@ -448,7 +447,8 @@ Trigger type: `Command` Trigger: `avatar`
 
 > By: **Michdi#1602**
 
-This command is used to replace suggestion bots. You can adapt it to your needs.
+This command is used to replace suggestion bots.
+You can adapt it to your needs.
 
 Trigger type: `Command` Trigger: `suggest`
 
@@ -477,9 +477,8 @@ Correct usage: `-suggest <suggestion>`
 > By: **CHamburr#2591**\
 > \***\*Updated by: **Joe\_#2447\*\*
 
-This command uses the `reFindAllSubmatches` template as well as the `printf` template, and will enlarge custom emotes,
-whether still or animated. This will also work for emotes that are from the servers YAGPDB is not in, as it gets the
-emote file directly from Discord's database.
+This command uses the `reFindAllSubmatches` template as well as the `printf` template, and will enlarge custom emotes, whether still or animated.
+This will also work for emotes that are from the servers YAGPDB is not in, as it gets the emote file directly from Discord's database.
 
 Trigger type: `Command` Trigger: `bigemote`
 

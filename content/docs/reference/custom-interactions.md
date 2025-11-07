@@ -6,19 +6,17 @@ description = "Even better than embeds!"
 
 {{< callout context="note" title="Note" icon="outline/info-circle" >}}
 
-This page is just an overview about the most important core concepts of custom interactions. We have included some code
-samples for quick reference, but this is by no means a complete guide from the grounds up. For an in-depth guide,
-please refer to our [learning resources](/learn/advanced/custom-interactions/introduction).
+This page is just an overview about the most important core concepts of custom interactions.
+We have included some code samples for quick reference, but this is by no means a complete guide from the grounds up.
+For an in-depth guide, please refer to our [learning resources](/learn/advanced/custom-interactions/introduction).
 
 {{< /callout >}}
 
 ## The Basics
 
-Interactions within Discord allow server members to use alternative, built-in features to trigger bots to take action
-other than messages or reactions. These features include builtin buttons, dropdown selection menus, or submitting a
-modal (basically a pop-up form). Within custom commands it is possible to not only create and customize these new
-interactive features, but respond to them as well, opening up new possibilities for ephemeral message responses, modals,
-and more.
+Interactions within Discord allow server members to use alternative, built-in features to trigger bots to take action other than messages or reactions.
+These features include builtin buttons, dropdown selection menus, or submitting a modal (basically a pop-up form).
+Within custom commands it is possible to not only create and customize these new interactive features, but respond to them as well, opening up new possibilities for ephemeral message responses, modals, and more.
 
 ### Interaction Lifetime
 
@@ -26,9 +24,8 @@ An interaction's lifetime starts with the initial *interaction* with an *interac
 
 1. A server member clicks on a *button*, uses a *menu*, or submits a *modal* after filling it out.
 2. This interaction is sent to YAGPDB, and becomes available to trigger any custom commands which match it.
-3. Within the triggered custom command(s), YAGPDB should then *respond* once to the interaction, sending a message,
-   updating the triggering message, or sending a modal. This may only be done within the CC which was triggered by the
-   interaction.
+3. Within the triggered custom command(s), YAGPDB should then *respond* once to the interaction, sending a message, updating the triggering message, or sending a modal.
+   This may only be done within the CC which was triggered by the interaction.
 4. (optional) Continue to send followup responses for up to 15 minutes until the interaction token expires.
 
 ```mermaid
@@ -46,20 +43,19 @@ H -.-> F
 
 ## Custom IDs
 
-Custom IDs are used to identify the respective element a user interacted with. You use them to trigger custom commands
-with the `message component` or `modal submission` trigger. Custom IDs must be unique for every component attached to
-the message.
+Custom IDs are used to identify the respective element a user interacted with.
+You use them to trigger custom commands with the `message component` or `modal submission` trigger.
+Custom IDs must be unique for every component attached to the message.
 
 ## Components
 
 ### Buttons
 
-See also the [Discord API documentation](https://discord.com/developers/docs/components/reference#button) on button
-objects.
+See also the [Discord API documentation](https://discord.com/developers/docs/components/reference#button) on button objects.
 
-Buttons can be created as either an `sdict` or via [`cbutton`]. In custom commands they can have five different styles,
-listed in the table below. For your convenience, YAGPDB also accepts the style as a string-alias, so you can use
-`"primary"` instead of `1`, `"secondary"` instead of `2`, and so on.
+Buttons can be created as either an `sdict` or via [`cbutton`].
+In custom commands they can have five different styles, listed in the table below.
+For your convenience, YAGPDB also accepts the style as a string-alias, so you can use `"primary"` instead of `1`, `"secondary"` instead of `2`, and so on.
 
 [`cbutton`]: /docs/reference/templates/functions#cbutton
 
@@ -71,9 +67,8 @@ listed in the table below. For your convenience, YAGPDB also accepts the style a
 | 4     | danger    | Danger button, red color, used for negative actions.                        |
 | 5     | link      | Link button, opens a URL when clicked.                                      |
 
-A button is structured according to the following table; `label`, `emoji` and `disabled` are optional fields.
-`style` will default to `1` (primary) if not specified. Link style buttons cannot have a custom ID and must have a URL
-specified.
+A button is structured according to the following table; `label`, `emoji` and `disabled` are optional fields. `style` will default to `1` (primary) if not specified.
+Link style buttons cannot have a custom ID and must have a URL specified.
 
 | Field      | Description                                                                                      |
 | ---------- | ------------------------------------------------------------------------------------------------ |
@@ -96,16 +91,15 @@ The below code will send a message with multiple buttons attached to it.
 
 ### Select Menus
 
-Select menus allow users to select one or more options from a dropdown list. They can be created as either an `sdict` or
-using the [`cmenu`] function.
+Select menus allow users to select one or more options from a dropdown list.
+They can be created as either an `sdict` or using the [`cmenu`] function.
 
 [`cmenu`]: /docs/reference/templates/functions#cmenu
 
 #### Select Menu Types
 
-Select menus can have one of the types listed in the table below.  The `channel` type can be
-further customized to only show certain channel types using the `channel_types` field, which accepts a slice of integers
-representing allowed channel types.
+Select menus can have one of the types listed in the table below.
+The `channel` type can be further customized to only show certain channel types using the `channel_types` field, which accepts a slice of integers representing allowed channel types.
 
 | Type        | Description                                                                          |
 | ----------- | ------------------------------------------------------------------------------------ |
@@ -117,8 +111,8 @@ representing allowed channel types.
 
 #### Select Menu Option
 
-A select menu option for the `text` type has the structure as outlined in the table below. A text menu may not have more
-than 25 options.
+A select menu option for the `text` type has the structure as outlined in the table below.
+A text menu may not have more than 25 options.
 
 | Field        | Description                                                                       |
 | ------------ | --------------------------------------------------------------------------------- |
@@ -130,7 +124,8 @@ than 25 options.
 
 #### Default Value Structure
 
-The user, role, and channel type allow for a slice of `default_values` to be specified. Below is their structure.
+The user, role, and channel type allow for a slice of `default_values` to be specified.
+Below is their structure.
 
 | Field | Description                                                         |
 | ----- | ------------------------------------------------------------------- |
@@ -139,8 +134,9 @@ The user, role, and channel type allow for a slice of `default_values` to be spe
 
 #### Select Menu Structure
 
-A select menu is structured according to the table below. The `custom_id` field is required for all select menus. Text
-type menus must have at least one option, while all other types cannot have any options.
+A select menu is structured according to the table below.
+The `custom_id` field is required for all select menus.
+Text type menus must have at least one option, while all other types cannot have any options.
 
 | Field           | Description                                                                                     |
 | --------------- | ----------------------------------------------------------------------------------------------- |
@@ -154,8 +150,7 @@ type menus must have at least one option, while all other types cannot have any 
 | options?        | A slice of select menu options, as outlined above.                                              |
 | placeholder?    | An optional placeholder text displayed when no option is selected.                              |
 
-Putting it all together, a text select menu with three options, one of which is selected by default, could look
-something like this.
+Putting it all together, a text select menu with three options, one of which is selected by default, could look something like this.
 
 ```yag
 {{ $menu := cmenu
@@ -171,8 +166,7 @@ something like this.
 {{ sendMessage nil (complexMessage "menus" $menu) }}
 ```
 
-Similarly, a channel select menu that allows users to select at most two channels, and only allows forum and
-announcement channels could be created with the following code.
+Similarly, a channel select menu that allows users to select at most two channels, and only allows forum and announcement channels could be created with the following code.
 
 ```yag
 {{ $issuesChannel := "1210135699135926312" }}
@@ -194,9 +188,10 @@ announcement channels could be created with the following code.
 
 ## Modals
 
-Modals can be created as either an `sdict` or a `cmodal`. After being created they are subsequently sent with
-`sendModal`. Sending a modal is a _response_ to an interaction, meaning it can only be sent once after a user clicks a
-button or uses a select menu. You cannot send a modal as a response to a user submitting a modal.
+Modals can be created as either an `sdict` or a `cmodal`.
+After being created they are subsequently sent with `sendModal`.
+Sending a modal is a _response_ to an interaction, meaning it can only be sent once after a user clicks a button or uses a select menu.
+You cannot send a modal as a response to a user submitting a modal.
 
 ### Modal Input Fields
 
@@ -233,9 +228,8 @@ Modals can have multiple text input fields, which allow users to input text in a
 
 ## Parsing an Interaction
 
-Custom Commands with the [Message Component](/docs/custom-commands/commands#component) or [Modal
-Submission](/docs/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a
-select menu, or completion of a modal form. Interaction triggers provide new context data for templating.
+Custom Commands with the [Message Component](/docs/custom-commands/commands#component) or [Modal Submission](/docs/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a select menu, or completion of a modal form.
+Interaction triggers provide new context data for templating.
 
 | **Field**          | **Description**                                                                                                                                                                                                                                                                 |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -246,20 +240,18 @@ select menu, or completion of a modal form. Interaction triggers provide new con
 
 [Interaction object and context data](/docs/reference/templates/syntax-and-data#interaction)
 
-`.Interaction.Token` must be provided to any [followup](#following-up) functions you decide to use later. If you are
-using these in subsequent script executions, it's a good idea to save this to database when the interaction occurs.
+`.Interaction.Token` must be provided to any [followup](#following-up) functions you decide to use later.
+If you are using these in subsequent script executions, it's a good idea to save this to database when the interaction occurs.
 
-`.CustomID` can be used to identify which component or modal triggered the command. `.StrippedID` can be used to quickly
-parse out arguments in your custom ID, and use them in your response.
+`.CustomID` can be used to identify which component or modal triggered the command. `.StrippedID` can be used to quickly parse out arguments in your custom ID, and use them in your response.
 
-`.Values` is used to capture values a user selected in a select menu or submitted to a modal. When creating a select
-menu and defining the options, the `"value"` field for each option defines which values will show up in this slice if
-chosen, in the order the user selected them. A modal's values are simply the values of each field in order.
+`.Values` is used to capture values a user selected in a select menu or submitted to a modal.
+When creating a select menu and defining the options, the `"value"` field for each option defines which values will show up in this slice if chosen, in the order the user selected them.
+A modal's values are simply the values of each field in order.
 
 {{< callout context="note" title="Note: Values Order" icon="outline/info-circle" >}}
 
-Because the `.Values` slice when interacting with select menus is ordered by the order the user selected the
-options, you generally cannot simply index into the slice; you'll have to search for the value you want to use.
+Because the `.Values` slice when interacting with select menus is ordered by the order the user selected the options, you generally cannot simply index into the slice; you'll have to search for the value you want to use.
 
 {{< /callout >}}
 
@@ -267,47 +259,45 @@ options, you generally cannot simply index into the slice; you'll have to search
 
 ### Initial Response
 
-While technically not required, responding to an interaction with one of Discord's allotted initial responses is crucial
-if you don't want your users to see an error after interacting. An interaction may be responded to only once.
+While technically not required, responding to an interaction with one of Discord's allotted initial responses is crucial if you don't want your users to see an error after interacting.
+An interaction may be responded to only once.
 
-You can only respond to an interaction within the custom command triggered by said interaction, with the exception that
-a CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction as
-well.
+You can only respond to an interaction within the custom command triggered by said interaction, with the exception that a CC executed with `execCC` by the triggered CC will be able to send initial responses to the triggering interaction as well.
 
 Possible initial responses:
 
-- Output text in your script response field. This text will be sent as an interaction response.
+- Output text in your script response field.
+  This text will be sent as an interaction response.
   - You can even use the `ephemeralResponse` function to turn it _ephemeral_.
 - Use the `sendResponse` function to send a response as soon as the function runs.
   - You can also use this to send `embeds` or `complexMessages`.
   - You'll need to send a `complexMessage` and pass it `"ephemeral" true` as an argument to send _ephemeral_ messages.
   - `sendResponse` comes in `NoEscape` and `RetID` variants too.
   - When sending an initial response, `sendResponse` does not need an interaction token, `nil` can be used.
-- Use the `sendModal` function to show the user a modal. You cannot respond to a user submitting a modal by sending them
-  another modal.
-- Use the `updateMessage` function to edit the message the command triggered from. This works the same way as editing a
-  message, however because it automatically targets the triggering message, the only argument required is the new
-  message.
+- Use the `sendModal` function to show the user a modal.
+  You cannot respond to a user submitting a modal by sending them another modal.
+- Use the `updateMessage` function to edit the message the command triggered from.
+  This works the same way as editing a message, however because it automatically targets the triggering message, the only argument required is the new message.
 
 [Interaction Function documentation](/docs/reference/templates/functions#interactions)
 
 ### Following Up
 
-Followups allow you to continue responding to an interaction after the initial response has been made. You can followup
-for up to 15 minutes after the user interacts, and you can follow up as many times as you'd like. Followups require the
-interaction token of the interaction they should be following up on.
+Followups allow you to continue responding to an interaction after the initial response has been made.
+You can followup for up to 15 minutes after the user interacts, and you can follow up as many times as you'd like.
+Followups require the interaction token of the interaction they should be following up on.
 
 Possible followups:
 
-- Output text in your script response field. This text will be sent as an interaction followup.
+- Output text in your script response field.
+  This text will be sent as an interaction followup.
   - You can even use the `ephemeralResponse` function to turn it _ephemeral_.
-- Use the `sendResponse` function to send a followup as soon as the function runs. Note that this function morphs into
-  sending followups if an initial response has already been made.
+- Use the `sendResponse` function to send a followup as soon as the function runs.
+  Note that this function morphs into sending followups if an initial response has already been made.
   - You can also use this to send `embeds` or `complexMessages`.
   - `sendResponse` comes in `NoEscape` and `RetID` variants too.
-  - It's important to capture the message ID of any
-    followups you'll want to edit or retrieve later, especially if you follow up ephemerally. If you follow up
-    ephemerally without saving the message ID, you'll never be able to interface with that message again.
+  - It's important to capture the message ID of any followups you'll want to edit or retrieve later, especially if you follow up ephemerally.
+    If you follow up ephemerally without saving the message ID, you'll never be able to interface with that message again.
 - Use the `editResponse` function to edit an initial response or a followup message.
   - When editing an initial response, the `messageID` argument should be `nil`.
   - When editing a followup message, the `messageID` argument is required.
@@ -323,11 +313,12 @@ Possible followups:
 
 ## Action Rows
 
-Action rows are a way to group multiple components together, such as buttons or select menus, into a single row. This
-allows for better organization and layout of interactive elements in a message. Action rows are not a separate type of
-interaction, but rather a structured approach to handling components.
+Action rows are a way to group multiple components together, such as buttons or select menus, into a single row.
+This allows for better organization and layout of interactive elements in a message.
+Action rows are not a separate type of interaction, but rather a structured approach to handling components.
 
-Action rows are simply a slice of components, which can be buttons or select menus. Consider the following example:
+Action rows are simply a slice of components, which can be buttons or select menus.
+Consider the following example:
 
 ```yag
 {{ $row1 := cslice (cbutton "label" "Row 1 - Button 1") (cbutton "label" "Row 1 - Button 2") (cbutton "label" "Row 1 - Button 3") (cbutton "label" "Row 1 - Button 4") }}

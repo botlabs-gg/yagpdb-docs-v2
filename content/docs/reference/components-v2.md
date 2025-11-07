@@ -6,8 +6,7 @@ description = "Be fancier, use components!"
 
 ## componentBuilder
 
-`componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries).
-It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON.
+`componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries). It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON.
 You describe components with key–value pairs and `componentBuilder` handles conversion and validation for you.
 
 This makes it easier to:
@@ -19,7 +18,8 @@ This makes it easier to:
 
 ### Text
 
-Displays plain text content, supporting markdown. Can be a string or a slice of strings.
+Displays plain text content, supporting markdown.
+Can be a string or a slice of strings.
 
 ```yag
 {{ $text := componentBuilder
@@ -52,8 +52,7 @@ A layout block that shows text with one optional accessory: a button **or** a th
 
 ###### Example
 
-For brevity, this example shows both a button and a thumbnail within a single section, but only one of those accessories
-can be used per section.
+For brevity, this example shows both a button and a thumbnail within a single section, but only one of those accessories can be used per section.
 
 ```yag
 {{ $section := componentBuilder
@@ -161,7 +160,8 @@ Groups multiple components with optional styling.
 
 ### Buttons
 
-Interactive buttons users can click. Can be single or multiple. see [cbutton](/docs/reference/templates/functions#cbutton).
+Interactive buttons users can click.
+Can be single or multiple. see [cbutton](/docs/reference/templates/functions#cbutton).
 
 - Maximum 25 buttons total (5 rows \* 5 buttons)
 
@@ -204,8 +204,7 @@ Select menus for user options. see [cmenu](/docs/reference/templates/functions#c
 
 ### Interactive Components
 
-Mix of buttons and menus, auto-distributed. see [cbutton](/docs/reference/templates/functions#cbutton) and
-[cmenu](/docs/reference/templates/functions#cmenu), respectively.
+Mix of buttons and menus, auto-distributed. see [cbutton](/docs/reference/templates/functions#cbutton) and [cmenu](/docs/reference/templates/functions#cmenu), respectively.
 
 Accepts:
 

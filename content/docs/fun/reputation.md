@@ -4,15 +4,14 @@ weight = 910
 description = "Track and manage reputation points for users."
 +++
 
-The reputation system tracks each user's reputation score, and allows users to add or remove reputation points from
-other users.
+The reputation system tracks each user's reputation score, and allows users to add or remove reputation points from other users.
 
 ## Setup
 
 ![Overview of the Reputation System](overview_reputation.png)
 
-Reputation is not enabled by default. To enable it, please go to the [control panel](https://yagpdb.xyz/manage) and
-check _Reputation enabled._
+Reputation is not enabled by default.
+To enable it, please go to the [control panel](https://yagpdb.xyz/manage) and check _Reputation enabled._
 
 ### Enable giving rep when someone says "thanks @user"?
 
@@ -20,17 +19,18 @@ This is an alternative way of `-giverep`.
 
 ### Name for reputation points
 
-This will be displayed in the `-rep` command. By default, it is _Rep_.
+This will be displayed in the `-rep` command.
+By default, it is _Rep_.
 
 ### Rep cooldown in seconds
 
-This is the cooldown for the `-giverep` and `-takerep` commands. It does not affect the `-setrep` command. No one can
-bypass this cooldown, including admins.
+This is the cooldown for the `-giverep` and `-takerep` commands.
+It does not affect the `-setrep` command.
+No one can bypass this cooldown, including admins.
 
 ### &#x20;Maximum amount of rep that can be given/taken away in one command
 
-This affects the `-giverep` and `-takrep` commands which users can choose to specify the number of points to be
-given/taken away.
+This affects the `-giverep` and `-takrep` commands which users can choose to specify the number of points to be given/taken away.
 
 ### Admin role
 
@@ -38,29 +38,30 @@ Users with this role have access to the `-setrep` command and can freely change 
 
 ### Required role to give/remove points
 
-Users with this role have access to the `-giverep` and `-takerep` commands which is affected by the _Rep cool down in
-seconds_ and the _Maximum amount of rep that can be given/taken away in one command_. If set to none, everyone will be
-able to use these commands.
+Users with this role have access to the `-giverep` and `-takerep` commands which is affected by the _Rep cool down in seconds_ and the _Maximum amount of rep that can be given/taken away in one command_.
+If set to none, everyone will be able to use these commands.
 
 ### Required role to receive/being taken away points from
 
-Users with this role participates in the point system which they can be given/taken away points from. If set to none,
-everyone will be participating.
+Users with this role participates in the point system which they can be given/taken away points from.
+If set to none, everyone will be participating.
 
 ### Disallowed role for giving/taking away points
 
-Users with this role cannot use the `-giverep` and `-takerep` commands. This also overrides the _Required role to
-give/remove points._
+Users with this role cannot use the `-giverep` and `-takerep` commands.
+This also overrides the _Required role to give/remove points._
 
 ### Disallowed role for receiving/being taken away points from
 
-Users with this role cannot participate in the point system which they can be given/taken away points from. This also
-overrides the _Required role to receive/being taken away points from_.
+Users with this role cannot participate in the point system which they can be given/taken away points from.
+This also overrides the _Required role to receive/being taken away points from_.
 
 ## Reputation roles
 
-You can set up role rewards for reaching certain reputation amounts. Up to 5 rewards on free, 25 for premium. This system
-is basic and offers little customization. For more advanced setups, custom commands are recommended.
+You can set up role rewards for reaching certain reputation amounts.
+Up to 5 rewards on free, 25 for premium.
+This system is basic and offers little customization.
+For more advanced setups, custom commands are recommended.
 
 ![Overview of Reputation Role Rewards](overview_reputationRewards.png)
 
@@ -74,8 +75,8 @@ A listing of all your existing reputation roles with their respective threshold.
 
 ## Reputation logs
 
-Besides using the command `-replog` , you can also check the logs from the control panel. Specify a user ID to check the
-logs affecting the points of the user.
+Besides using the command `-replog` , you can also check the logs from the control panel.
+Specify a user ID to check the logs affecting the points of the user.
 
 ## Reset all user's reputation
 

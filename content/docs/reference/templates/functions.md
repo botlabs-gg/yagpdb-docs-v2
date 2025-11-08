@@ -74,7 +74,8 @@ Returns a channel object on success.
 - `message`: either `nil` to create a channel thread, or a message ID to create a message thread.
 - `private`: whether the thread is private.
   Default `false`.
-- `auto_archive_duration`: how long the thread will show in the channel list after inactivity. : how long the thread will show in the channel list after inactivity.<br> Valid values are 60, 1440, 4320, and 10080 minutes.
+- `auto_archive_duration`: how long the thread will show in the channel list after inactivity.
+  Valid values are 60, 1440, 4320, and 10080 minutes.
   Defaults to 10080 (7 days).
 - `invitable`: whether non-moderators can add other members to the thread. (true/false)
 
@@ -400,7 +401,8 @@ Returns up to `amount` entries from the database, sorted in descending order by 
 Numerical values are stored as floating-point numbers in the database; large numbers such as user IDs will lose precision.
 To avoid this, convert them to a string before writing to the database.
 
-Numerical `dict` keys are retrieved as an `int64`, therefore you'd have to write , therefore you'd have to write<br> `{{ $dict.Get (toInt64 N)}}` to retrieve the value associated with the numerical key `N`.
+Because numerical `dict` keys are retrieved as an `int64`, you have to first convert to `int64` when retrieving such values.
+So, to retrieve the value associated with the numerical key `N`: `{{ $dict.Get (toInt64 N)}}`.
 
 {{< /callout >}}
 
@@ -501,7 +503,8 @@ Executes another custom command specified by `ccID`.
 - `delay`: the delay in seconds before executing the custom command.
 - `data`: some arbitrary data to pass to the executed custom command.
 
-Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2. `execCC` is rate-limited strictly to a maximum of 10 delayed custom commands executed per channel per minute.
+Calling `execCC` with 0 delay sets `.StackDepth` to the current recursion depth and limits it to 2.
+`execCC` is rate-limited strictly to a maximum of 10 delayed custom commands executed per channel per minute.
 Executions beyond this number will be dropped.
 
 ##### Example

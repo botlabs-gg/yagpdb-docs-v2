@@ -125,7 +125,6 @@ A text menu may not have more than 25 options.
 #### Default Value Structure
 
 The user, role, and channel type allow for a slice of `default_values` to be specified.
-Below is their structure.
 
 | Field | Description                                                         |
 | ----- | ------------------------------------------------------------------- |

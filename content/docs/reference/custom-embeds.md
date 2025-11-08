@@ -38,7 +38,7 @@ YAGPDB accepts embeds in JSON or YAML following the rules of Discord's [Embed Ob
 ```yaml
 title: This is my title
 footer:
-	text: This is my footer text.
+  text: This is my footer text.
 ```
 
 YAML input is formatted as a list of names with associated values for each part of the embed.
@@ -101,11 +101,11 @@ Creating embeds with a generator can be more difficult if you don't need any dif
 If you want your embed to be super shiny, you can use [an embed generator](https://leovoel.github.io/embed-visualizer/).
 The customembed command only sends an embed, so you'll need to remove everything around it:
 
-````javascript
+```javascript
 {
   "content": "...",
   "embed":
-````
+```
 
 and the last curly brace (`}`).
 After this you can copy and paste it after the `ce` command:

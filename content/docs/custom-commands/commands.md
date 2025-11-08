@@ -105,7 +105,21 @@ Editing a custom command (**3**) opens a separate page for configuration.
 
 <center>
 
-**1** ID **2** Name **3** Trigger Type **4** Trigger Text **5** Case Sensitivity Toggle **6** Message Edits Trigger Toggle **7** Response **8** Add Response **9** Custom Command Group **10** Channel and Role Restrictions **11** Execution Statistics **12** Error Output Toggle **13** Enable Command Toggle **14** Save Command **15** Delete command button
+**1** ID
+**2** Name
+**3** Trigger Type
+**4** Trigger Text
+**5** Case Sensitivity Toggle
+**6** Message Edits Trigger Toggle
+**7** Response
+**8** Add Response
+**9** Custom Command Group
+**10** Channel and Role Restrictions
+**11** Execution Statistics
+**12** Error Output Toggle
+**13** Enable Command Toggle
+**14** Save Command
+**15** Delete command button
 
 </center>
 

@@ -10,7 +10,20 @@ Everything in moderation, including moderation.
 
 <center>
 
-**1** Mod Log Channel **2** Report Channel **3** Moderation DM Error Channel **4** Clean Command **5** Report Command **6** Unban Logging **7** Giverole/Takerole commands **8** Give/Takerole Permitted Roles **9** Give/Takerole Logging **10** External Ban Logging **11** External Kick Logging **12** External Timeout Logging **13** Moderation Tabs **14** Bot Permissions Notice
+**1** Mod Log Channel
+**2** Report Channel
+**3** Moderation DM Error Channel
+**4** Clean Command
+**5** Report Command
+**6** Unban Logging
+**7** Giverole/Takerole commands
+**8** Give/Takerole Permitted Roles
+**9** Give/Takerole Logging
+**10** External Ban Logging
+**11** External Kick Logging
+**12** External Timeout Logging
+**13** Moderation Tabs
+**14** Bot Permissions Notice
 
 </center>
 
@@ -43,7 +56,8 @@ These commands are:
 When the `unban`/ `unmute` commands are used, YAGPDB will log their usage to the [mod log](#mod-channels) similarly to the other moderation commands.
 
 When using the `ban` and `mute` commands with a duration, YAGPDB will automatically undo the punishment after the specified duration.
-For instance, if you execute `ban @user 1d`, YAGPDB will ban the user, and 1 day later YAGPDB will execute the `unban` command with reason "Timed ban expired." This action appears in the mod log as YAGPDB being the moderator.
+For instance, if you execute `ban @user 1d`, YAGPDB will ban the user, and 1 day later YAGPDB will execute the `unban` command with reason "Timed ban expired".
+This action appears in the mod log as YAGPDB being the moderator.
 
 Toggling Unban Logging (**6**) allows you to enable or disable the logging of Unmute events.
 
@@ -80,7 +94,9 @@ Each of the main moderation tools have individual configuration pages, accessibl
 
 <center>
 
-**1** Permitted Roles **2** Reason Optional Toggle **3** Moderation DM
+**1** Permitted Roles
+**2** Reason Optional Toggle
+**3** Moderation DM
 
 </center>
 
@@ -121,7 +137,8 @@ Additional template dot context data is available for Moderation Actions:
 {{< callout context="danger" title="Danger: Template Execution Errors" icon="outline/alert-octagon" >}}
 
 Any errors which occur in the template execution will not be logged by default.
-The offending user will only receive a DM from your server saying **Failed executing template.** Setting a [Moderation DM Error channel](#mod-channels) allows for the more detailed errors to be captured.
+The offending user will only receive a DM from your server saying **Failed executing template**.
+Setting a [Moderation DM Error channel](#mod-channels) allows for the more detailed errors to be captured.
 
 {{< /callout >}}
 

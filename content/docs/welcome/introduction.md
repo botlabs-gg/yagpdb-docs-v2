@@ -20,8 +20,7 @@ Any other online forum is not official and should be generally treated as inaccu
 Questions regarding the clarity of this documentation are also welcome, as they help us improve the documentation.
 
 Remember to first read `#information` and `#faq` before asking questions.
-Our support staff are volunteers, so please be patient when they don't respond in 10  before asking questions.
-Our support staff are volunteers, so please be patient when they don't respond in 10<sup>-3 -3</sup> seconds, they are probably busy with something else.
+Our support staff are volunteers, so please be patient when they don't respond in 10<sup>-3</sup> seconds, they are probably busy with something else.
 
 ### Learning Center
 

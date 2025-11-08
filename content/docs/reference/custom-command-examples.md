@@ -25,7 +25,9 @@ Please visit our [support server](/discord) for newer solutions.
 YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for certain responses to occur.
 You can do this by creating a singular response and creating a variable with randInt.
 Then use an if-else-if statement like this to print out your desired output.
-YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for certain responses to occur. You can do this by creating a singular response and creating a variable with randInt. Then use an if-else-if statement like this to print out your desired output.&#x20;
+YAGPDB has a built-in random response system for custom commands, but sometimes you may want to control the chances for certain responses to occur.
+You can do this by creating a singular response and creating a variable with randInt.
+Then use an if-else-if statement like this to print out your desired output.
 
 ```yag
 {{$var := randInt 100}}
@@ -43,8 +45,7 @@ This has a 65% chance of being triggered
 
 This command is to be placed in the welcome message.
 It filters out people with invites in their name.
-Make sure that the checkbox **Censor server invites in usernames?** and the ban command are enabled on your server.  and the ban command are enabled on your server.&#x20;
-
+Make sure that the checkbox **Censor server invites in usernames?** and the ban command are enabled on your server.
 You might not want the response for the executed command to show.
 You can suppress the response of a command like the following:
 
@@ -81,11 +82,8 @@ Trigger type: `Command` Trigger: `range`
 {{- end }}
 ```
 
-`$k` is the index for arrays / cslices (starting at 0) or the key for maps and sdicts, while `$v` is the current word in your input that you are on.  is the current word in your input that you are on.&#x20;
-
-Range will work on any kind of slice/array. for example.
-If we wanted to look for all the entries in our database we can use range and index through them all in the following.
-Range will work on any kind of slice/array. for example. If we wanted to look for all the entries in our database we can use range and index through them all in the following.&#x20;
+`$k` is the index for arrays / cslices (starting at 0) or the key for maps and sdicts, while `$v` is the current word in your input that you are on.
+Range will work on any kind of slice/array, so if we wanted to look for all the entries in our database we can use range and index through them all in the following.
 
 ```yag
 {{$lb := dbTopEntries "%" 100 0}}
@@ -152,7 +150,8 @@ This custom command is very complex, uses very many advanced functions, all it d
 {{execCC REPLACE-WITH-NEXT-CC-ID nil 0 (sdict "MessageID" $mID "T" $t "Message" ($args.Get 1)) }}
 ```
 
-Second part of the custom commands, here we see, how `data`-part of exeCC was made in previous custom command as `sdict`and now we are calling those keys with `.ExecData` - for example `.ExecData.MessageID` sets new variable the same as stated in previous code.
+Second part of the custom commands, here we see, how `data`-part of exeCC was made in previous custom command as `sdict`and now we are calling those keys with `.ExecData`.
+For example `.ExecData.MessageID` sets new variable the same as stated in previous code.
 
 ```yag
 {{$timeLeft := .ExecData.T.Sub currentTime}}
@@ -261,11 +260,10 @@ You can either make them global cooldowns or a per user cooldown.
 
 With YAGPDB's database system, I made a command to have users count from 0 and keep counting to the next number.
 Relatively simple command that involves database and type conversion.
-With YAGPDB's database system, I made a command to have users count from 0 and keep counting to the next number. Relatively simple command that involves database and type conversion.&#x20;
 
 Trigger type: `Regex` Trigger: `\A`
 
-`BE SURE TO RESTRICT THE COMMAND TO A SINGLE CHANNEL`&#x20;
+`BE SURE TO RESTRICT THE COMMAND TO A SINGLE CHANNEL`
 
 ```yag
 {{/* If you are not doing (no twice msg in a row)  or (role assignment for latest user)  you can remove counter_user and by extension everything to do with $lastUser*/}}
@@ -352,7 +350,7 @@ Trigger type: `Command` Trigger: `giveRoleName`
 
 ### Broadcast command
 
-> By **GryTrean#8957** \
+> By **GryTrean#8957**
 > Updated by: **Timcampy#5636**
 
 This command lets the bot send a message to another channel.
@@ -389,7 +387,6 @@ Trigger type: `Command` Trigger: `bc`
 This command does a good job at using a little bit of everything.
 Which include but is not limited to, `conditional statement`, `assigning values to variable`, `getting command arguments`, `using template code`, and `creating embeds`.
 If you are able to understand everything in this command, you are at a very good place in being able to make advanced custom commands.
-. If you are able to understand everything in this command, you are at a very good place in being able to make advanced custom commands.&#x20;
 
 Trigger type: `Command` Trigger: `avatar`
 

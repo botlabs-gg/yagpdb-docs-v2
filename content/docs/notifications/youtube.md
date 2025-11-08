@@ -14,7 +14,7 @@ The bot requires at least the "Read Messages" and "Send Messages" permissions in
 
 ## Adding a YouTube Feed
 
-To add a new feed simply copy the channel URL from YouTube and paste it into the "Link" field under "Add New Feed" (you may need to scroll down a bit); then select a channel to post it to.
+To add a new feed simply copy the channel URL from YouTube and paste it into the "Link" field under "Add New Feed" (you may need to scroll down a bit), then select a channel to post it to.
 For a visual reference, please see the image below.
 
 <center>
@@ -23,7 +23,7 @@ For a visual reference, please see the image below.
 
 </center>
 
-If you are unable to obtain a direct channel URL, similar to If you are unable to obtain a direct channel URL, similar to<br> *<https://youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw>*, we also support the following URLs:
+If you are unable to obtain a direct channel URL, similar to <https://youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw>, we also support the following URLs:
 
 - Video links (<https://youtube.com/watch?v=dQw4w9WgXcQ>)
 - Shorts links (<https://youtube.com/shorts/pBZ_2pX_8mg>)
@@ -31,15 +31,20 @@ If you are unable to obtain a direct channel URL, similar to If you are unable t
 - Live links (<https://youtube.com/live/jfKfPfyJRdk>)
 - Playlist links (<https://youtube.com/playlist?list=PLEamUZtdyTMxwDNQ97Y7im8EwqRyht12R>)
 
-Although we make an attempt at extracting the channel from usernames (<https://youtube.com/user/MontyPython>), custom links (<https://youtube.com/c/Taskmaster>), and handles (<https://youtube.com/@TomScottGo>), these are not as reliable as the links listed above, as we use the first result of a YouTube search to determine the channel via these URLs.
+Less reliable, but also supported are
 
+- usernames (<https://youtube.com/user/MontyPython>)
+- custom links (<https://youtube.com/c/Taskmaster>)
+- handles (<https://youtube.com/@TomScottGo>)
+
+as we use the first result of a YouTube search to determine the channel via these URLs.
 If you find yourself having trouble adding a feed using these kinds of URLs, please try to use one of the links listed above before asking for help in the [support server](/discord).
 
 {{< callout context="caution" title="Warning: Maximum Number of Feeds" icon="outline/info-circle" >}}
 
 You cannot have more than 10 active YouTube feeds at a time (250 with [Premium](/docs/welcome/premium)).
 If you have that many feeds active, you cannot add more until you disable at least one of those.
-That disabled excess feed will be deleted once you add a new one.
+Disabled excess feeds will be deleted once you add a new one.
 
 {{< /callout >}}
 

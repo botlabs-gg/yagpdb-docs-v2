@@ -6,7 +6,8 @@ description = "Be fancier, use components!"
 
 ## componentBuilder
 
-`componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries). It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON.
+The `componentBuilder` is a helper for building Discord’s new Components V2 (sections, buttons, menus, galleries).
+It provides a simple template-based way to assemble complex message layouts without needing to write raw JSON.
 You describe components with key–value pairs and `componentBuilder` handles conversion and validation for you.
 
 This makes it easier to:

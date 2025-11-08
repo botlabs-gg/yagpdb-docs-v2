@@ -35,7 +35,8 @@ The fields `.CreatedAt`, `.UpdatedAt`, and `.ExpiresAt` all evaluate to a `time.
 
 {{< callout context="note" title="Note: About That User ID" icon="outline/info-circle" >}}
 
-The user ID does not have to point to a valid Discord user—it can be any integer. For instance, it is conventional (but not required) to store server-global data under the user ID `0`, in which case the `UserID` field will be `0` and the `User` field will be invalid.
+The user ID does not have to point to a valid Discord user---it can be any integer.
+For instance, it is conventional (but not required) to store server-global data under the user ID `0`, in which case the `UserID` field will be `0` and the `User` field will be invalid.
 See also [Global vs. User Entries](#global-vs-user-entries).
 
 {{< /callout >}}

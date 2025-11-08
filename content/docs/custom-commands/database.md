@@ -11,7 +11,18 @@ The database page displays all database entries created by custom commands, allo
 
 <center>
 
-**1** Entry ID **2** Created Timestamp **3** Updated Timestamp **4** Expiry Timestamp **5** User ID **6** Key **7** Value **8** Size of Value **9** Delete Entry **10** Page Navigation **11** Search Query **12** Search Bar
+**1** Entry ID
+**2** Created Timestamp
+**3** Updated Timestamp
+**4** Expiry Timestamp
+**5** User ID
+**6** Key
+**7** Value
+**8** Size of Value
+**9** Delete Entry
+**10** Page Navigation
+**11** Search Query
+**12** Search Bar
 
 </center>
 

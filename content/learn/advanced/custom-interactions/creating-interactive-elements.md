@@ -18,7 +18,7 @@ also have to attach it to a message. We do that by calling the
 Finally, we send the message.
 
 ```yag
-{{ $button := cbutton "label" "My Cool Button" "custom-id" "buttons-duck" }}
+{{ $button := cbutton "label" "My Cool Button" "custom_id" "buttons-duck" }}
 {{ $m := complexMessage "buttons" $button }}
 {{ sendMessage nil $m }}
 ```

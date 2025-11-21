@@ -17,7 +17,7 @@ We do that by calling the [`complexMessage`](docs/reference/templates/functions#
 Finally, we send the message.
 
 ```yag
-{{ $button := cbutton "label" "My Cool Button" "custom-id" "buttons-duck" }}
+{{ $button := cbutton "label" "My Cool Button" "custom_id" "buttons-duck" }}
 {{ $m := complexMessage "buttons" $button }}
 {{ sendMessage nil $m }}
 ```

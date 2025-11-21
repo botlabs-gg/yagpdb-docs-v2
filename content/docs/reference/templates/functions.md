@@ -826,7 +826,7 @@ Returns a complex message object with the given components.
 All keys are optional, but the Discord API will reject completey empty messages, so some content is required.
 
 - `text`: A string or a slice of strings.
-- `section`: A layout block that shows text with one optional accessory: a button **or** a thumbnail with the following keys:
+- `section`: A layout block that shows text with one mandatory accessory: either a button or a thumbnail with the following keys:
   - `text`: A string or a slice of strings.
   - `button`: A [button object](#cbutton).
   - `thumbnail`: An sdict with the following keys:

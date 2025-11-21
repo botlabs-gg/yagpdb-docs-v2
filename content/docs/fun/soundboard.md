@@ -8,13 +8,14 @@ The soundboard system allows the bot to join a voice channel, and play sounds tr
 
 ## Uploading New Sounds
 
-The settings listed below only apply to that specific sound, and not the entire soundboard. Use a [command
-override](/docs/core/command-settings) to restrict access to the soundboard system as a whole.
+The settings listed below only apply to that specific sound, and not the entire soundboard.
+Use a [command override](/docs/core/command-settings) to restrict access to the soundboard system as a whole.
 
 ### Name
 
-Give the sound a name. This name will be shown in the list to play later on. Avoid giving duplicated names for easier
-reference.
+Give the sound a name.
+This name will be shown in the list to play later on.
+Avoid giving duplicated names for easier reference.
 
 ### Allowed roles
 
@@ -39,30 +40,32 @@ You have two options to upload sounds:
 
 #### Upload with local files
 
-Click on _Choose file_ and select an audio file to upload. All types of sound files, including videos with soundtracks,
-are supported.
+Click on _Choose file_ and select an audio file to upload.
+All types of sound files, including videos with soundtracks, are supported.
 
 #### Specify a URL
 
 You can also specify a sound URL instead of uploading one.
 
-This has to be the direct link to the media file, and not, for example, a YouTube Video link. A direct link should end
-with `.mp3` (or other relevant audio/video type), such as <https://www.myinstants.com/media/sounds/airhorn_1.mp3>.
+This has to be the direct link to the media file, and not, for example, a YouTube Video link.
+A direct link should end with `.mp3` (or other relevant audio/video type), such as <https://www.myinstants.com/media/sounds/airhorn_1.mp3>.
 
 ### Finish
 
-Click on _Upload/Download_ after you are done with the previous steps. You should see a _Success_ notification when the
-upload is completed. Check the status of the sound under _Existing sounds_. Wait for several minutes, and press
-_Save_ again if the status does not show _Ready_.
+Click on _Upload/Download_ after you are done with the previous steps.
+You should see a _Success_ notification when the upload is completed.
+Check the status of the sound under _Existing sounds_.
+Wait for several minutes, and press _Save_ again if the status does not show _Ready_.
 
 ![An example of a successfully uploaded sound](example_soundboard.png)
 
 ## Playing sounds
 
-You can check for an available list of sounds with the `-soundboard` command. Then, play it with the `-sb <sound name>`
-command. Make sure that YAGPDB has the right permissions (i.e. connect to and speak in the voice channel).
+You can check for an available list of sounds with the `-soundboard` command.
+Then, play it with the `-sb <sound name>` command.
+Make sure that YAGPDB has the right permissions (i.e. connect to and speak in the voice channel).
 
 ## Deleting sounds
 
-You can delete sounds from the control panel. Look for the desired sound name under _Existing sounds_ and press _Delete_
-to remove it from the list.
+You can delete sounds from the control panel.
+Look for the desired sound name under _Existing sounds_ and press _Delete_ to remove it from the list.

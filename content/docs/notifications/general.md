@@ -4,8 +4,7 @@ weight = 510
 description = "Welcome new users, announce when users leave, and more."
 +++
 
-General notifications such as a welcoming direct message, a message in the server when users join or leave, as well as a
-simple message announcing when a channel's topic has changed.
+General notifications such as a welcoming direct message, a message in the server when users join or leave, as well as a simple message announcing when a channel's topic has changed.
 
 ![Overview of general feeds](./general_overview.png)
 
@@ -27,8 +26,7 @@ Write a message that you want the bot to send to the user via DM whenever someon
 
 ### Topic Change Message
 
-Choose what channel you want the bot to announce the topic change from a specific channel or the channel that the topic
-was changed in.
+Choose what channel you want the bot to announce the topic change from a specific channel or the channel that the topic was changed in.
 
 {{< callout context="tip" title="Tip: Custom Command Syntax" icon="outline/rocket" >}}
 

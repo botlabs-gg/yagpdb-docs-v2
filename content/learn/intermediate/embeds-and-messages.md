@@ -4,35 +4,36 @@ weight = 310
 description = "Learn how to send messages to different channels, edit existing messages, and send messages with embeds."
 +++
 
-Until now, we have just used the [default response behavior](/learn/beginner/simple-responses) to make our custom
-commands respond with some text. This makes sense for quick mockups or relatively simple commands. However, this may be
-inconvenient or Not What You Want in some cases. In this chapter, we will explore how to send messages to different
-channels, edit existing messages, and send messages with embeds, vastly expanding your toolbox for creating complex
-custom command systems.
+Until now, we have just used the [default response behavior](/learn/beginner/simple-responses) to make our custom commands respond with some text.
+This makes sense for quick mockups or relatively simple commands.
+However, this may be inconvenient or Not What You Want in some cases.
+In this chapter, we will explore how to send messages to different channels, edit existing messages, and send messages with embeds, vastly expanding your toolbox for creating complex custom command systems.
 
 ## Sending Messages
 
-We provide several `sendMessage*` functions that all do the same thing: send a message to a channel. The difference
-between them is how they handle special mentions like `@everyone` and `@here`, and whether to return the ID of the
-message after sending it. We will cover these functions in detail in the following sections, and when to best use them.
+We provide several `sendMessage*` functions that all do the same thing: send a message to a channel.
+The difference between them is how they handle special mentions like `@everyone` and `@here`, and whether to return the ID of the message after sending it.
+We will cover these functions in detail in the following sections, and when to best use them.
 
-Let's get started with the simplest of them all, `sendMessage`. Its syntax is the following:
+Let's get started with the simplest of them all, `sendMessage`.
+Its syntax is the following:
 
 ```yag
 {{ sendMessage channel_id message_to_be_sent }}
 ```
 
-The `channel_id` is the ID of the channel to send the message to. If you want to send the message in the same channel as
-the one in which the custom command was triggered, simply set `channel_id` to `nil`.
+The `channel_id` is the ID of the channel to send the message to.
+If you want to send the message in the same channel as the one in which the custom command was triggered, simply set `channel_id` to `nil`.
 
-Intuitively, `message_to_be_sent` denotes the output that is to be sent as a message. For now, we will just use a string
-with the content you want to send. We will cover sending embeds in a later section on this page.
+Intuitively, `message_to_be_sent` denotes the output that is to be sent as a message.
+For now, we will just use a string with the content you want to send.
+We will cover sending embeds in a later section on this page.
 
 ### Special Mentions
 
-By default, the bot will escape special mentions like `@everyone`, `@here`, and role mentions (note that user mentions
-are not escaped by default). If you want to send a message with these mentions, you'll need to tell the bot to not
-escape them. You can do this by using the `sendMessageNoEscape` function instead of `sendMessage`.
+By default, the bot will escape special mentions like `@everyone`, `@here`, and role mentions (note that user mentions are not escaped by default).
+If you want to send a message with these mentions, you'll need to tell the bot to not escape them.
+You can do this by using the `sendMessageNoEscape` function instead of `sendMessage`.
 
 ```yag
 {{ sendMessageNoEscape channel_id message_to_be_sent }}
@@ -40,8 +41,7 @@ escape them. You can do this by using the `sendMessageNoEscape` function instead
 
 ### Returning the Message ID
 
-If you want to store the ID of the message you just sent, for example to later edit it, use the `sendMessageRetID`
-function and assign the result to a variable.
+If you want to store the ID of the message you just sent, for example to later edit it, use the `sendMessageRetID` function and assign the result to a variable.
 
 ```yag
 {{ $messageID := sendMessageRetID channel_id message_to_be_sent }}
@@ -57,12 +57,12 @@ It is quite the mouthful to write, but just roll with it.
 
 ## Building Embeds
 
-Embeds are a powerful way to display information in a structured and visually appealing way. They can contain a title,
-description, fields, images, and more. We provide a function to build embeds in a way that closely resembles the
-structure as defined by the Discord API.
+Embeds are a powerful way to display information in a structured and visually appealing way.
+They can contain a title, description, fields, images, and more.
+We provide a function to build embeds in a way that closely resembles the structure as defined by the Discord API.
 
-We will illustrate this with a simple example. For a full breakdown of all available fields, please refer to our
-[custom embeds documentation](/docs/reference/custom-embeds).
+We will illustrate this with a simple example.
+For a full breakdown of all available fields, please refer to our [custom embeds documentation](/docs/reference/custom-embeds).
 
 ```yag
 {{ $embed := cembed
@@ -87,22 +87,21 @@ We will illustrate this with a simple example. For a full breakdown of all avail
 
 </div>
 
-The above code will generate an embed as shown on the left. Let us dissect it a bit. First, we simply define a variable
-`$embed` and assign it the result of the `cembed` function. This function takes a series of key-value pairs, where the
-key is the embed field you want to set, and the value is the value you want to set for that field. The `cembed` function
-will return a structured object that can be sent as a message, as demonstrated in the last line of the code.
+The above code will generate an embed as shown on the left.
+Let us dissect it a bit.
+First, we simply define a variable `$embed` and assign it the result of the `cembed` function.
+This function takes a series of key-value pairs, where the key is the embed field you want to set, and the value is the value you want to set for that field.
+The `cembed` function will return a structured object that can be sent as a message, as demonstrated in the last line of the code.
 
-The `"title"` and `"description"` fields are self-explanatory---we can use Discord Markdown in the latter. The `"color"`
-field takes an integer color value, for which we can conveniently use hexadecimal formatting as mentioned in
-[Variables and Data Types](/learn/beginner/variables-and-data-types#integers), but it can also take a
-[decimal value](https://www.binaryhexconverter.com/hex-to-decimal-converter).
+The `"title"` and `"description"` fields are self-explanatory---we can use Discord Markdown in the latter.
+The `"color"` field takes an integer color value, for which we can conveniently use hexadecimal formatting as mentioned in [Variables and Data Types](/learn/beginner/variables-and-data-types#integers), but it can also take a [decimal value](https://www.binaryhexconverter.com/hex-to-decimal-converter).
 
-The `"fields"` field is a list (more precisely a _slice_) of dictionaries, where each dictionary represents a field in
-the embed. Each field dictionary must contain a `"name"` and a `"value"` field, and can optionally contain an `"inline"`
-field. This field is a boolean that determines whether the field should be displayed inline with the previous field.
+The `"fields"` field is a list (more precisely a _slice_) of dictionaries, where each dictionary represents a field in the embed.
+Each field dictionary must contain a `"name"` and a `"value"` field, and can optionally contain an `"inline"` field.
+This field is a boolean that determines whether the field should be displayed inline with the previous field.
 
-The `"author"` field is a dictionary that contains the name and icon URL of the author of the embed. In this case, we
-use the username of the user who triggered the custom command as the name, and the user's avatar URL as the icon URL.
+The `"author"` field is a dictionary that contains the name and icon URL of the author of the embed.
+In this case, we use the username of the user who triggered the custom command as the name, and the user's avatar URL as the icon URL.
 
 {{< callout context="tip" title="Tip: Custom Commands Embed Generator" icon="outline/rocket" >}}
 
@@ -118,18 +117,18 @@ For your convenience, we have [prefilled the above example][prefill] in the visu
 
 ## Editing Messages
 
-Sending a message is nice and all, but for the sake of keeping things clean, you might want to edit a message instead of
-creating a new one each time something changes. We provide the `editMessage` function for this purpose.
+Sending a message is nice and all, but for the sake of keeping things clean, you might want to edit a message instead of creating a new one each time something changes.
+We provide the `editMessage` function for this purpose.
 
 ```yag
 {{ editMessage channel_id message_id new_message_content }}
 ```
 
-The `channel_id` is the ID of the channel containing the message. The `message_id` is the ID of the message you want to
-edit. The `new_message_content` is the new content of the message, which will completely overwrite the existing content.
-See [Editing Embeds](#editing-embeds) if you only want to change certain fields of an existing embed while leaving
-others intact. You should note that YAGPDB can only edit messages from itself, just like you cannot edit someone else's
-messages.
+The `channel_id` is the ID of the channel containing the message.
+The `message_id` is the ID of the message you want to edit.
+The `new_message_content` is the new content of the message, which will completely overwrite the existing content.
+See [Editing Embeds](#editing-embeds) if you only want to change certain fields of an existing embed while leaving others intact.
+You should note that YAGPDB can only edit messages from itself, just like you cannot edit someone else's messages.
 
 For a quick demonstration, consider the following code:
 
@@ -139,14 +138,12 @@ For a quick demonstration, consider the following code:
 {{ editMessage nil $messageID "Goodbye, World!" }}
 ```
 
-This code sends a message saying "Hello, World!" and then, after 5 seconds, edits the message to say "Goodbye, World!",
-all in the same channel where the custom command was triggered.
+This code sends a message saying "Hello, World!" and then, after 5 seconds, edits the message to say "Goodbye, World!", all in the same channel where the custom command was triggered.
 
 ### Editing Embeds
 
-Editing embeds is a little more involved than editing regular messages. Since the data provided to `editMessage`
-completely overwrites the existing content, it is necessary to retrieve the existing embed object, modify the desired
-fields, and provide the whole embed to `editMessage`.
+Editing embeds is a little more involved than editing regular messages.
+Since the data provided to `editMessage` completely overwrites the existing content, it is necessary to retrieve the existing embed object, modify the desired fields, and provide the whole embed to `editMessage`.
 
 An elaborate example all within the same custom command looks like the following:
 
@@ -174,18 +171,17 @@ An elaborate example all within the same custom command looks like the following
 {{ editMessage nil $messageID (cembed $newEmbed) }}
 ```
 
-In the second part, after `{{ sleep 5 }}`, we first convert the original embed object to a dictionary using the
-`structToSdict` function. We then modify the fields we want to change using the `Set` method. In this case, we change
-the title and description of the embed, and remove all fields. Finally, we send the modified embed object back to the
-`editMessage` function.
+In the second part, after `{{ sleep 5 }}`, we first convert the original embed object to a dictionary using the `structToSdict` function.
+We then modify the fields we want to change using the `Set` method.
+In this case, we change the title and description of the embed, and remove all fields.
+Finally, we send the modified embed object back to the `editMessage` function.
 
-As mentioned previously, this example is contrived: in practice, we're more likely to use `.Message.Embeds` to get the
-original embed object, convert and modify it as shown above, then send it back to the `editMessage` function.
+As mentioned previously, this example is contrived: in practice, we're more likely to use `.Message.Embeds` to get the original embed object, convert and modify it as shown above, then send it back to the `editMessage` function.
 
 {{< callout context="note" title="Note: Full Conversion" icon="outline/info-circle" >}}
 
-`structToSdict` does not perform deep conversion. For a full conversion of an embed to a dictionary, you can use the
-following code snippet:
+`structToSdict` does not perform deep conversion.
+For a full conversion of an embed to a dictionary, you can use the following code snippet:
 
 ```yag
 {{ if not .Message.Embeds }}
@@ -216,9 +212,9 @@ following code snippet:
 
 ## Complex Message Builder
 
-We learned how to send messages and embeds individually---we can also combine them in a single message. This is where we
-have to use the `complexMessage` builder function. In this case, we will use the `"content"` and `"embed"` key to set
-the respective parts of our message:
+We learned how to send messages and embeds individually---we can also combine them in a single message.
+This is where we have to use the `complexMessage` builder function.
+In this case, we will use the `"content"` and `"embed"` key to set the respective parts of our message:
 
 ```yag
 {{ $embed := cembed
@@ -243,8 +239,9 @@ the respective parts of our message:
 {{ sendMessage nil $message }}
 ```
 
-Similarly, we provide a `complexMessageEdit` function to edit messages with both content and embeds. The syntax is the
-same as `complexMessage`, minus a few keys that cannot be edited. Please refer to the documentation below.
+Similarly, we provide a `complexMessageEdit` function to edit messages with both content and embeds.
+The syntax is the same as `complexMessage`, minus a few keys that cannot be edited.
+Please refer to the documentation below.
 
 The `complexMessage` builder takes a lot more keys that give you fine-grained control over the message you want to send.
 Refer to the [message functions documentation][message-docs] for a complete description.

@@ -24,8 +24,8 @@ _As example, this will only match the word "Dinosaur":_ `(Dinosaur)`
 
 #### Don't match
 
-Using `?:` after opening parenthesis of a capturing group creates a non-capturing group. Useful for example with
-template function `reFindAllSubmatches`.
+Using `?:` after opening parenthesis of a capturing group creates a non-capturing group.
+Useful for example with template function `reFindAllSubmatches`.
 
 _This will not sub-match the words "red, blue, green":_ \
 ``{{ reFindAllSubmatches `(?:color=)(red|blue|green)` "color=red beautiful" }}``&#x20;
@@ -35,8 +35,7 @@ To clarify more - it will not show `dateid,` because it's a whole match:\
 
 #### Match A or B
 
-You may also want to catch multiple options, for that we use a _"Vertical bar"_ or also known as a _"Pipe"_ between
-Linux users.
+You may also want to catch multiple options, for that we use a _"Vertical bar"_ or also known as a _"Pipe"_ between Linux users.
 
 _As example, this will match if either "Cat" or "Dog" is present:_ `(Cat|Dog)`
 
@@ -66,14 +65,15 @@ This will match every number: `([0-9])`
 
 #### Special Characters
 
-Sometimes you have to use special characters but it may cause conflicts. In this case, you will have to use an escape
-character.
+Sometimes you have to use special characters but it may cause conflicts.
+In this case, you will have to use an escape character.
 
 For example, this is a star that doesn't interfere with other matches `\*`.
 
 ## Understanding Regex
 
-If you still do not know what Regex are or want to know more. Check out the cheat sheet on the site below.
+If you still do not know what Regex are or want to know more.
+Check out the cheat sheet on the site below.
 
 [computerhope.com](https://www.computerhope.com/jargon/r/regex.htm)
 

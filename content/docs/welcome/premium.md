@@ -4,9 +4,8 @@ weight = 130
 description = "Unlock additional features and functionality by supporting YAGPDB."
 +++
 
-YAGPDB provides added functionality to servers which are assigned a premium slot by a user. On the official instance of
-YAGPDB, these premium slots can be acquired as a perk of being a [Patron](https://www.patreon.com/yagpdb) to Botlabs'
-YAGPDB.
+YAGPDB provides added functionality to servers which are assigned a premium slot by a user.
+On the official instance of YAGPDB, these premium slots can be acquired as a perk of being a [Patron](https://www.patreon.com/yagpdb) to Botlabs' YAGPDB.
 
 ## Benefits
 
@@ -83,8 +82,7 @@ A premium server unlocks the following benefits:
 
 {{< callout context="danger" title="Danger: Disabled Features" icon="outline/alert-octagon" >}}
 
-Some features enhanced or enabled by premium have been disabled on Botlabs' publicly hosted instance, often due to
-ratelimits with 3rd party APIs YAGPDB relies on.
+Some features enhanced or enabled by premium have been disabled on Botlabs' publicly hosted instance, often due to ratelimits with 3rd party APIs YAGPDB relies on.
 
 Any features marked as **DISABLED ON OFFICIAL INSTANCE** will **not** be available if you become a Patron to Botlabs.
 
@@ -94,13 +92,13 @@ Any features marked as **DISABLED ON OFFICIAL INSTANCE** will **not** be availab
 
 ### Getting a Premium Slot
 
-To enable premium on your server, you'll first need to get a premium slot assigned to your account. This is tied to your
-Discord user ID and cannot be transferred.
+To enable premium on your server, you'll first need to get a premium slot assigned to your account.
+This is tied to your Discord user ID and cannot be transferred.
 
 #### Patreon
 
-We have a [Patreon campaign](https://www.patreon.com/yagpdb) where you can pledge to support YAGPDB and get premium
-slots in return. This is the only way to purchase more than one premium slot.
+We have a [Patreon campaign](https://www.patreon.com/yagpdb) where you can pledge to support YAGPDB and get premium slots in return.
+This is the only way to purchase more than one premium slot.
 
 1. Pledge the required minimum amount to unlock a premium slot.
 2. [Link your Patreon account][p-link] to your Discord account.
@@ -112,8 +110,7 @@ slots in return. This is the only way to purchase more than one premium slot.
 #### Discord Store
 
 If you prefer not to use Patreon, you can purchase **a single premium slot** directly from [our Discord Store][d-store].
-Simply click on "Subscribe" and follow the on-screen instructions to complete your purchase---it may take up to 30
-minutes until the slot is available for assignment to a server on the [premium page](https://yagpdb.xyz/premium).
+Simply click on "Subscribe" and follow the on-screen instructions to complete your purchase---it may take up to 30 minutes until the slot is available for assignment to a server on the [premium page](https://yagpdb.xyz/premium).
 
 If you wish to purchase multiple slots, you will need to go through Patreon as explained above.
 
@@ -121,8 +118,7 @@ If you wish to purchase multiple slots, you will need to go through Patreon as e
 
 #### From a Code
 
-A bot owner may generate temporary or permanent premium codes for giveaways, perks, or to manually reward donors who
-donate through other sources/when the Patreon API is down.
+A bot owner may generate temporary or permanent premium codes for giveaways, perks, or to manually reward donors who donate through other sources/when the Patreon API is down.
 
 1. Visit [/premium](https://yagpdb.xyz/premium).
 2. Paste your code into the "Redeem Code" field, and click "Redeem Code." You may also use the "Check Code" button to
@@ -130,8 +126,8 @@ donate through other sources/when the Patreon API is down.
 
 ### Assigning a Slot
 
-Once you have obtained a Premium slot, it should appear on the [/premium](https://yagpdb.xyz/premium) page and be
-available to be assigned to a server. For each slot, choose a server to assign it to, then click "Update Premium Slot."
+Once you have obtained a Premium slot, it should appear on the [/premium](https://yagpdb.xyz/premium) page and be available to be assigned to a server.
+For each slot, choose a server to assign it to, then click "Update Premium Slot."
 
 You can assign your premium slots to any server with YAGPDB in it and no existing slot assigned.
 
@@ -158,11 +154,12 @@ When hosting YAGPDB yourself, you have access to a few methods to source premium
 
 ### Changing Limits
 
-Functionally raising or lowering limits, both for premium and non-premium servers, is accomplished by altering the
-source code. Most limits are numerical values that only need to be updated in one location. For most of the above listed
-numerical limits, the relevant key or constant is named in parenthesis. Ex. (`MaxMessageTriggersPremium`). It is
-recommended you familiarize yourself with the codebase before making changes. Find where these keys or constants are
-defined and alter their values as you wish.
+Functionally raising or lowering limits, both for premium and non-premium servers, is accomplished by altering the source code.
+Most limits are numerical values that only need to be updated in one location.
+For most of the above listed numerical limits, the relevant key or constant is named in parenthesis.
+Ex. (`MaxMessageTriggersPremium`).
+It is recommended you familiarize yourself with the codebase before making changes.
+Find where these keys or constants are defined and alter their values as you wish.
 
 ![Example of limit definitions in Advanced Automoderator](limits_example.png)
 

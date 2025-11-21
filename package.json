@@ -28,7 +28,6 @@
 		"thulite": "^2.6.3"
 	},
 	"devDependencies": {
-		"markdownlint-cli2": "^0.18.1",
 		"vite": "^7.1.5"
 	},
 	"engines": {

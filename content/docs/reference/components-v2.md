@@ -42,18 +42,18 @@ Displays plain text content, supporting markdown. Can be a string or a slice of 
 
 ### Section
 
-A layout block that shows text with one optional accessory: a button **or** a thumbnail.
+A layout block that shows text with one mandatory accessory: either a button a thumbnail.
 
 `text`: A string, or slice of strings.
 
-`button`: [Button](/docs/reference/templates/functions#cbutton) (optional)
+`button`: [Button](/docs/reference/templates/functions#cbutton)
 
-`thumbnail`: sdict with keys media, description, spoiler (optional)
+`thumbnail`: sdict with keys media, description, spoiler
 
 ###### Example
 
 For brevity, this example shows both a button and a thumbnail within a single section, but only one of those accessories
-can be used per section.
+must be used per section.
 
 ```yag
 {{ $section := componentBuilder

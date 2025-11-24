@@ -34,7 +34,7 @@ async function main() {
 	const nordDarkerTheme = await readJsonFile(join(__dirname, 'nord-darker.json'));
 	await highlighter.loadTheme(nordDarkerTheme);
 
-	const files = await glob(join(__dirname, '../public/{docs,learn}/**/index.html'));
+	const files = await glob(join(__dirname, '../public/{docs,learn,selfhost}/**/index.html'));
 	await Promise.all(
 		files.map((filepath) => highlightFile(highlighter, filepath, { lightTheme: LIGHT_THEME, darkTheme: DARK_THEME })),
 	);

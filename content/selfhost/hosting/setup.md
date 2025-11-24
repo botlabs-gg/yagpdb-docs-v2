@@ -57,7 +57,7 @@ Open both in an editor of your choice.
 
 For basic functionality, the following variables **must** be set.
 
-```env
+```dotenv
 # file: app.env
 YAGPDB_OWNER=... # Your Discord user ID
 YAGPDB_BOTTOKEN=... # Obtained from the developer portal
@@ -68,7 +68,7 @@ YAGPDB_HOST=... # domain or IP for the control panel. Can also be localhost
 
 Furthermore, ensure that the following variables in `db.env` match the commented ones specified in `app.env`.
 
-```env
+```dotenv
 # file: db.env
 POSTGRES_DB=... # YAGPDB_PQHOST
 POSTGRES_USER=... # YAGPDB_PQUSERNAME

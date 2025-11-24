@@ -45,7 +45,7 @@ Start the server via `systemctl start valkey` on a systemd distro.
 
 Make sure the following variables are available in your environment:
 
-```env
+```dotenv
 YAGPDB_BOTTOKEN= # obtained via the discord developer portal
 YAGPDB_CLIENTID= # see above
 YAGPDB_CLIENTSECRET= # see above

@@ -90,8 +90,8 @@ mainSections = ["docs"]
   highlightBroken = true # true or false (default)
 
 # Images (@hyas/images)
-[hyas_images]
-  [hyas_images.defaults]
+[thulite_images]
+  [thulite_images.defaults]
     decoding = "async" # sync, async, or auto (default)
     fetchpriority = "auto" # high, low, or auto (default)
     loading = "lazy" # eager or lazy (default)

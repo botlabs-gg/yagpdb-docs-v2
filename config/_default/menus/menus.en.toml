@@ -10,7 +10,7 @@
 
 [[main]]
   name = "Selfhosting"
-  url = "/selfhost/welcome/introduction/"
+  url = "/selfhosting/welcome/introduction/"
   weight = 15
 
 [[social]]

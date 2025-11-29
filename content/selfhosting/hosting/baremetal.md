@@ -1,6 +1,6 @@
 +++
 title = "Baremetal Installation"
-weight = 220
+weight = 230
 +++
 
 Running a baremetal installation of YAGPDB is a little more involved, but comes with the benefit of reduced compilation times, as no container has to be rebuilt.

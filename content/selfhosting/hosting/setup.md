@@ -46,43 +46,7 @@ If you're unsure yet, leave out this step and come back later.
 Clone the Git repository from <https://github.combotlabs-gg/yagpdb> and change into the clone.
 From here on, you have two options: compile everything from source and run a baremetal installation, or use Docker.
 
-For simplicity, we will go over starting the bot in a container here.
-If you wish to run a baremetal installation instead, please continue on the next page.
-
-### Starting Dockerized
-
-Before you can start the container, you will need some configuration values.
-Go into the `yagpdb_docker` directory and opy `app.example.env` to `app.env` and `db.example.env` to `db.env`.
-Open both in an editor of your choice.
-
-For basic functionality, the following variables **must** be set.
-
-```dotenv
-# file: app.env
-YAGPDB_OWNER=... # Your Discord user ID
-YAGPDB_BOTTOKEN=... # Obtained from the developer portal
-YAGPDB_CLIENTID=... # see above
-YAGPDB_CLIENTSECRET=... # see above
-YAGPDB_HOST=... # domain or IP for the control panel. Can also be localhost
-```
-
-Furthermore, ensure that the following variables in `db.env` match the commented ones specified in `app.env`.
-
-```dotenv
-# file: db.env
-POSTGRES_DB=... # YAGPDB_PQHOST
-POSTGRES_USER=... # YAGPDB_PQUSERNAME
-POSTGRES_PASSWORD=... # YAGPDB_PQPASSWORD
-```
-
-Save both files and switch back to your terminal.
-If everything is correct, you should be able to start the bot.
-
-```shellsession
-docker-compose -f docker-compose.yml up
-```
-
-During development, use the `docker-compose.dev.yml` file instead.
-
-This will run everything the bot has to offer---some plugins may log some errors, but those can be safely ignored for now.
-The control panel will be accessible on the ports `80` and `443`---if you prefer `5000` and `5001`, remove the `-pa` flag from the command in the compose file.
+{{< card-grid >}}
+{{< link-card title="Docker" href="/selfhosting/hosting/docker" >}}
+{{< link-card title="Baremetal" href="/selfhosting/hosting/baremetal" >}}
+{{< /card-grid >}}

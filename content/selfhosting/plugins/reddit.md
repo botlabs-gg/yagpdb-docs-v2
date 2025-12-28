@@ -73,4 +73,8 @@ YAGPDB_REDDIT_REDIRECTURI=your_redirect_uri
 YAGPDB_REDDIT_REFRESHTOKEN=your_refresh_token
 ```
 
-Make sure that the process has access to these environment variables, depending on your deployment, then restart the bot.
+Make sure that the process has access to these environment variables, depending on your deployment, then add `reddit` to the list of enabled feeds.
+
+```shellsession
+./yagpdb -bot -web -backgroundworkers -feeds reddit
+```

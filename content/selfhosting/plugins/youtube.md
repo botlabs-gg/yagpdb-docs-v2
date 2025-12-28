@@ -22,7 +22,11 @@ Store the downloaded JSON file securely, as it contains sensitive information.
 
 For a baremetal installation, you need to set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to the path of the downloaded JSON file.
 Make sure that the user running the YAGPDB process has read access to this file.
-Then, restart the bot to apply the changes.
+Then, restart the bot with `youtube` added to the list of enabled feeds.
+
+```shellsession
+./yagpdb -bot -web -backgroundworkers -feeds youtube
+```
 
 It is recommended to place the credentials file in a dedicated directory, for example `/opt/yagpdb/credentials/credentials.json`, and set the environment variable accordingly,
 or in the source directory of your YAGPDB installation.

@@ -74,6 +74,13 @@ Finally, we can start the bot with everything it has to offer.
 ./yagpdb -all
 ```
 
+Some plugins, especially the feeds, require additional configuration and will therefore error out on first start.
+To quench those errors, just run the core of the bot:
+
+```shellsession
+./yagpdb -bot -web -backgroundworkers
+```
+
 YAGPDB's web server can handle HTTPS traffic for you, but you may wish to disable it (for example because you are behind a reverse proxy).
 For that, we provide the `-https=false` and `-exthttps=true` flags to the command.
 If you want to completely disable HTTPS (good for `localhost`), adjust accordingly to `-https=false -exthttps=false`.

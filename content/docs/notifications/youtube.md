@@ -1,6 +1,6 @@
 +++
 title = "YouTube"
-weight = 530
+weight = 540
 description = "Subscribe to your favorite YouTubers without polluting your own feed."
 +++
 

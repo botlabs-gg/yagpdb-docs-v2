@@ -1,6 +1,6 @@
 +++
 title = "Streaming"
-weight = 540
+weight = 530
 description = "Spam your server with notifications when someone starts streaming."
 +++
 

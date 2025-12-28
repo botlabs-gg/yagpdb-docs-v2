@@ -16,7 +16,7 @@ In order for you to enable YouTube feeds you'll need to get YouTube API credenti
 
 Store the downloaded JSON file securely, as it contains sensitive information.
 
-## Configuring YAGPDB with YouTube API Key
+## Configuring YAGPDB
 
 ### Baremetal Setup
 

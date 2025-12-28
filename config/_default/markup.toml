@@ -15,9 +15,9 @@ defaultMarkdownHandler = "goldmark"
   # See https://github.com/gohugoio/hugo/issues/4733, https://www.veriphor.com/articles/link-and-image-render-hooks/.
   [goldmark.renderHooks]
     [goldmark.renderHooks.image]
-      enableDefault = true
+      useEmbedded = "fallback"
     [goldmark.renderHooks.link]
-      enableDefault = true
+      useEmbedded = "fallback"
 
 [highlight]
   hl_inline = false

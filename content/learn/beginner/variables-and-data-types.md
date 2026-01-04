@@ -78,8 +78,8 @@ Please note that not all escape sequences are supported by Discord.
 #### Raw String Literals
 
 It should become relatively clear that a lot of new lines and other special characters can make a quoted string quite hard to read.
-To make this easier, you can use backticks (`` ` ` `) to create a _raw string literal_.
-A raw string literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening ` ` ` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will later cover functions that solve this special case.
+To make this easier, you can use backticks (`` ` ``) to create a *raw string literal*.
+A raw string literal does not attempt to interpret its contents in any way, and will simply contain the text between the opening `` ` `` and closing `` ` `` unmodified---we cannot even escape a backtick to include one in the string, but we will later cover functions that solve this special case.
 
 ```txt
 `This is my
@@ -97,7 +97,7 @@ For floating-point numbers, you can add a decimal point, like so: `5.0`.
 #### Integers
 
 In the bot's template actions, integers are represented as 64-bit signed integers.
-This means that you can store numbers from `-9223372036854775808` to `9223372036854775807`.
+This means that you can store numbers from `-9 223 372 036 854 775 808` to `9 223 372 036 854 775 807`, which is approximately 9.22 *quintillion* (a very large number indeed).
 If you try to store a number outside this range, the bot will return an error.
 
 The bot accepts several notations for integers:
@@ -117,12 +117,14 @@ The bot accepts several notations for integers:
 
 #### Floating-Point Numbers
 
-We represent floating-point numbers as 64-bit IEEE-754 floating-point numbers.
+We represent floating-point numbers as 64-bit [IEEE-754 floating-point numbers][IEEE-754].
 This means that you can store numbers with a precision of about 15 decimal places.
 If you try to store a number with more precision, the bot will round it to the nearest representable number.
 
 There are a lot of ways to define a floating-point number, but the most common way is to use the decimal point, such as `3.14`.
-For a full list of ways to define a floating-point number, you can refer to the [Go documentation](https://golang.org/ref/spec#Floating-point_literals).
+For a full list of ways to define a floating-point number, you can refer to the [Go documentation on floating-point literals](https://golang.org/ref/spec#Floating-point_literals).
+
+[IEEE-754]: https://en.wikipedia.org/wiki/IEEE_754
 
 ### Booleans
 

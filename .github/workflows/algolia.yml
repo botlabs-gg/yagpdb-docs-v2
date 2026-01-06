@@ -4,6 +4,13 @@ name: Refresh Algolia Index
 on:
   deployment:
 
+permissions:
+  deployments: read
+
+concurrency:
+  group: 'algolia-index-refresh'
+  cancel-in-progress: true
+
 jobs:
   refresh:
     runs-on: ubuntu-latest

@@ -201,6 +201,7 @@ Views the recent deleted messages. By default, only the current user's deleted m
 You can use the `-a` flag to view all users delete messages, or `-u` to view a specified user's deleted messages.
 Both `-a` and `-u` require Manage Messages permission.
 Note: `-u` overrides `-a` meaning even though `-a` might've been specified along with `-u` only messages from the user provided using `-u` will be shown.
+
 #### Usage{#Undelete-usage}
 
 ```txt
@@ -264,6 +265,7 @@ Evalcc <code:Text>
 
 Creates a log of the last messages in the current channel.
 This includes deleted messages within an hour (or 12 hours for premium servers)
+
 #### Usage{#Logs-usage}
 
 ```txt
@@ -545,6 +547,7 @@ Throw [Target:User]
 
 Roll dices, specify nothing for 6 sides, specify a number for max sides, or rpg dice syntax.
 Example: `-roll 2d6`
+
 #### Usage{#Roll-usage}
 
 ```txt
@@ -1150,6 +1153,7 @@ Delete the last number of messages from chat, optionally filtering by user, max 
 Specify a regex with "-r regex_here" and max age with "-ma 1h10m"
 You can invert the regex match (i.e. only clear messages that do not match the given regex) by supplying the `-im` flag
 Note: Will only look in the last 1k messages, and none > 2 weeks old.
+
 #### Usage{#Clean-usage}
 
 ```txt
@@ -1445,6 +1449,7 @@ Set up a role menu.
 Specify a message with -m to use an existing message instead of having the bot make one
 
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
+
 #### Usage{#RoleMenu-Create-usage}
 
 ```txt
@@ -1537,6 +1542,7 @@ Marks the menu as done.
 
 
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
+
 #### Usage{#RoleMenu-Complete-usage}
 
 ```txt

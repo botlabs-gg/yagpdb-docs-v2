@@ -2195,18 +2195,20 @@ Converts the input `x` to a float64, returning zero for invalid inputs.
 #### toInt64
 
 ```yag
-{{ $n := toInt64 <x> }}
+{{ $n := toInt64 <x> [base] }}
 ```
 
-Converts the input to an int64, returning zero for invalid inputs.
+Converts the input to an int64 in the given base (0, 2 to 36), returning zero for invalid inputs.
+Defaults to base 10 (decimal) if not specified.
 
 #### toInt
 
 ```yag
-{{ $n := toInt <x> }}
+{{ $n := toInt <x> [base] }}
 ```
 
-Converts the input to an integer, returning zero for invalid inputs.
+Converts the input to an integer in the given base (0, 2 to 36), returning zero for invalid inputs.
+Defaults to base 10 (decimal) if not specified.
 
 #### toRune
 

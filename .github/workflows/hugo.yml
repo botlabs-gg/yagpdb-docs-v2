@@ -16,7 +16,10 @@ concurrency:
 
 env:
   HUGO_CACHEDIR: /tmp/hugo_cache/
-  HUGO_BASEURL: 'https://help.yagpdb.xyz'
+  # Normally, this would be "production", but we use "deployment" to
+  # differentiate between local builds and GitHub Pages builds,
+  # because an invocation of 'hugo' (via npm run build) sets the env to production.
+  HUGO_ENV: deployment
 
 jobs:
   build:

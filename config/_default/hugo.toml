@@ -1,9 +1,7 @@
 title = "YAGPDB Help Center"
 copyright = "Copyright (c) 2020-2024 YAGPDB documentation contributors"
-# To avoid weirdness with images and whatnot, this is empty and instead set at build time.
-# See also https://discourse.gohugo.io/t/solved-what-should-be-used-for-the-value-of-site-baseurl/5896
-# baseURL = ""
-baseurl = "http://localhost/"
+# To allow serving with 'npm run preview', this is set to "/".
+baseurl = "/"
 canonifyURLs = false
 disableAliases = true
 enableGitInfo = false

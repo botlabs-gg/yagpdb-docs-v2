@@ -1,0 +1,2 @@
+# Production env overrides
+baseurl = "https://help.yagpdb.xyz"

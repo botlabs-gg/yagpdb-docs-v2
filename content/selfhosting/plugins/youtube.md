@@ -6,6 +6,14 @@ weight = 320
 
 In order for you to enable YouTube feeds you'll need to get YouTube API credentials and then add them to your bot setup.
 
+{{< callout context="danger" title="Danger: Webhook Must be Accessible" icon="outline/alert-octagon" >}}
+
+YAGPDB uses pubsubhubbub to receive updates via a webhook for this plugin.
+This means that at least the webhook URL must be publicly accessible for YouTube to send updates to your bot.
+The callback URL is in the format `https://$YAGPDB_HOST/yt_new_upload`; make sure that your firewall allows incoming connections from Google's servers to this URL.
+
+{{< /callout >}}
+
 ## Creating a YouTube API Key
 
 1. Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a new project.

@@ -21,7 +21,7 @@ It is recommended to restrict the API key to the safe browsing API only, to prev
 
 The configuration is the same for both baremetal and Docker installations.
 
-Set the `YAGPDB_SAFEBROWSING_API_KEY` environment variable to your newly created API key.
+Set the `YAGPDB_GOOGLE_SAFEBROWSING_API_KEY` environment variable to your newly created API key.
 Then, restart the bot to apply the changes.
 
 If everything works correctly, you should see a new `safebrowsing_db` file in the directory you started the bot from (or in the container).

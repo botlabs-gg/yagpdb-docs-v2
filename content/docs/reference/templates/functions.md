@@ -1216,6 +1216,15 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 {{ end }}
 ```
 
+#### memberAbove
+
+```yag
+{{ $isAbove := memberAbove <a> <b> }}
+```
+
+Returns whether member `a` is higher than member `b` in the role hierarchy.
+Both `a` and `b` must be a member object.
+
 #### onlineCount
 
 ```yag

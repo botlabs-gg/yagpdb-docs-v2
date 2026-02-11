@@ -1612,6 +1612,21 @@ Unpins the specified message.
 
 ## Regex Functions
 
+{{< callout context="tip" title="Tip: Use Backticks for Regular Expressions" icon="outline/rocket" >}}
+
+When supplying regular expressions to the following functions, it is convenient to use backticks (\`) instead of double quotation marks.
+The backticks ensure that the content is interpreted verbatim as a *raw string*, which avoids needing to double-escape backslashes.
+
+For example, to search for the regular expression `\w+` in the string `$s`:
+
+```yag
+{{ reFind `\w+` $s }} {{/* ok */}}
+{{ reFind "\w+" $s }} {{/* not ok; \w is interpreted as string escape sequence */}}
+{{ reFind "\\w+" $s }} {{/* also ok; same result as first line */}}
+```
+
+{{< /callout >}}
+
 #### reFind
 
 ```yag

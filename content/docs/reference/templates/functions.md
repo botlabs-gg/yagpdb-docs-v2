@@ -1615,7 +1615,7 @@ Unpins the specified message.
 {{< callout context="tip" title="Tip: Use Backticks for Regular Expressions" icon="outline/rocket" >}}
 
 When supplying regular expressions to the following functions, it is convenient to use backticks (\`) instead of double quotation marks.
-The backticks ensure that the content is interpreted verbatim as a _raw string_, which avoids needing to double-escape backslashes.
+The backticks ensure that the content is interpreted verbatim as a *raw string*, which avoids needing to double-escape backslashes.
 
 For example, to search for the regular expression `\w+` in the string `$s`:
 

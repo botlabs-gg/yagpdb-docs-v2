@@ -43,7 +43,7 @@ If you're unsure yet, leave out this step and come back later.
 
 ## Obtain YAGPDB Sources
 
-Clone the Git repository from <https://github.combotlabs-gg/yagpdb> and change into the clone.
+Clone the Git repository from <https://github.com/botlabs-gg/yagpdb> and change into the clone.
 From here on, you have two options: compile everything from source and run a baremetal installation, or use Docker.
 
 {{< card-grid >}}

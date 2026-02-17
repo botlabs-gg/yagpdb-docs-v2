@@ -1,6 +1,7 @@
 +++
 title ="Responding to an Interaction"
 weight = 413
+description = "Learn the different methods for responding to interactions, covering initial responses, followups, and ephemeral messages."
 +++
 
 While technically not required, responding to an interaction with one of Discord's allotted initial responses is crucial if you don't want your users to see an error after interacting, greatly improving user experience.

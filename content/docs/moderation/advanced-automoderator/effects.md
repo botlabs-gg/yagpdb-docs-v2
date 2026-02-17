@@ -1,12 +1,11 @@
 +++
 title = 'Effects'
 weight = 434
+description = 'Effects define what happens when a rule is triggered and all conditions are met. This page covers the different effect types in Advanced Automoderator.'
 +++
 
 Effects define what happens when a rule is triggered and all conditions are met.
-This page will cover the different kinds of effects available to you in Advanced Automoderator.
-
-<!--more-->
+This page covers the different effect types in Advanced Automoderator.
 
 ## Quick Intro
 

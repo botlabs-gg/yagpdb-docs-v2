@@ -1,6 +1,7 @@
 +++
 title = "Parsing an Interaction"
 weight = 412
+description = "Learn to parse interaction data when users interact with buttons, select menus, and modals in your custom commands."
 +++
 
 Custom Commands with the [Message Component](/docs/custom-commands/commands#component) or [Modal Submission](/docs/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a select menu, or completion of a modal form.

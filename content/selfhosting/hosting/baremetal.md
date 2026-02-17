@@ -1,6 +1,7 @@
 +++
 title = "Baremetal Installation"
 weight = 230
+description = "Install YAGPDB directly on your system without containers. More involved than Docker, but offers faster compilation for contributors."
 +++
 
 Running a baremetal installation of YAGPDB is a little more involved, but comes with the benefit of reduced compilation times, as no container has to be rebuilt.

@@ -1,6 +1,7 @@
 +++
 title = "Docker Installation"
 weight = 220
+description = "Selfhost YAGPDB using Docker. This page covers the configuration and setup of a Docker instance of YAGPDB."
 +++
 
 The easiest way to get your instance of YAGPDB running may be via Docker.

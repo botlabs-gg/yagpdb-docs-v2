@@ -1,6 +1,7 @@
 +++
 title = "Creating Interactive Elements"
 weight = 412
+description = "Learn how to create buttons, select menus, and modals that users can interact with in your bot's messages."
 +++
 
 Before you can start triggering custom commands with interactive elements---such as buttons---you'll obviously need to have elements to interact with.

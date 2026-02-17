@@ -1,6 +1,6 @@
 +++
 title = "Initial Setup"
-description = ""
+description = "On this page, we will explain how to let Discord know about your bot and to configure YAGPDB accordingly."
 weight = 210
 +++
 

@@ -1,0 +1,16 @@
+diff --git a/node_modules/@thulite/seo/layouts/_partials/seo/description.html b/node_modules/@thulite/seo/layouts/_partials/seo/description.html
+index 7f8fccf..3cf16a1 100644
+--- a/node_modules/@thulite/seo/layouts/_partials/seo/description.html
++++ b/node_modules/@thulite/seo/layouts/_partials/seo/description.html
+@@ -12,6 +12,11 @@
+ 	{{- end }}
+ {{- end }}
+ 
++{{/* ignore description length for any and all sections */ -}}
++{{- if and .Page.IsSection site.Params.seo.description.ignoreSections }}
++  {{- $errorLevel = "ignore" }}
++{{- end }}
++
+ {{- /* Do fallback to page summary before fallback to site description */ -}}
+ {{- $summaryFallback := true -}}
+ {{- if isset site.Params.seo.description "summaryFallback" }}

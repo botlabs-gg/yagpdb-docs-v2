@@ -116,3 +116,15 @@ mainSections = ["docs"]
     type = "Organization"
     logo = "icon.png"
     name = "YAGPDB"
+  [seo.description]
+    ignoreSections = true
+    # lengthIgnores is a list of regex patterns for paths to ignore the description length limit.
+    lengthIgnores = [
+      "^/$", # homepage
+     "/404",
+     "/categories",
+     "/contributors",
+     "/tags"
+    ]
+    [seo.description.length]
+      min = 1

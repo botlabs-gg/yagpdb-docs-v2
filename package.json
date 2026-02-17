@@ -10,7 +10,8 @@
 		"build": "hugo --minify --gc && npm run highlight",
 		"highlight": "node scripts/highlight.mjs",
 		"preview": "vite preview --outDir public",
-		"lint": "markdownlint-cli2 'content/**/*.md' '!content/docs/core/all-commands.md' --config config/.markdownlint.yaml"
+		"lint": "markdownlint-cli2 'content/**/*.md' '!content/docs/core/all-commands.md' --config config/.markdownlint.yaml",
+		"postinstall": "patch-package"
 	},
 	"dependencies": {
 		"@docsearch/css": "^3.6.1",
@@ -24,6 +25,7 @@
 		"domutils": "^3.1.0",
 		"glob": "^11.0.0",
 		"htmlparser2": "^9.1.0",
+		"patch-package": "^8.0.1",
 		"shiki": "^1.11.0",
 		"thulite": "^2.6.3"
 	},

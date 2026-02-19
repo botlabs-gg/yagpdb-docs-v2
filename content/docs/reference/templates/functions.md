@@ -809,7 +809,7 @@ Is also valid for ephemeral messages.
 
 ---
 
-## Component V2
+## Components V2
 
 Components V2 provides a new way to create interactive and visually appealing message layouts in Discord applications, making it easier to control message formatting and user interaction while maintaining line length under 120 characters.
 
@@ -916,6 +916,152 @@ Returns the component data for the given key.
 - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
 
 Example usage can be found at the [Components v2](/docs/reference/components-v2).
+
+### Modal Components
+
+These functions aid you in creating components for use in modals, which are sent using [`sendModal`](#sendmodal).
+
+#### modalBuilder
+
+```yag
+{{ $builder := modalBuilder }}
+```
+
+Returns a `modalBuilder`, which simplifies the construction of modal components.
+
+You can optionally pass the following **positional** arguments to initialize the modal with the given values:
+
+```yag
+{{ $builder := modalBuilder title custom_id components... }}
+```
+
+See also [modalBuilder.Set](#modalbuilderset).
+
+##### modalBuilder.Set
+
+```yag
+{{ $builder.Set <key> <value> }}
+```
+
+Sets the value of a modal component field.
+`key` must be one of the following:
+- `title`: the modal's title. Max 45 characters.
+- `custom_id`: a unique identifier for the modal.
+- `components`: a slice of modal components, created with below functions.
+
+##### modalBuilder.AddComponents
+
+```yag
+{{ $builder.AddComponents (values...) }}
+```
+Adds one or more modal components to the builder.
+`values` may be a single component or a slice of components.
+
+In addition to the already existing components, you can also create modal-specific components using the functions outlined below.
+
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
+
+All following components must be wrapped in a [label](#clabel) to be used in a modal.
+
+{{< /callout >}}
+
+#### ccheckbox
+
+```yag
+{{ $checkbox := ccheckbox (values...) }}
+```
+
+Returns a checkbox component for use in modals.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the checkbox.
+- `default`: optional bool for whether the checkbox is checked by default.
+
+#### ccheckboxGroup
+
+```yag
+{{ $checkboxGroup := ccheckboxGroup (values...) }}
+```
+
+Returns a checkbox group component for use in modals.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the checkbox group.
+- `min_values`: optionally the minimum number of checkboxes that must be checked. Min 0, max 10, defaults to 1. If 0, `required` must be false.
+- `max_values`: optionally the maximum number of checkboxes that can be checked. Min 1, max the number of options, defaults to number of options.
+- `required`: optional bool for whether selecting within the group is required.
+- `options`: a slice of sdicts with the following keys:
+  - `label`: User-facing label for the checkbox.
+  - `value`: the value that will be sent when the checkbox is checked.
+  - `description`: the optional description for the checkbox. Max 100 characters.
+  - `default`: optional bool for whether the checkbox is checked by default.
+
+#### cradioGroup
+
+```yag
+{{ $radioGroup := cradioGroup (values...) }}
+```
+
+Returns a radio group component for use in modals for selecting exactly one option from a defined list.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the radio group.
+- `required`: optional bool for whether selecting an option is required. Defaults to true.
+- `options`: a slice of sdicts with the following keys:
+  - `label`: User-facing label for the radio option.
+  - `value`: the value that will be sent when the option is selected.
+  - `description`: the optional description for the option. Max 100 characters.
+  - `default`: optional bool for whether the option is selected by default. Only one option can be selected by default.
+
+#### ctextInput
+
+```yag
+{{ $textInput := ctextInput (values...) }}
+```
+
+Returns a text input component for use in modals.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the text input.
+- `style`: the style of the text input, either 1 for short, 2 for long.
+- `min_length`: the optional minimum length of the input. Min 0, max 4000.
+- `max_length`: the optional maximum length of the input. Min 1, max 4000.
+- `required`: optional bool for whether the text input is required. Defaults to true.
+- `value`: the optional default value for the text input. Max 4000 characters.
+- `placeholder`: the optional placeholder text for the text input. Max 100 characters.
+
+#### clabel
+
+```yag
+{{ $label := clabel (values...) }}
+```
+
+Returns a label component for use in modals.
+
+Labels are top-level components that wrap modal components.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `label`: the label text. Max 45 characters.
+- `component`: The component within.
+- `description`: the optional label description. Max 100 characters.
+
+----
+
+#### ctextDisplay
+
+```yag
+{{ $textDisplay := ctextDisplay (values...) }}
+```
+
+Creates a text display component.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+- `content`: the text to display. Markdown supported.
 
 ---
 
@@ -1224,6 +1370,15 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 
 Returns whether member `a` is higher than member `b` in the role hierarchy.
 Both `a` and `b` must be a member object.
+
+#### memberAboveRole
+
+```yag
+{{ $isAbove := memberAboveRole <member> <role> }}
+```
+
+Returns whether the specified member is higher than the specified role in the role hierarchy.
+`member` must be a member object, `role` must be a role object.
 
 #### onlineCount
 

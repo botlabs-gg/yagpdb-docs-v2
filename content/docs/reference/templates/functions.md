@@ -1225,6 +1225,15 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 Returns whether member `a` is higher than member `b` in the role hierarchy.
 Both `a` and `b` must be a member object.
 
+#### memberAboveRole
+
+```yag
+{{ $isAbove := memberAboveRole <member> <role> }}
+```
+
+Returns whether the specified member is higher than the specified role in the role hierarchy.
+`member` must be a member object, `role` must be a role object.
+
 #### onlineCount
 
 ```yag

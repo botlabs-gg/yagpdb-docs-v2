@@ -59,7 +59,9 @@ If you experience a high volume of tickets, consider closing some or using [thre
 ### Threaded Tickets (Premium)
 
 {{< callout context="tip" title="Premium Feature" icon="outline/star" >}}
+
 Threaded tickets are available for [premium servers](https://yagpdb.xyz/premium).
+
 {{< /callout >}}
 
 Instead of creating a new channel for each ticket, YAGPDB can use **private threads**. This is particularly useful for servers with a high volume of tickets, as it keeps the channel list clean and avoids hitting Discord's 50-channel-per-category limit.

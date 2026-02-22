@@ -52,9 +52,23 @@ This category should be set up with the necessary permissions for the bot to cre
 {{< callout context="note" title="Note: Discord Channel Limit" icon="outline/info-circle" >}}
 
 Discord limits categories to contain at most 50 channels.
-If you experience a high volume of tickets, consider closing some or researching alternative bots that handle tickets differently.
+If you experience a high volume of tickets, consider closing some or using [threaded tickets](#threaded-tickets-premium).
 
 {{< /callout >}}
+
+### Threaded Tickets (Premium)
+
+{{< callout context="tip" title="Premium Feature" icon="outline/star" >}}
+Threaded tickets are available for [premium servers](https://yagpdb.xyz/premium).
+{{< /callout >}}
+
+Instead of creating a new channel for each ticket, YAGPDB can use **private threads**. This is particularly useful for servers with a high volume of tickets, as it keeps the channel list clean and avoids hitting Discord's 50-channel-per-category limit.
+
+To use threaded tickets:
+1. Enable the **Use threaded tickets** toggle in the ticket settings.
+2. Select a **Tickets thread channel**. This is the channel where the bot will create the private threads.
+
+When enabled, the bot will create a private thread in the specified channel and add the user who opened the ticket and the configured staff roles to the thread.
 
 ### Ticket Transcripts Channel
 

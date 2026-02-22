@@ -399,8 +399,10 @@ This trigger type executes when a role is added to or removed from a member.
 - **Trigger Limits**:
     - Free servers: Maximum 1 Role Change trigger.
     - Premium servers: Maximum 5 Role Change triggers.
-- **Role Restrictions**: Role and channel restrictions on the custom command apply specifically to the role being modified, not the member receiving/assigning it.
-- **Context Limitations**: Similar to interval triggers, `.Message`, `.Member`, and `.User` are not available in this context. Use `.TargetMember`, `.TargetUser`, and `.Author` instead.
+- **Role Restrictions**: Role Restrictions on the custom command apply specifically to the role being modified, not the member receiving/assigning it.
+
+- **Context Limitations**: Similar to interval triggers, `.Message`, `.Member`, and `.User` are not available in this trigger type. Use `.TargetMember`, `.TargetUser`, and `.Author` instead. Any functions that rely on these properties will not work in this trigger type. For example `hasRole` won't work, to check if the `.TargetMember` has a role use `targetHasRole` instead. 
+
 - **Execution**: Cannot be triggered via `execCC` or `scheduleUniqueCC`.
 
 #### Case Sensitivity

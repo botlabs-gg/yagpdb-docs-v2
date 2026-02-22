@@ -304,6 +304,18 @@ This is available and part of the dot when reaction trigger type is used.
 [Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/message#reaction-object).\
 [Emoji object in Discord documentation.](https://discord.com/developers/docs/resources/emoji)
 
+### Role Change
+
+This is available and part of the dot when a Role Changes trigger type is used.
+
+| Field           | Description                                                                                              |
+| --------------- | -------------------------------------------------------------------------------------------------------- |
+| .TargetMember   | The [Member](#member) object of the member whose roles were changed.                                     |
+| .TargetUser     | The [User](#user) object of the user whose roles were changed.                                           |
+| .Author         | The [User](#user) object of the user who performed the role change.                                      |
+| .Role           | The [Role](https://discord.com/developers/docs/topics/permissions#role-object) object that was modified. |
+| .RoleAdded      | Returns a boolean indicating whether the role was added (`true`) or removed (`false`).                   |
+
 ### User
 
 | Field               | Description                                                                                                                                      |

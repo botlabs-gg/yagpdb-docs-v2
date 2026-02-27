@@ -713,7 +713,7 @@ Same as [sendResponse](#sendresponse), but also returns the message ID.
 {{ $button := cbutton "list of button values" }}
 ```
 
-Creates a [button object](https://docs.discord.com/developers/components/reference#button-object) for use in interactions.
+Creates a [button object](https://docs.discord.com/developers/components/reference#button-button-structure) for use in interactions.
 
 A link style button _must_ have a URL and may not have a Custom ID.
 All other styles _must_ have a Custom ID and cannot have a URL.
@@ -733,7 +733,7 @@ All buttons must have either a label or an emoji.
 {{ $menu := cmenu "list of select menu values" }}
 ```
 
-Creates a [select menu object](https://docs.discord.com/developers/components/reference#string-select-menu-object) for use in interactions.
+Creates a [select menu object](https://docs.discord.com/developers/components/reference#string-select-string-select-structure) for use in interactions.
 
 The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`.
 Text type menus _must_ have `options`, while all other types cannot.

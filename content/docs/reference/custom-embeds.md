@@ -10,7 +10,7 @@ A guide to creating custom embeds in various contexts across YAGPDB.
 
 {{< callout context="danger" title="Danger: Embed Limitations" icon="outline/alert-octagon" >}}
 
-Embeds have limits, summarized in [Discord channel documentation](https://discord.com/developers/docs/resources/channel#embed-object-embed-limits).
+Embeds have limits, summarized in [Discord channel documentation](https://docs.discord.com/developers/resources/message#embed-object-embed-limits).
 
 {{< /callout >}}
 
@@ -29,7 +29,7 @@ One method of sending an embed with YAGPDB is using the command `customembed` (o
 
 YAGPDB accepts embeds in JSON or YAML following the rules of Discord's [Embed Object] structure.
 
-[Embed Object]: https://discord.com/developers/docs/resources/message#embed-object
+[Embed Object]: https://docs.discord.com/developers/resources/message#embed-object
 
 ![An Example of the Custom Embed Command](custom_embed_example.png)
 

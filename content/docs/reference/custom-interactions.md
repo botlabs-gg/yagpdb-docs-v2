@@ -51,7 +51,7 @@ Custom IDs must be unique for every component attached to the message.
 
 ### Buttons
 
-See also the [Discord API documentation](https://discord.com/developers/docs/components/reference#button) on button objects.
+See also the [Discord API documentation](https://docs.discord.com/developers/components/reference#button) on button objects.
 
 Buttons can be created as either an `sdict` or via [`cbutton`].
 In custom commands they can have five different styles, listed in the table below.

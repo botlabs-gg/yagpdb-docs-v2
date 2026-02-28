@@ -102,7 +102,7 @@ As Discord automatically populates the options, you need not---nor can you---def
 Channel select menus are a bit different from the other types, as they allow you to specify which channel types you want to include in the menu.
 You do this by using the `channel_types` field, which accepts a slice of [channel types].
 
-[channel types]: https://discord.com/developers/docs/resources/channel#channel-object-channel-types
+[channel types]: https://docs.discord.com/developers/resources/channel#channel-object-channel-types
 
 ```yag
 {{ $issuesChannel := "1210135699135926312" }}
@@ -143,7 +143,7 @@ You cannot send a modal as a response to a user submitting a modal.
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Title     | The modal's title, appears at the top of the modal while a user is filling it out.                                                                                 |
 | Custom ID | The Custom ID is referenced to trigger a custom command when the modal is submitted (which you'll need to do if you care about retrieving what the user inputted). |
-| Fields    | A slice of [discordgo.TextInputComponent](https://discord.com/developers/docs/components/reference#text-input) objects.                                            |
+| Fields    | A slice of [discordgo.TextInputComponent](https://docs.discord.com/developers/components/reference#text-input) objects.                                            |
 
 Let's consider the following piece of code:
 
@@ -275,7 +275,7 @@ To illustrate, we'll create a message with five action rows, each with a differe
 ### Using emojis
 
 Buttons and Select Menu Options both have an `"emoji"` field, but this field does not accept the regular unicode/name:id formula like reactions do.
-Emojis in components follow the [partial emoji object](https://discord.com/developers/docs/resources/emoji#emoji-object) structure, however only the ID *or* the Name fields are required, depending on if you are using a custom emoji or not.
+Emojis in components follow the [partial emoji object](https://docs.discord.com/developers/resources/emoji#emoji-object) structure, however only the ID *or* the Name fields are required, depending on if you are using a custom emoji or not.
 
 | Field | Description                                                                                           |
 | ----- | ----------------------------------------------------------------------------------------------------- |

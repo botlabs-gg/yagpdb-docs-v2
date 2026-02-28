@@ -54,7 +54,7 @@ Following types are supported:
 [user object]: /docs/reference/templates/syntax-and-data/#user
 [member object]: /docs/reference/templates/syntax-and-data/#member
 [channel object]: /docs/reference/templates/syntax-and-data/#channel
-[role object]: https://discord.com/developers/docs/topics/permissions#role-object
+[role object]: https://docs.discord.com/developers/topics/permissions#role-object
 
 The `description` is a human-readable description of the argument.
 This is used in the error message if the argument is not valid.

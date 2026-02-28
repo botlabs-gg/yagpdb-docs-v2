@@ -763,7 +763,7 @@ Text type menus _must_ have `options`, while all other types cannot.
 Creates a [modal object][modals] for use in interactions.
 See [`sendModal`](#sendmodal) for more detail.
 
-[modals]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
+[modals]: https://docs.discord.com/developers/interactions/receiving-and-responding#interaction-response-object-modal
 
 #### deleteInteractionResponse
 
@@ -1327,7 +1327,7 @@ Returns the voice state for the member specified by ID or mention, or `nil` if t
 
 Returns the permissions of the specified member in the given channel as a [permissions bitfield][perms].
 
-[perms]: https://discord.com/developers/docs/topics/permissions#permissions
+[perms]: https://docs.discord.com/developers/topics/permissions#permissions
 
 ##### Example
 
@@ -1889,7 +1889,7 @@ Adds the first case-insensitive matching role name to the triggering member.
 {{ $role := getRole <role> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object). `role` may either be an ID or a name to match against (ignoring case).
+Returns a [role object](https://docs.discord.com/developers/topics/permissions#role-object). `role` may either be an ID or a name to match against (ignoring case).
 
 #### getRoleID
 
@@ -1897,7 +1897,7 @@ Returns a [role object](https://discord.com/developers/docs/topics/permissions#r
 {{ $role := getRoleID <roleID> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its ID.
+Returns a [role object](https://docs.discord.com/developers/topics/permissions#role-object) by its ID.
 
 #### getRoleName
 
@@ -1905,7 +1905,7 @@ Returns a [role object](https://discord.com/developers/docs/topics/permissions#r
 {{ $role := getRoleName <roleName> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its name (case-insensitive).
+Returns a [role object](https://docs.discord.com/developers/topics/permissions#role-object) by its name (case-insensitive).
 
 #### giveRole
 
@@ -2000,7 +2000,7 @@ Removes the first case-insensitive matching role name from the triggering member
 ```
 
 Reports whether `role1` is above `role2` in the role hierarchy.
-Both arguments must be a [role object](https://discord.com/developers/docs/topics/permissions#role-object).
+Both arguments must be a [role object](https://docs.discord.com/developers/topics/permissions#role-object).
 
 #### setRoles
 
@@ -2328,7 +2328,7 @@ Jan 01 to Jan 03 of year n might belong to week 52 or 53 of year n-1, and Dec 29
 
 {{< callout context="note" title="Note: Discord Timestamp Formatting" icon="outline/info-circle" >}}
 
-Discord Timestamp Styles referenced on [Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles) can be done using the `print` function:
+Discord Timestamp Styles referenced on [Discord message documentation](https://docs.discord.com/developers/reference#message-formatting-timestamp-styles) can be done using the `print` function:
 
 `{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
 
@@ -2679,7 +2679,7 @@ An argument's `"type"` must be one of the following:
 [user object]: /docs/reference/templates/syntax-and-data/#user
 [member object]: /docs/reference/templates/syntax-and-data/#member
 [channel object]: /docs/reference/templates/syntax-and-data/#channel
-[role object]: https://discord.com/developers/docs/topics/permissions#role-object
+[role object]: https://docs.discord.com/developers/topics/permissions#role-object
 
 Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for `duration` it is in [time.Duration format](/docs/reference/templates/syntax-and-data#time) values.
 

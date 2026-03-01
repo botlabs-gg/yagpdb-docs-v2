@@ -1,36 +1,27 @@
 # YAGPDB Docs v2
 
-Experimental / proof of concept page to replace the current documentation which is built with GitBook.
+YAGPDB's new documentation site, built with [Hugo](https://gohugo.io/) and the [Doks theme](https://getdoks.org/).
 
-This documentation is built with [Hugo](https://gohugo.io) in conjunction with the [Doks theme](https://getdoks.org/) as an experiment to see if it is a viable alternative.
+## Why?
 
-## Contributing / Building
+The old documentation was built with GitBook and became excruciatingly slow to load as GitBook loaded more and more JavaScript, both on the user's and the editor's side.
+The new documentation is built with Hugo, which generates static HTML files that can be served much faster.
 
-Install [Node.js](https://nodejs.org/en), clone this repository, install the dependencies with `npm install`, and run `npm run dev` to start a local server.
-The server will automatically rebuild the page when you make changes.
+Additionally, this new model is far more open to contributions; there is no web-based editor anymore so maintainers will actually have to look at the repository.
 
-To build the page in release mode, use `HUGO_BASEURL=... npm run build`, then serve the generated `public/` directory with your webserver of choice.
+As an added bonus, we're also no longer split between separate repositories for the actual documentation, our custom command course, as well as a community-maintained selfhosting guide;
+it's all in one repository, thus much easier to internally link between the sections and maintain a consistent style.
 
-For more information, please view our [Contributing Guidelines](.github/CONTRIBUTING.md).
+## Contributing
 
-### Editor Setup
+Contributions to the documentation are very welcome!
+If you find an error or want to add something, please open a pull request with your changes.
+Read the [contributing guidelines](.github/CONTRIBUTING.md) for more information on how to contribute.
+Take a look at the [style guide](.github/STYLE.md) for information on how to write good documentation according to our standards.
 
-As this project uses the [EditorConfig](https://editorconfig.org/) standard, you will have to make sure that your editor supports it.
-Most modern editors do, but if you are unsure, check the EditorConfig page.
-
-### Authoring Content
-
-Pages are written in Markdown with additional shortcodes provided by the Doks theme; refer to [its documentation](<(https://getdoks.org/docs/start-here/getting-started/)>) for a complete list of features.
-
-If you are editing pages related to custom commands, note that codeblocks support a custom `yag` language for accurate syntax highlighting—do not use `go`.
-However, this feature is only enabled in production builds for performance, so `npm run dev` will _not_ highlight `yag` codeblocks.
-Use `npm run build` followed by `npm run preview` instead if you need to verify that code is highlighted correctly.
-
-> [!TIP]
-> If you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate in
-> Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd> followed by `note`, `tip`, `warning`, or `danger`.
+You need [Node.js](https://nodejs.org/) and [Hugo extended](https://gohugo.io/installation) installed to build the documentation locally.
 
 ## License
 
-This documentation's text is distributed under the terms of the Creative Commons Attribution ShareAlike 4.0 license (SPDX-indentifer `CC-BY-SA`).
-Please view the [LICENSE](LICENSE) file for more information.
+This documentation's text is distributed under the terms of the Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+Please view the [LICENSE](LICENSE) file for more details.

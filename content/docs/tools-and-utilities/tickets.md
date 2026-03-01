@@ -58,7 +58,7 @@ If you experience a high volume of tickets, consider closing some or using [thre
 
 ### Threaded Tickets (Premium)
 
-{{< callout context="tip" title="Premium Feature" icon="outline/star" >}}
+{{< callout context="premium" title="Premium Feature" icon="outline/star" >}}
 
 Threaded tickets are available for [premium servers](https://yagpdb.xyz/premium).
 

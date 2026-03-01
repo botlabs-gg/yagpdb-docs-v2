@@ -16,7 +16,8 @@ it's all in one repository, thus much easier to internally link between the sect
 
 Contributions to the documentation are very welcome!
 If you find an error or want to add something, please open a pull request with your changes.
-Read the [contributing guidelines](CONTRIBUTING.md) for more information on how to contribute.
+Read the [contributing guidelines](.github/CONTRIBUTING.md) for more information on how to contribute.
+Take a look at the [style guide](.github/STYLE.md) for information on how to write good documentation according to our standards.
 
 You need [Node.js](https://nodejs.org/) and [Hugo extended](https://gohugo.io/installation) installed to build the documentation locally.
 

@@ -19,7 +19,7 @@ If you try your best to mimic the already existing style in the documentation, y
 1. Write one sentence per line (except in lists when necessary)
 2. Use title case for headings
 3. Use single asterisks for `*italics*` and double asterisks for `**bold**`
-4. Use `-` for lists, even sublists
+4. Use `-` for any unordered lists, even sublists
 5. Properly number your ordered lists
 7. Use backticks for `inline code` and triple backticks for code blocks
 
@@ -31,10 +31,10 @@ Below are the detailed explanations for the guidelines outlined above, as well a
 
 #### Use American English
 
-American English is the de-facto standard for technical writing, and using it helps maintain consistency across the documentation.
-For that reason, readers may be more acquainted with American English spelling and grammar, and it may be easier for them to understand the documentation if it's written in that variant.
+Using one form of English helps maintain consistency across the documentation, and American English is the de-facto standard for technical writing.
+For those reasons, it will be easiest for the average reader to understand the documentation when American English spelling and grammar is used.
 
-You are obviously free to use other English variants in your communication (e.g. commit messages).
+You are of course free to use whichever form of English is most comfortable in your communication (e.g. commit messages).
 
 #### Use the Oxford comma
 
@@ -45,11 +45,8 @@ The [Wikipedia entry](https://en.wikipedia.org/wiki/Serial_comma) has some reall
 #### Don't Patronize the Reader
 
 Don't talk down to the reader or assume that they don't know anything.
-This especially applies to the custom command course (`content/learn/`), where we guide the reader through discovering things on their own.
-Gently nudge them towards discovering certain things on their own.
-
-We understand that this may be difficult at times, so if you are unsure about it, step back for a while and read what you wrote with fresh eyes, or ask someone else to review it.
-Also, please don't use caps.
+This especially applies to the custom command course (`content/learn/`), where we guide the reader through the script writing process by encouraging their own problem solving.
+Gently nudge them towards making discoveries on their own.
 
 #### Semi-formal Style
 
@@ -64,20 +61,19 @@ This rule is a little bit relaxed in the custom command course, where we do want
 #### One Sentence Per Line
 
 Semantic Linefeeds (one sentence per line) make a lot of things easier.
-You very quickly realise when you have written a sentence that is simply too long, and it makes it easier to review and edit the text later on.
-It also makes it easier to track changes in version control, as you can see exactly which sentences were changed, added, or removed, without any noise from reflowing text because they were wrapped at a certain character limit.
-Semantic linefeeds could also help writing sentences that are roughly equal in length, which can improve readability.
+You very quickly realise when sentences have grown too long or are unusually inconsistent in length, which can hurt readability.
+It also makes it easier to review, edit, and track changes in version control, as you can see exactly which sentences were changed without any noise from reflowing wrapped text.
 
 It does read a little bit awkward in source form, but that's not what the reader will see, and it's a small price to pay for the benefits it brings.
 
 #### Headers
 
-Obviously headers use title case, this shouldn't need much explanation.
+Headers should always use title case, this doesn't need much explanation.
 
 If headers become ambiguous, give them a custom ID, e.g.
 
 ```markdown
-### non-unique header{#my-unique-id}
+### non-unique header{#a-different-id}
 ```
 
 This tends to especially arise on lower levels of headings (e.g. h4 `####` and h5 `#####`), where you may have multiple sections that are about the same thing (e.g. "Examples"), but you still want to be able to link to them directly.
@@ -89,15 +85,15 @@ Use single asterisks for `*italics*` and double asterisks for `**bold**`.
 This makes it easier to later change it to the other style if we ever want to, and it doesn't lose much meaning compared to underscore `_italics_`.
 
 These markers should not be applied to whole sentences or paragraphs, but rather to specific words or phrases that you want to emphasize.
-If you want to emphasize a whole sentence or paragraph, consider using a callout instead (see below).
+If you want to emphasize a whole sentence or paragraph, consider using a [callout instead](#additional-markdown-features).
 
-Using CAPSLOCK and, worse, **BOLD CAPSLOCK** looks ugly, and feels far too shouty.
+Using CAPSLOCK and, worse, **BOLD CAPSLOCK** looks ugly, and is generally considered shouting in online communications.
 Don't do it.
 
 #### Lists
 
-Use `-` for unordered lists, even sublists.
-This makes it easier for you to write (only ever one symbol to use) and it also looks cleaner in source form.
+Use hyphens `-` for all unordered lists, even sublists.
+This makes it easier for you to write (only one symbol to use) and it is more readable in source form.
 
 Properly number your ordered lists.
 Don't just use `1.` for every item (even though that properly renders to HTML); use the correct numbers for each item.
@@ -141,9 +137,8 @@ As a general rule of thumb, here's what each callout type should be used for:
 - `tip`: Use for things that are not strictly necessary to know, but can be helpful or improve the reader's experience.
 - `premium`: Use it to indicate that a feature is only available to premium users.
 
-Callouts are best accompanied with a meaningful title (e.g. `Note: Required Permissions`) to help those with a screen reader understanding what's going on, and to make it easier for all readers to quickly understand the point of the callout.
+Callouts are best accompanied with a meaningful title (e.g. `Note: Required Permissions`) to help screen readers provide useful context, and to make it easier for all readers to quickly understand the point of the callout.
 When you feel your title is far too redundant with the content of the callout, that generally is clear indication that the callout is not neceessary and the content can just be integrated into the main text instead.
 
 > [!TIP]
 > If you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate in Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd> followed by `note`, `tip`, `warning`, or `danger`.
-

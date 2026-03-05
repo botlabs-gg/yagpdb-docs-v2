@@ -12,14 +12,14 @@ If you try your best to mimic the already existing style in the documentation, y
 1. Use American English
 2. Use the Oxford comma
 3. Don't patronize the reader
-4. Write in a semi-formal style; not too cold and technical, but not too casual and conversational either.
+4. Write in a semiformal style; not too cold and technical, but not too casual and conversational either.
 
 ### Formatting
 
 1. Write one sentence per line (except in lists when necessary)
 2. Use title case for headings
 3. Use single asterisks for `*italics*` and double asterisks for `**bold**`
-4. Use `-` for any unordered lists, even sublists
+4. Use `-` for any unordered lists, even sub-lists
 5. Properly number your ordered lists
 7. Use backticks for `inline code` and triple backticks for code blocks
 
@@ -31,7 +31,7 @@ Below are the detailed explanations for the guidelines outlined above, as well a
 
 #### Use American English
 
-Using one form of English helps maintain consistency across the documentation, and American English is the de-facto standard for technical writing.
+Using one form of English helps maintain consistency across the documentation, and American English is the de facto standard for technical writing.
 For those reasons, it will be easiest for the average reader to understand the documentation when American English spelling and grammar is used.
 
 You are of course free to use whichever form of English is most comfortable in your communication (e.g. commit messages).
@@ -40,31 +40,31 @@ You are of course free to use whichever form of English is most comfortable in y
 
 Using the Oxford comma avoids ambiguity in lists.
 This is simply about avoiding any possibility of misinterpretation, no matter how clear the context may seem to be to you.
-The [Wikipedia entry](https://en.wikipedia.org/wiki/Serial_comma) has some really good examples of where the Oxford comma can make a difference.
+The [Wikipedia entry](https://en.wikipedia.org/wiki/Serial_comma) has some excellent examples of where the Oxford comma can make a difference.
 
 #### Don't Patronize the Reader
 
 Don't talk down to the reader or assume that they don't know anything.
-This especially applies to the custom command course (`content/learn/`), where we guide the reader through the script writing process by encouraging their own problem solving.
+This especially applies to the custom command course (`content/learn/`), where we guide the reader through the script writing process by encouraging their own problem-solving.
 Gently nudge them towards making discoveries on their own.
 
-#### Semi-formal Style
+#### Semiformal Style
 
 We're not writing some academic paper here; avoid too much technical jargon and try to keep the tone light and approachable.
 On the other hand, we're also not writing a casual blog post; avoid slang and overly conversational language.
 The goal is to strike a balance between being informative and being engaging, without being too dry or too casual.
 
-This rule is a little bit relaxed in the custom command course, where we do want it to be a bit more conversational and approachable, but it still applies to some extent.
+This rule is a bit relaxed in the custom command course, where we do want it to be a bit more conversational and approachable, but it still applies to some extent.
 
 ### Formatting
 
 #### One Sentence Per Line
 
 Semantic Linefeeds (one sentence per line) make a lot of things easier.
-You very quickly realise when sentences have grown too long or are unusually inconsistent in length, which can hurt readability.
+You very quickly realize when sentences have grown too long or are unusually inconsistent in length, which can hurt readability.
 It also makes it easier to review, edit, and track changes in version control, as you can see exactly which sentences were changed without any noise from reflowing wrapped text.
 
-It does read a little bit awkward in source form, but that's not what the reader will see, and it's a small price to pay for the benefits it brings.
+It does read somewhat awkward in source form, but that's not what the reader will see, and it's a small price to pay for the benefits it brings.
 
 #### Headers
 
@@ -92,7 +92,7 @@ Don't do it.
 
 #### Lists
 
-Use hyphens `-` for all unordered lists, even sublists.
+Use hyphens `-` for all unordered lists, even sub-lists.
 This makes it easier for you to write (only one symbol to use) and it is more readable in source form.
 
 Properly number your ordered lists.
@@ -133,12 +133,12 @@ As a general rule of thumb, here's what each callout type should be used for:
 
 - `danger`: Only use for things that have fatal consequences, like data loss, infinite loops, or similar.
 - `warning`: Use for things that are generally problematic, like "this feature will not work and fail spectacularly".
-- `note`: Use for things that are important to know, but don't have any negative consequence beyond "minor incovenience".
+- `note`: Use for things that are important to know, but don't have any negative consequence other than "minor inconvenience".
 - `tip`: Use for things that are not strictly necessary to know, but can be helpful or improve the reader's experience.
 - `premium`: Use it to indicate that a feature is only available to premium users.
 
-Callouts are best accompanied with a meaningful title (e.g. `Note: Required Permissions`) to help screen readers provide useful context, and to make it easier for all readers to quickly understand the point of the callout.
-When you feel your title is far too redundant with the content of the callout, that generally is clear indication that the callout is not neceessary and the content can just be integrated into the main text instead.
+Callouts are best accompanied by a meaningful title (e.g. `Note: Required Permissions`) to help screen readers provide useful context, and to make it easier for all readers to quickly understand the point of the callout.
+When you feel your title is far too redundant with the content of the callout, that usually is clear indication that the callout is not necessary and the content can just be integrated into the main text instead.
 
 > [!TIP]
 > If you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate in Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd> followed by `note`, `tip`, `warning`, or `danger`.

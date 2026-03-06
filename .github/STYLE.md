@@ -158,7 +158,7 @@ Use `$$` for display math and `$` for inline math, just like in regular LaTeX.
 #### Diagrams
 
 For rendering diagrams, we load the [Mermaid](https://mermaid.js.org/intro/syntax-reference.html) library, which supports a variety of diagram types (flowcharts, sequence diagrams, class diagrams, etc.).
-To create a mermaid diagram, simply use a code block with the language set to `mermaid`, and write your diagram using the Mermaid syntax.
+To create a mermaid diagram, use a code block with the language set to `mermaid`, and write your diagram using the Mermaid syntax.
 
 ````
 ```mermaid

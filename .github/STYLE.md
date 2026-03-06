@@ -23,6 +23,8 @@ If you try your best to mimic the already existing style in the documentation, y
 5. Properly number your ordered lists
 7. Use backticks for `inline code` and triple backticks for code blocks
 
+Also take note of the [additional Markdown features](#additional-markdown-features) section below, which covers some of the more advanced features that you can use in the documentation, such as callouts, math typesetting, and diagrams.
+
 ## In Detail
 
 Below are the detailed explanations for the guidelines outlined above, as well as some additional information and examples.
@@ -153,7 +155,24 @@ To avoid unnecessarily loading the library on pages that don't need it, math ren
 To enable math rendering on a page, you must add `katex = true` to the front matter of the page.
 
 Refer to the [KaTeX documentation](https://katex.org/docs/supported.html) for the supported syntax and features.
-Use `$$` for display math and `$` for inline math, just like in regular LaTeX.
+Use `$$` for display math (centered) and `$` for inline math, just like in regular LaTeX.
+Display math delimiters should be surrounded by blank lines, just like code blocks.
+
+Inline math example:
+
+```markdown
+The relation $E=mc^2$ is one of the most famous equations in physics.
+```
+
+Display math example:
+
+```markdown
+Euler's number can be calculated using the formula:
+
+$$
+e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n
+$$
+```
 
 #### Diagrams
 

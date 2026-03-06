@@ -2,6 +2,7 @@
 title = "Exercises"
 weight = 350
 description = "Exercise your skills with these custom command challenges."
+katex = true
 +++
 
 Below are some exercises to help you practice and reinforce your understanding of the concepts discussed in the previous sections.
@@ -43,14 +44,12 @@ The algorithm provides virtually no cryptographic security, and is often cited a
 
 A sequence of numbers such that the difference between each term remains constant is called an [Arithmetic Progression](https://en.wikipedia.org/wiki/Arithmetic_progression).
 
-We start with a term {{< math >}} $a${{< /math >}} and add the common difference {{< math >}} $d${{< /math >}}.
-We do this for {{< math >}} $n${{< /math >}} times.
+We start with a term $a$ and add the common difference $d$.
+We do this for $n$ times.
 To find the sum of any such progression, we use the following formula.
 
-```math {.text-center}
 $$
 \sum_{k=0}^{n-1}(a+kd)=\frac{n}{2}(2a+(n-1)d)
 $$
-```
 
-Write a custom command for finding the sum of {{< math >}} $n${{< /math >}} terms of an arithmetic progression, parameterized to {{< math >}} $a, d, n${{< /math >}}, and verify it with above formula in the same command (use the right-hand side of the equation).
+Write a custom command for finding the sum of $n$ terms of an arithmetic progression, parameterized to $a, d, n$, and verify it with above formula in the same command (use the right-hand side of the equation).

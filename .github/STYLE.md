@@ -155,8 +155,8 @@ To avoid unnecessarily loading the library on pages that don't need it, math ren
 To enable math rendering on a page, you must add `katex = true` to the front matter of the page.
 
 Refer to the [KaTeX documentation](https://katex.org/docs/supported.html) for the supported syntax and features.
-Use `$$` for display math (centered) and `$` for inline math, just like in regular LaTeX.
-Display math delimiters should be surrounded by blank lines, just like code blocks.
+Use `$$` for display math (centered) and `$` for inline math, like in regular LaTeX.
+Display math delimiters should be surrounded by blank lines, similar to code blocks.
 
 Inline math example:
 

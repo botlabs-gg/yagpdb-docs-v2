@@ -162,6 +162,18 @@ To create a mermaid diagram, use a code block with the language set to `mermaid`
 
 ````
 ```mermaid
-(your diagram code goes here)
+flowchart LR;
+  A[Start] --> B{Choose Path}
+  B -->|Option 1| C[Path 1]
+  B -->|Option 2| D[Path 2]
 ```
 ````
+
+This will render a simple flowchart with a decision point and two paths.
+
+```mermaid
+flowchart LR;
+  A[Start] --> B{Choose Path}
+  B -->|Option 1| C[Path 1]
+  B -->|Option 2| D[Path 2]
+```

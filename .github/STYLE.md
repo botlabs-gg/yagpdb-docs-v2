@@ -85,7 +85,7 @@ Use single asterisks for `*italics*` and double asterisks for `**bold**`.
 This makes it easier to later change it to the other style if we ever want to, and it doesn't lose much meaning compared to underscore `_italics_`.
 
 These markers should not be applied to whole sentences or paragraphs, but rather to specific words or phrases that you want to emphasize.
-If you want to emphasize a whole sentence or paragraph, consider using a [callout instead](#additional-markdown-features).
+If you want to emphasize a whole sentence or paragraph, consider using a [callout instead](#callouts).
 
 Using CAPSLOCK and, worse, **BOLD CAPSLOCK** looks ugly, and is generally considered shouting in online communications.
 Don't do it.
@@ -115,9 +115,12 @@ Custom command code should have spaces after the `{{` and before the `}}` to imp
 ```
 ````
 
-#### Additional Markdown Features
+### Additional Markdown Features
 
 Hugo provides some additional features through shortcodes and other means, so feel free to use those when appropriate.
+
+#### Callouts
+
 The Doks theme provides us with a `callout` shortcode that we can use to create callouts for notes, tips, warnings, and dangers.
 
 ```
@@ -142,3 +145,23 @@ When you feel your title is far too redundant with the content of the callout, t
 
 > [!TIP]
 > If you use VSCode, this project provides custom workspace snippets to insert callouts, which you can activate in Markdown files by typing <kbd>Ctrl</kbd> + <kbd>Space</kbd> followed by `note`, `tip`, `warning`, or `danger`.
+
+#### Math
+
+We use [KaTeX](https://katex.org/) to render math in the documentation, which supports a wide range of LaTeX math syntax.
+To avoid unnecessarily loading the library on pages that don't need it, math rendering is opt-in on a per-page basis.
+To enable math rendering on a page, you must add `katex = true` to the front matter of the page.
+
+Refer to the [KaTeX documentation](https://katex.org/docs/supported.html) for the supported syntax and features.
+Use `$$` for display math and `$` for inline math, just like in regular LaTeX.
+
+#### Diagrams
+
+For rendering diagrams, we load the [Mermaid](https://mermaid.js.org/intro/syntax-reference.html) library, which supports a variety of diagram types (flowcharts, sequence diagrams, class diagrams, etc.).
+To create a mermaid diagram, simply use a code block with the language set to `mermaid`, and write your diagram using the Mermaid syntax.
+
+````
+```mermaid
+(your diagram code goes here)
+```
+````

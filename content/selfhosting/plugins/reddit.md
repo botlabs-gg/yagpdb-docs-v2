@@ -80,5 +80,5 @@ Make sure that the process has access to these environment variables, depending 
 ./yagpdb -bot -web -backgroundworkers -feeds reddit
 ```
 
-If using the basic docker-compose.yml, it has the `-all` parameter which is the same as running `-bot -web -backgroudnworkers` and all `-feeds` options.
-Use `"-feeds=reddit"` to enable just the reddit feed via env var.
+If using the basic `docker-compose.yml`, it has the `-all` parameter which is the same as running `-bot -web -backgroudnworkers` and all `-feeds` options.
+Use `"-feeds=reddit"` to enable just the reddit feed via this method.

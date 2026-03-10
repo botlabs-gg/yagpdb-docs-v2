@@ -71,6 +71,7 @@ YAGPDB_REDDIT_CLIENT_ID=your_client_id
 YAGPDB_REDDIT_CLIENTSECRET=your_client_secret
 YAGPDB_REDDIT_REDIRECTURI=your_redirect_uri
 YAGPDB_REDDIT_REFRESHTOKEN=your_refresh_token
+YAGPDB_REDDIT_DEVUSERNAME=your_username_without_u/
 ```
 
 Make sure that the process has access to these environment variables, depending on your deployment, then add `reddit` to the list of enabled feeds.
@@ -78,3 +79,6 @@ Make sure that the process has access to these environment variables, depending 
 ```shellsession
 ./yagpdb -bot -web -backgroundworkers -feeds reddit
 ```
+
+If using the basic docker-compose.yml, it has the `-all` parameter which is the same as running `-bot -web -backgroudnworkers` and all `-feeds` options.
+Use `"-feeds=reddit"` to enable just the reddit feed via env var.

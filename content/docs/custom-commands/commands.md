@@ -378,6 +378,33 @@ Your cron expression must schedule jobs with greater than a 10 minute interval b
 
 {{< /callout >}}
 
+##### Role Changes
+
+This trigger type executes when a role is added to or removed from a member.
+
+**Special properties in this trigger type:**
+
+- `.TargetMember`: The member whose roles were changed.
+- `.TargetUser`: The user whose roles were changed.
+- `.Author`: The user who performed the role change.
+- `.Role`: The role object that was added or removed.
+- `.RoleAdded`: A boolean indicating if the role was added (`true`) or removed (`false`).
+
+**Restrictions and limitations:**
+
+- **Targets**: Will not trigger if the target is a bot.
+- **Cooldown**: There is a cooldown for specific user-role combinations.
+    - Free servers: 5 minutes.
+    - Premium servers: 1 minute.
+- **Trigger Limits**:
+    - Free servers: Maximum 1 Role Change trigger.
+    - Premium servers: Maximum 5 Role Change triggers.
+- **Role Restrictions**: Role Restrictions on the custom command apply specifically to the role being modified, not the member receiving/assigning it.
+
+- **Context Limitations**: Similar to interval triggers, `.Message`, `.Member`, and `.User` are not available in this trigger type. Use `.TargetMember`, `.TargetUser`, and `.Author` instead. Any functions that rely on these properties will not work in this trigger type. For example `hasRole` won't work, to check if the `.TargetMember` has a role use `targetHasRole` instead. 
+
+- **Execution**: Cannot be triggered via `execCC` or `scheduleUniqueCC`.
+
 #### Case Sensitivity
 
 Any commands which allow you to specify trigger text (command, regex, exact match, and so on) have a **Case sensitivity** toggle (**5**) which is off by default.

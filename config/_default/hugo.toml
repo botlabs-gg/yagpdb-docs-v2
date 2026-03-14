@@ -37,11 +37,6 @@ defaultContentLanguageInSubdir = false
   filename = "sitemap.xml"
   priority = 0.5
 
-[caches]
-  [caches.getjson]
-    dir = ":cacheDir/:project"
-    maxAge = -1 # "30m"
-
 [taxonomies]
   contributor = "contributors"
   category = "categories"

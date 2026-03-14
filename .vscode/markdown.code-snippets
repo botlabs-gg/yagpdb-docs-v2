@@ -42,5 +42,16 @@
 			"{{< /callout >}}"
 		],
 		"description": "A warning callout"
+	},
+	"Premium callout": {
+	  "prefix": "premium",
+	  "body": [
+	    "{{< callout context=\"premium\" title=\"${1:Premium Feature}\" icon=\"outline/star\" >}}",
+	    "",
+	    "$0",
+	    "",
+	    "{{< /callout >}}"
+	  ],
+	  "description": "A premium callout"
 	}
 }

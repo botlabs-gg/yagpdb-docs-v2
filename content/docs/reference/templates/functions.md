@@ -713,7 +713,7 @@ Same as [sendResponse](#sendresponse), but also returns the message ID.
 {{ $button := cbutton "list of button values" }}
 ```
 
-Creates a [button object](https://discord.com/developers/docs/interactions/message-components#button-object) for use in interactions.
+Creates a [button object](https://docs.discord.com/developers/components/reference#button) for use in interactions.
 
 A link style button _must_ have a URL and may not have a Custom ID.
 All other styles _must_ have a Custom ID and cannot have a URL.
@@ -733,7 +733,7 @@ All buttons must have either a label or an emoji.
 {{ $menu := cmenu "list of select menu values" }}
 ```
 
-Creates a [select menu object](https://discord.com/developers/docs/interactions/message-components#select-menu-object) for use in interactions.
+Creates a [select menu object](https://docs.discord.com/developers/components/reference#string-select) for use in interactions.
 
 The type should be provided as a string: `"text"`, `"user"`, `"role"`, `"mentionable"`, or `"channel"`.
 Text type menus _must_ have `options`, while all other types cannot.
@@ -763,7 +763,7 @@ Text type menus _must_ have `options`, while all other types cannot.
 Creates a [modal object][modals] for use in interactions.
 See [`sendModal`](#sendmodal) for more detail.
 
-[modals]: https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-modal
+[modals]: https://docs.discord.com/developers/interactions/receiving-and-responding#interaction-response-object-modal
 
 #### deleteInteractionResponse
 
@@ -809,7 +809,7 @@ Is also valid for ephemeral messages.
 
 ---
 
-## Component V2
+## Components V2
 
 Components V2 provides a new way to create interactive and visually appealing message layouts in Discord applications, making it easier to control message formatting and user interaction while maintaining line length under 120 characters.
 
@@ -916,6 +916,152 @@ Returns the component data for the given key.
 - `key` – The top-level key for the component (e.g., "text", "section", "buttons").
 
 Example usage can be found at the [Components v2](/docs/reference/components-v2).
+
+### Modal Components
+
+These functions aid you in creating components for use in modals, which are sent using [`sendModal`](#sendmodal).
+
+#### modalBuilder
+
+```yag
+{{ $builder := modalBuilder }}
+```
+
+Returns a `modalBuilder`, which simplifies the construction of modal components.
+
+You can optionally pass the following **positional** arguments to initialize the modal with the given values:
+
+```yag
+{{ $builder := modalBuilder title custom_id components... }}
+```
+
+See also [modalBuilder.Set](#modalbuilderset).
+
+##### modalBuilder.Set
+
+```yag
+{{ $builder.Set <key> <value> }}
+```
+
+Sets the value of a modal component field.
+`key` must be one of the following:
+- `title`: the modal's title. Max 45 characters.
+- `custom_id`: a unique identifier for the modal.
+- `components`: a slice of modal components, created with below functions.
+
+##### modalBuilder.AddComponents
+
+```yag
+{{ $builder.AddComponents (values...) }}
+```
+Adds one or more modal components to the builder.
+`values` may be a single component or a slice of components.
+
+In addition to the already existing components, you can also create modal-specific components using the functions outlined below.
+
+{{< callout context="caution" title="Warning" icon="outline/alert-triangle" >}}
+
+All following components must be wrapped in a [label](#clabel) to be used in a modal.
+
+{{< /callout >}}
+
+#### ccheckbox
+
+```yag
+{{ $checkbox := ccheckbox (values...) }}
+```
+
+Returns a checkbox component for use in modals.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the checkbox.
+- `default`: optional bool for whether the checkbox is checked by default.
+
+#### ccheckboxGroup
+
+```yag
+{{ $checkboxGroup := ccheckboxGroup (values...) }}
+```
+
+Returns a checkbox group component for use in modals.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the checkbox group.
+- `min_values`: optionally the minimum number of checkboxes that must be checked. Min 0, max 10, defaults to 1. If 0, `required` must be false.
+- `max_values`: optionally the maximum number of checkboxes that can be checked. Min 1, max the number of options, defaults to number of options.
+- `required`: optional bool for whether selecting within the group is required.
+- `options`: a slice of sdicts with the following keys:
+  - `label`: User-facing label for the checkbox.
+  - `value`: the value that will be sent when the checkbox is checked.
+  - `description`: the optional description for the checkbox. Max 100 characters.
+  - `default`: optional bool for whether the checkbox is checked by default.
+
+#### cradioGroup
+
+```yag
+{{ $radioGroup := cradioGroup (values...) }}
+```
+
+Returns a radio group component for use in modals for selecting exactly one option from a defined list.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the radio group.
+- `required`: optional bool for whether selecting an option is required. Defaults to true.
+- `options`: a slice of sdicts with the following keys:
+  - `label`: User-facing label for the radio option.
+  - `value`: the value that will be sent when the option is selected.
+  - `description`: the optional description for the option. Max 100 characters.
+  - `default`: optional bool for whether the option is selected by default. Only one option can be selected by default.
+
+#### ctextInput
+
+```yag
+{{ $textInput := ctextInput (values...) }}
+```
+
+Returns a text input component for use in modals.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `custom_id`: a unique identifier for the text input.
+- `style`: the style of the text input, either 1 for short, 2 for long.
+- `min_length`: the optional minimum length of the input. Min 0, max 4000.
+- `max_length`: the optional maximum length of the input. Min 1, max 4000.
+- `required`: optional bool for whether the text input is required. Defaults to true.
+- `value`: the optional default value for the text input. Max 4000 characters.
+- `placeholder`: the optional placeholder text for the text input. Max 100 characters.
+
+#### clabel
+
+```yag
+{{ $label := clabel (values...) }}
+```
+
+Returns a label component for use in modals.
+
+Labels are top-level components that wrap modal components.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+
+- `label`: the label text. Max 45 characters.
+- `component`: The component within.
+- `description`: the optional label description. Max 100 characters.
+
+----
+
+#### ctextDisplay
+
+```yag
+{{ $textDisplay := ctextDisplay (values...) }}
+```
+
+Creates a text display component.
+
+`values` may be an sdict or a list of key-value pairs with the following keys:
+- `content`: the text to display. Markdown supported.
 
 ---
 
@@ -1181,7 +1327,7 @@ Returns the voice state for the member specified by ID or mention, or `nil` if t
 
 Returns the permissions of the specified member in the given channel as a [permissions bitfield][perms].
 
-[perms]: https://discord.com/developers/docs/topics/permissions#permissions
+[perms]: https://docs.discord.com/developers/topics/permissions#permissions
 
 ##### Example
 
@@ -1224,6 +1370,15 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 
 Returns whether member `a` is higher than member `b` in the role hierarchy.
 Both `a` and `b` must be a member object.
+
+#### memberAboveRole
+
+```yag
+{{ $isAbove := memberAboveRole <member> <role> }}
+```
+
+Returns whether the specified member is higher than the specified role in the role hierarchy.
+`member` must be a member object, `role` must be a role object.
 
 #### onlineCount
 
@@ -1734,7 +1889,7 @@ Adds the first case-insensitive matching role name to the triggering member.
 {{ $role := getRole <role> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object). `role` may either be an ID or a name to match against (ignoring case).
+Returns a [role object](https://docs.discord.com/developers/topics/permissions#role-object). `role` may either be an ID or a name to match against (ignoring case).
 
 #### getRoleID
 
@@ -1742,7 +1897,7 @@ Returns a [role object](https://discord.com/developers/docs/topics/permissions#r
 {{ $role := getRoleID <roleID> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its ID.
+Returns a [role object](https://docs.discord.com/developers/topics/permissions#role-object) by its ID.
 
 #### getRoleName
 
@@ -1750,7 +1905,7 @@ Returns a [role object](https://discord.com/developers/docs/topics/permissions#r
 {{ $role := getRoleName <roleName> }}
 ```
 
-Returns a [role object](https://discord.com/developers/docs/topics/permissions#role-object) by its name (case-insensitive).
+Returns a [role object](https://docs.discord.com/developers/topics/permissions#role-object) by its name (case-insensitive).
 
 #### giveRole
 
@@ -1845,7 +2000,7 @@ Removes the first case-insensitive matching role name from the triggering member
 ```
 
 Reports whether `role1` is above `role2` in the role hierarchy.
-Both arguments must be a [role object](https://discord.com/developers/docs/topics/permissions#role-object).
+Both arguments must be a [role object](https://docs.discord.com/developers/topics/permissions#role-object).
 
 #### setRoles
 
@@ -2173,7 +2328,7 @@ Jan 01 to Jan 03 of year n might belong to week 52 or 53 of year n-1, and Dec 29
 
 {{< callout context="note" title="Note: Discord Timestamp Formatting" icon="outline/info-circle" >}}
 
-Discord Timestamp Styles referenced on [Discord message documentation](https://discord.com/developers/docs/reference#message-formatting-timestamp-styles) can be done using the `print` function:
+Discord Timestamp Styles referenced on [Discord message documentation](https://docs.discord.com/developers/reference#message-formatting-timestamp-styles) can be done using the `print` function:
 
 `{{print "<t:" currentTime.Unix ":F>"}}` for "Long Date/Time" formatting.
 
@@ -2524,7 +2679,7 @@ An argument's `"type"` must be one of the following:
 [user object]: /docs/reference/templates/syntax-and-data/#user
 [member object]: /docs/reference/templates/syntax-and-data/#member
 [channel object]: /docs/reference/templates/syntax-and-data/#channel
-[role object]: https://discord.com/developers/docs/topics/permissions#role-object
+[role object]: https://docs.discord.com/developers/topics/permissions#role-object
 
 Additionally, the `int`, `float`, and `duration` type support validation ranges in the interval `(min, max)`, where for `duration` it is in [time.Duration format](/docs/reference/templates/syntax-and-data#time) values.
 

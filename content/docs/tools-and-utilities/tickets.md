@@ -1,7 +1,7 @@
 +++
 title = "Tickets"
 weight = 730
-description = "No ticket no entry"
+description = "Ticketing for the average admin"
 +++
 
 Tickets let your members interact with your server staff in a private and more organized way.

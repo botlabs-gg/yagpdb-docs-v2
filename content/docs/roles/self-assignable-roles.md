@@ -1,7 +1,7 @@
 +++
 title = "Self Assignable Roles"
 weight = 720
-description = "how2 reaction role"
+description = "how-to setup reaction rolls"
 +++
 
 <!--more-->

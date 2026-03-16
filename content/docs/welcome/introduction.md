@@ -1,7 +1,7 @@
 +++
 title = "Introduction"
 weight = 110
-description = "Start here!"
+description = "Start here, we're in this together!"
 +++
 
 > Documentation is for users. - Rob Pike

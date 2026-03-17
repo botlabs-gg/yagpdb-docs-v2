@@ -1,7 +1,7 @@
 +++
 title = "Introduction"
-description = "Start here!"
 weight = 110
+description = "Starting out with selfhosting YAGPDB"
 +++
 
 This section is intended for users who wish to selfhost YAGPDB, either for development purposes or because they just want to run the bot on their own hardware.

@@ -127,4 +127,4 @@ mainSections = ["docs"]
      "/tags"
     ]
     [seo.description.length]
-      min = 1
+      min = 20

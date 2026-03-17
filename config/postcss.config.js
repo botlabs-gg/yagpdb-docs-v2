@@ -1,5 +1,6 @@
 import autoprefixer from 'autoprefixer';
 import purgeCSSPlugin from '@fullhuman/postcss-purgecss';
+import whitelister from 'purgecss-whitelister';
 
 const purgecss = purgeCSSPlugin({
   content: ['./hugo_stats.json'],
@@ -49,6 +50,13 @@ const purgecss = purgeCSSPlugin({
 		'hiding',
 		'page-item',
 		'page-link',
+		...whitelister([
+		  './assets/scss/**/*.scss',
+			'./node_modules/@docsearch/css/dist/modal.css',
+			'./node_modules/@thulite/doks-core/assets/scss/common/_syntax.scss',
+			'./node_modules/@thulite/doks-core/assets/scss/components/_code.scss',
+			'./node_modules/@thulite/doks-core/assets/scss/components/_expressive-code.scss',
+		]),
 	],
 });
 

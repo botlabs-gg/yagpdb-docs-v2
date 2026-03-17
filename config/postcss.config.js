@@ -1,71 +1,60 @@
-const autoprefixer = require('autoprefixer');
-const { purgeCSSPlugin } = require('@fullhuman/postcss-purgecss');
-const whitelister = require('purgecss-whitelister');
+import autoprefixer from 'autoprefixer';
+import purgeCSSPlugin from '@fullhuman/postcss-purgecss';
 
-module.exports = {
-	plugins: [
-		autoprefixer(),
-		purgeCSSPlugin({
-			content: ['./hugo_stats.json'],
-			extractors: [
-				{
-					extractor: (content) => {
-						const els = JSON.parse(content).htmlElements;
-						return els.tags.concat(els.classes, els.ids);
-					},
-					extensions: ['json'],
-				},
-			],
-			dynamicAttributes: [
-				'aria-expanded',
-				'aria-selected',
-				'data-bs-popper',
-				'data-bs-target',
-				'data-bs-theme',
-				'data-dark-mode',
-				'data-global-alert',
-				'data-pane', // tabs.js
-				'data-popper-placement',
-				'data-selfhost',
-				'data-sizes',
-				'data-toggle-tab', // tabs.js
-				'id',
-				'size',
-				'type',
-			],
-			safelist: [
-				'active',
-				'btn-clipboard', // clipboards.js
-				'clipboard', // clipboards.js
-				'disabled',
-				'hidden',
-				'modal-backdrop', // search-modal.js
-				'selected', // search-modal.js
-				'show',
-				'img-fluid',
-				'blur-up',
-				'lazyload',
-				'lazyloaded',
-				'alert-link',
-				'container-fw ',
-				'container-lg',
-				'container-fluid',
-				'offcanvas-backdrop',
-				'figcaption',
-				'dt',
-				'dd',
-				'showing',
-				'hiding',
-				'page-item',
-				'page-link',
-				...whitelister([
-					'./assets/scss/**/*.scss',
-					'./node_modules/@docsearch/css/dist/modal.css',
-					'./node_modules/@thulite/doks-core/assets/scss/common/_syntax.scss',
-					'./node_modules/@thulite/doks-core/assets/scss/components/_code.scss',
-					'./node_modules/@thulite/doks-core/assets/scss/components/_expressive-code.scss',
-				]),
-			],
-		}),
+const purgecss = purgeCSSPlugin({
+  content: ['./hugo_stats.json'],
+  defaultExtractor: (content) => {
+    const els = JSON.parse(content).htmlElements;
+    return els.tags.concat(els.classes, els.ids);
+  },
+	dynamicAttributes: [
+		'aria-expanded',
+		'aria-selected',
+		'data-bs-popper',
+		'data-bs-target',
+		'data-bs-theme',
+		'data-dark-mode',
+		'data-global-alert',
+		'data-pane', // tabs.js
+		'data-popper-placement',
+		'data-selfhost',
+		'data-sizes',
+		'data-toggle-tab', // tabs.js
+		'id',
+		'size',
+		'type',
 	],
+	safelist: [
+		'active',
+		'btn-clipboard', // clipboards.js
+		'clipboard', // clipboards.js
+		'disabled',
+		'hidden',
+		'modal-backdrop', // search-modal.js
+		'selected', // search-modal.js
+		'show',
+		'img-fluid',
+		'blur-up',
+		'lazyload',
+		'lazyloaded',
+		'alert-link',
+		'container-fw ',
+		'container-lg',
+		'container-fluid',
+		'offcanvas-backdrop',
+		'figcaption',
+		'dt',
+		'dd',
+		'showing',
+		'hiding',
+		'page-item',
+		'page-link',
+	],
+});
+
+export default {
+  plugins: [
+    autoprefixer(),
+    purgecss,
+  ],
 };

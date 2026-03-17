@@ -202,13 +202,13 @@
     }
 
     .callout.callout-tip {
-        border-color: var(--sl-color-purple);
-        background-color: var(--sl-color-purple-low);
+        border-color: var(--sl-color-green);
+        background-color: var(--sl-color-green-low);
 
         .callout-icon,
         .callout-title,
         .callout-body a {
-            color: var(--sl-color-purple-high);
+            color: var(--sl-color-green-high);
         }
 
         .callout-body,

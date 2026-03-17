@@ -54,4 +54,4 @@ A good starting point is also to implement highly-upvoted suggestions in the `#s
 #### Writing Documentation
 
 If you feel that contributing to the bot itself is a bit too daunting, you are just as welcome to write and improve this documentation.
-All you really need is a decent (text) editor of your choice and a good look at our [docs contributing guidelines](https://github.com/botlabs-gg/yagpdb-docs-v2/blob/master/.github/CONTRIBUTING.md).
+All you really need is a decent (text) editor of your choice and a good look at our [docs contributing guidelines](https://github.com/botlabs-gg/yagpdb-docs-v2/blob/master/CONTRIBUTING.md).

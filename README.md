@@ -20,7 +20,7 @@ Read the [contributing guidelines](CONTRIBUTING.md) for more information on how 
 Please look over the [style guide](STYLE.md) for information on how to write good documentation according to our standards.
 It may be daunting, so don't be afraid to use your best judgement and ask maintainers for feedback!
 
-You need [Node.js](https://nodejs.org/) and [Hugo extended](https://gohugo.io/installation) installed to build the documentation locally.
+You need [Node.js](https://nodejs.org/) and [Hugo 0.159.1 extended](https://gohugo.io/installation) installed to build the documentation locally.
 
 ## License
 

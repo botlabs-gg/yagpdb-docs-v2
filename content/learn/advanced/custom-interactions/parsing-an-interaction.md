@@ -7,7 +7,11 @@ description = "Learn to parse interaction data when users interact with componen
 Custom Commands with the [Message Component](/docs/custom-commands/commands#component) or [Modal Submission](/docs/custom-commands/commands#modal) trigger allow you to take action upon the press of a button, use of a select menu, or completion of a modal form.
 Interaction triggers provide new context data for templating.
 
-In this section, we'll cover the data available and how to make use of it.
+In the previous section, we made some interactive elements that don't do anything useful yet.
+So, in this section, we'll cover the data available and how to make use of it.
+
+After you made your interactive elements do *something*, they might error with "this interaction failed".
+This is not exactly a big problem but it doesn't look very nice either---we will fix that in the [next section](/learn/advanced/custom-interactions/responding-to-an-interaction).
 
 ## Important Context Data
 

@@ -28,7 +28,7 @@ Result:
 ![A basic button, sent with the above code.](basic_button.png)
 
 We've successfully crated a basic button!
-It doesn't do anything yet, but we'll cover that in a later section.
+It doesn't do anything yet, but we'll cover that in a [later section](learn/advanced/custom-interactions/parsing-an-interaction).
 In the meantime, play around with the values `cbutton` takes.
 Try to attach an emoji to it, or change its style!
 

@@ -599,7 +599,7 @@ Alternatively, you can create a modal object using the [`cmodal`](#cmodal) funct
 Edits the message on which the button, select menu, or modal was triggered on.
 
 - `newMessage`: the new message content.
-  May be a string, an embed, or a [complex message edit](#complexmessagedit).
+  May be a string, an embed, or a [complex message edit](#complexmessageedit).
 
 ##### Example
 

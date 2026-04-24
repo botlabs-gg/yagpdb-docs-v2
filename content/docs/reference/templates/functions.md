@@ -1349,7 +1349,7 @@ To calculate the permission in a channel other than the current channel, for whi
 {{ $hasPerms := hasPermissions <permission> }}
 ```
 
-Returns whether the member who triggered the command has the specified permission bit.
+Returns whether the member who triggered the command has all the specified permission bits.
 See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) for more information.
 
 ##### Example
@@ -1361,6 +1361,14 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
   You do not have the Administrator permission.
 {{ end }}
 ```
+
+#### hasAnyPermissions
+
+```yag
+{{ $hasPerms := hasPermissions <permission> }}
+```
+
+Same as [hasPermissions](#haspermissions) but only requires one of the bits set.
 
 #### memberAbove
 
@@ -1394,7 +1402,15 @@ Returns the count of online members on the current server, including bots.
 {{ $hasPerms := targetHasPermissions <memberID> <permission> }}
 ```
 
-Returns whether the specified member has the specified permission bit.
+Returns whether the specified member has all the specified permission bits.
+
+#### targetHasAnyPermissions
+
+```yag
+{{ $hasPerms := targetHasAnyPermissions <memberID> <permission> }}
+```
+
+Same as [targetHasPermissions](#targethaspermissions) but only requires one of the bits set.
 
 ---
 

@@ -932,7 +932,7 @@ Returns a `modalBuilder`, which simplifies the construction of modal components.
 You can optionally pass the following **positional** arguments to initialize the modal with the given values:
 
 ```yag
-{{ $builder := modalBuilder title custom_id components... }}
+{{ $builder := modalBuilder custom_id title components... }}
 ```
 
 See also [modalBuilder.Set](#modalbuilderset).
@@ -1365,10 +1365,21 @@ See [`.Permissions`](/docs/reference/templates/syntax-and-data/#context-data) fo
 #### hasAnyPermissions
 
 ```yag
-{{ $hasPerms := hasPermissions <permission> }}
+{{ $hasPerms := hasAnyPermissions <permissions> }}
 ```
 
 Same as [hasPermissions](#haspermissions) but only requires one of the bits set.
+
+##### Example
+
+```yag
+{{ $perms := bitwiseOr .Permissions.Administrator .Permissions.ManageServer }}
+{{ if hasAnyPermissions $perms }}
+  You have either Administrator or Manage Server permission!
+{{ else }}
+  You do **not** have either Administrator or Manage Server permission!
+{{ end }}
+```
 
 #### memberAbove
 

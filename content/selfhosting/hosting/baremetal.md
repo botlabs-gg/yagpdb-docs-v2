@@ -58,6 +58,8 @@ YAGPDB_REDIS= # the address of the redis server, if on the same machine localhos
 
 Most export them in their `~/.profile`, but tools like [direnv](https://direnv.net/) are also possible.
 
+See [Configuring YAGPDB](/selfhosting/hosting/setup#configuring-yagpdb) for the rest of the options, including how `YAGPDB_HOST` interacts with the HTTPS flags below and how to control [prefixed commands](/selfhosting/hosting/setup#prefixed-commands).
+
 ## Compiling YAGPDB
 
 Now that we configured everything YAGPDB needs to work, we can compile it.
@@ -85,5 +87,8 @@ To quench those errors, just run the core of the bot:
 YAGPDB's web server can handle HTTPS traffic for you, but you may wish to disable it (for example because you are behind a reverse proxy).
 For that, we provide the `-https=false` and `-exthttps=true` flags to the command.
 If you want to completely disable HTTPS (good for `localhost`), adjust accordingly to `-https=false -exthttps=false`.
+
+These flags also decide the origin the control panel accepts form submissions from, so a mismatch between them, `YAGPDB_HOST`, and the URL you actually visit will make every save fail with "Bad origin".
+See [Host and HTTPS](/selfhosting/hosting/setup#host-and-https) for the details.
 
 Also consider reading the help text from `./yagpdb -help`.

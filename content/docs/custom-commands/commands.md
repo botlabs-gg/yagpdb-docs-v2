@@ -133,7 +133,7 @@ It is not based on the _current_ number of custom commands, but the total comman
 IDs cannot be changed by the user.
 
 The ID uniquely identifies a custom command, and is therefore used in a variety of contexts where one needs to supply a specific custom command.
-For instance, the `execCC` custom command function targets a specific CC ID, and some built-in commands like `customcommands` accept a CC ID as an argument.
+For instance, the `execCC` custom command function targets a specific CC ID, and some built-in commands like `/customcommands list` accept a CC ID as an argument.
 
 Within a command response, the ID may be retrieved using the `{{ .CCID }}` template.
 
@@ -145,7 +145,7 @@ If you delete a CC, its ID is lost forever.
 {{< /callout >}}
 
 A Custom Command's **name** (**2**), conversely, is defined by the user.
-It is an optional argument that can be used to identify the command in the control panel and with the `CustomCommands` command.
+It is an optional argument that can be used to identify the command in the control panel and with the `/customcommands list` command.
 Max 100 characters.
 
 ### Triggers

@@ -38,6 +38,65 @@ This is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will 
 
 {{< /callout >}}
 
+### Prefixed Commands Have Been Discontinued
+
+YAGPDB has retired the prefix as a way of running its **built-in** commands.
+Once it is turned off, a message such as `-help` is simply ignored; the bot will not respond to it at all.
+
+There are two supported replacements, both of which work today:
+
+- Discord's slash command interface: `/help`, `/logs`, `/warnings list`, and so on.
+- A bot mention at the start of the message: `@YAGPDB.xyz help`.
+
+This change is driven by Discord's message content access policy.
+Reading every message in a server just to spot a leading `-` is a broad permission, and YAGPDB should only use that access for features that genuinely need it, such as moderation and custom commands.
+
+{{< callout context="note" title="Note: Custom Commands Are Not Affected" icon="outline/info-circle" >}}
+
+This only concerns YAGPDB's built-in commands.
+Your own custom commands keep working exactly as they do today, including the ones with a plain text trigger.
+
+{{< /callout >}}
+
+While the change is being rolled out, you may see two reminders:
+
+- A notice on the control panel, shown on the server selector and on each server's dashboard.
+- A short message in Discord after a prefixed command runs. It is only sent on roughly every tenth prefixed command in a server, not on every single one, and never for a prefixed command invoked from within a custom command.
+
+If you selfhost YAGPDB, both the cutoff and the reminders are under your control---see the [prefixed commands section](/selfhosting/hosting/setup#prefixed-commands) of the selfhosting guide.
+
+#### Finding the Slash Command Equivalent
+
+Nearly every built-in command is now available as a slash command.
+A handful of them were grouped under a shared name in the process, so the slash form takes two words:
+
+| Prefixed command                                     | Slash command                            |
+| ---------------------------------------------------- | ---------------------------------------- |
+| `-catfact`, `-roll`, `-xkcd`, and other fun commands | `/fun catfact`, `/fun roll`, `/fun xkcd` |
+| `-cc`, `-customcommands`                             | `/customcommands list`                   |
+| `-evalcc`                                            | `/customcommands eval`                   |
+| `-warnings`, `-warns`                                | `/warnings list`                         |
+| `-delwarning`, `-delwarn`, `-dw`                     | `/warnings delete`                       |
+| `-clearwarnings`, `-clw`                             | `/warnings clear`                        |
+| `-rep`                                               | `/rep check`                             |
+| `-giverep`, `-+rep`                                  | `/rep give`                              |
+| `-takerep`, `--rep`                                  | `/rep take`                              |
+| `-reminders`                                         | `/reminder list`                         |
+| `-delreminder`, `-rmreminder`                        | `/reminder delete`                       |
+| `-settimezone`, `-setz`                              | `/timezone set`                          |
+| `-cshard`, `-currentshard`                           | `/guild shard`                           |
+
+The old names continue to work with the prefix and with a bot mention for as long as prefixed commands are enabled.
+The full listing lives on the [All Commands](/docs/core/all-commands) page.
+
+{{< callout context="note" title="Note: Slash Command Visibility" icon="outline/info-circle" >}}
+
+Discord hides a slash command from members who lack the permission it advertises.
+YAGPDB can only advertise a single permission per command, so commands that accept any one of several permissions stay visible to everyone and are checked when they actually run.
+Seeing a command in the `/` menu therefore does not guarantee you are allowed to run it.
+
+{{< /callout >}}
+
 {{< callout context="caution" title="Caution: Flags and Switches" icon="outline/alert-triangle" >}}
 
 Flags and switches are **_not_** affected by your prefix setting.

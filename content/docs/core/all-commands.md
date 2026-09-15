@@ -10,20 +10,52 @@ If you find a typo or similar in a command's description, fix it in the bot's so
 -->
 
 List of all available commands offered by YAGPDB and their syntax.
+Each command is listed under the name Discord knows it by, so `/logs` rather than `-logs`.
+
+## How to Read This Page
+
+Most commands are a single word, such as `/logs`.
+Some are grouped under a shared name, and those take two words: `/fun catfact`, `/warnings list`, `/reminder delete`, and so on.
+
+Every grouped command also kept the name it had before it was grouped, so `-catfact`, `-warnings`, and `-delreminder` still work with the command prefix or a bot mention.
+Those legacy names are hidden from `/help` and are not repeated below; the [command settings page](/docs/core/command-settings#finding-the-slash-command-equivalent) lists the common ones.
+
+A few groups have a default subcommand that runs when you invoke the group without naming one.
+For instance, `/customcommands` on its own behaves like `/customcommands list`.
+
+Three commands---`Nicknames`, `Usernames`, and `ResetPastNames`---have no slash command form and are marked as such.
+They can only be run with the command prefix or a bot mention.
+
+{{< callout context="note" title="Note: Switches in the Slash Interface" icon="outline/info-circle" >}}
+
+Switches are written below in their prefixed form, e.g. `[-raw raw:Switch - Raw output]`.
+In the slash command interface they are ordinary options: you pick `raw` from the option list rather than typing `-raw`.
+Discord also displays all option names in lowercase, regardless of how they are capitalized here.
+
+{{< /callout >}}
+
+{{< callout context="warning" title="Warning: Prefixed Commands Are Being Discontinued" icon="outline/alert-triangle" >}}
+
+YAGPDB is retiring the command prefix for its built-in commands.
+Once it is turned off, `-help` and friends will no longer respond; use `/help` or `@YAGPDB.xyz help` instead.
+Custom commands are not affected.
+See [Prefixed Commands Are Being Discontinued](/docs/core/command-settings#prefixed-commands-are-being-discontinued) for details.
+
+{{< /callout >}}
 
 ## Legend
 
 `<required arg>` `[optional arg]`
 
-Text arguments containing multiple words needs be to put in quotes ("arg here") or code ticks (`arg here`) if it's not the last argument and there's more than 1 text argument.
+Text arguments containing multiple words need to be put in quotes ("arg here") or code ticks (`arg here`) if it is not the last argument and there is more than one text argument.
 
-For example with the poll command if you want the question to have multiple words: `-poll "whats your favorite color" red blue green2`
+For example, with the poll command, if you want the question to have multiple words: `/poll "whats your favorite color" red blue green`
 
 ## General ℹ️
 
-### Help
+### /help{#help}
 
-#### Aliases{#Help-aliases}
+#### Aliases{#help-aliases}
 
 - commands
 - h
@@ -32,104 +64,107 @@ For example with the poll command if you want the question to have multiple word
 
 Shows help about all or one specific command
 
-#### Usage{#Help-usage}
+#### Usage{#help-usage}
 
 ```txt
-Help [command:Text]
+/help [command:Text]
 ```
 
-### Info
+### /info{#info}
 
 Responds with bot information
 
-#### Usage{#Info-usage}
+#### Usage{#info-usage}
 
 ```txt
-Info
+/info
 ```
 
-### Invite
+### /invite{#invite}
 
 Responds with bot invite link
 
-#### Usage{#Invite-usage}
+#### Usage{#invite-usage}
 
 ```txt
-Invite
+/invite
 ```
 
-### premiumstatus
+### /premium{#premium}
 
-#### Aliases{#premiumstatus-aliases}
+#### Aliases{#premium-aliases}
 
+- premiumstatus
 - premiumcheck
+- perks
 
-Lets you check premium status of yourself or a specific user.
+Shows YAGPDB premium status for this server and your premium slots.
 
-#### Usage{#premiumstatus-usage}
+#### Usage{#premium-usage}
 
 ```txt
-premiumstatus
+/premium
 ```
 
 ```txt
-[-user user:Mention/ID - Optional User to check premium status for, Owner only]
+[-user user:Mention/ID - Optional User to check premium slots for, Owner only]
 ```
 
 ## Tools & Utilities 🔨
 
-### Prefix
+### /prefix{#prefix}
 
 Shows command prefix of the current server, or the specified server
 
-#### Usage{#Prefix-usage}
+#### Usage{#prefix-usage}
 
 ```txt
-Prefix [Server-ID:Whole number]
+/prefix [Server-ID:Whole number]
 ```
 
-### Calc
+### /calc{#calc}
 
-#### Aliases{#Calc-aliases}
+#### Aliases{#calc-aliases}
 
 - c
 - calculate
 
 Calculator 2+2=5
 
-#### Usage{#Calc-usage}
+#### Usage{#calc-usage}
 
 ```txt
-Calc <Expression:Text>
+/calc <Expression:Text>
 ```
 
-### CustomEmbed
+### /customembed{#customembed}
 
-#### Aliases{#CustomEmbed-aliases}
+#### Aliases{#customembed-aliases}
 
 - ce
 
 Creates an embed from what you give it in json form: https://help.yagpdb.xyz/docs/reference/custom-embeds/
 Example: `-ce {"title": "hello", "description": "wew"}`
-#### Usage{#CustomEmbed-usage}
+
+#### Usage{#customembed-usage}
 
 ```txt
-CustomEmbed <Json:Text>
+/customembed <Json:Text>
 ```
 
-### SimpleEmbed
+### /simpleembed{#simpleembed}
 
-#### Aliases{#SimpleEmbed-aliases}
+#### Aliases{#simpleembed-aliases}
 
 - se
 
 A more simpler version of CustomEmbed, controlled completely using switches.
 You can edit existing messages by supplying the `-message` flag.
 
-#### Usage{#SimpleEmbed-usage}
+#### Usage{#simpleembed-usage}
 
 ```txt
-SimpleEmbed
+/simpleembed
 ```
 
 ```txt
@@ -149,50 +184,50 @@ SimpleEmbed
 [-footericon footericon:Text - Url to a icon for the 'footer' field]
 ```
 
-### CurrentTime
+### /currenttime{#currenttime}
 
-#### Aliases{#CurrentTime-aliases}
+#### Aliases{#currenttime-aliases}
 
 - ctime
 - gettime
 
 Shows current time in different timezones. [Available timezones](https://pastebin.com/ZqSPUhc7)
 
-#### Usage{#CurrentTime-usage}
+#### Usage{#currenttime-usage}
 
 ```txt
-CurrentTime <Offset:Whole number>
-CurrentTime <Zone:Text>
-CurrentTime
+/currenttime <Offset:Whole number>
+/currenttime <Zone:Text>
+/currenttime
 ```
 
-### ListRoles
+### /listroles{#listroles}
 
 List roles, their id's, color hex code, and 'mention everyone' perms (useful if you wanna double check to make sure you didn't give anyone mention everyone perms that shouldn't have it)
 
-#### Usage{#ListRoles-usage}
+#### Usage{#listroles-usage}
 
 ```txt
-ListRoles
+/listroles
 ```
 
 ```txt
 [-nomanaged nomanaged:Switch - Don't list managed/bot roles]
 ```
 
-### Poll
+### /poll{#poll}
 
 Create very simple reaction poll. Example: `poll "favorite color?" blue red pink`
 
-#### Usage{#Poll-usage}
+#### Usage{#poll-usage}
 
 ```txt
-Poll <Topic:Text - Description of the poll> <Option1:Text> <Option2:Text> [Option3:Text] [Option4:Text] [Option5:Text] [Option6:Text] [Option7:Text] [Option8:Text] [Option9:Text] [Option10:Text]
+/poll <Topic:Text - Description of the poll> <Option1:Text> <Option2:Text> [Option3:Text] [Option4:Text] [Option5:Text] [Option6:Text] [Option7:Text] [Option8:Text] [Option9:Text] [Option10:Text]
 ```
 
-### Undelete
+### /undelete{#undelete}
 
-#### Aliases{#Undelete-aliases}
+#### Aliases{#undelete-aliases}
 
 - ud
 - snipe
@@ -202,10 +237,10 @@ You can use the `-a` flag to view all users delete messages, or `-u` to view a s
 Both `-a` and `-u` require Manage Messages permission.
 Note: `-u` overrides `-a` meaning even though `-a` might've been specified along with `-u` only messages from the user provided using `-u` will be shown.
 
-#### Usage{#Undelete-usage}
+#### Usage{#undelete-usage}
 
 ```txt
-Undelete
+/undelete
 ```
 
 ```txt
@@ -215,204 +250,197 @@ Undelete
 [-channel channel:Channel - Optional target channel]
 ```
 
-### Stats
+### /stats{#stats}
 
 Shows server stats (if public stats are enabled)
 
-#### Usage{#Stats-usage}
+#### Usage{#stats-usage}
 
 ```txt
-Stats
+/stats
 ```
 
-### CustomCommands
-
-#### Aliases{#CustomCommands-aliases}
-
-- cc
+### /customcommands list{#customcommands-list}
 
 Shows a custom command specified by id, trigger, or name, or lists them all
 
-#### Usage{#CustomCommands-usage}
+#### Usage{#customcommands-list-usage}
 
 ```txt
-CustomCommands <ID:Whole number>
-CustomCommands <Name-Or-Trigger:Text>
-CustomCommands
+/customcommands list <ID:Whole number>
+/customcommands list <Name-Or-Trigger:Text>
+/customcommands list
 ```
 
 ```txt
 [-file file:Switch - Send responses in file]
 [-color color:Switch - Use syntax highlighting (Go)]
 [-raw raw:Switch - Force raw output]
+[-page page:Whole number - Page of the command list to show]
 ```
 
-### Evalcc
+### /customcommands eval{#customcommands-eval}
+
+#### Aliases{#customcommands-eval-aliases}
+
+- evalcc
 
 executes custom command code.
 
-#### Usage{#Evalcc-usage}
+#### Usage{#customcommands-eval-usage}
 
 ```txt
-Evalcc <code:Text>
+/customcommands eval <code:Text>
 ```
 
-### Logs
+### /logs{#logs}
 
-#### Aliases{#Logs-aliases}
+#### Aliases{#logs-aliases}
 
 - log
 
 Creates a log of the last messages in the current channel.
 This includes deleted messages within an hour (or 12 hours for premium servers)
 
-#### Usage{#Logs-usage}
+#### Usage{#logs-usage}
 
 ```txt
-Logs [Count:Whole number]
+/logs [Count:Whole number]
 ```
 
 ```txt
 [-channel channel:Channel - Optional channel to log instead]
 ```
 
-### Whois
+### /whois{#whois}
 
-#### Aliases{#Whois-aliases}
+#### Aliases{#whois-aliases}
 
 - whoami
 
 Shows information about a user
 
-#### Usage{#Whois-usage}
+#### Usage{#whois-usage}
 
 ```txt
-Whois [User:Member]
+/whois [User:Member]
 ```
 
-### Nicknames
+### Nicknames{#nicknames}
 
-#### Aliases{#Nicknames-aliases}
+This command has no slash command equivalent; run it with the command prefix or a bot mention.
+
+#### Aliases{#nicknames-aliases}
 
 - nn
 
-Shows past nicknames of a user. Disabled on the public instance.
+Shows past nicknames of a user.
 
-#### Usage{#Nicknames-usage}
+#### Usage{#nicknames-usage}
 
 ```txt
 Nicknames [User:User]
 ```
 
-### Usernames
+### Usernames{#usernames}
 
-#### Aliases{#Usernames-aliases}
+This command has no slash command equivalent; run it with the command prefix or a bot mention.
+
+#### Aliases{#usernames-aliases}
 
 - unames
 - un
 
-Shows past usernames of a user. Disabled on the public instance.
+Shows past usernames of a user.
 
-#### Usage{#Usernames-usage}
+#### Usage{#usernames-usage}
 
 ```txt
 Usernames [User:User]
 ```
 
-### ResetPastNames
+### ResetPastNames{#resetpastnames}
 
-Reset your past usernames/nicknames. Disabled on the public instance.
+This command has no slash command equivalent; run it with the command prefix or a bot mention.
 
-#### Usage{#ResetPastNames-usage}
+Reset your past usernames/nicknames.
+
+#### Usage{#resetpastnames-usage}
 
 ```txt
 ResetPastNames
 ```
 
-### Remindme
-
-#### Aliases{#Remindme-aliases}
-
-- remind
-- reminder
-
-Schedules a reminder, example: 'remindme 1h30min are you still alive?'
-
-#### Usage{#Remindme-usage}
-
-```txt
-Remindme <Time:Duration> <Message:Text>
-```
-
-```txt
-[-channel channel:Channel]
-```
-
-### Reminders
+### /reminder list{#reminder-list}
 
 Lists your active reminders in the server, use in DM to see all your reminders
 
-#### Usage{#Reminders-usage}
+#### Usage{#reminder-list-usage}
 
 ```txt
-Reminders
+/reminder list
 ```
 
-### CReminders
-
-#### Aliases{#CReminders-aliases}
-
-- channelreminders
+### /reminder channel{#reminder-channel}
 
 Lists reminders in channel
 
-#### Usage{#CReminders-usage}
+#### Usage{#reminder-channel-usage}
 
 ```txt
-CReminders
+/reminder channel
 ```
 
-### DelReminder
-
-#### Aliases{#DelReminder-aliases}
-
-- rmreminder
+### /reminder delete{#reminder-delete}
 
 Deletes a reminder. You can delete reminders from other users provided you are running this command in the same guild the reminder was created in and have the Manage Channel permission in the channel the reminder was created in.
 
-#### Usage{#DelReminder-usage}
+#### Usage{#reminder-delete-usage}
 
 ```txt
-DelReminder [ID:Whole number]
+/reminder delete [ID:Whole number]
 ```
 
 ```txt
 [-a a:Switch - All]
 ```
 
-### Role
+### /remindme{#remindme}
+
+#### Aliases{#remindme-aliases}
+
+- remind
+
+Schedules a reminder, example: 'remindme 1h30min are you still alive?'
+
+#### Usage{#remindme-usage}
+
+```txt
+/remindme <Time:Duration> <Message:Text>
+```
+
+```txt
+[-channel channel:Channel]
+```
+
+### /role{#role}
 
 Toggle a role on yourself or list all available roles, they have to be set up in the control panel first, under 'rolecommands'
 
-#### Usage{#Role-usage}
+#### Usage{#role-usage}
 
 ```txt
-Role [Role:Text]
+/role [Role:Text]
 ```
 
-### settimezone
-
-#### Aliases{#settimezone-aliases}
-
-- setz
-- tzset
+### /timezone set{#timezone-set}
 
 Sets your timezone, used for various purposes such as auto conversion. Give it a TZ identifier as [listed on Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
-#### Usage{#settimezone-usage}
+#### Usage{#timezone-set-usage}
 
 ```txt
-settimezone [Timezone:Text]
+/timezone set [Timezone:Text]
 ```
 
 ```txt
@@ -420,26 +448,178 @@ settimezone [Timezone:Text]
 [-d d:Switch - Delete TZ record]
 ```
 
-### ToggleTimeConversion
-
-#### Aliases{#ToggleTimeConversion-aliases}
-
-- toggletconv
-- ttc
+### /timezone toggleconversion{#timezone-toggleconversion}
 
 Toggles automatic time conversion for people with registered timezones (setz) in this channel, it's on by default, toggle all channels by giving it `all`
 
-#### Usage{#ToggleTimeConversion-usage}
+#### Usage{#timezone-toggleconversion-usage}
 
 ```txt
-ToggleTimeConversion [flags:Text]
+/timezone toggleconversion [flags:Text]
+```
+
+## Debug & Maintenance 🖥
+
+### /ping{#ping}
+
+Shows the latency from the bot to the discord servers.
+Note that high latencies can be the fault of ratelimits and the bot itself, it's not a absolute metric.
+
+#### Usage{#ping-usage}
+
+```txt
+/ping
+```
+
+### /viewperms{#viewperms}
+
+Shows you or the target's permissions in a given channel (default current channel)
+
+#### Usage{#viewperms-usage}
+
+```txt
+/viewperms [target:Mention/ID]
+```
+
+```txt
+[-channel channel:Channel]
+```
+
+### /status{#status}
+
+#### Aliases{#status-aliases}
+
+- yagstatus
+
+Shows yagpdb status, version, uptime, memory stats, and so on
+
+#### Usage{#status-usage}
+
+```txt
+/status
+```
+
+### /guild shard{#guild-shard}
+
+#### Aliases{#guild-shard-aliases}
+
+- cshard
+- currentshard
+
+Shows the current shard this server is on (or the one specified)
+
+#### Usage{#guild-shard-usage}
+
+```txt
+/guild shard [serverid:Whole number]
+```
+
+### /guild status{#guild-status}
+
+#### Aliases{#guild-status-aliases}
+
+- isguildunavailable
+
+Returns whether the specified guild is unavailable or not
+
+#### Usage{#guild-status-usage}
+
+```txt
+/guild status <guildid:Whole number>
+```
+
+### /customcommands diagnose{#customcommands-diagnose}
+
+#### Aliases{#customcommands-diagnose-aliases}
+
+- dcct
+- diagnosetriggers
+- debugtriggers
+
+List all custom commands that would trigger on the input and identify potential issues
+
+#### Usage{#customcommands-diagnose-usage}
+
+```txt
+/customcommands diagnose [input:Text]
+```
+
+### /roledbg{#roledbg}
+
+Returns count of autorole assignments currently being processed
+
+#### Usage{#roledbg-usage}
+
+```txt
+/roledbg
 ```
 
 ## Fun 🎉
 
-### Define
+### /fun 8ball{#fun-8ball}
 
-#### Aliases{#Define-aliases}
+Ask the magic 8ball a question
+
+#### Usage{#fun-8ball-usage}
+
+```txt
+/fun 8ball [Question:Text]
+```
+
+### /fun advice{#fun-advice}
+
+Don't be afraid to ask for advice!
+
+#### Usage{#fun-advice-usage}
+
+```txt
+/fun advice [What:Text]
+```
+
+### /fun catfact{#fun-catfact}
+
+#### Aliases{#fun-catfact-aliases}
+
+- cf
+- cat
+- catfacts
+
+Cat Facts
+
+#### Usage{#fun-catfact-usage}
+
+```txt
+/fun catfact
+```
+
+### /fun dadjoke{#fun-dadjoke}
+
+Generates a dad joke using the API from icanhazdadjoke.
+
+#### Usage{#fun-dadjoke-usage}
+
+```txt
+/fun dadjoke
+```
+
+### /fun dogfact{#fun-dogfact}
+
+#### Aliases{#fun-dogfact-aliases}
+
+- dog
+- dogfacts
+
+Dog Facts
+
+#### Usage{#fun-dogfact-usage}
+
+```txt
+/fun dogfact
+```
+
+### /fun define{#fun-define}
+
+#### Aliases{#fun-define-aliases}
 
 - df
 - define
@@ -448,230 +628,19 @@ ToggleTimeConversion [flags:Text]
 
 Look up an urban dictionary definition, default paginated view.
 
-#### Usage{#Define-usage}
+#### Usage{#fun-define-usage}
 
 ```txt
-Define <Topic:Text>
+/fun define <Topic:Text>
 ```
 
 ```txt
 [-raw raw:Switch - Raw output]
 ```
 
-### Weather
+### /fun dictionary{#fun-dictionary}
 
-#### Aliases{#Weather-aliases}
-
-- w
-
-Shows the weather somewhere
-
-#### Usage{#Weather-usage}
-
-```txt
-Weather <Where:Text>
-```
-
-### Topic
-
-Generates a conversation topic to help chat get moving.
-
-#### Usage{#Topic-usage}
-
-```txt
-Topic
-```
-
-### CatFact
-
-#### Aliases{#CatFact-aliases}
-
-- cf
-- cat
-- catfacts
-
-Cat Facts
-
-#### Usage{#CatFact-usage}
-
-```txt
-CatFact
-```
-
-### DadJoke
-
-Generates a dad joke using the API from icanhazdadjoke.
-
-#### Usage{#DadJoke-usage}
-
-```txt
-DadJoke
-```
-
-### DogFact
-
-#### Aliases{#DogFact-aliases}
-
-- dog
-- dogfacts
-
-Dog Facts
-
-#### Usage{#DogFact-usage}
-
-```txt
-DogFact
-```
-
-### Advice
-
-Don't be afraid to ask for advice!
-
-#### Usage{#Advice-usage}
-
-```txt
-Advice [What:Text]
-```
-
-### Throw
-
-Throwing things is cool.
-
-#### Usage{#Throw-usage}
-
-```txt
-Throw [Target:User]
-```
-
-### Roll
-
-Roll dices, specify nothing for 6 sides, specify a number for max sides, or rpg dice syntax.
-Example: `-roll 2d6`
-
-#### Usage{#Roll-usage}
-
-```txt
-Roll <Sides:Whole number>
-Roll <RPG-Dice:Text>
-Roll
-```
-
-### WouldYouRather
-
-#### Aliases{#WouldYouRather-aliases}
-
-- wyr
-
-Get presented with 2 options.
-
-#### Usage{#WouldYouRather-usage}
-
-```txt
-WouldYouRather
-```
-
-```txt
-[-raw raw:Switch - Raw output]
-```
-
-### Xkcd
-
-An xkcd comic, by default returns random comic strip
-
-#### Usage{#Xkcd-usage}
-
-```txt
-Xkcd [Comic-number:Whole number]
-```
-
-```txt
-[-l l:Switch - Latest comic]
-```
-
-### HowLongToBeat
-
-#### Aliases{#HowLongToBeat-aliases}
-
-- hltb
-
-Game information based on query from howlongtobeat.com.
-Results are sorted by popularity, it's their default. Without -p returns the first result.
-Switch -p gives paginated output using the Jaro-Winkler similarity metric sorting max 20 results.
-
-#### Usage{#HowLongToBeat-usage}
-
-```txt
-HowLongToBeat <Game-Title:Text>
-```
-
-```txt
-[-c c:Switch - Compact output]
-[-p p:Switch - Paginated output]
-```
-
-### Inspire
-
-#### Aliases{#Inspire-aliases}
-
-- insp
-
-Shows 'inspirational' quotes from inspirobot.me
-
-#### Usage{#Inspire-usage}
-
-```txt
-Inspire [Season:Text]
-```
-
-```txt
-[-mindfulness mindfulness:Switch - Generates Mindful Quotes!]
-```
-
-### Forex
-
-#### Aliases{#Forex-aliases}
-
-- Money
-
-💱 convert value from one currency to another.
-
-#### Usage{#Forex-usage}
-
-```txt
-Forex <Amount:Decimal number> <From:Text> <To:Text>
-```
-
-### Roast
-
-#### Aliases{#Roast-aliases}
-
-- insult
-
-Sends a random roast
-
-#### Usage{#Roast-usage}
-
-```txt
-Roast [Target:User]
-```
-
-```txt
-[-raw raw:Switch - Raw roast output, no embed]
-```
-
-### 8ball
-
-Ask the magic 8ball a question
-
-#### Usage{#8ball-usage}
-
-```txt
-8ball [Question:Text]
-```
-
-### dictionary
-
-#### Aliases{#dictionary-aliases}
+#### Aliases{#fun-dictionary-aliases}
 
 - owldict
 - owl
@@ -679,445 +648,503 @@ Ask the magic 8ball a question
 
 Get the definition of an English word using dictionaryapi.dev
 
-#### Usage{#dictionary-usage}
+#### Usage{#fun-dictionary-usage}
 
 ```txt
-dictionary <Query:Text - Word to search for>
+/fun dictionary <Query:Text - Word to search for>
 ```
 
-### TakeRep
+### /fun forex{#fun-forex}
 
-#### Aliases{#TakeRep-aliases}
+#### Aliases{#fun-forex-aliases}
 
-- -
-- tr
-- trep
-- -rep
+- Money
+
+💱 convert value from one currency to another.
+
+#### Usage{#fun-forex-usage}
+
+```txt
+/fun forex <Amount:Decimal number> <From:Text> <To:Text>
+```
+
+### /fun inspire{#fun-inspire}
+
+#### Aliases{#fun-inspire-aliases}
+
+- insp
+
+Shows 'inspirational' quotes from inspirobot.me
+
+#### Usage{#fun-inspire-usage}
+
+```txt
+/fun inspire [Season:Text]
+```
+
+```txt
+[-mindfulness mindfulness:Switch - Generates Mindful Quotes!]
+```
+
+### /fun roast{#fun-roast}
+
+#### Aliases{#fun-roast-aliases}
+
+- insult
+
+Sends a random roast
+
+#### Usage{#fun-roast-usage}
+
+```txt
+/fun roast [Target:User]
+```
+
+```txt
+[-raw raw:Switch - Raw roast output, no embed]
+```
+
+### /fun roll{#fun-roll}
+
+Roll dices, specify nothing for 6 sides, specify a number for max sides, or rpg dice syntax.
+Example: `-roll 2d6`
+
+#### Usage{#fun-roll-usage}
+
+```txt
+/fun roll <Sides:Whole number>
+/fun roll <RPG-Dice:Text>
+/fun roll
+```
+
+### /fun throw{#fun-throw}
+
+Throwing things is cool.
+
+#### Usage{#fun-throw-usage}
+
+```txt
+/fun throw [Target:User]
+```
+
+### /fun topic{#fun-topic}
+
+Generates a conversation topic to help chat get moving.
+
+#### Usage{#fun-topic-usage}
+
+```txt
+/fun topic
+```
+
+### /fun weather{#fun-weather}
+
+#### Aliases{#fun-weather-aliases}
+
+- w
+
+Shows the weather somewhere
+
+#### Usage{#fun-weather-usage}
+
+```txt
+/fun weather <Where:Text>
+```
+
+### /fun wouldyourather{#fun-wouldyourather}
+
+#### Aliases{#fun-wouldyourather-aliases}
+
+- wyr
+
+Get presented with 2 options.
+
+#### Usage{#fun-wouldyourather-usage}
+
+```txt
+/fun wouldyourather
+```
+
+```txt
+[-raw raw:Switch - Raw output]
+```
+
+### /fun xkcd{#fun-xkcd}
+
+An xkcd comic, by default returns random comic strip
+
+#### Usage{#fun-xkcd-usage}
+
+```txt
+/fun xkcd [Comic-number:Whole number]
+```
+
+```txt
+[-l l:Switch - Latest comic]
+```
+
+### /rep take{#rep-take}
 
 Takes away rep from someone
 
-#### Usage{#TakeRep-usage}
+#### Usage{#rep-take-usage}
 
 ```txt
-TakeRep <User:User> [Num:Whole number]
+/rep take <User:User> [Num:Whole number]
 ```
 
-### GiveRep
-
-#### Aliases{#GiveRep-aliases}
-
-- +
-- gr
-- grep
-- +rep
+### /rep give{#rep-give}
 
 Gives rep to someone
 
-#### Usage{#GiveRep-usage}
+#### Usage{#rep-give-usage}
 
 ```txt
-GiveRep <User:User> [Num:Whole number]
+/rep give <User:User> [Num:Whole number]
 ```
 
-### SetRep
-
-#### Aliases{#SetRep-aliases}
-
-- SetRepID
+### /rep set{#rep-set}
 
 Sets someones rep, this is an admin command and bypasses cooldowns and other restrictions.
 
-#### Usage{#SetRep-usage}
+#### Usage{#rep-set-usage}
 
 ```txt
-SetRep <User:Mention/ID> <Num:Whole number>
+/rep set <User:Mention/ID> <Num:Whole number>
 ```
 
-### DelRep
+### /rep delete{#rep-delete}
 
 Deletes someone from the reputation list completely, this cannot be undone.
 
-#### Usage{#DelRep-usage}
+#### Usage{#rep-delete-usage}
 
 ```txt
-DelRep <User:Mention/ID>
+/rep delete <User:Mention/ID>
 ```
 
-### RepLog
-
-#### Aliases{#RepLog-aliases}
-
-- replogs
+### /rep log{#rep-log}
 
 Shows the rep log for the specified user.
 
-#### Usage{#RepLog-usage}
+#### Usage{#rep-log-usage}
 
 ```txt
-RepLog
-RepLog <User:Mention/ID>
-RepLog <Page:Whole number>
-RepLog <User:Mention/ID> <Page:Whole number>
+/rep log
+/rep log <User:Mention/ID>
+/rep log <Page:Whole number>
+/rep log <User:Mention/ID> <Page:Whole number>
 ```
 
-### Rep
+### /rep check{#rep-check}
 
 Shows yours or the specified users current rep and rank
 
-#### Usage{#Rep-usage}
+#### Usage{#rep-check-usage}
 
 ```txt
-Rep [User:User]
+/rep check [User:User]
 ```
 
-### TopRep
+### /rep top{#rep-top}
 
 Shows rep leaderboard on the server
 
-#### Usage{#TopRep-usage}
+#### Usage{#rep-top-usage}
 
 ```txt
-TopRep [Page:Whole number]
+/rep top [Page:Whole number]
 ```
 
 ```txt
 [-user user:Mention/ID - User to search for in the leaderboard]
 ```
 
-### Soundboard
+### /soundboard{#soundboard}
 
-#### Aliases{#Soundboard-aliases}
+#### Aliases{#soundboard-aliases}
 
 - sb
 
 Play, or list soundboard sounds
 
-#### Usage{#Soundboard-usage}
+#### Usage{#soundboard-usage}
 
 ```txt
-Soundboard [Name:Text]
+/soundboard [Name:Text]
 ```
 
-### SoundboardReset
+### /soundboardreset{#soundboardreset}
 
-#### Aliases{#SoundboardReset-aliases}
+#### Aliases{#soundboardreset-aliases}
 
 - sbclose
 - sbReset
 
 Reset Soundboard Player
 
-#### Usage{#SoundboardReset-usage}
+#### Usage{#soundboardreset-usage}
 
 ```txt
-SoundboardReset
+/soundboardreset
 ```
 
-### cah Create
+### /cah create{#cah-create}
 
-#### Aliases{#cah-Create-aliases}
+#### Aliases{#cah-create-aliases}
 
 - c
 
 Creates a Cards Against Humanity game in this channel, add packs after commands, or * for all packs. (-v for vote mode without a card czar).
 
-#### Usage{#cah-Create-usage}
+#### Usage{#cah-create-usage}
 
 ```txt
-Create [packs:Text - Packs separated by space, or * for all of them.]
+/cah create [packs:Text - Packs separated by space, or * for all of them.]
 ```
 
 ```txt
 [-v v:Switch - Vote mode - players vote instead of having a card czar.]
 ```
 
-### cah End
+### /cah end{#cah-end}
 
 Ends a Cards Against Humanity game that is ongoing in this channel.
 
-#### Usage{#cah-End-usage}
+#### Usage{#cah-end-usage}
 
 ```txt
-End
+/cah end
 ```
 
-### cah Kick
+### /cah kick{#cah-kick}
 
 Kicks a player from the ongoing Cards Against Humanity game in this channel.
 
-#### Usage{#cah-Kick-usage}
+#### Usage{#cah-kick-usage}
 
 ```txt
-Kick <user:Mention/ID>
+/cah kick <user:Mention/ID>
 ```
 
-### cah Packs
+### /cah packs{#cah-packs}
 
 Lists all available packs.
 
-#### Usage{#cah-Packs-usage}
+#### Usage{#cah-packs-usage}
 
 ```txt
-Packs
+/cah packs
 ```
 
-### Trivia Start
+### /trivia start{#trivia-start}
 
-#### Aliases{#Trivia-Start-aliases}
+#### Aliases{#trivia-start-aliases}
 
--
 - s
 
 Starts a trivia session
 
-#### Usage{#Trivia-Start-usage}
+#### Usage{#trivia-start-usage}
 
 ```txt
-Start [Difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
+/trivia start [Difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
 ```
 
-### Trivia Rank
+### /trivia rank{#trivia-rank}
 
 Shows your trivia rank
 
-#### Usage{#Trivia-Rank-usage}
+#### Usage{#trivia-rank-usage}
 
 ```txt
-Rank
+/trivia rank
 ```
 
 ```txt
 [-user user:Mention/ID - Optional User to check rank for]
 ```
 
-### Trivia Leaderboard
+### /trivia leaderboard{#trivia-leaderboard}
 
-#### Aliases{#Trivia-Leaderboard-aliases}
+#### Aliases{#trivia-leaderboard-aliases}
 
 - lb
 - top
 
 Shows the trivia leaderboard
 
-#### Usage{#Trivia-Leaderboard-usage}
+#### Usage{#trivia-leaderboard-usage}
 
 ```txt
-Leaderboard [Sort:Text - Sort by score, streak, maxstreak, correct, or incorrect]
+/trivia leaderboard [Sort:Text - Sort by score, streak, maxstreak, correct, or incorrect]
 ```
 
-### Trivia ResetLeaderboard
+### /trivia resetleaderboard{#trivia-resetleaderboard}
 
 Resets the trivia leaderboard for the server
 
-#### Usage{#Trivia-ResetLeaderboard-usage}
+#### Usage{#trivia-resetleaderboard-usage}
 
 ```txt
-ResetLeaderboard
-```
-
-## Debug & Maintenance 🖥
-
-### Ping
-
-Shows the latency from the bot to the discord servers.
-Note that high latencies can be the fault of ratelimits and the bot itself, it's not a absolute metric.
-#### Usage{#Ping-usage}
-
-```txt
-Ping
-```
-
-### ViewPerms
-
-Shows you or the target's permissions in a given channel (default current channel)
-
-#### Usage{#ViewPerms-usage}
-
-```txt
-ViewPerms [target:Mention/ID]
-```
-
-```txt
-[-channel channel:Channel]
-```
-
-### TopServers
-
-Responds with the top 20 servers I'm on. *Bot admin only.
-
-#### Usage{#TopServers-usage}
-
-```txt
-TopServers [Skip:Whole number - Entries to skip]
-```
-
-```txt
-[-id id:Whole number]
-[-shard shard:Whole number - Shard to get top servers from]
-```
-
-### CurrentShard
-
-#### Aliases{#CurrentShard-aliases}
-
-- cshard
-
-Shows the current shard this server is on (or the one specified)
-
-#### Usage{#CurrentShard-usage}
-
-```txt
-CurrentShard [serverid:Whole number]
-```
-
-### IsGuildUnavailable
-
-Returns whether the specified guild is unavailable or not
-
-#### Usage{#IsGuildUnavailable-usage}
-
-```txt
-IsGuildUnavailable <guildid:Whole number>
-```
-
-### Yagstatus
-
-#### Aliases{#Yagstatus-aliases}
-
-- status
-
-Shows yagpdb status, version, uptime, memory stats, and so on
-
-#### Usage{#Yagstatus-usage}
-
-```txt
-Yagstatus
-```
-
-### DiagnoseCCTriggers
-
-#### Aliases{#DiagnoseCCTriggers-aliases}
-
-- debugcctriggers
-- diagnosetriggers
-- debugtriggers
-- dcct
-
-List all custom commands that would trigger on the input and identify potential issues
-
-#### Usage{#DiagnoseCCTriggers-usage}
-
-```txt
-DiagnoseCCTriggers [input:Text]
-```
-
-### Roledbg
-
-Returns count of autorole assignments currently being processed
-
-#### Usage{#Roledbg-usage}
-
-```txt
-Roledbg
+/trivia resetleaderboard
 ```
 
 ## Moderation 👮
 
-### Ban
+### /warnings list{#warnings-list}
 
-#### Aliases{#Ban-aliases}
+Lists warning of a user.
+
+#### Usage{#warnings-list-usage}
+
+```txt
+/warnings list <User:Mention/ID> [Page:Whole number]
+```
+
+```txt
+[-id id:Whole number - Warning ID]
+```
+
+### /warnings edit{#warnings-edit}
+
+Edit a warning, id is the first number of each warning from the warnings command
+
+#### Usage{#warnings-edit-usage}
+
+```txt
+/warnings edit <WarningId:Whole number> <NewMessage:Text>
+```
+
+### /warnings delete{#warnings-delete}
+
+Deletes a warning, id is the first number of each warning from the warnings command
+
+#### Usage{#warnings-delete-usage}
+
+```txt
+/warnings delete <WarningId:Whole number> [Reason:Text]
+```
+
+### /warnings clear{#warnings-clear}
+
+Clears the warnings of a user
+
+#### Usage{#warnings-clear-usage}
+
+```txt
+/warnings clear <User:Mention/ID> [Reason:Text]
+```
+
+### /warnings top{#warnings-top}
+
+Shows ranked list of warnings on the server
+
+#### Usage{#warnings-top-usage}
+
+```txt
+/warnings top [Page:Whole number]
+```
+
+```txt
+[-id id:Switch - List userIDs]
+```
+
+### /ban{#ban}
+
+#### Aliases{#ban-aliases}
 
 - banid
 
 Bans a member, specify number of days of messages to delete with -ddays (0 to 7)
 
-#### Usage{#Ban-usage}
+#### Usage{#ban-usage}
 
 ```txt
-Ban <User:Mention/ID> <Duration:Duration> <Reason:Text>
-Ban <User:Mention/ID> <Reason:Text> <Duration:Duration>
-Ban <User:Mention/ID> <Duration:Duration>
-Ban <User:Mention/ID> <Reason:Text>
-Ban <User:Mention/ID>
+/ban <User:Mention/ID> <Duration:Duration> <Reason:Text>
+/ban <User:Mention/ID> <Reason:Text> <Duration:Duration>
+/ban <User:Mention/ID> <Duration:Duration>
+/ban <User:Mention/ID> <Reason:Text>
+/ban <User:Mention/ID>
 ```
 
 ```txt
 [-ddays ddays:Whole number - Number of days of messages to delete]
 ```
 
-### Unban
+### /unban{#unban}
 
-#### Aliases{#Unban-aliases}
+#### Aliases{#unban-aliases}
 
 - unbanid
 
 Unbans a user. Reason requirement is same as ban command setting.
 
-#### Usage{#Unban-usage}
+#### Usage{#unban-usage}
 
 ```txt
-Unban <User:Mention/ID> [Reason:Text]
+/unban <User:Mention/ID> [Reason:Text]
 ```
 
-### Kick
+### /kick{#kick}
 
 Kicks a member
 
-#### Usage{#Kick-usage}
+#### Usage{#kick-usage}
 
 ```txt
-Kick <User:Mention/ID> [Reason:Text]
+/kick <User:Mention/ID> [Reason:Text]
 ```
 
 ```txt
 [-cl cl:Whole number - Messages to delete]
 ```
 
-### Mute
+### /mute{#mute}
 
 Mutes a member
 
-#### Usage{#Mute-usage}
+#### Usage{#mute-usage}
 
 ```txt
-Mute <User:Mention/ID> <Duration:Duration> <Reason:Text>
-Mute <User:Mention/ID> <Reason:Text> <Duration:Duration>
-Mute <User:Mention/ID> <Duration:Duration>
-Mute <User:Mention/ID> <Reason:Text>
-Mute <User:Mention/ID>
+/mute <User:Mention/ID> <Duration:Duration> <Reason:Text>
+/mute <User:Mention/ID> <Reason:Text> <Duration:Duration>
+/mute <User:Mention/ID> <Duration:Duration>
+/mute <User:Mention/ID> <Reason:Text>
+/mute <User:Mention/ID>
 ```
 
-### Unmute
+### /unmute{#unmute}
 
 Unmutes a member
 
-#### Usage{#Unmute-usage}
+#### Usage{#unmute-usage}
 
 ```txt
-Unmute <User:Mention/ID> [Reason:Text]
+/unmute <User:Mention/ID> [Reason:Text]
 ```
 
-### Timeout
+### /timeout{#timeout}
 
-#### Aliases{#Timeout-aliases}
+#### Aliases{#timeout-aliases}
 
 - to
 
 Timeout a member
 
-#### Usage{#Timeout-usage}
+#### Usage{#timeout-usage}
 
 ```txt
-Timeout <User:Mention/ID> <Duration:Duration> <Reason:Text>
-Timeout <User:Mention/ID> <Reason:Text> <Duration:Duration>
-Timeout <User:Mention/ID> <Duration:Duration>
-Timeout <User:Mention/ID> <Reason:Text>
-Timeout <User:Mention/ID>
+/timeout <User:Mention/ID> <Duration:Duration> <Reason:Text>
+/timeout <User:Mention/ID> <Reason:Text> <Duration:Duration>
+/timeout <User:Mention/ID> <Duration:Duration>
+/timeout <User:Mention/ID> <Reason:Text>
+/timeout <User:Mention/ID>
 ```
 
-### RemoveTimeout
+### /removetimeout{#removetimeout}
 
-#### Aliases{#RemoveTimeout-aliases}
+#### Aliases{#removetimeout-aliases}
 
 - untimeout
 - cleartimeout
@@ -1126,25 +1153,25 @@ Timeout <User:Mention/ID>
 
 Removes a member's timeout
 
-#### Usage{#RemoveTimeout-usage}
+#### Usage{#removetimeout-usage}
 
 ```txt
-RemoveTimeout <User:Mention/ID> [Reason:Text]
+/removetimeout <User:Mention/ID> [Reason:Text]
 ```
 
-### Report
+### /report{#report}
 
 Reports a member to the server's staff
 
-#### Usage{#Report-usage}
+#### Usage{#report-usage}
 
 ```txt
-Report <User:Mention/ID> <Reason:Text>
+/report <User:Mention/ID> <Reason:Text>
 ```
 
-### Clean
+### /clean{#clean}
 
-#### Aliases{#Clean-aliases}
+#### Aliases{#clean-aliases}
 
 - clear
 - cl
@@ -1154,12 +1181,12 @@ Specify a regex with "-r regex_here" and max age with "-ma 1h10m"
 You can invert the regex match (i.e. only clear messages that do not match the given regex) by supplying the `-im` flag
 Note: Will only look in the last 1k messages, and none > 2 weeks old.
 
-#### Usage{#Clean-usage}
+#### Usage{#clean-usage}
 
 ```txt
-Clean <Num:Whole number>
-Clean <Num:Whole number> <User:Mention/ID>
-Clean <User:Mention/ID> <Num:Whole number>
+/clean <Num:Whole number>
+/clean <Num:Whole number> <User:Mention/ID>
+/clean <User:Mention/ID> <Num:Whole number>
 ```
 
 ```txt
@@ -1175,105 +1202,29 @@ Clean <User:Mention/ID> <Num:Whole number>
 [-bots bots:Switch - Only remove bot messages]
 ```
 
-### Reason
+### /reason{#reason}
 
 Add/Edit a modlog reason
 
-#### Usage{#Reason-usage}
+#### Usage{#reason-usage}
 
 ```txt
-Reason <Message-ID:Whole number> <Reason:Text>
+/reason <Message-ID:Whole number> <Reason:Text>
 ```
 
-### Warn
+### /warn{#warn}
 
 Warns a user, warnings are saved using the bot. Use -warnings to view them.
 
-#### Usage{#Warn-usage}
+#### Usage{#warn-usage}
 
 ```txt
-Warn <User:Mention/ID> <Reason:Text>
+/warn <User:Mention/ID> <Reason:Text>
 ```
 
-### Warnings
+### /giverole{#giverole}
 
-#### Aliases{#Warnings-aliases}
-
-- Warns
-
-Lists warning of a user.
-
-#### Usage{#Warnings-usage}
-
-```txt
-Warnings <User:Mention/ID> [Page:Whole number]
-```
-
-```txt
-[-id id:Whole number - Warning ID]
-```
-
-### EditWarning
-
-Edit a warning, id is the first number of each warning from the warnings command
-
-#### Usage{#EditWarning-usage}
-
-```txt
-EditWarning <WarningId:Whole number> <NewMessage:Text>
-```
-
-### DelWarning
-
-#### Aliases{#DelWarning-aliases}
-
-- dw
-- delwarn
-- deletewarning
-
-Deletes a warning, id is the first number of each warning from the warnings command
-
-#### Usage{#DelWarning-usage}
-
-```txt
-DelWarning <WarningId:Whole number> [Reason:Text]
-```
-
-### ClearWarnings
-
-#### Aliases{#ClearWarnings-aliases}
-
-- clw
-
-Clears the warnings of a user
-
-#### Usage{#ClearWarnings-usage}
-
-```txt
-ClearWarnings <User:Mention/ID> [Reason:Text]
-```
-
-### TopWarnings
-
-#### Aliases{#TopWarnings-aliases}
-
-- topwarns
-
-Shows ranked list of warnings on the server
-
-#### Usage{#TopWarnings-usage}
-
-```txt
-TopWarnings [Page:Whole number]
-```
-
-```txt
-[-id id:Switch - List userIDs]
-```
-
-### GiveRole
-
-#### Aliases{#GiveRole-aliases}
+#### Aliases{#giverole-aliases}
 
 - grole
 - arole
@@ -1281,15 +1232,15 @@ TopWarnings [Page:Whole number]
 
 Gives a role to the specified member, with optional expiry
 
-#### Usage{#GiveRole-usage}
+#### Usage{#giverole-usage}
 
 ```txt
-GiveRole <User:Mention/ID> <Role:Role> [Duration:Duration]
+/giverole <User:Mention/ID> <Role:Role> [Duration:Duration]
 ```
 
-### RemoveRole
+### /removerole{#removerole}
 
-#### Aliases{#RemoveRole-aliases}
+#### Aliases{#removerole-aliases}
 
 - rrole
 - takerole
@@ -1297,15 +1248,15 @@ GiveRole <User:Mention/ID> <Role:Role> [Duration:Duration]
 
 Removes the specified role from the target
 
-#### Usage{#RemoveRole-usage}
+#### Usage{#removerole-usage}
 
 ```txt
-RemoveRole <User:Mention/ID> <Role:Role>
+/removerole <User:Mention/ID> <Role:Role>
 ```
 
-### automod Rulesets
+### /automod rulesets{#automod-rulesets}
 
-#### Aliases{#automod-Rulesets-aliases}
+#### Aliases{#automod-rulesets-aliases}
 
 - r
 - list
@@ -1313,47 +1264,47 @@ RemoveRole <User:Mention/ID> <Role:Role>
 
 Lists all rulesets and their status
 
-#### Usage{#automod-Rulesets-usage}
+#### Usage{#automod-rulesets-usage}
 
 ```txt
-Rulesets
+/automod rulesets
 ```
 
-### automod Toggle
+### /automod toggle{#automod-toggle}
 
-#### Aliases{#automod-Toggle-aliases}
+#### Aliases{#automod-toggle-aliases}
 
 - t
 
 Toggles a ruleset on/off
 
-#### Usage{#automod-Toggle-usage}
+#### Usage{#automod-toggle-usage}
 
 ```txt
-Toggle <Ruleset-Name:Text>
+/automod toggle <Ruleset-Name:Text>
 ```
 
-### automod Logs
+### /automod logs{#automod-logs}
 
-#### Aliases{#automod-Logs-aliases}
+#### Aliases{#automod-logs-aliases}
 
 - log
 
 Shows the log of the last triggered automod rules, optionally filtering by user
 
-#### Usage{#automod-Logs-usage}
+#### Usage{#automod-logs-usage}
 
 ```txt
-Logs [Page:Whole number]
+/automod logs [Page:Whole number]
 ```
 
 ```txt
 [-user user:Mention/ID]
 ```
 
-### automod ListViolations
+### /automod listviolations{#automod-listviolations}
 
-#### Aliases{#automod-ListViolations-aliases}
+#### Aliases{#automod-listviolations-aliases}
 
 - Violations
 - ViolationLogs
@@ -1363,19 +1314,19 @@ Logs [Page:Whole number]
 Lists Violations of specified user
  old flag posts oldest violations in first page ( from oldest to newest ).
 
-#### Usage{#automod-ListViolations-usage}
+#### Usage{#automod-listviolations-usage}
 
 ```txt
-ListViolations <User:Mention/ID> [Page-Number:Whole number]
+/automod listviolations <User:Mention/ID> [Page-Number:Whole number]
 ```
 
 ```txt
 [-old old:Switch - Oldest First]
 ```
 
-### automod ListViolationsCount
+### /automod listviolationscount{#automod-listviolationscount}
 
-#### Aliases{#automod-ListViolationsCount-aliases}
+#### Aliases{#automod-listviolationscount-aliases}
 
 - ViolationsCount
 - VCount
@@ -1383,10 +1334,10 @@ ListViolations <User:Mention/ID> [Page-Number:Whole number]
 Lists Violations summary in entire server or of specified user optionally filtered by max violation age.
  Specify number of violations to skip while fetching using -skip flag ; max entries fetched 500
 
-#### Usage{#automod-ListViolationsCount-usage}
+#### Usage{#automod-listviolationscount-usage}
 
 ```txt
-ListViolationsCount [User:Mention/ID]
+/automod listviolationscount [User:Mention/ID]
 ```
 
 ```txt
@@ -1394,9 +1345,9 @@ ListViolationsCount [User:Mention/ID]
 [-skip skip:Whole number - Amount Skipped]
 ```
 
-### automod DeleteViolation
+### /automod deleteviolation{#automod-deleteviolation}
 
-#### Aliases{#automod-DeleteViolation-aliases}
+#### Aliases{#automod-deleteviolation-aliases}
 
 - DelViolation
 - DelV
@@ -1404,15 +1355,15 @@ ListViolationsCount [User:Mention/ID]
 
 Deletes a Violation with the specified ID. ID is the first number of each Violation in the ListViolations command.
 
-#### Usage{#automod-DeleteViolation-usage}
+#### Usage{#automod-deleteviolation-usage}
 
 ```txt
-DeleteViolation <ID:Whole number>
+/automod deleteviolation <ID:Whole number>
 ```
 
-### automod ClearViolations
+### /automod clearviolations{#automod-clearviolations}
 
-#### Aliases{#automod-ClearViolations-aliases}
+#### Aliases{#automod-clearviolations-aliases}
 
 - ClearV
 - ClrViolations
@@ -1420,13 +1371,13 @@ DeleteViolation <ID:Whole number>
 
 Clears Violations of specified user (or global if User ID = 0 or unspecified) optionally filtered by Name, Min/Max age and other conditions. By default, more recent violations are preferentially cleared. Maximum of 2000 can be cleared at a time.
 
-#### Usage{#automod-ClearViolations-usage}
+#### Usage{#automod-clearviolations-usage}
 
 ```txt
-ClearViolations <User:Mention/ID> <Violation-Name:Text>
-ClearViolations <User:Mention/ID>
-ClearViolations <Violation-Name:Text>
-ClearViolations
+/automod clearviolations <User:Mention/ID> <Violation-Name:Text>
+/automod clearviolations <User:Mention/ID>
+/automod clearviolations <Violation-Name:Text>
+/automod clearviolations
 ```
 
 ```txt
@@ -1439,9 +1390,9 @@ ClearViolations
 
 ## Rolemenu 🔘
 
-### RoleMenu Create
+### /rolemenu create{#rolemenu-create}
 
-#### Aliases{#RoleMenu-Create-aliases}
+#### Aliases{#rolemenu-create-aliases}
 
 - c
 
@@ -1450,10 +1401,10 @@ Specify a message with -m to use an existing message instead of having the bot m
 
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
 
-#### Usage{#RoleMenu-Create-usage}
+#### Usage{#rolemenu-create-usage}
 
 ```txt
-Create <Group:Text - The role command group>
+/rolemenu create <Group:Text - The role command group>
 ```
 
 ```txt
@@ -1463,9 +1414,9 @@ Create <Group:Text - The role command group>
 [-skip skip:Whole number - Number of roles to skip]
 ```
 
-### RoleMenu Remove
+### /rolemenu remove{#rolemenu-remove}
 
-#### Aliases{#RoleMenu-Remove-aliases}
+#### Aliases{#rolemenu-remove-aliases}
 
 - rm
 
@@ -1473,26 +1424,27 @@ Removes a rolemenu from a message.
 The message won't be deleted and the bot will not do anything with reactions on that message
 
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
-#### Usage{#RoleMenu-Remove-usage}
+
+#### Usage{#rolemenu-remove-usage}
 
 ```txt
-Remove <Message-ID:Whole number>
+/rolemenu remove <Message-ID:Whole number>
 ```
 
-### RoleMenu Update
+### /rolemenu update{#rolemenu-update}
 
-#### Aliases{#RoleMenu-Update-aliases}
+#### Aliases{#rolemenu-update-aliases}
 
 - u
 
 Updates a rolemenu, toggling the provided flags and adding missing options, aswell as updating the order.
 
-
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
-#### Usage{#RoleMenu-Update-usage}
+
+#### Usage{#rolemenu-update-usage}
 
 ```txt
-Update <Message-ID:Whole number>
+/rolemenu update <Message-ID:Whole number>
 ```
 
 ```txt
@@ -1500,9 +1452,9 @@ Update <Message-ID:Whole number>
 [-rr rr:Switch - Toggle removing role upon removing reaction]
 ```
 
-### RoleMenu ResetReactions
+### /rolemenu resetreactions{#rolemenu-resetreactions}
 
-#### Aliases{#RoleMenu-ResetReactions-aliases}
+#### Aliases{#rolemenu-resetreactions-aliases}
 
 - reset
 
@@ -1510,65 +1462,65 @@ Removes all reactions on the specified menu message and re-adds them.
 Can be used to fix the order after updating it.
 
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
-#### Usage{#RoleMenu-ResetReactions-usage}
+
+#### Usage{#rolemenu-resetreactions-usage}
 
 ```txt
-ResetReactions <Message-ID:Whole number>
+/rolemenu resetreactions <Message-ID:Whole number>
 ```
 
-### RoleMenu EditOption
+### /rolemenu editoption{#rolemenu-editoption}
 
-#### Aliases{#RoleMenu-EditOption-aliases}
+#### Aliases{#rolemenu-editoption-aliases}
 
 - edit
 
 Allows you to reassign the emoji of an option, tip: use ResetReactions afterwards.
 
-
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
-#### Usage{#RoleMenu-EditOption-usage}
+
+#### Usage{#rolemenu-editoption-usage}
 
 ```txt
-EditOption <Message-ID:Whole number>
+/rolemenu editoption <Message-ID:Whole number>
 ```
 
-### RoleMenu Complete
+### /rolemenu complete{#rolemenu-complete}
 
-#### Aliases{#RoleMenu-Complete-aliases}
+#### Aliases{#rolemenu-complete-aliases}
 
 - finish
 
 Marks the menu as done.
 
-
 To get the id of a message you have to turn on developer mode in Discord's appearances settings then right click the message and copy id.
 
-#### Usage{#RoleMenu-Complete-usage}
+#### Usage{#rolemenu-complete-usage}
 
 ```txt
-Complete <Message-ID:Whole number>
+/rolemenu complete <Message-ID:Whole number>
 ```
 
-### RoleMenu Listgroups
+### /rolemenu listgroups{#rolemenu-listgroups}
 
-#### Aliases{#RoleMenu-Listgroups-aliases}
+#### Aliases{#rolemenu-listgroups-aliases}
 
 - list
 - groups
 
 Lists all role groups
 
-#### Usage{#RoleMenu-Listgroups-usage}
+#### Usage{#rolemenu-listgroups-usage}
 
 ```txt
-Listgroups
+/rolemenu listgroups
 ```
 
 ## Tickets 🎫
 
-### tickets Open
+### /tickets open{#tickets-open}
 
-#### Aliases{#tickets-Open-aliases}
+#### Aliases{#tickets-open-aliases}
 
 - create
 - new
@@ -1576,75 +1528,75 @@ Listgroups
 
 Opens a new ticket
 
-#### Usage{#tickets-Open-usage}
+#### Usage{#tickets-open-usage}
 
 ```txt
-Open <subject:Text>
+/tickets open <subject:Text>
 ```
 
-### tickets AddUser
+### /tickets adduser{#tickets-adduser}
 
 Adds a user to the ticket in this channel
 
-#### Usage{#tickets-AddUser-usage}
+#### Usage{#tickets-adduser-usage}
 
 ```txt
-AddUser <target:Member>
+/tickets adduser <target:Member>
 ```
 
-### tickets RemoveUser
+### /tickets removeuser{#tickets-removeuser}
 
 Removes a user from the ticket
 
-#### Usage{#tickets-RemoveUser-usage}
+#### Usage{#tickets-removeuser-usage}
 
 ```txt
-RemoveUser <target:Member>
+/tickets removeuser <target:Member>
 ```
 
-### tickets Rename
+### /tickets rename{#tickets-rename}
 
 Renames the ticket
 
-#### Usage{#tickets-Rename-usage}
+#### Usage{#tickets-rename-usage}
 
 ```txt
-Rename <new-name:Text>
+/tickets rename <new-name:Text>
 ```
 
-### tickets Close
+### /tickets close{#tickets-close}
 
-#### Aliases{#tickets-Close-aliases}
+#### Aliases{#tickets-close-aliases}
 
 - end
 - delete
 
 Closes the ticket
 
-#### Usage{#tickets-Close-usage}
+#### Usage{#tickets-close-usage}
 
 ```txt
-Close [reason:Text]
+/tickets close [reason:Text]
 ```
 
-### tickets AdminsOnly
+### /tickets adminsonly{#tickets-adminsonly}
 
-#### Aliases{#tickets-AdminsOnly-aliases}
+#### Aliases{#tickets-adminsonly-aliases}
 
 - adminonly
 - ao
 
 Toggle admins only mode for this ticket
 
-#### Usage{#tickets-AdminsOnly-usage}
+#### Usage{#tickets-adminsonly-usage}
 
 ```txt
-AdminsOnly
+/tickets adminsonly
 ```
 
-### tickets MenuCreate
+### /tickets menucreate{#tickets-menucreate}
 
-#### Aliases{#tickets-MenuCreate-aliases}
+#### Aliases{#tickets-menucreate-aliases}
 
 - mc
 
@@ -1654,10 +1606,11 @@ Creates and sends a message with buttons allowing users to open tickets, optiona
 Instead of creating a new message, attach it to another message the bot has sent with `-message bot-message-id-here`. This __must__ be a message the bot has sent.
 Create buttons with up to 9 predefined reasons with `-button-1 "Reason for button 1"`, `-button-2 "Reason for button 2"`, etc.
 If using predefined reason buttons, you may optionally disable the custom reason button with `-disable-custom`.
-#### Usage{#tickets-MenuCreate-usage}
+
+#### Usage{#tickets-menucreate-usage}
 
 ```txt
-MenuCreate
+/tickets menucreate
 ```
 
 ```txt
@@ -1676,29 +1629,29 @@ MenuCreate
 
 ## Events 🎟
 
-### events Create
+### /events create{#events-create}
 
-#### Aliases{#events-Create-aliases}
+#### Aliases{#events-create-aliases}
 
 - new
 - make
 
 Creates an event, You will be led through an interactive setup
 
-#### Usage{#events-Create-usage}
+#### Usage{#events-create-usage}
 
 ```txt
-Create
+/events create
 ```
 
-### events Edit
+### /events edit{#events-edit}
 
 Edits an event
 
-#### Usage{#events-Edit-usage}
+#### Usage{#events-edit-usage}
 
 ```txt
-Edit <ID:Whole number>
+/events edit <ID:Whole number>
 ```
 
 ```txt
@@ -1707,45 +1660,45 @@ Edit <ID:Whole number>
 [-max max:Whole number - Change max participants]
 ```
 
-### events List
+### /events list{#events-list}
 
-#### Aliases{#events-List-aliases}
+#### Aliases{#events-list-aliases}
 
 - ls
 
 Lists all events in this server
 
-#### Usage{#events-List-usage}
+#### Usage{#events-list-usage}
 
 ```txt
-List
+/events list
 ```
 
-### events Delete
+### /events delete{#events-delete}
 
-#### Aliases{#events-Delete-aliases}
+#### Aliases{#events-delete-aliases}
 
 - rm
 - del
 
 Deletes an event, specify the event ID of the event you wanna delete
 
-#### Usage{#events-Delete-usage}
+#### Usage{#events-delete-usage}
 
 ```txt
-Delete <ID:Whole number>
+/events delete <ID:Whole number>
 ```
 
-### events StopSetup
+### /events stopsetup{#events-stopsetup}
 
-#### Aliases{#events-StopSetup-aliases}
+#### Aliases{#events-stopsetup-aliases}
 
 - cancelsetup
 
 Force cancels the current setup session in this channel
 
-#### Usage{#events-StopSetup-usage}
+#### Usage{#events-stopsetup-usage}
 
 ```txt
-StopSetup
+/events stopsetup
 ```

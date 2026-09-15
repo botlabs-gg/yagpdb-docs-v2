@@ -149,7 +149,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 | .Guild.Name                        | Outputs the name of the guild.                                                                                                                                                                                                                                             |
 | .Guild.OwnerID                     | Outputs the ID of the owner.                                                                                                                                                                                                                                               |
 | .Guild.PreferredLocale             | The preferred locale of a guild with the "PUBLIC" feature; used in server discovery and notices from Discord; defaults to "en-US"                                                                                                                                          |
-| .Guild.Roles                       | Outputs all roles and indexing them gives more information about the role. For example `{{len .Guild.Roles}}` gives you how many roles are there in that guild. Role struct has [following fields](https://discordapp.com/developers/docs/topics/permissions#role-object). |
+| .Guild.Roles                       | Outputs all roles and indexing them gives more information about the role. For example `{{len .Guild.Roles}}` gives you how many roles are there in that guild. See [Role](#role) for the fields of a role. |
 | .Guild.Stickers                    | A slice of all [sticker objects] in the guild.                                                                                                                                                                                                                               |
 | .Guild.Splash                      | Outputs the [splash hash](https://discordapp.com/developers/docs/reference#image-formatting) ID of the guild's splash.                                                                                                                                                     |
 | .Guild.SystemChannelID             | The ID of the channel where guild notices such as welcome messages and boost events are posted.                                                                                                                                                                            |
@@ -167,7 +167,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 | `.Guild.GetChannel` id                                       | Gets the channel with the ID provided, returning a _\*dstate.ChannelState_.                                                                                                                                                                                                                                                                                              |
 | `.Guild.GetEmoji` id                                         | Gets the guild emoji with the ID provided, returning a _\*discordgo.Emoji._                                                                                                                                                                                                                                                                                              |
 | `.Guild.GetMemberPermissions` channelID memberID memberRoles | Calculates full [permissions](https://docs.discord.com/developers/topics/permissions) that the member has in the channel provided, taking into account the roles of the member. Example: `{{.Guild.GetMemberPermissions .Channel.ID .Member.User.ID .Member.Roles}}` would retrieve the permissions integer the triggering member has in the context/triggering channel. |
-| `.Guild.GetRole` id                                          | Gets the [role object](https://docs.discord.com/developers/topics/permissions#role-object) with the integer ID provided, returning a struct of type _\*discordgo.Role._                                                                                                                                                                                                  |
+| `.Guild.GetRole` id                                          | Gets the [role](#role) with the integer ID provided, returning a struct of type _\*discordgo.Role._                                                                                                                                                                                                  |
 | `.Guild.GetVoiceState` userID                                | Gets the voice state of the user ID provided, returning a _\*discordgo.VoiceState_. Example code to show if user is in VC or not: `{{if .Guild.GetVoiceState .User.ID}} user is in voice channel {{else}} user is not in voice channel {{end}}`                                                                                                                          |
 | `.Guild.IconURL` "size"                                      | Outputs the URL of guild’s avatar/icon. Size argument is the size of the picture and can increase/decrease twofold (e.g. 512, 1024 or 128, 64 etc.).                                                                                                                                                                                                                     |
 
@@ -236,7 +236,7 @@ Interaction functions are covered in their respective section on the [functions 
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                              |
 | .Message.Activity                    | Represents the activity sent with a message, such as a game invite, of type _\*discordgo.MessageActivity_. Sent with Rich Presence-related chat embeds.                                                                                                                                                                                                                                                                               |
 | .Message.ApplicationID               | If the message is an interaction- or application-owned webhook, this is the ID of that application.                                                                                                                                                                                                                                                                                                                                   |
-| .Message.Attachments                 | Attachments of this message (_slice_ of [attachment](https://docs.discord.com/developers/resources/message#attachment-object) objects).                                                                                                                                                                                                                                                                                               |
+| .Message.Attachments                 | Attachments of this message (_slice_ of [attachment](#attachment) objects).                                                                                                                                                                                                                                                                                               |
 | .Message.Author                      | Author of the message ([User](#user) object).                                                                                                                                                                                                                                                                                                                                                                                         |
 | .Message.ChannelID                   | Channel ID this message is in.                                                                                                                                                                                                                                                                                                                                                                                                        |
 | .Message.Components                  | Slice of [discordgo.ActionsRow](https://docs.discord.com/developers/components/reference#action-row)s, which each contain components. Example on indexing the first button or menu under a message: `( index ( index .Message.Components 0 ).Components 0 )`                                                                                                                                                              |
@@ -280,6 +280,47 @@ Interaction functions are covered in their respective section on the [functions 
 
 [Message functions documentation](functions#message).
 
+#### Attachment
+
+An entry of `.Message.Attachments`.
+See the [attachment object](https://docs.discord.com/developers/resources/message#attachment-object) in Discord's documentation for the full list of fields.
+
+| Field      | Description                                                                             |
+| ---------- | --------------------------------------------------------------------------------------- |
+| .Filename  | The name of the attached file.                                                          |
+| .Flags     | A bitfield describing the attachment. See [Attachment Flags](#attachment-flags) below.  |
+| .Height    | The height of the attachment, if it is an image.                                        |
+| .ID        | The ID of the attachment.                                                               |
+| .ProxyURL  | A proxied URL of the attached file.                                                     |
+| .Size      | The size of the attached file in bytes.                                                 |
+| .URL       | The source URL of the attached file.                                                    |
+| .Width     | The width of the attachment, if it is an image.                                         |
+
+##### Attachment Flags{#attachment-flags}
+
+`.Flags` is a bitfield, so test a flag by masking it out rather than comparing the whole value.
+
+| Flag            | Value    | Meaning                                                    |
+| --------------- | -------- | ---------------------------------------------------------- |
+| Is clip         | `1 << 0` | The attachment is a clip.                                  |
+| Is thumbnail    | `1 << 1` | The attachment is a thumbnail.                             |
+| Is remix        | `1 << 2` | The attachment has been edited with the remix feature.     |
+| Is spoiler      | `1 << 3` | The attachment is marked as a spoiler.                     |
+| Is animated     | `1 << 4` | The attachment is animated.                                |
+
+Checking whether an attachment is spoilered is the common case.
+Discord used to signal this only through a `SPOILER_` filename prefix, which is not set on every spoilered file, so prefer the flag:
+
+```yag
+{{ $attachment := index .Message.Attachments 0 }}
+{{/* a spoilered attachment has the fourth bit set: 1 << 3 */}}
+{{ $mask := bitwiseLeftShift 1 3 }}
+{{ $isSpoiler := ne (bitwiseAnd $attachment.Flags $mask) 0 }}
+{{ if $isSpoiler }}
+  {{ sendMessage nil "nice spoiler" }}
+{{ end }}
+```
+
 #### RoleSubscriptionData
 
 | Field                          | Description                                                            |
@@ -303,6 +344,46 @@ This is available and part of the dot when reaction trigger type is used.
 
 [Reaction object in Discord documentation](https://discordapp.com/developers/docs/resources/message#reaction-object).\
 [Emoji object in Discord documentation.](https://docs.discord.com/developers/resources/emoji)
+
+### Role
+
+A role object, as returned by `.Guild.GetRole`, indexing `.Guild.Roles`, or `.Role` in a role change trigger.
+See the [role object](https://docs.discord.com/developers/topics/permissions#role-object) in Discord's documentation for the full list of fields.
+
+| Field                    | Description                                                                                                                                       |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .Colors                  | The role's colors, of type _\*discordgo.Colors_. See [Role Colors](#role-colors) below.                                                            |
+| .Color                   | The role's primary color as an integer. **Deprecated** by Discord in favor of `.Colors.PrimaryColor`; it is still populated and still works today. |
+| .Hoist                   | Whether the role is displayed separately in the member list.                                                                                      |
+| .ID                      | The ID of the role.                                                                                                                               |
+| .Managed                 | Whether the role is managed by an integration, such as a bot or a Discord subscription.                                                           |
+| .Mention                 | A mention of the role, i.e. `<@&ID>`.                                                                                                             |
+| .Mentionable             | Whether the role can be mentioned by anyone.                                                                                                      |
+| .Name                    | The name of the role.                                                                                                                             |
+| .Permissions             | The permission bitset of the role.                                                                                                                |
+| .Position                | The position of the role in the role list.                                                                                                        |
+
+#### Role Colors{#role-colors}
+
+Discord roles can carry up to three colors, exposed through `.Colors`.
+All three fields are always present; a color the role does not have is `null`.
+
+| Field                   | Description                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| .Colors.PrimaryColor    | The role's primary color. This is the same value as the deprecated `.Color` field. |
+| .Colors.SecondaryColor  | The second color of a gradient role, or `null` if the role has none.               |
+| .Colors.TertiaryColor   | The third color of a holographic role, or `null` if the role has none.             |
+
+```yag
+{{ $role := .Guild.GetRole 1234567890 }}
+{{ $color := $role.Colors.PrimaryColor }}
+{{ if $role.Colors.SecondaryColor }}
+  {{/* the role uses a gradient */}}
+  {{ sendMessage nil (printf "%s fades from %d to %d" $role.Name $color $role.Colors.SecondaryColor) }}
+{{ else }}
+  {{ sendMessage nil (printf "%s is a solid %d" $role.Name $color) }}
+{{ end }}
+```
 
 ### Role Change
 

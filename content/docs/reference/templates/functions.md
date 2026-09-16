@@ -571,7 +571,7 @@ Sends a modal to the member who triggered the interaction.
     - `placeholder`: the placeholder text for the field.
     - `value`: the default value for the field.
     - `required`: whether the field is required.
-    - `style`: the style of the field (1 for short, 2 for long).
+    - `style`: the optional style of the field, either 1 for short or 2 for long. Defaults to 1 (short).
     - `min_length`: the minimum length of the field.
     - `max_length`: the maximum length of the field.
 
@@ -586,7 +586,7 @@ Alternatively, you can create a modal object using the [`cmodal`](#cmodal) funct
   "fields" (cslice
     (sdict "label" "Name" "placeholder" "Duck" "required" true)
     (sdict "label" "Do you like ducks?" "value" "Heck no")
-    (sdict "label" "Duck hate essay" "min_length" 100 "style")) }}
+    (sdict "label" "Duck hate essay" "min_length" 100 "style" 2)) }}
 {{ sendModal $modal }}
 ```
 
@@ -1027,7 +1027,7 @@ Returns a text input component for use in modals.
 `values` may be an sdict or a list of key-value pairs with the following keys:
 
 - `custom_id`: a unique identifier for the text input.
-- `style`: the style of the text input, either 1 for short, 2 for long.
+- `style`: the optional style of the text input, either 1 for short or 2 for long. Defaults to 1 (short).
 - `min_length`: the optional minimum length of the input. Min 0, max 4000.
 - `max_length`: the optional maximum length of the input. Min 1, max 4000.
 - `required`: optional bool for whether the text input is required. Defaults to true.
@@ -2566,7 +2566,7 @@ The number of parameters must be even.
 
 Runs the given command with the provided (optional) arguments as the bot and returns the response.
 
-This will not work for commands which have their response marked as a manual response, i.e. `wouldyourather` and `poll`.
+This will not work for commands which have their response marked as a manual response, i.e. `/fun wouldyourather` and `/poll`.
 
 #### execTemplate
 
@@ -2585,7 +2585,7 @@ Please see [Associated Templates](/docs/reference/templates/syntax-and-data#asso
 
 Executes the given command with the provided (optional) arguments as the triggering user and returns the response.
 
-This will not work for commands which have their response marked as a manual response, i.e. `wouldyourather` and `poll`.
+This will not work for commands which have their response marked as a manual response, i.e. `/fun wouldyourather` and `/poll`.
 
 #### getWarnings
 

@@ -46,14 +46,14 @@ The moderation page allows configuration of common settings.
 Certain potentially destructive moderation commands are disabled by default.
 These commands are:
 
-- The **clean command** (**4**) toggles the [clean command](/docs/core/all-commands#clean).
-- The **report command** (**5**) toggles the [report command](/docs/core/all-commands#report).
-- **Giverole/Takerole commands** (**7**) toggle the [giverole](/docs/core/all-commands#giverole) and
-  [takerole](/docs/core/all-commands#removerole) commands.
+- The **clean command** (**4**) toggles the [`/clean` command](/docs/core/all-commands#clean).
+- The **report command** (**5**) toggles the [`/report` command](/docs/core/all-commands#report).
+- **Giverole/Takerole commands** (**7**) toggle the [`/giverole`](/docs/core/all-commands#giverole) and
+  [`/removerole`](/docs/core/all-commands#removerole) commands.
 
 ### Unban/Unmute Logging
 
-When the `unban`/ `unmute` commands are used, YAGPDB will log their usage to the [mod log](#mod-channels) similarly to the other moderation commands.
+When the `/unban` / `/unmute` commands are used, YAGPDB will log their usage to the [mod log](#mod-channels) similarly to the other moderation commands.
 
 When using the `ban` and `mute` commands with a duration, YAGPDB will automatically undo the punishment after the specified duration.
 For instance, if you execute `ban @user 1d`, YAGPDB will ban the user, and 1 day later YAGPDB will execute the `unban` command with reason "Timed ban expired".
@@ -84,7 +84,7 @@ Like all inbuilt commands, they may also be triggered within template script usi
 
 Most moderation tools allow you to specify a reason for the mod action.
 This is included when the action is logged in the [mod log](#mod-channels) and is also, by default, DM'd to the offending user when using [certain commands](#moderation-dms).
-This reason may be retroactively edited using the [Reason Command](/docs/core/all-commands#reason).
+This reason may be retroactively edited using the [`/reason` command](/docs/core/all-commands#reason).
 
 Each of the main moderation tools have individual configuration pages, accessible through the tabs (**13**).
 
@@ -163,7 +163,7 @@ This is a requirement by Discord.
 For this reason the timeout command has a default duration which is applied if the duration argument is omitted when running the command.
 By default, this default duration is set to 10 minutes, but can be changed via the timeout tab on the control panel.
 
-[Timeout Command Syntax](/docs/core/all-commands#timeout)
+[`/timeout` Syntax](/docs/core/all-commands#timeout)
 
 ### Mute
 
@@ -191,9 +191,16 @@ The mute command has an optional duration argument.
 By default, if no duration is provided, the mute is permanent (or until manually unmuted).
 To override this, you may set a default duration with the "Default mute duration" field in the mute tab on the control panel.
 
-[Mute Command Syntax](/docs/core/all-commands#mute)
+#### Role Hierarchy
 
-[Unmute Command Syntax](/docs/core/all-commands#unmute)
+YAGPDB refuses to mute a member whose highest role sits above its own, and the server owner can never be muted.
+Muting works by assigning a role, and Discord does not let a bot assign roles to members ranked above it, so the attempt would fail partway through anyway.
+
+If a mute is rejected for this reason, move YAGPDB's role above the roles of the members you want it to be able to mute.
+
+[`/mute` Syntax](/docs/core/all-commands#mute)
+
+[`/unmute` Syntax](/docs/core/all-commands#unmute)
 
 {{< callout context="danger" title="Danger: Discord Permission Precedence" icon="outline/alert-octagon" >}}
 
@@ -224,7 +231,7 @@ YAGPDB's kick tool optionally allows you to delete the X most recent messages se
 This can be done by specifying a number of messages to delete with the `-cl` flag when running the kick command.
 There is also a "Delete the user's last 100 messages" toggle in the kick tab on the control panel which enables automatic deletion when the kick tool is used.
 
-[Kick Command Syntax](/docs/core/all-commands#kick)
+[`/kick` Syntax](/docs/core/all-commands#kick)
 
 ### Ban
 
@@ -238,9 +245,9 @@ This is measured by days' worth of messages.
 This can be done by specifying a number of days' worth of messages to delete with the `-ddays` flag when running the ban command.
 There is also a "Default number of days of messages to delete" field in the ban tab on the control panel which enables automatic deletion when the kick tool is used.
 
-[Ban Command Syntax](/docs/core/all-commands#ban)
+[`/ban` Syntax](/docs/core/all-commands#ban)
 
-[Unban Command Syntax](/docs/core/all-commands#unban)
+[`/unban` Syntax](/docs/core/all-commands#unban)
 
 {{< callout context="note" title="Note: Unban Author After Duration Expired" icon="outline/info-circle" >}}
 
@@ -267,17 +274,17 @@ You may optionally send warnings to the mod log, this is enabled in the warnings
 
 #### Managing Warnings
 
-[Warn Command Syntax](/docs/core/all-commands#warn)
+[`/warn` Syntax](/docs/core/all-commands#warn)
 
-[Warnings Command Syntax](/docs/core/all-commands#warnings) - Lists warnings of a user.
+[`/warnings list` Syntax](/docs/core/all-commands#warnings-list) - Lists warnings of a user.
 
-[EditWarning Command Syntax](/docs/core/all-commands#editwarning) - Retroactively edits a warning.
+[`/warnings edit` Syntax](/docs/core/all-commands#warnings-edit) - Retroactively edits a warning.
 
-[DelWarning Command Syntax](/docs/core/all-commands#delwarning) - Deletes a warning.
+[`/warnings delete` Syntax](/docs/core/all-commands#warnings-delete) - Deletes a warning.
 
-[ClearWarnings Command Syntax](/docs/core/all-commands#clearwarnings) - Clears the warnings of a user.
+[`/warnings clear` Syntax](/docs/core/all-commands#warnings-clear) - Clears the warnings of a user.
 
-[TopWarnings Command Syntax](/docs/core/all-commands#topwarnings) - Shows ranked list of warnings on the server, allowing you to turn misbehavior into a fun minigame for your server members.
+[`/warnings top` Syntax](/docs/core/all-commands#warnings-top) - Shows ranked list of warnings on the server, allowing you to turn misbehavior into a fun minigame for your server members.
 
 {{< callout context="tip" title="Tip: Taking Action on Warn Count" icon="outline/rocket" >}}
 

@@ -17,6 +17,9 @@ Use the Table of Contents in the top left corner of this page alongside your bro
 
 Only one trigger has to be met for a rule to trigger — that is, the triggers are combined according to the logical OR operator.
 
+Triggers that inspect message text look at the content of any forwarded messages as well as the message's own text.
+Use the [Ignore messages with forwards](/docs/moderation/advanced-automoderator/conditions#ignore-messages-with-forwards) condition if you would rather a rule skipped those.
+
 ### List of Triggers
 
 Following is a list of all available triggers, in the order they appear on the control panel.

@@ -20,7 +20,7 @@ Make sure that the bot has the _manage role_ permission and that the bot's role 
 
 {{< callout context="caution" title="Warning: Required User Permissions" icon="outline/alert-triangle" >}}
 
-If you want to use any of the `rolemenu` commands, you **need** to have the `MANAGE_GUILD` permission, or the Manage Server permission.
+If you want to use any of the `/rolemenu` commands, you **need** to have the `MANAGE_GUILD` permission, or the Manage Server permission.
 This is hard-coded, meaning that command overrides will not affect it.
 
 {{< /callout >}}
@@ -125,11 +125,11 @@ If you'd like to create a message like in the example to create a rolemenu on, t
 {{< callout context="note" title="Note: Message Reactions Limit" icon="outline/info-circle" >}}
 
 A role menu can only support up to 20 roles due to the reaction limit discord places on messages.
-If your role group has more than twenty you have to use the `rolemenu finish` sub-command and then add the rest of roles to a new message using the `-skip` flag.
+If your role group has more than twenty you have to use the `/rolemenu complete` sub-command and then add the rest of roles to a new message using the `-skip` flag.
 
 {{< /callout >}}
 
-To set up a role menu, the related roles **have to be added to a role group**, then you invoke the command `-rolemenu create (role group name)`.
+To set up a role menu, the related roles **have to be added to a role group**, then you invoke the command `/rolemenu create (role group name)`.
 
 The group mode and other restrictions from the role group and role still apply to the roles in the role menu.
 
@@ -143,7 +143,7 @@ Role menu will **not** work if you have not done so.
 All switches and flags (nodm, rr, etc...) start with hyphen symbol `-`, not your prefix.
 
 Once you've made your role commands and assigned them to a role group, go to the channel in Discord where you want the role menu to be created.
-Then type `-rolemenu create (group name)`; applying our "Sports" role group example, we'd have to send `-rolemenu create Sports`.
+Then type `/rolemenu create (group name)`; applying our "Sports" role group example, we'd have to send `/rolemenu create Sports`.
 
 ![Rolemenu Create command](rolemenu_create.png)
 
@@ -166,12 +166,12 @@ The setup message will be automatically deleted in a couple of minutes, but you 
 ### Custom message
 
 To create a custom message for your role menu like event role menu you saw above, you will need to send a message.
-Then get the ID of the message by following the steps in [how to get a message ID](#how-to-get-a-message-id-desktop) and type in the following command, `-rolemenu create (group name) -m (message id)`.
+Then get the ID of the message by following the steps in [how to get a message ID](#how-to-get-a-message-id-desktop) and type in the following command, `/rolemenu create (group name) -m (message id)`.
 You would then complete the role menu like you would any normal role menu.
 
 ### Disabling DM confirmation
 
-If you do not want the bot to send you a DM when you are given or removed from a role, type in the following command `-rolemenu update (message id) -nodm`.
+If you do not want the bot to send you a DM when you are given or removed from a role, type in the following command `/rolemenu update (message id) -nodm`.
 
 After you have finish editing or creating your role menu, it will display whether DM notifications are enabled or not.
 Note that YAGPDB does not allow you to disable error messages such as cool-down messages with the `nodm` switch or any other method.
@@ -183,31 +183,31 @@ Note that YAGPDB does not allow you to disable error messages such as cool-down 
 Remove roles on reaction remove, this means instead of the old toggling mode, adding reactions will strictly give you the role, and removing reactions will only take away the role from you.
 This mode is on by default for new menus.
 
-You can set old menus to use this switch using the command `rolemenu update (message id) -rr`.
+You can set old menus to use this switch using the command `/rolemenu update (message id) -rr`.
 
 ## Role Menu options
 
 ### Removing a role menu
 
-If you want to remove a role menu from a message, you can type in `-rolemenu remove (message id)` It will remove the role-menu from a message.
+If you want to remove a role menu from a message, you can type in `/rolemenu remove (message id)` It will remove the role-menu from a message.
 The message itself won't be deleted but the bot will now not do anything with reactions on that message.
 
 ### Editing a role menu
 
-If you want to change the emote for one your reaction, you can do so by typing in `-rolemenu edit (message id)` After you type it the command it will ask you to react on the emote you want to change.
+If you want to change the emote for one your reaction, you can do so by typing in `/rolemenu editoption (message id)` After you type it the command it will ask you to react on the emote you want to change.
 You will need to go to the role menu and react on the emote you want to change.
 After you have reacted on the desired emote, it will ask you to react with your new emote on the role menu.
 
 ### Resetting all reactions
 
 If you edit your reaction emotes or simply want to give your emote a new clean slate.
-You can reset all the reactions by typing in `-rolemenu resetreactions (message id)`.
+You can reset all the reactions by typing in `/rolemenu resetreactions (message id)`.
 It will remove all reactions on this menu and re-adds them, can be used to fix the order.
 
 ### Updating a role menu
 
 If you added a new role to your role group, you can update your role menu.
-Update it by typing in `-rolemenu update (message id)` and follow the instructions given.
+Update it by typing in `/rolemenu update (message id)` and follow the instructions given.
 
 ## How to get a message ID (Desktop)
 

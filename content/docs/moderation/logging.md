@@ -38,7 +38,9 @@ If you're self-hosting, see [Message Log Purge](#message-log-purge) for more inf
 By default, any member can run the logs command for any channel in which they have permission to Read Messages, Send Messages, and Read Message History.
 Members will be permitted to create logs regardless of their permission to view them.
 
-[Logs Command Syntax](/docs/core/all-commands#logs)
+The command logs the channel it is run in unless you point it elsewhere with the `channel` option, which accepts threads as well as regular channels.
+
+[`/logs` Syntax](/docs/core/all-commands#logs)
 
 ### Moderation Actions
 

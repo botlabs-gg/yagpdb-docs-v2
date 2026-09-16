@@ -39,12 +39,28 @@ Make sure that the bot's highest role is above this selected role.
 - **All members**: Assign or remove the target role to/from all members indiscriminately.
 - **Bots only**: Assign or remove the target role only to/from bots.
 - **Humans only**: Assign or remove the target role only to/from humans.
-- **Has specific roles**: Only care about members with at least one of these roles.
-  Optionally you can tell the bot to require **all** of your selected roles.
-- **Missing specific roles**: Like the above, but only on members without at least one of these roles.
-  Optionally for **all** selected roles.
+- **Has specific roles**: Only care about members who hold the selected roles.
+- **Missing specific roles**: Only care about members who do not hold the selected roles.
 - **Joined after date**: Only care about members that joined after the selected date.
 - **Joined before date**: Only care about members that joined before the selected date.
+
+#### Require ALL Selected Roles
+
+The two role filters above come with a *Require ALL selected roles* toggle, which decides whether a member has to match every selected role or just one of them.
+The control panel spells out what the toggle currently means as you switch between the two filter types, because the two read quite differently:
+
+| Filter type              | Toggle on                                                | Toggle off                                                |
+| ------------------------ | -------------------------------------------------------- | --------------------------------------------------------- |
+| Has specific roles       | Matches members who have **every** selected role.        | Matches members who have **at least one** of them.        |
+| Missing specific roles   | Matches members who have **none** of the selected roles. | Matches members who are missing **at least one** of them. |
+
+{{< callout context="warning" title="Warning: Missing Roles With the Toggle Off" icon="outline/alert-triangle" >}}
+
+*Missing specific roles* with the toggle off matches every member who is missing at least one of the selected roles.
+Unless everyone on your server holds all of those roles, that is very nearly the whole member list.
+Turn the toggle on if you meant "members who have none of these roles".
+
+{{< /callout >}}
 
 ### Notification Channel
 

@@ -18,12 +18,12 @@ Make sure that the bot has permission to manage channels in the category you wan
 ## Commands
 
 See the [Commands](/docs/core/all-commands/#tickets-) page for a listing of all commands.
-By default, we impose no restrictions on who can run these commands, though it may be pertinent to restrict sensitive commands such as the `-tickets close` command to staff members using [Command overrides](/docs/core/command-settings).
+By default, we impose no restrictions on who can run these commands, though it may be pertinent to restrict sensitive commands such as the `/tickets close` command to staff members using [Command overrides](/docs/core/command-settings).
 
 ## Configuration
 
 At the top of the tickets settings page, you will find a toggle to enable or disable the ticket system in its entirety.
-If you wish to disable certain parts, such as the `tickets adduser` command, please use a command override instead.
+If you wish to disable certain parts, such as the `/tickets adduser` command, please use a command override instead.
 
 If you disable the ticket system, the bot will respond with an error message when you try to run ticket-related commands, unless they are also disabled using command overrides.
 
@@ -31,7 +31,7 @@ If you disable the ticket system, the bot will respond with an error message whe
 
 Individual tickets can be set to an admin-only mode, where only users with these specified roles will be able to view that ticket channel.
 
-Toggling this mode is done by running `-tickets adminonly` in the ticket's channel.
+Toggling this mode is done by running `/tickets adminsonly` in the ticket's channel.
 Running the command again will deactivate the admin-only mode.
 This may serve useful when handling issues that require a higher level of privacy, such as complaints about staff members.
 
@@ -98,9 +98,9 @@ The default message is the following custom command code:
 
 Please describe the reasoning for opening this ticket, include any information you think may be relevant such as proof, other third parties and so on.`
 "\n\nuse the following command to close the ticket\n"
-"`-ticket close reason for closing here`\n\n"
+"`/tickets close reason for closing here`\n\n"
 "use the following command to add users to the ticket\n"
-"`-ticket adduser @user`")}}
+"`/tickets adduser @user`")}}
 {{sendMessage nil $embed}}
 ```
 

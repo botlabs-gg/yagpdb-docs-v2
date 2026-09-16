@@ -61,8 +61,8 @@ Wait for several minutes, and press _Save_ again if the status does not show _Re
 
 ## Playing sounds
 
-You can check for an available list of sounds with the `-soundboard` command.
-Then, play it with the `-sb <sound name>` command.
+You can check for an available list of sounds with the `/soundboard` command.
+Then, play it with the `/soundboard <sound name>` command.
 Make sure that YAGPDB has the right permissions (i.e. connect to and speak in the voice channel).
 
 ## Deleting sounds

@@ -72,7 +72,7 @@ On your own instance you decide when that happens, through two independent optio
 
 | Variable                                | Default | Effect                                                                                                                |
 | --------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
-| `YAGPDB_DISABLE_PREFIX_COMMANDS`        | `false` | When true, built-in commands stop responding to the command prefix. Bot mentions, DMs, and slash commands still work.  |
+| `YAGPDB_DISABLE_PREFIX_COMMANDS`        | `false` | When true, built-in commands stop responding to the command prefix. Bot mentions, DMs, and slash commands still work. |
 | `YAGPDB_ENABLE_PREFIX_COMMANDS_WARNING` | `false` | When true, shows the deprecation notice on the control panel and in Discord.                                          |
 
 The two are independent, and the warning's wording follows the first: with prefixed commands still enabled it announces an upcoming change, and with them disabled it explains that they are already off.

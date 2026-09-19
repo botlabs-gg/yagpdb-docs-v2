@@ -854,7 +854,7 @@ Creates a Cards Against Humanity game in this channel, add packs after commands,
 #### Usage{#cah-create-usage}
 
 ```txt
-/create [packs:Text - Packs separated by space, or * for all of them.]
+/cah create [packs:Text - Packs separated by space, or * for all of them.]
 ```
 
 ```txt
@@ -868,7 +868,7 @@ Ends a Cards Against Humanity game that is ongoing in this channel.
 #### Usage{#cah-end-usage}
 
 ```txt
-/end
+/cah end
 ```
 
 ### /cah kick{#cah-kick}
@@ -878,7 +878,7 @@ Kicks a player from the ongoing Cards Against Humanity game in this channel.
 #### Usage{#cah-kick-usage}
 
 ```txt
-/kick <user:Mention/ID>
+/cah kick <user:Mention/ID>
 ```
 
 ### /cah packs{#cah-packs}
@@ -888,7 +888,7 @@ Lists all available packs.
 #### Usage{#cah-packs-usage}
 
 ```txt
-/packs
+/cah packs
 ```
 
 ### /trivia start{#trivia-start}
@@ -902,7 +902,7 @@ Starts a trivia session
 #### Usage{#trivia-start-usage}
 
 ```txt
-/start [difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
+/trivia start [difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
 ```
 
 ### /trivia rank{#trivia-rank}
@@ -912,7 +912,7 @@ Shows your trivia rank
 #### Usage{#trivia-rank-usage}
 
 ```txt
-/rank
+/trivia rank
 ```
 
 ```txt
@@ -931,7 +931,7 @@ Shows the trivia leaderboard
 #### Usage{#trivia-leaderboard-usage}
 
 ```txt
-/leaderboard [sort:Text - Sort by score, streak, maxstreak, correct, or incorrect]
+/trivia leaderboard [sort:Text - Sort by score, streak, maxstreak, correct, or incorrect]
 ```
 
 ### /trivia resetleaderboard{#trivia-resetleaderboard}
@@ -941,7 +941,7 @@ Resets the trivia leaderboard for the server
 #### Usage{#trivia-resetleaderboard-usage}
 
 ```txt
-/resetleaderboard
+/trivia resetleaderboard
 ```
 
 ## Moderation 👮
@@ -1221,7 +1221,7 @@ Lists all rulesets and their status
 #### Usage{#automod-rulesets-usage}
 
 ```txt
-/rulesets
+/automod rulesets
 ```
 
 ### /automod toggle{#automod-toggle}
@@ -1235,7 +1235,7 @@ Toggles a ruleset on/off
 #### Usage{#automod-toggle-usage}
 
 ```txt
-/toggle <ruleset-name:Text>
+/automod toggle <ruleset-name:Text>
 ```
 
 ### /automod logs{#automod-logs}
@@ -1249,7 +1249,7 @@ Shows the log of the last triggered automod rules, optionally filtering by user
 #### Usage{#automod-logs-usage}
 
 ```txt
-/logs [page:Whole number]
+/automod logs [page:Whole number]
 ```
 
 ```txt
@@ -1271,7 +1271,7 @@ Lists Violations of specified user
 #### Usage{#automod-listviolations-usage}
 
 ```txt
-/listviolations <user:Mention/ID> [page-number:Whole number]
+/automod listviolations <user:Mention/ID> [page-number:Whole number]
 ```
 
 ```txt
@@ -1291,7 +1291,7 @@ Lists Violations summary in entire server or of specified user optionally filter
 #### Usage{#automod-listviolationscount-usage}
 
 ```txt
-/listviolationscount [user:Mention/ID]
+/automod listviolationscount [user:Mention/ID]
 ```
 
 ```txt
@@ -1312,7 +1312,7 @@ Deletes a Violation with the specified ID. ID is the first number of each Violat
 #### Usage{#automod-deleteviolation-usage}
 
 ```txt
-/deleteviolation <id:Whole number>
+/automod deleteviolation <id:Whole number>
 ```
 
 ### /automod clearviolations{#automod-clearviolations}
@@ -1328,10 +1328,10 @@ Clears Violations of specified user (or global if User ID = 0 or unspecified) op
 #### Usage{#automod-clearviolations-usage}
 
 ```txt
-/clearviolations <user:Mention/ID> <violation-name:Text>
-/clearviolations <user:Mention/ID>
-/clearviolations <violation-name:Text>
-/clearviolations
+/automod clearviolations <user:Mention/ID> <violation-name:Text>
+/automod clearviolations <user:Mention/ID>
+/automod clearviolations <violation-name:Text>
+/automod clearviolations
 ```
 
 ```txt
@@ -1358,7 +1358,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-create-usage}
 
 ```txt
-/create <group:Text - The role command group>
+/rolemenu create <group:Text - The role command group>
 ```
 
 ```txt
@@ -1382,7 +1382,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-remove-usage}
 
 ```txt
-/remove <message-id:Whole number>
+/rolemenu remove <message-id:Whole number>
 ```
 
 ### /rolemenu update{#rolemenu-update}
@@ -1398,7 +1398,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-update-usage}
 
 ```txt
-/update <message-id:Whole number>
+/rolemenu update <message-id:Whole number>
 ```
 
 ```txt
@@ -1420,7 +1420,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-resetreactions-usage}
 
 ```txt
-/resetreactions <message-id:Whole number>
+/rolemenu resetreactions <message-id:Whole number>
 ```
 
 ### /rolemenu editoption{#rolemenu-editoption}
@@ -1436,7 +1436,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-editoption-usage}
 
 ```txt
-/editoption <message-id:Whole number>
+/rolemenu editoption <message-id:Whole number>
 ```
 
 ### /rolemenu complete{#rolemenu-complete}
@@ -1452,7 +1452,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-complete-usage}
 
 ```txt
-/complete <message-id:Whole number>
+/rolemenu complete <message-id:Whole number>
 ```
 
 ### /rolemenu listgroups{#rolemenu-listgroups}
@@ -1467,7 +1467,7 @@ Lists all role groups
 #### Usage{#rolemenu-listgroups-usage}
 
 ```txt
-/listgroups
+/rolemenu listgroups
 ```
 
 ## Tickets 🎫
@@ -1485,7 +1485,7 @@ Opens a new ticket
 #### Usage{#tickets-open-usage}
 
 ```txt
-/open <subject:Text>
+/tickets open <subject:Text>
 ```
 
 ### /tickets adduser{#tickets-adduser}
@@ -1495,7 +1495,7 @@ Adds a user to the ticket in this channel
 #### Usage{#tickets-adduser-usage}
 
 ```txt
-/adduser <target:Member>
+/tickets adduser <target:Member>
 ```
 
 ### /tickets removeuser{#tickets-removeuser}
@@ -1505,7 +1505,7 @@ Removes a user from the ticket
 #### Usage{#tickets-removeuser-usage}
 
 ```txt
-/removeuser <target:Member>
+/tickets removeuser <target:Member>
 ```
 
 ### /tickets rename{#tickets-rename}
@@ -1515,7 +1515,7 @@ Renames the ticket
 #### Usage{#tickets-rename-usage}
 
 ```txt
-/rename <new-name:Text>
+/tickets rename <new-name:Text>
 ```
 
 ### /tickets close{#tickets-close}
@@ -1530,7 +1530,7 @@ Closes the ticket
 #### Usage{#tickets-close-usage}
 
 ```txt
-/close [reason:Text]
+/tickets close [reason:Text]
 ```
 
 ### /tickets adminsonly{#tickets-adminsonly}
@@ -1545,7 +1545,7 @@ Toggle admins only mode for this ticket
 #### Usage{#tickets-adminsonly-usage}
 
 ```txt
-/adminsonly
+/tickets adminsonly
 ```
 
 ### /tickets menucreate{#tickets-menucreate}
@@ -1564,7 +1564,7 @@ If using predefined reason buttons, you may optionally disable the custom reason
 #### Usage{#tickets-menucreate-usage}
 
 ```txt
-/menucreate
+/tickets menucreate
 ```
 
 ```txt
@@ -1595,7 +1595,7 @@ Creates an event, You will be led through an interactive setup
 #### Usage{#events-create-usage}
 
 ```txt
-/create
+/events create
 ```
 
 ### /events edit{#events-edit}
@@ -1605,7 +1605,7 @@ Edits an event
 #### Usage{#events-edit-usage}
 
 ```txt
-/edit <id:Whole number>
+/events edit <id:Whole number>
 ```
 
 ```txt
@@ -1625,7 +1625,7 @@ Lists all events in this server
 #### Usage{#events-list-usage}
 
 ```txt
-/list
+/events list
 ```
 
 ### /events delete{#events-delete}
@@ -1640,7 +1640,7 @@ Deletes an event, specify the event ID of the event you wanna delete
 #### Usage{#events-delete-usage}
 
 ```txt
-/delete <id:Whole number>
+/events delete <id:Whole number>
 ```
 
 ### /events stopsetup{#events-stopsetup}
@@ -1654,5 +1654,5 @@ Force cancels the current setup session in this channel
 #### Usage{#events-stopsetup-usage}
 
 ```txt
-/stopsetup
+/events stopsetup
 ```

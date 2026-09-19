@@ -49,10 +49,10 @@ Make sure that the bot's highest role is above this selected role.
 The two role filters above come with a *Require ALL selected roles* toggle, which decides whether a member has to match every selected role or just one of them.
 The control panel spells out what the toggle currently means as you switch between the two filter types, because the two read quite differently:
 
-| Filter type              | Toggle on                                                | Toggle off                                                |
-| ------------------------ | -------------------------------------------------------- | --------------------------------------------------------- |
-| Has specific roles       | Matches members who have **every** selected role.        | Matches members who have **at least one** of them.        |
-| Missing specific roles   | Matches members who have **none** of the selected roles. | Matches members who are missing **at least one** of them. |
+| Filter type            | Toggle on                                                | Toggle off                                                |
+| ---------------------- | -------------------------------------------------------- | --------------------------------------------------------- |
+| Has specific roles     | Matches members who have **every** selected role.        | Matches members who have **at least one** of them.        |
+| Missing specific roles | Matches members who have **none** of the selected roles. | Matches members who are missing **at least one** of them. |
 
 {{< callout context="warning" title="Warning: Missing Roles With the Toggle Off" icon="outline/alert-triangle" >}}
 

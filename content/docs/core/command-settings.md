@@ -24,26 +24,26 @@ The key features of the page are shown below.
 
 </center>
 
-The prefix (**1**) is a short sequence of characters that trigger YAGPDB commands.
-By default, the prefix is `-`.
-Thus, for instance, the `remindme` command is invoked by prefixing the command name with a hyphen: `-remindme ...`.
-If the prefix was instead `?`, one would use `?remindme ...`, and so on.
+The prefix (**1**) is a short sequence of characters that trigger your server's custom commands.
+By default, the prefix is `-`, so a custom command with the `Command` trigger `suggest` is invoked as `-suggest ...`.
+If the prefix was instead `?`, one would use `?suggest ...`, and so on.
 
-Slash commands are always triggered using the `/` character and hence do not depend on the prefix configured here.
+The prefix no longer applies to YAGPDB's built-in commands, which are run as slash commands.
+See [Prefixed Commands Have Been Discontinued](#prefixed-commands-have-been-discontinued) below.
 
-{{< callout context="tip" title="Tip: Mention as a Command Prefix" icon="outline/rocket" >}}
+{{< callout context="tip" title="Tip: Mention Instead of the Prefix" icon="outline/rocket" >}}
 
-In addition to the command prefix, you can trigger YAGPDB commands by pinging the bot at the start of your message.
-This is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recall it.
+You can also trigger commands by pinging the bot at the start of your message, and this works for both built-in and custom commands.
+It is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recall it.
 
 {{< /callout >}}
 
 ### Prefixed Commands Have Been Discontinued
 
 YAGPDB has retired the prefix as a way of running its **built-in** commands.
-Once it is turned off, a message such as `-help` is simply ignored; the bot will not respond to it at all.
+A message such as `-help` is now simply ignored; the bot will not respond to it at all.
 
-There are two supported replacements, both of which work today:
+There are two supported ways to run a built-in command:
 
 - Discord's slash command interface: `/help`, `/logs`, `/warnings list`, and so on.
 - A bot mention at the start of the message: `@YAGPDB.xyz help`.
@@ -58,12 +58,13 @@ Your own custom commands keep working exactly as they do today, including the on
 
 {{< /callout >}}
 
-While the change is being rolled out, you may see two reminders:
+You may still see two reminders about the change:
 
 - A notice on the control panel, shown on the server selector and on each server's dashboard.
-- A short message in Discord after a prefixed command runs. It is only sent on roughly every tenth prefixed command in a server, not on every single one, and never for a prefixed command invoked from within a custom command.
+- A short message in Discord when someone uses a prefixed command. It is only sent on roughly every tenth attempt in a server, not on every single one, and never for a prefixed command invoked from within a custom command.
 
-If you selfhost YAGPDB, both the cutoff and the reminders are under your control---see the [prefixed commands section](/selfhosting/hosting/setup#prefixed-commands) of the selfhosting guide.
+If you selfhost YAGPDB, both the cutoff and the reminders are under your control.
+See the [prefixed commands section](/selfhosting/hosting/setup#prefixed-commands) of the selfhosting guide.
 
 #### Finding the Slash Command Equivalent
 
@@ -86,7 +87,7 @@ A handful of them were grouped under a shared name in the process, so the slash 
 | `-settimezone`, `-setz`                              | `/timezone set`                          |
 | `-cshard`, `-currentshard`                           | `/guild shard`                           |
 
-The old names continue to work with the prefix and with a bot mention for as long as prefixed commands are enabled.
+The old names still work as bot mentions, for example `@YAGPDB.xyz catfact`.
 The full listing lives on the [All Commands](/docs/core/all-commands) page.
 
 {{< callout context="note" title="Note: Slash Command Visibility" icon="outline/info-circle" >}}
@@ -101,10 +102,10 @@ Seeing a command in the `/` menu therefore does not guarantee you are allowed to
 
 Flags and switches are **_not_** affected by your prefix setting.
 
-For example, if your prefix is `?`, a command usage with flags and/or switches is as follows:
+For example, if your prefix is `?`, a custom command usage with flags and/or switches is as follows:
 
 ```txt
-?wouldyourather -raw
+?mycommand -raw
 ```
 
 where the `raw` switch is still spelled `-raw`, not `?raw`.

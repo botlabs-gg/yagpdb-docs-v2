@@ -33,18 +33,17 @@ Visit a few subpages to get a feel for the navigation and layout.
 </div>
 
 Afterward, visit the Commands tab (Core > Command settings) and make sure to enable all commands, such that you can actually use YAGPDB.
-While you are there, check that the default prefix (`-`) does not conflict with other bots you may have.
 
 Try some commands!
 Something like `/fun catfact` or `/fun dadjoke`, to get the party going.
 If those did not work, please read the FAQ on the support server.
 
-{{< callout context="note" title="Note: Prefixed Commands Are Being Discontinued" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Built-In Commands Are Slash Commands" icon="outline/info-circle" >}}
 
-YAGPDB's built-in commands are moving to Discord's slash command interface.
-The command prefix still works for now, and a bot mention (`@YAGPDB.xyz help`) always will, but new setups are best off using `/` commands from the start.
-Custom commands are not affected.
-See [Prefixed Commands Are Being Discontinued](/docs/core/command-settings#prefixed-commands-are-being-discontinued).
+YAGPDB's built-in commands are run through Discord's slash command interface, or by mentioning the bot (`@YAGPDB.xyz help`).
+The command prefix no longer runs them.
+It still applies to your own custom commands, which is why the Command settings page continues to offer a prefix setting.
+See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued).
 
 {{< /callout >}}
 

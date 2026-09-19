@@ -285,28 +285,28 @@ Interaction functions are covered in their respective section on the [functions 
 An entry of `.Message.Attachments`.
 See the [attachment object](https://docs.discord.com/developers/resources/message#attachment-object) in Discord's documentation for the full list of fields.
 
-| Field      | Description                                                                             |
-| ---------- | --------------------------------------------------------------------------------------- |
-| .Filename  | The name of the attached file.                                                          |
-| .Flags     | A bitfield describing the attachment. See [Attachment Flags](#attachment-flags) below.  |
-| .Height    | The height of the attachment, if it is an image.                                        |
-| .ID        | The ID of the attachment.                                                               |
-| .ProxyURL  | A proxied URL of the attached file.                                                     |
-| .Size      | The size of the attached file in bytes.                                                 |
-| .URL       | The source URL of the attached file.                                                    |
-| .Width     | The width of the attachment, if it is an image.                                         |
+| Field     | Description                                                                            |
+| --------- | -------------------------------------------------------------------------------------- |
+| .Filename | The name of the attached file.                                                         |
+| .Flags    | A bitfield describing the attachment. See [Attachment Flags](#attachment-flags) below. |
+| .Height   | The height of the attachment, if it is an image.                                       |
+| .ID       | The ID of the attachment.                                                              |
+| .ProxyURL | A proxied URL of the attached file.                                                    |
+| .Size     | The size of the attached file in bytes.                                                |
+| .URL      | The source URL of the attached file.                                                   |
+| .Width    | The width of the attachment, if it is an image.                                        |
 
 ##### Attachment Flags{#attachment-flags}
 
 `.Flags` is a bitfield, so test a flag by masking it out rather than comparing the whole value.
 
-| Flag            | Value    | Meaning                                                    |
-| --------------- | -------- | ---------------------------------------------------------- |
-| Is clip         | `1 << 0` | The attachment is a clip.                                  |
-| Is thumbnail    | `1 << 1` | The attachment is a thumbnail.                             |
-| Is remix        | `1 << 2` | The attachment has been edited with the remix feature.     |
-| Is spoiler      | `1 << 3` | The attachment is marked as a spoiler.                     |
-| Is animated     | `1 << 4` | The attachment is animated.                                |
+| Flag         | Value    | Meaning                                                |
+| ------------ | -------- | ------------------------------------------------------ |
+| Is clip      | `1 << 0` | The attachment is a clip.                              |
+| Is thumbnail | `1 << 1` | The attachment is a thumbnail.                         |
+| Is remix     | `1 << 2` | The attachment has been edited with the remix feature. |
+| Is spoiler   | `1 << 3` | The attachment is marked as a spoiler.                 |
+| Is animated  | `1 << 4` | The attachment is animated.                            |
 
 Checking whether an attachment is spoilered is the common case.
 Discord used to signal this only through a `SPOILER_` filename prefix, which is not set on every spoilered file, so prefer the flag:
@@ -350,29 +350,29 @@ This is available and part of the dot when reaction trigger type is used.
 A role object, as returned by `.Guild.GetRole`, indexing `.Guild.Roles`, or `.Role` in a role change trigger.
 See the [role object](https://docs.discord.com/developers/topics/permissions#role-object) in Discord's documentation for the full list of fields.
 
-| Field                    | Description                                                                                                                                       |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| .Colors                  | The role's colors, of type _\*discordgo.Colors_. See [Role Colors](#role-colors) below.                                                            |
-| .Color                   | The role's primary color as an integer. **Deprecated** by Discord in favor of `.Colors.PrimaryColor`; it is still populated and still works today. |
-| .Hoist                   | Whether the role is displayed separately in the member list.                                                                                      |
-| .ID                      | The ID of the role.                                                                                                                               |
-| .Managed                 | Whether the role is managed by an integration, such as a bot or a Discord subscription.                                                           |
-| .Mention                 | A mention of the role, i.e. `<@&ID>`.                                                                                                             |
-| .Mentionable             | Whether the role can be mentioned by anyone.                                                                                                      |
-| .Name                    | The name of the role.                                                                                                                             |
-| .Permissions             | The permission bitset of the role.                                                                                                                |
-| .Position                | The position of the role in the role list.                                                                                                        |
+| Field        | Description                                                                                                                                        |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .Colors      | The role's colors, of type _\*discordgo.Colors_. See [Role Colors](#role-colors) below.                                                            |
+| .Color       | The role's primary color as an integer. **Deprecated** by Discord in favor of `.Colors.PrimaryColor`; it is still populated and still works today. |
+| .Hoist       | Whether the role is displayed separately in the member list.                                                                                       |
+| .ID          | The ID of the role.                                                                                                                                |
+| .Managed     | Whether the role is managed by an integration, such as a bot or a Discord subscription.                                                            |
+| .Mention     | A mention of the role, i.e. `<@&ID>`.                                                                                                              |
+| .Mentionable | Whether the role can be mentioned by anyone.                                                                                                       |
+| .Name        | The name of the role.                                                                                                                              |
+| .Permissions | The permission bitset of the role.                                                                                                                 |
+| .Position    | The position of the role in the role list.                                                                                                         |
 
 #### Role Colors{#role-colors}
 
 Discord roles can carry up to three colors, exposed through `.Colors`.
 All three fields are always present; a color the role does not have is `null`.
 
-| Field                   | Description                                                                        |
-| ----------------------- | ---------------------------------------------------------------------------------- |
-| .Colors.PrimaryColor    | The role's primary color. This is the same value as the deprecated `.Color` field. |
-| .Colors.SecondaryColor  | The second color of a gradient role, or `null` if the role has none.               |
-| .Colors.TertiaryColor   | The third color of a holographic role, or `null` if the role has none.             |
+| Field                  | Description                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------- |
+| .Colors.PrimaryColor   | The role's primary color. This is the same value as the deprecated `.Color` field. |
+| .Colors.SecondaryColor | The second color of a gradient role, or `null` if the role has none.               |
+| .Colors.TertiaryColor  | The third color of a holographic role, or `null` if the role has none.             |
 
 ```yag
 {{ $role := .Guild.GetRole 1234567890 }}

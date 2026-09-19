@@ -16,6 +16,16 @@ Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot 
 - **Response Character Limit:** 2k
 - **Generic API based Action call limit:** 100 per CC
 - **State Lock based Actions:** 500 per CC (mentionRoleName/ID ; hasRoleName ; targetHasRoleName/ID)
+- **Expression nesting depth:** 10,000 nested parentheses. Going deeper fails to parse with `max expression nesting depth exceeded`.
+
+## Interaction Triggers
+
+Limits on the custom commands that register themselves with Discord.
+
+- **Enabled slash commands:** 10/50 (free/prem)
+- **Subcommands per slash command:** 10/25 (free/prem). Discord caps a command at 25 options, so the premium limit cannot go higher.
+- **Options per command or subcommand:** 25 (Discord limit)
+- **Enabled context menu commands, per type:** 5/15 (free/prem), counted separately for user and message commands.
 
 ## Calling a Custom Command
 

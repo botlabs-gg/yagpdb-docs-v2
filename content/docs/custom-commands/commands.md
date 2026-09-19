@@ -510,7 +510,8 @@ The invoked subcommand name is exposed to the response as `.SubCommand`, and tha
 
 {{< callout context="caution" title="Warning: Subcommand limits" icon="outline/info-circle" >}}
 
-You can have at most **3** subcommands *per slash command* on free servers, raised to **10** on [premium](/docs/welcome/premium) servers.
+You can have at most **10** subcommands *per slash command* on free servers, raised to **25** on [premium](/docs/welcome/premium) servers.
+Discord allows at most 25 options on a single command, so the premium limit cannot be raised any further.
 
 {{< /callout >}}
 
@@ -520,7 +521,7 @@ Slash commands use the same [Defer mode](/docs/reference/custom-interactions#res
 
 {{< callout context="caution" title="Warning: Slash command limits" icon="outline/info-circle" >}}
 
-Servers may have at most **3 enabled** slash command custom commands, raised to **10** on [premium](/docs/welcome/premium) servers.
+Servers may have at most **10 enabled** slash command custom commands, raised to **50** on [premium](/docs/welcome/premium) servers.
 Only enabled commands are registered with Discord and count against this limit.
 If premium is removed and you are over the limit, only the lowest-ID commands remain registered.
 
@@ -600,7 +601,7 @@ The same member-context restrictions as the [user context menu](#user-context-me
 
 {{< callout context="caution" title="Warning: Context menu command limits" icon="outline/info-circle" >}}
 
-You may have at most **1 enabled** context menu command **of each type** (one user, one message), raised to **5 of each type** on [premium](/docs/welcome/premium) servers.
+You may have at most **5 enabled** context menu commands **of each type** (five user, five message), raised to **15 of each type** on [premium](/docs/welcome/premium) servers.
 Only enabled commands are registered with Discord and count against this limit.
 
 The **Update Message Response** defer mode is not available for context menu commands.

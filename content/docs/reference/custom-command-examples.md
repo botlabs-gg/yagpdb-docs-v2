@@ -344,7 +344,7 @@ Trigger type: `Command` Trigger: `giveRoleName`
         You can't use this command to give that role to someone! :x:
     {{end}}
 {{else}}
-    Correct usage of the command: -giverole <target> "<rolename>"
+    Correct usage of the command: {{.CCTrigger}} <target> "<rolename>"
 {{end}}
 ```
 

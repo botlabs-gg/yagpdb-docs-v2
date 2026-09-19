@@ -44,7 +44,8 @@ If you're unsure yet, leave out this step and come back later.
 ## Configuring YAGPDB
 
 YAGPDB reads its configuration from environment variables.
-Every option has a dotted internal name, which maps to an environment variable by uppercasing it and replacing dots with underscores---`yagpdb.disable_prefix_commands` becomes `YAGPDB_DISABLE_PREFIX_COMMANDS`.
+Every option has a dotted internal name, which maps to an environment variable by uppercasing it and replacing dots with underscores.
+For example, `yagpdb.disable_prefix_commands` becomes `YAGPDB_DISABLE_PREFIX_COMMANDS`.
 Boolean options accept `true`, `yes`, `on`, `enabled`, or `1`; anything else counts as false.
 
 `cmd/yagpdb/sampleenvfile` in the repository lists the commonly used variables with comments.
@@ -67,15 +68,16 @@ The session cookie is also marked `Secure` in the first two cases and `SameSite=
 
 ### Prefixed Commands
 
-YAGPDB is retiring the command prefix for its built-in commands in favor of slash commands and bot mentions; see [Prefixed Commands Are Being Discontinued](/docs/core/command-settings#prefixed-commands-are-being-discontinued) for the user-facing side.
-On your own instance you decide when that happens, through two independent options.
+The official instance has retired the command prefix for built-in commands in favor of slash commands and bot mentions.
+See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued) for the user-facing side.
+On your own instance you decide whether and when to do the same, through two independent options.
 
 | Variable                                | Default | Effect                                                                                                                |
 | --------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
 | `YAGPDB_DISABLE_PREFIX_COMMANDS`        | `false` | When true, built-in commands stop responding to the command prefix. Bot mentions, DMs, and slash commands still work. |
 | `YAGPDB_ENABLE_PREFIX_COMMANDS_WARNING` | `false` | When true, shows the deprecation notice on the control panel and in Discord.                                          |
 
-The two are independent, and the warning's wording follows the first: with prefixed commands still enabled it announces an upcoming change, and with them disabled it explains that they are already off.
+The two are independent, and the notice's wording follows the first: with prefixed commands still enabled it announces an upcoming change, and with them disabled it explains that they are already off.
 The Discord-side notice is rate limited to roughly every tenth prefixed command per server and is never sent for a prefixed command invoked from a custom command.
 
 Custom commands are not affected by either option.

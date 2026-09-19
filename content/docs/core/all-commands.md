@@ -14,32 +14,31 @@ Each command is listed under the name Discord knows it by, so `/logs` rather tha
 
 ## How to Read This Page
 
+Command and option names are always lowercase, because that is how Discord registers them.
+
 Most commands are a single word, such as `/logs`.
 Some are grouped under a shared name, and those take two words: `/fun catfact`, `/warnings list`, `/reminder delete`, and so on.
 
-Every grouped command also kept the name it had before it was grouped, so `-catfact`, `-warnings`, and `-delreminder` still work with the command prefix or a bot mention.
-Those legacy names are hidden from `/help` and are not repeated below; the [command settings page](/docs/core/command-settings#finding-the-slash-command-equivalent) lists the common ones.
+Every grouped command also kept the name it had before it was grouped, so a bot mention such as `@YAGPDB.xyz catfact` still reaches `/fun catfact`.
+Those legacy names are hidden from `/help` and are not repeated below.
+The [command settings page](/docs/core/command-settings#finding-the-slash-command-equivalent) lists the common ones.
 
 A few groups have a default subcommand that runs when you invoke the group without naming one.
 For instance, `/customcommands` on its own behaves like `/customcommands list`.
 
-Three commands---`Nicknames`, `Usernames`, and `ResetPastNames`---have no slash command form and are marked as such.
-They can only be run with the command prefix or a bot mention.
-
 {{< callout context="note" title="Note: Switches in the Slash Interface" icon="outline/info-circle" >}}
 
-Switches are written below in their prefixed form, e.g. `[-raw raw:Switch - Raw output]`.
+Switches are written below in their prefixed form, for example `[-raw raw:Switch - Raw output]`.
 In the slash command interface they are ordinary options: you pick `raw` from the option list rather than typing `-raw`.
-Discord also displays all option names in lowercase, regardless of how they are capitalized here.
 
 {{< /callout >}}
 
-{{< callout context="warning" title="Warning: Prefixed Commands Are Being Discontinued" icon="outline/alert-triangle" >}}
+{{< callout context="note" title="Note: The Command Prefix No Longer Runs These" icon="outline/info-circle" >}}
 
-YAGPDB is retiring the command prefix for its built-in commands.
-Once it is turned off, `-help` and friends will no longer respond; use `/help` or `@YAGPDB.xyz help` instead.
+YAGPDB has retired the command prefix for its built-in commands, so `-help` and friends no longer respond.
+Use `/help`, or mention the bot with `@YAGPDB.xyz help`.
 Custom commands are not affected.
-See [Prefixed Commands Are Being Discontinued](/docs/core/command-settings#prefixed-commands-are-being-discontinued) for details.
+See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued) for details.
 
 {{< /callout >}}
 
@@ -119,7 +118,7 @@ Shows command prefix of the current server, or the specified server
 #### Usage{#prefix-usage}
 
 ```txt
-/prefix [Server-ID:Whole number]
+/prefix [server-id:Whole number]
 ```
 
 ### /calc{#calc}
@@ -134,7 +133,7 @@ Calculator 2+2=5
 #### Usage{#calc-usage}
 
 ```txt
-/calc <Expression:Text>
+/calc <expression:Text>
 ```
 
 ### /customembed{#customembed}
@@ -144,12 +143,12 @@ Calculator 2+2=5
 - ce
 
 Creates an embed from what you give it in json form: https://help.yagpdb.xyz/docs/reference/custom-embeds/
-Example: `-ce {"title": "hello", "description": "wew"}`
+Example: `/customembed {"title": "hello", "description": "wew"}`
 
 #### Usage{#customembed-usage}
 
 ```txt
-/customembed <Json:Text>
+/customembed <json:Text>
 ```
 
 ### /simpleembed{#simpleembed}
@@ -196,8 +195,8 @@ Shows current time in different timezones. [Available timezones](https://pastebi
 #### Usage{#currenttime-usage}
 
 ```txt
-/currenttime <Offset:Whole number>
-/currenttime <Zone:Text>
+/currenttime <offset:Whole number>
+/currenttime <zone:Text>
 /currenttime
 ```
 
@@ -217,12 +216,12 @@ List roles, their id's, color hex code, and 'mention everyone' perms (useful if 
 
 ### /poll{#poll}
 
-Create very simple reaction poll. Example: `poll "favorite color?" blue red pink`
+Create very simple reaction poll. Example: `/poll "favorite color?" blue red pink`
 
 #### Usage{#poll-usage}
 
 ```txt
-/poll <Topic:Text - Description of the poll> <Option1:Text> <Option2:Text> [Option3:Text] [Option4:Text] [Option5:Text] [Option6:Text] [Option7:Text] [Option8:Text] [Option9:Text] [Option10:Text]
+/poll <topic:Text - Description of the poll> <option1:Text> <option2:Text> [option3:Text] [option4:Text] [option5:Text] [option6:Text] [option7:Text] [option8:Text] [option9:Text] [option10:Text]
 ```
 
 ### /undelete{#undelete}
@@ -267,8 +266,8 @@ Shows a custom command specified by id, trigger, or name, or lists them all
 #### Usage{#customcommands-list-usage}
 
 ```txt
-/customcommands list <ID:Whole number>
-/customcommands list <Name-Or-Trigger:Text>
+/customcommands list <id:Whole number>
+/customcommands list <name-or-trigger:Text>
 /customcommands list
 ```
 
@@ -305,7 +304,7 @@ This includes deleted messages within an hour (or 12 hours for premium servers)
 #### Usage{#logs-usage}
 
 ```txt
-/logs [Count:Whole number]
+/logs [count:Whole number]
 ```
 
 ```txt
@@ -323,52 +322,7 @@ Shows information about a user
 #### Usage{#whois-usage}
 
 ```txt
-/whois [User:Member]
-```
-
-### Nicknames{#nicknames}
-
-This command has no slash command equivalent; run it with the command prefix or a bot mention.
-
-#### Aliases{#nicknames-aliases}
-
-- nn
-
-Shows past nicknames of a user.
-
-#### Usage{#nicknames-usage}
-
-```txt
-Nicknames [User:User]
-```
-
-### Usernames{#usernames}
-
-This command has no slash command equivalent; run it with the command prefix or a bot mention.
-
-#### Aliases{#usernames-aliases}
-
-- unames
-- un
-
-Shows past usernames of a user.
-
-#### Usage{#usernames-usage}
-
-```txt
-Usernames [User:User]
-```
-
-### ResetPastNames{#resetpastnames}
-
-This command has no slash command equivalent; run it with the command prefix or a bot mention.
-
-Reset your past usernames/nicknames.
-
-#### Usage{#resetpastnames-usage}
-
-```txt
-ResetPastNames
+/whois [user:Member]
 ```
 
 ### /reminder list{#reminder-list}
@@ -398,7 +352,7 @@ Deletes a reminder. You can delete reminders from other users provided you are r
 #### Usage{#reminder-delete-usage}
 
 ```txt
-/reminder delete [ID:Whole number]
+/reminder delete [id:Whole number]
 ```
 
 ```txt
@@ -416,7 +370,7 @@ Schedules a reminder, example: 'remindme 1h30min are you still alive?'
 #### Usage{#remindme-usage}
 
 ```txt
-/remindme <Time:Duration> <Message:Text>
+/remindme <time:Duration> <message:Text>
 ```
 
 ```txt
@@ -430,7 +384,7 @@ Toggle a role on yourself or list all available roles, they have to be set up in
 #### Usage{#role-usage}
 
 ```txt
-/role [Role:Text]
+/role [role:Text]
 ```
 
 ### /timezone set{#timezone-set}
@@ -440,7 +394,7 @@ Sets your timezone, used for various purposes such as auto conversion. Give it a
 #### Usage{#timezone-set-usage}
 
 ```txt
-/timezone set [Timezone:Text]
+/timezone set [timezone:Text]
 ```
 
 ```txt
@@ -563,7 +517,7 @@ Ask the magic 8ball a question
 #### Usage{#fun-8ball-usage}
 
 ```txt
-/fun 8ball [Question:Text]
+/fun 8ball [question:Text]
 ```
 
 ### /fun advice{#fun-advice}
@@ -573,7 +527,7 @@ Don't be afraid to ask for advice!
 #### Usage{#fun-advice-usage}
 
 ```txt
-/fun advice [What:Text]
+/fun advice [what:Text]
 ```
 
 ### /fun catfact{#fun-catfact}
@@ -631,7 +585,7 @@ Look up an urban dictionary definition, default paginated view.
 #### Usage{#fun-define-usage}
 
 ```txt
-/fun define <Topic:Text>
+/fun define <topic:Text>
 ```
 
 ```txt
@@ -646,26 +600,26 @@ Look up an urban dictionary definition, default paginated view.
 - owl
 - dict
 
-Get the definition of an English word using dictionaryapi.dev
+Get the definition of an English word using freedictionaryapi.com
 
 #### Usage{#fun-dictionary-usage}
 
 ```txt
-/fun dictionary <Query:Text - Word to search for>
+/fun dictionary <query:Text - Word to search for>
 ```
 
 ### /fun forex{#fun-forex}
 
 #### Aliases{#fun-forex-aliases}
 
-- Money
+- money
 
 💱 convert value from one currency to another.
 
 #### Usage{#fun-forex-usage}
 
 ```txt
-/fun forex <Amount:Decimal number> <From:Text> <To:Text>
+/fun forex <amount:Decimal number> <from:Text> <to:Text>
 ```
 
 ### /fun inspire{#fun-inspire}
@@ -679,7 +633,7 @@ Shows 'inspirational' quotes from inspirobot.me
 #### Usage{#fun-inspire-usage}
 
 ```txt
-/fun inspire [Season:Text]
+/fun inspire [season:Text]
 ```
 
 ```txt
@@ -697,7 +651,7 @@ Sends a random roast
 #### Usage{#fun-roast-usage}
 
 ```txt
-/fun roast [Target:User]
+/fun roast [target:User]
 ```
 
 ```txt
@@ -707,13 +661,13 @@ Sends a random roast
 ### /fun roll{#fun-roll}
 
 Roll dices, specify nothing for 6 sides, specify a number for max sides, or rpg dice syntax.
-Example: `-roll 2d6`
+Example: `/fun roll 2d6`
 
 #### Usage{#fun-roll-usage}
 
 ```txt
-/fun roll <Sides:Whole number>
-/fun roll <RPG-Dice:Text>
+/fun roll <sides:Whole number>
+/fun roll <rpg-dice:Text>
 /fun roll
 ```
 
@@ -724,7 +678,7 @@ Throwing things is cool.
 #### Usage{#fun-throw-usage}
 
 ```txt
-/fun throw [Target:User]
+/fun throw [target:User]
 ```
 
 ### /fun topic{#fun-topic}
@@ -748,7 +702,7 @@ Shows the weather somewhere
 #### Usage{#fun-weather-usage}
 
 ```txt
-/fun weather <Where:Text>
+/fun weather <where:Text>
 ```
 
 ### /fun wouldyourather{#fun-wouldyourather}
@@ -776,7 +730,7 @@ An xkcd comic, by default returns random comic strip
 #### Usage{#fun-xkcd-usage}
 
 ```txt
-/fun xkcd [Comic-number:Whole number]
+/fun xkcd [comic-number:Whole number]
 ```
 
 ```txt
@@ -790,7 +744,7 @@ Takes away rep from someone
 #### Usage{#rep-take-usage}
 
 ```txt
-/rep take <User:User> [Num:Whole number]
+/rep take <user:User> [num:Whole number]
 ```
 
 ### /rep give{#rep-give}
@@ -800,7 +754,7 @@ Gives rep to someone
 #### Usage{#rep-give-usage}
 
 ```txt
-/rep give <User:User> [Num:Whole number]
+/rep give <user:User> [num:Whole number]
 ```
 
 ### /rep set{#rep-set}
@@ -810,7 +764,7 @@ Sets someones rep, this is an admin command and bypasses cooldowns and other res
 #### Usage{#rep-set-usage}
 
 ```txt
-/rep set <User:Mention/ID> <Num:Whole number>
+/rep set <user:Mention/ID> <num:Whole number>
 ```
 
 ### /rep delete{#rep-delete}
@@ -820,7 +774,7 @@ Deletes someone from the reputation list completely, this cannot be undone.
 #### Usage{#rep-delete-usage}
 
 ```txt
-/rep delete <User:Mention/ID>
+/rep delete <user:Mention/ID>
 ```
 
 ### /rep log{#rep-log}
@@ -831,9 +785,9 @@ Shows the rep log for the specified user.
 
 ```txt
 /rep log
-/rep log <User:Mention/ID>
-/rep log <Page:Whole number>
-/rep log <User:Mention/ID> <Page:Whole number>
+/rep log <user:Mention/ID>
+/rep log <page:Whole number>
+/rep log <user:Mention/ID> <page:Whole number>
 ```
 
 ### /rep check{#rep-check}
@@ -843,7 +797,7 @@ Shows yours or the specified users current rep and rank
 #### Usage{#rep-check-usage}
 
 ```txt
-/rep check [User:User]
+/rep check [user:User]
 ```
 
 ### /rep top{#rep-top}
@@ -853,7 +807,7 @@ Shows rep leaderboard on the server
 #### Usage{#rep-top-usage}
 
 ```txt
-/rep top [Page:Whole number]
+/rep top [page:Whole number]
 ```
 
 ```txt
@@ -871,7 +825,7 @@ Play, or list soundboard sounds
 #### Usage{#soundboard-usage}
 
 ```txt
-/soundboard [Name:Text]
+/soundboard [name:Text]
 ```
 
 ### /soundboardreset{#soundboardreset}
@@ -879,7 +833,7 @@ Play, or list soundboard sounds
 #### Aliases{#soundboardreset-aliases}
 
 - sbclose
-- sbReset
+- sbreset
 
 Reset Soundboard Player
 
@@ -900,7 +854,7 @@ Creates a Cards Against Humanity game in this channel, add packs after commands,
 #### Usage{#cah-create-usage}
 
 ```txt
-/cah create [packs:Text - Packs separated by space, or * for all of them.]
+/create [packs:Text - Packs separated by space, or * for all of them.]
 ```
 
 ```txt
@@ -914,7 +868,7 @@ Ends a Cards Against Humanity game that is ongoing in this channel.
 #### Usage{#cah-end-usage}
 
 ```txt
-/cah end
+/end
 ```
 
 ### /cah kick{#cah-kick}
@@ -924,7 +878,7 @@ Kicks a player from the ongoing Cards Against Humanity game in this channel.
 #### Usage{#cah-kick-usage}
 
 ```txt
-/cah kick <user:Mention/ID>
+/kick <user:Mention/ID>
 ```
 
 ### /cah packs{#cah-packs}
@@ -934,7 +888,7 @@ Lists all available packs.
 #### Usage{#cah-packs-usage}
 
 ```txt
-/cah packs
+/packs
 ```
 
 ### /trivia start{#trivia-start}
@@ -948,7 +902,7 @@ Starts a trivia session
 #### Usage{#trivia-start-usage}
 
 ```txt
-/trivia start [Difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
+/start [difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
 ```
 
 ### /trivia rank{#trivia-rank}
@@ -958,7 +912,7 @@ Shows your trivia rank
 #### Usage{#trivia-rank-usage}
 
 ```txt
-/trivia rank
+/rank
 ```
 
 ```txt
@@ -977,7 +931,7 @@ Shows the trivia leaderboard
 #### Usage{#trivia-leaderboard-usage}
 
 ```txt
-/trivia leaderboard [Sort:Text - Sort by score, streak, maxstreak, correct, or incorrect]
+/leaderboard [sort:Text - Sort by score, streak, maxstreak, correct, or incorrect]
 ```
 
 ### /trivia resetleaderboard{#trivia-resetleaderboard}
@@ -987,7 +941,7 @@ Resets the trivia leaderboard for the server
 #### Usage{#trivia-resetleaderboard-usage}
 
 ```txt
-/trivia resetleaderboard
+/resetleaderboard
 ```
 
 ## Moderation 👮
@@ -999,7 +953,7 @@ Lists warning of a user.
 #### Usage{#warnings-list-usage}
 
 ```txt
-/warnings list <User:Mention/ID> [Page:Whole number]
+/warnings list <user:Mention/ID> [page:Whole number]
 ```
 
 ```txt
@@ -1013,7 +967,7 @@ Edit a warning, id is the first number of each warning from the warnings command
 #### Usage{#warnings-edit-usage}
 
 ```txt
-/warnings edit <WarningId:Whole number> <NewMessage:Text>
+/warnings edit <warningid:Whole number> <newmessage:Text>
 ```
 
 ### /warnings delete{#warnings-delete}
@@ -1023,7 +977,7 @@ Deletes a warning, id is the first number of each warning from the warnings comm
 #### Usage{#warnings-delete-usage}
 
 ```txt
-/warnings delete <WarningId:Whole number> [Reason:Text]
+/warnings delete <warningid:Whole number> [reason:Text]
 ```
 
 ### /warnings clear{#warnings-clear}
@@ -1033,7 +987,7 @@ Clears the warnings of a user
 #### Usage{#warnings-clear-usage}
 
 ```txt
-/warnings clear <User:Mention/ID> [Reason:Text]
+/warnings clear <user:Mention/ID> [reason:Text]
 ```
 
 ### /warnings top{#warnings-top}
@@ -1043,7 +997,7 @@ Shows ranked list of warnings on the server
 #### Usage{#warnings-top-usage}
 
 ```txt
-/warnings top [Page:Whole number]
+/warnings top [page:Whole number]
 ```
 
 ```txt
@@ -1061,11 +1015,11 @@ Bans a member, specify number of days of messages to delete with -ddays (0 to 7)
 #### Usage{#ban-usage}
 
 ```txt
-/ban <User:Mention/ID> <Duration:Duration> <Reason:Text>
-/ban <User:Mention/ID> <Reason:Text> <Duration:Duration>
-/ban <User:Mention/ID> <Duration:Duration>
-/ban <User:Mention/ID> <Reason:Text>
-/ban <User:Mention/ID>
+/ban <user:Mention/ID> <duration:Duration> <reason:Text>
+/ban <user:Mention/ID> <reason:Text> <duration:Duration>
+/ban <user:Mention/ID> <duration:Duration>
+/ban <user:Mention/ID> <reason:Text>
+/ban <user:Mention/ID>
 ```
 
 ```txt
@@ -1083,7 +1037,7 @@ Unbans a user. Reason requirement is same as ban command setting.
 #### Usage{#unban-usage}
 
 ```txt
-/unban <User:Mention/ID> [Reason:Text]
+/unban <user:Mention/ID> [reason:Text]
 ```
 
 ### /kick{#kick}
@@ -1093,7 +1047,7 @@ Kicks a member
 #### Usage{#kick-usage}
 
 ```txt
-/kick <User:Mention/ID> [Reason:Text]
+/kick <user:Mention/ID> [reason:Text]
 ```
 
 ```txt
@@ -1107,11 +1061,11 @@ Mutes a member
 #### Usage{#mute-usage}
 
 ```txt
-/mute <User:Mention/ID> <Duration:Duration> <Reason:Text>
-/mute <User:Mention/ID> <Reason:Text> <Duration:Duration>
-/mute <User:Mention/ID> <Duration:Duration>
-/mute <User:Mention/ID> <Reason:Text>
-/mute <User:Mention/ID>
+/mute <user:Mention/ID> <duration:Duration> <reason:Text>
+/mute <user:Mention/ID> <reason:Text> <duration:Duration>
+/mute <user:Mention/ID> <duration:Duration>
+/mute <user:Mention/ID> <reason:Text>
+/mute <user:Mention/ID>
 ```
 
 ### /unmute{#unmute}
@@ -1121,7 +1075,7 @@ Unmutes a member
 #### Usage{#unmute-usage}
 
 ```txt
-/unmute <User:Mention/ID> [Reason:Text]
+/unmute <user:Mention/ID> [reason:Text]
 ```
 
 ### /timeout{#timeout}
@@ -1135,11 +1089,11 @@ Timeout a member
 #### Usage{#timeout-usage}
 
 ```txt
-/timeout <User:Mention/ID> <Duration:Duration> <Reason:Text>
-/timeout <User:Mention/ID> <Reason:Text> <Duration:Duration>
-/timeout <User:Mention/ID> <Duration:Duration>
-/timeout <User:Mention/ID> <Reason:Text>
-/timeout <User:Mention/ID>
+/timeout <user:Mention/ID> <duration:Duration> <reason:Text>
+/timeout <user:Mention/ID> <reason:Text> <duration:Duration>
+/timeout <user:Mention/ID> <duration:Duration>
+/timeout <user:Mention/ID> <reason:Text>
+/timeout <user:Mention/ID>
 ```
 
 ### /removetimeout{#removetimeout}
@@ -1156,7 +1110,7 @@ Removes a member's timeout
 #### Usage{#removetimeout-usage}
 
 ```txt
-/removetimeout <User:Mention/ID> [Reason:Text]
+/removetimeout <user:Mention/ID> [reason:Text]
 ```
 
 ### /report{#report}
@@ -1166,7 +1120,7 @@ Reports a member to the server's staff
 #### Usage{#report-usage}
 
 ```txt
-/report <User:Mention/ID> <Reason:Text>
+/report <user:Mention/ID> <reason:Text>
 ```
 
 ### /clean{#clean}
@@ -1184,9 +1138,9 @@ Note: Will only look in the last 1k messages, and none > 2 weeks old.
 #### Usage{#clean-usage}
 
 ```txt
-/clean <Num:Whole number>
-/clean <Num:Whole number> <User:Mention/ID>
-/clean <User:Mention/ID> <Num:Whole number>
+/clean <num:Whole number>
+/clean <num:Whole number> <user:Mention/ID>
+/clean <user:Mention/ID> <num:Whole number>
 ```
 
 ```txt
@@ -1209,7 +1163,7 @@ Add/Edit a modlog reason
 #### Usage{#reason-usage}
 
 ```txt
-/reason <Message-ID:Whole number> <Reason:Text>
+/reason <message-id:Whole number> <reason:Text>
 ```
 
 ### /warn{#warn}
@@ -1219,7 +1173,7 @@ Warns a user, warnings are saved using the bot. Use -warnings to view them.
 #### Usage{#warn-usage}
 
 ```txt
-/warn <User:Mention/ID> <Reason:Text>
+/warn <user:Mention/ID> <reason:Text>
 ```
 
 ### /giverole{#giverole}
@@ -1235,7 +1189,7 @@ Gives a role to the specified member, with optional expiry
 #### Usage{#giverole-usage}
 
 ```txt
-/giverole <User:Mention/ID> <Role:Role> [Duration:Duration]
+/giverole <user:Mention/ID> <role:Role> [duration:Duration]
 ```
 
 ### /removerole{#removerole}
@@ -1251,7 +1205,7 @@ Removes the specified role from the target
 #### Usage{#removerole-usage}
 
 ```txt
-/removerole <User:Mention/ID> <Role:Role>
+/removerole <user:Mention/ID> <role:Role>
 ```
 
 ### /automod rulesets{#automod-rulesets}
@@ -1267,7 +1221,7 @@ Lists all rulesets and their status
 #### Usage{#automod-rulesets-usage}
 
 ```txt
-/automod rulesets
+/rulesets
 ```
 
 ### /automod toggle{#automod-toggle}
@@ -1281,7 +1235,7 @@ Toggles a ruleset on/off
 #### Usage{#automod-toggle-usage}
 
 ```txt
-/automod toggle <Ruleset-Name:Text>
+/toggle <ruleset-name:Text>
 ```
 
 ### /automod logs{#automod-logs}
@@ -1295,7 +1249,7 @@ Shows the log of the last triggered automod rules, optionally filtering by user
 #### Usage{#automod-logs-usage}
 
 ```txt
-/automod logs [Page:Whole number]
+/logs [page:Whole number]
 ```
 
 ```txt
@@ -1306,10 +1260,10 @@ Shows the log of the last triggered automod rules, optionally filtering by user
 
 #### Aliases{#automod-listviolations-aliases}
 
-- Violations
-- ViolationLogs
-- VLogs
-- VLog
+- violations
+- violationlogs
+- vlogs
+- vlog
 
 Lists Violations of specified user
  old flag posts oldest violations in first page ( from oldest to newest ).
@@ -1317,7 +1271,7 @@ Lists Violations of specified user
 #### Usage{#automod-listviolations-usage}
 
 ```txt
-/automod listviolations <User:Mention/ID> [Page-Number:Whole number]
+/listviolations <user:Mention/ID> [page-number:Whole number]
 ```
 
 ```txt
@@ -1328,8 +1282,8 @@ Lists Violations of specified user
 
 #### Aliases{#automod-listviolationscount-aliases}
 
-- ViolationsCount
-- VCount
+- violationscount
+- vcount
 
 Lists Violations summary in entire server or of specified user optionally filtered by max violation age.
  Specify number of violations to skip while fetching using -skip flag ; max entries fetched 500
@@ -1337,7 +1291,7 @@ Lists Violations summary in entire server or of specified user optionally filter
 #### Usage{#automod-listviolationscount-usage}
 
 ```txt
-/automod listviolationscount [User:Mention/ID]
+/listviolationscount [user:Mention/ID]
 ```
 
 ```txt
@@ -1349,35 +1303,35 @@ Lists Violations summary in entire server or of specified user optionally filter
 
 #### Aliases{#automod-deleteviolation-aliases}
 
-- DelViolation
-- DelV
-- DV
+- delviolation
+- delv
+- dv
 
 Deletes a Violation with the specified ID. ID is the first number of each Violation in the ListViolations command.
 
 #### Usage{#automod-deleteviolation-usage}
 
 ```txt
-/automod deleteviolation <ID:Whole number>
+/deleteviolation <id:Whole number>
 ```
 
 ### /automod clearviolations{#automod-clearviolations}
 
 #### Aliases{#automod-clearviolations-aliases}
 
-- ClearV
-- ClrViolations
-- ClrV
+- clearv
+- clrviolations
+- clrv
 
 Clears Violations of specified user (or global if User ID = 0 or unspecified) optionally filtered by Name, Min/Max age and other conditions. By default, more recent violations are preferentially cleared. Maximum of 2000 can be cleared at a time.
 
 #### Usage{#automod-clearviolations-usage}
 
 ```txt
-/automod clearviolations <User:Mention/ID> <Violation-Name:Text>
-/automod clearviolations <User:Mention/ID>
-/automod clearviolations <Violation-Name:Text>
-/automod clearviolations
+/clearviolations <user:Mention/ID> <violation-name:Text>
+/clearviolations <user:Mention/ID>
+/clearviolations <violation-name:Text>
+/clearviolations
 ```
 
 ```txt
@@ -1404,7 +1358,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-create-usage}
 
 ```txt
-/rolemenu create <Group:Text - The role command group>
+/create <group:Text - The role command group>
 ```
 
 ```txt
@@ -1428,7 +1382,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-remove-usage}
 
 ```txt
-/rolemenu remove <Message-ID:Whole number>
+/remove <message-id:Whole number>
 ```
 
 ### /rolemenu update{#rolemenu-update}
@@ -1444,7 +1398,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-update-usage}
 
 ```txt
-/rolemenu update <Message-ID:Whole number>
+/update <message-id:Whole number>
 ```
 
 ```txt
@@ -1466,7 +1420,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-resetreactions-usage}
 
 ```txt
-/rolemenu resetreactions <Message-ID:Whole number>
+/resetreactions <message-id:Whole number>
 ```
 
 ### /rolemenu editoption{#rolemenu-editoption}
@@ -1482,7 +1436,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-editoption-usage}
 
 ```txt
-/rolemenu editoption <Message-ID:Whole number>
+/editoption <message-id:Whole number>
 ```
 
 ### /rolemenu complete{#rolemenu-complete}
@@ -1498,7 +1452,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 #### Usage{#rolemenu-complete-usage}
 
 ```txt
-/rolemenu complete <Message-ID:Whole number>
+/complete <message-id:Whole number>
 ```
 
 ### /rolemenu listgroups{#rolemenu-listgroups}
@@ -1513,7 +1467,7 @@ Lists all role groups
 #### Usage{#rolemenu-listgroups-usage}
 
 ```txt
-/rolemenu listgroups
+/listgroups
 ```
 
 ## Tickets 🎫
@@ -1531,7 +1485,7 @@ Opens a new ticket
 #### Usage{#tickets-open-usage}
 
 ```txt
-/tickets open <subject:Text>
+/open <subject:Text>
 ```
 
 ### /tickets adduser{#tickets-adduser}
@@ -1541,7 +1495,7 @@ Adds a user to the ticket in this channel
 #### Usage{#tickets-adduser-usage}
 
 ```txt
-/tickets adduser <target:Member>
+/adduser <target:Member>
 ```
 
 ### /tickets removeuser{#tickets-removeuser}
@@ -1551,7 +1505,7 @@ Removes a user from the ticket
 #### Usage{#tickets-removeuser-usage}
 
 ```txt
-/tickets removeuser <target:Member>
+/removeuser <target:Member>
 ```
 
 ### /tickets rename{#tickets-rename}
@@ -1561,7 +1515,7 @@ Renames the ticket
 #### Usage{#tickets-rename-usage}
 
 ```txt
-/tickets rename <new-name:Text>
+/rename <new-name:Text>
 ```
 
 ### /tickets close{#tickets-close}
@@ -1576,7 +1530,7 @@ Closes the ticket
 #### Usage{#tickets-close-usage}
 
 ```txt
-/tickets close [reason:Text]
+/close [reason:Text]
 ```
 
 ### /tickets adminsonly{#tickets-adminsonly}
@@ -1591,7 +1545,7 @@ Toggle admins only mode for this ticket
 #### Usage{#tickets-adminsonly-usage}
 
 ```txt
-/tickets adminsonly
+/adminsonly
 ```
 
 ### /tickets menucreate{#tickets-menucreate}
@@ -1610,7 +1564,7 @@ If using predefined reason buttons, you may optionally disable the custom reason
 #### Usage{#tickets-menucreate-usage}
 
 ```txt
-/tickets menucreate
+/menucreate
 ```
 
 ```txt
@@ -1641,7 +1595,7 @@ Creates an event, You will be led through an interactive setup
 #### Usage{#events-create-usage}
 
 ```txt
-/events create
+/create
 ```
 
 ### /events edit{#events-edit}
@@ -1651,7 +1605,7 @@ Edits an event
 #### Usage{#events-edit-usage}
 
 ```txt
-/events edit <ID:Whole number>
+/edit <id:Whole number>
 ```
 
 ```txt
@@ -1671,7 +1625,7 @@ Lists all events in this server
 #### Usage{#events-list-usage}
 
 ```txt
-/events list
+/list
 ```
 
 ### /events delete{#events-delete}
@@ -1686,7 +1640,7 @@ Deletes an event, specify the event ID of the event you wanna delete
 #### Usage{#events-delete-usage}
 
 ```txt
-/events delete <ID:Whole number>
+/delete <id:Whole number>
 ```
 
 ### /events stopsetup{#events-stopsetup}
@@ -1700,5 +1654,5 @@ Force cancels the current setup session in this channel
 #### Usage{#events-stopsetup-usage}
 
 ```txt
-/events stopsetup
+/stopsetup
 ```

@@ -238,31 +238,31 @@ Discord uses color decimal. [SpyColor](https://www.spycolor.com) is a good tool 
 
 Simple embeds are easier to use than custom embeds as they do not require any knowledge of json.
 Their downside is that they don't support all Discord embed fields from the embed structure, for example fields.
-You can create a simple embed with the `simpleembed` command, `se` for short.
+You can create a simple embed with the `/simpleembed` command.
 
-Simple embeds work with switches, here is a list of them all:
+A simple embed is built entirely from options, all of which are optional:
 
-| Switch      | Description                                 |
-| ----------- | ------------------------------------------- |
-| -channel    | Optional channel to send in.                |
-| -message    | Optional message ID to edit.                |
-| -content    | Text content for the message.               |
-| -title      | Title field.                                |
-| -desc       | Description field.                          |
-| -color      | Color field, either in hex or a color name. |
-| -url        | URL field for embed.                        |
-| -thumbnail  | URL to an image for thumbnail field.        |
-| -image      | URL to an image.                            |
-| -author     | Author field.                               |
-| -authoricon | URL for the icon in 'author' field.         |
-| -authorurl  | Url of the 'author' field                   |
-| -footer     | Footer field.                               |
-| -footericon | URL to an image for footer icon field.      |
+| Option     | Description                                 |
+| ---------- | ------------------------------------------- |
+| channel    | Optional channel to send in.                |
+| message    | Optional message ID to edit.                |
+| content    | Text content for the message.               |
+| title      | Title field.                                |
+| desc       | Description field.                          |
+| color      | Color field, either in hex or a color name. |
+| url        | URL field for embed.                        |
+| thumbnail  | URL to an image for thumbnail field.        |
+| image      | URL to an image.                            |
+| author     | Author field.                               |
+| authoricon | URL for the icon in 'author' field.         |
+| authorurl  | Url of the 'author' field                   |
+| footer     | Footer field.                               |
+| footericon | URL to an image for footer icon field.      |
 
-The values for simple embeds need to bet placed within quotes:
+Pick the options you want from Discord's option list and fill in a value for each:
 
-```yag
--se -title "This is my title" -desc "This is my description" -thumbnail "https://via.placeholder.com/300/"
+```txt
+/simpleembed title:This is my title desc:This is my description thumbnail:https://via.placeholder.com/300/
 ```
 
 This generates the following embed:

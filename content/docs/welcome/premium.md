@@ -46,12 +46,16 @@ A premium server unlocks the following benefits:
 - Increase max commands which can trigger from a single interaction from 3 to 5 (`CCMessageExecLimitPremium`).
 - Increase max commands from 100 to 500 (`MaxCommandsPremium`).
 - Increase max combined response length per cc from 10,000 to 20,000 (`MaxCCResponsesLength`).
+- Increase max enabled slash command custom commands from 10 to 50 (`MaxSlashCommandCCsPremium`).
+- Increase max subcommands per slash command custom command from 10 to 25 (`MaxSubCommandCCsPremium`).
+- Increase max enabled context menu custom commands, per type, from 5 to 15 (`MaxContextMenuCCsPremium`).
+- Increase max role change custom commands from 1 to 5 (`MaxRoleTriggerCommandsPremium`).
 
 ### Logging Messages
 
-- Increase length of deleted message history by `logs` command from 1 hour to 12 hours.
+- Increase length of deleted message history by the `/logs` command from 1 hour to 12 hours.
 - Increase length of deleted message history for logs saved by moderation actions from 1 hour to 12 hours.
-- Increase length of deleted message history by `undelete` command from 1 hour to 12 hours.
+- Increase length of deleted message history by the `/undelete` command from 1 hour to 12 hours.
 
 ### Personalizer
 

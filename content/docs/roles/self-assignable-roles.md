@@ -140,7 +140,6 @@ If you want to disable DMs, create a custom message, or add new role to your rol
 
 Make sure you created your [role commands](#role-commands) and assigned them a [role group](#role-groups) before starting.
 Role menu will **not** work if you have not done so.
-All switches and flags (nodm, rr, etc...) start with hyphen symbol `-`, not your prefix.
 
 Once you've made your role commands and assigned them to a role group, go to the channel in Discord where you want the role menu to be created.
 Then type `/rolemenu create (group name)`; applying our "Sports" role group example, we'd have to send `/rolemenu create Sports`.

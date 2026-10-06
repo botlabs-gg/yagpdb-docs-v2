@@ -13,34 +13,26 @@ The key features of the page are shown below.
 
 <center>
 
-**1** Command prefix.
-**2** All commands enabled setting.
-**3** Required roles.
-**4** Ignored roles.
-**5** Autodelete trigger interval.
-**6** Autodelete response interval.
-**7** Command overrides.
-**8** Channel overrides tabs.
+**1** All commands enabled setting.
+**2** Required roles.
+**3** Ignored roles.
+**4** Autodelete trigger interval.
+**5** Autodelete response interval.
+**6** Command overrides.
+**7** Channel overrides tabs.
 
 </center>
 
-The prefix (**1**) is a short sequence of characters that trigger your server's custom commands.
-By default, the prefix is `-`, so a custom command with the `Command` trigger `suggest` is invoked as `-suggest ...`.
-If the prefix was instead `?`, one would use `?suggest ...`, and so on.
+{{< callout context="note" title="Note: The Activator Moved" icon="outline/info-circle" >}}
 
-The prefix no longer applies to YAGPDB's built-in commands, which are run as slash commands.
-See [Prefixed Commands Have Been Discontinued](#prefixed-commands-have-been-discontinued) below.
-
-{{< callout context="tip" title="Tip: Mention Instead of the Prefix" icon="outline/rocket" >}}
-
-You can also trigger commands by pinging the bot at the start of your message, and this works for both built-in and custom commands.
-It is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recall it.
+The setting that controls how custom commands are invoked used to live on this page.
+It is now called the activator and sits on the [Custom Commands](/docs/custom-commands/commands#activator) page, because built-in commands no longer use it.
 
 {{< /callout >}}
 
-### Prefixed Commands Have Been Discontinued
+### Text Commands Have Been Discontinued
 
-YAGPDB has retired the prefix as a way of running its **built-in** commands.
+YAGPDB's **built-in** commands are no longer run by typing them into a channel.
 A message such as `-help` is now simply ignored; the bot will not respond to it at all.
 
 There are two supported ways to run a built-in command:
@@ -49,29 +41,29 @@ There are two supported ways to run a built-in command:
 - A bot mention at the start of the message: `@YAGPDB.xyz help`.
 
 This change is driven by Discord's message content access policy.
-Reading every message in a server just to spot a leading `-` is a broad permission, and YAGPDB should only use that access for features that genuinely need it, such as moderation and custom commands.
+Scanning every message in a server just to spot a leading `-` is a broad permission, and YAGPDB should only use that access for features that genuinely need it, such as moderation and custom commands.
 
 {{< callout context="note" title="Note: Custom Commands Are Not Affected" icon="outline/info-circle" >}}
 
 This only concerns YAGPDB's built-in commands.
-Your own custom commands keep working exactly as they do today, including the ones with a plain text trigger.
+The custom commands you write for your own server keep working exactly as they do today, including the ones with a plain text trigger.
 
 {{< /callout >}}
 
 You may still see two reminders about the change:
 
 - A notice on the control panel, shown on the server selector and on each server's dashboard.
-- A short message in Discord when someone uses a prefixed command. It is only sent on roughly every tenth attempt in a server, not on every single one, and never for a prefixed command invoked from within a custom command.
+- A short message in Discord when someone types a built-in command into a channel. It is only sent on roughly every tenth attempt in a server, not on every single one, and never when a custom command runs one.
 
 If you selfhost YAGPDB, both the cutoff and the reminders are under your control.
-See the [prefixed commands section](/selfhosting/hosting/setup#prefixed-commands) of the selfhosting guide.
+See the [text commands section](/selfhosting/hosting/setup#text-commands) of the selfhosting guide.
 
 #### Finding the Slash Command Equivalent
 
 Nearly every built-in command is now available as a slash command.
 A handful of them were grouped under a shared name in the process, so the slash form takes two words:
 
-| Prefixed command                                     | Slash command                            |
+| Old text command                                     | Slash command                            |
 | ---------------------------------------------------- | ---------------------------------------- |
 | `-catfact`, `-roll`, `-xkcd`, and other fun commands | `/fun catfact`, `/fun roll`, `/fun xkcd` |
 | `-cc`, `-customcommands`                             | `/customcommands list`                   |
@@ -98,20 +90,6 @@ Seeing a command in the `/` menu therefore does not guarantee you are allowed to
 
 {{< /callout >}}
 
-{{< callout context="caution" title="Caution: Flags and Switches" icon="outline/alert-triangle" >}}
-
-Flags and switches are **_not_** affected by your prefix setting.
-
-For example, if your prefix is `?`, a custom command usage with flags and/or switches is as follows:
-
-```txt
-?mycommand -raw
-```
-
-where the `raw` switch is still spelled `-raw`, not `?raw`.
-
-{{< /callout >}}
-
 ### Command Override Priority
 
 Command overrides are considered in the following order, with settings applied at later steps overwriting earlier ones:
@@ -135,7 +113,7 @@ These options are common across all three sub-settings: global settings, channel
 
 #### Required and Ignored Roles
 
-Clicking on either of these options (**3**, **4**) opens a drop-down menu with all the roles present on your server.
+Clicking on either of these options (**2**, **3**) opens a drop-down menu with all the roles present on your server.
 Select as many as you wish.
 YAGPDB will then either require all members to have any of these roles in order to run commands, or completely ignore members with any of the ignored roles, server admins and owners included.
 
@@ -149,7 +127,7 @@ In other words, ignored roles take precedence over required roles.
 #### Autodelete Trigger / Response Interval
 
 This setting makes YAGPDB automatically delete the triggering message and/or its response after the configured duration has passed.
-To activate it, make sure to click the checkbox next to the respective input field (**5**, **6**).
+To activate it, make sure to click the checkbox next to the respective input field (**4**, **5**).
 
 If 10 seconds are not enough, or too long, feel free to adjust as you see fit; the intervals need not be equal.
 
@@ -160,7 +138,7 @@ This means that only the user who triggered the command will be able to see the 
 
 ### Channel Override Options
 
-These options are only available for channel overrides (**8**).
+These options are only available for channel overrides (**7**).
 To add a new one, head to the _New channel override_ tab on the command settings page.
 
 You must select at least one channel or category; otherwise, the settings of the override will not be applied.
@@ -180,7 +158,7 @@ You find this setting in the top-right corner of any channel override, adjacent 
 
 ### Command Override Options
 
-These options are only available for individual command overrides (**7**).
+These options are only available for individual command overrides (**6**).
 To add a new one, go to either your global settings or any channel override and click on _New command override_.
 
 #### Commands

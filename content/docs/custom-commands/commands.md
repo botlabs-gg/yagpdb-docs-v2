@@ -24,6 +24,22 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 </center>
 
+## Activator
+
+The activator is the text members type in front of a custom command's trigger. For example, if the activator is `?`, then a command with the trigger `suggest` is invoked as `?suggest ...`. For reference, each custom command page displays the server's current activator beside the trigger.
+
+By default, the activator is set to `-`, but it can be any nonempty sequence of characters (up to a maximum length of 100).
+
+{{< callout context="tip" title="Tip: Mention Instead of the Activator" icon="outline/rocket" >}}
+
+Pinging the bot at the start of a message works in place of the activator, so `@YAGPDB.xyz suggest` runs the same command as `-suggest`.
+That is the one way to reach a custom command without knowing what the server's activator is.
+
+{{< /callout >}}
+
+The activator does not affect YAGPDB's built-in commands, which are run as slash commands.
+See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued).
+
 ## Creating a Custom Command
 
 Clicking the Create Custom Command (**1**) creates a new command within the selected group (**6**) and redirects you to a page to edit it.
@@ -159,7 +175,7 @@ Max 1000 characters.
 
 ##### Command
 
-Messages **starting with the prefix** for your server (- by default) _OR_ by mentioning the bot followed by the trigger text (**4**) will trigger the command.
+Messages **starting with your server's activator** (`-` by default) _OR_ a mention of the bot, followed by the trigger text (**4**), will trigger the command.
 
 ###### Example
 

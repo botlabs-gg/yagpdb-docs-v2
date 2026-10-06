@@ -26,7 +26,7 @@ YAGPDB_CLIENTSECRET=... # see above
 YAGPDB_HOST=... # domain or IP for the control panel. Can also be localhost
 ```
 
-See [Configuring YAGPDB](/selfhosting/hosting/setup#configuring-yagpdb) for the remaining options, in particular [Host and HTTPS](/selfhosting/hosting/setup#host-and-https) if you put the container behind a reverse proxy, and [Prefixed Commands](/selfhosting/hosting/setup#prefixed-commands).
+See [Configuring YAGPDB](/selfhosting/hosting/setup#configuring-yagpdb) for the remaining options, in particular [Host and HTTPS](/selfhosting/hosting/setup#host-and-https) if you put the container behind a reverse proxy, and [Text Commands](/selfhosting/hosting/setup#text-commands).
 
 Furthermore, ensure that the following variables in `db.env` match the commented ones specified in `app.env`.
 

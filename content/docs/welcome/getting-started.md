@@ -38,15 +38,6 @@ Try some commands!
 Something like `/fun catfact` or `/fun dadjoke`, to get the party going.
 If those did not work, please read the FAQ on the support server.
 
-{{< callout context="note" title="Note: Built-In Commands Are Slash Commands" icon="outline/info-circle" >}}
-
-YAGPDB's built-in commands are run through Discord's slash command interface, or by mentioning the bot (`@YAGPDB.xyz help`).
-The command prefix no longer runs them.
-It still applies to your own custom commands, which is why the Command settings page continues to offer a prefix setting.
-See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued).
-
-{{< /callout >}}
-
 ## About this Documentation
 
 This documentation aims to go through all of YAGPDB's features as they appear in the order on the control panel.

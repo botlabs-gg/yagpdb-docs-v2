@@ -13,13 +13,13 @@ The key features of the page are shown below.
 
 <center>
 
-**2** All commands enabled setting.
-**3** Required roles.
-**4** Ignored roles.
-**5** Autodelete trigger interval.
-**6** Autodelete response interval.
-**7** Command overrides.
-**8** Channel overrides tabs.
+**1** All commands enabled setting.
+**2** Required roles.
+**3** Ignored roles.
+**4** Autodelete trigger interval.
+**5** Autodelete response interval.
+**6** Command overrides.
+**7** Channel overrides tabs.
 
 </center>
 
@@ -113,7 +113,7 @@ These options are common across all three sub-settings: global settings, channel
 
 #### Required and Ignored Roles
 
-Clicking on either of these options (**3**, **4**) opens a drop-down menu with all the roles present on your server.
+Clicking on either of these options (**2**, **3**) opens a drop-down menu with all the roles present on your server.
 Select as many as you wish.
 YAGPDB will then either require all members to have any of these roles in order to run commands, or completely ignore members with any of the ignored roles, server admins and owners included.
 
@@ -127,7 +127,7 @@ In other words, ignored roles take precedence over required roles.
 #### Autodelete Trigger / Response Interval
 
 This setting makes YAGPDB automatically delete the triggering message and/or its response after the configured duration has passed.
-To activate it, make sure to click the checkbox next to the respective input field (**5**, **6**).
+To activate it, make sure to click the checkbox next to the respective input field (**4**, **5**).
 
 If 10 seconds are not enough, or too long, feel free to adjust as you see fit; the intervals need not be equal.
 
@@ -138,7 +138,7 @@ This means that only the user who triggered the command will be able to see the 
 
 ### Channel Override Options
 
-These options are only available for channel overrides (**8**).
+These options are only available for channel overrides (**7**).
 To add a new one, head to the _New channel override_ tab on the command settings page.
 
 You must select at least one channel or category; otherwise, the settings of the override will not be applied.
@@ -158,7 +158,7 @@ You find this setting in the top-right corner of any channel override, adjacent 
 
 ### Command Override Options
 
-These options are only available for individual command overrides (**7**).
+These options are only available for individual command overrides (**6**).
 To add a new one, go to either your global settings or any channel override and click on _New command override_.
 
 #### Commands

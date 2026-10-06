@@ -26,13 +26,9 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 ## Activator
 
-The activator is the text members type in front of a custom command's trigger.
-It applies to commands using the **Command** trigger type, and sits at the top of this page.
+The activator is the text members type in front of a custom command's trigger. For example, if the activator is `?`, then a command with the trigger `suggest` is invoked as `?suggest ...`. For reference, each custom command page displays the server's current activator beside the trigger.
 
-It accepts 1 to 100 characters and is `-` by default, so a command with the trigger `suggest` is invoked as `-suggest ...`.
-Set the activator to `?` instead and the same command becomes `?suggest ...`.
-
-The field shows your server's current activator, so it is the place to check if you are unsure.
+By default, the activator is set to `-`, but it can be any nonempty sequence of characters (up to a maximum length of 100).
 
 {{< callout context="tip" title="Tip: Mention Instead of the Activator" icon="outline/rocket" >}}
 

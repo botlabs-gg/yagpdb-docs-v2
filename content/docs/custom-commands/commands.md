@@ -176,7 +176,6 @@ Max 1000 characters.
 ##### Command
 
 Messages **starting with your server's activator** (`-` by default) _OR_ a mention of the bot, followed by the trigger text (**4**), will trigger the command.
-The activator is set at the [top of this page](#activator).
 
 ###### Example
 

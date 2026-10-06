@@ -66,25 +66,27 @@ The scheme is taken from the HTTPS flags rather than from `YAGPDB_HOST`, so a re
 Getting this wrong behind a reverse proxy is the usual cause of a control panel that loads fine but refuses to save anything.
 The session cookie is also marked `Secure` in the first two cases and `SameSite=Lax` in all of them.
 
-### Prefixed Commands
+### Text Commands
 
-The official instance has retired the command prefix for built-in commands in favor of slash commands and bot mentions.
-See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued) for the user-facing side.
+The official instance no longer lets members run built-in commands by typing them into a channel, in favor of slash commands and bot mentions.
+See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued) for the user-facing side.
 On your own instance you decide whether and when to do the same, through two independent options.
 
-| Variable                                | Default | Effect                                                                                                                |
-| --------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
-| `YAGPDB_DISABLE_PREFIX_COMMANDS`        | `false` | When true, built-in commands stop responding to the command prefix. Bot mentions, DMs, and slash commands still work. |
-| `YAGPDB_ENABLE_PREFIX_COMMANDS_WARNING` | `false` | When true, shows the deprecation notice on the control panel and in Discord.                                          |
+The variable names below still say `PREFIX` because they are existing configuration keys and renaming them would break deployments.
 
-The two are independent, and the notice's wording follows the first: with prefixed commands still enabled it announces an upcoming change, and with them disabled it explains that they are already off.
-The Discord-side notice is rate limited to roughly every tenth prefixed command per server and is never sent for a prefixed command invoked from a custom command.
+| Variable                                | Default | Effect                                                                                                            |
+| --------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `YAGPDB_DISABLE_PREFIX_COMMANDS`        | `false` | When true, built-in commands stop responding to typed messages. Bot mentions, DMs, and slash commands still work. |
+| `YAGPDB_ENABLE_PREFIX_COMMANDS_WARNING` | `false` | When true, shows the deprecation notice on the control panel and in Discord.                                      |
 
-Custom commands are not affected by either option.
+The two are independent, and the notice's wording follows the first: with text commands still enabled it announces an upcoming change, and with them disabled it explains that they are already off.
+The Discord-side notice is rate limited to roughly every tenth attempt per server and is never sent when a custom command runs a built-in one.
+
+The activator your members use for custom commands is unaffected by either option.
 
 {{< callout context="note" title="Note: Only Built-In Commands" icon="outline/info-circle" >}}
 
-Disabling prefixed commands does not remove YAGPDB's need for the message content intent.
+Turning these off does not remove YAGPDB's need for the message content intent.
 Custom commands, automoderator, and message logging still read message content.
 
 {{< /callout >}}

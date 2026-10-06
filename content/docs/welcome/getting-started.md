@@ -41,9 +41,9 @@ If those did not work, please read the FAQ on the support server.
 {{< callout context="note" title="Note: Built-In Commands Are Slash Commands" icon="outline/info-circle" >}}
 
 YAGPDB's built-in commands are run through Discord's slash command interface, or by mentioning the bot (`@YAGPDB.xyz help`).
-The command prefix no longer runs them.
-It still applies to your own custom commands, which is why the Command settings page continues to offer a prefix setting.
-See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued).
+Typing them into a channel no longer runs them.
+The custom commands you write for your own server still use an activator, which you set on the Custom Commands page.
+See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued).
 
 {{< /callout >}}
 

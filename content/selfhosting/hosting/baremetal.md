@@ -58,7 +58,7 @@ YAGPDB_REDIS= # the address of the redis server, if on the same machine localhos
 
 Most export them in their `~/.profile`, but tools like [direnv](https://direnv.net/) are also possible.
 
-See [Configuring YAGPDB](/selfhosting/hosting/setup#configuring-yagpdb) for the rest of the options, including how `YAGPDB_HOST` interacts with the HTTPS flags below and how to control [prefixed commands](/selfhosting/hosting/setup#prefixed-commands).
+See [Configuring YAGPDB](/selfhosting/hosting/setup#configuring-yagpdb) for the rest of the options, including how `YAGPDB_HOST` interacts with the HTTPS flags below and how to control [text commands](/selfhosting/hosting/setup#text-commands).
 
 ## Compiling YAGPDB
 

@@ -13,7 +13,6 @@ The key features of the page are shown below.
 
 <center>
 
-**1** Command prefix.
 **2** All commands enabled setting.
 **3** Required roles.
 **4** Ignored roles.
@@ -24,23 +23,16 @@ The key features of the page are shown below.
 
 </center>
 
-The prefix (**1**) is a short sequence of characters that trigger your server's custom commands.
-By default, the prefix is `-`, so a custom command with the `Command` trigger `suggest` is invoked as `-suggest ...`.
-If the prefix was instead `?`, one would use `?suggest ...`, and so on.
+{{< callout context="note" title="Note: The Activator Moved" icon="outline/info-circle" >}}
 
-The prefix no longer applies to YAGPDB's built-in commands, which are run as slash commands.
-See [Prefixed Commands Have Been Discontinued](#prefixed-commands-have-been-discontinued) below.
-
-{{< callout context="tip" title="Tip: Mention Instead of the Prefix" icon="outline/rocket" >}}
-
-You can also trigger commands by pinging the bot at the start of your message, and this works for both built-in and custom commands.
-It is helpful if you forget your prefix, as sending `@YAGPDB.xyz prefix` will recall it.
+The setting that controls how custom commands are invoked used to live on this page.
+It is now called the activator and sits on the [Custom Commands](/docs/custom-commands/commands#activator) page, because built-in commands no longer use it.
 
 {{< /callout >}}
 
-### Prefixed Commands Have Been Discontinued
+### Text Commands Have Been Discontinued
 
-YAGPDB has retired the prefix as a way of running its **built-in** commands.
+YAGPDB's **built-in** commands are no longer run by typing them into a channel.
 A message such as `-help` is now simply ignored; the bot will not respond to it at all.
 
 There are two supported ways to run a built-in command:
@@ -49,29 +41,29 @@ There are two supported ways to run a built-in command:
 - A bot mention at the start of the message: `@YAGPDB.xyz help`.
 
 This change is driven by Discord's message content access policy.
-Reading every message in a server just to spot a leading `-` is a broad permission, and YAGPDB should only use that access for features that genuinely need it, such as moderation and custom commands.
+Scanning every message in a server just to spot a leading `-` is a broad permission, and YAGPDB should only use that access for features that genuinely need it, such as moderation and custom commands.
 
 {{< callout context="note" title="Note: Custom Commands Are Not Affected" icon="outline/info-circle" >}}
 
 This only concerns YAGPDB's built-in commands.
-Your own custom commands keep working exactly as they do today, including the ones with a plain text trigger.
+The custom commands you write for your own server keep working exactly as they do today, including the ones with a plain text trigger.
 
 {{< /callout >}}
 
 You may still see two reminders about the change:
 
 - A notice on the control panel, shown on the server selector and on each server's dashboard.
-- A short message in Discord when someone uses a prefixed command. It is only sent on roughly every tenth attempt in a server, not on every single one, and never for a prefixed command invoked from within a custom command.
+- A short message in Discord when someone types a built-in command into a channel. It is only sent on roughly every tenth attempt in a server, not on every single one, and never when a custom command runs one.
 
 If you selfhost YAGPDB, both the cutoff and the reminders are under your control.
-See the [prefixed commands section](/selfhosting/hosting/setup#prefixed-commands) of the selfhosting guide.
+See the [text commands section](/selfhosting/hosting/setup#text-commands) of the selfhosting guide.
 
 #### Finding the Slash Command Equivalent
 
 Nearly every built-in command is now available as a slash command.
 A handful of them were grouped under a shared name in the process, so the slash form takes two words:
 
-| Prefixed command                                     | Slash command                            |
+| Old text command                                     | Slash command                            |
 | ---------------------------------------------------- | ---------------------------------------- |
 | `-catfact`, `-roll`, `-xkcd`, and other fun commands | `/fun catfact`, `/fun roll`, `/fun xkcd` |
 | `-cc`, `-customcommands`                             | `/customcommands list`                   |
@@ -95,20 +87,6 @@ The full listing lives on the [All Commands](/docs/core/all-commands) page.
 Discord hides a slash command from members who lack the permission it advertises.
 YAGPDB can only advertise a single permission per command, so commands that accept any one of several permissions stay visible to everyone and are checked when they actually run.
 Seeing a command in the `/` menu therefore does not guarantee you are allowed to run it.
-
-{{< /callout >}}
-
-{{< callout context="caution" title="Caution: Flags and Switches" icon="outline/alert-triangle" >}}
-
-Flags and switches are **_not_** affected by your prefix setting.
-
-For example, if your prefix is `?`, a custom command usage with flags and/or switches is as follows:
-
-```txt
-?mycommand -raw
-```
-
-where the `raw` switch is still spelled `-raw`, not `?raw`.
 
 {{< /callout >}}
 

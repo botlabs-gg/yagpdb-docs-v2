@@ -28,17 +28,17 @@ For instance, `/customcommands` on its own behaves like `/customcommands list`.
 
 {{< callout context="note" title="Note: Switches in the Slash Interface" icon="outline/info-circle" >}}
 
-Switches are written below in their prefixed form, for example `[-raw raw:Switch - Raw output]`.
+Switches are written below with a leading hyphen, for example `[-raw raw:Switch - Raw output]`.
 In the slash command interface they are ordinary options: you pick `raw` from the option list rather than typing `-raw`.
 
 {{< /callout >}}
 
-{{< callout context="note" title="Note: The Command Prefix No Longer Runs These" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Typing These Into a Channel No Longer Works" icon="outline/info-circle" >}}
 
-YAGPDB has retired the command prefix for its built-in commands, so `-help` and friends no longer respond.
+The commands below are run through Discord's slash command interface, so `-help` and friends no longer respond.
 Use `/help`, or mention the bot with `@YAGPDB.xyz help`.
 Custom commands are not affected.
-See [Prefixed Commands Have Been Discontinued](/docs/core/command-settings#prefixed-commands-have-been-discontinued) for details.
+See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued) for details.
 
 {{< /callout >}}
 
@@ -110,16 +110,6 @@ Shows YAGPDB premium status for this server and your premium slots.
 ```
 
 ## Tools & Utilities 🔨
-
-### /prefix{#prefix}
-
-Shows command prefix of the current server, or the specified server
-
-#### Usage{#prefix-usage}
-
-```txt
-/prefix [server-id:Whole number]
-```
 
 ### /calc{#calc}
 

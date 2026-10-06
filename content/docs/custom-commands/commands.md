@@ -24,6 +24,33 @@ The commands page displays all custom commands and allows you to add, delete, or
 
 </center>
 
+## Activator
+
+The activator is the text members type in front of a custom command's trigger.
+It applies to commands using the **Command** trigger type, and sits at the top of this page.
+
+It accepts 1 to 100 characters and is `-` by default, so a command with the trigger `suggest` is invoked as `-suggest ...`.
+Set the activator to `?` instead and the same command becomes `?suggest ...`.
+
+The field shows your server's current activator, so it is the place to check if you are unsure.
+
+{{< callout context="tip" title="Tip: Mention Instead of the Activator" icon="outline/rocket" >}}
+
+Pinging the bot at the start of a message works in place of the activator, so `@YAGPDB.xyz suggest` runs the same command as `-suggest`.
+That is the one way to reach a custom command without knowing what the server's activator is.
+
+{{< /callout >}}
+
+{{< callout context="caution" title="Caution: Flags and Switches" icon="outline/alert-triangle" >}}
+
+Flags and switches always begin with `-`, whatever the activator is set to.
+If your activator is `?`, a command taking a switch is typed as `?mycommand -raw`, not `?mycommand ?raw`.
+
+{{< /callout >}}
+
+The activator does not affect YAGPDB's built-in commands, which are run as slash commands.
+See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued).
+
 ## Creating a Custom Command
 
 Clicking the Create Custom Command (**1**) creates a new command within the selected group (**6**) and redirects you to a page to edit it.
@@ -159,7 +186,8 @@ Max 1000 characters.
 
 ##### Command
 
-Messages **starting with the prefix** for your server (- by default) _OR_ by mentioning the bot followed by the trigger text (**4**) will trigger the command.
+Messages **starting with your server's activator** (`-` by default) _OR_ a mention of the bot, followed by the trigger text (**4**), will trigger the command.
+The activator is set at the [top of this page](#activator).
 
 ###### Example
 

@@ -91,7 +91,7 @@ Similarly, provided a channel `$channel`, `$channel.Name` gives the name of the 
 | .IsPremium     | Returns boolean true/false whether guild is premium of YAGPDB or not.                                                                                                                                                                                                                                               |
 | .LinkRegex     | Returns string value of in-built link-matching regular expression.                                                                                                                                                                                                                                                  |
 | .Permissions   | Returns all mapped-out permission bits available for Discord in their bitshifted decimal values; <br>e.g. `{{.Permissions.AddReactions}}` would return `64`, same as `{{bitwiseLeftShift 1 6}}`. More in [Discord's Permissions documentation](https://docs.discord.com/developers/topics/permissions#permissions). |
-| .ServerPrefix  | Returns server's command-prefix.                                                                                                                                                                                                                                                                                    |
+| .ServerPrefix  | Returns the activator your server uses for its custom commands.                                                                                                                                                                                                                                                                                    |
 
 ### Channel
 

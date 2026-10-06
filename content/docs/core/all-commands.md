@@ -33,7 +33,7 @@ In the slash command interface they are ordinary options: you pick `raw` from th
 
 {{< /callout >}}
 
-{{< callout context="note" title="Note: Typing These Into a Channel No Longer Works" icon="outline/info-circle" >}}
+{{< callout context="note" title="Note: Use Slash Commands" icon="outline/info-circle" >}}
 
 The commands below are run through Discord's slash command interface, so `-help` and friends no longer respond.
 Use `/help`, or mention the bot with `@YAGPDB.xyz help`.

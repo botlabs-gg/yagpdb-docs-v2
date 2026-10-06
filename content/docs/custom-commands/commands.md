@@ -37,13 +37,6 @@ That is the one way to reach a custom command without knowing what the server's 
 
 {{< /callout >}}
 
-{{< callout context="caution" title="Caution: Flags and Switches" icon="outline/alert-triangle" >}}
-
-Flags and switches always begin with `-`, whatever the activator is set to.
-If your activator is `?`, a command taking a switch is typed as `?mycommand -raw`, not `?mycommand ?raw`.
-
-{{< /callout >}}
-
 The activator does not affect YAGPDB's built-in commands, which are run as slash commands.
 See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued).
 

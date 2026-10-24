@@ -43,6 +43,19 @@ This lets the component trigger a [**Component** type custom command](/docs/cust
 
 {{< link-card href="/docs/reference/custom-interactions" description="Custom Interactions" >}}
 
+## Mentions
+
+By default a message sent through the Message Creator can ping users, but not roles and not `@everyone` or `@here`.
+Two toggles in the **Mentions** section relax that:
+
+- **Allow role mentions**: lets role pings in the message actually notify the role.
+- **Allow `@everyone` and `@here` mentions**: lets those pings notify the server or channel.
+
+User mentions are always allowed and cannot be turned off.
+
+These settings control whether a ping *notifies* anyone.
+Writing `@everyone` in the message with the toggle off still shows the text, it just does not alert the server.
+
 ## Limits and validation
 
 The editor validates your message before sending and will report a clear error if something is invalid. Limits mirror Discord's own constraints, including:

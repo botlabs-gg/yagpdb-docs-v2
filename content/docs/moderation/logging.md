@@ -116,7 +116,10 @@ Users with write access to the control panel may delete individual logs or delet
 
 ## Message Log Purge
 
-If you are self-hosting your own instance of YAGPDB, you can set `enable_message_log_purge=true` to automatically purge message logs older than 30 days.
-This option is enabled on the official instance of YAGPDB hosted by Botlabs but is disabled by default on a fresh self-host.
+Message logs older than 30 days are purged automatically.
+This is the case on the official instance of YAGPDB hosted by Botlabs, and is also the default on a fresh self-host.
+
+If you are self-hosting and want to keep logs indefinitely, set `YAGPDB_ENABLE_MESSAGE_LOG_PURGE=false`.
+Note that an instance upgrading from an older version will delete its whole backlog on the first run, so take a backup first if you need that history.
 
 {{< /selfhosting >}}

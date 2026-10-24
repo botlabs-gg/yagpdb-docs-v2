@@ -1353,7 +1353,7 @@ To get the id of a message you have to turn on developer mode in Discord's appea
 
 ```txt
 [-m m:Whole number - Message ID]
-[-nodm nodm:Switch - Disable assignment confirmation DMs]
+[-dm dm:Switch - Enable assignment confirmation DMs]
 [-rr rr:Switch - Disable removing role upon removing reaction]
 [-skip skip:Whole number - Number of roles to skip]
 ```

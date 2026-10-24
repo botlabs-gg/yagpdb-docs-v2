@@ -401,6 +401,34 @@ Parameters:
 {{ $builder1.Merge $builder2 }}
 ```
 
+### componentBuilder from a message
+
+Passing a message object to `componentBuilder` rebuilds a builder from the components already on that message.
+This is the easy way to edit one component of an existing message without describing the whole layout again.
+
+```yag
+{{ $cb := componentBuilder .Message }}
+{{ $cb.Add "text" "Edited!" }}
+{{ editMessage nil .Message.ID $cb }}
+```
+
+File components are dropped when rebuilding, because their contents are not carried on the message object.
+
+### Saving a builder to the database
+
+A `componentBuilder` can be stored with [`dbSet`](/docs/custom-commands/database) and read back later, so a layout can be
+built in one custom command and reused in another.
+
+```yag
+{{ dbSet 0 "my_layout" $cb }}
+
+{{/* later, in another custom command */}}
+{{ $cb := (dbGet 0 "my_layout").Value }}
+{{ sendMessage nil $cb }}
+```
+
+Values nested too deeply to store are rejected with `componentBuilder value is nested too deeply to store`.
+
 ### componentBuilder.Get
 
 Retrieve components stored under a key.

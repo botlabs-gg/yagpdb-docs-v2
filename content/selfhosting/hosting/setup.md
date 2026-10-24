@@ -66,23 +66,42 @@ The scheme is taken from the HTTPS flags rather than from `YAGPDB_HOST`, so a re
 Getting this wrong behind a reverse proxy is the usual cause of a control panel that loads fine but refuses to save anything.
 The session cookie is also marked `Secure` in the first two cases and `SameSite=Lax` in all of them.
 
+### Privacy Defaults
+
+Several options that affect what YAGPDB reads and stores are opt-in.
+Nothing was removed, but the defaults changed, so an instance upgrading from an older version will behave differently unless you set these yourself.
+
+| Variable                          | Default | Effect                                                                                                |
+| --------------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| `YAGPDB_ENABLE_PREFIX_COMMANDS`   | `false` | When true, built-in commands also run from typed messages. See [Text Commands](#text-commands) below. |
+| `YAGPDB_ENABLE_USERNAME_TRACKING` | `false` | When true, records username and nickname history.                                                     |
+| `YAGPDB_VERIFICATION_TRACK_IPS`   | `false` | When true, records the IP a member verified from, which is what alt detection compares against.       |
+| `YAGPDB_ENABLE_MESSAGE_LOG_PURGE` | `true`  | When true, deletes message logs older than 30 days.                                                   |
+
+What each one costs you when left at its default:
+
+- **Username tracking** off means the `usernames`, `nicknames`, and `resetpastnames` commands stay unavailable, and the `pastUsernames` and `pastNicknames` custom command functions return an error. Rows already in `username_listings` and `nickname_listings` are left alone, so delete them yourself if you want that history gone.
+- **Verification IP tracking** off means [alt detection](/docs/moderation/verification#alt-detection), including alt banning and alt reporting, does not run. Existing rows keep their stored IPs.
+- **Message log purge** on means a backlog accumulated by an older instance is deleted on the first run. Take a backup first if you need it.
+
+{{< callout context="warning" title="Warning: Renamed Variable" icon="outline/alert-triangle" >}}
+
+`YAGPDB_DISABLE_PREFIX_COMMANDS` is gone, replaced by `YAGPDB_ENABLE_PREFIX_COMMANDS` with the opposite meaning.
+If your env file still sets the old name, it does nothing, and built-in commands will no longer run from typed messages.
+
+{{< /callout >}}
+
 ### Text Commands
 
 The official instance no longer lets members run built-in commands by typing them into a channel, in favor of slash commands and bot mentions.
 See [Text Commands Have Been Discontinued](/docs/core/command-settings#text-commands-have-been-discontinued) for the user-facing side.
-On your own instance you decide whether and when to do the same, through two independent options.
+Your own instance behaves the same way unless you set `YAGPDB_ENABLE_PREFIX_COMMANDS=true`.
 
-The variable names below still say `PREFIX` because they are existing configuration keys and renaming them would break deployments.
+Set `YAGPDB_ENABLE_PREFIX_COMMANDS_WARNING=true` to have YAGPDB reply to a typed built-in command with a short reminder naming the slash command to use.
+That reply deletes itself after about 10 seconds, and is skipped when one of the server's own custom commands shares the name.
+The reminder only appears while built-in commands are off, since there is nothing to warn about while they still work.
 
-| Variable                                | Default | Effect                                                                                                            |
-| --------------------------------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
-| `YAGPDB_DISABLE_PREFIX_COMMANDS`        | `false` | When true, built-in commands stop responding to typed messages. Bot mentions, DMs, and slash commands still work. |
-| `YAGPDB_ENABLE_PREFIX_COMMANDS_WARNING` | `false` | When true, shows the deprecation notice on the control panel and in Discord.                                      |
-
-The two are independent, and the notice's wording follows the first: with text commands still enabled it announces an upcoming change, and with them disabled it explains that they are already off.
-The Discord-side notice is rate limited to roughly every tenth attempt per server and is never sent when a custom command runs a built-in one.
-
-The activator your members use for custom commands is unaffected by either option.
+The activator your members use for custom commands is unaffected by any of this.
 
 {{< callout context="note" title="Note: Only Built-In Commands" icon="outline/info-circle" >}}
 

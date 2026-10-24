@@ -30,7 +30,7 @@ Depending on your deployment goals, you will also need the following tools on th
 
 If you wish to run YAGPDB from source, for example because you intend to develop some patches, you will need
 
-- the [latest Go toolchain](https://go.dev/dl/)
+- the [latest Go toolchain](https://go.dev/dl/) (Go 1.27 or newer)
 - Git
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Redis](https://redis.io/) or [Valkey](https://valkey.io/) (drop-in replacement for Redis).

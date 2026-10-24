@@ -57,6 +57,11 @@ A premium server unlocks the following benefits:
 - Increase length of deleted message history for logs saved by moderation actions from 1 hour to 12 hours.
 - Increase length of deleted message history by the `/undelete` command from 1 hour to 12 hours.
 
+### Moderation
+
+- Post [ban appeals](/docs/moderation/moderation-tools#ban-appeals) in their own channel instead of the mod log.
+- Add an **Appeal Ban** button to ban DMs, letting banned users appeal from a form inside Discord rather than the website.
+
 ### Personalizer
 
 - Enables you to change the bot's avatar and banner on your server.

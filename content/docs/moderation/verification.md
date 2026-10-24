@@ -80,7 +80,10 @@ These features will not function on the official bot.
 
 {{< /callout >}}
 
-By default, upon successful verification YAGPDB will check the user's IP (as captured by the verification page) against other users who have verified using YAGPDB.
+Alt detection works by recording the IP a member verified from and comparing it against other users who have verified using YAGPDB.
+
+Recording that IP is **off by default**, so alt detection does not run unless a self-hoster opts in with `YAGPDB_VERIFICATION_TRACK_IPS=true`.
+With it off, verification still works normally; only the IP comparison and the two features below are skipped.
 
 ### Alt Banning
 

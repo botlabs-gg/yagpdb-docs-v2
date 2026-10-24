@@ -17,6 +17,9 @@ Various limits in YAGPDB custom commands (CC) for smooth functioning of the bot 
 - **Generic API based Action call limit:** 100 per CC
 - **State Lock based Actions:** 500 per CC (mentionRoleName/ID ; hasRoleName ; targetHasRoleName/ID)
 - **Expression nesting depth:** 10,000 nested parentheses. Going deeper fails to parse with `max expression nesting depth exceeded`.
+- **Memory per execution:** 200MB/500MB (free/prem). A script that allocates more than this is stopped.
+- **Memory per `/customcommands eval`:** 40MB/100MB (free/prem)
+- **Single value size:** 1MB. Formatting or encoding a value larger than this fails with `Value is too large (max 1MB)`.
 
 ## Interaction Triggers
 

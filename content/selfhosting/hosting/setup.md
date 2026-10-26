@@ -69,7 +69,16 @@ The session cookie is also marked `Secure` in the first two cases and `SameSite=
 ### Privacy Defaults
 
 Several options that affect what YAGPDB reads and stores are opt-in.
-Nothing was removed, but the defaults changed, so an instance upgrading from an older version will behave differently unless you set these yourself.
+
+{{< callout context="warning" title="Warning: Breaking Change in v2.88.0" icon="outline/alert-triangle" >}}
+
+These defaults changed in **v2.88.0**.
+If you are upgrading an instance running **v2.87.1 or earlier**, it will behave differently after the upgrade unless you set these variables yourself.
+
+`YAGPDB_DISABLE_PREFIX_COMMANDS` was also removed in that release, replaced by `YAGPDB_ENABLE_PREFIX_COMMANDS` with the opposite meaning.
+An env file still setting the old name does nothing, and built-in commands will no longer run from typed messages.
+
+{{< /callout >}}
 
 | Variable                          | Default | Effect                                                                                                |
 | --------------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
@@ -81,15 +90,8 @@ Nothing was removed, but the defaults changed, so an instance upgrading from an 
 What each one costs you when left at its default:
 
 - **Username tracking** off means the `usernames`, `nicknames`, and `resetpastnames` commands stay unavailable, and the `pastUsernames` and `pastNicknames` custom command functions return an error. Rows already in `username_listings` and `nickname_listings` are left alone, so delete them yourself if you want that history gone.
-- **Verification IP tracking** off means [alt detection](/docs/moderation/verification#alt-detection), including alt banning and alt reporting, does not run. Existing rows keep their stored IPs.
+- **Verification IP tracking** off means [alt detection](/docs/moderation/verification), including alt banning and alt reporting, does not run. Existing rows keep their stored IPs.
 - **Message log purge** on means a backlog accumulated by an older instance is deleted on the first run. Take a backup first if you need it.
-
-{{< callout context="warning" title="Warning: Renamed Variable" icon="outline/alert-triangle" >}}
-
-`YAGPDB_DISABLE_PREFIX_COMMANDS` is gone, replaced by `YAGPDB_ENABLE_PREFIX_COMMANDS` with the opposite meaning.
-If your env file still sets the old name, it does nothing, and built-in commands will no longer run from typed messages.
-
-{{< /callout >}}
 
 ### Text Commands
 

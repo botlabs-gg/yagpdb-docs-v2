@@ -416,8 +416,7 @@ File components are dropped when rebuilding, because their contents are not carr
 
 ### Saving a builder to the database
 
-A `componentBuilder` can be stored with [`dbSet`](/docs/custom-commands/database) and read back later, so a layout can be
-built in one custom command and reused in another.
+A `componentBuilder` can be stored with [`dbSet`](/docs/custom-commands/database) and read back later, so a layout can be built in one custom command and reused in another.
 
 ```yag
 {{ dbSet 0 "my_layout" $cb }}

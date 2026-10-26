@@ -27,7 +27,7 @@ If a message contains an embed, it is serialized and saved in JSON format.
 
 Message logs on the official YAGPDB instance will be automatically deleted after 30 days of their creation.
 
-If you're self-hosting, see [Message Log Purge](#message-log-purge) for more information.
+If you're self-hosting, this is the default too, and can be changed through the [privacy defaults](/selfhosting/hosting/setup#privacy-defaults).
 
 {{< /callout >}}
 
@@ -111,15 +111,3 @@ Moderation actions will also not generate or attach logs in such channels.
 ## Deleting Logs
 
 Users with write access to the control panel may delete individual logs or delete all logs on the server using the control panel.
-
-{{< selfhosting >}}
-
-## Message Log Purge
-
-Message logs older than 30 days are purged automatically.
-This is the case on the official instance of YAGPDB hosted by Botlabs, and is also the default on a fresh self-host.
-
-If you are self-hosting and want to keep logs indefinitely, set `YAGPDB_ENABLE_MESSAGE_LOG_PURGE=false`.
-Note that an instance upgrading from an older version will delete its whole backlog on the first run, so take a backup first if you need that history.
-
-{{< /selfhosting >}}

@@ -55,9 +55,6 @@ That reply is sent as a reply to the offending message and deletes itself after 
 
 It is not sent when one of your own custom commands uses that same name, since in that case the message did run something.
 
-If you selfhost YAGPDB, both the cutoff and the reminder are under your control.
-See the [text commands section](/selfhosting/hosting/setup#text-commands) of the selfhosting guide.
-
 #### Finding the Slash Command Equivalent
 
 Nearly every built-in command is now available as a slash command.

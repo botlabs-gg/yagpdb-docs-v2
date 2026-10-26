@@ -138,34 +138,5 @@ You can assign your premium slots to any server with YAGPDB in it and no existin
 
 ![Redeemed Premium Slots](slots_premium.png)
 
-{{< selfhosting >}}
-
-## Self Hosting YAGPDB
-
-Do not proceed unless you are hosting your own version of the YAGPDB codebase.
-
-### Premium Sources
-
-When hosting YAGPDB yourself, you have access to a few methods to source premium slots to your users.
-
-- Patreon
-
-  1. Configure your price per premium slot in `premium/patreonpremiumsource/patreonpremiumsource.go > func
-    CalcSlotsForPledge`.
-  2. Configure relevant env variables to connect YAGPDB to your Patreon API.
-
-- Generating premium codes with the `GeneratePremiumCode` command.
-- Setting the `premium.all_guilds_premium` env variable to true.
-
-### Changing Limits
-
-Functionally raising or lowering limits, both for premium and non-premium servers, is accomplished by altering the source code.
-Most limits are numerical values that only need to be updated in one location.
-For most of the above listed numerical limits, the relevant key or constant is named in parenthesis.
-Ex. (`MaxMessageTriggersPremium`).
-It is recommended you familiarize yourself with the codebase before making changes.
-Find where these keys or constants are defined and alter their values as you wish.
-
-![Example of limit definitions in Advanced Automoderator](limits_example.png)
-
-{{< /selfhosting >}}
+If you run your own instance, premium slots are granted and limits are changed differently.
+See [Premium](/selfhosting/premium) in the selfhosting guide.

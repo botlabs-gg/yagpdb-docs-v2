@@ -1,5 +1,5 @@
 +++
-title = "Logging"
+title = "Message Logs"
 weight = 440
 description = "On-demand message logging."
 +++
@@ -71,7 +71,7 @@ YAGPDB cannot send message logs to a Discord channel; they are only accessible o
 - When a log is created, the link to view it follows the pattern `/public/<server ID>/log/<log count>`.
   Note that this makes it easy to scrape through all the logs created on a server.
   Assume any member that can view a specific log can also view every other log on your server.
-- You can view a list of all message logs created on your server on the Logging page of the control panel.
+- You can view a list of all message logs created on your server on the Message Logs page of the control panel.
 - When the `logs` command is executed, a link to the message log is sent as the response.
 - When a moderation action creates a log, a link is included in the mod log entry if enabled.
 
@@ -104,7 +104,7 @@ If a user is not permitted to view deleted messages, they will not be able to se
 
 ## Disallowed Channels
 
-Under the Logging page on the control panel you may exclude certain channels from log creation.
+Under the Message Logs page on the control panel you may exclude certain channels from log creation.
 Using the logs command in a disallowed channel will return an error message.
 Moderation actions will also not generate or attach logs in such channels.
 

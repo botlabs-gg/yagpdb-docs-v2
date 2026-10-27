@@ -130,6 +130,7 @@ Additional template dot context data is available for Moderation Actions:
 - `{{.Duration}}`: The duration of the mod action as a [time.Duration format].
 - `{{.HumanDuration}}`: The duration in a human friendly format (`1 hour and 3 minutes` for example).
 - `{{.WarningID}}`: The ID of the warning (when using the warn command).
+- `{{.AppealLink}}`: The link a banned user can appeal through (ban DM only). Empty when [ban appeals](#ban-appeals) are disabled.
 
 [user object]: /docs/reference/templates/syntax-and-data#user
 [time.Duration format]: /docs/reference/templates/syntax-and-data#time
@@ -253,6 +254,42 @@ There is also a "Default number of days of messages to delete" field in the ban 
 
 If you set a duration for the ban, the bot will unban the user after the specified duration.
 When this occurs, it appears as an unban action taken by YAGPDB in your mod log, regardless of which moderator initially banned the user.
+
+{{< /callout >}}
+
+#### Ban Appeals
+
+Ban appeals let a banned user ask to be unbanned, and give your moderators a place to act on that request.
+Turn them on with **Enable ban appeals** in the ban tab.
+
+Appeals are only accepted once the feature is enabled **and** a review channel exists.
+The review channel is your [mod log](#mod-channels) channel by default, so a server with no mod log set will not accept appeals.
+
+A user appeals through a page on YAGPDB's website, at `https://yagpdb.xyz/<server id>/appeal`.
+Enabling appeals adds that link to the ban DM, so the person has a way to reach it after they are removed from the server.
+You can place the link yourself with the `{{.AppealLink}}` variable in your ban DM message; otherwise it is appended at the end.
+The variable is empty when appeals are disabled.
+
+An appeal must be between **20 and 1000 characters**, and each ban may be appealed **once**.
+Someone who is not actually banned cannot file one.
+
+##### Reviewing an Appeal
+
+Each appeal is posted to the review channel as an embed with two buttons, **Unban** and **Reject**.
+Anyone permitted to use the ban and unban commands can press them, which means appeal review follows the same permission rules as those commands rather than having a setting of its own.
+
+Pressing **Unban** lifts the ban and closes the appeal.
+Pressing **Reject** closes the appeal without unbanning.
+Either way the embed is updated to record the outcome, so the channel keeps a history of what was decided.
+
+{{< callout context="premium" title="Premium: Appeal Channel and DM Button" icon="outline/sparkles" >}}
+
+Two parts of this feature are premium only:
+
+- **Channel to post appeals in**: send appeals to their own channel instead of the mod log, which keeps them out of the general moderation history.
+- **Appeal Ban button**: adds an **Appeal Ban** button to the ban DM, so the user can appeal through a form inside Discord without visiting the website. Once they appeal, the button changes to **Ban Appealed**.
+
+The appeal link stays in the ban DM even with the button enabled, because Discord does not reliably allow buttons in DMs once the user no longer shares a server with the bot.
 
 {{< /callout >}}
 

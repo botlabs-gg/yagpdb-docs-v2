@@ -19,6 +19,21 @@ You need to have the **Manage Server** permission to add the bot to your server.
 3. Authorize the application to know what servers you are in
 4. Select the server you want to add the bot to in the dropdown menu
 
+### Quick Setup
+
+The first time you bring the bot into a server, YAGPDB offers a quick setup page that turns on the features most servers want, without visiting each settings page yourself.
+It can enable:
+
+- **Moderation**: commands to ban, kick, mute and warn, with a log of what your moderators do.
+- **Auto Moderation**: automatic rules against spam, bad words, and unwanted links.
+- **Welcome Messages**: a greeting when someone joins.
+- **Auto Role**: a role given to new members automatically.
+- **Tickets**: private support channels members can open.
+- **Verification**: a check new members pass before they get access.
+
+Only features YAGPDB has the permissions for are offered, and anything you have already configured is left alone.
+You can skip the page entirely and set everything up by hand, and you can reach it again later at `/manage/<server id>/setup`.
+
 ### First Steps
 
 Before doing anything, you should first take a closer look at the Control Panel you just opened.

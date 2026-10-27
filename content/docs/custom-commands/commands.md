@@ -483,6 +483,8 @@ Option values are exposed to the response in two ways, plus the command name:
 | `.CommandName` / `.Cmd` | The slash command name that was run.                                                                                             |
 | `.SubCommand`     | The invoked [subcommand](#subcommands) name, or an empty string if the command does not use subcommands.                               |
 | `.IsSlashCommand` | `true` when the command was triggered by a slash command.                                                                              |
+| `.SlashID`        | The Discord ID of the slash command.                                                                                                   |
+| `.SlashMention`   | A clickable mention of the slash command, in the form `</name:id>`. Members can click it to start typing the command.                  |
 | `.Interaction`    | The triggering [interaction](/docs/reference/custom-interactions#parsing-an-interaction) object.                                       |
 | `.InteractionData`| The raw application command interaction data from Discord.                                                                             |
 

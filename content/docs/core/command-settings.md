@@ -33,7 +33,7 @@ It is now called the activator and sits on the [Custom Commands](/docs/custom-co
 ### Text Commands Have Been Discontinued
 
 YAGPDB's **built-in** commands are no longer run by typing them into a channel.
-A message such as `-help` is now simply ignored; the bot will not respond to it at all.
+Typing `-help` will not run the command.
 
 There are two supported ways to run a built-in command:
 
@@ -50,13 +50,10 @@ The custom commands you write for your own server keep working exactly as they d
 
 {{< /callout >}}
 
-You may still see two reminders about the change:
+Instead, YAGPDB replies with a short reminder pointing at the slash command to use.
+That reply is sent as a reply to the offending message and deletes itself after about **10 seconds**, so it does not clutter the channel.
 
-- A notice on the control panel, shown on the server selector and on each server's dashboard.
-- A short message in Discord when someone types a built-in command into a channel. It is only sent on roughly every tenth attempt in a server, not on every single one, and never when a custom command runs one.
-
-If you selfhost YAGPDB, both the cutoff and the reminders are under your control.
-See the [text commands section](/selfhosting/hosting/setup#text-commands) of the selfhosting guide.
+It is not sent when one of your own custom commands uses that same name, since in that case the message did run something.
 
 #### Finding the Slash Command Equivalent
 

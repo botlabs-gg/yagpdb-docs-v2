@@ -168,11 +168,15 @@ To create a custom message for your role menu like event role menu you saw above
 Then get the ID of the message by following the steps in [how to get a message ID](#how-to-get-a-message-id-desktop) and type in the following command, `/rolemenu create (group name) -m (message id)`.
 You would then complete the role menu like you would any normal role menu.
 
-### Disabling DM confirmation
+### DM confirmation
 
-If you do not want the bot to send you a DM when you are given or removed from a role, type in the following command `/rolemenu update (message id) -nodm`.
+Confirmation DMs are **off by default**.
+A new role menu will not DM anyone when they are given or removed from a role unless you ask for it.
 
-After you have finish editing or creating your role menu, it will display whether DM notifications are enabled or not.
+To turn them on as you create the menu, add the `-dm` switch: `/rolemenu create (group name) -dm`.
+To change the setting on a menu that already exists, use `/rolemenu update (message id) -nodm`, which toggles confirmation DMs rather than only disabling them.
+
+After you have finished editing or creating your role menu, it will display whether DM notifications are enabled or not.
 Note that YAGPDB does not allow you to disable error messages such as cool-down messages with the `nodm` switch or any other method.
 
 ![Rolemenu flags display](rolemenu_flags.png)

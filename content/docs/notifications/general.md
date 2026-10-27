@@ -1,10 +1,10 @@
 +++
-title = "General"
+title = "Join & Leave Messages"
 weight = 510
 description = "Welcome new users, announce when users leave, and more."
 +++
 
-General notifications such as a welcoming direct message, a message in the server when users join or leave, as well as a simple message announcing when a channel's topic has changed.
+Notifications such as a welcoming direct message, a message in the server when users join or leave, as well as a simple message announcing when a channel's topic has changed.
 
 ![Overview of general feeds](./general_overview.png)
 

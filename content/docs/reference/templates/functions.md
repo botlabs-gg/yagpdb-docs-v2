@@ -199,6 +199,15 @@ Returns the number of pinned messages in given channel.
 Returns the full thread object for the given thread.
 Will not work for channels.
 
+#### lockThread
+
+```yag
+{{ lockThread <thread> }}
+```
+
+Locks the given thread.
+Shorthand for `closeThread <thread> true`.
+
 #### openThread
 
 ```yag
@@ -1236,6 +1245,20 @@ Returns X raised to the power of Y as a floating-point number.
 
 Returns a random integer in the right-closed interval of `[0, stop)` or `[start, stop)` if two arguments are provided.
 That is, the result is always greater than or equal to `start` and strictly less than `stop`.
+
+#### randNorm
+
+```yag
+{{ $result := randNorm [mean] [stddev] }}
+```
+
+Returns a random floating-point number drawn from a normal (Gaussian) distribution.
+Values near `mean` are most likely, and about 68% of results fall within one `stddev` of it.
+
+- `mean` (optional): the center of the distribution.
+  Default `0`.
+- `stddev` (optional): the standard deviation, i.e. how spread out the results are.
+  Default `1`.
 
 #### round
 

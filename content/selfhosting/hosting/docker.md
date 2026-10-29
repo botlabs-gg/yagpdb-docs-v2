@@ -12,7 +12,7 @@ You should already have a clone of the sources on your disk from the previous pa
 ## Configuration
 
 Before you can start the container, you will need some configuration values.
-Go into the `yagpdb_docker` directory and opy `app.example.env` to `app.env` and `db.example.env` to `db.env`.
+Go into the `yagpdb_docker` directory and copy `app.example.env` to `app.env` and `db.example.env` to `db.env`.
 Open both in an editor of your choice.
 
 For basic functionality, the following variables **must** be set.

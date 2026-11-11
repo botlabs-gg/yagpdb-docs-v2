@@ -192,7 +192,7 @@ Shows current time in different timezones. [Available timezones](https://pastebi
 
 ### /listroles{#listroles}
 
-List roles, their id's, color hex code, and 'mention everyone' perms (useful if you wanna double check to make sure you didn't give anyone mention everyone perms that shouldn't have it)
+List roles, their id's, member count, color hex code, and 'mention everyone' perms (useful if you wanna double check to make sure you didn't give anyone mention everyone perms that shouldn't have it)
 
 #### Usage{#listroles-usage}
 
@@ -202,6 +202,20 @@ List roles, their id's, color hex code, and 'mention everyone' perms (useful if 
 
 ```txt
 [-nomanaged nomanaged:Switch - Don't list managed/bot roles]
+```
+
+### /roleinfo{#roleinfo}
+
+#### Aliases{#roleinfo-aliases}
+
+- rinfo
+
+Shows information about a role, including how many members have it
+
+#### Usage{#roleinfo-usage}
+
+```txt
+/roleinfo <role:Role>
 ```
 
 ### /poll{#poll}
@@ -839,16 +853,17 @@ Reset Soundboard Player
 
 - c
 
-Creates a Cards Against Humanity game in this channel, add packs after commands, or * for all packs. (-v for vote mode without a card czar).
+Creates a Cards Against Humanity game in this channel, with the packs picked from a menu or typed
+Leave out the packs to pick them from a menu, or type them separated by spaces, * for all packs. Use -mode vote for players to vote on the winner instead of having a card czar.
 
 #### Usage{#cah-create-usage}
 
 ```txt
-/cah create [packs:Text - Packs separated by space, or * for all of them.]
+/cah create [packs:Text - Packs separated by space, or * for all of them. Shows a menu to pick them from if left out.]
 ```
 
 ```txt
-[-v v:Switch - Vote mode - players vote instead of having a card czar.]
+[-mode mode:Text - Card czar or vote mode for this game, uses the server default if left out]
 ```
 
 ### /cah end{#cah-end}
@@ -892,7 +907,7 @@ Starts a trivia session
 #### Usage{#trivia-start-usage}
 
 ```txt
-/trivia start [difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard]
+/trivia start [difficulty:Text - Difficulty of the trivia, can be none, easy, medium or hard] [timer:Whole number - Seconds to answer, between 5 and 120 (30 by default)]
 ```
 
 ### /trivia rank{#trivia-rank}

@@ -357,6 +357,7 @@ See the [role object](https://docs.discord.com/developers/topics/permissions#rol
 | .Hoist       | Whether the role is displayed separately in the member list.                                                                                       |
 | .ID          | The ID of the role.                                                                                                                                |
 | .Managed     | Whether the role is managed by an integration, such as a bot or a Discord subscription.                                                            |
+| .MemberCount | How many members currently have the role.                                                                                                          |
 | .Mention     | A mention of the role, i.e. `<@&ID>`.                                                                                                              |
 | .Mentionable | Whether the role can be mentioned by anyone.                                                                                                       |
 | .Name        | The name of the role.                                                                                                                              |

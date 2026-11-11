@@ -34,11 +34,12 @@ Does nothing if either argument is invalid.
 {{ closeThread <thread> <lock> }}
 ```
 
-Closes or locks the given thread.
-You cannot lock a closed thread, but you can close a locked thread.
+Closes (archives) the given thread, optionally locking it at the same time.
 
-- `lock`: whether to lock the thread instead.
+- `lock`: whether to also lock the thread, so that only moderators can reopen it.
   Default `false`.
+
+Passing `true` closes **and** locks in a single call;
 
 #### createForumPost
 
@@ -231,6 +232,21 @@ Pins the given forum post, which may be specified by its ID or name.
 ```
 
 Removes the given member from the given thread.
+
+#### setVoiceStatus
+
+```yag
+{{ setVoiceStatus <channel> <status> }}
+```
+
+Sets the status line shown on a voice channel, the short bit of text Discord displays next to the channel name.
+
+- `channel`: the voice channel to set the status on.
+  Passing a text channel or a thread is an error.
+- `status`: the status text, at most 500 characters.
+  Pass an empty string to clear it.
+
+This function counts towards the same 10 calls per custom command execution limit as [editChannelName](#editchannelname) and [editChannelTopic](#editchanneltopic), and is additionally limited to one call per voice channel per execution.
 
 #### unpinForumPost
 

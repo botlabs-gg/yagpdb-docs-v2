@@ -43,6 +43,14 @@ This lets the component trigger a [**Component** type custom command](/docs/cust
 
 {{< link-card href="/docs/reference/custom-interactions" description="Custom Interactions" >}}
 
+## Code View
+
+Next to the preview there is a **Code** toggle.
+It shows the custom command code that would send the message you have built, with a **Copy** button next to it.
+
+This is the quickest way to move a message out of the editor and into a custom command: build it visually, switch to **Code**, and paste the result into your command.
+Component custom IDs get the `templates-` prefix added automatically, exactly as they do when the editor sends the message itself.
+
 ## Mentions
 
 By default a message sent through the Message Creator can ping users, but not roles and not `@everyone` or `@here`.

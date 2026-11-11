@@ -854,7 +854,7 @@ Reset Soundboard Player
 - c
 
 Creates a Cards Against Humanity game in this channel, with the packs picked from a menu or typed
-Leave out the packs to pick them from a menu, or type them separated by spaces, * for all packs. Use -mode vote for players to vote on the winner instead of having a card czar.
+Leave out the packs to pick them from a menu, or type them separated by spaces, `*` for all packs. Use `-mode vote` for players to vote on the winner instead of having a card czar.
 
 #### Usage{#cah-create-usage}
 

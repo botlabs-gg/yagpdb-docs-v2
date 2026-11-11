@@ -302,6 +302,25 @@ This trigger will fire when a message triggers Discord's Automod.
 - **Rule ID** <br> The ID of the Automod rule to watch out for.
     Leave blank for all. (Default: (blank))
 
+#### Message Contains Media Flagged by Discord
+
+This trigger will fire when a message has an attachment or embed that Discord's own content scanning has flagged.
+Pick which categories you care about; all three are on by default.
+
+- **Explicit content**<br>
+    Fire on media Discord flagged as explicit. (Default: on)
+- **Gore**<br>
+    Fire on media Discord flagged as gore. (Default: on)
+- **Self-harm**<br>
+    Fire on media Discord flagged as self-harm. (Default: on)
+
+{{< callout context="note" title="Note: Flagging Can Arrive Late" icon="outline/info-circle" >}}
+
+Discord scans the media after the message is posted, so the flag can arrive a moment later than the message itself.
+This trigger therefore fires shortly after the message was sent rather than instantly, and a rule built on it should expect the message to have been visible briefly.
+
+{{< /callout >}}
+
 <!-- footnotes -->
 
 [^1]: The regular expression used to match links is the following: : The regular expression used to match links is the following:<br> ``(?i)([a-z\d]+: [//])([\w-._~:/?#\[\]@!$&'()*+,;%=]+(?:(?:\. [\w_-]+)+))([\w.,@?^=%&:/~+#-]* [\w@?^=%&/~+#-]) ``

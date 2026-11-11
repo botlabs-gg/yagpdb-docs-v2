@@ -52,8 +52,10 @@ The custom commands you write for your own server keep working exactly as they d
 
 Instead, YAGPDB replies with a short reminder pointing at the slash command to use.
 That reply is sent as a reply to the offending message and deletes itself after about **10 seconds**, so it does not clutter the channel.
+Each member only gets one reminder every **30 seconds**, however many commands they type in that window.
 
-It is not sent when one of your own custom commands uses that same name, since in that case the message did run something.
+The reminder is only sent for messages that name a real built-in command, and only when the member would actually have been allowed to run it.
+A name your [command overrides](#command-override-priority) have disabled, or one they lack the roles for, is ignored silently.
 
 #### Finding the Slash Command Equivalent
 

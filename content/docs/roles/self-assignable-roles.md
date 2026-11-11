@@ -129,9 +129,24 @@ If your role group has more than twenty you have to use the `/rolemenu complete`
 
 {{< /callout >}}
 
-To set up a role menu, the related roles **have to be added to a role group**, then you invoke the command `/rolemenu create (role group name)`.
+There are two ways to create one: the **role menu creator** on the control panel, or the `/rolemenu create` command in Discord.
+Both produce the same thing, so use whichever you prefer.
 
 The group mode and other restrictions from the role group and role still apply to the roles in the role menu.
+
+### Role Menu Creator
+
+The role commands page has a **Role menus** section that builds a menu for you without running any commands.
+Pick a role group and the roles in it become the menu's options, which is why the group has to be filled in first.
+
+You choose how members pick a role:
+
+- **Select menu**: a dropdown. Each option takes a **Label in the select menu** and an optional **Description under the label**, and you can set the **Select menu placeholder** shown before anything is picked.
+- **Reactions**: the classic style, where members react to the message. This is the one subject to the 20 role limit above.
+
+Under **More options** you can set the **Message text**, which lists the roles automatically if you leave it empty, and you can attach the menu to a message that is already posted instead of having YAGPDB send a new one.
+
+A menu you started but did not finish is marked **Not finished setting up**, so you can come back to it.
 
 After you type in the command, you will be taken through the setup process.
 If you want to disable DMs, create a custom message, or add new role to your role menu, be sure to read until the end.
